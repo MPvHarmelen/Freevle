@@ -112,7 +112,17 @@ div#wrapper p {
 	padding: 20px 45px;
 }
 
-div#photos {}
+div#scrollTest {
+	width: 100%;
+	background: #222;
+	height: 250px;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+div#scrollTest img {
+	height: 240px;
+	margin: 5px;
+}
 /*---------------footer---------------*/
 footer {
 	background: #333;
