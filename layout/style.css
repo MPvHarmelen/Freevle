@@ -4,7 +4,6 @@ html,body {
 	font-family: sans-serif;
 	margin: 0;
 	padding: 0;
-	background: #fafafa;
 	color: #111;
 	line-height: 160%;
 	text-align: justify;
@@ -23,13 +22,14 @@ p.clear {
 
 /*---------------header---------------*/
 header {
-	background: url(leer.png);
+	background: #333 url(leer.png);
 	margin: 0 auto;
 	height: 250px;
 	box-shadow: 0 0 25px #000;
 	-moz-box-shadow: 0 0 25px #000;
 	width: 800px;
-	z-index: 2;
+	z-index: 1;
+	position: relative;
 }
 
 a.header:link, a.header:visited {
@@ -75,20 +75,13 @@ input#searchfield {
 	border-radius: 15px;
 	height: 25px;
 	box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
-	-moz-box-shadow: inset 0 0 20px #000;
+	-moz-box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
 	background: none;
 	color: #dedede;
 	outline: none;
 	padding: 3px 8px 0px 30px;
 	width: 380px;
 	background: rgba(150, 150, 150, 0.3) url(mag.png) no-repeat;
-}
-
-h1 {
-	font-size: 500%;
-	padding: 0 0 100px 45px;
-	color: white;
-	border-bottom: 2px dashed #964;
 }
 div#stitchheader {
 	background: url(stiksel.png);
@@ -99,13 +92,13 @@ div#stitchheader {
 /*---------------content---------------*/
 div#wrapper {
 	width: 790px;
-	margin: auto;
+	margin: 0 auto;
 	background: white;
-	height: 100%;
 	box-shadow: 0 0 10px #000;
 	-moz-box-shadow: 0 0 10px #000;
-	z-index: -1;
-	padding: 1px 0 0;
+	z-index: 0;
+	padding: 1px 0;
+	position: relative;
 }
 
 div#wrapper p {
@@ -114,10 +107,12 @@ div#wrapper p {
 
 div#scrollTest {
 	width: 100%;
-	background: #222;
+	background: #444;
 	height: 250px;
 	overflow-x: auto;
 	overflow-y: hidden;
+	box-shadow: inset 0 0 20px #323232;
+	-moz-box-shadow: inset 0 0 20px #323232;
 }
 div#scrollTest img {
 	height: 240px;
@@ -125,15 +120,15 @@ div#scrollTest img {
 }
 /*---------------footer---------------*/
 footer {
-	background: #333;
 	color: #fafafa;
 	padding: 50px;
-	box-shadow: 0 0 10px #000;
-	-moz-box-shadow: 0 0 10px #000;
+	box-shadow: 0 0 25px #222;
+	-moz-box-shadow: 0 0 25px #222;
 	text-shadow: 1px 1px 1px #555;
 	width: 700px;
 	margin: auto;
-	background: #333 url(header.png);
+	background: #333 url(leer.png);
+	position: relative;
 }
 
 footer a:link, footer a:visited {
