@@ -7,13 +7,13 @@ html,body {
 	color: #111;
 	line-height: 160%;
 	text-align: justify;
-	background-color: white;
-	background-image: -webkit-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5)), -webkit-linear-gradient(0deg, transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
-	background-image: -moz-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5)), -webkit-linear-gradient(0deg, transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
-	background-image: -ms-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5)), -webkit-linear-gradient(0deg, transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
-	background-image: -o-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5)), -webkit-linear-gradient(0deg, transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
-	background-image: linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5)), -webkit-linear-gradient(0deg, transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
-	background-size: 150px; 
+	background-color: grey;
+	background-image: -webkit-linear-gradient(transparent 50%, rgba(0, 200, 230, .3) 50%, rgba(0, 200, 230, .3));
+	background-image: -moz-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
+	background-image: -ms-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
+	background-image: -o-linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
+	background-image: linear-gradient(transparent 50%, rgba(0, 200, 230, .5) 50%, rgba(0, 200, 230, .5));
+	background-size: 200px; 
 }
 
 p.clear {
