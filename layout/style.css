@@ -67,13 +67,20 @@ input#searchfield {
 	height: 25px;
 	box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
 	-moz-box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
-	background: none;
 	color: #dedede;
 	outline: none;
 	padding: 3px 8px 0px 30px;
 	width: 392px;
 	background: rgba(150, 150, 150, 0.3) url(mag.png) no-repeat;
 }
+input#searchfield:hover {
+	background: rgba(150, 150, 150, 0.4) url(mag.png) no-repeat;
+}
+input#searchfield:active, input#searchfield:focus {
+	box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666, 2px 0 25px #5a969f, -2px 0 25px #5a969f;
+	-moz-box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
+}
+
 div.horizontal-stitch {
 	background: url(stiksel.png);
 	width: 100%;
