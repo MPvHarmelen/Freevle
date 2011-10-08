@@ -13,6 +13,9 @@ html,body {
 p.clear {
 	clear: both;
 }
+a:link, a:visited {
+	color: #3b757e;
+}
 
 /*---------------header---------------*/
 header {
@@ -43,7 +46,7 @@ a.header:hover, a.header:active {
 }
 
 a.header:active {
-	padding: 17px 16px 15px 16px;
+	padding: 16px 0 14px;
 }
 
 a#home-button {
