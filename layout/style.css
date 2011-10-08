@@ -128,10 +128,47 @@ div#wrapper p, h2 {
 	left: 0;
 	top: 0;
 }
-#overview img{
+div.image {
 	float: left;
 	height: 220px;
+	width: 293px;
 	margin: 10px;
+}
+div.image div {
+	height: 190px;
+	width: 244px;
+	background: rgba(1, 1, 1, 0.9);
+	padding: 15px 25px;
+	text-shadow: 1px 1px 1px #555;
+	color: #eee;
+	visibility: hidden;
+	-moz-transition: visibility 0s;
+	-webkit-transition: visibility 0s;
+	transition: visibility 0s;
+	-o-transition: visibility 0s;
+	text-decoration: none;
+}
+a.image {
+	text-decoration: none;
+} 
+div.image:hover div {
+	visibility: visible;
+}
+p.image {
+	padding: 0;
+	margin: 0;
+}
+#image1 {
+	background-image: url(image-1.JPG);
+	background-size: cover;	
+}
+#image2 {
+	background-image: url(image-2.jpg);
+	background-size: cover;	
+}
+#image3 {
+	background-image: url(image-3.jpg);
+	background-size: cover;	
 }
 #scrollbar{
 	position: relative;
