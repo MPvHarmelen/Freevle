@@ -74,7 +74,7 @@ input#searchfield {
 	width: 392px;
 	background: rgba(150, 150, 150, 0.3) url(mag.png) no-repeat;
 }
-div#stitchheader {
+div.horizontal-stitch {
 	background: url(stiksel.png);
 	width: 100%;
 	height: 3px;
@@ -200,16 +200,18 @@ p.image {
 /*---------------footer---------------*/
 footer {
 	color: #fafafa;
-	padding: 50px;
 	box-shadow: 0 0 25px #222;
 	-moz-box-shadow: 0 0 25px #222;
 	text-shadow: 1px 1px 1px #555;
-	width: 700px;
+	width: 800px;
 	margin: auto;
 	background: #333 url(leer.png);
 	position: relative;
+	padding: 20px 0 0;
 }
-
+div#center {
+	padding: 20px 50px 50px;
+}
 footer a:link, footer a:visited {
 	color: white;
 	text-decoration: none;
