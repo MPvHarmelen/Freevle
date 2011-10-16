@@ -110,7 +110,7 @@ div.date {
 	float: left;
 	width: 60px;
 	background: #333 url(leer.png);
-	margin: 615px 0 0 60px;
+	margin: 545px 0 0 60px;
 	box-shadow: 0 0 10px #000;
 	-moz-box-shadow: 0 0 10px #000;
 	padding: 25px;
@@ -141,8 +141,18 @@ div#content {
 	float: left;
 }
 
-div#content p, h2 {
+p#content {
 	padding: 20px 45px;
+}
+h2 {
+	padding: 20px 45px 0;
+}
+p#nieuwsbericht {
+	padding: 20px 45px 0;
+}
+p#leesmeer {
+	text-align: right;
+	padding: 0 45px 20px;
 }
 
 #scrollarea {
