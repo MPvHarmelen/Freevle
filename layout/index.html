@@ -13,6 +13,10 @@
         if(oScroll2.length > 0){
           oScroll2.tinyscrollbar({ axis: 'x' });
         }
+        $('#inlogform').hide();
+        $("#loginhome").click(function() {
+            $("#inlogform").slideToggle('fast');
+          });
       });
       $(function(){
      	$('div.image').fadeColor();
@@ -30,10 +34,6 @@
           });
         });
       }
-
-      $("#loginhome").click(function() {
-        $("#inlogform").slideToggle('fast');
-      });
     </script>
 
   </head>
