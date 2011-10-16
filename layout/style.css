@@ -211,24 +211,30 @@ p.image {
 	position: relative;
 	margin: 0;
 	clear: both;
-	height: 12px;
+	height: 16px;
 }
 #track {
 	width: 100%;
-	height: 12px;
+	height: 16px;
 	position: relative;
 	margin: 0;
 }
 #thumb {
 	background: #888;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	height: 12px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	height: 16px;
 	cursor: pointer;
 	overflow: hidden;
 	position: absolute;
 	left: 0;
 	margin: 0;
+	border-width: 0 16px;
+	-moz-border-image: url(arrows.png) 16 repeat;
+	-webkit-border-image: url(arrows.png) 16 repeat;
+	-o-border-image: url(arrows.png) 16 repeat;
+	border-image: url(arrows.png) 16 repeat;
+	box-sizing: border-box;
 }
 
 /*---------------ads---------------*/
@@ -237,7 +243,7 @@ div#ads {
 	width: 170px;
 	background: #333 url(leer.png);
 	height: 540px;
-	margin: 50px 0 0;
+	margin: 30px 0 0;
 	box-shadow: 0 0 10px #000;
 	-moz-box-shadow: 0 0 10px #000;
 	position: relative;
