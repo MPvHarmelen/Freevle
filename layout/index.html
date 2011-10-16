@@ -14,6 +14,22 @@
         oScroll2.tinyscrollbar({ axis: 'x' });
       }
     });
+    $(function(){
+    	$('div.image').fadeColor();
+    })
+
+    $.fn.fadeColor = function() {
+    	return this.each(function(){
+    		var photo = $(this);
+    		var text = $('div.photo-text',this);
+
+    		photo.hover(function(){
+    			text.animate({marginLeft: "0px", marginTop: "70px"}, "medium");
+    		},function(){
+    			text.animate({marginLeft: "-135px", marginTop: "165px"}, "medium");
+    		});
+    	});
+    }
     </script>
 
   </head>
@@ -45,14 +61,14 @@
 
       <div id="content">
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non quam sed mauris venenatis laoreet. Nam imperdiet fermentum quam at vehicula. Vestibulum ac justo eu elit sollicitudin malesuada eu vel quam. Aliquam erat volutpat. Nullam urna arcu, pharetra non commodo quis, cursus eu lectus. Etiam ut purus odio, et elementum metus. Phasellus vehicula ullamcorper tincidunt. Maecenas orci enim, consectetur vel egestas vel, iaculis eu dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam, orci quis ultricies sodales, eros enim sodales nunc, quis imperdiet nisl nisl nec risus. Suspendisse elit tellus, tincidunt at suscipit id, dapibus non nibh. Nam quam leo, faucibus molestie tincidunt et, sodales vitae risus. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non quam sed mauris venenatis laoreet. Nam imperdiet fermentum quam at vehicula. Vestibulum ac justo eu elit sollicitudin malesuada eu vel quam. Aliquam erat volutpat. Nullam urna arcu, pharetra non commodo quis, cursus eu lectus. Etiam ut purus odio, et elementum metus. Phasellus vehicula ullamcorper tincidunt. Maecenas orci enim, consectetur vel egestas vel, iaculis eu dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam, orci quis ultricies sodales, eros enim sodales nunc, quis imperdiet nisl nisl nec risus. Suspendisse elit tellus, tincidunt at suscipit id, dapibus.</p>
 
         <div id="scrollarea"> 
           <div id="viewport"> 
             <div id="overview"> 
               <a class="image" href="">
                 <div class="image" id="image1">
-                  <div>
+                  <div class="photo-text">
                     <h3>Album-naam</h3>
                     Beschrijving van het album.
                   </div>
@@ -60,7 +76,7 @@
               </a>
               <a class="image" href="">
                 <div class="image" id="image2">
-                  <div>
+                  <div class="photo-text">
                     <h3>Album-naam</h3>
                     Beschrijving van het album.
                   </div>
@@ -68,7 +84,7 @@
               </a>
               <a class="image" href="">
                 <div class="image" id="image3">
-                  <div>
+                  <div class="photo-text">
                     <h3>Album-naam</h3>
                     Beschrijving van het album.
                   </div>
