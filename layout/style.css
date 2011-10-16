@@ -248,7 +248,7 @@ p.image {
 }
 
 /*---------------ads---------------*/
-div#ads {
+div#dingen {
 	float: right;
 	width: 170px;
 	background: #333 url(leer.png);
@@ -259,11 +259,11 @@ div#ads {
 	position: relative;
 	z-index: 0;
 }
-div#ads img {
+div#dingen img {
 	width: 150px;
 	margin: 10px;
 }
-div#ads p {
+div#dingen p {
 	padding: 0;
 	margin: 0;
 	text-align: center;
