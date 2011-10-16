@@ -8,28 +8,35 @@
     <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="jquery.tinyscrollbar.js"></script>
     <script type="text/javascript">
-    $(document).ready(function(){
-      var oScroll2 = $('#scrollarea');
-      if(oScroll2.length > 0){
-        oScroll2.tinyscrollbar({ axis: 'x' });
+      $(document).ready(function(){
+        var oScroll2 = $('#scrollarea');
+        if(oScroll2.length > 0){
+          oScroll2.tinyscrollbar({ axis: 'x' });
+        }
+      });
+      $(function(){
+     	$('div.image').fadeColor();
+      })
+
+      $.fn.fadeColor = function() {
+        return this.each(function(){
+          var photo = $(this);
+          var text = $('div.photo-text',this);
+
+        photo.hover(function(){
+          text.animate({marginLeft: "0px", marginTop: "70px"}, "medium");
+        },function(){
+          text.animate({marginLeft: "-135px", marginTop: "165px"}, "medium");
+          });
+        });
       }
-    });
-    $(function(){
-    	$('div.image').fadeColor();
-    })
 
-    $.fn.fadeColor = function() {
-    	return this.each(function(){
-    		var photo = $(this);
-    		var text = $('div.photo-text',this);
-
-    		photo.hover(function(){
-    			text.animate({marginLeft: "0px", marginTop: "70px"}, "medium");
-    		},function(){
-    			text.animate({marginLeft: "-135px", marginTop: "165px"}, "medium");
-    		});
-    	});
-    }
+      $("#loginhome").click(function() {
+        $("#inlogform").animate({"marginTop": "50px"});
+      });
+      $("#loginup").click(function() {
+        $("#inlogform").animate({"marginTop": "-252px"});
+      });
     </script>
 
   </head>
@@ -39,12 +46,25 @@
       <a class="header" id="home-button" href="">De school</a>
       <a class="header" href="">Nieuws</a>
       <a class="header" href="">Contact</a>
+
 	  <div id="searchfield_cont">
 	    <form>
           <input type="text" id="searchfield" placeholder="Zoek..." />
         </form>
       </div>
-      <a class="header" href="">Login</a>
+
+      <div id="loginhome" class="header">Login</div>
+
+      <div id="inlogform">
+        <form method="post" action="./login/index.php">
+          <input class="text" type="text" name="username" placeholder="Gebruikersnaam" /><br />
+          <input class="text" type="password" name="password" placeholder="Wachtwoord" /><br />
+          <br />
+          <input class="button" type="submit" value="Login" name="submit" />
+        </form>
+        <div id="loginup">Up!</div>
+      </div>
+
       <p class="clear"></p>
       <h1><span id="first-letter">C</span>YGNUS GYMNASIUM</h1>
       <img src="zwaan.png" />
