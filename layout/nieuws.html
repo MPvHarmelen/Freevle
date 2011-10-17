@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Cygnus Template | Nieuwsbericht</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#inlogform').hide();
+        $("#loginhome").click(function() {
+            $("#inlogform").slideToggle('fast');
+          });
+      });
+      $(function(){
+     	$('div.image').fadeColor();
+      })
+
+      $.fn.fadeColor = function() {
+        return this.each(function(){
+          var photo = $(this);
+          var text = $('div.photo-text',this);
+
+        photo.hover(function(){
+          text.animate({marginLeft: "0px", marginTop: "70px"}, "medium");
+        },function(){
+          text.animate({marginLeft: "-135px", marginTop: "165px"}, "medium");
+          });
+        });
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <header>
+      <a class="header" id="home-button" href="index.html">Startpagina</a>
+      <a class="header" id="home-button" href="">De School</a>
+      <a class="header" href="">Nieuws</a>
+      <a class="header" href="">Contact</a>
+
+	  <div id="searchfield_cont">
+	    <form>
+          <input type="text" id="searchfield" placeholder="Zoek..." />
+        </form>
+      </div>
+
+      <div id="loginhome" class="header">Login</div>
+
+      <div id="inlogform">
+        <form method="post" action="./login/index.php">
+          <input class="text" type="text" name="username" placeholder="Gebruikersnaam" /><br />
+          <input class="text" type="password" name="password" placeholder="Wachtwoord" /><br />
+          <br />
+          <input class="button" type="submit" value="Login" name="submit" />
+        </form>
+      </div>
+
+      <p class="clear"></p>
+      <h1><span id="first-letter">C</span>YGNUS GYMNASIUM</h1>
+      <img src="zwaan.png" />
+      <p class="clear"></p>
+      <div class="horizontal-stitch"></div>
+    </header>
+
+    <div id="wrapper">
+
+      <div id="wrapper2">
+        <div class="nieuwsbericht">
+          <div class="date">
+            <span class="date">23/12</span><br>
+            <span class="year">2011</span>
+          </div>
+
+          <div class="nieuwstekst">
+            <h2>Lorem</h2>
+            <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non quam sed mauris venenatis laoreet. Nam imperdiet fermentum quam at vehicula. Vestibulum ac justo eu elit sollicitudin malesuada eu vel quam. Aliquam erat volutpat. Nullam urna arcu, pharetra non commodo quis, cursus eu lectus. Etiam ut purus odio, et elementum metus. Phasellus vehicula ullamcorper tincidunt. Maecenas orci enim, consectetur vel egestas vel, iaculis eu dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam, orci quis ultricies sodales, eros enim sodales nunc, quis imperdiet nisl nisl nec risus. Suspendisse elit tellus, tincidunt at suscipit id, dapibus.</p>
+            <p id="leesmeer"><a href="nieuwsbericht.html">Lees meer...</a></p>
+          </div>
+        </div>
+
+        <div class="nieuwsbericht">
+          <div class="date">
+            <span class="date">23/12</span><br>
+            <span class="year">2011</span>
+          </div>
+
+          <div class="nieuwstekst">
+            <h2>Lorem</h2>
+            <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non quam sed mauris venenatis laoreet. Nam imperdiet fermentum quam at vehicula. Vestibulum ac justo eu elit sollicitudin malesuada eu vel quam. Aliquam erat volutpat. Nullam urna arcu, pharetra non commodo quis, cursus eu lectus. Etiam ut purus odio, et elementum metus. Phasellus vehicula ullamcorper tincidunt. Maecenas orci enim, consectetur vel egestas vel, iaculis eu dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam, orci quis ultricies sodales, eros enim sodales nunc, quis imperdiet nisl nisl nec risus. Suspendisse elit tellus, tincidunt at suscipit id, dapibus.</p>
+            <p id="leesmeer"><a href="nieuwsbericht.html">Lees meer...</a></p>
+          </div>
+        </div>
+
+        <div class="nieuwsbericht">
+          <div class="date">
+            <span class="date">23/12</span><br>
+            <span class="year">2011</span>
+          </div>
+
+          <div class="nieuwstekst">
+            <h2>Lorem</h2>
+            <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non quam sed mauris venenatis laoreet. Nam imperdiet fermentum quam at vehicula. Vestibulum ac justo eu elit sollicitudin malesuada eu vel quam. Aliquam erat volutpat. Nullam urna arcu, pharetra non commodo quis, cursus eu lectus. Etiam ut purus odio, et elementum metus. Phasellus vehicula ullamcorper tincidunt. Maecenas orci enim, consectetur vel egestas vel, iaculis eu dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam, orci quis ultricies sodales, eros enim sodales nunc, quis imperdiet nisl nisl nec risus. Suspendisse elit tellus, tincidunt at suscipit id, dapibus.</p>
+            <p id="leesmeer"><a href="nieuwsbericht.html">Lees meer...</a></p>
+          </div>
+        </div>
+      </div>
+      
+      <div id="dingen">
+        <a href="">
+          <img src="ding1.jpg" />
+          <p>Soundmix</p>
+        </a>
+        <a href="">
+          <img src="ding2.jpg" />
+          <p>Hamlet</p>
+        </a>
+      </div>
+
+      <p class="clear"></p>
+    </div>
+    
+    <footer>
+      <div class="horizontal-stitch"></div>
+  	  <div id="center">
+        Cygnus Gymnasium
+      </div>
+    </footer>
+
+  </body>
+</html>
