@@ -57,7 +57,7 @@ a#home-button {
 
 div#searchfield_cont {
   float: left;
-  width: 432px;
+  width: 328px;
   padding: 12px;
 }
 
@@ -72,7 +72,7 @@ input {
   color: #dedede;
   outline: none;
   padding: 3px 8px 0px 30px;
-  width: 392px;
+  width: 290px;
   background: rgba(150, 150, 150, 0.3) url(/media/img/mag.png) no-repeat;
 }
 input:hover {
@@ -135,11 +135,12 @@ div#inlogform {
   -moz-box-shadow: 0 0 10px #000;
   z-index: 0;
 }
+
 /*---------------date---------------*/
 div.date {
   float: left;
   width: 60px;
-  background: #333 url(leer.png);
+  background: #333 url(/media/img/leer.png);
   margin: 40px 0 0 60px;
   box-shadow: 0 0 10px #000;
   -moz-box-shadow: 0 0 10px #000;
@@ -158,7 +159,7 @@ span.year {
 div#wrapper {
   margin: 0 auto;
   width: 1130px;
-}  
+}
 div#wrapper2 {
   width: 960px;
   float: left;
@@ -179,7 +180,6 @@ div.nieuwstekst {
   float: left;
   margin: 20px 0;
 }
-
   
 div#content {
   width: 790px;
@@ -190,18 +190,20 @@ div#content {
   padding: 1px 0;
   position: relative;
   float: left;
+  min-height: 600px;
 }
 
-p#content {
+p.content {
   padding: 20px 45px;
 }
 h2 {
   padding: 20px 45px 0;
+  font-size: 35px;
 }
-p.nieuwsbericht {
+p#nieuwsbericht {
   padding: 20px 45px 0;
 }
-p.leesmeer {
+p#leesmeer {
   text-align: right;
   padding: 0 45px 20px;
 }
