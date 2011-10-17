@@ -41,7 +41,7 @@
 
     <header>
       <a class="header" id="home-button" href="">De school</a>
-      <a class="header" href="">Nieuws</a>
+      <a class="header" href="/nieuws/">Nieuws</a>
       <a class="header" href="">Contact</a>
 
 	  <div id="searchfield_cont">
@@ -70,15 +70,8 @@
 
     <div id="wrapper">
 
-      <div class="date">
-        <span class="date">23/12</span><br>
-        <span class="year">2011</span>
-      </div>
-
-      <div id="content">
-        {% block content %}
-        {% endblock content %}
-      </div>
+      {% block content %}
+      {% endblock content %}
 
       <div id="dingen">
         <a href="">
