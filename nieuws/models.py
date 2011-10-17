@@ -11,13 +11,17 @@ class NieuwsBericht(models.Model):
     inhoud = models.TextField(help_text='Het nieuwsbericht.')
     korte_inhoud = models.TextField(help_text='Korte samenvatting van het nieuwsbericht.')
 
+#    def get_absolute_url(self):
+#        return '/nieuws/{}/{}/{}/{}/'.format(
+#                    self.publiceer.year, self.publiceer.strftime('%m'), self.publiceer.strftime('%d'), self.slug)
+
     @models.permalink
     def get_absolute_url(self):
-        return ('nieuwsbericht_detail', (), {
-                'year': self.publiceer.year,
-                'month': self.publiceer.strftime('%m'),
-                'day': self.publiceer.strftime('%d'),
-                'slug': self.slug})
+        return ('nieuwsbericht-detail', (), {
+                    'year': self.publiceer.year,
+                    'month': self.publiceer.strftime('%m'),
+                    'day': self.publiceer.strftime('%d'),
+                    'slug': self.slug})
 
 
     class Meta:
