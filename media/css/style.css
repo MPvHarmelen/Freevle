@@ -1,0 +1,326 @@
+@CHARSET "ISO-8859-1";
+
+html,body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #111;
+  line-height: 160%;
+  text-align: justify;
+  background-color: #5a969f;
+}
+
+p.clear {
+  clear: both;
+}
+a:link, a:visited {
+  color: #3b757e;
+}
+
+/*---------------header---------------*/
+header {
+  background: #333 url(/media/img/leer.png);
+  margin: 0 auto;
+  height: 250px;
+  box-shadow: 0 0 30px #000;
+  -moz-box-shadow: 0 0 30px #000;
+  width: 800px;
+  z-index: 2;
+  position: relative;
+}
+
+a.header:link, a.header:visited, div.header {
+  float: left;
+  color: white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 15px 0;
+  width: 80px;
+  cursor: pointer;
+}
+
+a.header:hover, a.header:active, div.header:hover, div.header:active {
+  box-shadow: inset 0 0 20px #000;
+  -moz-box-shadow: inset 0 0 20px #000;
+  background: rgba(80, 80, 80, 0.5);
+}
+
+a.header:active, div.header:active {
+  padding: 16px 0 14px;
+  cursor: pointer;
+}
+
+a#home-button {
+  width: 104px;
+}
+
+div#searchfield_cont {
+  float: left;
+  width: 432px;
+  padding: 12px;
+}
+
+input {
+  border: none;
+  font-size: 14px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  height: 25px;
+  box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
+  -moz-box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666;
+  color: #dedede;
+  outline: none;
+  padding: 3px 8px 0px 30px;
+  width: 392px;
+  background: rgba(150, 150, 150, 0.3) url(/media/img/mag.png) no-repeat;
+}
+input:hover {
+  background: rgba(150, 150, 150, 0.4) url(/media/img/mag.png) no-repeat;
+}
+input:active, input:focus {
+  box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666, 2px 0 25px #5a969f, -2px 0 25px #5a969f;
+  -moz-box-shadow: inset 1px 2px 6px #000, 1px 1px 1px #666, 2px 0 25px #5a969f, -2px 0 25px #5a969f;
+}
+
+div.horizontal-stitch {
+  background: url(/media/img/stiksel.png);
+  width: 100%;
+  height: 3px;
+}
+
+header img {
+  float: left;
+  width: 150px;
+  margin: 10px 0 0 20px;
+}
+
+h1 {
+  color: #eee;
+  float: left;
+  padding: 30px 0 35px 20px;
+  font-size: 54px;
+  font-family: Georgia;
+  font-weight: normal;
+}
+span#first-letter {
+  font-size: 70px;
+}
+
+input.text {
+  border: none;
+  height: 20px;
+  margin: 10px;
+  padding: 3px 10px;
+  background: rgba(150, 150, 150, 0.3);
+  width: 150px;
+}
+
+input.button {
+  padding: 3px 10px;
+  border: none;
+  background: rgba(150, 150, 150, 0.3);
+  width: 150px;
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+}
+div#inlogform {
+  float: right;
+  padding: 15px;
+  text-align: center;
+  position: absolute;
+  background: #333 url(/media/img/leer.png);
+  right: -221px;
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  z-index: 0;
+}
+
+/*---------------date---------------*/
+div.date {
+  float: left;
+  width: 60px;
+  background: #333 url(/media/img/leer.png);
+  margin: 545px 0 0 60px;
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  padding: 25px;
+  color: white;
+  display: block;
+}
+span.date {
+  font-size: 25px;
+}
+span.year {
+  font-size: 29px;
+}
+
+/*---------------content---------------*/
+div#wrapper {
+  margin: 0 auto;
+  width: 1130px;
+}  
+  
+div#content {
+  width: 790px;
+  background: white;
+  box-shadow: 0 0 20px #000;
+  -moz-box-shadow: 0 0 20px #000;
+  z-index: 1;
+  padding: 1px 0;
+  position: relative;
+  float: left;
+}
+
+p#content {
+  padding: 20px 45px;
+}
+h2 {
+  padding: 20px 45px 0;
+}
+p.nieuwsbericht {
+  padding: 20px 45px 0;
+}
+p.leesmeer {
+  text-align: right;
+  padding: 0 45px 20px;
+}
+
+#scrollarea {
+  width: 100%;
+  margin: 0;
+  background: #444;
+  box-shadow: inset 0 0 25px #000;
+  -moz-box-shadow: inset 0 0 25px #000;
+}
+#viewport {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+#overview {
+  list-style: none;
+  width: 939px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+div.image {
+  float: left;
+  height: 220px;
+  width: 293px;
+  margin: 10px;
+  overflow: hidden;
+}
+div.image div {
+  height: 154px;
+  width: 244px;
+  background: rgba(1, 1, 1, 0.85);
+  padding: 1px 20px;
+  color: #eee;
+  text-decoration: none;
+  position: relative;
+  margin: 165px 0 0 -135px;
+  font-size: 14px;
+}
+h3 {
+  text-align: right;
+}
+a.image {
+  text-decoration: none;
+}
+p.image {
+  padding: 0;
+  margin: 0;
+}
+#image1 {
+  background-image: url(/media/img/image-1.JPG);
+  background-size: cover;  
+}
+#image2 {
+  background-image: url(/media/img/image-2.jpg);
+  background-size: cover;  
+}
+#image3 {
+  background-image: url(/media/img/image-3.jpg);
+  background-size: cover;  
+}
+#scrollbar{
+  position: relative;
+  margin: 0;
+  clear: both;
+  height: 16px;
+}
+#track {
+  width: 100%;
+  height: 16px;
+  position: relative;
+  margin: 0;
+}
+#thumb {
+  background: #888;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  height: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  margin: 0;
+  border-width: 0 16px;
+  -moz-border-image: url(/media/img/arrows.png) 16 repeat;
+  -webkit-border-image: url(/media/img/arrows.png) 16 repeat;
+  -o-border-image: url(/media/img/arrows.png) 16 repeat;
+  border-image: url(/media/img/arrows.png) 16 repeat;
+  box-sizing: border-box;
+}
+
+/*---------------ads---------------*/
+div#dingen {
+  float: right;
+  width: 170px;
+  background: #333 url(/media/img/leer.png);
+  height: 540px;
+  margin: 30px 0 0;
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  position: relative;
+  z-index: 0;
+}
+div#dingen img {
+  width: 150px;
+  margin: 10px;
+}
+div#dingen p {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+              
+/*---------------footer---------------*/
+footer {
+  color: #fafafa;
+  box-shadow: 0 0 30px #000;
+  -moz-box-shadow: 0 0 30px #000;
+  text-shadow: 1px 1px 1px #555;
+  width: 800px;
+  margin: auto;
+  background: #333 url(/media/img/leer.png);
+  position: relative;
+  padding: 20px 0 0;
+  z-index: 2;
+}
+div#center {
+  padding: 20px 50px 50px;
+}
+footer a:link, footer a:visited {
+  color: white;
+  text-decoration: none;
+}
+footer a:hover, footer a:active {
+  text-decoration: underline;
+}

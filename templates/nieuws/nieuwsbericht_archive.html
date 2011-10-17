@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for bericht in latest %}
+    <h2>{{ bericht.titel }}</h2>
+    <p class="nieuwsbericht">{{ bericht.korte_inhoud }}</p>
+    <p class="leesmeer"><a href="{{ bericht.get_absolute_url }}">Lees meer...</a></p>
+  {% endfor %}
+{% endblock %}
