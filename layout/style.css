@@ -57,7 +57,7 @@ a#home-button {
 
 div#searchfield_cont {
 	float: left;
-	width: 432px;
+	width: 328px;
 	padding: 12px;
 }
 
@@ -72,7 +72,7 @@ input {
 	color: #dedede;
 	outline: none;
 	padding: 3px 8px 0px 30px;
-	width: 392px;
+	width: 290px;
 	background: rgba(150, 150, 150, 0.3) url(mag.png) no-repeat;
 }
 input:hover {
@@ -170,6 +170,7 @@ div#content {
 	padding: 1px 0;
 	position: relative;
 	float: left;
+	min-height: 600px;
 }
 
 p#content {
@@ -177,6 +178,7 @@ p#content {
 }
 h2 {
 	padding: 20px 45px 0;
+	font-size: 35px;
 }
 p#nieuwsbericht {
 	padding: 20px 45px 0;
