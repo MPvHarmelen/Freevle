@@ -1,20 +1,9 @@
-# Django settings for cygy project.
+from personalsettings import *
 
-DEBUG = True
+# Django settings for cygy project.
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-    ('Martijn Arts', 'arts.martijn@gmail.com'),
-)
-
 MANAGERS = ADMINS
-
-DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'cygy'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'martijn'             # Not used with sqlite3.
-DATABASE_PASSWORD = '8EBpJUWn'         # Not used with sqlite3.
-DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -37,20 +26,17 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/martijn/web/cygy/upload/'
+MEDIA_ROOT = PATH_ROOT + 'upload/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://cygy.aweonweb.com/media/'
+MEDIA_URL = URL_ROOT + 'media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 #ADMIN_MEDIA_PREFIX = '/media/'
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = ')n7*8&#r=mqpib6v3oyfoharh8v$-!3c+*jl)2+o-#buck+jsy'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -86,3 +72,4 @@ INSTALLED_APPS = (
 )
 
 FORCE_SCRIPT_NAME = ""
+
