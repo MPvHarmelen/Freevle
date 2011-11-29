@@ -1,6 +1,7 @@
 *.py[co]
 *.sh
 *.pid
+personalsettings.py
 
 # Packages
 *.egg
