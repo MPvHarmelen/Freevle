@@ -1,45 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div id="content">
+      <div class="item">
+        <h2>Lorem</h2>
+        <p>Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
+      </div>
 
-<p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non quam sed mauris venenatis laoreet. Nam imperdiet fermentum quam at vehicula. Vestibulum ac justo eu elit sollicitudin malesuada eu vel quam. Aliquam erat volutpat. Nullam urna arcu, pharetra non commodo quis, cursus eu lectus. Etiam ut purus odio, et elementum metus. Phasellus vehicula ullamcorper tincidunt. Maecenas orci enim, consectetur vel egestas vel, iaculis eu dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam, orci quis ultricies sodales, eros enim sodales nunc, quis imperdiet nisl nisl nec risus. Suspendisse elit tellus, tincidunt at suscipit id, dapibus.</p>
-
-<div id="scrollarea"> 
-  <div id="viewport"> 
-    <div id="overview"> 
-      <a class="image" href="">
-        <div class="image" id="image1">
-          <div class="photo-text">
-            <h3>Album-naam</h3>
-            Beschrijving van het album.
+	    <div class="photos">
+	      <h2>Foto's</h2>
+          <div class="photo_cont">
+            <a class="image" href="">
+              <img class="photo" src="/media/img/image-1.JPG">
+            </a>
+            <a href="" class="beschrijving">Beschrijving</a>
           </div>
-        </div>
-      </a>
-      <a class="image" href="">
-        <div class="image" id="image2">
-          <div class="photo-text">
-            <h3>Album-naam</h3>
-            Beschrijving van het album.
+          <div class="photo_cont">
+            <a class="image" href="">
+              <img class="photo" src="/media/img/image-2.jpg">
+            </a>
+            <a href="" class="beschrijving">Beschrijving</a>
           </div>
-        </div>
-      </a>
-      <a class="image" href="">
-        <div class="image" id="image3">
-          <div class="photo-text">
-            <h3>Album-naam</h3>
-            Beschrijving van het album.
+          <div class="photo_cont">
+            <a class="image" href="">
+              <img class="photo" src="/media/img/image-3.jpg">
+            </a>
+            <a href="" class="beschrijving">Beschrijving</a>
           </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div id="scrollbar"><div id="track"><div id="thumb"></div></div></div> 
-</div>
+	      <p class="clear"></p>
+      </div>
 
-<h2>Lorem</h2>
-<p id="nieuwsbericht">Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
-<p id="leesmeer"><a href="">Lees meer...</a></p>
+      <div class="item">
+        <h2>Lorem</h2>
+        <p class="date"><span class="bold">Geplaatst op:</span> 22/22/2222&emsp;&middot;&emsp;<span class="bold">Door:</span> Naam van Namen</p>
+        <p>Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
+        <p>Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
+        <a class="leesmeer" href="">Lees meer...</a>
+        <p class="clear"></p>
 
-</div>
 {% endblock %}
