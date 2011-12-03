@@ -1,21 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="wrapper2">
   {% for bericht in latest %}
-  <div class="nieuwsbericht">
-    <div class="date">
-      <span class="date">{{ bericht.publiceer|date:"d" }}/{{ bericht.publiceer|date:"m" }}</span><br>
-      <span class="year">{{ bericht.publiceer|date:"Y" }}</span>
-    </div>
-
-
-    <div class="nieuwstekst">
-      <h2>{{ bericht.titel }}</h2>
-      <p class="nieuwsbericht">{{ bericht.korte_inhoud }}</p>
-      <p class="leesmeer"><a href="{{ bericht.get_absolute_url }}">Lees meer...</a></p>
-    </div>
-  </div>
+      <div class="item">
+        <h2>{{ bericht.titel }}</h2>
+        <p class="date"><span class="bold">Geplaatst op:</span> {{ bericht.publiceer|date:"d" }}/{{ bericht.publiceer|date:"m" }}/{{ bericht.publiceer|date:"Y" }}&emsp;&middot;&emsp;<span class="bold">Door:</span> Naam van Namen</p>
+        <p>{{ bericht.korte_inhoud }}</p>
+        <a class="leesmeer" href="{{ bericht.get_absolute_url }}">Lees meer...</a>
+        <p class="clear"></p>
+      </div>
   {% endfor %}
-</div>
 {% endblock %}
