@@ -55,8 +55,8 @@ Now you can simply start up the server with this command:
 
 To set up CyGy for a production server (like for your school), you're going to
 have to edit all the settings in the `personalsettings.py` file. Change your
-database settings and set `DEBUG` to `False`. Also mash some keys into the 
-`SECRET_KEY` option. Now run the `syncdb` command.
+database settings and set `DEBUG` and `STATIC` to `False`. Also mash some keys
+into the `SECRET_KEY` option. Now run the `syncdb` command.
 
 Now for the hard part. Seeing as Django's built-in development server (run from
 the `runserver` command) isn't very stable or fast, you'll want to run it with
