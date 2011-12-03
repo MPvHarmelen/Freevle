@@ -42,7 +42,7 @@ You'll only have to edit the following options:
 * `URL_ROOT`
 * `PATH_ROOT`
 
-Then rename it to `personalsettings.py`
+Then copy it and rename the copy to `personalsettings.py`
 
 And there's one last thing you have to do, run the following command in the
 terminal:
