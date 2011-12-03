@@ -35,12 +35,14 @@ Installation
 ### Development
 
 To install the CyGy software on a development server you pretty much just have
-to set up Python, Django and edit the `personalsettings.py` accordingly. You'll
-only have to edit the following options:
+to set up Python, Django and edit the `personalsettings.py.ORG` accordingly.
+You'll only have to edit the following options:
 
 * `ADMINS`
 * `URL_ROOT`
 * `PATH_ROOT`
+
+Then rename it to `personalsettings.py`
 
 And there's one last thing you have to do, run the following command in the
 terminal:
