@@ -7,7 +7,7 @@ DATABASE_HOST = ''            # Set to empty string for localhost. Not used with
 DATABASE_PORT = ''            # Set to empty string for default. Not used with sqlite3.
 
 ADMINS = (
-    ('Your Name', 'youremail@domain.tld'),
+    ('Your Name', 'Youremail@domain.tld'),
 )
 
 # The URL to this instance of CyGy. Just keep it at this for testing.

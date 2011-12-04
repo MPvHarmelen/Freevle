@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^cygy/', include('cygy.foo.urls')),
     (r'^$', direct_to_template, {'template': 'index.html'}),
+    (r'^index.html', direct_to_template, {'template': 'index.html'}),
     (r'^nieuws/', include('cygy.nieuws.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
