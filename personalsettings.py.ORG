@@ -7,14 +7,14 @@ DATABASE_HOST = ''            # Set to empty string for localhost. Not used with
 DATABASE_PORT = ''            # Set to empty string for default. Not used with sqlite3.
 
 ADMINS = (
-    ('Floris Jansen', 'florismartijnjansen@gmail.com'),
+    ('Your Name', 'youremail@domain.tld'),
 )
 
 # The URL to this instance of CyGy. Just keep it at this for testing.
 URL_ROOT = 'localhost:8000/'
 # The absolute path to the CyGy directory on your system.
 # We do not officially support Windows, but you can try it...
-ROOT_DIR = '/home/floris/public_html/cygnus_git/cygy/'
+ROOT_DIR = '/absolute/path/to/cygy/'
 
 # Make this unique, and don't share it with anybody.
 # Not really needed for development servers. Production? YES.
