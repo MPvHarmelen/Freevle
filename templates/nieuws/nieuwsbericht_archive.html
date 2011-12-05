@@ -4,7 +4,10 @@
   {% for bericht in latest %}
       <div class="item">
         <h2>{{ bericht.titel }}</h2>
-        <p class="date"><span class="bold">Geplaatst op:</span> {{ bericht.publiceer|date:"d" }}/{{ bericht.publiceer|date:"m" }}/{{ bericht.publiceer|date:"Y" }}&emsp;&middot;&emsp;<span class="bold">Door:</span> Naam van Namen</p>
+        <p class="date"><span class="bold">Geplaatst op:</span>
+            {{ bericht.publiceer|date:"d/m/Y" }}
+            &emsp;&middot;&emsp;
+            <span class="bold">Door:</span> Naam van Namen</p>
         <p>{{ bericht.korte_inhoud }}</p>
         <a class="leesmeer" href="{{ bericht.get_absolute_url }}">Lees meer...</a>
         <p class="clear"></p>
