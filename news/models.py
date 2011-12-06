@@ -8,8 +8,8 @@ class NewsMessage(models.Model):
     slug = models.SlugField(unique_for_date='publish', help_text='URL-friendly version of the title, can be left alone most of the time.')
     publish = models.DateTimeField(auto_now_add=True)
 
-    content = models.TextField(help_text='Het nieuwsbericht.')
-    summary = models.TextField(help_text='Korte samenvatting van het nieuwsbericht.')
+    content = models.TextField(help_text='The news message.')
+    summary = models.TextField(help_text='Short summary of the message.')
 
     @models.permalink
     def get_absolute_url(self):
