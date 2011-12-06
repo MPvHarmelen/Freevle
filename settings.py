@@ -61,7 +61,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'cygy.nieuws',
+    'cygy.news',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
