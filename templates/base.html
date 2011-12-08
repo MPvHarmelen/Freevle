@@ -15,7 +15,7 @@
             if($(this).css('border-top-color') == 'rgb(246, 156, 14)') {
               $(this).css('border-top-color', '#35b');
             } else {
-            	$(this).css('border-top-color', '#F69C0E');
+              $(this).css('border-top-color', '#F69C0E');
             }
           });
         
@@ -50,12 +50,12 @@
             }
         });
 
-		    $("#searchfield").focusin(function() {
-		        searchfieldCont.css('border-top-color', '#F69C0E');
-		      });
-		    $("#searchfield").focusout(function() {
-		        searchfieldCont.css('border-top-color', '#008');
-		      });
+        $("#searchfield").focusin(function() {
+            searchfieldCont.css('border-top-color', '#F69C0E');
+          });
+        $("#searchfield").focusout(function() {
+            searchfieldCont.css('border-top-color', '#008');
+          });
       });
 
       document.createElement('header');
@@ -66,27 +66,28 @@
   <body>
 
     <header>
-
-      <ul id="menu">
-        <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
-        <li class="menu"><a class="header" id="home-button" href="">De School</a>
-          <ul class="dropdown">
-            <li><a class="menu-item" href="/">menu item</a></li>
-            <li><a class="menu-item" href="/">menu item</a></li>
-            <li><a class="menu-item" href="/">menu item</a></li>
-            <li><a class="menu-item" href="/">menu item</a></li>
-          </ul>
-        </li>
-        <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
-        <li class="menu"><a class="header" href="">Contact</a>
-          <ul class="dropdown">
-            <li><a class="menu-item" href="/">menu item</a></li>
-            <li><a class="menu-item" href="/">menu item</a></li>
-            <li><a class="menu-item" href="/">menu item</a></li>
-            <li><a class="menu-item" href="/">menu item</a></li>
-          </ul>
-        </li>
-      </ul>
+      <nav>
+        <ul id="menu">
+          <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
+          <li class="menu"><a class="header" id="home-button" href="">De School</a>
+            <ul class="dropdown">
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+            </ul>
+          </li>
+          <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
+          <li class="menu"><a class="header" href="">Contact</a>
+            <ul class="dropdown">
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
       <div id="searchfield_cont">
         <form>
@@ -118,7 +119,7 @@
     </div>
 
     <footer>
-  	  <div id="center">
+      <div id="center">
         Cygnus Gymnasium
       </div>
     </footer>
