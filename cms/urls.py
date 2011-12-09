@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_detail
 from django.views.generic.list_detail import object_list
+
 from cygy.cms.models import Page
 
 urlpatterns = patterns('',
