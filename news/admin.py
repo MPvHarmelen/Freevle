@@ -10,7 +10,7 @@ class NewsMessageAdmin(admin.ModelAdmin):
     def save_form(self, request, form, change):
         obj = super(NewsMessageAdmin, self).save_form(request, form, change)
         if not change:
-            obj.schrijver = request.user
+            obj.writer = request.user
         return obj
 
 
