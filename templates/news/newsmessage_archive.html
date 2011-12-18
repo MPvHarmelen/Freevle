@@ -7,8 +7,8 @@
         <p class="date"><span class="bold">Geplaatst op:</span>
             {{ message.publish|date:"d/m/Y" }}
             &emsp;&middot;&emsp;
-            <span class="bold">Door:</span> Naam van Namen</p>
-        <p>{{ message.korte_inhoud }}</p>
+            <span class="bold">Door:</span> {{ message.writer }}</p>
+        <p>{{ message.summary }}</p>
         <a class="leesmeer" href="{{ message.get_absolute_url }}">Lees meer...</a>
         <p class="clear"></p>
       </div>

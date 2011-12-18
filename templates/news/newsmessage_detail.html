@@ -2,12 +2,12 @@
 
 {% block content %}
   <div class="item">
-    <h2>{{ bericht.titel }}</h2>
+    <h2>{{ message.titel }}</h2>
     <p class="date"><span class="bold">Geplaatst op:</span>
-        {{ bericht.publiceer|date:"d/m/Y" }}
+        {{ message.publish|date:"d/m/Y" }}
         &emsp;&middot;&emsp;
-        <span class="bold">Door:</span> Naam van Namen</p>
-    <p>{{ bericht.inhoud }}</p>
+        <span class="bold">Door:</span> {{ message.writer }}</p>
+    <p>{{ message.content }}</p>
     <p class="clear"></p>
   </div>
 {% endblock %}

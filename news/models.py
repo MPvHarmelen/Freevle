@@ -14,9 +14,9 @@ class NewsMessage(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('newsmessage-detail', (), {
-                    'year': self.publiceer.year,
-                    'month': self.publiceer.strftime('%m'),
-                    'day': self.publiceer.strftime('%d'),
+                    'year': self.publish.year,
+                    'month': self.publish.strftime('%m'),
+                    'day': self.publish.strftime('%d'),
                     'slug': self.slug})
 
 
