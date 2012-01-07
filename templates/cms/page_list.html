@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{% for Page in Page_list %}
+  {% for Page in Page_list %}
     <article>
       <div class="item">
         <h2>{{ Page.title }}</h2>
-        <p> {{ Page.content }}</p>
+        <p>{{ Page.content }}</p>
       </div>
     </article>
-	{% endfor %}
+  {% endfor %}
 {% endblock %}
