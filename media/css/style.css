@@ -200,9 +200,6 @@ img.photo {
   height: 180px;
   width: 266px;
 }
-h3 {
-  text-align: right;
-}
 a.image {
   text-decoration: none;
 }
@@ -211,7 +208,21 @@ a.beschrijving {
   display: block;
   width: 100%;
 }
-  
+
+/*------------------------------rooster------------------------------*/
+h3 {
+	font-size: 16px;
+}
+h3.day {
+	font-size: 17px;
+	width: 300px;
+	text-align: center;
+}
+div#rooster {
+	width: 602px;
+	background: #eee;
+}
+
 /*------------------------------ads------------------------------*/
 div#dingen {
   width: 800px;
