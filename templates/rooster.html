@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+
+  <head>
+
+  <title>Cygnus Template</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="http://cygy.aweonweb.com/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#inlogform').hide();
+        $("#loginhome").click(function() {
+            $("#inlogform").slideToggle('fast');
+            if($(this).css('border-top-color') == 'rgb(246, 156, 14)') {
+              $(this).css('border-top-color', '#35b');
+            } else {
+              $(this).css('border-top-color', '#F69C0E');
+            }
+          });
+
+        var loginHome = $("#loginhome");
+
+        loginHome.hover(function() {
+            if($(this).css('border-top-color') == 'rgb(0, 0, 136)') {
+                $(this).css('border-top-color', '#35b');
+            }
+        }, function() {
+            if($(this).css('border-top-color') == 'rgb(51, 85, 187)') {
+                $(this).css('border-top-color', '#008');
+            }
+        });
+
+        $('ul.dropdown').hide();
+
+        $("li.menu").hover(function() {
+            $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
+          }, function() {
+            $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
+          });
+
+        var searchfieldCont = $("#searchfield_cont");
+
+        searchfieldCont.hover(function() {
+            if($(this).css('border-top-color') == 'rgb(0, 0, 136)') {
+                $(this).css('border-top-color', '#35b');
+            }
+        }, function() {
+            if($(this).css('border-top-color') == 'rgb(51, 85, 187)') {
+                $(this).css('border-top-color', '#008');
+            }
+        });
+
+        $("#searchfield").focusin(function() {
+            searchfieldCont.css('border-top-color', '#F69C0E');
+          });
+
+        $("#searchfield").focusout(function() {
+            searchfieldCont.css('border-top-color', '#008');
+          });
+      });
+
+      document.createElement('header');
+      document.createElement('footer');
+    </script>
+  </head>
+
+  <body>
+
+    <header>
+
+      <nav>
+        <ul id="menu">
+          <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
+          <li class="menu"><a class="header" id="home-button" href="">De School</a>
+            <ul class="dropdown">
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+            </ul>
+          </li>
+          <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
+          <li class="menu"><a class="header" href="">Contact</a>
+            <ul class="dropdown">
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+              <li><a class="menu-item" href="/">menu item</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="searchfield_cont">
+        <form>
+          <input type="text" id="searchfield" placeholder="Zoek..." />
+        </form>
+      </div>
+
+      <div id="loginhome" class="header">Login</div>
+
+      <div id="inlogform">
+        <form method="post" action="./login/index.php">
+          <input class="text" type="text" name="username" placeholder="Gebruikersnaam" /><br />
+          <input class="text" type="password" name="password" placeholder="Wachtwoord" /><br />
+          <input class="button" type="submit" value="Login" name="submit" />
+        </form>
+      </div>
+
+      <p class="clear"></p>
+      <h1><span id="first-letter">C</span>YGNUS GYMNASIUM</h1>
+      <img src="http://cygy.aweonweb.com/media/img/zwaan.png" />
+      <p class="clear"></p>
+    </header>
+
+
+
+    <div id="wrapper">
+      <div class="item">
+        <div id="rooster">
+				  <p class="dag">Maandag</p>
+				
+			  		<div class="uure">
+					    <p class="vak"><span class="bold">MA</span> RAM <span class="right">8:25-9:20</span></p>
+					    <ul class="huiswerk">
+					      <li class="huiswerkitem">Maak opgave zus en zo</li>
+                <li class="huiswerkitem">Maak opgave zus en zo</li>
+                <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
+					    </ul>
+					  </div>
+				
+					  <div class="uuru">
+					    <p class="vak"><span class="bold">MA</span> RAM <span class="right">9:20-10:10</span></p>
+					  </div>
+				
+					  <div class="uure">
+					    <p class="vak"><span class="bold">FA</span> VIF <span class="right">10:10-11:00</span></p>
+					    <ul class="huiswerk">
+					      <li class="huiswerkitem so">SO over verzin maar wat</li>
+					    </ul>
+					  </div>
+				
+					  <div class="uuri">
+					    <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
+					  </div>
+					  
+					  <div class="uuru">
+					    <p class="vak"><span class="bold">GS</span> RHG <span class="right">11:20-12:10</span></p>
+					    <ul class="huiswerk">
+					      <li class="huiswerkitem pw">PW over deze en die shizzle</li>
+					    </ul>
+					  </div>
+
+					  <div class="uure">
+					    <p class="vak"><span class="bold">WIB</span> MIN <span class="right">12:10-13:00</span></p>
+					  </div>
+
+					  <div class="uuri">
+					    <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
+					  </div>
+
+					  <div class="uuru">
+					    <p class="vak"><span class="bold">EN</span> HEE <span class="right">13:30-14:20</span></p>
+					  </div>
+
+					  <div class="uure">
+					    <p class="vak"><span class="bold">NE</span> MIN <span class="right">14:20-15:10</span></p>
+					  </div>
+
+					  <div class="uuru">
+					    <p class="vak"><span class="bold">NE</span> MIN <span class="right">15:10-16:10</span></p>
+					  </div>
+
+					  <div class="uuri">
+					    <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
+					  </div>
+
+
+			  </div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="center">
+        Cygnus Gymnasium
+      </div>
+    </footer>
+
+  </body>
+</html>
