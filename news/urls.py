@@ -12,14 +12,15 @@ urlpatterns = patterns('',
 
     (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', archive_day,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m'}),
+         'month_format': '%m', 'template_object_name': 'message'}),
 
     (r'^(?P<year>\d{4})/(?P<month>\d{2})/$', archive_month,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m'}),
+         'month_format': '%m', 'template_object_name': 'message'}),
 
     (r'^(?P<year>\d{4})/$', archive_year,
-        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish'}),
+        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
+         'make_object_list':True, 'template_object_name': 'message'}),
 
     (r'^$', archive_index,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
