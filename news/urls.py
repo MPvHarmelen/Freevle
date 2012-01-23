@@ -20,7 +20,7 @@ urlpatterns = patterns('',
 
     (r'^(?P<year>\d{4})/$', archive_year,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'make_object_list':True, 'template_object_name': 'message'}),
+         'make_object_list':True, 'template_object_name': 'message', 'allow_empty':True}),
 
     (r'^$', archive_index,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
