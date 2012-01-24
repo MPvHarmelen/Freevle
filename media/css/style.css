@@ -10,7 +10,7 @@ html,body {
   background: url(../img/background.png) repeat-x;
 }
 
-p.clear {
+p.clear, div.clear {
   clear: both;
 }
 a:link, a:visited {
@@ -212,6 +212,8 @@ a.beschrijving {
 /*------------------------------rooster------------------------------*/
 div#rooster {
   width: 300px;
+  position: relative;
+  float: left;
 }
 span.right {
   float: right;
@@ -258,19 +260,27 @@ li.huiswerkitem {
   border-left: solid #ed1 6px !important;
 }
 
+#left {
+  float: left;
+}
 
-.note {
+div.note {
   display: block;
   position: relative;
-  width: 90%;
-	background: #eee;
-	color: rgba(0,0,0, .8);
-	text-align: center;
-	display: block;
+  width: 250px;
+  background: #eee;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 1.5em;
+  color: rgba(0,0,0, .8);
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.5;
+  text-align: center;
+  display: block;
 }
 
 
-.note:before, .note:after {
+div.note:before, div.note:after {
   z-index: -1; 
   position: absolute; 
   content: "";
@@ -286,15 +296,16 @@ li.huiswerkitem {
   -webkit-transform: rotate(-3deg);    
   -moz-transform: rotate(-3deg);   
   -o-transform: rotate(-3deg);
+    }
+
+div.note:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  right: 10px;
+  left: auto;
 }
 
-.note:after {
-	-webkit-transform: rotate(3deg);
-	-moz-transform: rotate(3deg);
-	-o-transform: rotate(3deg);
-	right: 10px;
-	left: auto;
-}
 
 .headermessage {
   font-weight: bold;
