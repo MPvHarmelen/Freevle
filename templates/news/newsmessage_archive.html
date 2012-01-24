@@ -3,7 +3,7 @@
 {% block content %}
   {% for message in latest %}
       <div class="item">
-        <h2>{{ message.titel }}</h2>
+        <h2>{{ message.title }}</h2>
         <p class="date"><span class="bold">Geplaatst op:</span>
             {{ message.publish|date:"d/m/Y" }}
             &emsp;&middot;&emsp;
@@ -14,3 +14,4 @@
       </div>
   {% endfor %}
 {% endblock %}
+
