@@ -4,18 +4,18 @@
   {% for message in message_list %}
 	  <div class="item">
 		<h2>{{ message.titel }}</h2>
-		<p class="date"><span class="bold">Geplaatst op:</span>
-			{{ message.publish|date:"d/m/Y" }}
+		<p class="date"><span class="bold">{% trans "Publish on:" %}</span>
+			{{ message.publish|localize }}
 			&emsp;&middot;&emsp;
-			<span class="bold">Door:</span> {{ message.writer }}</p>
+			<span class="bold">{% trans "By:" %}</span> {{ message.writer }}</p>
 		<p>{{ message.summary }}</p>
-		<a class="leesmeer" href="{{ message.get_absolute_url }}">Lees meer...</a>
+		<a class="leesmeer" href="{{ message.get_absolute_url }}">{% trans "Read more..." %}</a>
 		<p class="clear"></p>
 	  </div>
   {% empty %}
 		<div class="item">
-		<h2>Ohoh</h2>
-		<p>There wasn't any news on {{ day|date:'l F j Y' }}...</p>
+		<h2>{% trans "Woopsie" %}</h2>
+		<p>{% blocktrans %}We couldn't find any news for this day.{% endblocktrans %}</p>
 		</div>
   {% endfor %}
 {% endblock %}
