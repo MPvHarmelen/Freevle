@@ -12,11 +12,11 @@ urlpatterns = patterns('',
 
     (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', archive_day,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m', 'template_object_name': 'message'}),
+         'month_format': '%m', 'template_object_name': 'message', 'allow_empty':True}),
 
     (r'^(?P<year>\d{4})/(?P<month>\d{2})/$', archive_month,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m', 'template_object_name': 'message'}),
+         'month_format': '%m', 'template_object_name': 'message', 'allow_empty':True}),
 
     (r'^(?P<year>\d{4})/$', archive_year,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',

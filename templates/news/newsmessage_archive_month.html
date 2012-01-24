@@ -12,5 +12,10 @@
 		<a class="leesmeer" href="{{ message.get_absolute_url }}">Lees meer...</a>
 		<p class="clear"></p>
 	  </div>
+  {% empty %}
+		<div class="item">
+		<h2>Ohoh</h2>
+		<p>There wasn't any news in {{ month|date:'F Y' }}...</p>
+		</div>
   {% endfor %}
 {% endblock %}
