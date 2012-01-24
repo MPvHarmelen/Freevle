@@ -1,3 +1,4 @@
+{% load i18n %}
 <!doctype html>
 <html>
   <head>
@@ -91,17 +92,17 @@
 
       <div id="searchfield_cont">
         <form>
-          <input type="text" id="searchfield" placeholder="Zoek..." />
+          <input type="text" id="searchfield" placeholder="{% trans "Search..." %}" />
         </form>
       </div>
 
-      <div id="loginhome" class="header">Login</div>
+      <div id="loginhome" class="header">{% trans "Login" %}</div>
 
       <div id="inlogform">
-        <form method="post" action="./login/index.php">
-          <input class="text" type="text" name="username" placeholder="Gebruikersnaam" /><br />
-          <input class="text" type="password" name="password" placeholder="Wachtwoord" /><br />
-          <input class="button" type="submit" value="Login" name="submit" />
+        <form method="post" action="/login/index.php">
+          <input class="text" type="text" name="username" placeholder="{% trans "Username %}" /><br />
+          <input class="text" type="password" name="password" placeholder="{% trans "Password %}" /><br />
+          <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
         </form>
       </div>
 
