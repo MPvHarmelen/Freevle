@@ -210,28 +210,52 @@ a.beschrijving {
 }
 
 /*------------------------------rooster------------------------------*/
-h3 {
-	font-size: 16px;
-}
-h3.day {
-	font-size: 17px;
-	width: 300px;
-	text-align: center;
-}
 div#rooster {
-	width: 602px;
-	background: #eee;
+  width: 300px;
 }
-
-/*------------------------------ads------------------------------*/
-div#dingen {
-  width: 800px;
-  height: 110px;
-  margin: auto;
+span.right {
+  float: right;
 }
-div#dingen img {
-  width: 800px;
-  height: 110px;
+p.dag {
+  text-align: center;
+  font-weight: bold;
+}
+div.uure {
+  background: #eaeaea;
+  padding: 0 15px;
+}
+div.uuru {
+  background: #f3f3f3;
+  padding: 0 15px;
+}
+div.uuri {
+  color: #555;
+  padding: 0 15px;
+}
+p.vak {
+  padding: 7px 0;
+  margin: 0;
+  font-size: 14px;
+}
+ul.huiswerk {
+  margin: 0;
+  padding: 0 0 14px 28px;
+}
+li.huiswerkitem {
+  list-style: none;
+  font-size: 13px;
+  padding: 2px 0 2px 10px;
+  border-left: #ccc solid 6px;
+  text-align: left;
+}
+.pw {
+  border-left: solid #d55 6px !important;
+}
+.opdr {
+  border-left: solid #55d 6px !important;
+}
+.so {
+  border-left: solid #ed1 6px !important;
 }
 
 /*------------------------------footer------------------------------*/
