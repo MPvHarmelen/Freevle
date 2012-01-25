@@ -65,8 +65,10 @@
 
         $("div.uure,div.uuru").hover(function() {
             $(this).children("ul.huiswerk").stop(true, true).animate({top: '7px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+            $(this).children("div.triangle").stop(true, true).animate({top: '7px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
           }, function() {
             $(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+            $(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
           });
       });
 
@@ -137,6 +139,7 @@
 					      <p class="vak"><span class="bold">MA</span> RAM <span class="right">8:25-9:20</span></p>
                 <div class="huiswerkind"></div>
 
+                <div class="triangle"></div>
 					      <ul class="huiswerk">
 					        <li class="huiswerkitem">Maak opgave zus en zo</li>
                   <li class="huiswerkitem">Maak opgave zus en zo</li>
@@ -153,6 +156,7 @@
 					      <p class="vak"><span class="bold">FA</span> VIF <span class="right">10:10-11:00</span></p>
                 <div class="huiswerkind"></div>
 
+                <div class="triangle"></div>
 					      <ul class="huiswerk">
 					        <li class="huiswerkitem so">SO over verzin maar wat</li>
 					      </ul>
@@ -166,6 +170,7 @@
 					      <p class="vak"><span class="bold">GS</span> RHG <span class="right">11:20-12:10</span></p>
                 <div class="huiswerkind"></div>
 
+                <div class="triangle"></div>
 					      <ul class="huiswerk">
 					        <li class="huiswerkitem pw">PW over deze en die shizzle</li>
 					      </ul>
@@ -208,6 +213,8 @@
 				
 			    		<div class="uure">
 					      <p class="vak"><span class="bold">MA</span> RAM <span class="right verkort">8:25-9:20</span></p>
+
+                <div class="triangle"></div>
 					      <ul class="huiswerk">
 					        <li class="huiswerkitem">Maak opgave zus en zo</li>
                   <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
@@ -220,6 +227,7 @@
 				
 					    <div class="uure">
 					      <p class="vak"><span class="bold">FA</span> VIF <span class="right verkort">10:10-11:00</span></p>
+                <div class="triangle"></div>
 					      <ul class="huiswerk">
 					        <li class="huiswerkitem so">SO over verzin maar wat</li>
 					      </ul>
@@ -231,6 +239,7 @@
 					    
 					    <div class="uuru">
 					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">11:20-12:10</span></p>
+                <div class="triangle"></div>
 					      <ul class="huiswerk">
 					        <li class="huiswerkitem pw">PW over deze en die shizzle</li>
 					      </ul>
