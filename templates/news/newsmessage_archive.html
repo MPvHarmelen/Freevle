@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
   {% for message in message_list %}
 	  <div class="item">
 		<h2>{{ message.titel }}</h2>
-		<p class="date"><span class="bold">{% trans "Publish on:" %}</span>
-			{{ message.publish|localize }}
+		<p class="date"><span class="bold">{% blocktrans %}Publish on:{% endblocktrans %}</span>
+			{{ message.publish|date:'d m Y' }}
 			&emsp;&middot;&emsp;
-			<span class="bold">{% trans "By:" %}</span> {{ message.writer }}</p>
+			<span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ message.writer }}</p>
 		<p>{{ message.summary }}</p>
-		<a class="leesmeer" href="{{ message.get_absolute_url }}">{% trans "Read more..." %}</a>
+		<a class="leesmeer" href="{{ message.get_absolute_url }}">{% blocktrans %}Read more...{% endblocktrans %}</a>
 		<p class="clear"></p>
 	  </div>
   {% empty %}
