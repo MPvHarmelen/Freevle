@@ -5,4 +5,4 @@ class Letter(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique_for_date='publish')
     publish = models.DateTimeField(auto_now_add=True)
-    content = models.FileField(upload_to='files/')
+    content = models.FileField(upload_to='files/letters/')
