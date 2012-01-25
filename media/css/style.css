@@ -265,11 +265,13 @@ ul.huiswerk {
   background: #fefefe;
   position: relative;
   box-shadow: 0 0 7px #777;
-  z-index: 6;
+  z-index: 1;
   display: none;
   top: 20px;
 }
-ul.huiswerk:before, ul.huiswerk:after {
+ul.huiswerk:before {  
+  z-index: -1;
+  box-shadow: 0 0 7px #777;
   background-color: #fefefe;
   content: "";
   display: block;
@@ -283,9 +285,6 @@ ul.huiswerk:before, ul.huiswerk:after {
     -o-transform:      rotate(45deg);
     -webkit-transform: rotate(45deg);
   width:  20px;
-}
-ul.huiswerk:after {
-  box-shadow: 0 0 7px #777;
 }
 li.huiswerkitem {
   list-style: none;
