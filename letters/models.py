@@ -4,5 +4,5 @@ from django.db import models
 class Letter(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique_for_date='publish')
-    publish = models.DatTimeField(auto_now_add=True)
-    content = FileField(Upload_to='files/')
+    publish = models.DateTimeField(auto_now_add=True)
+#    content = FileField(Upload_to='files/')
