@@ -142,6 +142,7 @@ ul.dropdown {
   width: 200px;
   background: white;
   border: 1px solid #cfcfcf;
+  z-index: 3;
 }
 a.menu-item:link, a.menu-item:visited {
   color: #333;
@@ -268,8 +269,7 @@ ul.huiswerk {
   display: none;
   top: 20px;
 }
-ul.huiswerk:before
-{  
+ul.huiswerk:before {  
   box-shadow: 0 0 7px #777;
   content: "";  
   position: absolute;  
@@ -290,13 +290,16 @@ li.huiswerkitem {
   text-align: left;
 }
 .pw {
-  border-left: solid #d55 6px !important;
+  border-left: solid #d44 6px !important;
 }
 .opdr {
-  border-left: solid #55d 6px !important;
+  border-left: solid #008 6px !important;
 }
 .so {
   border-left: solid #ed1 6px !important;
+}
+span.verkort {
+  color: #f849af;
 }
 
 #left {
@@ -306,7 +309,6 @@ li.huiswerkitem {
   margin: 20px 10px;
   font-size: 14px;
 }
-
 div.note {
   display: block;
   position: relative;
@@ -319,8 +321,6 @@ div.note {
   text-align: center;
   display: block;
 }
-
-
 div.note:before, div.note:after {
   z-index: -1; 
   position: absolute; 
@@ -346,8 +346,6 @@ div.note:after {
   right: 10px;
   left: auto;
 }
-
-
 .headermessage {
   font-weight: bold;
 }
