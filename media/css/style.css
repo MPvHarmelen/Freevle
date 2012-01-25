@@ -217,6 +217,8 @@ div#rooster {
   float: left;
   z-index: 2;
   box-shadow: 0 0 5px #777;
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
   margin: 10px 5px;
 }
 div.dag {
@@ -265,6 +267,8 @@ ul.huiswerk {
   background: #fefefe;
   position: relative;
   box-shadow: 0 0 7px #777;
+  -moz-box-shadow: 0 0 7px #777;
+  -webkit-box-shadow: 0 0 7px #777;
   z-index: 2;
   display: none;
   top: 20px;
@@ -286,6 +290,8 @@ ul.huiswerk:before {
 }
 div.triangle {
   box-shadow: 0 0 7px #777;
+  -moz-box-shadow: 0 0 7px #777;
+  -webkit-box-shadow: 0 0 7px #777;
   background-color: #fefefe;
   display: none;
   height: 20px;
@@ -332,13 +338,15 @@ div.note {
   display: block;
   position: relative;
   width: 220px;
-  background: #efefef;
+  background: #FFFF7E;
   padding: 10px 15px;
-  color: rgba(0,0,0, .8);
   text-shadow: 0 1px 0 #fff;
   line-height: 1.5;
   text-align: center;
   display: block;
+  box-shadow: 0 0 5px #777;
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
 }
 div.note:before, div.note:after {
   z-index: -1; 
