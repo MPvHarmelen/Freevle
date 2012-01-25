@@ -6,6 +6,7 @@ class NewsMessageAdmin(admin.ModelAdmin):
     include = ('title', 'content',)
     exclude = ('writer',)
     prepopulated_fields = {"slug": ("title",)}
+    list_display = ('title', 'writer', 'publish', )
 
     def save_form(self, request, form, change):
         obj = super(NewsMessageAdmin, self).save_form(request, form, change)
