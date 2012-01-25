@@ -96,15 +96,21 @@
         </form>
       </div>
 
-      <div id="loginhome" class="header">{% trans "Login" %}</div>
+      {% if user.is_authenticated %}
+        <div id="loginhome" class="header">{% trans "User" %}</div>
+      {% else %}
+        <div id="loginhome" class="header">{% trans "Login" %}</div>
 
-      <div id="inlogform">
-        <form method="post" action="/login/index.php">
-          <input class="text" type="text" name="username" placeholder="{% trans "Username" %}" /><br />
-          <input class="text" type="password" name="password" placeholder="{% trans "Password" %}" /><br />
-          <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
-        </form>
-      </div>
+        <div id="inlogform">
+          <form method="post" action="/user/login/">
+            {% csrf_token %}
+            <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br />
+            <input class="text" type="password" name="password" id="id_password" placeholder="{% trans "Password" %}" /><br />
+            <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          </form>
+        </div>       
+      {% endif %}
 
       <p class="clear"></p>
       <h1><span id="first-letter">C</span>YGNUS GYMNASIUM</h1>
