@@ -226,8 +226,6 @@ div.divider {
   width: 1px;
   background: #bbb;
   float: left;
-  max-height: 100%;
-  height: 600px;
 }
 span.right {
   float: right;
@@ -238,24 +236,51 @@ p.dag {
 }
 div.uure {
   background: #eaeaea;
-  padding: 0 15px;
+  position: relative;
+  height: 45px;
 }
 div.uuru {
   background: #f3f3f3;
-  padding: 0 15px;
+  position: relative;
+  height: 45px;
 }
 div.uuri {
   color: #555;
-  padding: 0 15px;
+  position: relative;
 }
 p.vak {
-  padding: 7px 0;
+  padding: 7px 15px;
   margin: 0;
   font-size: 14px;
 }
+div.huiswerkind {
+  height: 6px;
+  width: 100%;
+  background: #d55;
+}
 ul.huiswerk {
-  margin: 0;
-  padding: 0 0 14px 28px;
+  margin: 10px;
+  padding: 12px;
+  background: #fefefe;
+  position: relative;
+  box-shadow: 0 0 7px #777;
+  z-index: 6;
+  display: none;
+  top: 20px;
+}
+ul.huiswerk:before
+{  
+  box-shadow: 0 0 7px #777;
+  content: "";  
+  position: absolute;  
+  width: 0; 
+  height: 0; 
+  left: 100px;
+  top: -20px;
+  bottom: auto;
+  border-width: 0 20px 20px;
+  border-style: solid;
+  border-color: #fefefe transparent;
 }
 li.huiswerkitem {
   list-style: none;
