@@ -34,7 +34,7 @@
 
         $('ul.dropdown').hide();
 
-        $("li.menu").hover(function() {
+        $("li.menu, #settingicon").hover(function() {
             $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
           }, function() {
             $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
@@ -99,6 +99,15 @@
       <nav>
         <ul id="menu">
           <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
+          <li class="menu"><a class="header" href="">Vakken</a>
+            <ul class="dropdown">
+              <li><a class="menu-item" href="/">Grieks</a></li>
+              <li><a class="menu-item" href="/">Geschiedenis</a></li>
+              <li><a class="menu-item" href="/">Frans</a></li>
+              <li><a class="menu-item" href="/">Wiskunde</a></li>
+              <li><a class="menu-item" href="/">Meer...</a></li>
+            </ul>
+          </li>
           <li class="menu"><a class="header" id="home-button" href="">De School</a>
             <ul class="dropdown">
               <li><a class="menu-item" href="/">menu item</a></li>
@@ -108,14 +117,7 @@
             </ul>
           </li>
           <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
-          <li class="menu"><a class="header" href="">Contact</a>
-            <ul class="dropdown">
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-            </ul>
-          </li>
+          <li class="menu"><a class="header" href="">Contact</a></li>
         </ul>
       </nav>
 
@@ -125,14 +127,14 @@
         </form>
       </div>
 
-      <div id="loginhome" class="header">Login</div>
-
-      <div id="inlogform">
-        <form method="post" action="./login/index.php">
-          <input class="text" type="text" name="username" placeholder="Gebruikersnaam" /><br />
-          <input class="text" type="password" name="password" placeholder="Wachtwoord" /><br />
-          <input class="button" type="submit" value="Login" name="submit" />
-        </form>
+      <div id="settingicon" class="header">
+        <img src="../media/img/gear.png" alt="Instellingen">
+        <ul class="dropdown" id="settingdrop">
+          <li><a class="menu-item" href="/">menu item</a></li>
+          <li><a class="menu-item" href="/">menu item</a></li>
+          <li><a class="menu-item" href="/">menu item</a></li>
+          <li><a class="menu-item" href="/">menu item</a></li>
+        </ul>
       </div>
 
       <p class="clear"></p>
@@ -155,9 +157,9 @@
 
                 <div class="triangle"></div>
 					      <ul class="huiswerk">
+                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
 					        <li class="huiswerkitem">Maak opgave zus en zo</li>
                   <li class="huiswerkitem">Maak opgave zus en zo</li>
-                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
 					      </ul>
 					    </div>
 				
@@ -191,7 +193,7 @@
 					    </div>
 
 					    <div class="uure">
-					      <p class="vak"><span class="bold">WIB</span> MIN <span class="right">12:10-13:00</span></p>
+					      <p class="vak"><span class="bold">WIB</span> BRW <span class="right">12:10-13:00</span></p>
                 <div class="huiswerkind"></div>
 					    </div>
 
@@ -226,70 +228,65 @@
 				    <p class="dag">Dinsdag</p>
 				
 			    		<div class="uure">
-					      <p class="vak"><span class="bold">MA</span> RAM <span class="right verkort">8:25-9:20</span></p>
+					      <p class="vak"><span class="bold">NA</span> NYN <span class="right verkort">8:25-9:10</span></p>
                 <div class="huiswerkind"></div>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-					      </ul>
 					    </div>
 				
 					    <div class="uuru">
-					      <p class="vak"><span class="bold">MA</span> RAM <span class="right verkort">9:20-10:10</span></p>
+					      <p class="vak"><span class="bold">SC</span> HAS <span class="right verkort">9:10-9:50</span></p>
                 <div class="huiswerkind"></div>
 					    </div>
 				
 					    <div class="uure">
-					      <p class="vak"><span class="bold">FA</span> VIF <span class="right verkort">10:10-11:00</span></p>
+					      <p class="vak valtuit"><span class="bold">GR</span> BOK <span class="right verkort">9:50-10:30</span></p>
                 <div class="huiswerkind"></div>
 
                 <div class="triangle"></div>
 					      <ul class="huiswerk">
-					        <li class="huiswerkitem so">SO over verzin maar wat</li>
+                  <li class="huiswerkitem">Maak opdracht 27C</li>
 					      </ul>
 					    </div>
-				
+
 					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
+					      <p class="vak">Pauze <span class="right">10:30-10:50</span></p>
 					    </div>
-					    
+
+					    <div class="uuri">
+					      <p class="vak"><span class="bold">-</span> <span class="right">10:50-11:30</span></p>
+                <div class="huiswerkind"></div>
+					    </div>
+
+					    <div class="uure">
+					      <p class="vak"><span class="bold">WIB</span> BRW <span class="right verkort">11:30-12:10</span></p>
+                <div class="huiswerkind"></div>
+					    </div>
+
+					    <div class="uuri">
+					      <p class="vak">Pauze <span class="right">12:10-12:40</span></p>
+					    </div>
+
 					    <div class="uuru">
-					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">11:20-12:10</span></p>
+					      <p class="vak"><span class="bold">WI</span> BRW <span class="right verkort">12:40-13:20</span></p>
+                <div class="huiswerkind"></div>
+					    </div>
+
+					    <div class="uure">
+					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">13:20-14:00</span></p>
                 <div class="huiswerkind"></div>
 
                 <div class="triangle"></div>
 					      <ul class="huiswerk">
-					        <li class="huiswerkitem pw">PW over deze en die shizzle</li>
+                  <li class="huiswerkitem">Maak &sect;3.4</li>
 					      </ul>
 					    </div>
 
-					    <div class="uure">
-					      <p class="vak"><span class="bold">WIB</span> MIN <span class="right verkort">12:10-13:00</span></p>
-                <div class="huiswerkind"></div>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
-					    </div>
-
 					    <div class="uuru">
-					      <p class="vak"><span class="bold">EN</span> HEE <span class="right verkort">13:30-14:20</span></p>
+					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">14:00-14:40</span></p>
                 <div class="huiswerkind"></div>
 					    </div>
 
 					    <div class="uure">
-					      <p class="vak"><span class="bold">NE</span> MIN <span class="right verkort">14:20-15:10</span></p>
-                <div class="huiswerkind"></div>
-					    </div>
-
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">NE</span> MIN <span class="right verkort">15:10-16:10</span></p>
-                <div class="huiswerkind"></div>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak"><span class="bold">-</span> <span class="right verkort">16:20-17:00</span></p>
+					      <p class="vak"><span class="bold">LOB</span> MIN <span class="right verkort">14:40-15:20</span></p>
                 <div class="huiswerkind"></div>
 					    </div>
           </div>
@@ -298,22 +295,12 @@
 
         <div id="left">
           <div class="note">
+            <h3>Belangrijke meldingen</h3>
             <p class="headermessage">Donderdag geen les</p>
             <p>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</p>
             -
             <p class="headermessage">Nee, grapje</p>
             <p>Dat is alleen op andere scholen!</p>
-          </div>
-
-          <div class="note">
-            <h3>Eigen zaken</h3>
-            <ul class="own-things">
-              <li>Je moet nog heel veel dingen doen</li>
-              -
-              <li>Zo ook dit</li>
-              -
-              <li>En dit</li>
-            </ul>
           </div>
         </div>
 
