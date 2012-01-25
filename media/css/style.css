@@ -344,9 +344,6 @@ div.note {
   line-height: 1.5;
   text-align: center;
   display: block;
-  box-shadow: 0 0 5px #777;
-  -moz-box-shadow: 0 0 5px #777;
-  -webkit-box-shadow: 0 0 5px #777;
 }
 div.note:before, div.note:after {
   z-index: -1; 
