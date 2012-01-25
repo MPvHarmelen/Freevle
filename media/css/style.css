@@ -142,6 +142,7 @@ ul.dropdown {
   width: 200px;
   background: white;
   border: 1px solid #cfcfcf;
+  z-index: 3;
 }
 a.menu-item:link, a.menu-item:visited {
   color: #333;
@@ -216,6 +217,8 @@ div#rooster {
   float: left;
   z-index: 2;
   box-shadow: 0 0 5px #777;
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
   margin: 10px 5px;
 }
 div.dag {
@@ -226,8 +229,6 @@ div.divider {
   width: 1px;
   background: #bbb;
   float: left;
-  max-height: 100%;
-  height: 600px;
 }
 span.right {
   float: right;
@@ -238,24 +239,74 @@ p.dag {
 }
 div.uure {
   background: #eaeaea;
-  padding: 0 15px;
+  position: relative;
+  height: 45px;
 }
 div.uuru {
   background: #f3f3f3;
-  padding: 0 15px;
+  position: relative;
+  height: 45px;
 }
 div.uuri {
   color: #555;
-  padding: 0 15px;
+  position: relative;
 }
 p.vak {
-  padding: 7px 0;
+  padding: 7px 15px;
   margin: 0;
   font-size: 14px;
 }
+div.huiswerkind {
+  height: 6px;
+  width: 100%;
+  background: #e55;
+}
 ul.huiswerk {
-  margin: 0;
-  padding: 0 0 14px 28px;
+  margin: 10px;
+  padding: 0 12px 12px;
+  background: #fefefe;
+  position: relative;
+  box-shadow: 0 0 7px #777;
+  -moz-box-shadow: 0 0 7px #777;
+  -webkit-box-shadow: 0 0 7px #777;
+  z-index: 2;
+  display: none;
+  top: 20px;
+}
+ul.huiswerk:before {
+  background-color: #fefefe;
+  content: "";
+  display: block;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: -9px;
+  transform:           rotate(45deg);
+    -moz-transform:    rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    -o-transform:      rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  width:  20px;
+  
+}
+div.triangle {
+  box-shadow: 0 0 7px #777;
+  -moz-box-shadow: 0 0 7px #777;
+  -webkit-box-shadow: 0 0 7px #777;
+  background-color: #fefefe;
+  display: none;
+  height: 20px;
+  position: relative;
+  top: 20px;
+  transform:           rotate(45deg);
+    -moz-transform:    rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    -o-transform:      rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  width:  20px;
+  position: relative;
+  margin: 0 0 -21px 25px;
+  z-index: 1;
 }
 li.huiswerkitem {
   list-style: none;
@@ -265,13 +316,16 @@ li.huiswerkitem {
   text-align: left;
 }
 .pw {
-  border-left: solid #d55 6px !important;
+  border-left: solid #d44 6px !important;
 }
 .opdr {
-  border-left: solid #55d 6px !important;
+  border-left: solid #008 6px !important;
 }
 .so {
-  border-left: solid #ed1 6px !important;
+  border-left: solid #fce711 6px !important;
+}
+span.verkort {
+  color: #f849af;
 }
 
 #left {
@@ -281,21 +335,18 @@ li.huiswerkitem {
   margin: 20px 10px;
   font-size: 14px;
 }
-
 div.note {
   display: block;
   position: relative;
   width: 220px;
-  background: #efefef;
+  background: #FFFF6E;
   padding: 10px 15px;
-  color: rgba(0,0,0, .8);
   text-shadow: 0 1px 0 #fff;
   line-height: 1.5;
   text-align: center;
   display: block;
+  margin: 0 0 20px;
 }
-
-
 div.note:before, div.note:after {
   z-index: -1; 
   position: absolute; 
@@ -321,10 +372,15 @@ div.note:after {
   right: 10px;
   left: auto;
 }
-
-
 .headermessage {
   font-weight: bold;
+}
+h3 {
+  font-size: 20px;
+}
+ul.own-things {
+  list-style: none;
+  padding: 0;
 }
 
 /*------------------------------footer------------------------------*/
