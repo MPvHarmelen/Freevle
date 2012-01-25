@@ -24,6 +24,6 @@ urlpatterns = patterns('',
 
     (r'^$', archive_index,
         {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'template_object_name': 'message', 'num_latest': 10}),
+         'num_latest': 10}),
 )
 

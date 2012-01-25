@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-  {% for message in message_list %}
+  {% for message in latest %}
 	  <div class="item">
 		<h2>{{ message.titel }}</h2>
 		<p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
