@@ -2,6 +2,7 @@
 *.sh
 *.pid
 personalsettings.py
+media/letters/
 
 # Packages
 *.egg
