@@ -14,8 +14,8 @@ urlpatterns = patterns('',
     (r'^cms/', include('cygy.cms.urls')),
 
     # User urls
-    (r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
-    (r'^user/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}),
+    (r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
+    (r'^user/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'user/logout.html'}),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
