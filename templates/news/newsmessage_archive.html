@@ -5,7 +5,7 @@
   {% for message in message_list %}
 	  <div class="item">
 		<h2>{{ message.titel }}</h2>
-		<p class="date"><span class="bold">{% blocktrans %}Publish on:{% endblocktrans %}</span>
+		<p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
 			{{ message.publish|date:'d m Y' }}
 			&emsp;&middot;&emsp;
 			<span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ message.writer }}</p>
