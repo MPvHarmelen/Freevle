@@ -73,4 +73,3 @@ INSTALLED_APPS = (
 )
 
 FORCE_SCRIPT_NAME = ""
-
