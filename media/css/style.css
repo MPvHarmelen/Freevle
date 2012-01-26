@@ -72,6 +72,8 @@ input {
   padding: 2px 8px 2px 30px;
   width: 269px;
   border: 1px #cfcfcf solid;
+}
+#searchfield {
   background: url(../img/mag.png) no-repeat;
 }
 input:hover {
@@ -106,7 +108,9 @@ header img {
   width: 150px;
   margin: 10px 0 0 20px;
 }
-
+nav {
+  float: left;
+}
 h1 {
   float: left;
   padding: 30px 0 35px 20px;
@@ -150,7 +154,7 @@ ul.dropdown {
   position: absolute;
   width: 200px;
   background: #eee;
-  box-shadow: 1px 5px 6px #777;
+  box-shadow: 0px 0px 6px #777;
   z-index: 3;
 }
 a.menu-item:link, a.menu-item:visited {
@@ -416,11 +420,8 @@ div.note:after {
 .headermessage {
   font-weight: bold;
 }
-.note h3 {
-  font-size: 20px;
-  color: #006;
-  margin: 5px 5px 3px;
-  font-family: georgia;
+#meldingen h3 {
+  margin: 15px 5px 3px;
 }
 ul#belangrijk {
   margin: 0;

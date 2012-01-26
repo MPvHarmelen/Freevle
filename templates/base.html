@@ -57,6 +57,10 @@
         $("#searchfield").focusout(function() {
             searchfieldCont.css('border-top-color', '#008');
           });
+
+//Width
+        var searchWidth = 800 - $('nav#menunav').width() - $('#loginhome').width() - 51;
+        $('#searchfield').css('width', searchWidth + 'px');
       });
 
       document.createElement('header');
@@ -67,10 +71,10 @@
   <body>
 
     <header>
-      <nav>
+      <nav id="menunav">
         <ul id="menu">
           <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
-          <li class="menu"><a class="header" id="home-button" href="">De School</a>
+          <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
             <ul class="dropdown">
               <li><a class="menu-item" href="/">menu item</a></li>
               <li><a class="menu-item" href="/">menu item</a></li>
@@ -88,6 +92,7 @@
             </ul>
           </li>
         </ul>
+        <div class="clear"></div>
       </nav>
 
       <div id="searchfield_cont">
