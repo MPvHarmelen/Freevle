@@ -63,12 +63,14 @@
         var height = $('.dag').css('height');
         $('.divider').css('height', height);
 
-        $("div.uure,div.uuru").hover(function() {
-            $(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
-            $(this).children("div.triangle").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
-          }, function() {
-            $(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
-            $(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+        $("div.uure,div.uuru").hover(function(event) {
+						if(event.target != $(this).children("ul.huiswerk")[0]) {
+							$(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+							$(this).children("div.triangle").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+						}
+          }, function(event) {
+						$(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+						$(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
           });
 
         $('div.uure, div.uuru, div.uuri').each(function() {
