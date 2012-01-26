@@ -40,18 +40,15 @@ a.header:link, a.header:visited, div.header {
   display: block;
   padding: 15px 10px;
   cursor: pointer;
-  border-top: #008 8px solid;
   background: #fff;
-}
-
-a.header:hover, div.header:hover {
-  border-top: #35b 8px solid;
 }
 
 a.header:active, div.header:active {
   padding: 16px 10px 14px;
   cursor: pointer;
-  border-top: #F69C0E 8px solid;
+}
+div.header, li.menu {
+  border-top: #008 8px solid;
 }
 
 ul#menu li {
@@ -152,11 +149,12 @@ ul#menu, ul.dropdown {
 ul.dropdown {
   position: absolute;
   width: 200px;
-  background: white;
-  box-shadow: 0 0 7px #777;
+  background: #eee;
+  box-shadow: 1px 5px 6px #777;
   z-index: 3;
 }
 a.menu-item:link, a.menu-item:visited {
+  background: #eee;
   color: #333;
   text-decoration: none;
   display: block;
@@ -241,48 +239,69 @@ div#nummers {
   width: 39px;
   float: left;
   margin-top: 57px;
+  color: #333;
 }
 div.divider {
   width: 1px;
   background: #bbb;
   float: left;
 }
-span.right {
-  float: right;
-}
-span.lokaal {
-  float: right;
-}
 p.dag {
   text-align: center;
   font-weight: bold;
 }
 div.uure {
+  padding: 7px 15px 7px 9px;
   background: #eaeaea;
   position: relative;
   border-left: 6px solid #eaeaea;
-  height: 39px;
+  height: 25px;
+  font-size: 14px;
 }
 div.uuru {
+  padding: 7px 15px 7px 9px;
   background: #f3f3f3;
   position: relative;
   border-left: 6px solid #f3f3f3;
-  height: 39px;
+  height: 25px;
+  font-size: 14px;
 }
 div.uuri {
+  font-size: 14px;
+  padding: 7px 15px 7px 9px;
   color: #555 !important;
   position: relative;
   border-left: 6px solid #fff;
-  height: 39px;
+  height: 25px;
 }
 .valtuit {
   text-decoration: line-through;
   color: #555;
 }
 p.vak {
-  padding: 7px 15px 7px 9px;
   margin: 0;
-  font-size: 14px;
+}
+
+
+div.leraarles, div.time, div.lokaal {
+  float: left;
+}
+div.leraarles {
+  width: 55px;
+}
+div.time {
+  width: 77px;
+  text-align: right;
+  margin-left: 53px;
+}
+div.lokaal {
+  width: 25px;
+  margin-left: 10px;
+}
+
+
+span.right {
+  float: right;
 }
 div.huiswerkind {
   height: 6px;
@@ -290,7 +309,7 @@ div.huiswerkind {
   background: #e55;
 }
 ul.huiswerk {
-  margin: 10px;
+  margin: 10px 5px;
   padding: 0 12px 12px;
   background: #fefefe;
   position: relative;
@@ -333,7 +352,7 @@ div.triangle {
     -webkit-transform: rotate(45deg);
   width:  20px;
   position: relative;
-  margin: 0 0 -21px 25px;
+  margin: 0 0 -21px 20px;
   z-index: 1;
 }
 li.huiswerkitem {
