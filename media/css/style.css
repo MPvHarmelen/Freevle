@@ -12,6 +12,7 @@ html,body {
 
 p.clear, div.clear {
   clear: both;
+  margin: 0;
 }
 a:link, a:visited {
   color: #006;
@@ -223,18 +224,23 @@ a.beschrijving {
 
 /*------------------------------rooster------------------------------*/
 div#rooster {
-  width: 479px;
   position: relative;
   float: left;
   z-index: 2;
   box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
-  margin: 10px 5px;
+  margin: 10px 0;
+  width: 792px;
 }
 div.dag {
-  width: 239px;
+  width: 250px;
   float: left;
+}
+div#nummers {
+  width: 39px;
+  float: left;
+  margin-top: 57px;
 }
 div.divider {
   width: 1px;
@@ -244,6 +250,9 @@ div.divider {
 span.right {
   float: right;
 }
+span.lokaal {
+  float: right;
+}
 p.dag {
   text-align: center;
   font-weight: bold;
@@ -251,23 +260,27 @@ p.dag {
 div.uure {
   background: #eaeaea;
   position: relative;
-  height: 45px;
+  border-left: 6px solid #eaeaea;
+  height: 39px;
 }
 div.uuru {
   background: #f3f3f3;
   position: relative;
-  height: 45px;
+  border-left: 6px solid #f3f3f3;
+  height: 39px;
 }
 div.uuri {
   color: #555 !important;
   position: relative;
+  border-left: 6px solid #fff;
+  height: 39px;
 }
 .valtuit {
   text-decoration: line-through;
   color: #555;
 }
 p.vak {
-  padding: 7px 15px;
+  padding: 7px 15px 7px 9px;
   margin: 0;
   font-size: 14px;
 }
@@ -343,22 +356,17 @@ span.verkort {
   color: #f849af;
 }
 
-#left {
-  float: right;
+#meldingen {
   z-index: 2;
   position: relative;
-  margin: 20px 10px;
+  padding: 1px 15px 15px;
   font-size: 14px;
+  border-bottom: 1px solid #bbb;
 }
 div.note {
-  display: block;
-  position: relative;
-  width: 240px;
   background: #ececec;
-  padding: 10px 15px;
+  padding: 10px 20px 20px;
   text-shadow: 0 1px 0 #fff;
-  text-align: center;
-  display: block;
   margin: 0 0 20px;
 }
 div.note:before, div.note:after {
@@ -374,28 +382,29 @@ div.note:before, div.note:after {
   -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
   -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  -webkit-transform: rotate(-3deg);    
-  -moz-transform: rotate(-3deg);   
-  -o-transform: rotate(-3deg);
+  -webkit-transform: rotate(-2deg);    
+  -moz-transform: rotate(-2deg);   
+  -o-transform: rotate(-2deg);
     }
 
 div.note:after {
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
   right: 10px;
   left: auto;
 }
 .headermessage {
   font-weight: bold;
 }
-h3 {
+.note h3 {
   font-size: 20px;
-  color: #338;
+  color: #006;
+  margin: 5px 5px 3px;
+  font-family: georgia;
 }
-ul.own-things {
-  list-style: none;
-  padding: 0;
+ul#belangrijk {
+  margin: 0;
 }
 
 /*------------------------------footer------------------------------*/
