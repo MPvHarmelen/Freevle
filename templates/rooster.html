@@ -32,6 +32,8 @@
             }
         });
 
+
+//Dropdowns
         $('ul.dropdown').hide();
 
         $("li.menu, #settingicon").hover(function() {
@@ -40,6 +42,8 @@
             $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
           });
 
+
+//Searchfield border-colors
         var searchfieldCont = $("#searchfield_cont");
 
         searchfieldCont.hover(function() {
@@ -60,9 +64,31 @@
             searchfieldCont.css('border-top-color', '#008');
           });
 
+
+//Menu border-colors
+        var menuLi = $('li.menu, div.header');
+
+        menuLi.hover(function() {
+            $(this).css('border-top-color', '#35b');
+            $(this).children('a.header').css('background-color', '#eee');
+        }, function() {
+            $(this).css('border-top-color', '#008');
+            $(this).children('a.header').css('background-color', '#fff');
+        });
+
+        $("#searchfield").focusin(function() {
+            searchfieldCont.css('border-top-color', '#F69C0E');
+          });
+
+        $("#searchfield").focusout(function() {
+            searchfieldCont.css('border-top-color', '#008');
+          });
+
+//Height
         var height = $('.dag').css('height');
         $('.divider').css('height', height);
 
+//Speech bubbles
         $("div.uure,div.uuru").hover(function(event) {
 						if(event.target != $(this).children("ul.huiswerk")[0]) {
 							$(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
@@ -147,26 +173,27 @@
         <h2>Rooster</h2>
 
         <div id="rooster">
-        <div id="meldingen">
-            <h3>Belangrijke mededelingen:</h3>
-            <ul id="belangrijk">
-              <li>Donderdag geen les</li>
-              <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
-            </ul>
-        </div>
+          <div id="meldingen">
+              <h3>Belangrijke mededelingen:</h3>
+              <ul id="belangrijk">
+                <li>Donderdag geen les</li>
+                <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
+              </ul>
+          </div>
+
           <div id="nummers">
-		    		<div class="uuru">1</div>
-		    		<div class="uure">2</div>
-		    		<div class="uuru">3</div>
+		    		<div class="uuru"><p class="vak">1</p></div>
+		    		<div class="uure"><p class="vak">2</p></div>
+		    		<div class="uuru"><p class="vak">3</p></div>
 		    		<div class="uuri"> </div>
-		    		<div class="uure">4</div>
-		    		<div class="uuru">5</div>
+		    		<div class="uure"><p class="vak">4</p></div>
+		    		<div class="uuru"><p class="vak">5</p></div>
 		    		<div class="uuri"> </div>
-		    		<div class="uure">6</div>
-		    		<div class="uuru">7</div>
+		    		<div class="uure"><p class="vak">6</p></div>
+		    		<div class="uuru"><p class="vak">7</p></div>
 		    		<div class="uuri"> </div>
-		    		<div class="uure">8</div>
-		    		<div class="uuru">9</div>
+		    		<div class="uure"><p class="vak">8</p></div>
+		    		<div class="uuru"><p class="vak">9</p></div>
           </div>
 
           <div class="divider"></div>
@@ -306,6 +333,9 @@
 					      </ul>
 					    </div>
 
+					    <div class="uuri">
+					    </div>
+
 					    <div class="uuru">
 					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">14:00-14:40</span></p>
 					    </div>
@@ -316,6 +346,9 @@
           </div>
 
           <div class="divider"></div>
+
+
+
 
           <div class="dag">
 				    <p class="dag">Woensdag</p>
@@ -380,7 +413,7 @@
 					    </div>
 
 					    <div class="uuru">
-					      <p class="vak"><span class="bold">EN</span> HEE <span class="lokaal">S09</span> <span class="right">13:30-14:20</span></p>
+					      <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">13:30-14:20</div> <div class="lokaal">S09</div><div class="clear"></div>
 					    </div>
 
 					    <div class="uure">
@@ -399,9 +432,7 @@
 					    <div class="uuri">
 					      <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
 					    </div>
-          <p class="clear"></p>
-			  </div>
-
+    			  </div>
           </div>
 
         <div class="clear"></div>
