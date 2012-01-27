@@ -186,7 +186,7 @@ div#wrapper {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 50px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
 }
@@ -228,12 +228,10 @@ a.beschrijving {
 div#rooster {
   position: relative;
   float: left;
-  z-index: 2;
   box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
-  margin: 10px 0;
-  width: 792px;
+  width: 800px;
 }
 div.dag {
   width: 250px;
@@ -316,7 +314,7 @@ div.lokaal {
 }
 
 #weekend {
-  width: 71px;
+  width: 79px;
   border-left: #bbb 1px solid;
   float: left;
   background: #efefef;
@@ -331,7 +329,7 @@ div.lokaal {
     -o-transform:      rotate(45deg);
     -webkit-transform: rotate(90deg);
   text-align: center;
-  margin-top: 200px;
+  margin: 220px 0 0 5px;
   font-weight: bold;
 }
 
@@ -393,25 +391,23 @@ li.huiswerkitem {
   list-style: none;
   font-size: 13px;
   padding: 2px 0 2px 10px;
-  border-left: #4d4 solid 6px;
+  border-left: #b9fe60 solid 6px;
   text-align: left;
 }
 .pw {
-  border-left: solid #d44 6px !important;
+  border-left: solid #FF7878 6px !important;
 }
 .opdr {
-  border-left: solid #008 6px !important;
+  border-left: solid #9fd6d2 6px !important;
 }
 .so {
-  border-left: solid #fce711 6px !important;
+  border-left: solid #fde951 6px !important;
 }
 span.verkort {
   color: #f849af;
 }
 
-#meldingen {
-  z-index: 2;
-  position: relative;
+.meldingen {
   padding: 1px 15px 15px;
   font-size: 14px;
   border-bottom: 1px solid #bbb;
@@ -455,6 +451,18 @@ div.note:after {
 }
 ul#belangrijk {
   margin: 0;
+}
+
+div#komend {
+  box-shadow: 0 0 5px #777;
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
+  padding: 1px 15px 15px;
+  font-size: 14px;
+  margin: 20px 0 10px;
+}
+div#komend li.huiswerkitem {
+  font-size: 14px;
 }
 
 /*------------------------------footer------------------------------*/

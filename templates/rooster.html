@@ -92,8 +92,8 @@
         $('#weekend').css('height', height);
 
 //Width
-        var searchWidth = 800 - $('nav#menunav').width() - $('#settingicon').width() - 30;
-        $('#searchfield').css('width', searchWidth + 'px');
+//        var searchWidth = 800 - $('nav#menunav').width() - $('#settingicon').width() - 30;
+//        $('#searchfield').css('width', searchWidth + 'px');
 
 //Weekend
         var vrijdag = /*HIER MOET EEN true OF false KOMEN*/true;
@@ -189,7 +189,7 @@
         <h2>Rooster</h2>
 
         <div id="rooster">
-          <div id="meldingen">
+          <div class="meldingen">
               <h3>Belangrijke mededelingen:</h3>
               <ul id="belangrijk">
                 <li>Donderdag geen les</li>
@@ -456,6 +456,14 @@
           </div>
 
         <div class="clear"></div>
+
+        <div id="komend">
+          <h3>Komende toetsen e.d.:</h3>
+          <ul id="belangrijk">
+            <li class="huiswerkitem pw">Donderdag geen les</li>
+            <li class="huiswerkitem so">Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
+          </ul>
+        </div>
       </div>
     </div>
 
