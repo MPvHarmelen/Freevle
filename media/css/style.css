@@ -279,8 +279,18 @@ div.uuri {
   height: 25px;
 }
 .valtuit {
-  text-decoration: line-through;
   color: #555;
+  position: relative;
+}
+.valtuit:before {
+  height: 39px;
+  width: 250px;
+  background: url(../img/raster.png);
+  content: "";
+  display: block;
+  top: -7px;
+  left: -9px;
+  position: absolute;
 }
 p.vak {
   margin: 0;
@@ -338,7 +348,6 @@ ul.huiswerk:before {
     -o-transform:      rotate(45deg);
     -webkit-transform: rotate(45deg);
   width:  20px;
-  
 }
 div.triangle {
   box-shadow: 0 0 7px #777;
