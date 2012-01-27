@@ -89,10 +89,19 @@
 //Height
         var height = $('.dag').css('height');
         $('.divider').css('height', height);
+        $('#weekend').css('height', height);
 
 //Width
         var searchWidth = 800 - $('nav#menunav').width() - $('#settingicon').width() - 30;
         $('#searchfield').css('width', searchWidth + 'px');
+
+//Weekend
+        var vrijdag = /*HIER MOET EEN true OF false KOMEN*/true;
+        if(vrijdag === true) {
+          $('.dag').css('width', '226px');
+          $('.time').css('margin-left', '29px');
+          $('#weekend').css('height', height);
+        }
 
 //Speech bubbles
         $("div.uure,div.uuru").hover(function(event) {
@@ -357,7 +366,7 @@
 
 
 
-          <div class="dag">
+          <div class="dag vrijdag">
 				    <p class="dag">Woensdag</p>
 				
 			    		<div class="uure">
@@ -440,6 +449,10 @@
 					      <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
 					    </div>
     			  </div>
+
+            <div id="weekend">
+              <span>Weekend</span>
+            </div>
           </div>
 
         <div class="clear"></div>

@@ -298,21 +298,42 @@ p.vak {
 
 
 div.leraarles, div.time, div.lokaal {
-  float: left;
 }
 div.leraarles {
   width: 55px;
+  float: left;
 }
 div.time {
   width: 77px;
   text-align: right;
   margin-left: 53px;
+  float: right;
 }
 div.lokaal {
   width: 25px;
   margin-left: 10px;
+  float: right;
 }
 
+#weekend {
+  width: 71px;
+  border-left: #bbb 1px solid;
+  float: left;
+  background: #efefef;
+  font-size: 23px;
+  color: #777;
+}
+#weekend span {
+  display: block;
+  transform:           rotate(90deg);
+    -moz-transform:    rotate(90deg);
+    -ms-transform:     rotate(45deg);
+    -o-transform:      rotate(45deg);
+    -webkit-transform: rotate(90deg);
+  text-align: center;
+  margin-top: 200px;
+  font-weight: bold;
+}
 
 span.right {
   float: right;
