@@ -78,22 +78,10 @@
             $(this).css('background-color', '#fff');
         });
 
-        $("#searchfield").focusin(function() {
-            searchfieldCont.css('border-top-color', '#F69C0E');
-          });
-
-        $("#searchfield").focusout(function() {
-            searchfieldCont.css('border-top-color', '#008');
-          });
-
 //Height
         var height = $('.dag').css('height');
         $('.divider').css('height', height);
         $('#weekend').css('height', height);
-
-//Width
-//        var searchWidth = 800 - $('nav#menunav').width() - $('#settingicon').width() - 30;
-//        $('#searchfield').css('width', searchWidth + 'px');
 
 //Weekend
         var vrijdag = /*HIER MOET EEN true OF false KOMEN*/true;
@@ -130,12 +118,19 @@
   </head>
 
   <body>
-
+<div id="shadow">
     <header>
 
       <nav id="menunav">
         <ul id="menu">
-          <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
+          <li class="menu">
+            <a class="header" href="/">
+              <img id="logo" src="../media/img/littleswan.png" alt="logo">
+              <span id="logotext">Cygnus Gymnasium</span>
+              <div class="clear"></div>
+            </a>
+          </li>
+          <li class="menu"><a class="header" href="/">Startpagina</a></li>
           <li class="menu"><a class="header" href="">Vakken</a>
             <ul class="dropdown">
               <li><a class="menu-item" href="/">Grieks</a></li>
@@ -159,12 +154,6 @@
         <div class="clear"></div>
       </nav>
 
-      <div id="searchfield_cont">
-        <form>
-          <input type="text" id="searchfield" placeholder="Zoek..." />
-        </form>
-      </div>
-
       <div id="settingicon" class="header">
         <img src="../media/img/gear.png" alt="Instellingen">
         <ul class="dropdown" id="settingdrop">
@@ -175,9 +164,6 @@
         </ul>
       </div>
 
-      <p class="clear"></p>
-      <h1><span id="first-letter">C</span>YGNUS GYMNASIUM</h1>
-      <img src="http://cygy.aweonweb.com/media/img/zwaan.png" />
       <p class="clear"></p>
     </header>
 
@@ -469,9 +455,34 @@
 
     <footer>
       <div id="center">
-        Cygnus Gymnasium
+        <p id="copyright">&copy; Cygnus Gymnasium 2012</p>
+
+        <div id="searchfield_cont">
+          <form>
+            <input type="text" id="searchfield" placeholder="Zoek..." />
+          </form>
+        </div>
+        <div class="clear"></div>
+
+        <h2 id="sitemap">Sitemap</h3>
+        <div class="footercloumn">
+          <ul class="sitemaplist">
+            <li>Startpagina</li>
+            <li>Het Cygnus
+              <ul class="sitemaplist2">
+                <li>menu item</li>
+                <li>menu item</li>
+              </ul>
+            </li>
+            <li>Nieuws</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+        <div class="footercloumn">
+        </div>
       </div>
     </footer>
+</div>
 
   </body>
 </html>

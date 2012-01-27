@@ -7,7 +7,7 @@ html,body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: url(../img/background.png) repeat-x;
+  background: url(../img/background.png) repeat-x /*#f5f5f5*/;
 }
 
 p.clear, div.clear {
@@ -25,15 +25,27 @@ header, footer {
 span.bold {
   font-weight: bold;
 }
+/*#shadow {
+  box-shadow: 0 0 7px #777;
+  margin: 0 auto;
+  width: 900px;
+  background: #fff url(../img/background.png) repeat-x;
+}*/
 
 /*------------------------------header------------------------------*/
 header {
   margin: 0 auto;
-  height: 230px;
   width: 800px;
-  border-bottom: 1px #cfcfcf solid;
 }
 
+#logotext {
+  float: left;
+}
+#logo {
+  float: left;
+  margin: 0 12px 0 5px;
+  height: 25px;
+}
 a.header:link, a.header:visited, div.header {
   color: #333;
   text-decoration: none;
@@ -50,17 +62,14 @@ a.header:active, div.header:active {
 div.header, li.menu {
   border-top: #008 8px solid;
 }
+div.header:active, li.menu:active {
+  border-top: #F69C0E 8px solid !important;
+}
 
 ul#menu li {
   float: left;
   background: white;
   position: relative;
-}
-
-div#searchfield_cont {
-  float: left;
-  padding: 12px 4px;
-  border-top: #008 8px solid;
 }
 
 input {
@@ -70,12 +79,8 @@ input {
   color: #333;
   outline: none;
   padding: 2px 8px 2px 30px;
-  width: 269px;
-  border: 1px #cfcfcf solid;
 }
-#searchfield {
-  background: url(../img/mag.png) no-repeat;
-}
+
 input:hover {
   border: 1px #333 solid;
 }
@@ -103,11 +108,6 @@ input:active, input:focus {
   left: -149px;
 }
 
-header img {
-  float: left;
-  width: 150px;
-  margin: 10px 0 0 20px;
-}
 nav {
   float: left;
 }
@@ -186,9 +186,10 @@ div#wrapper {
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 60px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
+  margin: 50px 0 80px;
 }
 div.item {
   padding: 1px 0 10px;
@@ -470,8 +471,25 @@ footer {
   width: 800px;
   margin: auto;
   position: relative;
-  padding: 20px 0 0;
+  padding: 20px 0 30px;
+  font-size: 14px;
 }
 div#center {
   padding: 20px 0 50px;
+}
+#copyright {
+  float: left;
+  margin: 4px 0;
+}
+div#searchfield_cont {
+  float: right;
+}
+#searchfield {
+  background: url(../img/mag.png) no-repeat;
+  border: 1px #cfcfcf solid;
+  width: 300px;
+}
+h2#sitemap {
+  font-size: 25px;
+  margin: 25px 0;
 }
