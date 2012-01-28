@@ -519,9 +519,16 @@ div#center {
 #searchfield {
   float: right;
   background: url(../img/mag.png) no-repeat;
-  border: 1px #cfcfcf solid;
+  border: 1px #999 solid;
   width: 300px;
   color: #eee;
+}
+#searchfield:hover {
+  border-color: #cfcfcf;
+}
+#searchfield:focus {
+  box-shadow: 0 0 10px #a0e6ff;
+  border-color: #cfcfcf;
 }
 h2.footerh {
   font-size: 18px;
