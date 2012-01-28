@@ -62,6 +62,10 @@ a.header:active, div.header:active {
 div.header, li.menu {
   border-top: #008 8px solid;
 }
+div.header:hover, li.menu:hover {
+  border-top: #3355bb 8px solid !important;
+  background: #eee;
+}
 div.header:active, li.menu:active {
   border-top: #F69C0E 8px solid !important;
 }
@@ -70,6 +74,9 @@ ul#menu li {
   float: left;
   background: white;
   position: relative;
+}
+#vakken {
+  float: right !important;
 }
 
 input {
@@ -107,9 +114,14 @@ input:active, input:focus {
   top: 51px;
   left: -149px;
 }
+#vakkendrop {
+  top: 56px;
+  left: -116px;
+}
 
-nav {
+nav#menunav {
   float: left;
+  width: 849px;
 }
 h1 {
   float: left;
@@ -392,7 +404,7 @@ li.huiswerkitem {
   list-style: none;
   font-size: 13px;
   padding: 2px 0 2px 10px;
-  border-left: #9bfe42 solid 6px;
+  border-left: #9ffe49 solid 6px;
   text-align: left;
 }
 .pw {

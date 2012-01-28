@@ -69,13 +69,9 @@
         var menuLi = $('li.menu, div.header');
 
         menuLi.hover(function() {
-            $(this).css('border-top-color', '#35b');
             $(this).children('a.header').css('background-color', '#eee');
-            $(this).css('background-color', '#eee');
         }, function() {
-            $(this).css('border-top-color', '#008');
             $(this).children('a.header').css('background-color', '#fff');
-            $(this).css('background-color', '#fff');
         });
 
 //Height
@@ -131,15 +127,6 @@
             </a>
           </li>
           <li class="menu"><a class="header" href="/">Startpagina</a></li>
-          <li class="menu"><a class="header" href="">Vakken</a>
-            <ul class="dropdown">
-              <li><a class="menu-item" href="/">Grieks</a></li>
-              <li><a class="menu-item" href="/">Geschiedenis</a></li>
-              <li><a class="menu-item" href="/">Frans</a></li>
-              <li><a class="menu-item" href="/">Wiskunde</a></li>
-              <li><a class="menu-item" href="/">Meer...</a></li>
-            </ul>
-          </li>
           <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
             <ul class="dropdown">
               <li><a class="menu-item" href="/">menu item</a></li>
@@ -150,6 +137,16 @@
           </li>
           <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
           <li class="menu"><a class="header" href="">Contact</a></li>
+
+          <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
+            <ul class="dropdown" id="vakkendrop">
+              <li><a class="menu-item" href="/">Grieks</a></li>
+              <li><a class="menu-item" href="/">Geschiedenis</a></li>
+              <li><a class="menu-item" href="/">Frans</a></li>
+              <li><a class="menu-item" href="/">Wiskunde</a></li>
+              <li><a class="menu-item" href="/">Meer...</a></li>
+            </ul>
+          </li>
         </ul>
         <div class="clear"></div>
       </nav>
@@ -449,7 +446,7 @@
             <li class="huiswerkitem pw">Donderdag geen les</li>
             <li class="huiswerkitem so">Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
           </ul>
-        </div>
+        </div>white
       </div>
     </div>
 
