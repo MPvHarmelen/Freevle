@@ -392,14 +392,14 @@ li.huiswerkitem {
   list-style: none;
   font-size: 13px;
   padding: 2px 0 2px 10px;
-  border-left: #b9fe60 solid 6px;
+  border-left: #a9fe50 solid 6px;
   text-align: left;
 }
 .pw {
-  border-left: solid #FF7878 6px !important;
+  border-left: solid #FF5860 6px !important;
 }
 .opdr {
-  border-left: solid #80c6d2 6px !important;
+  border-left: solid #70b6f2 6px !important;
 }
 .so {
   border-left: solid #fde951 6px !important;
