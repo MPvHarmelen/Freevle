@@ -36,6 +36,23 @@ span.bold {
 header {
   margin: 0 auto;
   width: 900px;
+  position: relative;
+  z-index: 2;
+}
+header:before {
+  -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  top: 0px;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+  height: 62px;
+  -moz-border-radius: 400px / 7px;
+  border-radius: 400px / 7px;
+  content: "";
+  position: absolute;
+  z-index: 0;
 }
 
 #logotext {
@@ -103,6 +120,7 @@ input:active, input:focus {
   float: right;
   padding: 0;
   width: 51px;
+  height: 55px;
   position: relative;
 }
 #settingicon img {
@@ -122,6 +140,9 @@ input:active, input:focus {
 nav#menunav {
   float: left;
   width: 849px;
+  background: #fff url(../img/background.png) repeat-x;
+  position: relative;
+  z-index: 1;
 }
 h1 {
   float: left;
@@ -191,7 +212,7 @@ a.menu-item:active {
 
 /*------------------------------content------------------------------*/
 div#wrapper {
-  margin: auto;
+  margin: 7px auto;
   width: 800px;
   background: white;
   padding: 1px 0 0;
@@ -201,7 +222,7 @@ h2 {
   font-size: 60px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
-  margin: 50px 0 80px;
+  margin: 40px 0 80px;
 }
 div.item {
   padding: 1px 0 10px;
@@ -500,6 +521,7 @@ div#center {
   background: url(../img/mag.png) no-repeat;
   border: 1px #cfcfcf solid;
   width: 300px;
+  color: #eee;
 }
 h2#sitemap {
   font-size: 20px;
@@ -512,4 +534,14 @@ h2#sitemap {
 }
 #leftcolumn {
   margin: 20px 0 0;
+}
+footer a:link, footer a:visited {
+  color: #eee;
+  text-decoration: none;
+}
+footer a:hover, footer a:active {
+  text-decoration: underline;
+}
+#rightlist {
+  margin-top: 39px;
 }
