@@ -38,6 +38,7 @@ header {
   width: 900px;
   position: relative;
   z-index: 2;
+  font-size: 14px;
 }
 header:before {
   -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.6);
@@ -57,6 +58,11 @@ header:before {
 
 #logotext {
   float: left;
+  font-size: 16px;
+  font-family: Georgia;
+}
+#firstletter {
+  font-size: 18px;
 }
 #logo {
   float: left;
