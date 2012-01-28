@@ -481,10 +481,12 @@ div#komend li.huiswerkitem {
 /*------------------------------footer------------------------------*/
 footer {
   width: 800px;
-  margin: auto;
+  margin: 50px 0;
   position: relative;
-  padding: 20px 0 30px;
+  padding: 20px 50px 30px;
   font-size: 14px;
+  background: #006;
+  color: #eee;
 }
 div#center {
   padding: 20px 0 50px;
@@ -493,10 +495,8 @@ div#center {
   float: left;
   margin: 4px 0;
 }
-div#searchfield_cont {
-  float: right;
-}
 #searchfield {
+  float: right;
   background: url(../img/mag.png) no-repeat;
   border: 1px #cfcfcf solid;
   width: 300px;
@@ -504,4 +504,12 @@ div#searchfield_cont {
 h2#sitemap {
   font-size: 25px;
   margin: 25px 0;
+}
+.footercolumn {
+  width: 250px;
+  margin: 20px 0 0 25px;
+  float: left;
+}
+#leftcolumn {
+  margin: 20px 0 0;
 }
