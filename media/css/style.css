@@ -392,7 +392,7 @@ li.huiswerkitem {
   list-style: none;
   font-size: 13px;
   padding: 2px 0 2px 10px;
-  border-left: #a9fe50 solid 6px;
+  border-left: #9bfe42 solid 6px;
   text-align: left;
 }
 .pw {
@@ -402,7 +402,7 @@ li.huiswerkitem {
   border-left: solid #70b6f2 6px !important;
 }
 .so {
-  border-left: solid #fde951 6px !important;
+  border-left: solid #f6e44b 6px !important;
 }
 span.verkort {
   color: #f849af;
