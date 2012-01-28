@@ -485,7 +485,7 @@ footer {
   position: relative;
   padding: 20px 50px 30px;
   font-size: 14px;
-  background: #006;
+  background: #005;
   color: #eee;
 }
 div#center {
@@ -502,8 +502,8 @@ div#center {
   width: 300px;
 }
 h2#sitemap {
-  font-size: 25px;
-  margin: 25px 0;
+  font-size: 20px;
+  margin: 0;
 }
 .footercolumn {
   width: 250px;
