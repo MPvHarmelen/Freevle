@@ -92,6 +92,15 @@
 
             {% if user.is_authenticated %}
               <li id="loginhome" class="menu"><a href="#" class="header">{% trans "User" %}</a></li>
+              <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
+                <ul class="dropdown" id="vakkendrop">
+                  <li><a class="menu-item" href="/">Grieks</a></li>
+                  <li><a class="menu-item" href="/">Geschiedenis</a></li>
+                  <li><a class="menu-item" href="/">Frans</a></li>
+                  <li><a class="menu-item" href="/">Wiskunde</a></li>
+                  <li><a class="menu-item" href="/">Meer...</a></li>
+                </ul>
+              </li>
             {% else %}
               <li id="loginhome" class="menu"><a href="#" class="header">{% trans "Login" %}</a></li>
             {% endif %}
