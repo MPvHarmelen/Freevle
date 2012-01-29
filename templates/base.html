@@ -96,6 +96,13 @@
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="menu-item" href="/">Instellingen</a></li>
                   <li><a class="menu-item" href="/user/logout/">Log uit</a></li>
+                  <li>
+                    <form method="post" action="/user/logout/" id="logout">
+                      {% csrf_token %}
+                      <input class="menu-item" type="submit" value="{% trans "Logout" %}" name="submit" />
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    </form>
+                  </li>
                 </ul>
               </li>
               <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
