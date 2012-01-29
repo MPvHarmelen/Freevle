@@ -43,28 +43,6 @@
           });
 
 
-//Searchfield border-colors
-        var searchfieldCont = $("#searchfield_cont");
-
-        searchfieldCont.hover(function() {
-            if($(this).css('border-top-color') == 'rgb(0, 0, 136)') {
-                $(this).css('border-top-color', '#35b');
-            }
-        }, function() {
-            if($(this).css('border-top-color') == 'rgb(51, 85, 187)') {
-                $(this).css('border-top-color', '#008');
-            }
-        });
-
-        $("#searchfield").focusin(function() {
-            searchfieldCont.css('border-top-color', '#F69C0E');
-          });
-
-        $("#searchfield").focusout(function() {
-            searchfieldCont.css('border-top-color', '#008');
-          });
-
-
 //Menu border-colors
         var menuLi = $('li.menu, div.header');
 
@@ -74,10 +52,12 @@
             $(this).children('a.header').css('background-color', '#fff');
         });
 
+
 //Height
         var height = $('.dag').css('height');
         $('.divider').css('height', height);
         $('#weekend').css('height', height);
+
 
 //Weekend
         var vrijdag = /*HIER MOET EEN true OF false KOMEN*/true;
@@ -85,6 +65,7 @@
           $('.dag').css('width', '226px');
           $('#weekend').css('height', height);
         }
+
 
 //Speech bubbles
         $("div.uure,div.uuru").hover(function(event) {
@@ -113,390 +94,387 @@
   </head>
 
   <body>
-<div id="shadow">
-    <header>
+    <div id="shadow">
+      <header>
 
-      <nav id="menunav">
-        <ul id="menu">
-          <li class="menu">
-            <a class="header" href="/">
-              <img id="logo" src="../media/img/littleswan.png" alt="logo">
-              <span id="logotext"><span id="firstletter">C</span>YGNUS GYMNASIUM</span>
-              <div class="clear"></div>
-            </a>
-          </li>
-          <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
-            <ul class="dropdown">
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-            </ul>
-          </li>
-          <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
-          <li class="menu"><a class="header" href="">Contact</a></li>
-
-          <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
-            <ul class="dropdown" id="vakkendrop">
-              <li><a class="menu-item" href="/">Grieks</a></li>
-              <li><a class="menu-item" href="/">Geschiedenis</a></li>
-              <li><a class="menu-item" href="/">Frans</a></li>
-              <li><a class="menu-item" href="/">Wiskunde</a></li>
-              <li><a class="menu-item" href="/">Meer...</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="clear"></div>
-      </nav>
-
-      <div id="settingicon" class="header">
-        <img src="../media/img/gear.png" alt="Instellingen">
-        <ul class="dropdown" id="settingdrop">
-          <li><a class="menu-item" href="/">menu item</a></li>
-          <li><a class="menu-item" href="/">menu item</a></li>
-          <li><a class="menu-item" href="/">menu item</a></li>
-          <li><a class="menu-item" href="/">menu item</a></li>
-        </ul>
-      </div>
-
-      <p class="clear"></p>
-    </header>
-
-
-
-    <div id="wrapper">
-      <div class="item">
-
-        <h2>Rooster</h2>
-
-        <div id="rooster">
-          <div class="meldingen">
-              <h3>Belangrijke mededelingen:</h3>
-              <ul id="belangrijk">
-                <li>Donderdag geen les</li>
-                <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
+        <nav id="menunav">
+          <ul id="menu">
+            <li class="menu">
+              <a class="header" href="/">
+                <img id="logo" src="../media/img/littleswan.png" alt="logo">
+                <span id="logotext"><span id="firstletter">C</span>YGNUS GYMNASIUM</span>
+                <div class="clear"></div>
+              </a>
+            </li>
+            <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
+              <ul class="dropdown">
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
               </ul>
-          </div>
+            </li>
+            <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
+            <li class="menu"><a class="header" href="">Contact</a></li>
 
-          <div id="nummers">
-		    		<div class="uuru"><p class="vak">1</p></div>
-		    		<div class="uure"><p class="vak">2</p></div>
-		    		<div class="uuru"><p class="vak">3</p></div>
-		    		<div class="uuri"> </div>
-		    		<div class="uure"><p class="vak">4</p></div>
-		    		<div class="uuru"><p class="vak">5</p></div>
-		    		<div class="uuri"> </div>
-		    		<div class="uure"><p class="vak">6</p></div>
-		    		<div class="uuru"><p class="vak">7</p></div>
-		    		<div class="uuri"> </div>
-		    		<div class="uure"><p class="vak">8</p></div>
-		    		<div class="uuru"><p class="vak">9</p></div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="dag">
-				    <p class="dag">Maandag</p>
-				
-			    		<div class="uure">
-					      <p class="vak"><span class="bold">MA</span> RAM <span class="right">8:25-9:20</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-					        <li class="huiswerkitem">Maak opgave zus en zo</li>
-                  <li class="huiswerkitem">Maak opgave zus en zo</li>
-					      </ul>
-					    </div>
-				
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">MA</span> RAM <span class="right">9:20-10:10</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem so">En doe ook maar een grote opdracht</li>
-					        <li class="huiswerkitem">Maak opgave zus en zo</li>
-                  <li class="huiswerkitem">Maak opgave zus en zo</li>
-					      </ul>
-					    </div>
-				
-					    <div class="uure">
-					      <p class="vak"><span class="bold">FA</span> VIF <span class="right">10:10-11:00</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-					        <li class="huiswerkitem so">SO over verzin maar wat</li>
-					      </ul>
-					    </div>
-				
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
-					    </div>
-					    
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">GS</span> RHG <span class="right">11:20-12:10</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-					        <li class="huiswerkitem pw">PW over deze en die shizzle</li>
-					      </ul>
-					    </div>
-
-					    <div class="uure">
-					      <p class="vak"><span class="bold">WIB</span> BRW <span class="right">12:10-13:00</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-					        <li class="huiswerkitem">Maak opgave zus en zo</li>
-                  <li class="huiswerkitem">Maak opgave zus en zo</li>
-					      </ul>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
-					    </div>
-
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">EN</span> HEE <span class="right">13:30-14:20</span></p>
-					    </div>
-
-					    <div class="uure">
-					      <p class="vak"><span class="bold">NE</span> MIN <span class="right">14:20-15:10</span></p>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">15:10-15:20</span></p>
-					    </div>
-
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">NE</span> MIN <span class="right">15:20-16:10</span></p>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
-					    </div>
-          </div>
-
-
-          <div class="divider"></div>
-
-          <div class="dag">
-				    <p class="dag">Dinsdag</p>
-				
-			    		<div class="uure">
-					      <p class="vak"><span class="bold">NA</span> NYN <span class="right verkort">8:25-9:10</span></p>
-					    </div>
-				
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">SC</span> HAS <span class="right verkort">9:10-9:50</span></p>
-					    </div>
-				
-					    <div class="uure">
-					      <p class="vak valtuit"><span class="bold">GR</span> BOK <span class="right verkort">9:50-10:30</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem">Maak opdracht 27C</li>
-					      </ul>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">10:30-10:50</span></p>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak"><span class="bold">-</span> <span class="right">10:50-11:30</span></p>
-					    </div>
-
-					    <div class="uure">
-					      <p class="vak"><span class="bold">WIB</span> BRW <span class="right verkort">11:30-12:10</span></p>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">12:10-12:40</span></p>
-					    </div>
-
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">WI</span> BRW <span class="right verkort">12:40-13:20</span></p>
-					    </div>
-
-					    <div class="uure">
-					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">13:20-14:00</span></p>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem">Maak &sect;3.4</li>
-					      </ul>
-					    </div>
-
-					    <div class="uuri">
-					    </div>
-
-					    <div class="uuru">
-					      <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">14:00-14:40</span></p>
-					    </div>
-
-					    <div class="uure">
-					      <p class="vak"><span class="bold">LOB</span> MIN <span class="right verkort">14:40-15:20</span></p>
-					    </div>
-          </div>
-
-          <div class="divider"></div>
+            <li id="settingicon" class="menu">
+              <a class="header" id="nopaddingmenu" href=""><img src="../media/img/gear.png" alt="Instellingen"></a>
+              <ul class="dropdown" id="settingdrop">
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+              </ul>
+            </li>
+            <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
+              <ul class="dropdown" id="vakkendrop">
+                <li><a class="menu-item" href="/">Grieks</a></li>
+                <li><a class="menu-item" href="/">Geschiedenis</a></li>
+                <li><a class="menu-item" href="/">Frans</a></li>
+                <li><a class="menu-item" href="/">Wiskunde</a></li>
+                <li><a class="menu-item" href="/">Meer...</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </nav>
+      </header>
 
 
 
+      <div id="wrapper">
+        <div class="item">
 
-          <div class="dag vrijdag">
-				    <p class="dag">Woensdag</p>
-				
-			    		<div class="uure">
-					      <div class="leraarles"><span class="bold">MA</span> RAM </div> <div class="time">8:25-9:20</div> <div class="lokaal">S03</div><div class="clear"></div>
+          <h1>Rooster</h1>
 
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-					        <li class="huiswerkitem">Maak opgave zus en zo</li>
-                  <li class="huiswerkitem">Maak opgave zus en zo</li>
-					      </ul>
-					    </div>
-				
-					    <div class="uuru">
-					      <div class="leraarles"><span class="bold">MA</span> RAM </div> <div class="time">9:20-10:10</div> <div class="lokaal">S03</div><div class="clear"></div>
-					    </div>
-				
-					    <div class="uure">
-					      <div class="leraarles"><span class="bold">FA</span> VIF </div> <div class="time">10:10-11:00</div> <div class="lokaal">S04</div><div class="clear"></div>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-					        <li class="huiswerkitem so">SO over verzin maar wat</li>
-					      </ul>
-					    </div>
-				
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
-					    </div>
-					    
-					    <div class="uuru">
-					      <div class="leraarles"><span class="bold">GS</span> RHG </div> <div class="time">11:20-12:10</div> <div class="lokaal">S03</div><div class="clear"></div>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-					        <li class="huiswerkitem pw">PW over deze en die shizzle</li>
-					      </ul>
-					    </div>
-
-					    <div class="uure">
-					      <div class="leraarles"><span class="bold">WIB</span> BRW</div> <div class="time">12:10-13:00</div> <div class="lokaal">S10</div><div class="clear"></div>
-
-                <div class="triangle"></div>
-					      <ul class="huiswerk">
-                  <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-					        <li class="huiswerkitem">Maak opgave zus en zo</li>
-                  <li class="huiswerkitem">Maak opgave zus en zo</li>
-					      </ul>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
-					    </div>
-
-					    <div class="uuru">
-					      <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">13:30-14:20</div> <div class="lokaal">S09</div><div class="clear"></div>
-					    </div>
-
-					    <div class="uure">
-					      <div class="leraarles"><span class="bold">NE</span> MIN</div> <div class="time">14:20-15:10</div> <div class="lokaal">S09</div><div class="clear"></div>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak">Pauze <span class="right">15:10-15:20</span></p>
-					    </div>
-
-
-					    <div class="uuru">
-					      <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">15:20-16:10</div> <div class="lokaal">S09</div><div class="clear"></div>
-					    </div>
-
-					    <div class="uuri">
-					      <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
-					    </div>
-    			  </div>
-
-            <div id="weekend">
-              <span>Weekend</span>
+          <div id="rooster">
+            <div class="meldingen">
+                <h3>Belangrijke mededelingen:</h3>
+                <ul id="belangrijk">
+                  <li>Donderdag geen les</li>
+                  <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
+                </ul>
             </div>
+
+            <div id="nummers">
+		      		<div class="uuru"><p class="vak">1</p></div>
+		      		<div class="uure"><p class="vak">2</p></div>
+		      		<div class="uuru"><p class="vak">3</p></div>
+		      		<div class="uuri"> </div>
+		      		<div class="uure"><p class="vak">4</p></div>
+		      		<div class="uuru"><p class="vak">5</p></div>
+		      		<div class="uuri"> </div>
+		      		<div class="uure"><p class="vak">6</p></div>
+		      		<div class="uuru"><p class="vak">7</p></div>
+		      		<div class="uuri"> </div>
+		      		<div class="uure"><p class="vak">8</p></div>
+		      		<div class="uuru"><p class="vak">9</p></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="dag">
+				      <p class="dag">Maandag</p>
+				
+			      		<div class="uure">
+					        <p class="vak"><span class="bold">MA</span> RAM <span class="right">8:25-9:20</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
+					          <li class="huiswerkitem">Maak opgave zus en zo</li>
+                    <li class="huiswerkitem">Maak opgave zus en zo</li>
+					        </ul>
+					      </div>
+				
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">MA</span> RAM <span class="right">9:20-10:10</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem so">En doe ook maar een grote opdracht</li>
+					          <li class="huiswerkitem">Maak opgave zus en zo</li>
+                    <li class="huiswerkitem">Maak opgave zus en zo</li>
+					        </ul>
+					      </div>
+				
+					      <div class="uure">
+					        <p class="vak"><span class="bold">FA</span> VIF <span class="right">10:10-11:00</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+					          <li class="huiswerkitem so">SO over verzin maar wat</li>
+					        </ul>
+					      </div>
+				
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
+					      </div>
+					      
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">GS</span> RHG <span class="right">11:20-12:10</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+					          <li class="huiswerkitem pw">PW over deze en die shizzle</li>
+					        </ul>
+					      </div>
+
+					      <div class="uure">
+					        <p class="vak"><span class="bold">WIB</span> BRW <span class="right">12:10-13:00</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
+					          <li class="huiswerkitem">Maak opgave zus en zo</li>
+                    <li class="huiswerkitem">Maak opgave zus en zo</li>
+					        </ul>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
+					      </div>
+
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">EN</span> HEE <span class="right">13:30-14:20</span></p>
+					      </div>
+
+					      <div class="uure">
+					        <p class="vak"><span class="bold">NE</span> MIN <span class="right">14:20-15:10</span></p>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">15:10-15:20</span></p>
+					      </div>
+
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">NE</span> MIN <span class="right">15:20-16:10</span></p>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
+					      </div>
+            </div>
+
+
+            <div class="divider"></div>
+
+            <div class="dag">
+				      <p class="dag">Dinsdag</p>
+				
+			      		<div class="uure">
+					        <p class="vak"><span class="bold">NA</span> NYN <span class="right verkort">8:25-9:10</span></p>
+					      </div>
+				
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">SC</span> HAS <span class="right verkort">9:10-9:50</span></p>
+					      </div>
+				
+					      <div class="uure">
+					        <p class="vak valtuit"><span class="bold">GR</span> BOK <span class="right verkort">9:50-10:30</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem">Maak opdracht 27C</li>
+					        </ul>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">10:30-10:50</span></p>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak"><span class="bold">-</span> <span class="right">10:50-11:30</span></p>
+					      </div>
+
+					      <div class="uure">
+					        <p class="vak"><span class="bold">WIB</span> BRW <span class="right verkort">11:30-12:10</span></p>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">12:10-12:40</span></p>
+					      </div>
+
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">WI</span> BRW <span class="right verkort">12:40-13:20</span></p>
+					      </div>
+
+					      <div class="uure">
+					        <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">13:20-14:00</span></p>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem">Maak &sect;3.4</li>
+					        </ul>
+					      </div>
+
+					      <div class="uuri">
+					      </div>
+
+					      <div class="uuru">
+					        <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">14:00-14:40</span></p>
+					      </div>
+
+					      <div class="uure">
+					        <p class="vak"><span class="bold">LOB</span> MIN <span class="right verkort">14:40-15:20</span></p>
+					      </div>
+            </div>
+
+            <div class="divider"></div>
+
+
+
+
+            <div class="dag vrijdag">
+				      <p class="dag">Woensdag</p>
+				
+			      		<div class="uure">
+					        <div class="leraarles"><span class="bold">MA</span> RAM </div> <div class="time">8:25-9:20</div> <div class="lokaal">S03</div><div class="clear"></div>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
+					          <li class="huiswerkitem">Maak opgave zus en zo</li>
+                    <li class="huiswerkitem">Maak opgave zus en zo</li>
+					        </ul>
+					      </div>
+				
+					      <div class="uuru">
+					        <div class="leraarles"><span class="bold">MA</span> RAM </div> <div class="time">9:20-10:10</div> <div class="lokaal">S03</div><div class="clear"></div>
+					      </div>
+				
+					      <div class="uure">
+					        <div class="leraarles"><span class="bold">FA</span> VIF </div> <div class="time">10:10-11:00</div> <div class="lokaal">S04</div><div class="clear"></div>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+					          <li class="huiswerkitem so">SO over verzin maar wat</li>
+					        </ul>
+					      </div>
+				
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
+					      </div>
+					      
+					      <div class="uuru">
+					        <div class="leraarles"><span class="bold">GS</span> RHG </div> <div class="time">11:20-12:10</div> <div class="lokaal">S03</div><div class="clear"></div>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+					          <li class="huiswerkitem pw">PW over deze en die shizzle</li>
+					        </ul>
+					      </div>
+
+					      <div class="uure">
+					        <div class="leraarles"><span class="bold">WIB</span> BRW</div> <div class="time">12:10-13:00</div> <div class="lokaal">S10</div><div class="clear"></div>
+
+                  <div class="triangle"></div>
+					        <ul class="huiswerk">
+                    <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
+					          <li class="huiswerkitem">Maak opgave zus en zo</li>
+                    <li class="huiswerkitem">Maak opgave zus en zo</li>
+					        </ul>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
+					      </div>
+
+					      <div class="uuru">
+					        <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">13:30-14:20</div> <div class="lokaal">S09</div><div class="clear"></div>
+					      </div>
+
+					      <div class="uure">
+					        <div class="leraarles"><span class="bold">NE</span> MIN</div> <div class="time">14:20-15:10</div> <div class="lokaal">S09</div><div class="clear"></div>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak">Pauze <span class="right">15:10-15:20</span></p>
+					      </div>
+
+
+					      <div class="uuru">
+					        <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">15:20-16:10</div> <div class="lokaal">S09</div><div class="clear"></div>
+					      </div>
+
+					      <div class="uuri">
+					        <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
+					      </div>
+      			  </div>
+
+              <div id="weekend">
+                <span>Weekend</span>
+              </div>
+            </div>
+
+          <div class="clear"></div>
+
+          <div id="komend">
+            <h3>Komende toetsen e.d.:</h3>
+            <ul id="belangrijk">
+              <li class="huiswerkitem pw"><span class="italic">21/6</span>&nbsp;&nbsp;<span class="bold">WiB:</span> PW H3 en H4</li>
+              <li class="huiswerkitem so"><span class="italic">22/6</span>&nbsp;&nbsp;<span class="bold">EN:</span> SO Units 86, 87, 113-120</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div id="center">
+          <div id="container">
+            <p id="copyright">&copy; Cygnus Gymnasium 2012</p>
+
+            <form>
+              <input type="text" id="searchfield" placeholder="Zoek..." />
+            </form>
+            <div class="clear"></div>
           </div>
 
-        <div class="clear"></div>
+          <div class="footercolumn" id="leftcolumn">
+            <img id="swan" src="../media/img/zwaan.png" alt="logo">
+          </div>
+          <div class="footercolumn" id="middle">
+            <h2 class="footerh">Sitemap</h2>
+            <ul class="sitemaplist">
+              <li><a href="">Startpagina</a></li>
+              <li><a href="">Het Cygnus</a>
+                <ul class="sitemaplist2">
+                  <li><a href="">menu item</a></li>
+                  <li><a href="">menu item</a></li>
+                </ul>
+              </li>
+              <li><a href="">Nieuws</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
 
-        <div id="komend">
-          <h3>Komende toetsen e.d.:</h3>
-          <ul id="belangrijk">
-            <li class="huiswerkitem pw"><span class="italic">21/6</span>&nbsp;&nbsp;<span class="bold">WiB:</span> PW H3 en H4</li>
-            <li class="huiswerkitem so"><span class="italic">22/6</span>&nbsp;&nbsp;<span class="bold">EN:</span> SO Units 86, 87, 113-120</li>
-          </ul>
+            <ul class="sitemaplist">
+              <li><a href="">Instellingen</a>
+                <ul class="sitemaplist2">
+                  <li><a href="">menu item</a></li>
+                  <li><a href="">menu item</a></li>
+                </ul>
+              </li>
+              <li><a href="">Vakken</a></li>
+            </ul>
+            <div class="clear"></div>
+          </div>
+          <div class="footercolumn">
+            <h2 class="footerh"><a href="">Contact</a></h2>
+            <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
+            Linnaeushof 48<br>
+            1098 KM Amsterdam<br>
+            020-468 88 80</p>
+            <p><span class="bold">Locatie leerjaar 3, 4, 5 en 6:</span><br>
+            Simon Stevinstraat 48<br>
+            1097 CA Amsterdam<br>
+            020-462 14 50</p>
+          </div>
+          
+          <div class="clear"></div>
+
         </div>
-      </div>
+      </footer>
     </div>
-
-    <footer>
-      <div id="center">
-        <div id="container">
-          <p id="copyright">&copy; Cygnus Gymnasium 2012</p>
-
-          <form>
-            <input type="text" id="searchfield" placeholder="Zoek..." />
-          </form>
-          <div class="clear"></div>
-        </div>
-
-        <div class="footercolumn" id="leftcolumn">
-          <img id="swan" src="../media/img/zwaan.png" alt="logo">
-        </div>
-        <div class="footercolumn" id="middle">
-          <h2 class="footerh">Sitemap</h2>
-          <ul class="sitemaplist">
-            <li><a href="">Startpagina</a></li>
-            <li><a href="">Het Cygnus</a>
-              <ul class="sitemaplist2">
-                <li><a href="">menu item</a></li>
-                <li><a href="">menu item</a></li>
-              </ul>
-            </li>
-            <li><a href="">Nieuws</a></li>
-            <li><a href="">Contact</a></li>
-          </ul>
-
-          <ul class="sitemaplist">
-            <li><a href="">Instellingen</a>
-              <ul class="sitemaplist2">
-                <li><a href="">menu item</a></li>
-                <li><a href="">menu item</a></li>
-              </ul>
-            </li>
-            <li><a href="">Vakken</a></li>
-          </ul>
-          <div class="clear"></div>
-        </div>
-        <div class="footercolumn">
-          <h2 class="footerh"><a href="">Contact</a></h2>
-          <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
-          Linnaeushof 48<br>
-          1098 KM Amsterdam<br>
-          020-468 88 80</p>
-          <p><span class="bold">Locatie leerjaar 3, 4, 5 en 6:</span><br>
-          Simon Stevinstraat 48<br>
-          1097 CA Amsterdam<br>
-          020-462 14 50</p>
-        </div>
-        
-        <div class="clear"></div>
-
-      </div>
-    </footer>
-</div>
 
   </body>
 </html>

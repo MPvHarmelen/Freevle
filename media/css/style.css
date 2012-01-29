@@ -63,6 +63,7 @@ header:before {
   float: left;
   font-size: 16px;
   font-family: Georgia;
+  margin-bottom: -1px;
 }
 #firstletter {
   font-size: 18px;
@@ -108,29 +109,25 @@ ul#menu li {
 input {
   border: none;
   font-size: 14px;
-  height: 25px;
   color: #333;
   outline: none;
   padding: 2px 8px 2px 30px;
 }
 
-input:hover {
-  border: 1px #333 solid;
-}
-input:active, input:focus {
-  border: 1px #006 solid;
-}
-
 #loginhome {
-  float: left;
+  float: right !important;
 }
 
 #settingicon {
-  float: right;
+  float: right !important;
   padding: 0;
   width: 51px;
   height: 55px;
   position: relative;
+}
+#nopaddingmenu {
+  padding: 0;
+  max-height: 55px;
 }
 #settingicon img {
   height: 51px;
@@ -138,53 +135,120 @@ input:active, input:focus {
   margin: 0;
 }
 #settingdrop {
-  top: 51px;
+  top: 55px;
   left: -149px;
 }
 #vakkendrop {
-  top: 56px;
+  top: 55px;
   left: -116px;
 }
 
 nav#menunav {
-  float: left;
-  width: 849px;
+  width: 900px;
   background: #fff url(../img/background.png) repeat-x;
   position: relative;
   z-index: 1;
 }
 h1 {
-  float: left;
-  padding: 30px 0 35px 20px;
-  font-size: 54px;
-  font-family: Georgia;
+  font-size: 60px;
+  font-family: 'Cabin', sans-serif;
   font-weight: normal;
+  margin: 40px 0 80px;
 }
 span#first-letter {
   font-size: 70px;
 }
 
-div#inlogform {
-  margin: 0 0 0 800px;
-  padding: 15px;
-  text-align: center;
+div#darken {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(1, 1, 1);
+  background: rgba(10, 10, 10, 0.8);
   position: absolute;
-  background: #fefefe;
-  border-top: 8px #F69C0E solid;
-  border-bottom: 1px #cfcfcf solid;
-  border-left: 1px #cfcfcf solid;
-  border-right: 1px #cfcfcf solid;
+  z-index: 6;
+}
+div#inlogform {
+  padding: 15px 15px 35px;
+  text-align: center;
+  position: relative;
+  background: #ddd;
+  margin: 100px auto 0;
+  width: 250px;
+  box-shadow: 0 0 100px #000;
+  font-size: 13px;
+  border-radius: 2px;
+}
+#closelogin {
+  height: 24px;
+  width: 24px;
+  background: #000 url(../img/cross.png);
+  border-radius: 15px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #000;
+  cursor: pointer;
+}
+div#inlogform a:link, div#inlogform a:visited {
+  text-decoration: none;
+  color: #006;
+}
+div#inlogform a:hover, div#inlogform a:active {
+  text-decoration: underline;
+}
+form#login {
+  margin: 0 0 20px;
 }
 input.text {
-  height: 20px;
   margin-bottom: 10px;
-  padding: 3px 10px;
+  padding: 8px 10px;
   width: 150px;
+  font-size: 17px;
+  background: #eee;
+  box-shadow: inset 1px 1px 5px #777;
+  border-radius: 2px;
+}
+input.text:focus {
+  box-shadow: 0 0 7px #60c6ff, inset 2px 2px 6px #888;
 }
 input.button {
-  padding: 3px 10px;
-  width: 170px;
-  background: none;
+  padding: 8px 10px;
+  width: 100px;
+  background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+    background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+    background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+    background-image:    -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.17, rgb(40,40,199)),
+	    color-stop(1.00, rgb(58,67,250))
+    );
+  font-size: 17px;
+  color: #fff;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+input.button:active {
+  box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
+  background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+    background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+    background-image:     -ms-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+    background-image:    -moz-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.17, rgb(58,67,250)),
+	    color-stop(1.00, rgb(40,40,199))
+    );
 }
 
 ul#menu, ul.dropdown {
@@ -198,6 +262,7 @@ ul.dropdown {
   background: #eee;
   box-shadow: 0px 0px 6px #777;
   z-index: 3;
+  top: 55px;
 }
 a.menu-item:link, a.menu-item:visited {
   background: #eee;
@@ -228,10 +293,9 @@ div#wrapper {
 }
 
 h2 {
-  font-size: 60px;
+  font-size: 40px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
-  margin: 40px 0 80px;
 }
 div.item {
   padding: 1px 0 10px;
@@ -532,6 +596,7 @@ div#center {
   border: 1px #999 solid;
   width: 300px;
   color: #eee;
+  height: 25px;
 }
 #searchfield:hover {
   border-color: #cfcfcf;

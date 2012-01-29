@@ -10,28 +10,18 @@
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#inlogform').hide();
-        $("#loginhome").click(function() {
-            $("#inlogform").slideToggle('fast');
-            if($(this).css('border-top-color') == 'rgb(246, 156, 14)') {
-              $(this).css('border-top-color', '#35b');
-            } else {
-              $(this).css('border-top-color', '#F69C0E');
-            }
+//Inlogform
+        $('#darken').hide();
+        $('#loginhome').click(function() {
+            $("#inlogform").animate({marginTop: '200px'}, {queue: false, duration: 'fast'});
+            $('#darken').fadeIn('fast');
+            $('body').css('overflow', 'hidden');
           });
-        
-        var loginHome = $("#loginhome");
-        loginHome.hover(function() {
-            if($(this).css('border-top-color') == 'rgb(0, 0, 136)') {
-                $(this).css('border-top-color', '#35b');
-            }
-        }, function() {
-            if($(this).css('border-top-color') == 'rgb(51, 85, 187)') {
-                $(this).css('border-top-color', '#008');
-            }
-        });
-
-        
+        $('#closelogin').click(function() {
+            $("#inlogform").animate({marginTop: '100px'}, {queue: false, duration: 'fast'});
+            $('#darken').fadeOut('fast');
+            $('body').css('overflow', 'visible');
+          });
         
         $('ul.dropdown').hide();
         $("li.menu").hover(function() {
@@ -39,28 +29,6 @@
           }, function() {
             $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
           });
-
-        var searchfieldCont = $("#searchfield_cont");
-        searchfieldCont.hover(function() {
-            if($(this).css('border-top-color') == 'rgb(0, 0, 136)') {
-                $(this).css('border-top-color', '#35b');
-            }
-        }, function() {
-            if($(this).css('border-top-color') == 'rgb(51, 85, 187)') {
-                $(this).css('border-top-color', '#008');
-            }
-        });
-
-        $("#searchfield").focusin(function() {
-            searchfieldCont.css('border-top-color', '#F69C0E');
-          });
-        $("#searchfield").focusout(function() {
-            searchfieldCont.css('border-top-color', '#008');
-          });
-
-//Width
-        var searchWidth = 800 - $('nav#menunav').width() - $('#loginhome').width() - 51;
-        $('#searchfield').css('width', searchWidth + 'px');
       });
 
       document.createElement('header');
@@ -70,71 +38,111 @@
   </head>
   <body>
 
-    <header>
-      <nav id="menunav">
-        <ul id="menu">
-          <li class="menu"><a class="header" id="home-button" href="/">Startpagina</a></li>
-          <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
-            <ul class="dropdown">
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-            </ul>
-          </li>
-          <li class="menu"><a class="header" href="/news">News</a></li>
-          <li class="menu"><a class="header" href="">Contact</a>
-            <ul class="dropdown">
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-              <li><a class="menu-item" href="/">menu item</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="clear"></div>
-      </nav>
-
-      <div id="searchfield_cont">
-        <form>
-          <input type="text" id="searchfield" placeholder="{% trans "Search..." %}" />
-        </form>
-      </div>
-
-      {% if user.is_authenticated %}
-        <div id="loginhome" class="header">{% trans "User" %}</div>
-      {% else %}
-        <div id="loginhome" class="header">{% trans "Login" %}</div>
-
+    {% if not user.is_authenticated %}
+      <div id="darken">
         <div id="inlogform">
-          <form method="post" action="/user/login/">
+          <div id="closelogin"></div>
+          <h2>Login</h2>
+          <form method="post" action="/user/login/" id="login">
             {% csrf_token %}
-            <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br />
-            <input class="text" type="password" name="password" id="id_password" placeholder="{% trans "Password" %}" /><br />
+            <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
+            <input class="text" type="password" name="password" id="id_password" placeholder="{% trans "Password" %}" /><br>
             <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
           </form>
-        </div>       
-      {% endif %}
+          <a href="">Heb je nog geen account?</a><br>
+          <a href="">Ben je je wachtwoord vergeten?</a>
+        </div>
+      </div>
+    {% endif %}
 
-      <p class="clear"></p>
-      <h1><span id="first-letter">C</span>YGNUS GYMNASIUM</h1>
-      <img src="/media/img/zwaan.png" />
-      <p class="clear"></p>
-    </header>
+    <div id="shadow">
+      <header>
 
-    <div id="wrapper">
+        <nav id="menunav">
+          <ul id="menu">
+            <li class="menu">
+              <a class="header" href="/">
+                <img id="logo" src="/media/img/littleswan.png" alt="logo">
+                <span id="logotext"><span id="firstletter">C</span>YGNUS GYMNASIUM</span>
+                <div class="clear"></div>
+              </a>
+            </li>
+            <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
+              <ul class="dropdown">
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+                <li><a class="menu-item" href="/">menu item</a></li>
+              </ul>
+            </li>
+            <li class="menu"><a class="header" href="/nieuws">Nieuws</a></li>
+            <li class="menu"><a class="header" href="">Contact</a></li>
 
-      {% block content %}
-      {% endblock content %}
+            {% if user.is_authenticated %}
+              <li id="loginhome" class="menu"><a href="#" class="header">{% trans "User" %}</a></li>
+            {% else %}
+              <li id="loginhome" class="menu"><a href="#" class="header">{% trans "Login" %}</a></li>
+            {% endif %}
+          </ul>
+          <div class="clear"></div>
+        </nav>
+      </header>
+
+      <div id="wrapper">
+
+        {% block content %}
+        {% endblock content %}
+
+      </div>
+
+      <footer>
+        <div id="center">
+          <div id="container">
+            <p id="copyright">&copy; Cygnus Gymnasium 2012</p>
+
+            <form>
+              <input type="text" id="searchfield" placeholder="{% trans "Search..." %}" />
+            </form>
+            <div class="clear"></div>
+          </div>
+
+          <div class="footercolumn" id="leftcolumn">
+            <img id="swan" src="/media/img/zwaan.png" alt="logo">
+          </div>
+          <div class="footercolumn" id="middle">
+            <h2 class="footerh">Sitemap</h2>
+            <ul class="sitemaplist">
+              <li><a href="">Startpagina</a></li>
+              <li><a href="">Het Cygnus</a>
+                <ul class="sitemaplist2">
+                  <li><a href="">menu item</a></li>
+                  <li><a href="">menu item</a></li>
+                </ul>
+              </li>
+              <li><a href="">Nieuws</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+            <div class="clear"></div>
+          </div>
+          <div class="footercolumn">
+            <h2 class="footerh"><a href="">Contact</a></h2>
+            <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
+            Linnaeushof 48<br>
+            1098 KM Amsterdam<br>
+            020-468 88 80</p>
+            <p><span class="bold">Locatie leerjaar 3, 4, 5 en 6:</span><br>
+            Simon Stevinstraat 48<br>
+            1097 CA Amsterdam<br>
+            020-462 14 50</p>
+          </div>
+          
+          <div class="clear"></div>
+
+        </div>
+      </footer>
 
     </div>
-
-    <footer>
-      <div id="center">
-        Cygnus Gymnasium
-      </div>
-    </footer>
 
   </body>
 </html>
