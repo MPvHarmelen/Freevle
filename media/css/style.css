@@ -502,7 +502,6 @@ span.verkort {
 }
 
 .meldingen {
-  padding: 1px 15px 15px;
   font-size: 14px;
   border-bottom: 1px solid #bbb;
 }
@@ -543,7 +542,7 @@ div.note:after {
 #meldingen h3 {
   margin: 15px 5px 3px;
 }
-ul#belangrijk {
+ul.belangrijk {
   margin: 0;
 }
 
@@ -557,6 +556,43 @@ div#komend {
 }
 div#komend li.huiswerkitem {
   font-size: 14px;
+}
+#meldingenlinks {
+  float: left;
+  width: 540px;
+  padding: 1px 15px 15px;
+}
+#legend {
+  float: left;
+  width: 200px;
+  padding-left: 20px;
+  border-left: #bbb 1px solid;
+}
+.legendleft {
+  width: 50px;
+  float: left;
+}
+.legendright {
+  width: 110px;
+  float: left;
+}
+#legendul {
+  padding: 0;
+}
+#valtuitlegend {
+  position: relative;
+  color: #333;
+  border-color: #eee;
+}
+#valtuitlegend:before {
+  height: 29px;
+  width: 190px;
+  background: url(../img/raster.png);
+  content: "";
+  display: block;
+  top: -1px;
+  left: 0;
+  position: absolute;
 }
 
 /*------------------------------footer------------------------------*/
