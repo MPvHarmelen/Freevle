@@ -583,6 +583,7 @@ div#komend li.huiswerkitem {
   position: relative;
   color: #333;
   border-color: #eee;
+  margin-top: 10px;
 }
 #valtuitlegend:before {
   height: 29px;
