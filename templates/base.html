@@ -91,9 +91,17 @@
             <li class="menu"><a class="header" href="">Contact</a></li>
 
             {% if user.is_authenticated %}
-              <li id="loginhome" class="menu"><a href="#" class="header">{% trans "User" %}</a></li>
+              <li id="settingicon" class="menu">
+                <a class="header" href="">{% trans "User" %}</a>
+                <ul class="dropdown" id="rightdrop">
+                  <li><a class="menu-item" href="/">menu item</a></li>
+                  <li><a class="menu-item" href="/">menu item</a></li>
+                  <li><a class="menu-item" href="/">menu item</a></li>
+                  <li><a class="menu-item" href="/">menu item</a></li>
+                </ul>
+              </li>
               <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
-                <ul class="dropdown" id="vakkendrop">
+                <ul class="dropdown" id="rightdrop">
                   <li><a class="menu-item" href="/">Grieks</a></li>
                   <li><a class="menu-item" href="/">Geschiedenis</a></li>
                   <li><a class="menu-item" href="/">Frans</a></li>

@@ -120,8 +120,6 @@ input {
 
 #settingicon {
   float: right !important;
-  padding: 0;
-  width: 51px;
   height: 55px;
   position: relative;
 }
@@ -129,18 +127,9 @@ input {
   padding: 0;
   max-height: 55px;
 }
-#settingicon img {
-  height: 51px;
-  width: 51px;
-  margin: 0;
-}
-#settingdrop {
+#rightdrop {
   top: 55px;
-  left: -149px;
-}
-#vakkendrop {
-  top: 55px;
-  left: -116px;
+  right: 0px;
 }
 
 nav#menunav {
@@ -401,9 +390,6 @@ p.vak {
   margin: 0;
 }
 
-
-div.leraarles, div.time, div.lokaal {
-}
 div.leraarles {
   width: 68px;
   float: left;
