@@ -25,6 +25,9 @@ header, footer {
 span.bold {
   font-weight: bold;
 }
+span.italic {
+  font-style: italic;
+}
 #shadow {
   box-shadow: 0 0 7px #777;
   margin: 0 auto;
@@ -338,19 +341,20 @@ p.vak {
 div.leraarles, div.time, div.lokaal {
 }
 div.leraarles {
-  width: 55px;
+  width: 68px;
   float: left;
 }
 div.time {
   width: 77px;
   text-align: right;
-  margin-left: 53px;
+  margin-left: 15px;
   float: right;
 }
 div.lokaal {
   width: 25px;
   margin-left: 10px;
   float: right;
+  
 }
 
 #weekend {
