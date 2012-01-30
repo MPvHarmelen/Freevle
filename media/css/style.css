@@ -206,6 +206,7 @@ input.text:focus {
 input.button {
   padding: 8px 10px;
   width: 100px;
+  cursor: pointer;
   background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
     background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
