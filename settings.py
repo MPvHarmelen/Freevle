@@ -76,6 +76,7 @@ INSTALLED_APPS = (
     'cygy.news',
     'cygy.cms',
     'cygy.letters',
+    'cygy.organizer',
     
     'django.contrib.auth',
     'django.contrib.contenttypes',
