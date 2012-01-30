@@ -26,7 +26,7 @@ class Lesson(models.Model):
     period = models.IntegerField()
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
 
-class TimeTable(models.Model):
+class Timetable(models.Model):
     date_of_monday = models.DateField()
     lessons = models.ManyToManyField(Lesson)
     user = models.ForeignKey(User) 
