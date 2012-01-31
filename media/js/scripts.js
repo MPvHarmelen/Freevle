@@ -1,25 +1,5 @@
 $(document).ready(function(){
 
-//Dropdowns
-  $('ul.dropdown').hide();
-
-  $("li.menu, #settingicon").hover(function() {
-      $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
-    }, function() {
-      $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
-    });
-
-
-//Menu backgrounds
-  var menuLi = $('li.menu, div.header');
-
-  menuLi.hover(function() {
-      $(this).children('a.header').css('background-color', '#eee');
-  }, function() {
-      $(this).children('a.header').css('background-color', '#fff');
-  });
-
-
 //Height
   var height = $('.dag').css('height');
   $('.divider').css('height', height);
