@@ -598,65 +598,104 @@ div#komend li.huiswerkitem {
 }
 
 /*------------------------------footer------------------------------*/
+
 footer {
   width: 800px;
   margin: 50px 0;
   position: relative;
+  font-size: 14px;
   padding: 20px 50px 30px;
-  font-size: 13px;
   background: #005;
   color: #eee;
 }
+
 div#center {
-  padding: 20px 0 50px;
+  padding: 20px 0 0;
 }
-#copyright {
-  float: left;
-  margin: 4px 0;
-}
-#searchfield {
-  float: right;
-  background: url(../img/mag.png) no-repeat;
-  border: 1px #999 solid;
-  width: 300px;
-  color: #eee;
-  height: 25px;
-}
-#searchfield:hover {
-  border-color: #cfcfcf;
-}
-#searchfield:focus {
-  box-shadow: 0 0 10px #a0e6ff;
-  border-color: #cfcfcf;
-}
+
 h2.footerh {
   font-size: 18px;
-  margin: 0;
+  font-weight: bold;
+  margin: 5px 0 0;
+  border-bottom: 1px solid #cecece;
 }
+
 .footercolumn {
-  width: 225px;
-  margin: 20px 0 0 25px;
   float: left;
 }
-#middle {
-  width: 300px;
-}
+
 #leftcolumn {
-  margin: 20px 0 0;
+  width: 40%;
 }
+
+#middlecolumn {
+  width: 25%;
+  padding: 0 5% 0 0;
+}
+
+#rightcolumn {
+  width: 30%;
+}
+
+#swan {
+   height: 250px;
+   width: 250px;
+   padding: 20px 0 0 0;
+}
+
+#logotext-footer {
+  padding: 0 45px;
+  font-family: Georgia;
+}
+
 footer a:link, footer a:visited {
   color: #eee;
   text-decoration: none;
 }
+
 footer a:hover, footer a:active {
   text-decoration: underline;
 }
+
 .sitemaplist {
   margin: 10px 0;
-  padding: 0 0 0 16px;
+  padding: 0 0 0 25px;
   float: left;
   width: 134px;
 }
+
 .sitemaplist2 {
   padding: 0 16px;
+}
+
+#searchfield {
+  float: left;
+  background: url(../img/mag.png) no-repeat;
+  border: 1px #999 solid;
+  width: 210px;
+  color: #eee;
+  height: 25px;
+}
+
+#searchfield:hover {
+  border-color: #cfcfcf;
+}
+
+#searchfield:focus {
+  box-shadow: 0 0 10px #a0e6ff;
+  border-color: #cfcfcf;
+}
+
+#container {
+  width: 800px;
+  height: 25px;
+  margin: 20px 0 0;
+  border-top: #cecece 1px solid;
+}
+
+#copyright {
+  float: right;
+  margin: 4px 0;
+  padding: 0 4px 0 0;
+  font-size: 11px;
 }
