@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^$', direct_to_template, {'template': 'index.html'}),
     (r'^news/', include('cygy.news.urls')),
     (r'^cms/', include('cygy.cms.urls')),
+    (r'^letters/', include('cygy.letters.urls')),
 
     # User urls
     (r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
