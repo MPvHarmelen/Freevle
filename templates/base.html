@@ -8,41 +8,7 @@
     <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-
-//Inlogform
-        $('#darken').hide();
-        $('#loginhome').click(function() {
-            $("#inlogform").animate({marginTop: '200px'}, {queue: false, duration: 'fast'});
-            $('#darken').fadeIn('fast');
-          });
-        $('#closelogin').click(function() {
-            $("#inlogform").animate({marginTop: '100px'}, {queue: false, duration: 'fast'});
-            $('#darken').fadeOut('fast');
-          });
-        
-//Menu backgrounds
-        var menuLi = $('li.menu, div.header');
-
-        menuLi.hover(function() {
-            $(this).children('a.header').css('background-color', '#eee');
-        }, function() {
-            $(this).children('a.header').css('background-color', '#fff');
-        });
-
-
-        $('ul.dropdown').hide();
-        $("li.menu").hover(function() {
-            $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
-          }, function() {
-            $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
-          });
-      });
-
-      document.createElement('header');
-      document.createElement('footer');
-    </script>
+    <script type="text/javascript" src="/media/js/allscripts.js"></script>
 
   </head>
   <body>
@@ -144,7 +110,7 @@
                   <li><a href="">menu item</a></li>
                 </ul>
               </li>
-              <li><a href="">Nieuws</a></li>
+              <li><a href="/news">News</a></li>
               <li><a href="">Contact</a></li>
             </ul>
             <div class="clear"></div>
