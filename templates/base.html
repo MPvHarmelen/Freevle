@@ -88,19 +88,20 @@
 
       <footer>
         <div id="center">
-          <div id="container">
-            <p id="copyright">&copy; Cygnus Gymnasium 2012</p>
-
+        
+          <div class="footercolumn" id="leftcolumn">
             <form>
               <input type="text" id="searchfield" placeholder="{% trans "Search..." %}" />
             </form>
-            <div class="clear"></div>
-          </div>
-
-          <div class="footercolumn" id="leftcolumn">
+            
             <img id="swan" src="/media/img/zwaan.png" alt="logo">
+           
+            <span id="logotext-footer"><span id="firstletter">C</span>YGNUS GYMNASIUM</span>
+            
+            <div class="clear"></div>    
           </div>
-          <div class="footercolumn" id="middle">
+        
+          <div class="footercolumn" id="middlecolumn">
             <h2 class="footerh">Sitemap</h2>
             <ul class="sitemaplist">
               <li><a href="">Startpagina</a></li>
@@ -115,7 +116,8 @@
             </ul>
             <div class="clear"></div>
           </div>
-          <div class="footercolumn">
+                
+          <div class="footercolumn" id="rightcolumn">
             <h2 class="footerh"><a href="">Contact</a></h2>
             <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
             Linnaeushof 48<br>
@@ -127,7 +129,11 @@
             020-462 14 50</p>
           </div>
           
-          <div class="clear"></div>
+           <div class="clear"></div>
+            
+          <div id="container">
+            <p id="copyright">&copy; Cygnus Gymnasium 2012</p>      
+          </div>
 
         </div>
       </footer>
