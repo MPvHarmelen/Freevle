@@ -1,29 +1,37 @@
 from django.conf.urls.defaults import *
-from django.views.generic.date_based import archive_index, archive_year, archive_month, archive_day, object_detail
+from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthArchiveView, DayArchiveView, DateDetailView
 
 from cygy.news.models import NewsMessage
 
 urlpatterns = patterns('',
-    (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]*)/$',
-        object_detail,
-        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m', 'template_object_name': 'message'},
-         'newsmessage-detail'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]*)/$',
+        DateDetailView.as_view(
+            queryset=NewsMessage.objects.all(), date_field='publish',
+            month_format='%m'),
+        name='newsmessage-detail'),
 
-    (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', archive_day,
-        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m', 'template_object_name': 'message', 'allow_empty':True}),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$',
+        DayArchiveView.as_view(
+            queryset=NewsMessage.objects.all(), date_field='publish',
+            paginate_by=10, month_format='%m', allow_empty=True),
+        name='newsmessage-day'),
 
-    (r'^(?P<year>\d{4})/(?P<month>\d{2})/$', archive_month,
-        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'month_format': '%m', 'template_object_name': 'message', 'allow_empty':True}),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/$',
+        MonthArchiveView.as_view(
+            queryset=NewsMessage.objects.all(), date_field='publish',
+            paginate_by=10, month_format='%m', allow_empty=True),
+        name='newsmessage-month'),
 
-    (r'^(?P<year>\d{4})/$', archive_year,
-        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'make_object_list':True, 'template_object_name': 'message', 'allow_empty':True}),
+    url(r'^(?P<year>\d{4})/$',
+        YearArchiveView.as_view(
+            queryset=NewsMessage.objects.all(), date_field='publish',
+            paginate_by=10, allow_empty=True),
+        name='newsmessage-year'),
 
-    (r'^$', archive_index,
-        {'queryset': NewsMessage.objects.all(), 'date_field': 'publish',
-         'num_latest': 10}),
+    url(r'^$',
+        ArchiveIndexView.as_view(
+            queryset=NewsMessage.objects.all(), date_field='publish',
+            paginate_by=10),
+        name='newsmessage-archive'),
 )
 
