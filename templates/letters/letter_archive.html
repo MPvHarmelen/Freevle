@@ -2,19 +2,19 @@
 {% load i18n %}
 
 {% block content %}
-  {% for letter in latest %}
-	  <div class="item">
-	    <h2>{% trans "Letters" %}</h2>
+  <div class="item">
+    <h2>{% trans "Letters" %}</h2>
+    {% for letter in latest %}
 	    <ul id="letters">
 	      <li class="{% cycle "odd" "even" %}">
 	        <a class="lettername" href="/letters/{{ letter.slug }}">{{ letter.title }}</a><span class="right">{{ letter.publish }}</span>
         </li>
 	    </ul>
-	  </div>
-  {% empty %}
+  </div>
+    {% empty %}
 		<div class="item">
 		<h2>{% trans "Woopsie" %}</h2>
 		<p>{% blocktrans %}We couldn't find any letters.{% endblocktrans %}</p>
 		</div>
-  {% endfor %}
+    {% endfor %}
 {% endblock %}
