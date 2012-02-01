@@ -1,0 +1,563 @@
+@CHARSET "ISO-8859-1";
+
+html,body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #111;
+  line-height: 160%;
+  text-align: justify;
+  background: url(../img/background.png) repeat-x #f5f5f5;
+}
+
+p.clear, div.clear {
+  clear: both;
+  margin: 0;
+}
+a:link, a:visited {
+  color: #006;
+}
+
+header, footer {
+  display: block;
+}
+
+span.bold {
+  font-weight: bold;
+}
+span.italic {
+  font-style: italic;
+}
+#shadow {
+  box-shadow: 0 0 7px #777;
+  margin: 0 auto;
+  width: 900px;
+  background: #fff url(../img/background.png) repeat-x;
+}
+
+/*------------------------------header------------------------------*/
+header {
+  margin: 0 auto;
+  width: 900px;
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+}
+header:before {
+  -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  top: 0px;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+  height: 62px;
+  -moz-border-radius: 400px / 7px;
+  border-radius: 400px / 7px;
+  content: "";
+  position: absolute;
+  z-index: 0;
+}
+
+#logotext {
+  float: left;
+  font-size: 16px;
+  font-family: Georgia;
+  margin-bottom: -1px;
+}
+#firstletter {
+  font-size: 18px;
+}
+#logo {
+  float: left;
+  margin: 0 12px 0 5px;
+  height: 25px;
+}
+a.header:link, a.header:visited, div.header {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 15px 15px;
+  cursor: pointer;
+  background: #fff;
+}
+
+a.header:active, div.header:active {
+  padding: 16px 15px 14px;
+  cursor: pointer;
+}
+div.header, li.menu {
+  border-top: #008 8px solid;
+}
+div.header:hover, li.menu:hover {
+  border-top: #3355bb 8px solid !important;
+  background: #eee;
+}
+div.header:active, li.menu:active {
+  border-top: #F69C0E 8px solid !important;
+}
+
+ul#menu li {
+  float: left;
+  background: white;
+  position: relative;
+}
+#vakken {
+  float: right !important;
+}
+
+input {
+  border: none;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  padding: 2px 8px 2px 30px;
+}
+
+#loginhome {
+  float: right !important;
+}
+
+#settingicon {
+  float: right !important;
+  height: 55px;
+  position: relative;
+}
+#nopaddingmenu {
+  padding: 0;
+  max-height: 55px;
+}
+#rightdrop {
+  top: 55px;
+  right: 0px;
+}
+
+nav#menunav {
+  width: 900px;
+  background: #fff url(../img/background.png) repeat-x;
+  position: relative;
+  z-index: 1;
+}
+h1 {
+  font-size: 60px;
+  font-family: 'Cabin', sans-serif;
+  font-weight: normal;
+  margin: 40px 0 80px;
+}
+span#first-letter {
+  font-size: 70px;
+}
+
+div#darken {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(1, 1, 1);
+  background: rgba(10, 10, 10, 0.8);
+  position: fixed;
+  z-index: 6;
+}
+div#inlogform {
+  padding: 15px 15px 35px;
+  text-align: center;
+  position: relative;
+  background: #ddd;
+  margin: 100px auto 0;
+  width: 250px;
+  box-shadow: 0 0 100px #000;
+  font-size: 13px;
+  border-radius: 2px;
+}
+#closelogin {
+  height: 24px;
+  width: 24px;
+  background: #000 url(../img/cross.png);
+  border-radius: 15px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #000;
+  cursor: pointer;
+}
+div#inlogform a:link, div#inlogform a:visited {
+  text-decoration: none;
+  color: #006;
+}
+div#inlogform a:hover, div#inlogform a:active {
+  text-decoration: underline;
+}
+form#login {
+  margin: 0 0 20px;
+}
+input.text {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  width: 150px;
+  font-size: 17px;
+  background: #eee;
+  box-shadow: inset 1px 1px 5px #777;
+  border-radius: 2px;
+}
+input.text:focus {
+  box-shadow: 0 0 7px #60c6ff, inset 2px 2px 6px #888;
+}
+input.button {
+  padding: 8px 10px;
+  width: 100px;
+  cursor: pointer;
+  background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image:    -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.17, rgb(40,40,199)),
+		color-stop(1.00, rgb(58,67,250))
+	);
+  font-size: 17px;
+  color: #fff;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+input.button:active {
+  box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
+  background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image:     -ms-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image:    -moz-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.17, rgb(58,67,250)),
+		color-stop(1.00, rgb(40,40,199))
+	);
+}
+
+ul#menu, ul.dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.dropdown {
+  position: absolute;
+  width: 200px;
+  background: #eee;
+  box-shadow: 0px 0px 6px #777;
+  z-index: 3;
+  top: 55px;
+}
+a.menu-item:link, a.menu-item:visited {
+  background: #eee;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 15px;
+  width: 170px;
+  cursor: pointer;
+}
+
+a.menu-item:hover {
+  background: #444;
+  color: #eee;
+} 
+
+a.menu-item:active {
+  padding: 16px 15px 14px;
+  cursor: pointer;
+}
+
+/*------------------------------content------------------------------*/
+div#wrapper {
+  margin: 7px auto;
+  width: 800px;
+  background: white;
+  padding: 1px 0 40px;
+  position: relative; 
+}
+#wrapper:after {
+  -webkit-box-shadow: 0 0 15px #000;
+  -moz-box-shadow: 0 0 15px #000;
+  box-shadow: 0 0 15px #000;
+  left: -47px;
+  bottom: -20px;
+  height: 12px;
+  width: 894px;
+  margin: 0 auto;
+  background: #007;
+  -moz-border-radius: 400px / 7px;
+  border-radius: 400px / 7px;
+  content: "";
+  position: absolute;
+}
+
+h2 {
+  font-size: 40px;
+  font-family: 'Cabin', sans-serif;
+  font-weight: normal;
+}
+div.item {
+  padding: 1px 0 10px;
+  border-bottom: 1px solid #cfcfcf;
+}
+a.leesmeer {
+  float: right;
+  text-decoration: none;
+}
+
+
+/*------------------------------foto's------------------------------*/
+#galleria {
+  height: 400px;
+}
+div.photo_cont {
+  float: left;
+}
+div.photos {
+  padding: 0 0 40px;
+  border-bottom: 1px solid #cfcfcf;
+}
+img.photo {
+  height: 180px;
+  width: 266px;
+}
+a.image {
+  text-decoration: none;
+}
+a.beschrijving {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+/*------------------------------rooster------------------------------*/
+div#rooster {
+  position: relative;
+  float: left;
+  box-shadow: 0 0 5px #777;
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
+  width: 600px;
+  height: 600px;
+}
+
+div.dag {
+  width: 100px;
+  float: left;
+}
+
+p.dag {
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+  width: 100px;
+}
+
+div#nummers {
+  width: 100px;
+  float: left;
+  margin-top: 45px;
+  color: #333;
+}
+
+div.divider {
+  width: 1px;
+  background: #bbb;
+  float: left;
+}
+
+div.uure {
+  padding: 7px 15px 7px 9px;
+  background: #eaeaea;
+  position: relative;
+  border-left: 6px solid #eaeaea;
+  height: 25px;
+  font-size: 10px;
+}
+
+div.uuru {
+  padding: 7px 15px 7px 9px;
+  background: #f3f3f3;
+  position: relative;
+  border-left: 6px solid #f3f3f3;
+  height: 25px;
+  font-size: 10px;
+}
+
+div.uuri {
+  font-size: 10px;
+  padding: 7px 15px 7px 9px;
+  color: #555 !important;
+  position: relative;
+  border-left: 6px solid #fff;
+  height: 25px;
+}
+
+.valtuit {
+  color: #555;
+  position: relative;
+}
+
+.valtuit:before {
+  height: 39px;
+  width: 100px;
+  background: url(../img/raster.png);
+  content: "";
+  display: block;
+  top: -7px;
+  left: -9px;
+  position: absolute;
+}
+
+p.vak {
+  margin: 0;
+}
+
+div.leraarles {
+  width: 68px;
+  float: left;
+}
+
+div.time {
+  width: 77px;
+  text-align: right;
+  margin-left: 15px;
+  float: right;
+}
+
+div.lokaal {
+  width: 25px;
+  margin-left: 10px;
+  float: right;
+  
+}
+
+span.right {
+  float: right;
+}
+
+span.verkort {
+  color: #f849af;
+}
+
+
+/*------------------------------letters------------------------------*/
+li.odd {
+  background: #eee;
+  list-style: none;
+}
+li.even {
+  background: #f5f5f5;
+  list-style: none;
+}
+
+/*------------------------------footer------------------------------*/
+
+footer {
+  width: 800px;
+  margin: 0;
+  position: relative;
+  font-size: 14px;
+  padding: 30px 50px 30px;
+  background: #006;
+  color: #eee;
+}
+
+div#center {
+  padding: 20px 0 0;
+}
+
+h2.footerh {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0 0;
+  border-bottom: 1px solid #cecece;
+}
+
+.footercolumn {
+  float: left;
+}
+
+#leftcolumn {
+  width: 40%;
+}
+
+#middlecolumn {
+  width: 25%;
+  padding: 0 5% 0 0;
+}
+
+#rightcolumn {
+  width: 30%;
+}
+
+#swan {
+   height: 250px;
+   width: 250px;
+   padding: 0 0 0 10px;
+}
+
+#logotext-footer {
+  padding: 0 45px;
+  font-family: Georgia;
+}
+
+footer a:link, footer a:visited {
+  color: #eee;
+  text-decoration: none;
+}
+
+footer a:hover, footer a:active {
+  text-decoration: underline;
+}
+
+.sitemaplist {
+  margin: 10px 0;
+  padding: 0 0 0 25px;
+  float: left;
+  width: 134px;
+}
+
+.sitemaplist2 {
+  padding: 0 16px;
+}
+
+#searchfield {
+  float: left;
+  background: url(../img/mag.png) no-repeat;
+  border: 1px #999 solid;
+  width: 210px;
+  color: #eee;
+  height: 25px;
+  margin: 30px 0 0 10px;
+}
+
+#searchfield:hover {
+  border-color: #cfcfcf;
+}
+
+#searchfield:focus {
+  box-shadow: 0 0 10px #a0e6ff;
+  border-color: #cfcfcf;
+}
+
+#container {
+  width: 800px;
+  height: 25px;
+  margin: 20px 0 0;
+  border-top: #cecece 1px solid;
+}
+
+#copyright {
+  float: right;
+  margin: 4px 0;
+  padding: 0 4px 0 0;
+  font-size: 11px;
+}
