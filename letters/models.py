@@ -17,6 +17,6 @@ class Letter(models.Model):
         return path + new_file_name + '.' + extension
     
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique_for_date='publish')
+    slug = models.SlugField(unique=True)
     publish = models.DateTimeField(auto_now_add=True)
     content = models.FileField(upload_to=update_filename, validators=[validate_pdf])
