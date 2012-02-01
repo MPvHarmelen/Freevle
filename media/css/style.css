@@ -279,7 +279,7 @@ div#wrapper {
   margin: 7px auto;
   width: 800px;
   background: white;
-  padding: 1px 0 20px;
+  padding: 1px 0 40px;
   position: relative; 
 }
 #wrapper:after {
@@ -630,7 +630,7 @@ footer {
   margin: 0;
   position: relative;
   font-size: 14px;
-  padding: 10px 50px 30px;
+  padding: 30px 50px 30px;
   background: #006;
   color: #eee;
 }
@@ -666,7 +666,7 @@ h2.footerh {
 #swan {
    height: 250px;
    width: 250px;
-   padding: 20px 0 0 0;
+   padding: 0 0 0 10px;
 }
 
 #logotext-footer {
@@ -701,6 +701,7 @@ footer a:hover, footer a:active {
   width: 210px;
   color: #eee;
   height: 25px;
+  margin: 30px 0 0 10px;
 }
 
 #searchfield:hover {
