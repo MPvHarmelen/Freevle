@@ -19,4 +19,7 @@
 		<p>{% blocktrans %}We couldn't find any news for this month.{% endblocktrans %}</p>
 		</div>
   {% endfor %}
+  {% for page in page_range %}
+    <a href="{{ request.get_full_path }}?page={{ page }}">{{ page }}</a>
+  {% endfor %}
 {% endblock %}
