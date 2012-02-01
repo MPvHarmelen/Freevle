@@ -2,11 +2,12 @@ import re
 from django.forms import fields
 from django.forms import ValidationError
 from django.utils.encoding import smart_unicode
+from django.utils.translation import ugettext_lazy as _
 
 class HexColorField(fields.Field):
     
     default_error_messages = {
-        'hex_error': u'This is an invalid color code. It must be a html hex color code e.g. #000000'
+        'hex_error': _('This is an invalid color code. It must be a html hex color code e.g. #000000')
     }
 
     def clean(self, value):
@@ -14,7 +15,7 @@ class HexColorField(fields.Field):
         super(HexColorField, self).clean(value)
         
         if value in fields.EMPTY_VALUES:
-            return u''
+            return ''
         
         value = smart_unicode(value)
         value_length = len(value)
