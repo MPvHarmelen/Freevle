@@ -597,6 +597,16 @@ div#komend li.huiswerkitem {
   position: absolute;
 }
 
+/*------------------------------letters------------------------------*/
+li.odd {
+  background: #eee;
+  list-style: none;
+}
+li.even {
+  background: #f5f5f5;
+  list-style: none;
+}
+
 /*------------------------------footer------------------------------*/
 
 footer {
