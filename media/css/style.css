@@ -279,7 +279,23 @@ div#wrapper {
   margin: 7px auto;
   width: 800px;
   background: white;
-  padding: 1px 0 0;
+  padding: 1px 0 20px;
+  position: relative; 
+}
+#wrapper:after {
+  -webkit-box-shadow: 0 0 15px #000;
+  -moz-box-shadow: 0 0 15px #000;
+  box-shadow: 0 0 15px #000;
+  left: -47px;
+  bottom: -20px;
+  height: 12px;
+  width: 894px;
+  margin: 0 auto;
+  background: #007;
+  -moz-border-radius: 400px / 7px;
+  border-radius: 400px / 7px;
+  content: "";
+  position: absolute;
 }
 
 h2 {
@@ -611,11 +627,11 @@ li.even {
 
 footer {
   width: 800px;
-  margin: 50px 0;
+  margin: 0;
   position: relative;
   font-size: 14px;
-  padding: 20px 50px 30px;
-  background: #005;
+  padding: 10px 50px 30px;
+  background: #006;
   color: #eee;
 }
 
