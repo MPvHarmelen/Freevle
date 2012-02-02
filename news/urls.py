@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     url(r'^$',
         ArchiveIndexView.as_view(
             queryset=NewsMessage.objects.all(), date_field='publish',
-            paginate_by=10),
+            paginate_by=10, allow_empty=True),
         name='newsmessage-archive'),
 )
 
