@@ -16,6 +16,14 @@ URL_ROOT = 'localhost:8080/'
 # We do not officially support Windows, but you can try it...
 ROOT_DIR = 'C:/Documents and Settings/Pim/cygy/'
 
+# The apps you want installed.
+INSTALLED_APPS = (
+    'cygy.news',
+    'cygy.cms',
+    'cygy.letters',
+    'cygy.organizer',
+)
+
 # Make this unique, and don't share it with anybody.
 # Not really needed for development servers. Production? YES.
 SECRET_KEY = 'SomethingRandom'

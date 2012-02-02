@@ -73,12 +73,7 @@ TEMPLATE_DIRS = (
     ROOT_DIR + 'templates/',
 )
 
-INSTALLED_APPS = (
-    'cygy.news',
-    'cygy.cms',
-    'cygy.letters',
-    'cygy.organizer',
-    
+INSTALLED_APPS = INSTALLED_APPS + (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -88,3 +83,4 @@ INSTALLED_APPS = (
 )
 
 FORCE_SCRIPT_NAME = ""
+
