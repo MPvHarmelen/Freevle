@@ -3,12 +3,12 @@
 
 {% block content %}
   <div class="item">
-        <h2>{{ message.title }}</h2>
+        <h2>{{ object.title }}</h2>
         <p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
-            {{ message.publish|date:'d m Y' }}
+            {{ object.publish|date:'d m Y' }}
             &emsp;&middot;&emsp;
-            <span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ message.writer }}</p>
-        <p>{{ message.content }}</p>
+            <span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ object.writer }}</p>
+        <p>{{ object.content }}</p>
         <p class="clear"></p>
       </div>
 {% endblock %}
