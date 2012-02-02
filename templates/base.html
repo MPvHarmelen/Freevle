@@ -43,16 +43,20 @@
                 <div class="clear"></div>
               </a>
             </li>
-            <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a>
-              <ul class="dropdown">
-              {% for page in pages %}
-                <li><a class="menu-item" href="/">{{page.title}}</a></li>
-              {% endfor %}
-                <li><a class="menu-item" href="/">menu item</a></li>
-                <li><a class="menu-item" href="/">menu item</a></li>
-                <li><a class="menu-item" href="/">menu item</a></li>
-              </ul>
-            </li>
+            <li class="menu"><a class="header" id="home-button" href="">Het Cygnus</a></li>
+            {% for page in pages %}
+              {% if not page.parent %} 
+              <li class="menu"><a class="header" href="/">{{page.title}}</a>
+                <ul class="dropdown">
+                {% for child in pages %}
+                  {% ifequal child.parent page %}
+                    <li><a class="menu-item" href="/">{{child.title}}</a></li>
+                  {% endifequal %}
+                {% endfor %}
+                </ul>
+              </li>
+            {% endif %}
+            {% endfor %}
             <li class="menu"><a class="header" href="/news">News</a></li>
             <li class="menu"><a class="header" href="">Contact</a></li>
 
