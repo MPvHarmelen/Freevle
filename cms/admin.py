@@ -3,7 +3,7 @@ from cygy.cms.models import Page
 
 class PageAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ('slug', )
+    list_display = ('title', )
 
 
 admin.site.register(Page,PageAdmin)
