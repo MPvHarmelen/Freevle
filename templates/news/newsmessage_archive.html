@@ -15,8 +15,17 @@
 	  </div>
   {% empty %}
 		<div class="item">
-		<h2>{% trans "Woopsie" %}</h2>
+		<h2>{% trans "Whoopsie" %}</h2>
 		<p>{% blocktrans %}We couldn't find any news.{% endblocktrans %}</p>
 		</div>
   {% endfor %}
+  {% if is_paginated %}
+    {% for page in paginator.page_range %}
+      {% if page > request.GET.page|add:"-5" and page < request.GET.page|add:"5" or page < 4 or page > paginator.num_pages|add:"-3" or not request.GET.page and page < 6 %}
+        <a href="{{ request.path }}?page={{ page }}">{{ page }}</a>
+      {% else %}
+        {% if page == request.GET.page|add:"-5" or page == request.GET.page|add:"5" or not request.GET.page and page == 6 %}...{% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 {% endblock %}

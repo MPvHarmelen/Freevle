@@ -208,17 +208,17 @@ input.button {
   width: 100px;
   cursor: pointer;
   background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.17, rgb(40,40,199)),
-	    color-stop(1.00, rgb(58,67,250))
-    );
+	background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image:    -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.17, rgb(40,40,199)),
+		color-stop(1.00, rgb(58,67,250))
+	);
   font-size: 17px;
   color: #fff;
   box-shadow: 1px 1px 1px #000;
@@ -228,17 +228,17 @@ input.button {
 input.button:active {
   box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
   background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.17, rgb(58,67,250)),
-	    color-stop(1.00, rgb(40,40,199))
-    );
+	background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image:     -ms-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image:    -moz-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.17, rgb(58,67,250)),
+		color-stop(1.00, rgb(40,40,199))
+	);
 }
 
 ul#menu, ul.dropdown {
@@ -344,58 +344,70 @@ div#rooster {
   box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
-  width: 800px;
+  width: 600px;
+  height: 600px;
 }
+
 div.dag {
-  width: 250px;
+  width: 100px;
   float: left;
 }
+
+p.dag {
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+  width: 100px;
+}
+
 div#nummers {
-  width: 39px;
+  width: 100px;
   float: left;
-  margin-top: 57px;
+  margin-top: 45px;
   color: #333;
 }
+
 div.divider {
   width: 1px;
   background: #bbb;
   float: left;
 }
-p.dag {
-  text-align: center;
-  font-weight: bold;
-}
+
 div.uure {
   padding: 7px 15px 7px 9px;
   background: #eaeaea;
   position: relative;
   border-left: 6px solid #eaeaea;
   height: 25px;
-  font-size: 14px;
+  font-size: 10px;
 }
+
 div.uuru {
   padding: 7px 15px 7px 9px;
   background: #f3f3f3;
   position: relative;
   border-left: 6px solid #f3f3f3;
   height: 25px;
-  font-size: 14px;
+  font-size: 10px;
 }
+
 div.uuri {
-  font-size: 14px;
+  font-size: 10px;
   padding: 7px 15px 7px 9px;
   color: #555 !important;
   position: relative;
   border-left: 6px solid #fff;
   height: 25px;
 }
+
 .valtuit {
   color: #555;
   position: relative;
 }
+
 .valtuit:before {
   height: 39px;
-  width: 250px;
+  width: 100px;
   background: url(../img/raster.png);
   content: "";
   display: block;
@@ -403,6 +415,7 @@ div.uuri {
   left: -9px;
   position: absolute;
 }
+
 p.vak {
   margin: 0;
 }
@@ -411,12 +424,14 @@ div.leraarles {
   width: 68px;
   float: left;
 }
+
 div.time {
   width: 77px;
   text-align: right;
   margin-left: 15px;
   float: right;
 }
+
 div.lokaal {
   width: 25px;
   margin-left: 10px;
@@ -424,194 +439,14 @@ div.lokaal {
   
 }
 
-#weekend {
-  width: 79px;
-  border-left: #bbb 1px solid;
-  float: left;
-  background: #efefef;
-  font-size: 23px;
-  color: #777;
-}
-#weekend span {
-  display: block;
-  transform:           rotate(90deg);
-    -moz-transform:    rotate(90deg);
-    -ms-transform:     rotate(45deg);
-    -o-transform:      rotate(45deg);
-    -webkit-transform: rotate(90deg);
-  text-align: center;
-  margin: 220px 0 0 5px;
-  font-weight: bold;
-}
-
 span.right {
   float: right;
 }
-div.huiswerkind {
-  height: 6px;
-  width: 100%;
-  background: #e55;
-}
-ul.huiswerk {
-  margin: 10px 5px;
-  padding: 0 12px 12px;
-  background: #fefefe;
-  position: relative;
-  box-shadow: 0 0 7px #777;
-  -moz-box-shadow: 0 0 7px #777;
-  -webkit-box-shadow: 0 0 7px #777;
-  z-index: 2;
-  display: none;
-  top: 20px;
-}
-ul.huiswerk:before {
-  background-color: #fefefe;
-  content: "";
-  display: block;
-  height: 20px;
-  left: 3px;
-  position: relative;
-  top: -9px;
-  transform:           rotate(45deg);
-    -moz-transform:    rotate(45deg);
-    -ms-transform:     rotate(45deg);
-    -o-transform:      rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  width:  20px;
-}
-div.triangle {
-  box-shadow: 0 0 7px #777;
-  -moz-box-shadow: 0 0 7px #777;
-  -webkit-box-shadow: 0 0 7px #777;
-  background-color: #fefefe;
-  display: none;
-  height: 20px;
-  position: relative;
-  top: 20px;
-  transform:           rotate(45deg);
-    -moz-transform:    rotate(45deg);
-    -ms-transform:     rotate(45deg);
-    -o-transform:      rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  width:  20px;
-  position: relative;
-  margin: 0 0 -21px 20px;
-  z-index: 1;
-}
-li.huiswerkitem {
-  list-style: none;
-  font-size: 13px;
-  padding: 2px 0 2px 10px;
-  border-left: #9ffe49 solid 6px;
-  text-align: left;
-}
-.pw {
-  border-left: solid #FF5860 6px !important;
-}
-.opdr {
-  border-left: solid #70b6f2 6px !important;
-}
-.so {
-  border-left: solid #f6e44b 6px !important;
-}
+
 span.verkort {
   color: #f849af;
 }
 
-.meldingen {
-  font-size: 14px;
-  border-bottom: 1px solid #bbb;
-}
-div.note {
-  background: #ececec;
-  padding: 10px 20px 20px;
-  text-shadow: 0 1px 0 #fff;
-  margin: 0 0 20px;
-}
-div.note:before, div.note:after {
-  z-index: -1; 
-  position: absolute; 
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%; 
-  top: 80%;
-  max-width:300px;
-  background: rgba(0, 0, 0, 0.7); 
-  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
-  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  -webkit-transform: rotate(-2deg);    
-  -moz-transform: rotate(-2deg);   
-  -o-transform: rotate(-2deg);
-    }
-
-div.note:after {
-  -webkit-transform: rotate(2deg);
-  -moz-transform: rotate(2deg);
-  -o-transform: rotate(2deg);
-  right: 10px;
-  left: auto;
-}
-.headermessage {
-  font-weight: bold;
-}
-#meldingen h3 {
-  margin: 15px 5px 3px;
-}
-ul.belangrijk {
-  margin: 0;
-}
-
-div#komend {
-  box-shadow: 0 0 5px #777;
-  -moz-box-shadow: 0 0 5px #777;
-  -webkit-box-shadow: 0 0 5px #777;
-  padding: 1px 15px 15px;
-  font-size: 14px;
-  margin: 20px 0 10px;
-}
-div#komend li.huiswerkitem {
-  font-size: 14px;
-}
-#meldingenlinks {
-  float: left;
-  width: 540px;
-  padding: 1px 15px 15px;
-}
-#legend {
-  float: left;
-  width: 200px;
-  padding-left: 20px;
-  border-left: #bbb 1px solid;
-}
-.legendleft {
-  width: 50px;
-  float: left;
-}
-.legendright {
-  width: 110px;
-  float: left;
-}
-#legendul {
-  padding: 0;
-}
-#valtuitlegend {
-  position: relative;
-  color: #333;
-  border-color: #eee;
-  margin-top: 10px;
-}
-#valtuitlegend:before {
-  height: 29px;
-  width: 190px;
-  background: url(../img/raster.png);
-  content: "";
-  display: block;
-  top: -1px;
-  left: 0;
-  position: absolute;
-}
 
 /*------------------------------letters------------------------------*/
 li.odd {
