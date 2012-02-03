@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     # (r'^foo/', include('cygy.foo.urls')),
     (r'^$', direct_to_template, {'template': 'index.html'}),
     (r'^news/', include('cygy.news.urls')),
-    (r'^cms/', include('cygy.cms.urls')),
     (r'^letters/', include('cygy.letters.urls')),
 
     # User urls
@@ -24,6 +23,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    
+    # If no url could be found, include cms:
+    ('', include('cygy.cms.urls'))
 )
 
 
