@@ -45,11 +45,11 @@
             </li>
             {% for page in pages %}
               {% if not page.parent %} 
-              <li class="menu"><a class="header" href="/">{{page.title}}</a>
+              <li class="menu"><a class="header" href="/{{ page.slug }}/">{{ page.title }}</a>
                 <ul class="dropdown">
                 {% for child in pages %}
                   {% ifequal child.parent page %}
-                    <li><a class="menu-item" href="/">{{child.title}}</a></li>
+                    <li><a class="menu-item" href="/{{ child.parent.slug }}/{{ child.slug }}">{{ child.title }}</a></li>
                   {% endifequal %}
                 {% endfor %}
                 </ul>
