@@ -6,7 +6,16 @@ import settings
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = []
+
+if settings.STATIC:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   )
+
+urlpatterns += patterns('',
     # Example:
     # (r'^foo/', include('cygy.foo.urls')),
     (r'^$', direct_to_template, {'template': 'index.html'}),
@@ -27,12 +36,4 @@ urlpatterns = patterns('',
     # If no url could be found, include cms:
     ('', include('cygy.cms.urls'))
 )
-
-
-if settings.STATIC:
-    urlpatterns += patterns('',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-   )
 
