@@ -7,14 +7,15 @@ DATABASE_HOST = ''            # Set to empty string for localhost. Not used with
 DATABASE_PORT = ''            # Set to empty string for default. Not used with sqlite3.
 
 ADMINS = (
-    ('Pim', 'ptthije@gmail.com'),
+    ('Your Name', 'your.email@domain.com'),
 )
 
 # The URL to this instance of CyGy. Just keep it at this for testing.
 URL_ROOT = 'localhost:8080/'
+
 # The absolute path to the CyGy directory on your system.
 # We do not officially support Windows, but you can try it...
-ROOT_DIR = 'C:/Documents and Settings/Pim/cygy/'
+ROOT_DIR = '/absolute/path/to/cygy/'
 
 # The apps you want installed.
 INSTALLED_APPS = (
