@@ -614,13 +614,21 @@ div#komend li.huiswerkitem {
 }
 
 /*------------------------------letters------------------------------*/
+ul#letters {
+  margin: 0;
+  padding: 0;
+}
 li.odd {
   background: #eee;
   list-style: none;
+  margin: none;
+  padding: 8px 15px;
 }
 li.even {
   background: #f5f5f5;
   list-style: none;
+  padding: 8px 15px;
+  margin: none;
 }
 
 /*------------------------------footer------------------------------*/

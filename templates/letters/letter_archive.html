@@ -10,11 +10,9 @@
 	        <a class="lettername" href="/letters/{{ letter.slug }}">{{ letter.title }}</a><span class="right">{{ letter.publish }}</span>
         </li>
 	    </ul>
-  </div>
     {% empty %}
-		<div class="item">
-		<h2>{% trans "Woopsie" %}</h2>
-		<p>{% blocktrans %}We couldn't find any letters.{% endblocktrans %}</p>
-		</div>
+  		<h3>{% trans "Woopsie" %}</h3>
+  		<p>{% blocktrans %}We couldn't find any letters.{% endblocktrans %}</p>
     {% endfor %}
+  </div>
 {% endblock %}
