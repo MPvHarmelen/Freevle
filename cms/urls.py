@@ -6,5 +6,6 @@ from cygy.cms.models import Page
 
 urlpatterns = patterns('',
     (r'^$', object_list, {'queryset': Page.objects.all(), 'template_object_name':'Page'}),
+    (r'^(?P<slug>[\w-]+)/$', PageView.as_view(model=Page, context_object_name='page')),
     (r'^(?P<parent>[\w-]+)/(?P<slug>[\w-]+)/$', PageView.as_view(model=Page)),
 )
