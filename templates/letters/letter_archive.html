@@ -7,7 +7,7 @@
     {% for letter in latest %}
 	    <ul id="letters">
 	      <li class="{% cycle "odd" "even" %}">
-	        <a class="lettername" href="/letters/{{ letter.slug }}">{{ letter.title }}</a><span class="right">{{ letter.publish }}</span>
+	        <a class="lettername" href="/letters/{{ letter.slug }}">{{ letter.title }}</a><span class="right">{{ letter.publish|date }}</span>
         </li>
 	    </ul>
     {% empty %}
