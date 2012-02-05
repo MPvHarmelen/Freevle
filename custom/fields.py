@@ -42,13 +42,12 @@ from django.db.models.fields.files import ImageField, ImageFieldFile
 from django.core.files.base import ContentFile
 
 
-def _update_ext(filename, new_ext):
-    parts = filename.split('.')
-    parts[-1] = new_ext
-    return '.'.join(parts)
-
-
 class ResizedImageFieldFile(ImageFieldFile):
+    
+    def _update_ext(filename, new_ext):
+        parts = filename.split('.')
+        parts[-1] = new_ext
+        return '.'.join(parts)
     
     def save(self, name, content, save=True):
         new_content = StringIO()
@@ -62,7 +61,7 @@ class ResizedImageFieldFile(ImageFieldFile):
         img.save(new_content, format=self.field.format)
 
         new_content = ContentFile(new_content.getvalue())
-        new_name = _update_ext(name, self.field.format.lower())
+        new_name = self._update_ext(name, self.field.format.lower())
 
         super(ResizedImageFieldFile, self).save(new_name, new_content, save)
 
