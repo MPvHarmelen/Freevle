@@ -5,14 +5,14 @@
   <div class="item">
     <h2>{% trans "Letters" %}</h2>
     {% for letter in latest %}
-	    <ul id="letters">
-	      <li class="{% cycle "odd" "even" %}">
-	        <a class="lettername" href="/letters/{{ letter.slug }}">{{ letter.title }}</a><span class="right">{{ letter.publish|date }}</span>
+      <ul id="letters">
+        <li class="{% cycle "odd" "even" %}">
+          <a class="lettername" href="{{ letter.get_absolute_url }}">{{ letter.title }}</a><span class="right">{{ letter.publish|date:'d m Y' }}</span>
         </li>
-	    </ul>
+      </ul>
     {% empty %}
-  		<h3>{% trans "Woopsie" %}</h3>
-  		<p>{% blocktrans %}We couldn't find any letters.{% endblocktrans %}</p>
+      <h3>{% trans "Woopsie" %}</h3>
+      <p>{% blocktrans %}We couldn't find any letters.{% endblocktrans %}</p>
     {% endfor %}
   </div>
 {% endblock %}
