@@ -29,6 +29,7 @@
     left: 10px;
     right: 10px;
     z-index: 2;
+    display: none !important; 
 }
 .galleria-carousel .galleria-thumbnails-list {
     margin-left: 30px;
