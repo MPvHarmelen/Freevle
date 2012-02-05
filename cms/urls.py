@@ -1,11 +1,11 @@
 from django.conf.urls.defaults import *
-from cygy.cms.views import PageView
-from django.views.generic.list_detail import object_list
+from cygy.cms.views import PageDetailView
 
 from cygy.cms.models import Page
 
 urlpatterns = patterns('',
-    (r'^$', object_list, {'queryset': Page.objects.all(), 'template_object_name':'Page'}),
-    (r'^(?P<slug>[\w-]+)/$', PageView.as_view(model=Page, context_object_name='page')),
-    (r'^(?P<parent>[\w-]+)/(?P<slug>[\w-]+)/$', PageView.as_view(model=Page)),
+    url(r'^(?P<slug>[\w-]+)/$', PageDetailView.as_view(model=Page),
+     name='cms-parent-detail'),
+    url(r'^(?P<parent>[\w-]+)/(?P<slug>[\w-]+)/$',
+     PageDetailView.as_view(model=Page), name='cms-child-detail'),
 )
