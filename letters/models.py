@@ -10,9 +10,9 @@ class Letter(models.Model):
         if extension != 'pdf':
             raise ValidationError(_('This should be a pdf file'))
     
-    def update_filename(instance, filename):
+    def update_filename(self, filename):
         path = 'letters/'
-        new_file_name = instance.slug
+        new_file_name = self.slug
         extension = filename.split('.')[-1]
         return path + new_file_name + '.' + extension
     
@@ -20,3 +20,7 @@ class Letter(models.Model):
     slug = models.SlugField(unique=True)
     publish = models.DateTimeField(auto_now_add=True)
     content = models.FileField(upload_to=update_filename, validators=[validate_pdf])
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('django.views.static.serve', '', {'path':self.content.url})

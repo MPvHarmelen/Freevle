@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'cygy.cms',
     'cygy.letters',
     'cygy.organizer',
+    'cygy.galleries',
 )
 
 # Make this unique, and don't share it with anybody.
