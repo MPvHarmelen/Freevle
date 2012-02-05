@@ -21,7 +21,7 @@ urlpatterns += patterns('',
     url(r'^$', direct_to_template, {'template': 'index.html'}),
     url(r'^news/', include('cygy.news.urls')),
     url(r'^letters/', include('cygy.letters.urls')),
-    
+    url(r'^galleries/', include('cygy.galleries.urls')),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
