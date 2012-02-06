@@ -73,11 +73,13 @@ TEMPLATE_DIRS = (
     ROOT_DIR + 'templates/',
 )
 
-INSTALLED_APPS = INSTALLED_APPS + (
-    # Required!
+INSTALLED_APPS = (
+    # These need to be first in order for debug data generation to work.
+    'django.contrib.auth',
     'cygy.users',
 
-    'django.contrib.auth',
+    ) + INSTALLED_APPS + (
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
