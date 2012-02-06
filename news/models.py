@@ -7,7 +7,7 @@ class NewsMessage(models.Model):
     writer = models.ForeignKey(User)
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique_for_date='publish', help_text=_('URL-friendly version of the title, can be left alone most of the time.'))
-    publish = models.DateTimeField(auto_now_add=True)
+    publish = models.DateField(auto_now_add=True)
 
     content = models.TextField(help_text=_('The news message.'))
 
