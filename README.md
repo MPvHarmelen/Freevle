@@ -49,6 +49,10 @@ terminal:
 
     python manage.py syncdb
 
+This will ask you if you want to generate a ton of information, for testing
+purposes. The default option will be Yes. If you don't want to generate
+anything just type anything else than y and press enter.
+
 Now you can simply start up the server with this command:
 
     python manage.py runserver
@@ -62,7 +66,7 @@ into the `SECRET_KEY` option. Now run the `syncdb` command.
 
 Now for the hard part. Seeing as Django's built-in development server (run from
 the `runserver` command) isn't very stable or fast, you'll want to run it with
-a _real_ HTTP server, like [lighttpd](http://www.lighttpd.net/) or
+a *real* HTTP server, like [lighttpd](http://www.lighttpd.net/) or
 [Apache](http://httpd.apache.org/) or any other server that supports FastCGI. I
 recommend reading the Django docs on
 [this subject](https://docs.djangoproject.com/en/dev/howto/deployment/fastcgi/)

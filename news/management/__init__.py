@@ -8,8 +8,7 @@ from django.db.utils import IntegrityError
 
 from cygy.news import models
 from cygy.settings import DEBUG
-
-from markov import Markov
+from cygy.custom.debug.markov import Markov
 
 THIS_YEAR = datetime.today().year
 NOW = datetime.now()
@@ -18,20 +17,28 @@ def debug_data(sender, **kwargs):
     verbosity = kwargs['verbosity']
     if verbosity > 1:
         print
-    # Create 500 news messages
-    print ('Generating 500 random news messages (this may take a while)'
+
+    if not kwargs['interactive']:
+        return
+    else:
+        cont = raw_input('Do you want to generate 150 random news messages (Y/n): ')
+        if not cont == '' or cont.lower() == 'n':
+            return
+
+    # Create 150 news messages
+    print ('Generating 150 random news messages (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
         print ' Opening shakespeare.txt'
-    file = open('news/management/shakespeare.txt')
+    file = open('custom/debug/shakespeare.txt')
     shakespeare = Markov(file)
     if verbosity > 1:
         print ' Generating NewsMessages'
-    for i in xrange(100):
+    for i in xrange(150):
         writer = User.objects.filter(groups__name='Teachers').order_by('?')[0]
-        title = shakespeare.generate_markov_text(10)
-        content = shakespeare.generate_markov_text(250)
+        title = shakespeare.generate_markov_text(random.randint(5, 10))
+        content = shakespeare.generate_markov_text(random.randint(150, 400))
         while True:
             p_year = random.randint(THIS_YEAR-10, THIS_YEAR)
             p_month = random.randint(1, 12)

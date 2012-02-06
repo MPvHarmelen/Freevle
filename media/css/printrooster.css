@@ -345,26 +345,68 @@ div#rooster {
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
   width: 600px;
-  height: 600px;
 }
 
-div.dag {
+div#nummers {
+  width: 96px;
+  float: left;
+  margin-top: 40px;
+  color: #333;
+}
+
+p.periodnumber {
+  margin: 0;
+  float: left;
+}
+
+div.day {
   width: 100px;
   float: left;
 }
 
-p.dag {
+p.day {
   text-align: center;
   font-weight: bold;
   font-size: 10px;
   width: 100px;
+  height: 20px;
 }
 
-div#nummers {
-  width: 90px;
-  float: left;
-  margin-top: 45px;
-  color: #333;
+div.uure {
+  padding: 7px 12px 7px 12px;
+  background: #eaeaea;
+  height: 25px;
+  font-size: 10px;
+}
+
+div.uuru {
+  padding: 7px 12px 7px 12px;
+  background: #f3f3f3;
+  position: relative;
+  height: 25px;
+  font-size: 10px;
+}
+
+div.uuri {
+  font-size: 10px;
+  padding: 7px 12px 7px 12px;
+  color: #555 !important;
+  position: relative;
+  height: 25px;
+}
+
+p.period {
+  margin: 0;
+}
+
+span.time {
+  text-align: right;
+  margin-left: 15px;
+  float: right;
+}
+
+span.classroom {
+  float: right;  
 }
 
 div.divider {
@@ -373,78 +415,21 @@ div.divider {
   float: left;
 }
 
-div.uure {
-  padding: 7px 15px 7px 9px;
-  background: #eaeaea;
-  height: 48px;
-  font-size: 10px;
-}
-
-div.uuru {
-  padding: 7px 15px 7px 9px;
-  background: #f3f3f3;
-  position: relative;
-  height: 48px;
-  font-size: 10px;
-}
-
-div.uuri {
-  font-size: 10px;
-  padding: 7px 15px 7px 9px;
-  color: #555 !important;
-  position: relative;
-  height: 48px;
-}
-
-.valtuit {
+p.period-exspires {
   color: #555;
   position: relative;
+  margin: 0;
 }
 
-.valtuit:before {
+p.period-exspires:before {
   height: 39px;
   width: 100px;
   background: url(../img/raster.png);
   content: "";
   display: block;
-  top: -7px;
-  left: -9px;
   position: absolute;
-}
-
-p.vak {
-  margin: 0;
-}
-
-p.dag {
-  height: 24px;
-}
-
-div.leraarles {
-  width: 68px;
-  float: left;
-}
-
-div.time {
-  width: 77px;
-  text-align: right;
-  margin-left: 15px;
-  float: right;
-}
-
-div.lokaal {
-  width: 25px;
-  margin-left: 10px;
-  float: right;
-  
-}
-
-span.right {
-  float: right;
-}
-
-span.verkort {
-  color: #f849af;
+  top: -7px;
+  left: -12px;
 }
 
 
