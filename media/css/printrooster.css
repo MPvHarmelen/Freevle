@@ -338,7 +338,7 @@ a.beschrijving {
 }
 
 /*------------------------------rooster------------------------------*/
-div#rooster {
+div#timetable {
   position: relative;
   float: left;
   box-shadow: 0 0 5px #777;
@@ -377,14 +377,14 @@ p.day {
   height: 20px;
 }
 
-div.uure {
+div.periode {
   padding: 7px 12px 7px 12px;
   background: #eaeaea;
   height: 25px;
   font-size: 10px;
 }
 
-div.uuru {
+div.periodo {
   padding: 7px 12px 7px 12px;
   background: #f3f3f3;
   position: relative;
@@ -392,7 +392,7 @@ div.uuru {
   font-size: 10px;
 }
 
-div.uuri {
+div.periodi {
   font-size: 10px;
   padding: 7px 12px 7px 12px;
   color: #555 !important;
