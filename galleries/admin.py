@@ -3,7 +3,7 @@ from cygy.galleries.models import Gallery, Photo
 
 class GalleryAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
-	list_display = ('name',)
+	list_display = ('name','date')
 
 class PhotoAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',)}
