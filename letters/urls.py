@@ -8,5 +8,4 @@ urlpatterns = patterns('',
     url(r'^$', archive_index,
         {'queryset': Letter.objects.all(), 'date_field': 'publish',
          'num_latest': 30}, name='letter-archive'),
-    url(r'^(?P<slug>[-\w]*)/', redirect_to, {'url': '/media/letters/%(slug)s.pdf'})
 )
