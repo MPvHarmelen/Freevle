@@ -74,6 +74,9 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = INSTALLED_APPS + (
+    # Required!
+    'cygy.users',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -83,4 +86,5 @@ INSTALLED_APPS = INSTALLED_APPS + (
 )
 
 FORCE_SCRIPT_NAME = ""
+AUTH_PROFILE_MODULE = 'users.UserProfile'
 

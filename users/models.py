@@ -12,5 +12,6 @@ class UserProfile(models.Model):
     
     user = models.OneToOneField(User)
 
+    designation = models.CharField(max_length=32)
     avatar = models.ImageField(upload_to=update_filename)
 
