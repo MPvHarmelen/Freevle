@@ -8,7 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 class HexColorField(fields.Field):
     
     default_error_messages = {
-        'hex_error': _('This is an invalid color code. It must be a html hex color code e.g. #000000')
+        'hex_error': _('This is an invalid color code. It must be a html hex\
+                       color code e.g. #000000')
     }
 
     def clean(self, value):
@@ -21,7 +22,10 @@ class HexColorField(fields.Field):
         value = smart_unicode(value)
         value_length = len(value)
         
-        if value_length != 7 or not re.match('^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', value):
+        if value_length != 7 or not re.match(
+           '^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$',
+            value
+            ):
             raise ValidationError(self.error_messages['hex_error'])
         
         return value
@@ -70,7 +74,8 @@ class ResizedImageField(ImageField):
     
     attr_class = ResizedImageFieldFile
 
-    def __init__(self, max_width=100, max_height=100, format='PNG', *args, **kwargs):
+    def __init__(self, max_width=100, max_height=100, format='PNG', *args,
+                 **kwargs):
         self.max_width = max_width
         self.max_height = max_height
         self.format = format
