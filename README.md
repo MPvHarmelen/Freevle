@@ -49,6 +49,10 @@ terminal:
 
     python manage.py syncdb
 
+This will ask you if you want to generate a ton of information, for testing
+purposes. The default option will be Yes. If you don't want to generate
+anything just type anything else than y and press enter.
+
 Now you can simply start up the server with this command:
 
     python manage.py runserver
