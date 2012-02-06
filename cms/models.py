@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -8,11 +9,18 @@ class Page(models.Model):
     last_edit = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=32)
     slug = models.SlugField(
-        unique=True,
+#        unique=True,
         help_text=_('URL-friendly version of the title,\
                     can be left alone most of the time.')
     )
     content = models.TextField(help_text=_('Content of the page.'))
+    
+    def save(self, *args, **kwargs):
+        sibling_slugs = [sibling.slug for sibling in Page.objects.filter(parent=self.parent)]
+        if self.slug in sibling_slugs:
+            raise ValidationError(_("There's already a page with this parent and slug"))
+        else:
+            super(Page, self).save(*args, **kwargs)
     
     @models.permalink
     def get_absolute_url(self):

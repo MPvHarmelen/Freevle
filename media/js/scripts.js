@@ -9,7 +9,7 @@ $(document).ready(function(){
 //Weekend
   var vrijdag = /*HIER MOET EEN true OF false KOMEN*/true;
   if(vrijdag === true) {
-    $('.dag').css('width', '226px');
+    $('div.dag').addClass('weekendday');
     $('#weekend').css('height', height);
   }
 

@@ -6,13 +6,16 @@ class Gallery(models.Model):
     slug = models.SlugField(unique=True)
     date = models.DateField()
     
+    def __unicode__(self):
+        return self.name
+    
     @models.permalink
     def get_absolute_url(self):
         pass
 
 class Photo(models.Model):
     
-    def update_filename(self, filename):
+    def _update_filename(self, filename):
         path = self.gallery.slug + '/photos/'
         new_file_name = self.slug
         extension = filename.split('.')[-1]
@@ -22,7 +25,10 @@ class Photo(models.Model):
     slug = models.SlugField()
     gallery = models.ForeignKey(Gallery)
     date = models.DateField()
-    content = models.ImageField(upload_to=update_filename)
+    content = models.ImageField(upload_to=_update_filename)
+    
+    def __unicode__(self):
+        return self.title
     
     @models.permalink
     def get_absolute_url(self):
