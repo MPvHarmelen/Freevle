@@ -15,3 +15,11 @@ class UserProfile(models.Model):
     designation = models.CharField(max_length=32)
     avatar = models.ImageField(upload_to=update_filename)
 
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User,
+        dispatch_uid='users-profilecreation-signal')
+
