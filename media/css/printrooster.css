@@ -344,11 +344,11 @@ div#rooster {
   box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
-  width: 600px;
+  width: 605px;
 }
 
 div#periodnumbers {
-  width: 96px;
+  width: 100px;
   float: left;
   margin-top: 40px;
   color: #333;
@@ -359,7 +359,12 @@ p.periodnumber {
   float: left;
 }
 
-div.day {
+span.time {
+  text-align: right;
+  float: right;
+}
+
+div.weekday {
   width: 100px;
   float: left;
 }
@@ -399,12 +404,6 @@ p.period {
   margin: 0;
 }
 
-span.time {
-  text-align: right;
-  margin-left: 15px;
-  float: right;
-}
-
 span.classroom {
   float: right;  
 }
@@ -413,15 +412,16 @@ div.divider {
   width: 1px;
   background: #bbb;
   float: left;
+  height: 508px;
 }
 
-p.period-exspires {
+p.period-expires {
   color: #555;
   position: relative;
   margin: 0;
 }
 
-p.period-exspires:before {
+p.period-expires:before {
   height: 39px;
   width: 100px;
   background: url(../img/raster.png);
