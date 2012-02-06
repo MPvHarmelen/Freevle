@@ -45,16 +45,16 @@
               </a>
             </li>
             {% for page in pages %}
-              {% if not page.parent %} 
-              <li class="menu"><a class="header" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+            {% if not page.parent %} 
+            <li class="menu"><a class="header" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+              {% if page.page_set.all %}
                 <ul class="dropdown">
-                {% for child in pages %}
-                  {% ifequal child.parent page %}
+                {% for child in page.page_set.all %}
                     <li><a class="menu-item" href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
-                  {% endifequal %}
                 {% endfor %}
                 </ul>
-              </li>
+              {% endif %}
+            </li>
             {% endif %}
             {% endfor %}
             <li class="menu"><a class="header" href="/news">News</a></li>
@@ -113,13 +113,13 @@
               {% for page in pages %}
               {% if not page.parent %} 
                 <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
-                  <ul class="sitemaplist2">
-                  {% for child in pages %}
-                    {% ifequal child.parent page %}
-                    <li><a href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
-                    {% endifequal %}
-                  {% endfor %}
-                  </ul>
+                  {% if page.page_set.all %}
+                    <ul class="sitemaplist2">
+                    {% for child in page.page_set.all %}
+                        <li><a href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
                 </li>
               {% endif %}
               {% endfor %}
