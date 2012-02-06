@@ -395,7 +395,9 @@ div.lokaal {
   margin: 220px 0 0 5px;
   font-weight: bold;
 }
-
+.weekendday {
+  width: 226px !important;
+}
 span.right {
   float: right;
 }
