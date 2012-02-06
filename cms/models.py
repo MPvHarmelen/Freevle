@@ -14,6 +14,13 @@ class Page(models.Model):
     )
     content = models.TextField(help_text=_('Content of the page.'))
     
+    def save(self, *args, **kwargs):
+        sibling_slugs = [sibling.slug for sibling in Page.objects.filter(parent=self.parent)]
+        if self.slug in sibling_slugs:
+            return
+        else:
+            super(Page, self).save(*args, **kwargs)
+    
     @models.permalink
     def get_absolute_url(self):
         if self.parent:
