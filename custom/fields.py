@@ -1,11 +1,19 @@
 # HexColorField
 import re
-from django.forms import fields
+from django.db.models import fields
 from django.forms import ValidationError
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
 
-class HexColorField(fields.Field):
+class HexColorField(fields.CharField):
+    
+#    def __init__(self, max_length=None, *args, **kwargs):
+#        self.max_length = 7
+#        super(HexColorField, self).__init__(self, *args, **kwargs)
+    
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = kwargs.get('max_length', 7)
+        super(HexColorField, self).__init__(self, *args, **kwargs)
     
     default_error_messages = {
         'hex_error': _('This is an invalid color code. It must be a html hex\
