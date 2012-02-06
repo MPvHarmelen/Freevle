@@ -1,5 +1,4 @@
-from django.db import models
-from django.core.exceptions import ValidationError
+from django.db import models, IntegrityError
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -18,7 +17,7 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
         sibling_slugs = [sibling.slug for sibling in Page.objects.filter(parent=self.parent)]
         if self.slug in sibling_slugs:
-            raise ValidationError(_("There's already a page with this parent and slug"))
+            raise IntegrityError(_("There's already a page with this parent and slug"))
         else:
             super(Page, self).save(*args, **kwargs)
     
