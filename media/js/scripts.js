@@ -9,7 +9,7 @@ $(document).ready(function(){
 //Weekend
   var vrijdag = /*HIER MOET EEN true OF false KOMEN*/true;
   if(vrijdag === true) {
-    $('.dag').css('width', '226px');
+    $('div.dag').addClass('weekendday');
     $('#weekend').css('height', height);
   }
 
@@ -37,14 +37,16 @@ $(document).ready(function(){
 //Inlogform
   $('#darken').hide();
   $('#loginhome').click(function() {
-      $("#inlogform").animate({marginTop: '200px'}, {queue: false, duration: 'fast'});
+      var topMargin = (($(window).height / 2) - ($('#inlogform') / 2));
+      $("#inlogform").animate({marginTop: topMargin}, {queue: false, duration: 'fast'});
       $('#darken').fadeIn('fast');
     });
   $('#closelogin').click(function() {
-      $("#inlogform").animate({marginTop: '100px'}, {queue: false, duration: 'fast'});
+      $('#inlogform').animate({marginTop: '100px'}, {queue: false, duration: 'fast'});
       $('#darken').fadeOut('fast');
-    });
+    });  
   
+
 //Menu backgrounds
   var menuLi = $('li.menu, div.header');
 
