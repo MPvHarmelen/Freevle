@@ -361,7 +361,7 @@ p.dag {
 }
 
 div#nummers {
-  width: 100px;
+  width: 90px;
   float: left;
   margin-top: 45px;
   color: #333;
@@ -376,9 +376,7 @@ div.divider {
 div.uure {
   padding: 7px 15px 7px 9px;
   background: #eaeaea;
-  position: relative;
-  border-left: 6px solid #eaeaea;
-  height: 25px;
+  height: 48px;
   font-size: 10px;
 }
 
@@ -386,8 +384,7 @@ div.uuru {
   padding: 7px 15px 7px 9px;
   background: #f3f3f3;
   position: relative;
-  border-left: 6px solid #f3f3f3;
-  height: 25px;
+  height: 48px;
   font-size: 10px;
 }
 
@@ -396,8 +393,7 @@ div.uuri {
   padding: 7px 15px 7px 9px;
   color: #555 !important;
   position: relative;
-  border-left: 6px solid #fff;
-  height: 25px;
+  height: 48px;
 }
 
 .valtuit {
@@ -418,6 +414,10 @@ div.uuri {
 
 p.vak {
   margin: 0;
+}
+
+p.dag {
+  height: 24px;
 }
 
 div.leraarles {

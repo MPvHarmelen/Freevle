@@ -22,7 +22,7 @@ class Photo(models.Model):
         return path + new_file_name + '.' + extension
     
     title = models.CharField(max_length=32)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     gallery = models.ForeignKey(Gallery)
     date = models.DateField()
     content = models.ImageField(upload_to=_update_filename)
