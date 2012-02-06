@@ -34,7 +34,12 @@ def create_user(group, verbosity):
     except IntegrityError:
         username = username + str(random.randint(0, 99))
         me.username = username
-        me.save()
+        try:
+            me.save()
+        # IntegrityError TWICE?! Well, nevermind me then.
+        except IntegrityError:
+            print '  Oh dear, I think we just skipped a user there'
+            return
     group.user_set.add(me)
 
     if verbosity > 1:
@@ -42,8 +47,14 @@ def create_user(group, verbosity):
 
 def debug_data(sender, **kwargs):
     verbosity = kwargs['verbosity']
-    if verbosity > 1:
-        print
+    print
+
+    if not kwargs['interactive']:
+        return
+    else:
+        cont = raw_input('Do you want to generate random users (Y/n): ')
+        if not cont == '' or cont.lower() == 'n':
+            return
 
     # Create 20 teachers
     print ('Generating 20 random teachers (this may take a while)'

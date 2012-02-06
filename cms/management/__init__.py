@@ -17,6 +17,14 @@ def debug_data(sender, **kwargs):
     verbosity = kwargs['verbosity']
     if verbosity > 1:
         print
+
+    if not kwargs['interactive']:
+        return
+    else:
+        cont = raw_input('Do you want to generate random pages (Y/n): ')
+        if not cont == '' or cont.lower() == 'n':
+            return
+
     # Create 500 news messages
     print ('Generating 3 random pages with subpages (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
