@@ -6,7 +6,7 @@
         <h2>{{ message.title }}</h2>
         <p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
             {{ message.publish|date:'d m Y' }}
-            &emsp;&middot;&emsp;
+            &emsp;&emsp;
             <span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ message.writer }}</p>
         <p>{{ message.content }}</p>
         <p class="clear"></p>

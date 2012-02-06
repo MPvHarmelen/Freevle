@@ -18,22 +18,21 @@ if settings.STATIC:
 urlpatterns += patterns('',
     # Example:
     # (r'^foo/', include('cygy.foo.urls')),
-    (r'^$', direct_to_template, {'template': 'index.html'}),
-    (r'^news/', include('cygy.news.urls')),
-    (r'^letters/', include('cygy.letters.urls')),
+    url(r'^$', direct_to_template, {'template': 'index.html'}),
+    url(r'^news/', include('cygy.news.urls')),
+    url(r'^letters/', include('cygy.letters.urls')),
 
     # User urls
-    (r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
-    (r'^user/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'user/logout.html'}),
+    url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
+    url(r'^user/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'user/logout.html'}),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
     
     # If no url could be found, include cms:
-    ('', include('cygy.cms.urls'))
+    url('', include('cygy.cms.urls'))
 )
-
