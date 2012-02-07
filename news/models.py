@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+import datetime
 
 # Create your models here.
 class NewsMessage(models.Model):
     writer = models.ForeignKey(User)
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique_for_date='publish', help_text=_('URL-friendly version of the title, can be left alone most of the time.'))
-    publish = models.DateField(auto_now_add=True)
+    publish = models.DateTimeField(default=datetime.datetime.now())
 
     content = models.TextField(help_text=_('The news message.'))
 
@@ -22,3 +23,4 @@ class NewsMessage(models.Model):
 
     class Meta:
         verbose_name = 'news message'
+
