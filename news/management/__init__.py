@@ -30,7 +30,7 @@ def debug_data(sender, **kwargs):
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
-        print ' Opening shakespeare.txt'
+        print ' Reading the complete works of William Shakespeare for inspiration.'
     file = open('custom/debug/shakespeare.txt')
     shakespeare = Markov(file)
     if verbosity > 1:

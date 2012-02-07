@@ -38,7 +38,7 @@ def create_user(group, verbosity):
             me.save()
         # IntegrityError TWICE?! Well, nevermind me then.
         except IntegrityError:
-            print '  Oh dear, I think we just skipped a user there'
+            print '  Oh dear, I think we just skipped a user there.'
             return
     group.user_set.add(me)
 
