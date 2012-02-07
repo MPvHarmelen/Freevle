@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import *
-from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthArchiveView, DayArchiveView, DateDetailView
+from django.views.generic.dates import ArchiveIndexView, YearArchiveView
+from django.views.generic.dates import MonthArchiveView, DayArchiveView
+from django.views.generic.dates import DateDetailView
 
 from cygy.news.models import NewsMessage
 
@@ -23,12 +25,6 @@ urlpatterns = patterns('',
             paginate_by=10, month_format='%m', allow_empty=True,
             context_object_name='message'),
         name='newsmessage-month'),
-
-    url(r'^(?P<year>\d{4})/$',
-        YearArchiveView.as_view(
-            queryset=NewsMessage.objects.all(), date_field='publish',
-            paginate_by=10, allow_empty=True, context_object_name='message'),
-        name='newsmessage-year'),
 
     url(r'^$',
         ArchiveIndexView.as_view(
