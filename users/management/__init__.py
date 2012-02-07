@@ -19,7 +19,7 @@ SURNAMES = ('Smith', 'Jones', 'Brown', 'Thompson', 'White', 'Scott', 'Coleman',
 DOMAINS = ('example', 'random', 'mydomain', 'internetforme', 'generic-isp',)
 TLDS = ('.net', '.com', '.org', '.me', '.pro', '.edu',)
 
-def create_user(group, verbosity):
+def create_user(group, verbosity, is_staff=True):
     first_name = random.choice(FIRST_NAMES)
     last_name = random.choice(SURNAMES)
     username = first_name[0] + last_name
@@ -27,7 +27,7 @@ def create_user(group, verbosity):
         random.choice(TLDS)))
 
     me = models.User(username=username, first_name=first_name,
-            last_name=last_name, email=email, is_staff=True)
+            last_name=last_name, email=email, is_staff=is_staff)
     me.set_password('hunter2')
     try:
         me.save()
@@ -73,7 +73,7 @@ def debug_data(sender, **kwargs):
 
     students_group = models.Group.objects.get(name='Students') 
     for i in xrange(100):
-        create_user(students_group, verbosity)
+        create_user(students_group, verbosity, False)
     students_group.save()
     if verbosity > 1:
         print
