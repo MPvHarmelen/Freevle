@@ -6,14 +6,28 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 # Refactored with some (actually, lots of) help from sushibowl. Thanks :D
-class Course(models.Model):
+class Topic(models.Model):
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=16)
+        
+    def __unicode__(self):
+        return name
 
-class Topic(models.Model):
-    course = models.ForeignKey(Course)
-    teacher = models.ForeignKey(User,
-            limit_choices_to={'groups__name': 'teachers'})
+class Course(models.Model):
+    topic = models.ForeignKey(Topic)
+    teacher = models.ForeignKey(
+        User,
+        related_name='course_given',
+        limit_choices_to={'groups__name': 'teachers'}
+    )
+    students = models.ManyToManyField(
+        User,
+        related_name='course_taken',
+        limit_choices_to={'groups__name': 'students'}
+    )
+    
+    def __uncidode(self):
+        return '{} ({})'.format(topic.__unicode__(), teacher.designation)
 
 class Lesson(models.Model):
     DAY_CHOICES = (
@@ -25,7 +39,7 @@ class Lesson(models.Model):
         ('SAT', _('Saturday')),
         ('SUN', _('Sunday')),
     )
-    topic = models.ForeignKey(Topic)
+    course = models.ForeignKey(Course)
     classroom = models.CharField(max_length=16)
 
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
