@@ -60,7 +60,7 @@ def debug_data(sender, **kwargs):
     print ('Imagining 20 terrifying teachers (this may take a while)'
            + (': ' if verbosity > 1 else '.'))
 
-    teachers_group = models.Group.objects.get(name='Teachers') 
+    teachers_group = models.Group.objects.get(name='teachers') 
     for i in xrange(20):
         create_user(teachers_group, verbosity)
     teachers_group.save()
@@ -71,7 +71,7 @@ def debug_data(sender, **kwargs):
     print ('Thinking of 100 stupid students (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
-    students_group = models.Group.objects.get(name='Students') 
+    students_group = models.Group.objects.get(name='students') 
     for i in xrange(100):
         create_user(students_group, verbosity, False)
     students_group.save()

@@ -36,7 +36,7 @@ def debug_data(sender, **kwargs):
     if verbosity > 1:
         print ' Writing news messages'
     for i in xrange(150):
-        writer = User.objects.filter(groups__name='Teachers').order_by('?')[0]
+        writer = User.objects.filter(groups__name='teachers').order_by('?')[0]
         title = shakespeare.generate_markov_text(random.randint(5, 10))
         content = shakespeare.generate_markov_text(random.randint(150, 400))
         while True:
