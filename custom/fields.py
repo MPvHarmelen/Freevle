@@ -1,25 +1,21 @@
 # HexColorField
 import re
-from django.db.models import fields
+from django.db.models.fields import CharField
 from django.forms import ValidationError
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
 
-class HexColorField(fields.CharField):
-    
-#    def __init__(self, max_length=None, *args, **kwargs):
-#        self.max_length = 7
-#        super(HexColorField, self).__init__(self, *args, **kwargs)
-    
-    def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = kwargs.get('max_length', 7)
-        super(HexColorField, self).__init__(self, *args, **kwargs)
+class HexColorField(CharField):
     
     default_error_messages = {
         'hex_error': _('This is an invalid color code. It must be a html hex\
                        color code e.g. #000000')
     }
-
+    
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = kwargs.get('max_length', 7)
+        super(HexColorField, self).__init__(self, *args, **kwargs)
+    
     def clean(self, value):
         
         super(HexColorField, self).clean(value)
@@ -36,11 +32,11 @@ class HexColorField(fields.CharField):
             ):
             raise ValidationError(self.error_messages['hex_error'])
         
-        return value
+        super(HexColorFied, self).clean(value)
 
-    def widget_attrs(self, widget):
-        if isinstance(widget, (fields.TextInput)):
-            return {'maxlength': str(7)}
+#    def widget_attrs(self, widget):
+#        if isinstance(widget, (fields.TextInput)):
+#            return {'maxlength': str(7)}
 
 # ResizedImageField
 from PIL import Image
