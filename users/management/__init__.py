@@ -5,8 +5,8 @@ from django.db.utils import IntegrityError
 from cygy.settings import DEBUG
 
 def create_groups(sender, **kwargs):
-    models.Group(name='Teachers').save()
-    models.Group(name='Students').save()
+    models.Group(name='teachers').save()
+    models.Group(name='students').save()
 
 post_syncdb.connect(create_groups, sender=models)
 
