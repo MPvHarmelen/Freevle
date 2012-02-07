@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{# COMMENTS ARE TODO #}
+
 {% block content %}
 <article>
   <div class="item">
@@ -11,13 +13,16 @@
         <div id="meldingenlinks">
           <h3>Belangrijke mededelingen:</h3>
           <ul class="belangrijk">
-            <li>Donderdag geen les</li>
-            <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
+            {# for item in announcement #}
+              <li>Donderdag geen les</li>
+              <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
+            {# endfor #}
           </ul>
         </div>
         <div id="legend">
           <h3>Legenda</h3>
           <ul id="legendul">
+            {# Make this dynamic! #}
             <li class="huiswerkitem pw legendleft">PW</li>
             <li class="huiswerkitem opdr legendright">Grote opdracht</li>
             <li class="huiswerkitem so legendleft">SO</li>
@@ -30,258 +35,64 @@
       </div>
 
       <div id="nummers">
-                          <div class="uuru"><p class="vak">1</p></div>
-                          <div class="uure"><p class="vak">2</p></div>
-                          <div class="uuru"><p class="vak">3</p></div>
-                          <div class="uuri"> </div>
-                          <div class="uure"><p class="vak">4</p></div>
-                          <div class="uuru"><p class="vak">5</p></div>
-                          <div class="uuri"> </div>
-                          <div class="uure"><p class="vak">6</p></div>
-                          <div class="uuru"><p class="vak">7</p></div>
-                          <div class="uuri"> </div>
-                          <div class="uure"><p class="vak">8</p></div>
-                          <div class="uuru"><p class="vak">9</p></div>
+        {# Make this dynamic! #}
+        <div class="uuru"><p class="vak">1</p></div>
+        <div class="uure"><p class="vak">2</p></div>
+        <div class="uuru"><p class="vak">3</p></div>
+        <div class="uuri"> </div>
+        <div class="uure"><p class="vak">4</p></div>
+        <div class="uuru"><p class="vak">5</p></div>
+        <div class="uuri"> </div>
+        <div class="uure"><p class="vak">6</p></div>
+        <div class="uuru"><p class="vak">7</p></div>
+        <div class="uuri"> </div>
+        <div class="uure"><p class="vak">8</p></div>
+        <div class="uuru"><p class="vak">9</p></div>
       </div>
 
       <div class="divider"></div>
 
-      <div class="dag">
-                                <p class="dag">Maandag</p>
-                          
-                                  <div class="uure">
-                                          <p class="vak"><span class="bold">MA</span> RAM <span class="right">8:25-9:20</span></p>
+      {% for day in days %}
+        <div class="dag">
+          <p class="dag">{% day.name %}</p>
 
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-                                            <li class="huiswerkitem">Maak opgave zus en zo</li>
-              <li class="huiswerkitem">Maak opgave zus en zo</li>
-                                          </ul>
-                                        </div>
-                          
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">MA</span> RAM <span class="right">9:20-10:10</span></p>
+          {% for lesson in day.lessons %}
+            <div class="{% cycle 'uuru' 'uuri' %}">
+              <p class="vak">
+              <span class="bold">{{ hour.name }}</span>
+              {{ hour.teacher.name }}
+              <span class="right">{# 8:25-9:20 #}</span></p>
 
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem so">En doe ook maar een grote opdracht</li>
-                                            <li class="huiswerkitem">Maak opgave zus en zo</li>
-              <li class="huiswerkitem">Maak opgave zus en zo</li>
-                                          </ul>
-                                        </div>
-                          
-                                        <div class="uure">
-                                          <p class="vak"><span class="bold">FA</span> VIF <span class="right">10:10-11:00</span></p>
+              <div class="triangle"></div>
+              <ul class="huiswerk">
+                {% for item in lesson.homework %}
+                  <li class="huiswerkitem {# opdr #}">{{ item.description }}</li>
+                {% endfor %}
+              </ul>
+            </div>
 
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-                                            <li class="huiswerkitem so">SO over verzin maar wat</li>
-                                          </ul>
-                                        </div>
-                          
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
-                                        </div>
-                                        
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">GS</span> RHG <span class="right">11:20-12:10</span></p>
+            {# if pauze after lesson #}
+              <div class="uuri">
+                <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
+              </div>
+            {# endif #}
 
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-                                            <li class="huiswerkitem pw">PW over deze en die shizzle</li>
-                                          </ul>
-                                        </div>
+          {% endfor %}
 
-                                        <div class="uure">
-                                          <p class="vak"><span class="bold">WIB</span> BRW <span class="right">12:10-13:00</span></p>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-                                            <li class="huiswerkitem">Maak opgave zus en zo</li>
-              <li class="huiswerkitem">Maak opgave zus en zo</li>
-                                          </ul>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
-                                        </div>
-
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">EN</span> HEE <span class="right">13:30-14:20</span></p>
-                                        </div>
-
-                                        <div class="uure">
-                                          <p class="vak"><span class="bold">NE</span> MIN <span class="right">14:20-15:10</span></p>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">15:10-15:20</span></p>
-                                        </div>
-
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">NE</span> MIN <span class="right">15:20-16:10</span></p>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
-                                        </div>
-      </div>
-
-
-      <div class="divider"></div>
-
-      <div class="dag">
-                                <p class="dag">Dinsdag</p>
-                          
-                                  <div class="uure">
-                                          <p class="vak"><span class="bold">NA</span> NYN <span class="right verkort">8:25-9:10</span></p>
-                                        </div>
-                          
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">SC</span> HAS <span class="right verkort">9:10-9:50</span></p>
-                                        </div>
-                          
-                                        <div class="uure">
-                                          <p class="vak valtuit"><span class="bold">GR</span> BOK <span class="right verkort">9:50-10:30</span></p>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem">Maak opdracht 27C</li>
-                                          </ul>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">10:30-10:50</span></p>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak"><span class="bold">-</span> <span class="right">10:50-11:30</span></p>
-                                        </div>
-
-                                        <div class="uure">
-                                          <p class="vak"><span class="bold">WIB</span> BRW <span class="right verkort">11:30-12:10</span></p>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">12:10-12:40</span></p>
-                                        </div>
-
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">WI</span> BRW <span class="right verkort">12:40-13:20</span></p>
-                                        </div>
-
-                                        <div class="uure">
-                                          <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">13:20-14:00</span></p>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem">Maak &sect;3.4</li>
-                                          </ul>
-                                        </div>
-
-                                        <div class="uuri">
-                                        </div>
-
-                                        <div class="uuru">
-                                          <p class="vak"><span class="bold">GS</span> RHG <span class="right verkort">14:00-14:40</span></p>
-                                        </div>
-
-                                        <div class="uure">
-                                          <p class="vak"><span class="bold">LOB</span> MIN <span class="right verkort">14:40-15:20</span></p>
-                                        </div>
-      </div>
-
-      <div class="divider"></div>
-
-
-
-
-      <div class="dag vrijdag">
-                                <p class="dag">Woensdag</p>
-                          
-                                  <div class="uure">
-                                          <div class="leraarles"><span class="bold">MA</span> RAM </div> <div class="time">8:25-9:20</div> <div class="lokaal">S03</div><div class="clear"></div>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-                                            <li class="huiswerkitem">Maak opgave zus en zo</li>
-              <li class="huiswerkitem">Maak opgave zus en zo</li>
-                                          </ul>
-                                        </div>
-                          
-                                        <div class="uuru">
-                                          <div class="leraarles"><span class="bold">MA</span> RAM </div> <div class="time">9:20-10:10</div> <div class="lokaal">S03</div><div class="clear"></div>
-                                        </div>
-                          
-                                        <div class="uure">
-                                          <div class="leraarles"><span class="bold">FA</span> VIF </div> <div class="time">10:10-11:00</div> <div class="lokaal">S04</div><div class="clear"></div>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-                                            <li class="huiswerkitem so">SO over verzin maar wat</li>
-                                          </ul>
-                                        </div>
-                          
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">11:00-11:20</span></p>	  
-                                        </div>
-                                        
-                                        <div class="uuru">
-                                          <div class="leraarles"><span class="bold">GS</span> RHG </div> <div class="time">11:20-12:10</div> <div class="lokaal">S03</div><div class="clear"></div>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-                                            <li class="huiswerkitem pw">PW over deze en die shizzle</li>
-                                          </ul>
-                                        </div>
-
-                                        <div class="uure">
-                                          <div class="leraarles"><span class="bold">WIB</span> BRW</div> <div class="time">12:10-13:00</div> <div class="lokaal">S10</div><div class="clear"></div>
-
-            <div class="triangle"></div>
-                                          <ul class="huiswerk">
-              <li class="huiswerkitem opdr">En doe ook maar een grote opdracht</li>
-                                            <li class="huiswerkitem">Maak opgave zus en zo</li>
-              <li class="huiswerkitem">Maak opgave zus en zo</li>
-                                          </ul>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
-                                        </div>
-
-                                        <div class="uuru">
-                                          <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">13:30-14:20</div> <div class="lokaal">S09</div><div class="clear"></div>
-                                        </div>
-
-                                        <div class="uure">
-                                          <div class="leraarles"><span class="bold">NE</span> MIN</div> <div class="time">14:20-15:10</div> <div class="lokaal">S09</div><div class="clear"></div>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak">Pauze <span class="right">15:10-15:20</span></p>
-                                        </div>
-
-
-                                        <div class="uuru">
-                                          <div class="leraarles"><span class="bold">EN</span> HEE</div> <div class="time">15:20-16:10</div> <div class="lokaal">S09</div><div class="clear"></div>
-                                        </div>
-
-                                        <div class="uuri">
-                                          <p class="vak"><span class="bold">-</span> <span class="right">16:20-17:00</span></p>
-                                        </div>
-                    </div>
-
-        <div id="weekend">
-          <span>Weekend</span>
+          {# if weekend after day #}
+            <div id="weekend">
+              <span>Weekend</span>
+            </div>
+          {# endif #}
         </div>
+
+        <div class="divider"></div>
       </div>
+    {% endfor %}
 
     <div class="clear"></div>
 
+    {# this... #}
     <div id="komend">
       <h3>Komende toetsen e.d.:</h3>
       <ul class="belangrijk">
@@ -289,4 +100,6 @@
         <li class="huiswerkitem so"><span class="italic">22/6</span>&nbsp;&nbsp;<span class="bold">EN:</span> SO Units 86, 87, 113-120</li>
       </ul>
     </div>
+  </div>
+</article>
 {% endblock %}
