@@ -41,3 +41,4 @@ class Homework(models.Model):
     content = models.CharField(max_length=255)
     timetable = models.ForeignKey(Timetable) 
     lesson = models.ForeignKey(Lesson)
+
