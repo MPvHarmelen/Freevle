@@ -281,6 +281,7 @@ div.photos {
 img.photo {
   height: 180px;
   width: 266px;
+  float: left;
 }
 a.image {
   text-decoration: none;
