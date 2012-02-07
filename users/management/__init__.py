@@ -57,7 +57,7 @@ def debug_data(sender, **kwargs):
             return
 
     # Create 20 teachers
-    print ('Generating 20 random teachers (this may take a while)'
+    print ('Imagining 20 terrible teachers (this may take a while)'
            + (': ' if verbosity > 1 else '.'))
 
     teachers_group = models.Group.objects.get(name='Teachers') 
@@ -68,7 +68,7 @@ def debug_data(sender, **kwargs):
         print
 
     # Create 100 students
-    print ('Generating 100 random students (this may take a while)'
+    print ('Thinking of 100 stupid students (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     students_group = models.Group.objects.get(name='Students') 

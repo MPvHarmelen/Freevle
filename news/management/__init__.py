@@ -26,7 +26,7 @@ def debug_data(sender, **kwargs):
             return
 
     # Create 150 news messages
-    print ('Generating 150 random news messages (this may take a while)'
+    print ('Writing 150 brilliant news messages (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
@@ -34,7 +34,7 @@ def debug_data(sender, **kwargs):
     file = open('custom/debug/shakespeare.txt')
     shakespeare = Markov(file)
     if verbosity > 1:
-        print ' Generating NewsMessages'
+        print ' Writing news messages'
     for i in xrange(150):
         writer = User.objects.filter(groups__name='Teachers').order_by('?')[0]
         title = shakespeare.generate_markov_text(random.randint(5, 10))
