@@ -5,9 +5,15 @@ from django.utils.translation import ugettext_lazy as _
 
 
 # Create your models here.
-class Topic(models.Model):
+# Refactored with some (actually, lots of) help from sushibowl. Thanks :D
+class Course(models.Model):
     name = models.CharField(max_length=32)
-    abbr = models.CharField(max_length=8)
+    abbr = models.CharField(max_length=16)
+
+class Topic(models.Model):
+    course = models.ForeignKey(Course)
+    teacher = models.ForeignKey(User,
+            limit_choices_to={'groups__name': 'teachers'})
 
 class Lesson(models.Model):
     DAY_CHOICES = (
@@ -19,17 +25,14 @@ class Lesson(models.Model):
         ('SAT', _('Saturday')),
         ('SUN', _('Sunday')),
     )
-    teacher = models.ForeignKey(User,
-            limit_choices_to={'groups_in': ['teachers']})
     topic = models.ForeignKey(Topic)
     classroom = models.CharField(max_length=16)
-    period = models.IntegerField()
-    day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
 
-class Timetable(models.Model):
-    date_of_monday = models.DateField()
-    lessons = models.ManyToManyField(Lesson)
-    user = models.ForeignKey(User) 
+    day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
+    period = models.IntegerField()
+
+    start_date = models.DateField()
+    end_date = models.DateField()
 
 class HomeworkType(models.Model):
     name = models.CharField(max_length=32)
@@ -39,6 +42,13 @@ class HomeworkType(models.Model):
 class Homework(models.Model):
     type = models.ForeignKey(HomeworkType)
     content = models.CharField(max_length=255)
-    timetable = models.ForeignKey(Timetable) 
-    lesson = models.ForeignKey(Lesson)
 
+    lesson = models.ForeignKey(Lesson)
+    due_date = models.DateField()
+
+class Cancellation(models.Model):
+    teacher = models.ForeignKey(User, blank=True, null=True,
+            limit_choices_to={'groups__name': 'teachers'})
+    classroom = models.CharField(max_length=16, blank=True)
+    date = models.DateTimeField()
+    time = models.DateTimeField()
