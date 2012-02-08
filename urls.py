@@ -22,6 +22,7 @@ urlpatterns += patterns('',
     url(r'^news/', include('cygy.news.urls')),
     url(r'^letters/', include('cygy.letters.urls')),
     url(r'^galleries/', include('cygy.galleries.urls')),
+    url(r'^organizer/', include('cygy.organizer.urls')),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
