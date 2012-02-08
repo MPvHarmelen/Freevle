@@ -27,7 +27,7 @@ class Course(models.Model):
         limit_choices_to={'groups__name': 'students'}
     )
 
-    def __uncidode(self):
+    def __unicode(self):
         return '{} ({})'.format(self.topic, self.teacher.designation)
 
 class Lesson(models.Model):
