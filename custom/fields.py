@@ -1,46 +1,41 @@
 # HexColorField
 import re
-from django.db.models import fields
+from django.db.models.fields import CharField
 from django.forms import ValidationError
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
 
-class HexColorField(fields.CharField):
-    
-#    def __init__(self, max_length=None, *args, **kwargs):
-#        self.max_length = 7
-#        super(HexColorField, self).__init__(self, *args, **kwargs)
-    
-    def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = kwargs.get('max_length', 7)
-        super(HexColorField, self).__init__(self, *args, **kwargs)
-    
+class HexColorField(CharField):
+    description = _("Hexadecimal color field (e.g. #000000)")
+
     default_error_messages = {
         'hex_error': _('This is an invalid color code. It must be a html hex\
                        color code e.g. #000000')
     }
 
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = kwargs.get('max_length', 7)
+        super(HexColorField, self).__init__(self, *args, **kwargs)
+
     def clean(self, value):
-        
-        super(HexColorField, self).clean(value)
-        
         if value in fields.EMPTY_VALUES:
             return ''
-        
+
         value = smart_unicode(value)
         value_length = len(value)
-        
-        if value_length != 7 or not re.match(
-           '^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$',
-            value
-            ):
-            raise ValidationError(self.error_messages['hex_error'])
-        
-        return value
 
-    def widget_attrs(self, widget):
-        if isinstance(widget, (fields.TextInput)):
-            return {'maxlength': str(7)}
+        match = re.match('^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', value)
+        if value_length != 7 or not match:
+            raise ValidationError(self.error_messages['hex_error'])
+
+        super(HexColorField, self).clean(value)
+
+    def __repr__(self):
+        """
+        Displays the module, class and name of the field.
+        """
+        name = getattr(self, 'name', None)
+        return '%s' % name
 
 # ResizedImageField
 from PIL import Image

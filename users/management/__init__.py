@@ -5,8 +5,8 @@ from django.db.utils import IntegrityError
 from cygy.settings import DEBUG
 
 def create_groups(sender, **kwargs):
-    models.Group(name='Teachers').save()
-    models.Group(name='Students').save()
+    models.Group(name='teachers').save()
+    models.Group(name='students').save()
 
 post_syncdb.connect(create_groups, sender=models)
 
@@ -19,7 +19,7 @@ SURNAMES = ('Smith', 'Jones', 'Brown', 'Thompson', 'White', 'Scott', 'Coleman',
 DOMAINS = ('example', 'random', 'mydomain', 'internetforme', 'generic-isp',)
 TLDS = ('.net', '.com', '.org', '.me', '.pro', '.edu',)
 
-def create_user(group, verbosity):
+def create_user(group, verbosity, is_staff=True):
     first_name = random.choice(FIRST_NAMES)
     last_name = random.choice(SURNAMES)
     username = first_name[0] + last_name
@@ -27,7 +27,7 @@ def create_user(group, verbosity):
         random.choice(TLDS)))
 
     me = models.User(username=username, first_name=first_name,
-            last_name=last_name, email=email, is_staff=True)
+            last_name=last_name, email=email, is_staff=is_staff)
     me.set_password('hunter2')
     try:
         me.save()
@@ -38,7 +38,7 @@ def create_user(group, verbosity):
             me.save()
         # IntegrityError TWICE?! Well, nevermind me then.
         except IntegrityError:
-            print '  Oh dear, I think we just skipped a user there'
+            print '  Oh dear, I think we just skipped a user there.'
             return
     group.user_set.add(me)
 
@@ -57,10 +57,10 @@ def debug_data(sender, **kwargs):
             return
 
     # Create 20 teachers
-    print ('Generating 20 random teachers (this may take a while)'
+    print ('Imagining 20 terrifying teachers (this may take a while)'
            + (': ' if verbosity > 1 else '.'))
 
-    teachers_group = models.Group.objects.get(name='Teachers') 
+    teachers_group = models.Group.objects.get(name='teachers') 
     for i in xrange(20):
         create_user(teachers_group, verbosity)
     teachers_group.save()
@@ -68,12 +68,12 @@ def debug_data(sender, **kwargs):
         print
 
     # Create 100 students
-    print ('Generating 100 random students (this may take a while)'
+    print ('Thinking of 100 stupid students (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
-    students_group = models.Group.objects.get(name='Students') 
+    students_group = models.Group.objects.get(name='students') 
     for i in xrange(100):
-        create_user(students_group, verbosity)
+        create_user(students_group, verbosity, False)
     students_group.save()
     if verbosity > 1:
         print

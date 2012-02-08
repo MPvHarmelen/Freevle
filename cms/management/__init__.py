@@ -26,15 +26,15 @@ def debug_data(sender, **kwargs):
             return
 
     # Create 500 news messages
-    print ('Generating 3 random pages with subpages (this may take a while)'
+    print ('Writing 3 insightful pages and subpages (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
-        print ' Opening shakespeare.txt'
+        print ' Reading the complete works of William Shakespeare for inspiration.'
     file = open('custom/debug/shakespeare.txt')
     shakespeare = Markov(file)
     if verbosity > 1:
-        print ' Generating Pages'
+        print ' Writing pages'
     for i in xrange(3):
         title = shakespeare.generate_markov_text(1)
         slug = slugify(title)
