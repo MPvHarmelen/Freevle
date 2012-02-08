@@ -8,8 +8,7 @@ class UserView(DetailView):
     def get_object(self, queryset=None):
         
 
-        # Use a custom queryset if provided; this is required for subclasses
-        # like DateDetailView
+        # Use a custom queryset if provided
         if queryset is None:
             queryset = self.get_queryset()
 
