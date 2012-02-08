@@ -35,7 +35,7 @@ class HexColorField(CharField):
         Displays the module, class and name of the field.
         """
         name = getattr(self, 'name', None)
-        return '%s' % name
+        return '{}'.format(name)
 
 # ResizedImageField
 from PIL import Image
