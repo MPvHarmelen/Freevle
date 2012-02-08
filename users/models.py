@@ -9,11 +9,14 @@ class UserProfile(models.Model):
         new_file_name = self.user.username
         extension = filename.split('.')[-1]
         return path + new_file_name + '.' + extension
-    
+
     user = models.OneToOneField(User)
 
-    designation = models.CharField(max_length=32)
-    avatar = models.ImageField(upload_to=update_filename)
+    designation = models.CharField(max_length=32, blank=True)
+    avatar = models.ImageField(upload_to=update_filename, blank=True)
+
+    def __unicode__(self):
+        return '{}: <{}>'.format(self.designation, self.user.username)
 
 
 def create_user_profile(sender, instance, created, **kwargs):
