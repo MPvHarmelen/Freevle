@@ -234,7 +234,6 @@ div#wrapper {
   background: white;
   padding: 1px 0 40px;
   position: relative; 
-  overflow: hidden;
 }
 #wrapper:after {
   -webkit-box-shadow: 0 0 15px #000;
