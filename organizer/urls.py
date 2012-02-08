@@ -1,9 +1,9 @@
 from django.conf.urls.defaults import *
-from django.views.generic.detail import DetailView
+from cygy.organizer.views import UserView
 
 from django.contrib.auth.models import User
 
 urlpatterns = patterns('',
-	url(r'^(?P<username>[\w-]+)/$', DetailView.as_view(model=User),
+	url(r'^(?P<username>[\w-]+)/$', UserView.as_view(model=User),
 	 name='organizer-user'),
 ) 
