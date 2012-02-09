@@ -1,7 +1,28 @@
 from django.views.generic.detail import DetailView
+from django.views.generic.base import TemplateResponseMixin, View
 
 # Create your views here.
-class UserView(DetailView):
+class UserView(TemplateResponseMixin, View):
+
+    def get_lessonset(self):
+        """
+        Get the list of items for this view. This must be an interable, and may
+        be a lessonset (in which qs-specific behavior will be enabled).
+        """
+        if self.lessonset is not None:
+            lessonset = self.lessonset
+            if hasattr(lessonset, '_clone'):
+                lessonset = lessonset._clone()
+        elif self.model is not None:
+            lessonset = self.model._default_manager.all()
+        else:
+            raise ImproperlyConfigured(u"'%s' must define 'lessonset' or 'model'"
+                                       % self.__class__.__name__)
+        return lessonset
+
+
+# I'm just leaving this here for now if I want to use parts later
+class UserDetailView(DetailView):
     username_field = 'username'
     username_url_kwarg = 'username'
 
