@@ -262,11 +262,11 @@ h2 {
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
   margin: 50px 0 30px;
-  text-shadow: 1px 1px 1px #fff;
 }
 
 #inlogform h2 {
   text-align: center;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 div.breadcrumbs {
@@ -596,13 +596,24 @@ div#komend li.huiswerkitem {
 }
 
 /*------------------------------letters------------------------------*/
+ul#letters {
+  padding: 0;
+}
 li.odd {
   background: #eee;
   list-style: none;
+  margin: 0;
+  padding: 8px 12px;
 }
 li.even {
   background: #f5f5f5;
   list-style: none;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+li.odd a, li.even a {
+  text-decoration: none;
 }
 
 /*------------------------------loginpage------------------------------*/
