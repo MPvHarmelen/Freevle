@@ -4,7 +4,7 @@
 {% block content %}
   {% for message in message_list %}
     <div class="item">
-    <h2>{{ message.title }}</h2>
+    <h2><a href="{{ message.get_absolute_url }}">{{ message.title }}</a></h2>
     <p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
       {{ message.publish|date:'d m Y' }}
       &emsp;&emsp;
