@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+z
 //Slider
   var totWidth = 0;
   var positions = new Array();
@@ -14,7 +14,7 @@ $(document).ready(function(){
   });
 
   $('#slides').width(totWidth);
-        $(‘#next-button’).click(function(e,keepScroll) {
+        $('#next-button').click(function(e,keepScroll) {
           if (currentPosition < positions.length-1) {
             var pos = currentPosition+1;
             currentPosition = pos;
