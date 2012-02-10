@@ -1,53 +1,107 @@
+from django.template.response import TemplateResponse
 from django.views.generic.detail import DetailView
-from django.views.generic.base import TemplateResponseMixin, View
+from django.views.generic.base import View
 
 # Create your views here.
-class UserView(TemplateResponseMixin, View):
+class UserView(View):
 
-    def get_lessonset(self):
+    '''
+    day1 = queryset
+    day2 = queryset
+    day3 = queryset
+    > announcements = queryset
+    > comming_homework = queryset
+    > is_weekend = None or 0 or 1
+    > days = [day1, day2, day3]
+    
+    To write:
+    get_comming_homework()
+    get_anouncements()
+    get_is_weekend()
+    get_days()
+    
+    '''
+    user_url_kwarg = 'user'
+    
+    def get_days(self):   ## << Here
         """
         Get the list of items for this view. This must be an interable, and may
-        be a lessonset (in which qs-specific behavior will be enabled).
+        be a days (in which qs-specific behavior will be enabled).
         """
-        if self.lessonset is not None:
-            lessonset = self.lessonset
-            if hasattr(lessonset, '_clone'):
-                lessonset = lessonset._clone()
-        elif self.model is not None:
-            lessonset = self.model._default_manager.all()
+        if self.days is not None:
+            days = self.days
         else:
-            raise ImproperlyConfigured(u"'%s' must define 'lessonset' or 'model'"
+            user = self.kwargs.get(self.user_url_kwarg, None)
+            if user is not None:
+                
+        return days
+
+    def get_queryset(self):   ## << Here
+        """
+        Get the list of items for this view. This must be an interable, and may
+        be a queryset (in which qs-specific behavior will be enabled).
+        """
+        if self.queryset is not None:
+            queryset = self.queryset
+            if hasattr(queryset, '_clone'):
+                queryset = queryset._clone()
+        elif self.model is not None:
+            queryset = self.model._default_manager.all()
+        else:
+            raise ImproperlyConfigured(u"'%s' must define 'queryset' or 'model'"
                                        % self.__class__.__name__)
-        return lessonset
+        return queryset
 
-
-        # To Do
-    template_name_suffix = '_list'
-
+    # -- Done --
+    ## Original    
     def get_template_names(self):
         """
-        Return a list of template names to be used for the request. Must return
-        a list. May not be called if get_template is overridden.
+        Returns a list of template names to be used for the request. Must return
+        a list. May not be called if render_to_response is overridden.
         """
-        try:
-            names = super(MultipleObjectTemplateResponseMixin, self).get_template_names()
-        except ImproperlyConfigured:
-            # If template_name isn't specified, it's not a problem --
-            # we just start with an empty list.
-            names = []
+        if self.template_name is None:
+            raise ImproperlyConfigured(
+                "TemplateResponseMixin requires either a definition of "
+                "'template_name' or an implementation of 'get_template_names()'")
+        else:
+            return [self.template_name]
+    
+    ## Original
+    response_class = TemplateResponse
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Returns a response with a template rendered with the given context.
+        """
+        return self.response_class(
+            request = self.request,
+            template = self.get_template_names(),
+            context = context,
+            **response_kwargs
+        )
 
-        # If the list is a queryset, we'll invent a template name based on the
-        # app and model name. This name gets put at the end of the template
-        # name list so that user-supplied names override the automatically-
-        # generated ones.
-        if hasattr(self.object_list, 'model'):
-            opts = self.object_list.model._meta
-            names.append("%s/%s%s.html" % (opts.app_label, opts.object_name.lower(), self.template_name_suffix))
+    ## Edited
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return self.render_to_response(context)
 
-            return names
+    ## Edited
+    def get_context_data(self):
+        """
+        Get the context for this view.
+        """
+        self.announcements = self.get_announcements()
+        self.comming_homework = self.get_comming_homework()
+        self.is_weekend = self.get_is_weekend()
+        self.days = self.get_days()
 
+        context = {
+            'announcements': announcements,
+            'comming_homework': comming_homework,
+            'is_weekend': is_weekend,
+            'days': days,
+        }
 
-
+        return context
 
 
 # I'm just leaving this here for now if I want to use parts later
@@ -60,7 +114,7 @@ class UserDetailView(DetailView):
 
         # Use a custom queryset if provided
         if queryset is None:
-            queryset = self.get_queryset()
+            queryset = self.## Needs queryset()
 
         username = self.kwargs.get(self.username_url_kwarg, None)
 
