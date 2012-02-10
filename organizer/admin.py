@@ -14,7 +14,7 @@ class HomeworkTypeAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 class HomeworkAdmin(admin.ModelAdmin):
-    list_display = ('type', 'content',)
+    list_display = ('homework_type', 'content',)
 
 
 admin.site.register(Topic,TopicAdmin)

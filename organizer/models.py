@@ -27,7 +27,7 @@ class Course(models.Model):
         limit_choices_to={'groups__name': 'students'}
     )
 
-    def __uncidode(self):
+    def __unicode(self):
         return '{} ({})'.format(self.topic, self.teacher.designation)
 
 class Lesson(models.Model):
@@ -74,14 +74,14 @@ class Homework(models.Model):
 class Cancellation(models.Model):
     teacher = models.ForeignKey(
         User,
-        blank=True,
-        null=True,
+        related_name='cancelled_teacher',
+        blank=True, null=True,
         limit_choices_to={'groups__name': 'teachers'}
     )
     new_teacher = models.ForeignKey(
         User,
-        blank=True,
-        null=True,
+        related_name='new_teacher',
+        blank=True, null=True,
         limit_choices_to={'groups__name': 'teachers'}
     )
     
