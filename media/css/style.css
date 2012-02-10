@@ -617,6 +617,16 @@ li.odd a, li.even a {
 }
 
 /*------------------------------loginpage------------------------------*/
+#loginpage {
+  text-align: center;
+}
+#loginpage a:link, #loginpage a:visited {
+  text-decoration: none;
+  font-size: 14px;
+}
+#loginpage a:hover, #loginpage a:active {
+  text-decoration: underline;
+}
 #loginerror {
   background: #d44;
   color: #fff;
