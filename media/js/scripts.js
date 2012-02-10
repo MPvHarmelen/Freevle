@@ -14,7 +14,7 @@ $(document).ready(function(){
   });
 
   $('#slides').width(totWidth);
-        $(‘#next-button’).click(function(e,keepScroll) {
+        $('#next-button').click(function(e,keepScroll) {
           if (currentPosition < positions.length-1) {
             var pos = currentPosition+1;
             currentPosition = pos;
@@ -108,19 +108,28 @@ $(document).ready(function(){
   });
 
 
+  function centerInlogForm() {
+    var windowHeight = $(window).height();
+    var halfWindowHeight = (windowHeight / 2);
+    var loginFormHeight = $('#inlogform').height();
+    var halfLoginFormHeight = (loginFormHeight / 2);
+    var topMargin = (halfWindowHeight - halfLoginFormHeight) - 40;
+    $('#inlogform').css('margin-top', topMargin + 'px');
+  }
+
+
 //Inlogform
   $('#darken').hide();
   $('#loginhome').click(function() {
-      var topMargin = (($(window).height / 2) - ($('#inlogform') / 2));
-      $("#inlogform").animate({marginTop: topMargin}, {queue: false, duration: 'fast'});
       $('#darken').fadeIn('fast');
+      document.getElementById('id_username').focus();
     });
   $('#closelogin').click(function() {
-      $('#inlogform').animate({marginTop: '100px'}, {queue: false, duration: 'fast'});
       $('#darken').fadeOut('fast');
-    });  
-  
+    });
+  centerInlogForm();
 
+  $(window).resize(centerInlogForm);
 //Menu backgrounds
   var menuLi = $('li.menu, div.header');
 
@@ -137,6 +146,10 @@ $(document).ready(function(){
     }, function() {
       $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
     });
+
+  if(document.getElementById('focus')) {
+    document.getElementById('focus').focus();
+  }
 });
 
 document.createElement('header');

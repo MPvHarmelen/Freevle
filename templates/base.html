@@ -9,7 +9,6 @@
 
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/media/js/scripts.js"></script>
-    <script type="text/javascript" src="/media/photos/galleria/galleria-1.2.6.min.js"></script>
 
   </head>
   <body>
@@ -64,6 +63,7 @@
               <li id="settingicon" class="menu">
                 <a class="header" href="/">{{ user.first_name}} {{ user.last_name}}</a>
                 <ul class="dropdown" id="rightdrop">
+                  <li><a class="menu-item" href="/letters/">Letters</a></li>
                   <li><a class="menu-item" href="/user/settings/">Instellingen</a></li>
                   <li><a class="menu-item" href="/user/logout/">Log uit</a></li>
                 </ul>
@@ -109,11 +109,6 @@
 
             <img id="swan" src="/media/img/zwaan.png" alt="logo">
 
-            <form>
-              <input type="text" id="searchfield" placeholder="{% trans "Search..." %}" />
-            </form>
-            
-            <div class="clear"></div>    
           </div>
         
           <div class="footercolumn" id="middlecolumn">

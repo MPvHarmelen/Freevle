@@ -2,17 +2,21 @@
 {% load i18n %}
 
 {% block content %}
+  <div id="loginpage">
+    <h2>Login</h2>
+
     {% if form.errors %}
     <p id="loginerror">Your username and password didn't match. Please try again.</p>
     {% endif %}
 
     <form method="post" id="loginformpage">
     {% csrf_token %}
-      <input class="text" type="text" name="username" placeholder="{% trans "Username" %}" /><br>
+      <input class="text" id="focus" type="text" name="username" placeholder="{% trans "Username" %}" /><br>
       <input class="text" type="password" name="password" placeholder="{% trans "Password" %}" /><br>
       <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
       <input type="hidden" name="next" value="{{ request.get_full_path }}">
     </form>
-    <a href="">Heb je nog geen account?</a><br>
-    <a href="">Ben je je wachtwoord vergeten?</a>
+    <p><a href="">Heb je nog geen account?</a></p>
+    <p><a href="">Ben je je wachtwoord vergeten?</a></p>
+  </div>
 {% endblock %}

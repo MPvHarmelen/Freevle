@@ -37,6 +37,10 @@ span.italic {
   background: #fff url(../img/background.png) repeat-x;
 }
 
+p, li {
+  word-wrap: break-word;
+}
+
 /*------------------------------header------------------------------*/
 header {
   margin: 0 auto;
@@ -170,6 +174,7 @@ div#inlogform {
   box-shadow: 0 0 100px #000;
   font-size: 13px;
   border-radius: 2px;
+  height: 307px;
 }
 #closelogin {
   height: 24px;
@@ -256,8 +261,12 @@ h2 {
   font-size: 40px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
-  line-height: 38px;
-  margin: 50px 0 0;
+  margin: 50px 0 30px;
+}
+
+#inlogform h2 {
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 div.breadcrumbs {
@@ -587,16 +596,37 @@ div#komend li.huiswerkitem {
 }
 
 /*------------------------------letters------------------------------*/
+ul#letters {
+  padding: 0;
+}
 li.odd {
   background: #eee;
   list-style: none;
+  margin: 0;
+  padding: 8px 12px;
 }
 li.even {
   background: #f5f5f5;
   list-style: none;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+li.odd a, li.even a {
+  text-decoration: none;
 }
 
 /*------------------------------loginpage------------------------------*/
+#loginpage {
+  text-align: center;
+}
+#loginpage a:link, #loginpage a:visited {
+  text-decoration: none;
+  font-size: 14px;
+}
+#loginpage a:hover, #loginpage a:active {
+  text-decoration: underline;
+}
 #loginerror {
   background: #d44;
   color: #fff;
