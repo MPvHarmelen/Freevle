@@ -37,6 +37,10 @@ span.italic {
   background: #fff url(../img/background.png) repeat-x;
 }
 
+p, li {
+  word-wrap: break-word;
+}
+
 /*------------------------------header------------------------------*/
 header {
   margin: 0 auto;
@@ -170,6 +174,7 @@ div#inlogform {
   box-shadow: 0 0 100px #000;
   font-size: 13px;
   border-radius: 2px;
+  height: 307px;
 }
 #closelogin {
   height: 24px;
@@ -256,8 +261,12 @@ h2 {
   font-size: 40px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
-  line-height: 38px;
-  margin: 50px 0 0;
+  margin: 50px 0 30px;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+#inlogform h2 {
+  text-align: center;
 }
 
 div.breadcrumbs {

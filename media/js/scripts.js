@@ -108,20 +108,28 @@ $(document).ready(function(){
   });
 
 
+  function centerInlogForm() {
+    var windowHeight = $(window).height();
+    var halfWindowHeight = (windowHeight / 2);
+    var loginFormHeight = $('#inlogform').height();
+    var halfLoginFormHeight = (loginFormHeight / 2);
+    var topMargin = (halfWindowHeight - halfLoginFormHeight) - 40;
+    $('#inlogform').css('margin-top', topMargin + 'px');
+  }
+
+
 //Inlogform
   $('#darken').hide();
-  var windowHeight = $(window).height();
-  var halfWindowHeight = (windowHeight / 2);
-  var topMargin = (($(window).height() / 2) - $('#inlogform').height());
-  $('#inlogform').css('margin-top', topMargin + 'px');
   $('#loginhome').click(function() {
       $('#darken').fadeIn('fast');
+      document.getElementById('id_username').focus();
     });
   $('#closelogin').click(function() {
       $('#darken').fadeOut('fast');
-    });  
-  
+    });
+  centerInlogForm();
 
+  $(window).resize(centerInlogForm);
 //Menu backgrounds
   var menuLi = $('li.menu, div.header');
 
@@ -138,6 +146,10 @@ $(document).ready(function(){
     }, function() {
       $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
     });
+
+  if(document.getElementById('focus')) {
+    document.getElementById('focus').focus();
+  }
 });
 
 document.createElement('header');
