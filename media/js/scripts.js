@@ -36,13 +36,14 @@ $(document).ready(function(){
 
 //Inlogform
   $('#darken').hide();
+  var windowHeight = $(window).height();
+  var halfWindowHeight = (windowHeight / 2);
+  var topMargin = (($(window).height() / 2) - $('#inlogform').height());
+  $('#inlogform').css('margin-top', topMargin + 'px');
   $('#loginhome').click(function() {
-      var topMargin = (($(window).height / 2) - ($('#inlogform') / 2));
-      $("#inlogform").animate({marginTop: topMargin}, {queue: false, duration: 'fast'});
       $('#darken').fadeIn('fast');
     });
   $('#closelogin').click(function() {
-      $('#inlogform').animate({marginTop: '100px'}, {queue: false, duration: 'fast'});
       $('#darken').fadeOut('fast');
     });  
   
