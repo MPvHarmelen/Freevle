@@ -1,5 +1,5 @@
 $(document).ready(function(){
-z
+
 //Slider
   var totWidth = 0;
   var positions = new Array();
