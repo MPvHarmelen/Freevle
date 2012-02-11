@@ -1,10 +1,17 @@
-from django.core.exceptions import ImproperlyConfigured
+# Create your views here.
+
+import datetime
+
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.http import Http404
 from django.template.response import TemplateResponse
 from django.views.generic.detail import DetailView
+from django.views.generic.dates import YearMixin, MonthMixin, DayMixin, DateMixin
 from django.views.generic.base import View
 
-# Create your views here.
-class UserView(View):
+from django.contrib.auth.models import User
+
+class UserView(View, YearMixin, MonthMixin, DayMixin):
 
     '''
     lesson_set1 = queryset
@@ -12,49 +19,40 @@ class UserView(View):
     lesson_set3 = queryset
     > announcements = queryset
     > comming_homework = queryset
-    > is_weekend = None or 0 or 1
+    > first_day = date.strftime('%a')
     > lesson_sets = [lesson_set1, lesson_set2, lesson_set3]
     
     To write:
     get_comming_homework()
     get_anouncements()
-    get_is_weekend()
-    get_lesson_sets()
+    get_first_day()
+    get_lesson_set_list()
+    get_lesson_set()
+    get_date()
+    
+    UITVAL?!
+    LEGENDA!
     
     '''
-    user_url_kwarg = 'user'
-    day_url_kwarg = 'day'
+    username_url_kwarg = 'username'
     announcements = None
     comming_homework = None
-    is_weekend = None
-    lesson_sets = None
+    first_day = None
+    number_future_days = 2
 
-
-    def get_announcements(self):
+    def get_date(self):
         pass
 
-    def get_is_weekend(self):
+    def get_announcements(self, date):
         pass
 
-    def get_comming_homework(self):
+    def get_first_day(self, date):
         pass
 
-    def get_lesson_sets(self):   ## << Here
-        """
-        Get the list of lessonsets. This is a list of querysets.
-        """
-        if self.lesson_sets is not None:
-            lesson_sets = self.lesson_sets
-        else:
-            user = self.kwargs.get(self.user_url_kwarg, None)
-            day = self.kwargs.get(self.day_url_kwarg, None)
-            if user is not None:
-                pass
-            if day is not None:
-                pass
-            lesson_sets = None
-        return lesson_sets
+    def get_comming_homework(self, date):
+        pass
 
+    def get_lesson_set(self, date)
 
     def get_queryset(self):   ## << Here
         """
@@ -71,6 +69,7 @@ class UserView(View):
             raise ImproperlyConfigured(u"'%s' must define 'queryset' or 'model'"
                                        % self.__class__.__name__)
         return queryset
+
 
     # -- Done --
     ## Original    
@@ -110,22 +109,125 @@ class UserView(View):
         """
         Get the context for this view.
         """
-        announcements = self.get_announcements()
-        comming_homework = self.get_comming_homework()
-        is_weekend = self.get_is_weekend()
-        lesson_sets = self.get_lesson_sets()
+        date = self.get_date()
+        announcements = self.get_announcements(date)
+        comming_homework = self.get_comming_homework(date)
+        first_day = self.get_first_day(date)
+        lesson_set_list = self.get_lesson_set_list(date)
 
         context = {
             'announcements': announcements,
             'comming_homework': comming_homework,
-            'is_weekend': is_weekend,
-            'lesson_sets': lesson_sets,
+            'first_day': first_day,
+            'lesson_set_list': lesson_set_list,
         }
 
         return context
 
+    # Homemade
+    lesson_set_list = None
+    def get_lesson_set_list(self, date):
+        """
+        Get the list of lessonsets. This is a list of querysets.
+        """
+        if self.lesson_set_list is not None:
+            lesson_set_list = self.lesson_set_list
+        else:
+            username = self.kwargs.get(self.username_url_kwarg, None)
+            
+            if username is not None:
+                try:
+                    user = User.objects.all().get(username=username)
+                except ObjectDoesNotExist:
+                    raise Http404
+            else:
+                raise ImproperlyConfigured("UserView needs to be called with "
+                                           "a username")
+            
+            lesson_set_list = [self.get_lesson_set(date + timedelta(days=n))
+                               for n in range(self.number_future_days)]
+            
+        return lesson_set_list
+
 
 # I'm just leaving this here for now if I want to use parts later
+def _get_next_prev_month(generic_view, naive_result, is_previous, use_first_day):
+    """
+    Helper: Get the next or the previous valid date. The idea is to allow
+    links on month/day views to never be 404s by never providing a date
+    that'll be invalid for the given view.
+
+    This is a bit complicated since it handles both next and previous months
+    and days (for MonthArchiveView and DayArchiveView); hence the coupling to generic_view.
+
+    However in essence the logic comes down to:
+
+        * If allow_empty and allow_future are both true, this is easy: just
+          return the naive result (just the next/previous day or month,
+          reguardless of object existence.)
+
+        * If allow_empty is true, allow_future is false, and the naive month
+          isn't in the future, then return it; otherwise return None.
+
+        * If allow_empty is false and allow_future is true, return the next
+          date *that contains a valid object*, even if it's in the future. If
+          there are no next objects, return None.
+
+        * If allow_empty is false and allow_future is false, return the next
+          date that contains a valid object. If that date is in the future, or
+          if there are no next objects, return None.
+
+    """
+    date_field = generic_view.get_date_field()
+    allow_empty = generic_view.get_allow_empty()
+    allow_future = generic_view.get_allow_future()
+
+    # If allow_empty is True the naive value will be valid
+    if allow_empty:
+        result = naive_result
+
+    # Otherwise, we'll need to go to the database to look for an object
+    # whose date_field is at least (greater than/less than) the given
+    # naive result
+    else:
+        # Construct a lookup and an ordering depending on whether we're doing
+        # a previous date or a next date lookup.
+        if is_previous:
+            lookup = {'%s__lte' % date_field: naive_result}
+            ordering = '-%s' % date_field
+        else:
+            lookup = {'%s__gte' % date_field: naive_result}
+            ordering = date_field
+
+        qs = generic_view.get_queryset().filter(**lookup).order_by(ordering)
+
+        # Snag the first object from the queryset; if it doesn't exist that
+        # means there's no next/previous link available.
+        try:
+            result = getattr(qs[0], date_field)
+        except IndexError:
+            result = None
+
+    # Convert datetimes to a dates
+    if hasattr(result, 'date'):
+        result = result.date()
+
+    # For month views, we always want to have a date that's the first of the
+    # month for consistency's sake.
+    if result and use_first_day:
+        result = result.replace(day=1)
+
+    # Check against future dates.
+    if result and (allow_future or result < datetime.date.today()):
+        return result
+    else:
+        return None
+
+
+
+
+
+
 class UserDetailView(DetailView):
     username_field = 'username'
     username_url_kwarg = 'username'
