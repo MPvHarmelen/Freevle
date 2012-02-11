@@ -1,3 +1,4 @@
+from django.core.exceptions import ImproperlyConfigured
 from django.template.response import TemplateResponse
 from django.views.generic.detail import DetailView
 from django.views.generic.base import View
@@ -6,35 +7,54 @@ from django.views.generic.base import View
 class UserView(View):
 
     '''
-    day1 = queryset
-    day2 = queryset
-    day3 = queryset
+    lesson_set1 = queryset
+    lesson_set2 = queryset
+    lesson_set3 = queryset
     > announcements = queryset
     > comming_homework = queryset
     > is_weekend = None or 0 or 1
-    > days = [day1, day2, day3]
+    > lesson_sets = [lesson_set1, lesson_set2, lesson_set3]
     
     To write:
     get_comming_homework()
     get_anouncements()
     get_is_weekend()
-    get_days()
+    get_lesson_sets()
     
     '''
     user_url_kwarg = 'user'
-    
-    def get_days(self):   ## << Here
+    day_url_kwarg = 'day'
+    announcements = None
+    comming_homework = None
+    is_weekend = None
+    lesson_sets = None
+
+
+    def get_announcements(self):
+        pass
+
+    def get_is_weekend(self):
+        pass
+
+    def get_comming_homework(self):
+        pass
+
+    def get_lesson_sets(self):   ## << Here
         """
-        Get the list of items for this view. This must be an interable, and may
-        be a days (in which qs-specific behavior will be enabled).
+        Get the list of lessonsets. This is a list of querysets.
         """
-        if self.days is not None:
-            days = self.days
+        if self.lesson_sets is not None:
+            lesson_sets = self.lesson_sets
         else:
             user = self.kwargs.get(self.user_url_kwarg, None)
+            day = self.kwargs.get(self.day_url_kwarg, None)
             if user is not None:
-                
-        return days
+                pass
+            if day is not None:
+                pass
+            lesson_sets = None
+        return lesson_sets
+
 
     def get_queryset(self):   ## << Here
         """
@@ -67,6 +87,7 @@ class UserView(View):
             return [self.template_name]
     
     ## Original
+    template_name = None
     response_class = TemplateResponse
     def render_to_response(self, context, **response_kwargs):
         """
@@ -89,16 +110,16 @@ class UserView(View):
         """
         Get the context for this view.
         """
-        self.announcements = self.get_announcements()
-        self.comming_homework = self.get_comming_homework()
-        self.is_weekend = self.get_is_weekend()
-        self.days = self.get_days()
+        announcements = self.get_announcements()
+        comming_homework = self.get_comming_homework()
+        is_weekend = self.get_is_weekend()
+        lesson_sets = self.get_lesson_sets()
 
         context = {
             'announcements': announcements,
             'comming_homework': comming_homework,
             'is_weekend': is_weekend,
-            'days': days,
+            'lesson_sets': lesson_sets,
         }
 
         return context
@@ -114,7 +135,7 @@ class UserDetailView(DetailView):
 
         # Use a custom queryset if provided
         if queryset is None:
-            queryset = self.## Needs queryset()
+            queryset = self.get_queryset()
 
         username = self.kwargs.get(self.username_url_kwarg, None)
 

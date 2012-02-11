@@ -54,7 +54,7 @@
 
       {% for day in days %}
         <div class="dag">
-          <p class="dag">{% day.name %}</p>
+          <p class="dag">{{ day.name }}</p>
 
           {% for lesson in day.lessons %}
             <div class="{% cycle 'uuru' 'uuri' %}">
