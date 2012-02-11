@@ -19,14 +19,14 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
     lesson_set3 = queryset
     > announcements = queryset
     > comming_homework = queryset
-    > first_day = date.strftime('%a')
+    > day_names = date.strftime('%a')
     > lesson_sets = [lesson_set1, lesson_set2, lesson_set3]
     
     To write:
     get_comming_homework()
     get_anouncements()
-    get_first_day()
-    get_lesson_set_list()
+    get_day_names()
+    get_lesson_set_dict()
     get_lesson_set()
     get_date()
     
@@ -37,7 +37,7 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
     username_url_kwarg = 'username'
     announcements = None
     comming_homework = None
-    first_day = None
+    day_names = None
     number_future_days = 2
 
     def get_date(self):
@@ -46,13 +46,40 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
     def get_announcements(self, date):
         pass
 
-    def get_first_day(self, date):
+    def get_day_names(self, date):
         pass
 
     def get_comming_homework(self, date):
         pass
 
-    def get_lesson_set(self, date)
+    def get_lesson_set(self, date):
+        pass
+
+    # Homemade
+    lesson_set_dict = None
+    def get_lesson_set_dict(self, date):
+        """
+        Get the list of lessonsets. This is a list of querysets.
+        """
+        if self.lesson_set_dict is not None:
+            lesson_set_dict = self.lesson_set_dict
+        else:
+            username = self.kwargs.get(self.username_url_kwarg, None)
+            
+            if username is not None:
+                try:
+                    user = User.objects.all().get(username=username)
+                except ObjectDoesNotExist:
+                    raise Http404
+            else:
+                raise ImproperlyConfigured("UserView needs to be called with "
+                                           "a username")
+            
+            lesson_set_dict = [self.get_lesson_set(date + timedelta(days=n))
+                               for n in range(self.number_future_days)]
+            
+        return lesson_set_dict
+
 
     def get_queryset(self):   ## << Here
         """
@@ -112,46 +139,23 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
         date = self.get_date()
         announcements = self.get_announcements(date)
         comming_homework = self.get_comming_homework(date)
-        first_day = self.get_first_day(date)
-        lesson_set_list = self.get_lesson_set_list(date)
+        day_names = self.get_day_names(date)
+        lesson_set_dict = self.get_lesson_set_dict(date)
 
         context = {
             'announcements': announcements,
             'comming_homework': comming_homework,
-            'first_day': first_day,
-            'lesson_set_list': lesson_set_list,
+            'day_names': day_names,
+            'lesson_set_dict': lesson_set_dict,
         }
 
         return context
 
-    # Homemade
-    lesson_set_list = None
-    def get_lesson_set_list(self, date):
-        """
-        Get the list of lessonsets. This is a list of querysets.
-        """
-        if self.lesson_set_list is not None:
-            lesson_set_list = self.lesson_set_list
-        else:
-            username = self.kwargs.get(self.username_url_kwarg, None)
-            
-            if username is not None:
-                try:
-                    user = User.objects.all().get(username=username)
-                except ObjectDoesNotExist:
-                    raise Http404
-            else:
-                raise ImproperlyConfigured("UserView needs to be called with "
-                                           "a username")
-            
-            lesson_set_list = [self.get_lesson_set(date + timedelta(days=n))
-                               for n in range(self.number_future_days)]
-            
-        return lesson_set_list
+
 
 
 # I'm just leaving this here for now if I want to use parts later
-def _get_next_prev_month(generic_view, naive_result, is_previous, use_first_day):
+def _get_next_prev_month(generic_view, naive_result, is_previous, use_day_names):
     """
     Helper: Get the next or the previous valid date. The idea is to allow
     links on month/day views to never be 404s by never providing a date
@@ -214,7 +218,7 @@ def _get_next_prev_month(generic_view, naive_result, is_previous, use_first_day)
 
     # For month views, we always want to have a date that's the first of the
     # month for consistency's sake.
-    if result and use_first_day:
+    if result and use_day_names:
         result = result.replace(day=1)
 
     # Check against future dates.
