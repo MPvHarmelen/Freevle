@@ -262,6 +262,7 @@ h2 {
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
   margin: 50px 0 30px;
+  line-height: 38px;
 }
 
 #inlogform h2 {
@@ -293,9 +294,11 @@ a.leesmeer {
 
 
 /*------------------------------foto's------------------------------*/
-#galleria {
-  height: 400px;
+div.photos {
+  height: 230px;
+  border-bottom: 1px solid #CFCFCF;
 }
+
 div.photo_cont {
   float: left;
 }
