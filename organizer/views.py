@@ -6,32 +6,122 @@ from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.http import Http404
 from django.template.response import TemplateResponse
 from django.views.generic.detail import DetailView
-from django.views.generic.dates import YearMixin, MonthMixin, DayMixin, DateMixin
 from django.views.generic.base import View
+from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
 
-class UserView(View, YearMixin, MonthMixin, DayMixin):
+class DateMixin(object):
+    year = None
+    month = None
+    day = None
+
+    year_format = '%Y'
+    month_format = '%m'
+    day_format = '%d'
+
+    ## Edited
+    def get_year(self):
+        '''
+        Return the year for which this view should display data
+        '''
+        year = self.year
+        if year is None:
+            try:
+                year = self.kwargs['year']
+            except KeyError:
+                year = datetime.date.today().year
+
+    ## Edited
+    def get_month(self):
+        '''
+        Return the day for which this view should display data
+        '''
+        month = self.month
+        if month is None:
+            try:
+                month = self.kwargs['month']
+            except KeyError:
+                month = datetime.date.today().month
+
+    ## Edited
+    def get_day(self):
+        '''
+        Return the day for which this view should display data
+        '''
+        day = self.day
+        if day is None:
+            try:
+                day = self.kwargs['day']
+            except KeyError:
+                day = datetime.date.today().day
+
+    def get_year_format(self):
+        '''
+        Get a year format string in strptime syntax to be used to parse the
+        year from url variables
+        '''
+        return self.year_format
+
+    def get_month_format(self):
+        '''
+        Get a month format string in strptime syntax to be used to parse the
+        month from url variables
+        '''
+        return self.month_format
+
+    def get_year_format(self):
+        '''
+        Get a day format string in strptime syntax to be used to parse the
+        day from url variables
+        '''
+        return self.month_format
+
+    ## Brewed from _date_from_string(kwargs)
+    def get_date(self):
+        '''
+        Return the date for which this view should display data
+        '''
+        year = self.get_year()
+        month = self.get_month()
+        day = self.get_day()
+        
+        year_format = self.get_year_format()
+        month_format = self.get_month_format()
+        day_format = self.get_day_format()
+        
+        date_format = delim.join((year_format, month_format, day_format))
+        date_string = delim.join((year, month, day))        
+        
+        return datetime.datetime.strptime(date_string, date_format).date()
+
+class UserView(View, DateMixin):
 
     '''
-    lesson_set1 = queryset
-    lesson_set2 = queryset
-    lesson_set3 = queryset
+    Context:
     > announcements = queryset
     > comming_homework = queryset
-    > day_names = date.strftime('%a')
-    > lesson_sets = [lesson_set1, lesson_set2, lesson_set3]
+    > lesson_sets = [lesson_set1, lesson_set2, (...)]
+    > legend = queryset
+    
+    With:
+    lesson_set1 = queryset
+    lesson_set2 = queryset
+    ...
+
+    The day name is done by opdating the queryset of a day to make
+    day_of_week a full name, instead of an English abbreviation
     
     To write:
     get_comming_homework()
     get_anouncements()
     get_day_names()
-    get_lesson_set_dict()
+    get_lesson_set_list()
     get_lesson_set()
     get_date()
+    get_legend()
     
     UITVAL?!
-    LEGENDA!
     
     '''
     username_url_kwarg = 'username'
@@ -39,10 +129,7 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
     comming_homework = None
     day_names = None
     number_future_days = 2
-
-    def get_date(self):
-        pass
-
+    
     def get_announcements(self, date):
         pass
 
@@ -52,33 +139,15 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
     def get_comming_homework(self, date):
         pass
 
-    def get_lesson_set(self, date):
+    def get_legend():
         pass
 
-    # Homemade
-    lesson_set_dict = None
-    def get_lesson_set_dict(self, date):
-        """
-        Get the list of lessonsets. This is a list of querysets.
-        """
-        if self.lesson_set_dict is not None:
-            lesson_set_dict = self.lesson_set_dict
-        else:
-            username = self.kwargs.get(self.username_url_kwarg, None)
-            
-            if username is not None:
-                try:
-                    user = User.objects.all().get(username=username)
-                except ObjectDoesNotExist:
-                    raise Http404
-            else:
-                raise ImproperlyConfigured("UserView needs to be called with "
-                                           "a username")
-            
-            lesson_set_dict = [self.get_lesson_set(date + timedelta(days=n))
-                               for n in range(self.number_future_days)]
-            
-        return lesson_set_dict
+    def get_lesson_set(self, date):
+        '''
+        Returns a lessonset for the given date
+        '''
+        pass
+
 
 
     def get_queryset(self):   ## << Here
@@ -140,17 +209,42 @@ class UserView(View, YearMixin, MonthMixin, DayMixin):
         announcements = self.get_announcements(date)
         comming_homework = self.get_comming_homework(date)
         day_names = self.get_day_names(date)
-        lesson_set_dict = self.get_lesson_set_dict(date)
+        lesson_set_list = self.get_lesson_set_list(date)
+        legend = self.get_legend()
 
         context = {
             'announcements': announcements,
             'comming_homework': comming_homework,
-            'day_names': day_names,
-            'lesson_set_dict': lesson_set_dict,
+            'lesson_set_list': lesson_set_list,
+            'legend': legend
         }
 
         return context
 
+    # Homemade
+    lesson_set_list = None
+    def get_lesson_set_list(self, date):
+        """
+        Get the list of lessonsets. This is a list of querysets.
+        """
+        if self.lesson_set_list is not None:
+            lesson_set_list = self.lesson_set_list
+        else:
+            username = self.kwargs.get(self.username_url_kwarg, None)
+            
+            if username is not None:
+                try:
+                    user = User.objects.all().get(username=username)
+                except ObjectDoesNotExist:
+                    raise Http404
+            else:
+                raise ImproperlyConfigured("UserView needs to be called with "
+                                           "a username")
+            
+            lesson_set_list = [self.get_lesson_set(date + timedelta(days=n))
+                               for n in range(self.number_future_days)]
+            
+        return lesson_set_list
 
 
 
