@@ -32,15 +32,16 @@ class Course(models.Model):
 
 class Lesson(models.Model):
     # The case for the abbreviations are chosen
-    # to mach the %a format of strftime()
+    # to match the %a format of strftime(),
+    # the order to match %w.
     DAY_CHOICES = (
+        ('Sun', _('Sunday')),
         ('Mon', _('Monday')),
         ('Tue', _('Tuesday')),
         ('Wen', _('Wednesday')),
         ('Thu', _('Thursday')),
         ('Fri', _('Friday')),
         ('Sat', _('Saturday')),
-        ('Sun', _('Sunday')),
     )
     course = models.ForeignKey(Course)
     classroom = models.CharField(max_length=16)
