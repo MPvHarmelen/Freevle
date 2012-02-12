@@ -272,10 +272,16 @@ h2 {
 
 div.breadcrumbs {
   float: left;
-  width: 800px;
-  font-size: 15px;
   margin: 0 0 10px;
-  padding: 3px 0 5px
+  padding: 3px 0 5px;
+  color: #DEDEDE;
+  font-size: 15px;
+  text-decoration: none;
+  text-shadow: #EEEEEE 1px 1px 0px;
+}
+
+div.breadcrumbs a {
+  color: #DEDEDE;
   text-decoration: none;
 }
 
