@@ -295,30 +295,49 @@ a.leesmeer {
 
 /*------------------------------foto's------------------------------*/
 div.photos {
-  height: 230px;
-  border-bottom: 1px solid #CFCFCF;
-}
-
-div.photo_cont {
-  float: left;
-}
-div.photos {
   padding: 0 0 40px;
   border-bottom: 1px solid #cfcfcf;
 }
-img.photo {
+div#slider {
+  overflow: hidden;
+}
+img.slide {
   height: 180px;
   width: 266px;
   float: left;
 }
-a.image {
-  text-decoration: none;
+ul#sliderul {
+	margin: 0px auto;
+	padding: 0px;
+	width: 86px;
 }
-a.beschrijving {
-  text-align: center;
-  display: block;
-  width: 100%;
+li.slidernav {
+	display: inline-block;
+	list-style: none;
+	width: 14px;
+	margin: 15px 5px;
+	height: 14px;
 }
+a.li {
+	width: 14px;
+	display: block;
+	height: 14px;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+}
+.act {
+	background: #1b8664;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+  box-shadow: inset 0 2px 4px #333;
+  -moz-box-shadow: inset 0 2px 4px #333;
+}
+.inact {
+	background: #444;
+  border-radius: 7px;
+	-moz-border-radius: 7px;
+}
+
 
 /*------------------------------rooster------------------------------*/
 div#rooster {
@@ -414,6 +433,7 @@ div.lokaal {
   background: #efefef;
   font-size: 23px;
   color: #777;
+  word-wrap: normal;
 }
 #weekend span {
   display: block;
