@@ -85,14 +85,14 @@ class DateMixin(object):
         year = self.get_year()
         month = self.get_month()
         day = self.get_day()
-        
+
         year_format = self.get_year_format()
         month_format = self.get_month_format()
         day_format = self.get_day_format()
-        
+
         date_format = delim.join((year_format, month_format, day_format))
-        date_string = delim.join((year, month, day))        
-        
+        date_string = delim.join((year, month, day))
+
         return datetime.datetime.strptime(date_string, date_format).date()
 
 class UserView(View, DateMixin):
@@ -103,7 +103,7 @@ class UserView(View, DateMixin):
     > comming_homework = queryset
     > lesson_sets = [lesson_set1, lesson_set2, (...)]
     > legend = queryset
-    
+
     With:
     lesson_set1 = queryset
     lesson_set2 = queryset
@@ -111,25 +111,25 @@ class UserView(View, DateMixin):
 
     The day name is done by opdating the queryset of a day to make
     day_of_week a full name, instead of an English abbreviation
-    
+
     To write:
     get_comming_homework()
     get_anouncements()
     get_day_names()
     get_lesson_set_list()
     get_lesson_set()
-    get_date()
+    Done | get_date()
     get_legend()
-    
+
     UITVAL?!
-    
+
     '''
     username_url_kwarg = 'username'
     announcements = None
     comming_homework = None
     day_names = None
     number_future_days = 2
-    
+
     def get_announcements(self, date):
         pass
 
@@ -146,6 +146,7 @@ class UserView(View, DateMixin):
         '''
         Returns a lessonset for the given date
         '''
+        lesson_set.update(day_of_week=day_of_week)
         pass
 
 
@@ -168,7 +169,7 @@ class UserView(View, DateMixin):
 
 
     # -- Done --
-    ## Original    
+    ## Original
     def get_template_names(self):
         """
         Returns a list of template names to be used for the request. Must return
@@ -180,7 +181,7 @@ class UserView(View, DateMixin):
                 "'template_name' or an implementation of 'get_template_names()'")
         else:
             return [self.template_name]
-    
+
     ## Original
     template_name = None
     response_class = TemplateResponse
@@ -231,7 +232,7 @@ class UserView(View, DateMixin):
             lesson_set_list = self.lesson_set_list
         else:
             username = self.kwargs.get(self.username_url_kwarg, None)
-            
+
             if username is not None:
                 try:
                     user = User.objects.all().get(username=username)
@@ -240,10 +241,10 @@ class UserView(View, DateMixin):
             else:
                 raise ImproperlyConfigured("UserView needs to be called with "
                                            "a username")
-            
+
             lesson_set_list = [self.get_lesson_set(date + timedelta(days=n))
                                for n in range(self.number_future_days)]
-            
+
         return lesson_set_list
 
 
@@ -331,7 +332,7 @@ class UserDetailView(DetailView):
     username_url_kwarg = 'username'
 
     def get_object(self, queryset=None):
-        
+
 
         # Use a custom queryset if provided
         if queryset is None:
