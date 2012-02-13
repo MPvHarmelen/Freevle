@@ -20,6 +20,8 @@ class DateMixin(object):
     month_format = '%m'
     day_format = '%d'
 
+    allow_weekend = False
+    
     ## Edited
     def get_year(self):
         '''
@@ -70,12 +72,18 @@ class DateMixin(object):
         '''
         return self.month_format
 
-    def get_year_format(self):
+    def get_day_format(self):
         '''
         Get a day format string in strptime syntax to be used to parse the
         day from url variables
         '''
-        return self.month_format
+        return self.day_format
+
+    def get_allow_weekend(self):
+        '''
+        Return if a date is allowed to be a Saturday or Sunday.
+        '''
+        return self.allow_weekend
 
     ## Brewed from _date_from_string(kwargs)
     def get_date(self):
@@ -89,11 +97,22 @@ class DateMixin(object):
         year_format = self.get_year_format()
         month_format = self.get_month_format()
         day_format = self.get_day_format()
+        
+        delim = '__'
 
         date_format = delim.join((year_format, month_format, day_format))
         date_string = delim.join((year, month, day))
 
-        return datetime.datetime.strptime(date_string, date_format).date()
+        date = datetime.datetime.strptime(date_string, date_format).date()
+        
+        if not self.get_allow_weekend():
+            if date.strftime('%a') is 'Saturday':
+                date += datetime.timedelta(days=2)
+            elif date.strftime('%a') is 'Sunday':
+                date += datetime.timedelta(days=1)
+
+        return date
+        
 
 class UserView(View, DateMixin):
 
@@ -115,11 +134,11 @@ class UserView(View, DateMixin):
     To write:
     get_comming_homework()
     get_anouncements()
-    get_day_names()
     get_lesson_set_list()
     get_lesson_set()
     Done | get_date()
     get_legend()
+    get_allow_weekend()
 
     UITVAL?!
 
@@ -133,21 +152,24 @@ class UserView(View, DateMixin):
     def get_announcements(self, date):
         pass
 
-    def get_day_names(self, date):
-        pass
-
     def get_comming_homework(self, date):
         pass
 
-    def get_legend():
+    def get_legend(self):
         pass
 
-    def get_lesson_set(self, date):
+    def get_lesson_set(self, user, date):
         '''
-        Returns a lessonset for the given date
+        Returns a lessonset for the given date, ordered by period
         '''
+        #lessons = user.
+        day_of_week = date.strftime('%a')
+        lesson_set = user.takes_courses.filter(lesson__day_of_week=day_of_week)
+        lesson_set = lesson_set.order_by('').order_by('period')
+        
+        day_of_week = _(date.strftime('%A'))
         lesson_set.update(day_of_week=day_of_week)
-        pass
+        return lesson_set
 
 
 
@@ -209,7 +231,6 @@ class UserView(View, DateMixin):
         date = self.get_date()
         announcements = self.get_announcements(date)
         comming_homework = self.get_comming_homework(date)
-        day_names = self.get_day_names(date)
         lesson_set_list = self.get_lesson_set_list(date)
         legend = self.get_legend()
 
@@ -242,7 +263,7 @@ class UserView(View, DateMixin):
                 raise ImproperlyConfigured("UserView needs to be called with "
                                            "a username")
 
-            lesson_set_list = [self.get_lesson_set(date + timedelta(days=n))
+            lesson_set_list = [self.get_lesson_set(user, date + datetime.timedelta(days=n))
                                for n in range(self.number_future_days)]
 
         return lesson_set_list
