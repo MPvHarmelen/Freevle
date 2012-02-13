@@ -18,17 +18,17 @@ class Course(models.Model):
     topic = models.ForeignKey(Topic)
     teacher = models.ForeignKey(
         User,
-        related_name='course_given',
+        related_name='gives_courses',
         limit_choices_to={'groups__name': 'teachers'}
     )
     students = models.ManyToManyField(
         User,
-        related_name='course_taken',
+        related_name='takes_courses',
         limit_choices_to={'groups__name': 'students'}
     )
 
-    def __unicode(self):
-        return '{} ({})'.format(self.topic, self.teacher.designation)
+    def __unicode__(self):
+        return '{} ({})'.format(self.topic, self.teacher.get_profile().designation)
 
 class Lesson(models.Model):
     # The case for the abbreviations are chosen
