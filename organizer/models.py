@@ -31,14 +31,17 @@ class Course(models.Model):
         return '{} ({})'.format(self.topic, self.teacher.designation)
 
 class Lesson(models.Model):
+    # The case for the abbreviations are chosen
+    # to match the %a format of strftime(),
+    # the order to match %w.
     DAY_CHOICES = (
-        ('MON', _('Monday')),
-        ('TUE', _('Tuesday')),
-        ('WEN', _('Wednesday')),
-        ('THU', _('Thursday')),
-        ('FRI', _('Friday')),
-        ('SAT', _('Saturday')),
-        ('SUN', _('Sunday')),
+        ('Sun', _('Sunday')),
+        ('Mon', _('Monday')),
+        ('Tue', _('Tuesday')),
+        ('Wen', _('Wednesday')),
+        ('Thu', _('Thursday')),
+        ('Fri', _('Friday')),
+        ('Sat', _('Saturday')),
     )
     course = models.ForeignKey(Course)
     classroom = models.CharField(max_length=16)
