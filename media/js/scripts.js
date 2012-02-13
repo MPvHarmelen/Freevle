@@ -11,23 +11,16 @@ $(document).ready(function(){
   var currentPos = 0;
 
   function advance() {
-    $('#slides').stop(true, true).animate('margin-left', '-' + currentPos * 798 + 'px');
+    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 798 + 'px'});
+    console.log(currentPos);
   }
-
-  $('a.li').click(function(event) {
-    event.preventDefault();
-    $('a.act').removeClass('act').addClass('inact');
-    $(this).removeClass('inact').addClass('act');
-    var currentPos = $(this).parent().prevAll('.slidernav').length;
-    advance();
-  });
 
   function autoAdvance() {
     if(currentPos < 2) {
       currentPos++;
       advance();
-      $('a.act').next('a.inact').removeClass('inact').addClass('tmp');
-      $('a.act').removeClass('act').addClass('inact');
+      $('a.act:first').removeClass('act').addClass('inact')
+                      .parent().next().children().removeClass('inact').addClass('act');
     } else if(currentPos === 2) {
       currentPos = 0;
       advance();
@@ -37,6 +30,15 @@ $(document).ready(function(){
   }
 
   var interval = setInterval(function(){autoAdvance()},3000);
+
+  $('a.li').click(function(event) {
+    event.preventDefault();
+    $('a.act').removeClass('act').addClass('inact');
+    $(this).removeClass('inact').addClass('act');
+    currentPos = $(this).parent().prevAll('.slidernav').length;
+    advance();
+    window.clearInterval(interval);
+  });
 
 
 //Height
