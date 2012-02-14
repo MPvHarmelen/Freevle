@@ -21,7 +21,11 @@ class DateMixin(object):
     day_format = '%d'
 
     allow_weekend = False
-    
+    number_future_days = 2
+
+    def  get_number_future_days(self):
+        return self.number_future_days
+
     ## Edited
     def get_year(self):
         '''
@@ -85,6 +89,19 @@ class DateMixin(object):
         '''
         return self.allow_weekend
 
+    def  check_allow_weekend(self, date):
+        allow_weekend = self.get_allow_weekend
+
+        if not allow_weekend:
+            if date.strftime('%a') is 'Sat':
+                date += datetime.timedelta(days=2)
+            elif date.strftime('%a') is 'Sat':
+                date += datetime.timedelta(days=1)
+
+        return date
+
+
+
     ## Brewed from _date_from_string(kwargs)
     def get_date(self):
         '''
@@ -97,22 +114,16 @@ class DateMixin(object):
         year_format = self.get_year_format()
         month_format = self.get_month_format()
         day_format = self.get_day_format()
-        
+
         delim = '__'
 
         date_format = delim.join((year_format, month_format, day_format))
         date_string = delim.join((year, month, day))
 
         date = datetime.datetime.strptime(date_string, date_format).date()
-        
-        if not self.get_allow_weekend():
-            if date.strftime('%a') is 'Saturday':
-                date += datetime.timedelta(days=2)
-            elif date.strftime('%a') is 'Sunday':
-                date += datetime.timedelta(days=1)
 
         return date
-        
+
 
 class UserView(View, DateMixin):
 
@@ -146,8 +157,6 @@ class UserView(View, DateMixin):
     username_url_kwarg = 'username'
     announcements = None
     comming_homework = None
-    day_names = None
-    number_future_days = 2
 
     def get_announcements(self, date):
         pass
@@ -163,15 +172,18 @@ class UserView(View, DateMixin):
         Returns a lessonset for the given date, ordered by period
         '''
         #lessons = user.
+        date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
-        lesson_set = user.takes_courses.filter(lesson__day_of_week=day_of_week)
-        lesson_set = lesson_set.order_by('').order_by('period')
-        
+        lesson_set = user.takes_courses.filter(
+            lesson__day_of_week=day_of_week
+            lesson__start_date__lt = date
+            lesson__end_date__gt = date
+        )
+        lesson_set = lesson_set.order_by('period')
+
         day_of_week = _(date.strftime('%A'))
         lesson_set.update(day_of_week=day_of_week)
         return lesson_set
-
-
 
     def get_queryset(self):   ## << Here
         """
@@ -263,8 +275,9 @@ class UserView(View, DateMixin):
                 raise ImproperlyConfigured("UserView needs to be called with "
                                            "a username")
 
+            number_future_days = self.get_number_future_days()
             lesson_set_list = [self.get_lesson_set(user, date + datetime.timedelta(days=n))
-                               for n in range(self.number_future_days)]
+                               for n in range(number_future_days)]
 
         return lesson_set_list
 
