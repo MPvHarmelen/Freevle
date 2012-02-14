@@ -5,17 +5,36 @@
 
     <article>
       <div class="item">
-        <h2>{% blocktrans %}Welcome{% endblocktrans %}</h2>
+        <h2>{% trans "Welcome" %}</h2>
         <p>In september 2005 is het Cygnus Gymnasium van start gegaan. Inmiddels heeft dus de eerste lichting examen gedaan (met prachtig resultaat!). Het is een jonge school voor leerlingen die goed kunnen leren en die nieuwsgierig zijn. Het is een kleine en gezellige school waar leerlingen zichzelf kunnen zijn en waar hard gewerkt wordt. Een school voor leerlingen die goed om zich heen willen kijken in de wereld en in de wetenschap.</p>
 <p>De school staat in Oost/Watergraafsmeer. Informatie over de definitieve huisvesting</p>
       </div>
     </article>
 
     <div class="photos">
-      <h2>{% blocktrans %}Pictures{% endblocktrans %}</h2>
-          <img class="photo" src="/media/img/image-1.JPG">
-          <img class="photo" src="/media/img/image-2.jpg">
-          <img class="photo" src="/media/img/image-3.jpg">
+
+      <h2>{% trans "Photos" %}</h2>
+      <div id="slider">
+        <div id="slides">
+          <img class="slide" src="/media/img/image-1.jpg">
+          <img class="slide" src="/media/img/image-2.jpg">
+          <img class="slide" src="/media/img/image-3.jpg">
+          <img class="slide" src="/media/img/image-4.jpg">
+          <img class="slide" src="/media/img/image-5.jpg">
+          <img class="slide" src="/media/img/image-6.jpg">
+          <img class="slide" src="/media/img/image-7.jpg">
+          <img class="slide" src="/media/img/image-8.jpg">
+          <img class="slide" src="/media/img/image-9.jpg">
+          <div class="clear"></div>
+        </div>
+
+        <ul id="sliderul">
+          <li class="slidernav"><a class="li" href="#"></a></li>
+          <li class="slidernav"><a class="li" href="#"></a></li>
+          <li class="slidernav"><a class="li" href="#"></a></li>
+        </ul>
+      </div>
+
     </div>
  
     <p class="clear"></p>
