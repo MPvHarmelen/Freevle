@@ -3,7 +3,7 @@
 <html>
   <head>
 
-    <title>Cygnus Template</title>
+    <title>{% trans "Cygnus Template" %}</title>
     <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
@@ -17,7 +17,7 @@
       <div id="darken">
         <div id="inlogform">
           <div id="closelogin"></div>
-          <h2>Login</h2>
+          <h2>{% trans "Login" %}</h2>
           <form method="post" action="/user/login/" id="login">
             {% csrf_token %}
             <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
@@ -25,8 +25,8 @@
             <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
           </form>
-          <a href="">Heb je nog geen account?</a><br>
-          <a href="">Ben je je wachtwoord vergeten?</a>
+          <a href="">{% trans "No account?" %}</a><br>
+          <a href="">{% trans "Forgot your password?" %}</a>
         </div>
       </div>
     {% endif %}
@@ -63,12 +63,12 @@
               <li id="settingicon" class="menu">
                 <a class="header" href="/">{{ user.first_name}} {{ user.last_name}}</a>
                 <ul class="dropdown" id="rightdrop">
-                  <li><a class="menu-item" href="/letters/">Letters</a></li>
-                  <li><a class="menu-item" href="/user/settings/">Instellingen</a></li>
-                  <li><a class="menu-item" href="/user/logout/">Log uit</a></li>
+                  <li><a class="menu-item" href="/letters/">{% trans "Letters" %}</a></li>
+                  <li><a class="menu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
+                  <li><a class="menu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
                 </ul>
               </li>
-              <li id="vakken" class="menu"><a class="header" href="">Vakken</a>
+              <li id="vakken" class="menu"><a class="header" href="">{% trans "Courses" %}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="menu-item" href="/">Grieks</a></li>
                   <li><a class="menu-item" href="/">Geschiedenis</a></li>
@@ -112,9 +112,9 @@
           </div>
         
           <div class="footercolumn" id="middlecolumn">
-            <h2 class="footerh">Sitemap</h2>
+            <h2 class="footerh">{% trans "Sitemap" %}</h2>
             <ul class="sitemaplist">
-              <li><a href="">Home</a></li>
+              <li><a href="">{% trans "Home" %}</a></li>
               {% for page in pages %}
               {% if not page.parent %} 
                 <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
@@ -128,14 +128,14 @@
                 </li>
               {% endif %}
               {% endfor %}
-              <li><a href="/news/">News</a></li>
-              <li><a href="">Contact</a></li>
+              <li><a href="/news/">{% trans "News" %}</a></li>
+              <li><a href="">{% trans "Contact" %}</a></li>
             </ul>
             <div class="clear"></div>
           </div>
                 
           <div class="footercolumn" id="rightcolumn">
-            <h2 class="footerh"><a href="">Contact</a></h2>
+            <h2 class="footerh"><a href="">{% trans "Contact" %}</a></h2>
             <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
             Linnaeushof 48<br>
             1098 KM Amsterdam<br>
