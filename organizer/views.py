@@ -167,19 +167,23 @@ class UserView(View, DateMixin):
     def get_legend(self):
         pass
 
+    def check_cancellation(self, lesson_set, date):
+        return lesson_set
+
     def get_lesson_set(self, user, date):
         '''
         Returns a lessonset for the given date, ordered by period
         '''
-        #lessons = user.
         date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
         lesson_set = user.takes_courses.filter(
             lesson__day_of_week=day_of_week
-            lesson__start_date__lt = date
-            lesson__end_date__gt = date
+            lesson__start_date__lt=date
+            lesson__end_date__gt=date
         )
         lesson_set = lesson_set.order_by('period')
+
+        lesson_set = self.check_cancellation(lesson_set, date)
 
         day_of_week = _(date.strftime('%A'))
         lesson_set.update(day_of_week=day_of_week)
