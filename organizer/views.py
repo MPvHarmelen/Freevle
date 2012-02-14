@@ -23,7 +23,7 @@ class DateMixin(object):
     allow_weekend = False
     number_future_days = 2
 
-    def  get_number_future_days(self):
+    def get_number_future_days(self):
         return self.number_future_days
 
     ## Edited
@@ -132,6 +132,7 @@ class UserView(View, DateMixin):
     > announcements = queryset
     > comming_homework = queryset
     > lesson_sets = [lesson_set1, lesson_set2, (...)]
+    > cancelled_lessons = queryset
     > legend = queryset
 
     With:
@@ -145,11 +146,12 @@ class UserView(View, DateMixin):
     To write:
     get_comming_homework()
     get_anouncements()
-    get_lesson_set_list()
+    Done | get_lesson_set_list()
     get_lesson_set()
     Done | get_date()
     get_legend()
-    get_allow_weekend()
+    Done | get_allow_weekend()
+    Done | check_allow_weekend()
 
     UITVAL?!
 
@@ -167,12 +169,13 @@ class UserView(View, DateMixin):
     def get_legend(self):
         pass
 
-    def check_cancellation(self, lesson_set, date):
-        return lesson_set
+    def get_cancellation(self, lesson_set_list, date):
+        pass
 
     def get_lesson_set(self, user, date):
         '''
-        Returns a lessonset for the given date, ordered by period
+        Returns a list of lessons for the given user and date,
+        ordered by period
         '''
         date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
@@ -183,15 +186,26 @@ class UserView(View, DateMixin):
         )
         lesson_set = lesson_set.order_by('period')
 
-        lesson_set = self.check_cancellation(lesson_set, date)
-
         day_of_week = _(date.strftime('%A'))
         lesson_set.update(day_of_week=day_of_week)
-        return lesson_set
+
+        latest_period = list(lesson_set)[-1].period
+        lesson_list = []
+        for i in range(len(lesson_set)):   ## < Here
+            try:
+                previous_period = lesson_set[i-1]
+            except:
+                previous_period = 0
+            if lesson_set[i].period == pervious_period+1:
+                lesson_list.append(lesson_set[i])
+            else:
+                lesson_list.append(None)
+
+        return lesson_list
 
     def get_queryset(self):   ## << Here
         """
-        Get the list of items for this view. This must be an interable, and may
+        Get the list of items for this view. This must be an iterable, and may
         be a queryset (in which qs-specific behavior will be enabled).
         """
         if self.queryset is not None:
@@ -248,6 +262,7 @@ class UserView(View, DateMixin):
         announcements = self.get_announcements(date)
         comming_homework = self.get_comming_homework(date)
         lesson_set_list = self.get_lesson_set_list(date)
+        cancelled_lessons = self.get_cancelled_lessons(lesson_set_list, date)
         legend = self.get_legend()
 
         context = {
