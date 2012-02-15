@@ -20,6 +20,12 @@ class DateMixin(object):
     month_format = '%m'
     day_format = '%d'
 
+    allow_weekend = False
+    number_future_days = 2
+
+    def get_number_future_days(self):
+        return self.number_future_days
+
     ## Edited
     def get_year(self):
         '''
@@ -70,12 +76,31 @@ class DateMixin(object):
         '''
         return self.month_format
 
-    def get_year_format(self):
+    def get_day_format(self):
         '''
         Get a day format string in strptime syntax to be used to parse the
         day from url variables
         '''
-        return self.month_format
+        return self.day_format
+
+    def get_allow_weekend(self):
+        '''
+        Return if a date is allowed to be a Saturday or Sunday.
+        '''
+        return self.allow_weekend
+
+    def  check_allow_weekend(self, date):
+        allow_weekend = self.get_allow_weekend
+
+        if not allow_weekend:
+            if date.strftime('%a') is 'Sat':
+                date += datetime.timedelta(days=2)
+            elif date.strftime('%a') is 'Sat':
+                date += datetime.timedelta(days=1)
+
+        return date
+
+
 
     ## Brewed from _date_from_string(kwargs)
     def get_date(self):
@@ -85,15 +110,20 @@ class DateMixin(object):
         year = self.get_year()
         month = self.get_month()
         day = self.get_day()
-        
+
         year_format = self.get_year_format()
         month_format = self.get_month_format()
         day_format = self.get_day_format()
-        
+
+        delim = '__'
+
         date_format = delim.join((year_format, month_format, day_format))
-        date_string = delim.join((year, month, day))        
-        
-        return datetime.datetime.strptime(date_string, date_format).date()
+        date_string = delim.join((year, month, day))
+
+        date = datetime.datetime.strptime(date_string, date_format).date()
+
+        return date
+
 
 class UserView(View, DateMixin):
 
@@ -102,8 +132,9 @@ class UserView(View, DateMixin):
     > announcements = queryset
     > comming_homework = queryset
     > lesson_sets = [lesson_set1, lesson_set2, (...)]
+    > cancelled_lessons = queryset
     > legend = queryset
-    
+
     With:
     lesson_set1 = queryset
     lesson_set2 = queryset
@@ -111,48 +142,70 @@ class UserView(View, DateMixin):
 
     The day name is done by opdating the queryset of a day to make
     day_of_week a full name, instead of an English abbreviation
-    
+
     To write:
     get_comming_homework()
     get_anouncements()
-    get_day_names()
-    get_lesson_set_list()
+    Done | get_lesson_set_list()
     get_lesson_set()
-    get_date()
+    Done | get_date()
     get_legend()
-    
+    Done | get_allow_weekend()
+    Done | check_allow_weekend()
+
     UITVAL?!
-    
+
     '''
     username_url_kwarg = 'username'
     announcements = None
     comming_homework = None
-    day_names = None
-    number_future_days = 2
-    
-    def get_announcements(self, date):
-        pass
 
-    def get_day_names(self, date):
+    def get_announcements(self, date):
         pass
 
     def get_comming_homework(self, date):
         pass
 
-    def get_legend():
+    def get_legend(self):
         pass
 
-    def get_lesson_set(self, date):
-        '''
-        Returns a lessonset for the given date
-        '''
+    def get_cancellation(self, lesson_set_list, date):
         pass
 
+    def get_lesson_set(self, user, date):
+        '''
+        Returns a list of lessons for the given user and date,
+        ordered by period
+        '''
+        date = self.check_allow_weekend(date)
+        day_of_week = date.strftime('%a')
+        lesson_set = user.takes_courses.filter(
+            lesson__day_of_week=day_of_week
+            lesson__start_date__lt=date
+            lesson__end_date__gt=date
+        )
+        lesson_set = lesson_set.order_by('period')
 
+        day_of_week = _(date.strftime('%A'))
+        lesson_set.update(day_of_week=day_of_week)
+
+        latest_period = list(lesson_set)[-1].period
+        lesson_list = []
+        for i in range(len(lesson_set)):   ## < Here
+            try:
+                previous_period = lesson_set[i-1]
+            except:
+                previous_period = 0
+            if lesson_set[i].period == pervious_period+1:
+                lesson_list.append(lesson_set[i])
+            else:
+                lesson_list.append(None)
+
+        return lesson_list
 
     def get_queryset(self):   ## << Here
         """
-        Get the list of items for this view. This must be an interable, and may
+        Get the list of items for this view. This must be an iterable, and may
         be a queryset (in which qs-specific behavior will be enabled).
         """
         if self.queryset is not None:
@@ -168,7 +221,7 @@ class UserView(View, DateMixin):
 
 
     # -- Done --
-    ## Original    
+    ## Original
     def get_template_names(self):
         """
         Returns a list of template names to be used for the request. Must return
@@ -180,7 +233,7 @@ class UserView(View, DateMixin):
                 "'template_name' or an implementation of 'get_template_names()'")
         else:
             return [self.template_name]
-    
+
     ## Original
     template_name = None
     response_class = TemplateResponse
@@ -208,8 +261,8 @@ class UserView(View, DateMixin):
         date = self.get_date()
         announcements = self.get_announcements(date)
         comming_homework = self.get_comming_homework(date)
-        day_names = self.get_day_names(date)
         lesson_set_list = self.get_lesson_set_list(date)
+        cancelled_lessons = self.get_cancelled_lessons(lesson_set_list, date)
         legend = self.get_legend()
 
         context = {
@@ -231,7 +284,7 @@ class UserView(View, DateMixin):
             lesson_set_list = self.lesson_set_list
         else:
             username = self.kwargs.get(self.username_url_kwarg, None)
-            
+
             if username is not None:
                 try:
                     user = User.objects.all().get(username=username)
@@ -240,10 +293,11 @@ class UserView(View, DateMixin):
             else:
                 raise ImproperlyConfigured("UserView needs to be called with "
                                            "a username")
-            
-            lesson_set_list = [self.get_lesson_set(date + timedelta(days=n))
-                               for n in range(self.number_future_days)]
-            
+
+            number_future_days = self.get_number_future_days()
+            lesson_set_list = [self.get_lesson_set(user, date + datetime.timedelta(days=n))
+                               for n in range(number_future_days)]
+
         return lesson_set_list
 
 
@@ -331,7 +385,7 @@ class UserDetailView(DetailView):
     username_url_kwarg = 'username'
 
     def get_object(self, queryset=None):
-        
+
 
         # Use a custom queryset if provided
         if queryset is None:
