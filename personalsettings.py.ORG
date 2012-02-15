@@ -11,7 +11,7 @@ ADMINS = (
 )
 
 # The URL to this instance of CyGy. Just keep it at this for testing.
-URL_ROOT = 'localhost:8080/'
+URL_ROOT = 'localhost:8000/'
 
 # The absolute path to the CyGy directory on your system.
 # We do not officially support Windows, but you can try it...
