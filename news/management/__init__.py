@@ -22,7 +22,7 @@ def debug_data(sender, **kwargs):
         return
     else:
         cont = raw_input('Do you want to generate 150 random news messages (Y/n): ')
-        if not cont == '' or cont.lower() == 'n':
+        if not cont.lower() in ('yes', 'y', '',):
             return
 
     # Create 150 news messages

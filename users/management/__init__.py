@@ -11,7 +11,7 @@ def create_groups(sender, **kwargs):
 post_syncdb.connect(create_groups, sender=models)
 
 FIRST_NAMES = ('John', 'William', 'Thomas', 'Eric', 'Andrew', 'Raymond', 'Joe',
-        'Robert', 'Michael', 'Mark', 'Gary', 'Ash', 'Douglas', 'Samuel',
+        'Robert', 'Michael', 'Mark', 'Gary', 'Ash', 'Douglas', 'Sherlock',
         'Mary', 'Susan', 'Sarah', 'Amy', 'Laura', 'Betty', 'Catherine',
         'Linda', 'Helen', 'Debra', 'Jean', 'Judith', 'April', 'Lauren',)
 SURNAMES = ('Smith', 'Jones', 'Brown', 'Thompson', 'White', 'Scott', 'Coleman',
@@ -53,7 +53,7 @@ def debug_data(sender, **kwargs):
         return
     else:
         cont = raw_input('Do you want to generate random users (Y/n): ')
-        if not cont == '' or cont.lower() == 'n':
+        if not cont.lower() in ('yes', 'y', '',):
             return
 
     # Create 20 teachers
