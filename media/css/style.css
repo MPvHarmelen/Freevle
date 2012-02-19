@@ -279,19 +279,20 @@ div.breadcrumbs {
   float: left;
   margin: 0 0 10px;
   padding: 3px 0 5px;
-  color: #DEDEDE;
-  font-size: 15px;
+  color: #888;
+  font-size: 12px;
   text-decoration: none;
   text-shadow: #EEEEEE 1px 1px 0px;
 }
 
 div.breadcrumbs a {
-  color: #DEDEDE;
+  color: #888;
   text-decoration: none;
+  padding: 0 2px;
 }
 
 span.current {
-  font-weight: bold;
+  font-style: italic;
 }
 
 div.item {
