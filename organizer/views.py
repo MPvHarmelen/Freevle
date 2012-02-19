@@ -10,6 +10,7 @@ from django.views.generic.base import View
 from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
+from cygy.organizer.models import Lesson
 
 class DateMixin(object):
     year = None
@@ -89,7 +90,7 @@ class DateMixin(object):
         '''
         return self.allow_weekend
 
-    def  check_allow_weekend(self, date):
+    def check_allow_weekend(self, date):
         allow_weekend = self.get_allow_weekend
 
         if not allow_weekend:
@@ -185,10 +186,15 @@ class UserView(View, DateMixin):
             lesson__end_date__gt=date
         )
         lesson_set = lesson_set.order_by('period')
-
+        
         day_of_week = _(date.strftime('%A'))
         lesson_set.update(day_of_week=day_of_week)
-
+        
+        # You have to be careful with this empty_lesson, because the
+        # the ForeignKey fields raise DoesNotExist. Also the
+        # __unicode__ raises DoesNotExist, so don't try using
+        # empty_lesson in command line!
+        empty_lesson = Lesson(day_of_week=day_of_week)
         latest_period = list(lesson_set)[-1].period
         lesson_list = []
         for i in range(len(lesson_set)):   ## < Here
@@ -196,10 +202,13 @@ class UserView(View, DateMixin):
                 previous_period = lesson_set[i-1]
             except:
                 previous_period = 0
-            if lesson_set[i].period == pervious_period+1:
-                lesson_list.append(lesson_set[i])
+            if lesson_set[i].period != previous_period+1:
+                difference = lesson_set[i] - previous_period
+                for i in range(difference - 1):
+                    lesson_list.append(empty_lesson)
             else:
-                lesson_list.append(None)
+                lesson_list.append(lesson_set[i])
+
 
         return lesson_list
 
