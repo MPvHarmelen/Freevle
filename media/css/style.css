@@ -265,6 +265,11 @@ h2 {
   line-height: 38px;
 }
 
+h2 a:link, a:visited{
+  text-decoration: none;
+  color: #000;
+} 
+  
 #inlogform h2 {
   text-align: center;
   text-shadow: 1px 1px 1px #fff;
