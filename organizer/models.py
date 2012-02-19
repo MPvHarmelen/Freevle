@@ -6,6 +6,39 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 # Refactored with some (actually, lots of) help from sushibowl. Thanks :D
+
+# The case for the abbreviations are chosen
+# to match the %a format of strftime(), the order to match %w.
+DAY_CHOICES = (
+    ('Sun', _('Sunday')),
+    ('Mon', _('Monday')),
+    ('Tue', _('Tuesday')),
+    ('Wen', _('Wednesday')),
+    ('Thu', _('Thursday')),
+    ('Fri', _('Friday')),
+    ('Sat', _('Saturday')),
+)
+
+class PeriodLengths(models.Model):
+    """Defines the length of periods"""
+    
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
+    period = models.IntegerField()
+    length = models.IntegerField()
+
+    def get_period_times(self, date):
+        """Get a list of starting and ending times of periods
+
+        Please note that the argument date's supposed to be a datetime.date
+        object.
+        
+        """
+        # TODO: Write some script to get the list of period lengths
+        pass
+
 class Topic(models.Model):
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=16)
@@ -30,18 +63,6 @@ class Course(models.Model):
         return '{} ({})'.format(self.topic, self.teacher.get_profile().designation)
 
 class Lesson(models.Model):
-    # The case for the abbreviations are chosen
-    # to match the %a format of strftime(),
-    # the order to match %w.
-    DAY_CHOICES = (
-        ('Sun', _('Sunday')),
-        ('Mon', _('Monday')),
-        ('Tue', _('Tuesday')),
-        ('Wen', _('Wednesday')),
-        ('Thu', _('Thursday')),
-        ('Fri', _('Friday')),
-        ('Sat', _('Saturday')),
-    )
     course = models.ForeignKey(Course)
     classroom = models.CharField(max_length=16)
 
