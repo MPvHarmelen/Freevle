@@ -30,7 +30,7 @@ INSTALLED_APPS = (
 # Not really needed for development servers. Production? YES.
 SECRET_KEY = 'SomethingRandom'
 
-# Wether you want debug options.
+# Whether you want debug options.
 DEBUG = True
 STATIC = True
 
