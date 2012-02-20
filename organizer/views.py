@@ -126,33 +126,97 @@ class DateMixin(object):
         return date
 
 
-class UserView(View, DateMixin):
+class CancellationMixin(object):
+    def check_cancellation(self, lesson_list):
+        for lesson in lesson_list:
+            # do stuff
+            pass
+
+        return lesson_list
+
+class LessonListMixin(object):
+    def lesson_set_cleanup(self, lesson_set, date):
+        '''
+        Takes an itterable of lessons, returns a lesson_list checked for
+        cancellation of at least PERIODS_IN_DAY lessons long and with
+        lesson.day_of_week set to full regional name.
+        '''
+
+        # You have to be careful with this empty_lesson, because empty
+        # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
+        # DoesNotExist (because it uses the value of a ForeignKey,
+        # so don't try using empty_lesson in command line!
+        empty_lesson = Lesson()
+        
+        # list() is needed because querysets don't support backwards indexing
+        unpadded_list = list(lesson_set)
+        unpadded_list.sort(key=lambda a: a.period)
+        
+
+##      Someone, please check this code for buggs!                      <<<<<
+
+
+        lesson_list = []
+        for i in range(len(unpadded_list)):
+            if i == 0:
+                previous_period = 0
+            else:
+                previous_period = unpadded_list[i-1].period
+
+            if lesson_set[i].period != previous_period+1:
+                difference = lesson_set[i] - previous_period
+                for i in range(difference - 1): # Two adjacent hours differ 1
+                    lesson_list.append(empty_lesson)
+            else:
+                lesson_list.append(lesson_set[i])
+
+        lesson_list = self.check_cancellation(lesson_list)
+        
+        # Some last perfections
+        len_diff = len(lesson_set) - self.get_periods_in_day()
+        if len_diff > 0:
+            lesson_list.extend([empty_lesson for i in range(len_diff)])
+
+        for lesson in lesson_list:
+            lesson.day_of_week = date.strftime('%A')
+            
+        return lesson_list
+
+class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
 
     '''
     Context:
     > announcements = queryset
     > comming_homework = queryset
-    > lesson_sets = [lesson_set1, lesson_set2, (...)]
-    > cancelled_lessons = queryset
+    > lesson_sets = [lesson_list1, lesson_list2, (...)]
     > legend = queryset
 
     With:
-    lesson_set1 = queryset
-    lesson_set2 = queryset
+    lesson_list1 = [<lesson object>, <lesson object>, (...)]
+    lesson_list2 = [<lesson object>, <lesson object>, (...)]
     ...
 
-    The day name is done by opdating the queryset of a day to make
+    The day name is done by updating the queryset of a day to make
     day_of_week a full name, instead of an English abbreviation
+        !! We are not going to use update, because it changes the database !!
 
+    So, the day name is done by changing the dayname AFTER the list has been
+    created from the queryset
+    
+    Cancellation is done by creating extra attributes to the lesson objects,
+    like is_cancelled and changed_teacher.
+    
     To write:
+    class CancellationMixin
     get_comming_homework()
     get_anouncements()
     Done | get_lesson_lists()
-    Done | get_lesson_list()
+    get_lesson_list()
     Done | get_date()
     get_legend()
     Done | get_allow_weekend()
     Done | check_allow_weekend()
+    get_PERIODS_IN_DAY()
 
     UITVAL?!
 
@@ -170,26 +234,23 @@ class UserView(View, DateMixin):
     def get_legend(self):
         pass
 
-    def get_cancellation(self, lesson_lists, date):
-        pass
+    ## Home Made
+    def get_lesson_list(self, user, date):
+        '''
+        Returns a list of lessons for the given user and date,
+        ordered by period
+        '''
+        date = self.check_allow_weekend(date)
+        day_of_week = date.strftime('%a')
+        lesson_set = user.takes_courses.filter(
+            lesson__day_of_week=day_of_week
+            lesson__start_date__lt=date
+            lesson__end_date__gt=date
+        )
 
-    
+        lesson_list = lesson_set_cleanup(lesson_set,date)
 
-    def get_queryset(self):   ## << Here
-        """
-        Get the list of items for this view. This must be an iterable, and may
-        be a queryset (in which qs-specific behavior will be enabled).
-        """
-        if self.queryset is not None:
-            queryset = self.queryset
-            if hasattr(queryset, '_clone'):
-                queryset = queryset._clone()
-        elif self.model is not None:
-            queryset = self.model._default_manager.all()
-        else:
-            raise ImproperlyConfigured(u"'{}' must define 'queryset' or 'model'"
-                                       ''.format(self.__class__.__name__))
-        return queryset
+        return lesson_list    
 
     # -- Done --
     ## Original
@@ -270,47 +331,6 @@ class UserView(View, DateMixin):
 
         return lesson_lists
 
-    ## Home Made
-    def get_lesson_list(self, user, date):
-        '''
-        Returns a list of lessons for the given user and date,
-        ordered by period
-        '''
-        date = self.check_allow_weekend(date)
-        day_of_week = date.strftime('%a')
-        lesson_set = user.takes_courses.filter(
-            lesson__day_of_week=day_of_week
-            lesson__start_date__lt=date
-            lesson__end_date__gt=date
-        )
-
-        lesson_set = lesson_set.order_by('period')
-        day_of_week = _(date.strftime('%A'))
-        lesson_set.update(day_of_week=day_of_week)
-        
-        # You have to be careful with this empty_lesson, because empty
-        # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
-        # DoesNotExist (because it uses the value of a ForeignKey,
-        # so don't try using empty_lesson in command line!
-        empty_lesson = Lesson(day_of_week=day_of_week)
-        
-        # list() is needed because querysets don't support backwards indexing
-        latest_period = list(lesson_set)[-1].period
-
-        lesson_list = []
-        for i in range(len(lesson_set)):
-            try:
-                previous_period = lesson_set[i-1].period
-            except:
-                previous_period = 0
-            if lesson_set[i].period != previous_period+1:
-                difference = lesson_set[i] - previous_period
-                for i in range(difference - 1):
-                    lesson_list.append(empty_lesson)
-            else:
-                lesson_list.append(lesson_set[i])
-
-        return lesson_list
 
 
 # I'm just leaving this here for now if I want to use parts later
