@@ -29,9 +29,9 @@ class DateMixin(object):
 
     ## Edited
     def get_year(self):
-        '''
+        """
         Return the year for which this view should display data
-        '''
+        """
         year = self.year
         if year is None:
             try:
@@ -41,9 +41,9 @@ class DateMixin(object):
 
     ## Edited
     def get_month(self):
-        '''
+        """
         Return the day for which this view should display data
-        '''
+        """
         month = self.month
         if month is None:
             try:
@@ -53,9 +53,9 @@ class DateMixin(object):
 
     ## Edited
     def get_day(self):
-        '''
+        """
         Return the day for which this view should display data
-        '''
+        """
         day = self.day
         if day is None:
             try:
@@ -64,30 +64,30 @@ class DateMixin(object):
                 day = datetime.date.today().day
 
     def get_year_format(self):
-        '''
+        """
         Get a year format string in strptime syntax to be used to parse the
         year from url variables
-        '''
+        """
         return self.year_format
 
     def get_month_format(self):
-        '''
+        """
         Get a month format string in strptime syntax to be used to parse the
         month from url variables
-        '''
+        """
         return self.month_format
 
     def get_day_format(self):
-        '''
+        """
         Get a day format string in strptime syntax to be used to parse the
         day from url variables
-        '''
+        """
         return self.day_format
 
     def get_allow_weekend(self):
-        '''
+        """
         Return if a date is allowed to be a Saturday or Sunday.
-        '''
+        """
         return self.allow_weekend
 
     def check_allow_weekend(self, date):
@@ -105,9 +105,9 @@ class DateMixin(object):
 
     ## Brewed from _date_from_string(kwargs)
     def get_date(self):
-        '''
+        """
         Return the date for which this view should display data
-        '''
+        """
         year = self.get_year()
         month = self.get_month()
         day = self.get_day()
@@ -134,13 +134,18 @@ class CancellationMixin(object):
 
         return lesson_list
 
+class EmptyLesson(Lesson):
+    """
+    
+    """
+
 class LessonListMixin(object):
     def lesson_set_cleanup(self, lesson_set, date):
-        '''
-        Takes an itterable of lessons, returns a lesson_list checked for
+        """
+        Takes an iterable of lessons, returns a lesson_list checked for
         cancellation of at least PERIODS_IN_DAY lessons long and with
         lesson.day_of_week set to full regional name.
-        '''
+        """
 
         # You have to be careful with this empty_lesson, because empty
         # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
@@ -153,7 +158,7 @@ class LessonListMixin(object):
         unpadded_list.sort(key=lambda a: a.period)
         
 
-##      Someone, please check this code for buggs!                      <<<<<
+##      Someone, please check this code for bugs!                      <<<<<
 
 
         lesson_list = []
@@ -161,12 +166,12 @@ class LessonListMixin(object):
             if i == 0:
                 previous_period = 0
             else:
-                previous_period = unpadded_list[i-1].period
+                previous_period = unpadded_list[i - 1].period
 
-            if lesson_set[i].period != previous_period+1:
+            if lesson_set[i].period != previous_period + 1:
                 difference = lesson_set[i] - previous_period
-                for i in range(difference - 1): # Two adjacent hours differ 1
-                    lesson_list.append(empty_lesson)
+                # Two adjacent hours differ 1
+                lesson_list.extend([empty_lesson] * (difference - 1))
             else:
                 lesson_list.append(lesson_set[i])
 
@@ -178,13 +183,14 @@ class LessonListMixin(object):
             lesson_list.extend([empty_lesson for i in range(len_diff)])
 
         for lesson in lesson_list:
-            lesson.day_of_week = date.strftime('%A')
+            day_of_week = date.strftime('%A')
+            lesson.day_of_week = _(day_of_week)
             
         return lesson_list
 
 class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
 
-    '''
+    """
     Context:
     > announcements = queryset
     > comming_homework = queryset
@@ -218,9 +224,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     Done | check_allow_weekend()
     get_PERIODS_IN_DAY()
 
-    UITVAL?!
-
-    '''
+    """
     username_url_kwarg = 'username'
     announcements = None
     comming_homework = None
@@ -236,10 +240,10 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
 
     ## Home Made
     def get_lesson_list(self, user, date):
-        '''
+        """
         Returns a list of lessons for the given user and date,
         ordered by period
-        '''
+        """
         date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
         lesson_set = user.takes_courses.filter(
@@ -251,6 +255,38 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         lesson_list = lesson_set_cleanup(lesson_set,date)
 
         return lesson_list    
+
+    # Homemade
+    lesson_lists = None
+    def get_lesson_lists(self, date):
+        """
+        Get the list of lessonsets. This is a list of querysets.
+        """
+        if self.lesson_lists is not None:
+            lesson_lists = self.lesson_lists
+        else:
+            username = self.kwargs.get(self.username_url_kwarg, None)
+
+            if username is not None:
+                try:
+                    user = User.objects.all().get(username=username)
+                except ObjectDoesNotExist:
+                    raise Http404
+            else:
+                raise ImproperlyConfigured("UserView needs to be called with "
+                                           "a username")
+
+            number_future_days = self.get_number_future_days()
+            lesson_lists = [self.get_lesson_list(user,
+                                                 date + datetime.timedelta(days=n))
+                            for n in range(number_future_days)]
+        
+            
+        for lesson_list in lesson_lists:
+            lesson_list += [''] * (N-len(lesson))
+        
+        return lesson_lists
+
 
     # -- Done --
     ## Original
@@ -305,31 +341,6 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         }
         return context
 
-    # Homemade
-    lesson_lists = None
-    def get_lesson_lists(self, date):
-        """
-        Get the list of lessonsets. This is a list of querysets.
-        """
-        if self.lesson_lists is not None:
-            lesson_lists = self.lesson_lists
-        else:
-            username = self.kwargs.get(self.username_url_kwarg, None)
-
-            if username is not None:
-                try:
-                    user = User.objects.all().get(username=username)
-                except ObjectDoesNotExist:
-                    raise Http404
-            else:
-                raise ImproperlyConfigured("UserView needs to be called with "
-                                           "a username")
-
-            number_future_days = self.get_number_future_days()
-            lesson_lists = [self.get_lesson_list(user, date + datetime.timedelta(days=n))
-                               for n in range(number_future_days)]
-
-        return lesson_lists
 
 
 

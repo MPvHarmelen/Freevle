@@ -20,14 +20,16 @@ DAY_CHOICES = (
 )
 
 class PeriodLengths(models.Model):
-    """Defines the length of periods"""
+    """Defines the length of periods and more"""
     
     start_date = models.DateField()
     end_date = models.DateField()
 
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
-    period = models.IntegerField()
     length = models.IntegerField()
+    brakes_after_period = models.CommaSeparatedIntegerField(max_length=32)
+    start_of_day = models.TimeField()
+    min_periods = models.IntegerField()
 
     def get_period_times(self, date):
         """Get a list of starting and ending times of periods
