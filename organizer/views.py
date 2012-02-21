@@ -134,32 +134,63 @@ class CancellationMixin(object):
 
         return lesson_list
 
-class EmptyLesson(Lesson):
-    """
-    
-    """
-
 class LessonListMixin(object):
+    # You have to be careful with this empty_lesson, because empty
+    # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
+    # DoesNotExist (because it uses the value of a ForeignKey,
+    # so don't try using empty_lesson in command line!
+    empty_lesson = Lesson()
+        
+
+    def get_lesson_list(self, obj, date):
+        raise ImproperlyConfigured('You must write your own get_lesson_list')
+        
+
+    # Homemade
+    lesson_lists = None
+    def get_lesson_lists(self, date):
+        """
+        Get the list of lessonsets. This is a list of querysets.
+        """
+        if self.lesson_lists is not None:
+            lesson_lists = self.lesson_lists
+        else:
+            obj = self.get_obj()
+                                                            # << HERE!!!
+            username = self.kwargs.get(self.username_url_kwarg, None)
+
+            if username is not None:
+                try:
+                    user = User.objects.all().get(username=username)
+                except ObjectDoesNotExist:
+                    raise Http404
+            else:
+                raise ImproperlyConfigured("UserView needs to be called with "
+                                           "a username")
+
+            number_future_days = self.get_number_future_days()
+            lesson_lists = [self.get_lesson_list(user,
+                                                 date + datetime.timedelta(days=n))
+                            for n in range(number_future_days)]
+        
+            
+        for lesson_list in lesson_lists:
+            #lesson_list += [''] * (N-len(lesson))
+            lesson_list = lesson_set_cleanup(lesson_set,date)
+        
+        return lesson_lists
+        
     def lesson_set_cleanup(self, lesson_set, date):
         """
         Takes an iterable of lessons, returns a lesson_list checked for
         cancellation of at least PERIODS_IN_DAY lessons long and with
         lesson.day_of_week set to full regional name.
         """
-
-        # You have to be careful with this empty_lesson, because empty
-        # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
-        # DoesNotExist (because it uses the value of a ForeignKey,
-        # so don't try using empty_lesson in command line!
-        empty_lesson = Lesson()
+        empty_lesson = self.empty_lesson
         
         # list() is needed because querysets don't support backwards indexing
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
-        
-
-##      Someone, please check this code for bugs!                      <<<<<
-
 
         lesson_list = []
         for i in range(len(unpadded_list)):
@@ -189,7 +220,6 @@ class LessonListMixin(object):
         return lesson_list
 
 class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
-
     """
     Context:
     > announcements = queryset
@@ -238,6 +268,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     def get_legend(self):
         pass
 
+
     ## Home Made
     def get_lesson_list(self, user, date):
         """
@@ -252,40 +283,8 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
             lesson__end_date__gt=date
         )
 
-        lesson_list = lesson_set_cleanup(lesson_set,date)
-
         return lesson_list    
 
-    # Homemade
-    lesson_lists = None
-    def get_lesson_lists(self, date):
-        """
-        Get the list of lessonsets. This is a list of querysets.
-        """
-        if self.lesson_lists is not None:
-            lesson_lists = self.lesson_lists
-        else:
-            username = self.kwargs.get(self.username_url_kwarg, None)
-
-            if username is not None:
-                try:
-                    user = User.objects.all().get(username=username)
-                except ObjectDoesNotExist:
-                    raise Http404
-            else:
-                raise ImproperlyConfigured("UserView needs to be called with "
-                                           "a username")
-
-            number_future_days = self.get_number_future_days()
-            lesson_lists = [self.get_lesson_list(user,
-                                                 date + datetime.timedelta(days=n))
-                            for n in range(number_future_days)]
-        
-            
-        for lesson_list in lesson_lists:
-            lesson_list += [''] * (N-len(lesson))
-        
-        return lesson_lists
 
 
     # -- Done --
