@@ -22,10 +22,10 @@ class DateMixin(object):
     day_format = '%d'
 
     allow_weekend = False
-    number_future_days = 2
+    number_days = 3
 
-    def get_number_future_days(self):
-        return self.number_future_days
+    def get_number_days(self):
+        return self.number_days
 
     ## Edited
     def get_year(self):
@@ -142,7 +142,10 @@ class LessonListMixin(object):
     empty_lesson = Lesson()
         
 
-    def get_lesson_list(self, obj, date):
+    def get_lesson_set(self, obj, date):
+        '''
+        Returns an iterable of lessons for the given date and object.
+        '''
         raise ImproperlyConfigured('You must write your own get_lesson_list')
         
 
@@ -156,27 +159,16 @@ class LessonListMixin(object):
             lesson_lists = self.lesson_lists
         else:
             obj = self.get_obj()
-                                                            # << HERE!!!
-            username = self.kwargs.get(self.username_url_kwarg, None)
 
-            if username is not None:
-                try:
-                    user = User.objects.all().get(username=username)
-                except ObjectDoesNotExist:
-                    raise Http404
-            else:
-                raise ImproperlyConfigured("UserView needs to be called with "
-                                           "a username")
-
-            number_future_days = self.get_number_future_days()
+            number_days = self.get_number_days()
             lesson_lists = [self.get_lesson_list(user,
                                                  date + datetime.timedelta(days=n))
-                            for n in range(number_future_days)]
+                            for n in range(number_days)]
         
             
         for lesson_list in lesson_lists:
             #lesson_list += [''] * (N-len(lesson))
-            lesson_list = lesson_set_cleanup(lesson_set,date)
+            lesson_list = lesson_set_cleanup(lesson_set,date,length)
         
         return lesson_lists
         
@@ -267,6 +259,19 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
 
     def get_legend(self):
         pass
+
+    def get_obj(self):
+                                                                    # << HERE!!!
+        username = self.kwargs.get(self.username_url_kwarg, None)
+
+        if username is not None:
+            try:
+                user = User.objects.all().get(username=username)
+            except ObjectDoesNotExist:
+                raise Http404
+        else:
+            raise ImproperlyConfigured("UserView needs to be called with "
+                                       "a username")
 
 
     ## Home Made
