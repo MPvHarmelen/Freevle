@@ -135,22 +135,17 @@ class CancellationMixin(object):
         return lesson_list
 
 class LessonListMixin(object):
-    # You have to be careful with this empty_lesson, because empty
-    # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
-    # DoesNotExist (because it uses the value of a ForeignKey,
-    # so don't try using empty_lesson in command line!
-    empty_lesson = Lesson()
-        
-
-    def get_lesson_set(self, obj, date):
+    lesson_lists = None
+    
+    def get_periods_in_day(self, date):
+        pass
+    
+    def get_lesson_set(self, date):
         '''
         Returns an iterable of lessons for the given date and object.
         '''
-        raise ImproperlyConfigured('You must write your own get_lesson_list')
-        
+        raise ImproperlyConfigured('You must write your own get_lesson_set')
 
-    # Homemade
-    lesson_lists = None
     def get_lesson_lists(self, date):
         """
         Get the list of lessonsets. This is a list of querysets.
@@ -158,33 +153,46 @@ class LessonListMixin(object):
         if self.lesson_lists is not None:
             lesson_lists = self.lesson_lists
         else:
-            obj = self.get_obj()
-
             number_days = self.get_number_days()
-            lesson_lists = [self.get_lesson_set(user,
-                                                 date + datetime.timedelta(days=n))
+            
+            date_list = []
+            for n in range(number_days):
+                if n == 0:
+                    list_date = date
+                else:
+                    list_date = date_list[-1] + datetime.timedelta(days=1)
+                    list_date = check_allow_weekend(list_date)
+                
+                date_list.append(list_date)
+                
+            lesson_lists = [self.get_lesson_set(date_list[n])
                             for n in range(number_days)]
             
-            length = self.get_min_length
+            
+            length = 0
             for lesson_set in lesson_lists:
                 set_length = len(lesson_set)
                 if set_length > length:
                     length = set_length
                     
             for lesson_set in lesson_lists:
-                lesson_set = lesson_set_cleanup(lesson_set,date,length)
+                lesson_set = lesson_set_cleanup(lesson_set,date_list[n],length)
         
         return lesson_lists
         
     def lesson_set_cleanup(self, lesson_set, date, min_length):
         """
         Takes an iterable of lessons, returns a lesson_list checked for
-        cancellation of at least PERIODS_IN_DAY lessons long and with
-        lesson.day_of_week set to full regional name.
+        cancellation, padded with empty_lessons to match length, or the length
+        of self.get_periods_in_day() if length < self.get_periods_in_day().
+        Also lesson.day_of_week is set to full regional name.
         """
-        empty_lesson = self.empty_lesson
-        
-        # list() is needed because querysets don't support backwards indexing
+        # You have to be careful with this empty_lesson, because empty
+        # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
+        # DoesNotExist (because it uses the value of a ForeignKey,
+        # so don't try using empty_lesson in command line!
+        empty_lesson = Lesson()
+
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
 
@@ -206,16 +214,24 @@ class LessonListMixin(object):
         
         length = len(lesson_list)
         if length < min_length:
-            lesson_list += [empty_lesson] * (min_length-len(lesson))
+            lesson_list += [empty_lesson] * (min_length - len(lesson))
         
         # Some last perfections
-        len_diff = len(lesson_set) - self.get_periods_in_day()
+        len_diff = self.get_periods_in_day(date) - len(lesson_set)
         if len_diff > 0:
-            lesson_list.extend([empty_lesson for i in range(len_diff)])
+            lesson_list.extend([empty_lesson] * len_diff)
 
+        days = {
+            'Sun': _('Sunday'),
+            'Mon': _('Monday'),
+            'Tue': _('Tuesday'),
+            'Wen': _('Wednesday'),
+            'Thu': _('Thursday'),
+            'Fri': _('Friday'),
+            'Sat': _('Saturday'),
+        }
         for lesson in lesson_list:
-            day_of_week = date.strftime('%A')
-            lesson.day_of_week = _(day_of_week)
+            lesson.day_of_week = days[lesson.day_of_week]
             
         return lesson_list
 
@@ -254,6 +270,11 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     Done | check_allow_weekend()
     get_PERIODS_IN_DAY()
 
+
+    PROBLEMS:
+    With weekend shit stuff won't work because if check_allow_weekend() returns
+    a monday in stead of a saturday, the 2nd day after that wil pass as a monday,
+    which will give you 2 mondays O_o
     """
     username_url_kwarg = 'username'
     announcements = None
@@ -292,9 +313,9 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
         lesson_set = user.takes_courses.filter(
-            lesson__day_of_week=day_of_week
-            lesson__start_date__lt=date
-            lesson__end_date__gt=date
+            lesson__day_of_week=day_of_week,
+            lesson__start_date__lt=date,
+            lesson__end_date__gt=date,
         )
 
         return lesson_list    
