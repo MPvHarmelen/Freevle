@@ -1,12 +1,46 @@
 from django.db import models
 from cygy.custom import fields
-from django.core.validators import EMPTY_VALUES
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
 # Create your models here.
 # Refactored with some (actually, lots of) help from sushibowl. Thanks :D
+
+# The case for the abbreviations are chosen
+# to match the %a format of strftime(), the order to match %w.
+DAY_CHOICES = (
+    ('Sun', _('Sunday')),
+    ('Mon', _('Monday')),
+    ('Tue', _('Tuesday')),
+    ('Wen', _('Wednesday')),
+    ('Thu', _('Thursday')),
+    ('Fri', _('Friday')),
+    ('Sat', _('Saturday')),
+)
+
+class PeriodLengths(models.Model):
+    """Defines the length of periods and more"""
+    
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
+    length = models.IntegerField()
+    brakes_after_period = models.CommaSeparatedIntegerField(max_length=32)
+    start_of_day = models.TimeField()
+    min_periods = models.IntegerField()
+
+    def get_period_times(self, date):
+        """Get a list of starting and ending times of periods
+
+        Please note that the argument date's supposed to be a datetime.date
+        object.
+        
+        """
+        # TODO: Write some script to get the list of period lengths
+        pass
+
 class Topic(models.Model):
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=16)
@@ -18,31 +52,19 @@ class Course(models.Model):
     topic = models.ForeignKey(Topic)
     teacher = models.ForeignKey(
         User,
-        related_name='course_given',
+        related_name='gives_courses',
         limit_choices_to={'groups__name': 'teachers'}
     )
     students = models.ManyToManyField(
         User,
-        related_name='course_taken',
+        related_name='takes_courses',
         limit_choices_to={'groups__name': 'students'}
     )
 
-    def __unicode(self):
-        return '{} ({})'.format(self.topic, self.teacher.designation)
+    def __unicode__(self):
+        return '{} ({})'.format(self.topic, self.teacher.get_profile().designation)
 
 class Lesson(models.Model):
-    # The case for the abbreviations are chosen
-    # to match the %a format of strftime(),
-    # the order to match %w.
-    DAY_CHOICES = (
-        ('Sun', _('Sunday')),
-        ('Mon', _('Monday')),
-        ('Tue', _('Tuesday')),
-        ('Wen', _('Wednesday')),
-        ('Thu', _('Thursday')),
-        ('Fri', _('Friday')),
-        ('Sat', _('Saturday')),
-    )
     course = models.ForeignKey(Course)
     classroom = models.CharField(max_length=16)
 
