@@ -9,6 +9,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.base import View
 from django.utils.translation import ugettext_lazy as _
 
+from cygy.custom.classes import sortable_list
+
 from django.contrib.auth.models import User
 from cygy.organizer.models import Lesson
 
@@ -38,11 +40,12 @@ class DateMixin(object):
                 year = self.kwargs['year']
             except KeyError:
                 year = datetime.date.today().year
+        return year
 
     ## Edited
     def get_month(self):
         """
-        Return the day for which this view should display data
+        Return the month for which this view should display data
         """
         month = self.month
         if month is None:
@@ -50,6 +53,7 @@ class DateMixin(object):
                 month = self.kwargs['month']
             except KeyError:
                 month = datetime.date.today().month
+        return month
 
     ## Edited
     def get_day(self):
@@ -62,6 +66,7 @@ class DateMixin(object):
                 day = self.kwargs['day']
             except KeyError:
                 day = datetime.date.today().day
+        return day
 
     def get_year_format(self):
         """
@@ -91,19 +96,16 @@ class DateMixin(object):
         return self.allow_weekend
 
     def check_allow_weekend(self, date):
-        allow_weekend = self.get_allow_weekend
+        allow_weekend = self.get_allow_weekend()
 
         if not allow_weekend:
             if date.strftime('%a') is 'Sat':
                 date += datetime.timedelta(days=2)
-            elif date.strftime('%a') is 'Sat':
+            elif date.strftime('%a') is 'Sun':
                 date += datetime.timedelta(days=1)
 
         return date
 
-
-
-    ## Brewed from _date_from_string(kwargs)
     def get_date(self):
         """
         Return the date for which this view should display data
@@ -165,22 +167,28 @@ class LessonListMixin(object):
                 
                 date_list.append(list_date)
                 
-            lesson_lists = [self.get_lesson_set(date_list[n])
+            sort = lambda a: sortable_list(a).sorted(key=lambda b: b.period)
+            lesson_lists = [sort(self.get_lesson_set(date_list[n]))
                             for n in range(number_days)]
             
-            
+            # For loop to get the length for lesson_set_cleanup
             length = 0
-            for lesson_set in lesson_lists:
-                set_length = len(lesson_set)
-                if set_length > length:
-                    length = set_length
+            for index in range(len(lesson_lists)):
+                latest_period = lesson_lists[index][-1].period
+                list_date = date_list[index]
+                min_period = self.get_periods_in_day(list_date)
+                
+                if latest_period > length:
+                    length = lates_period
+                if min_period > length:
+                    length = min_period
                     
             for lesson_set in lesson_lists:
-                lesson_set = lesson_set_cleanup(lesson_set,date_list[n],length)
+                lesson_set = lesson_set_cleanup(lesson_set,length)
         
         return lesson_lists
         
-    def lesson_set_cleanup(self, lesson_set, date, min_length):
+    def lesson_set_cleanup(self, lesson_set, min_length):
         """
         Takes an iterable of lessons, returns a lesson_list checked for
         cancellation, padded with empty_lessons to match length, or the length
@@ -275,6 +283,8 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     With weekend shit stuff won't work because if check_allow_weekend() returns
     a monday in stead of a saturday, the 2nd day after that wil pass as a monday,
     which will give you 2 mondays O_o
+    
+    Make docstring for sortable_list
     """
     username_url_kwarg = 'username'
     announcements = None
