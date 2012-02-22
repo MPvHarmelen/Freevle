@@ -161,18 +161,22 @@ class LessonListMixin(object):
             obj = self.get_obj()
 
             number_days = self.get_number_days()
-            lesson_lists = [self.get_lesson_list(user,
+            lesson_lists = [self.get_lesson_set(user,
                                                  date + datetime.timedelta(days=n))
                             for n in range(number_days)]
-        
             
-        for lesson_list in lesson_lists:
-            #lesson_list += [''] * (N-len(lesson))
-            lesson_list = lesson_set_cleanup(lesson_set,date,length)
+            length = self.get_min_length
+            for lesson_set in lesson_lists:
+                set_length = len(lesson_set)
+                if set_length > length:
+                    length = set_length
+                    
+            for lesson_set in lesson_lists:
+                lesson_set = lesson_set_cleanup(lesson_set,date,length)
         
         return lesson_lists
         
-    def lesson_set_cleanup(self, lesson_set, date):
+    def lesson_set_cleanup(self, lesson_set, date, min_length):
         """
         Takes an iterable of lessons, returns a lesson_list checked for
         cancellation of at least PERIODS_IN_DAY lessons long and with
@@ -199,6 +203,10 @@ class LessonListMixin(object):
                 lesson_list.append(lesson_set[i])
 
         lesson_list = self.check_cancellation(lesson_list)
+        
+        length = len(lesson_list)
+        if length < min_length:
+            lesson_list += [empty_lesson] * (min_length-len(lesson))
         
         # Some last perfections
         len_diff = len(lesson_set) - self.get_periods_in_day()
@@ -272,6 +280,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         else:
             raise ImproperlyConfigured("UserView needs to be called with "
                                        "a username")
+        return user
 
 
     ## Home Made
