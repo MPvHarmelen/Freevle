@@ -144,8 +144,21 @@ class LessonListMixin(object):
     
     def set_breaks_and_period_times(self, lesson_list, date):
         '''
+        get the right times and breaks
+            rules:
+            1. shortest definition wins
+            2. shortest period wins
+            3. least number of breaks wins
+            4. Error, the one who filled out the times sucks
+            
+            How to (pseudo crap):
+            all().filter(startdate,enddate,dayofweek)
+            
+            
+        put them in lesson_list
+        return lesson_list
         '''
-        pass
+        return lesson_list
     
     def get_lesson_set(self, date):
         '''

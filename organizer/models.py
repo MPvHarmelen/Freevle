@@ -24,21 +24,65 @@ class PeriodLengths(models.Model):
     
     start_date = models.DateField()
     end_date = models.DateField()
-
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
+
     length = models.IntegerField()
     brakes_after_period = models.CommaSeparatedIntegerField(max_length=32)
     start_of_day = models.TimeField()
     min_periods = models.IntegerField()
 
-    def get_period_times(self, date):
+    def get_periodlength_object(self, date):
+        queryset = self.objects.filter(
+            start_date__lt = date,
+            start_date__gt = date,
+            day_of_week = date.strftime('%a'),
+        )
+        
+        if len(queryset) == 1:
+            object = queryset[0]
+        else:
+            #key = lambda a: a.                                 ## << Here
+        
+    
+    def is_next_period_break(self, date, period):
+        periodlength_object = self.get_periodlength_object(date)
+        
+        if period in periodlength_object.brakes_after_period:
+            return True
+        else:
+            return False
+
+    def get_period_times(self, date, periods):
         """Get a list of starting and ending times of periods
 
         Please note that the argument date's supposed to be a datetime.date
         object.
         
+        way to return:
+        if periods < self.min_periods:
+            periods = self.min_periods
+        period_times = list()
+        for i in range(periods)
+            calculate shit
+            period_times.append((sart_time,end_time,is_break))
+        
+        period_times = tuple(period_times)
+        return period_times
+         
         """
-        # TODO: Write some script to get the list of period lengths
+        
+        if periods < self.min_periods:
+            periods = self.min_periods
+
+        period_times = []
+        for i in range(periods):
+            # calculate shit
+            periodlength_object = self.get_periodlength_object(date)
+            period_times.append((sart_time,end_time,is_break))
+        
+        period_times = tuple(period_times)
+        return period_times
+
         pass
 
 class Topic(models.Model):
@@ -105,7 +149,7 @@ class Cancellation(models.Model):
     )
     new_teacher = models.ForeignKey(
         User,
-        related_name='new_teacher',
+        related_name='replacement_teacher',
         blank=True, null=True,
         limit_choices_to={'groups__name': 'teachers'}
     )
