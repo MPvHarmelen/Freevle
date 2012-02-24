@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from cygy.custom.classes import sortable_list
 
 from django.contrib.auth.models import User
-from cygy.organizer.models import Lesson
+from cygy.organizer.models import Lesson, PeriodLengths, DAY_CHOICES
 
 class DateMixin(object):
     year = None
@@ -139,7 +139,7 @@ class CancellationMixin(object):
 class LessonListMixin(object):
     lesson_lists = None
     
-    def get_periods_in_day(self, date):
+    def check_period_time(self, lesson, date):
         pass
     
     def get_lesson_set(self, date):
@@ -150,7 +150,7 @@ class LessonListMixin(object):
 
     def get_lesson_lists(self, date):
         """
-        Get the list of lessonsets. This is a list of querysets.
+        Get the list of lessonsets. This is a list of iterables.
         """
         if self.lesson_lists is not None:
             lesson_lists = self.lesson_lists
@@ -173,73 +173,71 @@ class LessonListMixin(object):
             
             # For loop to get the length for lesson_set_cleanup
             length = 0
-            for index in range(len(lesson_lists)):
-                latest_period = lesson_lists[index][-1].period
+            for index, lesson_set in enumerate(lesson_lists):
+                latest_period = lesson_set[-1].period
                 list_date = date_list[index]
                 min_period = self.get_periods_in_day(list_date)
                 
                 if latest_period > length:
-                    length = lates_period
+                    length = latest_period
                 if min_period > length:
                     length = min_period
                     
-            for lesson_set in lesson_lists:
-                lesson_set = lesson_set_cleanup(lesson_set,length)
+            for index, lesson_set in enumerate(lesson_lists):
+                date = date_list[index]
+                lesson_set = lesson_set_cleanup(lesson_set, length, date)
         
         return lesson_lists
         
-    def lesson_set_cleanup(self, lesson_set, min_length):
+    def lesson_set_cleanup(self, lesson_set, min_length, date):
         """
         Takes an iterable of lessons, returns a lesson_list checked for
-        cancellation, padded with empty_lessons to match length, or the length
+        cancellation, padded with empty_lessons to match min_length or the length
         of self.get_periods_in_day() if length < self.get_periods_in_day().
         Also lesson.day_of_week is set to full regional name.
         """
         # You have to be careful with this empty_lesson, because empty
         # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
-        # DoesNotExist (because it uses the value of a ForeignKey,
-        # so don't try using empty_lesson in command line!
+        # DoesNotExist (because it uses the value of a ForeignKey),
+        # so don't try using empty_lesson in command line
         empty_lesson = Lesson()
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
 
         lesson_list = []
-        for i in range(len(unpadded_list)):
-            if i == 0:
+        for index, lesson in enumerate(unpadded_list):
+            if index == 0:
                 previous_period = 0
             else:
-                previous_period = unpadded_list[i - 1].period
-
-            if lesson_set[i].period != previous_period + 1:
-                difference = lesson_set[i] - previous_period
+                # Get the period of the previous lesson in unpadded_list
+                previous_period = unpadded_list[index - 1].period
+            
+            # Check if this period is directly after the previous one
+            if lesson.period != previous_period + 1:
+                difference = lesson.period - previous_period
                 # Two adjacent hours differ 1
                 lesson_list.extend([empty_lesson] * (difference - 1))
-            else:
-                lesson_list.append(lesson_set[i])
+
+            lesson_list.append(lesson)
 
         lesson_list = self.check_cancellation(lesson_list)
         
         length = len(lesson_list)
         if length < min_length:
-            lesson_list += [empty_lesson] * (min_length - len(lesson))
+            lesson_list += [empty_lesson] * (min_length - length)
         
         # Some last perfections
-        len_diff = self.get_periods_in_day(date) - len(lesson_set)
         if len_diff > 0:
             lesson_list.extend([empty_lesson] * len_diff)
 
-        days = {
-            'Sun': _('Sunday'),
-            'Mon': _('Monday'),
-            'Tue': _('Tuesday'),
-            'Wen': _('Wednesday'),
-            'Thu': _('Thursday'),
-            'Fri': _('Friday'),
-            'Sat': _('Saturday'),
-        }
+
         for lesson in lesson_list:
-            lesson.day_of_week = days[lesson.day_of_week]
+            lesson = lesson_cleanup(lesson)
+
+        for lesson in lesson_list:
+            lesson = self.check_period_time(lesson, date)
+            lesson.day_of_week = DAY_CHOICES[lesson.day_of_week]
             
         return lesson_list
 
@@ -268,15 +266,18 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     
     To write:
     class CancellationMixin
+        check_cancellation(lesson)
+    class LessonListMixin
+        shit
     get_comming_homework()
     get_anouncements()
     Done | get_lesson_lists()
-    get_lesson_list()
+    Done | get_lesson_set()
     Done | get_date()
     get_legend()
     Done | get_allow_weekend()
     Done | check_allow_weekend()
-    get_PERIODS_IN_DAY()
+    get_periods_in_day(*args)
 
 
     PROBLEMS:
@@ -299,8 +300,13 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     def get_legend(self):
         pass
 
-    def get_obj(self):
-                                                                    # << HERE!!!
+    ## Home Made
+    def get_lesson_set(self, date):
+        """
+        Returns a list of lessons for the given user and date,
+        ordered by period
+        """
+
         username = self.kwargs.get(self.username_url_kwarg, None)
 
         if username is not None:
@@ -311,15 +317,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         else:
             raise ImproperlyConfigured("UserView needs to be called with "
                                        "a username")
-        return user
 
-
-    ## Home Made
-    def get_lesson_list(self, user, date):
-        """
-        Returns a list of lessons for the given user and date,
-        ordered by period
-        """
         date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
         lesson_set = user.takes_courses.filter(
@@ -328,7 +326,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
             lesson__end_date__gt=date,
         )
 
-        return lesson_list    
+        return lesson_set
 
 
 
@@ -384,117 +382,3 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
             'legend': legend
         }
         return context
-
-
-
-
-# I'm just leaving this here for now if I want to use parts later
-def _get_next_prev_month(generic_view, naive_result, is_previous, use_day_names):
-    """
-    Helper: Get the next or the previous valid date. The idea is to allow
-    links on month/day views to never be 404s by never providing a date
-    that'll be invalid for the given view.
-
-    This is a bit complicated since it handles both next and previous months
-    and days (for MonthArchiveView and DayArchiveView); hence the coupling to generic_view.
-
-    However in essence the logic comes down to:
-
-        * If allow_empty and allow_future are both true, this is easy: just
-          return the naive result (just the next/previous day or month,
-          reguardless of object existence.)
-
-        * If allow_empty is true, allow_future is false, and the naive month
-          isn't in the future, then return it; otherwise return None.
-
-        * If allow_empty is false and allow_future is true, return the next
-          date *that contains a valid object*, even if it's in the future. If
-          there are no next objects, return None.
-
-        * If allow_empty is false and allow_future is false, return the next
-          date that contains a valid object. If that date is in the future, or
-          if there are no next objects, return None.
-
-    """
-    date_field = generic_view.get_date_field()
-    allow_empty = generic_view.get_allow_empty()
-    allow_future = generic_view.get_allow_future()
-
-    # If allow_empty is True the naive value will be valid
-    if allow_empty:
-        result = naive_result
-
-    # Otherwise, we'll need to go to the database to look for an object
-    # whose date_field is at least (greater than/less than) the given
-    # naive result
-    else:
-        # Construct a lookup and an ordering depending on whether we're doing
-        # a previous date or a next date lookup.
-        if is_previous:
-            lookup = {'%s__lte' % date_field: naive_result}
-            ordering = '-%s' % date_field
-        else:
-            lookup = {'%s__gte' % date_field: naive_result}
-            ordering = date_field
-
-        qs = generic_view.get_queryset().filter(**lookup).order_by(ordering)
-
-        # Snag the first object from the queryset; if it doesn't exist that
-        # means there's no next/previous link available.
-        try:
-            result = getattr(qs[0], date_field)
-        except IndexError:
-            result = None
-
-    # Convert datetimes to a dates
-    if hasattr(result, 'date'):
-        result = result.date()
-
-    # For month views, we always want to have a date that's the first of the
-    # month for consistency's sake.
-    if result and use_day_names:
-        result = result.replace(day=1)
-
-    # Check against future dates.
-    if result and (allow_future or result < datetime.date.today()):
-        return result
-    else:
-        return None
-
-
-
-
-
-
-class UserDetailView(DetailView):
-    username_field = 'username'
-    username_url_kwarg = 'username'
-
-    def get_object(self, queryset=None):
-
-
-        # Use a custom queryset if provided
-        if queryset is None:
-            queryset = self.get_queryset()
-
-        username = self.kwargs.get(self.username_url_kwarg, None)
-
-        # Try looking up by username.
-        if username is not None:
-            username_field = self.username_field
-            queryset = queryset.filter(**{username_field: username})
-
-        # If none of those are defined, it's an error.
-        else:
-            raise AttributeError(u'Generic detail view {} must be called with '
-                                 u'a username.'.format(self.__class__.__name__))
-
-        try:
-            obj = queryset.get()
-        except ObjectDoesNotExist:
-            raise Http404(
-                _(u'No {verbose_name} found matching the query').format(
-                    verbose_name=queryset.model._meta.verbose_name
-                    )
-                )
-        return obj
