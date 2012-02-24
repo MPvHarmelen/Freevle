@@ -65,6 +65,9 @@
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="menu-item" href="/letters/">{% trans "Letters" %}</a></li>
                   <li><a class="menu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
+                  {% if user.is_staff %}
+                  <li><a class="menu-item" href="/admin/">{% trans "Admin" %}</a></li>
+                  {% endif %}
                   <li><a class="menu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
                 </ul>
               </li>
