@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from cygy.custom.classes import sortable_list
 
 from django.contrib.auth.models import User
-from cygy.organizer.models import Lesson, PeriodLengths, DAY_CHOICES
+from cygy.organizer.models import Lesson, Course, PeriodLengths, DAY_CHOICES
 
 class DateMixin(object):
     year = None
@@ -138,8 +138,13 @@ class CancellationMixin(object):
 
 class LessonListMixin(object):
     lesson_lists = None
+
+    class EmptyCourse(Course):
+        topic = '-'
     
-    def check_period_time(self, lesson, date):
+    def set_breaks_and_period_times(self, lesson_list, date):
+        '''
+        '''
         pass
     
     def get_lesson_set(self, date):
@@ -197,10 +202,8 @@ class LessonListMixin(object):
         Also lesson.day_of_week is set to full regional name.
         """
         # You have to be careful with this empty_lesson, because empty
-        # ForeignKey fields raise DoesNotExist. Also the __unicode__ raises
-        # DoesNotExist (because it uses the value of a ForeignKey),
-        # so don't try using empty_lesson in command line
-        empty_lesson = Lesson()
+        # ForeignKey fields raise DoesNotExist.
+        empty_lesson = Lesson(course=self.EmptyCourse())
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
@@ -231,12 +234,9 @@ class LessonListMixin(object):
         if len_diff > 0:
             lesson_list.extend([empty_lesson] * len_diff)
 
+        lesson_list = self.set_breaks_and_period_times(lesson_list, date)
 
         for lesson in lesson_list:
-            lesson = lesson_cleanup(lesson)
-
-        for lesson in lesson_list:
-            lesson = self.check_period_time(lesson, date)
             lesson.day_of_week = DAY_CHOICES[lesson.day_of_week]
             
         return lesson_list
@@ -254,38 +254,38 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     lesson_list2 = [<lesson object>, <lesson object>, (...)]
     ...
 
-    The day name is done by updating the queryset of a day to make
-    day_of_week a full name, instead of an English abbreviation
-        !! We are not going to use update, because it changes the database !!
-
-    So, the day name is done by changing the dayname AFTER the list has been
+    The day name is done by changing the dayname AFTER the list has been
     created from the queryset
     
     Cancellation is done by creating extra attributes to the lesson objects,
     like is_cancelled and changed_teacher.
+    
+    The same for period times.
     
     To write:
     class CancellationMixin
         check_cancellation(lesson)
     class LessonListMixin
         shit
-    get_comming_homework()
-    get_anouncements()
     Done | get_lesson_lists()
     Done | get_lesson_set()
     Done | get_date()
-    get_legend()
     Done | get_allow_weekend()
     Done | check_allow_weekend()
+    get_comming_homework()
+    get_anouncements()
+    get_legend()
+    lesson_set_cleanup(*args)
     get_periods_in_day(*args)
+    
 
 
     PROBLEMS:
     With weekend shit stuff won't work because if check_allow_weekend() returns
     a monday in stead of a saturday, the 2nd day after that wil pass as a monday,
-    which will give you 2 mondays O_o
+    which will give you 2 mondays O_o -- Solved
     
-    Make docstring for sortable_list
+    Make docstring for sortable_list -- Done
     """
     username_url_kwarg = 'username'
     announcements = None
