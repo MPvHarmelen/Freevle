@@ -96,6 +96,10 @@ class DateMixin(object):
         return self.allow_weekend
 
     def check_allow_weekend(self, date):
+        """
+        Check if a date is allowd to be a Saturday or Sunday,
+        return a date that isn't a Saturday or Sonday if it isn't allowd to be
+        """
         allow_weekend = self.get_allow_weekend()
 
         if not allow_weekend:
@@ -145,19 +149,19 @@ class LessonListMixin(object):
     def set_breaks_and_period_times(self, lesson_list, date):
         '''
         get the right times and breaks
-            rules:
-            1. shortest definition wins
-            2. shortest period wins
-            3. least number of breaks wins
-            4. Error, the one who filled out the times sucks
-            
-            How to (pseudo crap):
-            all().filter(startdate,enddate,dayofweek)
-            
-            
+
         put them in lesson_list
         return lesson_list
         '''
+        periodlengths = PeriodLengths.get_periodlengths(date)
+        
+        # break_object = 
+        for index, lesson in enumerate(lesson_list[:]):
+            period = index + 1
+            if PeriodLengths.is_next_period_break(period, periodlengths):
+                lesson_list[index:index] = 
+        
+        
         return lesson_list
     
     def get_lesson_set(self, date):
@@ -203,16 +207,15 @@ class LessonListMixin(object):
                     
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
-                lesson_set = lesson_set_cleanup(lesson_set, length, date)
+                lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
+                lesson_set = self.check_cancellation(lesson_set)
         
         return lesson_lists
         
     def lesson_set_cleanup(self, lesson_set, min_length, date):
         """
-        Takes an iterable of lessons, returns a lesson_list checked for
-        cancellation, padded with empty_lessons to match min_length or the length
-        of self.get_periods_in_day() if length < self.get_periods_in_day().
-        Also lesson.day_of_week is set to full regional name.
+        Takes an iterable of lessons, returns a lesson_list ready to be
+        itterated for the template. (No cancellation is checked)
         """
         # You have to be careful with this empty_lesson, because empty
         # ForeignKey fields raise DoesNotExist.
@@ -236,19 +239,15 @@ class LessonListMixin(object):
                 lesson_list.extend([empty_lesson] * (difference - 1))
 
             lesson_list.append(lesson)
-
-        lesson_list = self.check_cancellation(lesson_list)
         
+        # Correct length
         length = len(lesson_list)
         if length < min_length:
-            lesson_list += [empty_lesson] * (min_length - length)
-        
-        # Some last perfections
-        if len_diff > 0:
-            lesson_list.extend([empty_lesson] * len_diff)
+            lesson_list.extend([empty_lesson] * (min_length - length))
 
         lesson_list = self.set_breaks_and_period_times(lesson_list, date)
 
+        # Set day_of_week to full regional name
         for lesson in lesson_list:
             lesson.day_of_week = DAY_CHOICES[lesson.day_of_week]
             

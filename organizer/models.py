@@ -1,5 +1,6 @@
 from django.db import models
 from cygy.custom import fields
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
@@ -31,29 +32,80 @@ class PeriodLengths(models.Model):
     start_of_day = models.TimeField()
     min_periods = models.IntegerField()
 
-    def get_periodlength_object(self, date):
+    def get_periodlengths(self, date):
+        """
+        Rules:
+            1. smallest (end_date - start_date) wins
+            2. shortest period wins
+            3. least number of breaks wins
+            4. Error, the one who filled out the times sucks
+        """
         queryset = self.objects.filter(
             start_date__lt = date,
-            start_date__gt = date,
+            end_date__gt = date,
             day_of_week = date.strftime('%a'),
         )
-        
+
+        if len(queryset) == 0:
+            raise ObjectDoesNotExist
+
         if len(queryset) == 1:
-            object = queryset[0]
+            periodlengths = queryset[0]
         else:
-            #key = lambda a: a.                                 ## << Here
-        
+            # Check rule 1
+            date_len = lambda a: a.end_date - a.start_date
+            smallest_date_len = min([date_len(a) for a in queryset])
+            periodlengths_set = [a for a in queryset
+                                 if date_len(a) == smalles_date_len]
+            
+            if len(periodlengths_set) == 1:
+                periodlengths = periodlengths_set[0]
+            else:
+                # Check rule 2
+                shortest_period = min([a.period for a in periodlengths_set])
+                periodlengths_set = ([a for a in periodlengths_set
+                                     if a.period == shortest_period])
+
+                if len(periodlengths_set) == 0:
+                    periodlengths = periodlengths_set[0]
+                else:
+                    # Check rule 3
+                    least_breaks = min([len(a.breaks_after_period) for a in
+                                        periodlengths_set])
+                    periodlengths_set = min(
+                       [a for a in periodlengths_set
+                        if len(a.breaks_after_period) == least_breaks]
+                    )
+
+                    if len(periodlengths_set) == 0:
+                        periodlengths = periodlengths_set[0]
+                    else:
+                        # Rule 4
+                        raise ImproperlyConfigured(
+                            'There are too many Periodlengths defined. '
+                            'Please contact your administrators and tell them '
+                            "they're idiots and can't even configure "
+                            'Periodlengths. Thank you.'
+                        )
+
+        return periodlengths
     
-    def is_next_period_break(self, date, period):
-        periodlength_object = self.get_periodlength_object(date)
+    def is_next_period_break(self, period, date=None, periodlengths=None):
+        if periodlengths is None:
+            if date is None:
+                raise TypeError('is_next_period_break() needs to be called with '
+                                'a date or periodlengths')
+            else:
+                periodlengths = self.get_periodlengths(date)
         
-        if period in periodlength_object.brakes_after_period:
+        if period in periodlengths.brakes_after_period:
             return True
         else:
             return False
 
-    def get_period_times(self, date, periods):
-        """Get a list of starting and ending times of periods
+    def get_period_times(self, periods, date=None, periodlengths=None):
+        """
+        Get a list of starting and ending times of periods and breaks
 
         Please note that the argument date's supposed to be a datetime.date
         object.
@@ -70,20 +122,24 @@ class PeriodLengths(models.Model):
         return period_times
          
         """
+        if periodlengths is None:
+            if date is None:
+                raise TypeError('get_period_times() needs to be called with '
+                                'a date or periodlengths')
+            else:
+                periodlengths = self.get_periodlengths(date)
         
-        if periods < self.min_periods:
-            periods = self.min_periods
+        if periods < periodlengths.min_periods:
+            periods = periodlengths.min_periods
 
         period_times = []
         for i in range(periods):
             # calculate shit
-            periodlength_object = self.get_periodlength_object(date)
+            periodlengths = self.get_periodlengths(date)
             period_times.append((sart_time,end_time,is_break))
         
         period_times = tuple(period_times)
         return period_times
-
-        pass
 
 class Topic(models.Model):
     name = models.CharField(max_length=32)
