@@ -40,7 +40,7 @@ class PeriodLengths(models.Model):
             3. least number of breaks wins
             4. Error, the one who filled out the times sucks
         """
-        queryset = self.objects.filter(
+        queryset = PeriodLengths.objects.filter(
             start_date__lt = date,
             end_date__gt = date,
             day_of_week = date.strftime('%a'),
@@ -90,20 +90,14 @@ class PeriodLengths(models.Model):
 
         return periodlengths
     
-    def is_next_period_break(self, period, date=None, periodlengths=None):
-        if periodlengths is None:
-            if date is None:
-                raise TypeError('is_next_period_break() needs to be called with '
-                                'a date or periodlengths')
-            else:
-                periodlengths = self.get_periodlengths(date)
-        
-        if period in periodlengths.brakes_after_period:
+    def is_next_period_break(self, period):
+        """Returns if there is a break after this period"""
+        if period in self.brakes_after_period:
             return True
         else:
             return False
 
-    def get_period_times(self, periods, date=None, periodlengths=None):
+    def get_period_times(self, periods):
         """
         Get a list of starting and ending times of periods and breaks
 
@@ -122,20 +116,13 @@ class PeriodLengths(models.Model):
         return period_times
          
         """
-        if periodlengths is None:
-            if date is None:
-                raise TypeError('get_period_times() needs to be called with '
-                                'a date or periodlengths')
-            else:
-                periodlengths = self.get_periodlengths(date)
-        
-        if periods < periodlengths.min_periods:
-            periods = periodlengths.min_periods
+        if periods < self.min_periods:
+            periods = self.min_periods
 
         period_times = []
         for i in range(periods):
             # calculate shit
-            periodlengths = self.get_periodlengths(date)
+            start_time, end_time, is_break = None, None, False
             period_times.append((sart_time,end_time,is_break))
         
         period_times = tuple(period_times)

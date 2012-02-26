@@ -14,6 +14,16 @@ from cygy.custom.classes import sortable_list
 from django.contrib.auth.models import User
 from cygy.organizer.models import Lesson, Course, PeriodLengths, DAY_CHOICES
 
+# You have to be careful with Empty- and BreakLesson, because empty
+# ForeignKey fields raise DoesNotExist.
+class EmptyLesson(Lesson):
+    course = Course(topic='-')
+
+class BreakLesson(Lesson):
+    course = Course(topic=_('break'))
+    is_break = True
+
+
 class DateMixin(object):
     year = None
     month = None
@@ -143,9 +153,6 @@ class CancellationMixin(object):
 class LessonListMixin(object):
     lesson_lists = None
 
-    class EmptyCourse(Course):
-        topic = '-'
-    
     def set_breaks_and_period_times(self, lesson_list, date):
         '''
         get the right times and breaks
@@ -153,13 +160,18 @@ class LessonListMixin(object):
         put them in lesson_list
         return lesson_list
         '''
-        periodlengths = PeriodLengths.get_periodlengths(date)
+        periodlengths = PeriodLengths().get_periodlengths(date)
         
-        # break_object = 
+        
         for index, lesson in enumerate(lesson_list[:]):
             period = index + 1
-            if PeriodLengths.is_next_period_break(period, periodlengths):
-                lesson_list[index:index] = 
+            if periodlengths.is_next_period_break(period):
+                break_lesson = BreakLesson(period=period)
+                break_lesson.period = period
+                lesson_list[index:index] = break_lesson
+                
+        
+        
         
         
         return lesson_list
@@ -217,9 +229,7 @@ class LessonListMixin(object):
         Takes an iterable of lessons, returns a lesson_list ready to be
         itterated for the template. (No cancellation is checked)
         """
-        # You have to be careful with this empty_lesson, because empty
-        # ForeignKey fields raise DoesNotExist.
-        empty_lesson = Lesson(course=self.EmptyCourse())
+        empty_lesson = EmptyLesson()
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
