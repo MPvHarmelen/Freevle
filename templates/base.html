@@ -99,24 +99,25 @@
 
       <div class="wrapper">
         
-       <div class="breadcrumbs">
-        <span class="home"><a href="#">Home</a></span>
-        <span class="divider">&rsaquo;</span>
-        <span class="second"><a href="#">Second level</a></span>
-        <span class="divider">&rsaquo;</span>
-        <span class="third"><a href="#">Third level</a></span>
-        <span class="divider">&rsaquo;</span>
-        <span class="current">Current page</span>
-      </div>
-
         {% block content %}
         {% endblock content %}
 
       </div>
 
       <footer>
-        <div id="center">
         
+        <div id="breadcrumbs">
+          <span class="home"><a href="#">Home</a></span>
+          <span class="divider"></span>
+          <span class="second"><a href="#">Second level</a></span>
+          <span class="divider"></span>
+          <span class="third"><a href="#">Third level</a></span>
+          <span class="divider"></span>
+          <span class="current">Current page</span>
+        </div>
+          
+        <div id="center">
+          
           <div class="footercolumn" id="leftcolumn">
 
             <img id="swan" src="/media/img/zwaan.png" alt="logo">

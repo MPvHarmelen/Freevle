@@ -283,27 +283,6 @@ h2 a:link, a:visited{
   text-shadow: 1px 1px 1px #fff;
 }
 
-div.breadcrumbs {
-  width: 800px;
-  float: left;
-  margin: 0 0 10px;
-  padding: 3px 0 5px;
-  color: #888;
-  font-size: 12px;
-  text-decoration: none;
-  text-shadow: #EEEEEE 1px 1px 0px;
-}
-
-div.breadcrumbs a {
-  color: #888;
-  text-decoration: none;
-  padding: 0 2px;
-}
-
-span.current {
-  font-style: italic;
-}
-
 div.item {
   padding: 1px 0 10px;
   border-bottom: 1px solid #cfcfcf;
@@ -735,17 +714,53 @@ input.button:active, input[type=submit]:active {
 /*------------------------------footer------------------------------*/
 
 footer {
-  width: 800px;
+  width: 900px;
   margin: 23px auto 0;
   position: relative;
   font-size: 14px;
-  padding: 30px 50px 30px;
+  padding: 0;
   background: #006;
   color: #eee;
 }
 
+#breadcrumbs {
+  position: relative;
+  width: 900px;
+  float: left;
+  margin: auto;
+  background: #FFF;
+  border-bottom: 1px dotted #FFF;
+  color: #FFF;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#breadcrumbs a {
+  float: left;
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+span.divider {
+  display: block;
+  float: left;
+  height: 46px;
+  width: 15px;
+  padding: 0;
+  background: url(../img/breadcrumbsdivider.png);
+}
+
+span.current {
+  float: left;
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-style: italic;
+}
+
 div#center {
-  padding: 20px 0 0;
+  padding: 80px 50px 30px;
 }
 
 h2.footerh {
