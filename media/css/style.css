@@ -269,7 +269,7 @@ h2 {
   font-size: 40px;
   font-family: 'Cabin', sans-serif;
   font-weight: normal;
-  margin: 50px 0 30px;
+  margin: 30px 0 30px;
   line-height: 38px;
 }
 
@@ -284,6 +284,7 @@ h2 a:link, a:visited{
 }
 
 div.breadcrumbs {
+  width: 800px;
   float: left;
   margin: 0 0 10px;
   padding: 3px 0 5px;
