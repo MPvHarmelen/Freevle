@@ -6,7 +6,7 @@ $(document).ready(function(){
 
   var amountPictures = 9;
 
-  var totWidth = amountPictures * 266;
+  var totWidth = amountPictures * $('.slide').width();
   $('#slides').width(totWidth);
   var currentPos = 0;
 
