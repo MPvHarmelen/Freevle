@@ -728,8 +728,7 @@ footer {
   width: 900px;
   float: left;
   margin: auto;
-  background: #FFF;
-  border-bottom: 1px dotted #FFF;
+  border-bottom: 1px solid #AAA;
   color: #FFF;
   font-size: 14px;
   text-decoration: none;
