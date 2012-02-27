@@ -1,0 +1,52 @@
+ <nav id="menunav">
+		  <ul id="menu">
+			<li class="menu">
+			  <a class="header" href="/">
+				<img id="logo" src="/media/img/littleswan.png" alt="logo">
+				<span id="logotext"><span id="firstletter">C</span>YGNUS GYMNASIUM</span>
+				<div class="clear"></div>
+			  </a>
+			</li>
+			{% for page in pages %}
+			{% if not page.parent %} 
+			<li class="menu"><a class="header" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+			  {% if page.page_set.all %}
+				<ul class="dropdown">
+				{% for child in page.page_set.all %}
+					<li><a class="menu-item" href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
+				{% endfor %}
+				</ul>
+			  {% endif %}
+			</li>
+			{% endif %}
+			{% endfor %}
+			<li class="menu"><a class="header" href="/news">News</a></li>
+			<li class="menu"><a class="header" href="">Contact</a></li>
+
+			{% if user.is_authenticated %}
+			  <li id="settingicon" class="menu">
+				<a class="header" href="/">{{ user.first_name}} {{ user.last_name}}</a>
+				<ul class="dropdown" id="rightdrop">
+				  <li><a class="menu-item" href="/letters/">{% trans "Letters" %}</a></li>
+				  <li><a class="menu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
+				  {% if user.is_staff %}
+				  <li><a class="menu-item" href="/admin/">{% trans "Admin" %}</a></li>
+				  {% endif %}
+				  <li><a class="menu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
+				</ul>
+			  </li>
+			  <li id="vakken" class="menu"><a class="header" href="/courses">{% trans "Courses" %}</a>
+				<ul class="dropdown" id="rightdrop">
+				  <li><a class="menu-item" href="/">Grieks</a></li>
+				  <li><a class="menu-item" href="/">Geschiedenis</a></li>
+				  <li><a class="menu-item" href="/">Frans</a></li>
+				  <li><a class="menu-item" href="/">Wiskunde</a></li>
+				  <li><a class="menu-item" href="/">Meer...</a></li>
+				</ul>
+			  </li>
+			{% else %}
+			  <li id="loginhome" class="menu"><a href="#" class="header">{% trans "Login" %}</a></li>
+			{% endif %}
+		  </ul>
+		  <div class="clear"></div>
+		</nav>

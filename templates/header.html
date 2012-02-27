@@ -9,7 +9,7 @@
       body {
         width: 100%;
         height: 100%;
-        background: #f0f0f0 url(/home/floris/cygy/media/img/background.png) repeat-x;
+        background: #f0f0f0 url(../media/img/background.png) repeat-x;
         margin: 0;
         padding: 0;
         font-family: sans-serif;
@@ -39,6 +39,7 @@
         padding: 0;
         position: relative;
         z-index: 1;
+        border-radius: 3px;
       }
       ul#menu {
         margin: 0;
@@ -61,11 +62,21 @@
       }
       a.menuitem:active {
         padding: 16px 15px 14px;
-        color: #fff;
       }
-      a.imagenav {
-        padding: 5px;
+      a.imagenav#homebtn {
         display: block;
+        height: 46px;
+        width: 46px;
+        background: url(../media/img/home.png) 0 0;
+        -webkit-border-top-left-radius: 3px;
+        -webkit-border-bottom-left-radius: 3px;
+        -moz-border-radius-topleft: 3px;
+        -moz-border-radius-bottomleft: 3px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+      a.imagenav#homebtn:hover {
+        background: #008 url(../media/img/home.png) 0 -46px;
       }
       div.clear {
         clear: both;
@@ -73,13 +84,16 @@
       li.lileft {
         float: right;
       }
+      ul#menu img {
+        height: 46px;
+      }
       
       .wrapper {
         width: 900px;
         margin: -25px auto;
         background: #fff;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-        padding: 0;
+        padding: 25px 0 0;
         height: 500px;
         position: relative;
         z-index: 0;
@@ -95,9 +109,7 @@
     <nav>
       <ul id="menu">
         <li class="navmenu">
-          <a class="imagenav" href="">
-            <img src="home.png">
-          </a>
+          <a class="imagenav" id="homebtn" href=""></a>
         </li>
         <li class="navmenu">
           <a class="menuitem" href="">
@@ -115,9 +127,7 @@
           </a>
         </li>
         <li class="navmenu lileft">
-          <a class="imagenav" href="">
-            <img src="home.png">
-          </a>
+          <a class="imagenav" href=""></a>
         </li>
         <div class="clear"></div>
       </ul>
