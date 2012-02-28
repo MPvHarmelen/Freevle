@@ -69,10 +69,10 @@ h1 {
   font-size: 82px;
   float: right;
   margin: 70px 35px 70px 0;
-  color: #008;
+  text-decoration: none;
 }
 
-h1 a {
+a header h1 {
   text-decoration: none;
 }
 
