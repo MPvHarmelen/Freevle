@@ -839,8 +839,9 @@ div#map iframe {
 }
 
 div#map a {
-  width: 400px;
-  padding: 5px 90px;
+  display: block;
+  width: 300px;
+  padding: 5px 0;
   background: #EEE;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); 
   font-size: 14px;
@@ -856,7 +857,6 @@ div#map a:hover {
 
 ul#contactpersons {
  padding: 0;
- margin: 0 0 20px 0;
 }
 
 ul#contactpersons li a {
@@ -867,15 +867,16 @@ span.persondescription {
 }
 
 span.morecontacts a {
+  display: block;
   width: 800px;
-  padding: 5px 294px;
+  padding: 5px 0px;
   background: #EEE;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); 
   font-size: 14px;
   text-decoration: none;
   text-align: center;
   color: #333;
-  margin: 0 0 20px 0;
+  margin: 25px 0 15px 0;
 }
 
 span.morecontacts a:hover {
