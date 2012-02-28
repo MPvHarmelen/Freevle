@@ -870,21 +870,14 @@ ul#breadcrumbs a {
   float: left;
   color: #FFF;
   text-decoration: none;
-<<<<<<< HEAD
   padding: 10px 30px;
   background: url(../img/breadcrumbsdivider.png) right top no-repeat;
   margin: 0 -15px 0 0;
-=======
-  padding: 10px 30px 10px 15px;
-  z-index: 1;
-  position: relative;
->>>>>>> 4f718eb3f16d2ffd9c15f49fb53b00bbda0d674d
 }
 
 ul#breadcrumbs a:hover {
   display: block;
   float: left;
-<<<<<<< HEAD
   color: #333;
   text-decoration: none;
   padding: 10px 30px;
@@ -894,15 +887,6 @@ ul#breadcrumbs a:hover {
 
 a.home:hover {
   background: #FFF url(../img/breadcrumbsdividerhover.png) right top no-repeat !important;
-=======
-  height: 46px;
-  width: 15px;
-  padding: 0;
-  margin-left: -15px;
-  position: relative;
-  background: url(../img/breadcrumbsdivider.png);
-  z-index: 0;
->>>>>>> 4f718eb3f16d2ffd9c15f49fb53b00bbda0d674d
 }
 
 span.current {
