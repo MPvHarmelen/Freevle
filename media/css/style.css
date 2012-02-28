@@ -814,21 +814,21 @@ footer a:hover, footer a:active {
 
 #searchcont {
   width: 46px;
+  z-index: 2;
 }
 #search {
   position: absolute;
-  z-index: 100;
   right: 0;
 }
 #search input[type="text"] {
-  padding: 12px 12px 12px 34px;
+  padding: 12px 10px 12px 36px;
   width: 35px;
   height: 46px;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
   line-height: 20px;
-  font-weight: bold;
-  -webkit-transition: width 0.5s;
-  -moz-transition: width 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
   cursor: pointer;
   border: none;
   margin: 0;
@@ -836,13 +836,12 @@ footer a:hover, footer a:active {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   position: relative;
-  z-index: 2;
 }
 #search input[type="text"]:hover {
   background: url(../img/mag.png) 0 -46px no-repeat #008;
 }
 #search input[type="text"]:focus {
-  width: 200px;
+  width: 260px;
   outline: none;
   -webkit-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   -moz-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
