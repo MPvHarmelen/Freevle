@@ -103,7 +103,7 @@ ul.dropdown {
   -moz-box-shadow: 0px 0px 6px #777;
   -webkit-box-shadow: 0px 0px 6px #777;
   z-index: 3;
-  top: 47px;
+  top: 46px;
 }
 
 li.navmenu {
@@ -240,7 +240,7 @@ div#darken {
 }
 
 div#inlogform {
-  padding: 15px 15px 35px;
+  padding: 15px;
   text-align: center;
   position: relative;
   background: #ddd;
@@ -742,6 +742,8 @@ li.odd a, li.even a {
   background: #d44;
   color: #fff;
   padding: 8px 15px;
+  margin: 30px auto;
+  position: relative;
 }
 
 #loginformpage {
@@ -758,13 +760,15 @@ input.text, #id_username, #id_password {
   background: #f9f9f9;
   box-shadow: 0 0 5px #aaa;
   border-radius: 2px;
+  border: none;
+  outline: none;
 }
 
 input.text:focus, #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
 }
 
-input.button, input[type=submit] {
+input[type=submit] {
   padding: 8px 10px;
   width: 100px;
   cursor: pointer;
@@ -786,6 +790,8 @@ input.button, input[type=submit] {
   box-shadow: 1px 1px 1px #000;
   border-radius: 3px;
   margin: 10px auto 0;
+  outline: none;
+  border: none;
 }
 
 input.button:active, input[type=submit]:active {
@@ -853,7 +859,9 @@ footer {
   float: left;
   color: #FFF;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 10px 30px 10px 15px;
+  z-index: 1;
+  position: relative;
 }
 
 span.divider {
@@ -862,7 +870,10 @@ span.divider {
   height: 46px;
   width: 15px;
   padding: 0;
+  margin-left: -15px;
+  position: relative;
   background: url(../img/breadcrumbsdivider.png);
+  z-index: 0;
 }
 
 span.current {
