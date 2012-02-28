@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+  <h2>Contact</h2>
+    <span class="intro"><p>U kunt op verschillende manieren in contact komen met de school. Bellen en mailen gaan het snelst, maar langskomen op afspraak kan natuurlijk ook!</p></span>
+</div>
+
+<div class="item">
+  <h3>Location</h3>
+    <span class="locationdescription"><p>Het Cygnus Gymansium is gehuisvest in Amsterdam Oost aan de Wibautstraat. Goed bereikbaar met de fiets of met metro, trein of lopend vanaf het Amstel Station.</p></span>
+    <div class="adress">
+      <span class="street">Vrolikstraat</span>
+      <span class="number">8</span><br>
+      <span class="postcode">1092 TV</span>
+      <span class="city">Amsterdam</span><br>
+      <span class="telephone">020-1234567</span>
+    </div>
+    <span class="map">
+      <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.nl/maps?f=q&amp;source=s_q&amp;hl=nl&amp;geocode=&amp;q=vrolikstraat+8+amsterdam&amp;aq=&amp;sll=52.355413,4.912962&amp;sspn=0.001378,0.002411&amp;gl=nl&amp;ie=UTF8&amp;hq=&amp;hnear=Vrolikstraat+8,+Weesperzijde,+Amsterdam,+Noord-Holland&amp;t=m&amp;ll=52.354268,4.914665&amp;spn=0.015727,0.034332&amp;z=14&amp;output=embed"></iframe>
+      <a href="http://maps.google.nl/maps?f=q&amp;source=embed&amp;hl=nl&amp;geocode=&amp;q=vrolikstraat+8+amsterdam&amp;aq=&amp;sll=52.355413,4.912962&amp;sspn=0.001378,0.002411&amp;gl=nl&amp;ie=UTF8&amp;hq=&amp;hnear=Vrolikstraat+8,+Weesperzijde,+Amsterdam,+Noord-Holland&amp;t=m&amp;ll=52.354268,4.914665&amp;spn=0.015727,0.034332&amp;z=14">Grotere kaart weergeven</a>
+    </span>
+</div>
+
+<div class="item">
+  <h3>Mail</h3>
+    <span class="locationdescription"><p>U kunt onderstaande personen altijd mailen, helaas krijgt u nooit antwoord...</p></span>
+    
+    <ul id="contactpersons">
+      <li class="odd">
+        <a href="mailto:Harry@langeschoolnaam.nl">Harry de Boer</a>
+        <span class="persondescription">Afdelingsleider leerjaar 1 en 2</span>
+      </li>
+      
+      <li class="even">
+        <a href="mailto:Larry@langeschoolnaam.nl">Larry Schoffelaar</a>
+        <span class="persondescription">Afdelingsleider leerjaar 3 en 4</span>
+      </li>
+      
+      <li class="odd">
+        <a href="mailto:Barry@langeschoolnaam.nl">Barry Haha</a>
+        <span class="persondescription">Afdelingsleider leerjaar 5 en 6</span>
+      </li>
+      
+      <li class="even">
+        <a href="mailto:Darry@langeschoolnaam.nl">Darry Boehoe</a>
+        <span class="persondescription">Rector</span>
+      </li>
+      
+      <li class="odd">
+        <a href="mailto:Marry@langeschoolnaam.nl">Harry Achternaam</a>
+        <span class="persondescription">Administratie</span>
+      </li>
+      
+      <li class="even">
+        <a href="mailto:Garry@langeschoolnaam.nl">Garry Niksers</a>
+        <span class="persondescription">Verzuimcoordinator</span>
+      </li>
+    </ul>
+    
+    <span class="morecontacts">Login for a list of teachers and other contactpersons</span>
+</div>
+{% endblock %}
+

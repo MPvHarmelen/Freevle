@@ -284,7 +284,7 @@ form#login {
   margin: -25px auto;
   background: #fff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-  padding: 0px 50px 40px;
+  padding: 20px 50px 40px;
   position: relative;
   word-wrap: break-word;
   z-index: 0;
@@ -802,6 +802,28 @@ input.button:active, input[type=submit]:active {
 	    color-stop(0.17, rgb(58,67,250)),
 	    color-stop(1.00, rgb(40,40,199))
     );
+}
+
+/*------------------------------contact------------------------------*/
+
+div.adress {
+}
+
+span.map iframe{
+  width: 300px;
+  height: 300px;
+  position: realtive;
+}
+
+ul#contactpersons {
+  padding: 0;
+}
+
+ul#contactpersons li a {
+}
+
+span.persondescription {
+  float: right;
 }
 
 /*------------------------------footer------------------------------*/

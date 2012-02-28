@@ -24,6 +24,7 @@ urlpatterns += patterns('',
     url(r'^galleries/', include('cygy.galleries.urls')),
     # TEMP for Floris' work.
     url(r'^courses/', direct_to_template, {'template': 'courses/index.html'}),
+    url(r'^contact/', direct_to_template, {'template': 'contact/index.html'}),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
