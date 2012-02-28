@@ -815,25 +815,48 @@ input.button:active, input[type=submit]:active {
 
 /*------------------------------contact------------------------------*/
 
-div#adress {
- float: left;
+div#location {
+  width: 480px;
 }
+
+div#adress {
+  width: 480px;
+}
+
 p.contact {
- margin: 5px 0;
+ margin: 0;
 }
 
 div#map {
  float: right;
  width: 300px;
- height: 340px;
+ height: 360px;
 }
 div#map iframe {
  width: 300px;
- height: 300px;
+ height: 250px;
+ padding: 0 0 5px 0;
+}
+
+div#map a {
+  width: 400px;
+  padding: 5px 90px;
+  background: #EEE;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); 
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  color: #333;
+}
+
+div#map a:hover {
+  background: #008;
+  color: #FFF;
 }
 
 ul#contactpersons {
  padding: 0;
+ margin: 0 0 20px 0;
 }
 
 ul#contactpersons li a {
@@ -841,6 +864,23 @@ ul#contactpersons li a {
 
 span.persondescription {
  float: right;
+}
+
+span.morecontacts a {
+  width: 800px;
+  padding: 5px 294px;
+  background: #EEE;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); 
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+span.morecontacts a:hover {
+  background: #008;
+  color: #FFF;
 }
 
 /*------------------------------footer------------------------------*/
