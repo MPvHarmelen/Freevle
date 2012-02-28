@@ -161,10 +161,6 @@ ul#menu img {
   height: 46px;
 }
 
-a.imagenav#homebtn:hover {
-  background: #008 url(../img/home.png) 0 -46px;
-}
-
 a.imagenav#homebtn {
   display: block;
   height: 46px;
@@ -176,6 +172,13 @@ a.imagenav#homebtn {
   -moz-border-radius-bottomleft: 3px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+a.imagenav#homebtn:hover {
+  background: #008 url(../img/home.png) 0 -46px;
 }
 
 /*------------------------------search------------------------------*/
