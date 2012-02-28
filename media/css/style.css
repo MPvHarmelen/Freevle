@@ -55,12 +55,21 @@ header {
   width: 900px;
   margin: auto;
   text-align: center;
-  padding: 1px 0;
+  padding: 20px 0;
+}
+
+img#logo {
+  float: left;
+  width: 140px;
+  margin: 10px 0 10px 30px;
 }
 
 h1 {
   font-family: Aldus, Georgia, serif;
-  font-size: 90px;
+  font-size: 82px;
+  float: right;
+  margin: 70px 35px 70px 0;
+  color: #008;
 }
 
 h1 a {
