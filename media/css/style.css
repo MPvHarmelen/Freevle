@@ -812,13 +812,21 @@ input.button:active, input[type=submit]:active {
 
 /*------------------------------contact------------------------------*/
 
-div.adress {
+div#adress {
+  float: left;
+}
+p.contact {
+  margin: 5px 0;
 }
 
-span.map iframe{
+div#map {
+  float: right;
+  width: 300px;
+  height: 340px;
+}
+div#map iframe {
   width: 300px;
   height: 300px;
-  position: realtive;
 }
 
 ul#contactpersons {
