@@ -60,12 +60,14 @@
             <li class="navmenu"><a class="menuitem" href="/news">News</a></li>
             <li class="navmenu"><a class="menuitem" href="/contact">Contact</a></li>
           
-          <li class="navmenu lileft">
-            <a class="imagenav" href=""></a>
-          </li>
-          
+            <li class="navmenu liright" id="searchcont">
+              <form id="search" method="post" action="">
+                <input id="search-box" type="text" placeholder="Zoeken...">
+              </form>​
+            </li>
+
           {% if user.is_authenticated %}
-              <li id="settingicon" class="navmenu">
+              <li class="navmenu liright">
                 <a class="menuitem" href="/">{{ user.first_name}} {{ user.last_name}}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>
@@ -77,7 +79,7 @@
                 </ul>
               </li>
               
-              <li id="courses" class="navmenu"><a class="menuitem" href="/courses">{% trans "Courses" %}</a>
+              <li class="navmenu liright"><a class="menuitem" href="/courses">{% trans "Courses" %}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="submenu-item" href="/">Grieks</a></li>
                   <li><a class="submenu-item" href="/">Geschiedenis</a></li>
