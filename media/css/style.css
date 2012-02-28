@@ -806,20 +806,13 @@ input.button:active, input[type=submit]:active {
 
 /*------------------------------contact------------------------------*/
 
-div.adress {
-}
-
 span.map iframe{
   width: 300px;
   height: 300px;
-  position: realtive;
 }
 
 ul#contactpersons {
   padding: 0;
-}
-
-ul#contactpersons li a {
 }
 
 span.persondescription {
@@ -838,7 +831,9 @@ footer {
   color: #eee;
 }
 
-#breadcrumbs {
+ul#breadcrumbs {
+  list-style: none;
+  padding: 0;
   position: relative;
   width: 900px;
   float: left;
@@ -849,27 +844,35 @@ footer {
   text-decoration: none;
 }
 
-#breadcrumbs a {
+ul#breadcrumbs a {
+  display: block;
   float: left;
   color: #FFF;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 10px 30px;
+  background: url(../img/breadcrumbsdivider.png) right top no-repeat;
+  margin: 0 -15px 0 0;
 }
 
-span.divider {
+ul#breadcrumbs a:hover {
   display: block;
   float: left;
-  height: 46px;
-  width: 15px;
-  padding: 0;
-  background: url(../img/breadcrumbsdivider.png);
+  color: #333;
+  text-decoration: none;
+  padding: 10px 30px;
+  background: url(../img/breadcrumbsdividerhoverleft.png) left top no-repeat, url(../img/breadcrumbsdividerhover.png) right top no-repeat;
+  background-color: #FFF;
+}
+
+a.home:hover {
+  background: #FFF url(../img/breadcrumbsdividerhover.png) right top no-repeat !important;
 }
 
 span.current {
   float: left;
   color: #FFF;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 10px 30px;
   font-style: italic;
 }
 
