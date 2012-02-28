@@ -736,6 +736,45 @@ li.odd a, li.even a {
   text-decoration: none;
 }
 
+/*------------------------------courses------------------------------*/
+
+ul#courses {
+  padding: 0 200px;
+  width: 400px;
+  margin: 30px 0;
+}
+
+li.head {
+  list-style: none;
+  font-weight: bold;
+}
+
+li.head span.coursename {
+  padding: 0 0 2px 10px;
+}
+
+span.coursename {
+  float: left;
+}
+
+li.head span.year {
+  padding: 0 10px 2px 0;
+}
+
+span.year {
+  float: right;
+  padding: 0 35px 0 0;
+}
+
+span.menu {
+  float: right;
+}
+
+a.course input {
+  float: right;
+  margin: 5px 5px 0 0;
+}
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
