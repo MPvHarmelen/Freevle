@@ -740,8 +740,26 @@ li.odd a, li.even a {
 
 ul#courses {
   padding: 0 200px;
-  width: 400px;
+  width: 320px;
   margin: 30px 0;
+}
+
+li.even {
+  padding: 0;
+}
+
+li.even a.course {
+  display: block;
+  padding: 8px 12px;
+}
+
+li.odd {
+  padding: 0;
+}
+
+li.odd a.course {
+  display: block;
+  padding: 8px 12px;
 }
 
 li.head {
@@ -762,17 +780,17 @@ li.head span.year {
 }
 
 span.year {
-  float: right;
-  padding: 0 35px 0 0;
 }
 
 span.menu {
   float: right;
 }
 
-a.course input {
+span.checkbox {
+  display: block;
   float: right;
-  margin: 5px 5px 0 0;
+  padding: 10px;
+  margin: 0;
 }
 
 /*------------------------------loginpage------------------------------*/
