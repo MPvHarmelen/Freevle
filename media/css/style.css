@@ -754,6 +754,7 @@ a.course {
   padding: 8px 12px;
   width: 250px;
   text-decoration: none;
+  float: left;
 }
 
 li.oddcourse {
@@ -790,6 +791,7 @@ span.menu {
 
 span.checkbox {
   float: right;
+  margin: 8px;
 }
 
 input.course[type="submit"] {
