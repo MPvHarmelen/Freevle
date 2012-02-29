@@ -770,6 +770,7 @@ li.head {
 
 li.head span.coursename {
   padding: 0 0 2px 10px;
+  width: 200px;
 }
 
 li.head span.year {
@@ -791,7 +792,7 @@ span.menu {
 
 span.checkbox {
   float: right;
-  margin: 8px;
+  margin: 8px 12px;
 }
 
 input.course[type="submit"] {
