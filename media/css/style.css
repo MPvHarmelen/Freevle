@@ -739,27 +739,27 @@ li.odd a, li.even a {
 /*------------------------------courses------------------------------*/
 
 ul#courses {
-  padding: 0 200px;
   width: 320px;
   margin: 30px 0;
-}
-
-li.even {
   padding: 0;
 }
 
-li.even a.course {
-  display: block;
-  padding: 8px 12px;
+li.evencourse {
+  list-style: none;
+  background: #FEFEFE;
 }
 
-li.odd {
+a.course {
+  display: block;
+  padding: 8px 12px;
+  width: 250px;
+  text-decoration: none;
+}
+
+li.oddcourse {
   padding: 0;
-}
-
-li.odd a.course {
-  display: block;
-  padding: 8px 12px;
+  list-style: none;
+  background: #EEE;
 }
 
 li.head {
@@ -771,15 +771,17 @@ li.head span.coursename {
   padding: 0 0 2px 10px;
 }
 
-span.coursename {
-  float: left;
-}
-
 li.head span.year {
   padding: 0 10px 2px 0;
 }
 
+span.coursename {
+  float: left;
+  width: 220px;
+}
+
 span.year {
+  float: right;
 }
 
 span.menu {
@@ -787,10 +789,7 @@ span.menu {
 }
 
 span.checkbox {
-  display: block;
   float: right;
-  padding: 10px;
-  margin: 0;
 }
 
 /*------------------------------loginpage------------------------------*/
