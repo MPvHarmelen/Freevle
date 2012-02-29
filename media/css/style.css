@@ -792,6 +792,10 @@ span.checkbox {
   float: right;
 }
 
+input.course[type="submit"] {
+  width: 320px
+}
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
@@ -900,28 +904,36 @@ div#map {
 div#map iframe {
  width: 300px;
  height: 250px;
- padding: 0 0 5px 0;
 }
 
 div#map a {
   display: block;
-  width: 300px;
-  padding: 5px 0;
-  background: #EEE;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); 
+  padding: 8px 10px;
+  cursor: pointer;
+  background-image: linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -o-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -ms-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -moz-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-gradient(
+   left bottom,
+   linear,
+   left top,
+   color-stop(0.17, #2828C7),
+   color-stop(1.00, #3A43FA)
+   );
   font-size: 14px;
+  text-transform: capitalize;
   text-decoration: none;
   text-align: center;
-  color: #333;
-}
-
-div#map a:hover {
-  background: #008;
-  color: #FFF;
+  color: white;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
 }
 
 ul#contactpersons {
  padding: 0;
+ margin: 10px 0;
 }
 
 ul#contactpersons li a {
@@ -932,21 +944,29 @@ span.persondescription {
 }
 
 span.morecontacts a {
-  display: block;
-  width: 800px;
-  padding: 5px 0px;
-  background: #EEE;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); 
+  float: right;
+  width: 300px;
+  padding: 8px 0;
+  cursor: pointer;
+  background-image: linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -o-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -ms-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -moz-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-gradient(
+   left bottom,
+   linear,
+   left top,
+   color-stop(0.17, #2828C7),
+   color-stop(1.00, #3A43FA)
+   );
   font-size: 14px;
+  text-transform: capitalize;
   text-decoration: none;
   text-align: center;
-  color: #333;
-  margin: 25px 0 15px 0;
-}
-
-span.morecontacts a:hover {
-  background: #008;
-  color: #FFF;
+  color: white;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
 }
 
 /*------------------------------footer------------------------------*/
