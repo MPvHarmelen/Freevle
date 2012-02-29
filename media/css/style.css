@@ -741,7 +741,7 @@ li.odd a, li.even a {
 ul#courses {
   width: 320px;
   margin: 30px 0;
-  padding: 0;
+  padding: 0 240px;
 }
 
 li.evencourse {
@@ -793,7 +793,8 @@ span.checkbox {
 }
 
 input.course[type="submit"] {
-  width: 320px
+  width: 320px;
+  margin: 0 240px;
 }
 
 /*------------------------------loginpage------------------------------*/
