@@ -346,19 +346,21 @@ a.leesmeer {
 }
 
 
-/*------------------------------foto's------------------------------*/
+/*------------------------------photos------------------------------*/
 div.photos {
   padding: 0;
   border-bottom: 1px solid #cfcfcf;
+  width: 799px;
 }
 
 div#slider {
   overflow: hidden;
+  padding: 0 0 0 1px;
 }
 
 img.slide {
   height: 180px;
-  width: 260px;
+  width: 266px;
   float: left;
 }
 
