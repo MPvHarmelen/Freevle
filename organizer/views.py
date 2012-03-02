@@ -16,11 +16,15 @@ from cygy.organizer.models import Lesson, Course, PeriodLengths, DAY_CHOICES
 
 # You have to be careful with Empty- and BreakLesson, because empty
 # ForeignKey fields raise DoesNotExist.
+
+class EmptyCourse(Course):
+    topic = str()
+
 class EmptyLesson(Lesson):
-    course = Course(topic='-')
+    course = EmptyCourse(topic='-')
 
 class BreakLesson(Lesson):
-    course = Course(topic=_('break'))
+    course = EmptyCourse(topic=_('break'))
     is_break = True
 
 
@@ -163,12 +167,12 @@ class LessonListMixin(object):
         periodlengths = PeriodLengths().get_periodlengths(date)
         
         
-        for index, lesson in enumerate(lesson_list[:]):
+        for index, lesson in enumerate(lesson_list):
             period = index + 1
             if periodlengths.is_next_period_break(period):
                 break_lesson = BreakLesson(period=period)
-                break_lesson.period = period
-                lesson_list[index:index] = break_lesson
+                # insert a break after the current lesson
+                lesson_list[index + 1:index + 1] = [break_lesson]
                 
         
         
