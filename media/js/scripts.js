@@ -6,7 +6,7 @@ $(document).ready(function(){
 
   var amountPictures = 9;
 
-  var totWidth = amountPictures * 266;
+  var totWidth = amountPictures * $('.slide').width();
   $('#slides').width(totWidth);
   var currentPos = 0;
 
@@ -98,8 +98,9 @@ $(document).ready(function(){
   centerInlogForm();
 
   $(window).resize(centerInlogForm);
+
 //Menu backgrounds
-  var menuLi = $('li.menu, div.header');
+  var menuLi = $('li.navmenu, div.header');
 
   menuLi.hover(function() {
       $(this).children('a.header').css('background-color', '#eee');
@@ -109,7 +110,7 @@ $(document).ready(function(){
 
 
   $('ul.dropdown').hide();
-  $("li.menu").hover(function() {
+  $("li.navmenu").hover(function() {
       $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
     }, function() {
       $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
