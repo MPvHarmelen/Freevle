@@ -100,21 +100,6 @@ class PeriodLengths(models.Model):
     def get_period_times(self, periods):
         """
         Get a list of starting and ending times of periods and breaks
-
-        Please note that the argument date's supposed to be a datetime.date
-        object.
-        
-        way to return:
-        if periods < self.min_periods:
-            periods = self.min_periods
-        period_times = list()
-        for i in range(periods)
-            calculate shit
-            period_times.append((sart_time,end_time,is_break))
-        
-        period_times = tuple(period_times)
-        return period_times
-         
         """
         if periods < self.min_periods:
             periods = self.min_periods

@@ -17,14 +17,10 @@ from cygy.organizer.models import Lesson, Course, PeriodLengths, DAY_CHOICES
 # You have to be careful with Empty- and BreakLesson, because empty
 # ForeignKey fields raise DoesNotExist.
 
-class EmptyCourse(Course):
+class StrCourse(Course):
     topic = str()
 
-class EmptyLesson(Lesson):
-    course = EmptyCourse(topic='-')
-
 class BreakLesson(Lesson):
-    course = EmptyCourse(topic=_('break'))
     is_break = True
 
 
@@ -156,6 +152,8 @@ class CancellationMixin(object):
 
 class LessonListMixin(object):
     lesson_lists = None
+    empty_lesson_tekst = '-'
+    break_lesson_tekst = _('break')
 
     def set_breaks_and_period_times(self, lesson_list, date):
         '''
@@ -165,12 +163,12 @@ class LessonListMixin(object):
         return lesson_list
         '''
         periodlengths = PeriodLengths().get_periodlengths(date)
-        
+        break_course = StrCourse(topic=break_lesson_tekst)
         
         for index, lesson in enumerate(lesson_list):
             period = index + 1
             if periodlengths.is_next_period_break(period):
-                break_lesson = BreakLesson(period=period)
+                break_lesson = BreakLesson(period=period, course=break_course)
                 # insert a break after the current lesson
                 lesson_list[index + 1:index + 1] = [break_lesson]
                 
@@ -214,7 +212,7 @@ class LessonListMixin(object):
             for index, lesson_set in enumerate(lesson_lists):
                 latest_period = lesson_set[-1].period
                 list_date = date_list[index]
-                min_period = self.get_periods_in_day(list_date)
+                min_period = self.get_periods_in_day(list_date)   # << HERE
                 
                 if latest_period > length:
                     length = latest_period
@@ -233,7 +231,8 @@ class LessonListMixin(object):
         Takes an iterable of lessons, returns a lesson_list ready to be
         itterated for the template. (No cancellation is checked)
         """
-        empty_lesson = EmptyLesson()
+        empty_course = StrCourse(topic=self.empty_lesson_tekst)
+        empty_lesson = Lesson(course=empty_course)
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
