@@ -357,7 +357,7 @@ a.pagenav {
 }
 
 a.pagenav:hover {
-  background: #008;
+  background: #006;
   color: #FFF;
 }
 
@@ -808,14 +808,14 @@ span.menu {
   float: right;
 }
 
-span.checkbox {
-  float: right;
-  margin: 8px 12px;
-}
-
 input.course[type="submit"] {
   width: 320px;
   margin: 0 240px;
+}
+
+label.checkbox {
+  float: right;
+  padding: 8px 12px;
 }
 
 /*------------------------------loginpage------------------------------*/

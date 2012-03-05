@@ -24,7 +24,7 @@
       {% if page > request.GET.page|add:"-5" and page < request.GET.page|add:"5" or page < 4 or page > paginator.num_pages|add:"-3" or not request.GET.page and page < 6 %}
         <a class="pagenav" href="{{ request.path }}?page={{ page }}">{{ page }}</a>
       {% else %}
-        {% if page == request.GET.page|add:"-5" or page == request.GET.page|add:"5" or not request.GET.page and page == 6 %}...{% endif %}
+        {% if page == request.GET.page|add:"-5" or page == request.GET.page|add:"5" or not request.GET.page and page == 6 %}<p class="morepages">...</p>{% endif %}
       {% endif %}
     {% endfor %}
   {% endif %}
