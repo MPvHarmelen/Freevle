@@ -6,7 +6,7 @@ class Page(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True,
                                limit_choices_to={'parent':None})
     last_edit = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=32)
+    title = models.CharField(max_length=18)
     slug = models.SlugField(
 #        unique=True,
         help_text=_('URL-friendly version of the title,\
