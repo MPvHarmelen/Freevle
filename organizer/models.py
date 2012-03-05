@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from cygy.custom import fields
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
@@ -27,8 +28,9 @@ class PeriodLengths(models.Model):
     end_date = models.DateField()
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
 
-    length = models.IntegerField()
-    brakes_after_period = models.CommaSeparatedIntegerField(max_length=32)
+    period_length = models.IntegerField()
+    breaks_after_period = models.CommaSeparatedIntegerField(max_length=32)
+    break_lengths = models.CommaSeparatedIntegerField(max_length=32)
     start_of_day = models.TimeField()
     min_periods = models.IntegerField()
 
@@ -99,15 +101,28 @@ class PeriodLengths(models.Model):
 
     def get_period_times(self, periods):
         """
-        Get a list of starting and ending times of periods and breaks
+        Get a tuple of starting and ending times of periods and breaks
         """
         if periods < self.min_periods:
             periods = self.min_periods
-
+        
+        # make dict of break lengths
+        breaks = dict([(value, self.break_lengths[index]) for
+                       index, value in enumerate(breaks_after_period)])
+        
         period_times = []
-        for i in range(periods):
-            # calculate shit
-            start_time, end_time, is_break = None, None, False
+        start_time = self.start_of_day
+        period_length = self.period_length
+        
+        for period in range(periods):
+            if period in breaks.keys():
+                duration = breaks[period]
+                is_break = True
+            else:
+                duration = period_length
+                is_break = False
+            
+            end_time = start_time + duration
             period_times.append((sart_time,end_time,is_break))
         
         period_times = tuple(period_times)
