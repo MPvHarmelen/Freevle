@@ -345,6 +345,22 @@ a.leesmeer {
   text-decoration: none;
 }
 
+a.pagenav {
+  display: block;
+  float: left;
+  width: 25px;
+  padding: 5px;
+  margin: 10px 7px 10px 0;
+  background: #EEE;
+  text-decoration: none;
+  text-align: center;
+}
+
+a.pagenav:hover {
+  background: #008;
+  color: #FFF;
+}
+
 
 /*------------------------------photos------------------------------*/
 div.photos {
