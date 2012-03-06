@@ -168,11 +168,11 @@ class LessonListMixin(object):
         for index, lesson in enumerate(lesson_list):
             period = index + 1
             if periodlengths.is_next_period_break(period):
-                break_lesson = BreakLesson(period=period, course=break_course)
+                break_lesson = BreakLesson(course=break_course)
                 # insert a break after the current lesson
                 lesson_list[index + 1:index + 1] = [break_lesson]
                 
-        
+        period_times = periodlengths.get_period_times()
         
         
         

@@ -107,12 +107,25 @@ class PeriodLengths(models.Model):
             periods = self.min_periods
         
         # make dict of break lengths
-        breaks = dict([(value, self.break_lengths[index]) for
+        breaks = dict([(value, datetime.timedelta(minute=self.break_lengths[index])) for
                        index, value in enumerate(breaks_after_period)])
         
         period_times = []
-        start_time = self.start_of_day
-        period_length = self.period_length
+        # We need to use datetime objects instead of time objects, because
+        # Python failed on me and can't add timedelta's to time objects.
+        # We'll just take the start date to use as a date, but it won't and
+        # shouldn't be used anywhere else.
+        default_date = {
+            year:self.start_date.year,
+            month:self.start_date.month,
+            day:self.start_date.day,
+        }
+        start_time = datetime.datetime(
+            hour=self.start_of_day.hour,
+            minute=self.start_of_day.minute,
+            **default_date
+        )
+        period_length = datetime.timedelta(minutes=self.period_length)
         
         for period in range(periods):
             if period in breaks.keys():
@@ -124,6 +137,7 @@ class PeriodLengths(models.Model):
             
             end_time = start_time + duration
             period_times.append((sart_time,end_time,is_break))
+            start_time = end_time
         
         period_times = tuple(period_times)
         return period_times
