@@ -138,7 +138,7 @@ a.menuitem:hover {
 }
 
 a.menuitem:active {
-  padding: 10px 15px 11px;
+  padding: 11px 15px 10px;
 }
 
 a.submenu-item:link, a.submenu-item:visited {
@@ -152,13 +152,12 @@ a.submenu-item:link, a.submenu-item:visited {
 }
 
 a.submenu-item:hover {
-  background: #444;
+  background: #008;
   color: #eee;
 } 
 
 a.submenu-item:active {
-  padding: 10px 15px;
-  cursor: pointer;
+  padding: 11px 15px 9px;
 }
 
 li.liright {
@@ -212,10 +211,12 @@ a.imagenav#homebtn:hover {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   position: relative;
+  color: #f5f5f5;
 }
 
 #search input[type="text"]:hover {
   background: url(../img/mag.png) 0 -46px no-repeat #008;
+  color: #008;
 }
 
 #search input[type="text"]:focus {
@@ -225,6 +226,7 @@ a.imagenav#homebtn:hover {
   -moz-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   cursor: text;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
+  color: #333;
 }​
 
 /*------------------------------loginform------------------------------*/
