@@ -100,20 +100,24 @@ $(document).ready(function(){
   $(window).resize(centerInlogForm);
 
 //Menu backgrounds
-  var menuLi = $('li.navmenu, div.header');
 
-  menuLi.hover(function() {
-      $(this).children('a.header').css('background-color', '#eee');
+  $('ul.dropdown').hover(function() {
+      $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
   }, function() {
-      $(this).children('a.header').css('background-color', '#fff');
+      $(this).prev('a.menuitem').css('background-color', 'transparent').css('color', '#333');
   });
 
+  $('a.menuitem').hover(function(){
+    $(this).css('background-color', '#008').css('color', '#fff');
+  }, function() {
+    $(this).css('background-color', 'transparent').css('color', '#333');
+  });
 
   $('ul.dropdown').hide();
-  $("li.navmenu").hover(function() {
-      $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
+  $('li.navmenu').hover(function() {
+      $(this).children('ul.dropdown').stop(true, true).slideDown('fast');
     }, function() {
-      $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
+      $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
 
   if(document.getElementById('focus')) {
