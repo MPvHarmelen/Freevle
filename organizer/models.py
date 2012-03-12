@@ -21,7 +21,7 @@ DAY_CHOICES = (
     ('Sat', _('Saturday')),
 )
 
-class PeriodLengths(models.Model):
+class PeriodMeta(models.Model):
     """Defines the length of periods and more"""
     
     start_date = models.DateField()
@@ -34,7 +34,7 @@ class PeriodLengths(models.Model):
     start_of_day = models.TimeField()
     min_periods = models.IntegerField()
 
-    def get_periodlengths(self, date):
+    def get_periodmeta(self, date):
         """
         Rules:
             1. smallest (end_date - start_date) wins
@@ -42,45 +42,45 @@ class PeriodLengths(models.Model):
             3. least number of breaks wins
             4. Error, the one who filled out the times sucks
         """
-        queryset = PeriodLengths.objects.filter(
+        queryset = PeriodMeta.objects.filter(
             start_date__lt = date,
             end_date__gt = date,
-            day_of_week = date.strftime('%a'),
+            day_of_week = date.strftime('%a')
         )
 
         if len(queryset) == 0:
             raise ObjectDoesNotExist
 
         if len(queryset) == 1:
-            periodlengths = queryset[0]
+            periodmeta = queryset[0]
         else:
             # Check rule 1
             date_len = lambda a: a.end_date - a.start_date
             smallest_date_len = min([date_len(a) for a in queryset])
-            periodlengths_set = [a for a in queryset
+            periodmeta_set = [a for a in queryset
                                  if date_len(a) == smalles_date_len]
             
-            if len(periodlengths_set) == 1:
-                periodlengths = periodlengths_set[0]
+            if len(periodmeta_set) == 1:
+                periodmeta = periodmeta_set[0]
             else:
                 # Check rule 2
-                shortest_period = min([a.period for a in periodlengths_set])
-                periodlengths_set = ([a for a in periodlengths_set
+                shortest_period = min([a.period for a in periodmeta_set])
+                periodmeta_set = ([a for a in periodmeta_set
                                      if a.period == shortest_period])
 
-                if len(periodlengths_set) == 0:
-                    periodlengths = periodlengths_set[0]
+                if len(periodmeta_set) == 0:
+                    periodmeta = periodmeta_set[0]
                 else:
                     # Check rule 3
                     least_breaks = min([len(a.breaks_after_period) for a in
-                                        periodlengths_set])
-                    periodlengths_set = min(
-                       [a for a in periodlengths_set
+                                        periodmeta_set])
+                    periodmeta_set = min(
+                       [a for a in periodmeta_set
                         if len(a.breaks_after_period) == least_breaks]
                     )
 
-                    if len(periodlengths_set) == 0:
-                        periodlengths = periodlengths_set[0]
+                    if len(periodmeta_set) == 0:
+                        periodmeta = periodmeta_set[0]
                     else:
                         # Rule 4
                         raise ImproperlyConfigured(
@@ -90,7 +90,7 @@ class PeriodLengths(models.Model):
                             'Periodlengths. Thank you.'
                         )
 
-        return periodlengths
+        return periodmeta
     
     def is_next_period_break(self, period):
         """Returns if there is a break after this period"""
@@ -221,3 +221,11 @@ class Cancellation(models.Model):
 
     def __unicode__(self):
         return '{} from {} to {}'.format(self.date, self.begin_period, self.end_period)
+
+class Announcements(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+    content = models.CharField(max_length=255)
+    
+    def __unicode__(self):
+        return content

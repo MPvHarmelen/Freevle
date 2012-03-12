@@ -162,17 +162,17 @@ class LessonListMixin(object):
         put them in lesson_list
         return lesson_list
         '''
-        periodlengths = PeriodLengths().get_periodlengths(date)
+        periodmeta = PeriodMeta().get_periodmeta(date)
         break_course = StrCourse(topic=break_lesson_tekst)
         
         for index, lesson in enumerate(lesson_list):
             period = index + 1
-            if periodlengths.is_next_period_break(period):
+            if periodmeta.is_next_period_break(period):
                 break_lesson = BreakLesson(course=break_course)
                 # insert a break after the current lesson
                 lesson_list[index + 1:index + 1] = [break_lesson]
                 
-        period_times = periodlengths.get_period_times()
+        period_times = periodmeta.get_period_times()
         
         for index, time in enumerate(period_times):
             try:
@@ -280,7 +280,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     """
     Context:
     > announcements = queryset
-    > comming_homework = queryset
+    > coming_homework = queryset
     > lesson_sets = [lesson_list1, lesson_list2, (...)]
     > legend = queryset
 
@@ -307,8 +307,8 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     Done | get_date()
     Done | get_allow_weekend()
     Done | check_allow_weekend()
-    get_comming_homework()
-    get_anouncements()
+    get_coming_homework()
+    Done | get_anouncements()
     Done | get_legend()
     Done | lesson_set_cleanup(*args)
     Done | get_periods_in_day(*args)
@@ -324,14 +324,27 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     """
     username_url_kwarg = 'username'
     announcements = None
-    comming_homework = None
+    coming_homework = None
 
     def get_announcements(self, date):
-        pass
-
-    def get_comming_homework(self, date, user):
+        if self.announcements is not None:
+            announcements = self.announcements
+        else:
+            announcements = Announcements.objects.filter(
+                start_date__lt=date,
+                end_date__gt=date
+            )
         
-        return comming_homwork
+        return announements
+
+    def get_coming_homework(self, date, user):
+        if self.coming_homework is not None:
+            coming_homework = self.coming_homework
+        else:
+            # stuff
+            coming_homework = None
+        
+        return coming_homework
 
     def get_legend(self):
         return HomeworkType.objects.all()
@@ -361,11 +374,10 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         lesson_set = user.takes_courses.filter(
             lesson__day_of_week=day_of_week,
             lesson__start_date__lt=date,
-            lesson__end_date__gt=date,
+            lesson__end_date__gt=date
         )
 
         return lesson_set
-
 
 
     # -- Done --
@@ -409,13 +421,13 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         date = self.get_date()
         user = self.get_user()
         announcements = self.get_announcements(date)
-        comming_homework = self.get_comming_homework(date, user)
+        coming_homework = self.get_coming_homework(date, user)
         lesson_lists = self.get_lesson_lists(date, user)
         legend = self.get_legend()
 
         context = {
             'announcements': announcements,
-            'comming_homework': comming_homework,
+            'coming_homework': coming_homework,
             'lesson_lists': lesson_lists,
             'legend': legend
         }
