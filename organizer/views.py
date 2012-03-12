@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from cygy.custom.classes import sortable_list
 
 from django.contrib.auth.models import User
-from cygy.organizer.models import Lesson, Course, PeriodLengths, DAY_CHOICES
+from cygy.organizer.models import *
 
 # You have to be careful with Empty- and BreakLesson, because empty
 # ForeignKey fields raise DoesNotExist.
@@ -174,7 +174,17 @@ class LessonListMixin(object):
                 
         period_times = periodlengths.get_period_times()
         
-        
+        for index, time in enumerate(period_times):
+            try:
+                if lesson_list[index].is_break != time[2]:
+                    raise ImproperlyConfigured("The breaks didn't match!")
+            except AttributeError:
+                if time[2]:
+                    raise ImproperlyConfigured("The breaks didn't match!")
+                    
+            lesson_list[index].start_time = time[0]
+            lesson_list[index].end_time = time[1]
+            lesson_list[index].is_break = time[2]
         
         return lesson_list
     
@@ -184,7 +194,7 @@ class LessonListMixin(object):
         '''
         raise ImproperlyConfigured('You must write your own get_lesson_set')
 
-    def get_lesson_lists(self, date):
+    def get_lesson_lists(self, date, obj):
         """
         Get the list of lessonsets. This is a list of iterables.
         """
@@ -204,7 +214,7 @@ class LessonListMixin(object):
                 date_list.append(list_date)
                 
             sort = lambda a: sortable_list(a).sorted(key=lambda b: b.period)
-            lesson_lists = [sort(self.get_lesson_set(date_list[n]))
+            lesson_lists = [sort(self.get_lesson_set(date_list[n], obj))
                             for n in range(number_days)]
             
             # For loop to get the length for lesson_set_cleanup
@@ -299,9 +309,9 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     Done | check_allow_weekend()
     get_comming_homework()
     get_anouncements()
-    get_legend()
-    lesson_set_cleanup(*args)
-    get_periods_in_day(*args)
+    Done | get_legend()
+    Done | lesson_set_cleanup(*args)
+    Done | get_periods_in_day(*args)
     
 
 
@@ -319,19 +329,14 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     def get_announcements(self, date):
         pass
 
-    def get_comming_homework(self, date):
-        pass
+    def get_comming_homework(self, date, user):
+        
+        return comming_homwork
 
     def get_legend(self):
-        pass
+        return HomeworkType.objects.all()
 
-    ## Home Made
-    def get_lesson_set(self, date):
-        """
-        Returns a list of lessons for the given user and date,
-        ordered by period
-        """
-
+    def get_user(self):
         username = self.kwargs.get(self.username_url_kwarg, None)
 
         if username is not None:
@@ -342,6 +347,14 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         else:
             raise ImproperlyConfigured("UserView needs to be called with "
                                        "a username")
+        return user
+
+    ## Home Made
+    def get_lesson_set(self, date, user):
+        """
+        Returns a list of lessons for the given user and date,
+        ordered by period
+        """
 
         date = self.check_allow_weekend(date)
         day_of_week = date.strftime('%a')
@@ -394,10 +407,10 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         Get the context for this view.
         """
         date = self.get_date()
+        user = self.get_user()
         announcements = self.get_announcements(date)
-        comming_homework = self.get_comming_homework(date)
-        lesson_lists = self.get_lesson_lists(date)
-        cancelled_lessons = self.get_cancelled_lessons(lesson_lists, date)
+        comming_homework = self.get_comming_homework(date, user)
+        lesson_lists = self.get_lesson_lists(date, user)
         legend = self.get_legend()
 
         context = {

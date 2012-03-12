@@ -183,6 +183,7 @@ class HomeworkType(models.Model):
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=8)
     color = fields.HexColorField()
+    weight = models.IntegerField()
 
     def __unicode__(self):
         return self.name
