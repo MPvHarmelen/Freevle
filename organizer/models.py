@@ -127,7 +127,7 @@ class PeriodMeta(models.Model):
         )
         period_length = datetime.timedelta(minutes=self.period_length)
         
-        for period in range(periods):
+        for period in [i+1 for i in range(periods)]:
             if period in breaks.keys():
                 duration = breaks[period]
                 is_break = True
@@ -136,6 +136,10 @@ class PeriodMeta(models.Model):
                 is_break = False
             
             end_time = start_time + duration
+            
+            if period == 1:
+                end_time += datetime.timedelta(minutes=5)
+            
             period_times.append((sart_time,end_time,is_break))
             start_time = end_time
         

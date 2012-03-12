@@ -155,6 +155,11 @@ class LessonListMixin(object):
     empty_lesson_tekst = '-'
     break_lesson_tekst = _('break')
 
+
+    def get_min_periods(self, date):
+        periodmeta = PeriodMeta().get_periodmeta(date)
+        return periodmeta.min_periods
+    
     def set_breaks_and_period_times(self, lesson_list, date):
         '''
         get the right times and breaks
@@ -179,7 +184,9 @@ class LessonListMixin(object):
                 if lesson_list[index].is_break != time[2]:
                     raise ImproperlyConfigured("The breaks didn't match!")
             except AttributeError:
+                # if the attribute is_break didn't exist, this wasn't a break
                 if time[2]:
+                    # but if time sais it should be, there's something wrong
                     raise ImproperlyConfigured("The breaks didn't match!")
                     
             lesson_list[index].start_time = time[0]
@@ -222,7 +229,7 @@ class LessonListMixin(object):
             for index, lesson_set in enumerate(lesson_lists):
                 latest_period = lesson_set[-1].period
                 list_date = date_list[index]
-                min_period = self.get_periods_in_day(list_date)   # << HERE
+                min_period = self.get_min_periods(list_date)
                 
                 if latest_period > length:
                     length = latest_period
@@ -232,7 +239,11 @@ class LessonListMixin(object):
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
-                lesson_set = self.check_cancellation(lesson_set)
+                try:
+                    lesson_set = self.check_cancellation(lesson_set)
+                except AttributeError:
+                    # The cancellation mixin isn't required
+                    pass
         
         return lesson_lists
         
@@ -300,8 +311,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     To write:
     class CancellationMixin
         check_cancellation(lesson)
-    class LessonListMixin
-        shit
+    Done | class LessonListMixin
     Done | get_lesson_lists()
     Done | get_lesson_set()
     Done | get_date()
@@ -312,15 +322,6 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     Done | get_legend()
     Done | lesson_set_cleanup(*args)
     Done | get_periods_in_day(*args)
-    
-
-
-    PROBLEMS:
-    With weekend shit stuff won't work because if check_allow_weekend() returns
-    a monday in stead of a saturday, the 2nd day after that wil pass as a monday,
-    which will give you 2 mondays O_o -- Solved
-    
-    Make docstring for sortable_list -- Done
     """
     username_url_kwarg = 'username'
     announcements = None
@@ -335,7 +336,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
                 end_date__gt=date
             )
         
-        return announements
+        return announcements
 
     def get_coming_homework(self, date, user):
         if self.coming_homework is not None:
@@ -402,9 +403,9 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         Returns a response with a template rendered with the given context.
         """
         return self.response_class(
-            request = self.request,
-            template = self.get_template_names(),
-            context = context,
+            request=self.request,
+            template=self.get_template_names(),
+            context=context,
             **response_kwargs
         )
 
