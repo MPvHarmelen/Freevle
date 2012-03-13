@@ -52,16 +52,21 @@
 
       <div class="divider"></div>
 
-      {% for day in days %}
+      {% for day in lesson_lists %}
         <div class="dag">
           <p class="dag">{{ day.name }}</p>
 
-          {% for lesson in day.lessons %}
-            <div class="{% cycle 'uuru' 'uuri' %}">
-              <p class="vak">
-              <span class="bold">{{ hour.name }}</span>
-              {{ hour.teacher.name }}
-              <span class="right">{# 8:25-9:20 #}</span></p>
+          {% for lesson in day %}
+            {% if lesson.is_break %}
+              <div class="uuri">
+                <p class="vak">
+                  <span class="bold">{% trans break %}</span>
+            {% else %}
+              <div class="{% cycle 'uuru' 'uure' %}">
+                <p class="vak">
+                  <span class="bold">{{ lesson.course.topic }}</span>
+            {% endif %}
+                  <span class="right">{{ lesson.start_time }} - {{ lesson.end_time }}</span></p>
 
               <div class="triangle"></div>
               <ul class="huiswerk">
