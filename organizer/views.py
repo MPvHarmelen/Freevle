@@ -156,10 +156,14 @@ class LessonListMixin(object):
     break_lesson_tekst = _('break')
 
 
+    def check_homework(self, lesson_set, date):                        # << HERE
+        for lesson in lesson_set:
+          pass
+
     def get_min_periods(self, date):
         periodmeta = PeriodMeta().get_periodmeta(date)
         return periodmeta.min_periods
-    
+
     def set_breaks_and_period_times(self, lesson_list, date):
         '''
         get the right times and breaks
@@ -169,16 +173,16 @@ class LessonListMixin(object):
         '''
         periodmeta = PeriodMeta().get_periodmeta(date)
         break_course = StrCourse(topic=break_lesson_tekst)
-        
+
         for index, lesson in enumerate(lesson_list):
             period = index + 1
             if periodmeta.is_next_period_break(period):
                 break_lesson = BreakLesson(course=break_course)
                 # insert a break after the current lesson
                 lesson_list[index + 1:index + 1] = [break_lesson]
-                
+
         period_times = periodmeta.get_period_times()
-        
+
         for index, time in enumerate(period_times):
             try:
                 if lesson_list[index].is_break != time[2]:
@@ -188,13 +192,13 @@ class LessonListMixin(object):
                 if time[2]:
                     # but if time sais it should be, there's something wrong
                     raise ImproperlyConfigured("The breaks didn't match!")
-                    
+
             lesson_list[index].start_time = time[0]
             lesson_list[index].end_time = time[1]
             lesson_list[index].is_break = time[2]
-        
+
         return lesson_list
-    
+
     def get_lesson_set(self, date):
         '''
         Returns an iterable of lessons for the given date and object.
@@ -209,7 +213,7 @@ class LessonListMixin(object):
             lesson_lists = self.lesson_lists
         else:
             number_days = self.get_number_days()
-            
+
             date_list = []
             for n in range(number_days):
                 if n == 0:
@@ -217,36 +221,37 @@ class LessonListMixin(object):
                 else:
                     list_date = date_list[-1] + datetime.timedelta(days=1)
                     list_date = check_allow_weekend(list_date)
-                
+
                 date_list.append(list_date)
-                
+
             sort = lambda a: sortable_list(a).sorted(key=lambda b: b.period)
             lesson_lists = [sort(self.get_lesson_set(date_list[n], obj))
                             for n in range(number_days)]
-            
+
             # For loop to get the length for lesson_set_cleanup
             length = 0
             for index, lesson_set in enumerate(lesson_lists):
                 latest_period = lesson_set[-1].period
                 list_date = date_list[index]
                 min_period = self.get_min_periods(list_date)
-                
+
                 if latest_period > length:
                     length = latest_period
                 if min_period > length:
                     length = min_period
-                    
+
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
+                lesson_set = self.check_homework(lesson_set, date)
                 try:
                     lesson_set = self.check_cancellation(lesson_set)
                 except AttributeError:
                     # The cancellation mixin isn't required
                     pass
-        
+
         return lesson_lists
-        
+
     def lesson_set_cleanup(self, lesson_set, min_length, date):
         """
         Takes an iterable of lessons, returns a lesson_list ready to be
@@ -265,7 +270,7 @@ class LessonListMixin(object):
             else:
                 # Get the period of the previous lesson in unpadded_list
                 previous_period = unpadded_list[index - 1].period
-            
+
             # Check if this period is directly after the previous one
             if lesson.period != previous_period + 1:
                 difference = lesson.period - previous_period
@@ -273,7 +278,7 @@ class LessonListMixin(object):
                 lesson_list.extend([empty_lesson] * (difference - 1))
 
             lesson_list.append(lesson)
-        
+
         # Correct length
         length = len(lesson_list)
         if length < min_length:
@@ -284,7 +289,7 @@ class LessonListMixin(object):
         # Set day_of_week to full regional name
         for lesson in lesson_list:
             lesson.day_of_week = DAY_CHOICES[lesson.day_of_week]
-            
+
         return lesson_list
 
 class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
@@ -302,12 +307,12 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
 
     The day name is done by changing the dayname AFTER the list has been
     created from the queryset
-    
+
     Cancellation is done by creating extra attributes to the lesson objects,
     like is_cancelled and changed_teacher.
-    
+
     The same for period times.
-    
+
     To write:
     class CancellationMixin
         check_cancellation(lesson)
@@ -335,7 +340,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
                 start_date__lt=date,
                 end_date__gt=date
             )
-        
+
         return announcements
 
     def get_coming_homework(self, date, user):
@@ -344,7 +349,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         else:
             # stuff
             coming_homework = None
-        
+
         return coming_homework
 
     def get_legend(self):
