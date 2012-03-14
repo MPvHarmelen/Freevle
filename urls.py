@@ -25,6 +25,7 @@ urlpatterns += patterns('',
     # TEMP for Floris' work.
     url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
     url(r'^contact/', TemplateView.as_view(template_name='contact/index.html')),
+    url(r'^settings/', TemplateView.as_view(template_name='settings/index.html')),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
