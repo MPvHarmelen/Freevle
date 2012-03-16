@@ -22,13 +22,11 @@
         <div id="legend">
           <h3>Legenda</h3>
           <ul id="legendul">
-            {# Make this dynamic! #}
-            <li class="huiswerkitem pw legendleft">PW</li>
-            <li class="huiswerkitem opdr legendright">Grote opdracht</li>
-            <li class="huiswerkitem so legendleft">SO</li>
-            <li class="huiswerkitem legendright">Gewoon huiswerk</li>
+            {% for homework_type in legend %}
+            <li class="huiswerkitem legend{% cycle 'left' 'right' %}" style="border-color: {{ homework_type.color }};">homework_type.name</li>
+            {% endfor %}
             <div class="clear"></div>
-            <li class="huiswerkitem" id="valtuitlegend">Dit uur valt uit</li>
+            <li class="huiswerkitem" id="valtuitlegend">{% trans "This hour is cancelled" %}</li>
           </ul>
         </div>
         <div class="clear"></div>
@@ -71,7 +69,7 @@
               <div class="triangle"></div>
               <ul class="huiswerk">
                 {% for item in lesson.homework %}
-                  <li class="huiswerkitem {# opdr #}">{{ item.description }}</li>
+                  <li class="huiswerkitem" style="border-color: {{ item.homework_type.color }};">{{ item.content }}</li>
                 {% endfor %}
               </ul>
             </div>
