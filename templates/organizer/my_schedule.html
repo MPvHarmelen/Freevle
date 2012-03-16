@@ -11,12 +11,11 @@
     <div id="rooster">
       <div class="meldingen">
         <div id="meldingenlinks">
-          <h3>Belangrijke mededelingen:</h3>
+          <h3>{% trans "Important announcements" %}</h3>
           <ul class="belangrijk">
-            {# for item in announcement #}
-              <li>Donderdag geen les</li>
-              <li>Donderdag is er geen les i.v.m. stakingen, houd hier rekening mee!</li>
-            {# endfor #}
+            {% for announcement in announcements %}
+              <li>{{ announcement.content }}</li>
+            {% endfor %}
           </ul>
         </div>
         <div id="legend">
@@ -58,13 +57,14 @@
             {% if lesson.is_break %}
               <div class="uuri">
                 <p class="vak">
-                  <span class="bold">{% trans break %}</span>
+                  <span class="bold">{% trans "break" %}</span>
             {% else %}
               <div class="{% cycle 'uuru' 'uure' %}">
                 <p class="vak">
                   <span class="bold">{{ lesson.course.topic }}</span>
             {% endif %}
-                  <span class="right">{{ lesson.start_time }} - {{ lesson.end_time }}</span></p>
+                  <span class="right">{{ lesson.start_time }} - {{ lesson.end_time }}</span>
+                </p>
 
               <div class="triangle"></div>
               <ul class="huiswerk">
@@ -73,13 +73,6 @@
                 {% endfor %}
               </ul>
             </div>
-
-            {# if pauze after lesson #}
-              <div class="uuri">
-                <p class="vak">Pauze <span class="right">13:00-13:30</span></p>
-              </div>
-            {# endif #}
-
           {% endfor %}
 
           {# if weekend after day #}
@@ -97,7 +90,7 @@
 
     {# this... #}
     <div id="komend">
-      <h3>Komende toetsen e.d.:</h3>
+      <h3>{% trans "Coming homework" %}</h3>
       <ul class="belangrijk">
         <li class="huiswerkitem pw"><span class="italic">21/6</span>&nbsp;&nbsp;<span class="bold">WiB:</span> PW H3 en H4</li>
         <li class="huiswerkitem so"><span class="italic">22/6</span>&nbsp;&nbsp;<span class="bold">EN:</span> SO Units 86, 87, 113-120</li>
