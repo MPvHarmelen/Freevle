@@ -156,9 +156,11 @@ class LessonListMixin(object):
     break_lesson_tekst = _('break')
 
 
-    def check_homework(self, lesson_set, date):                        # << HERE
+    def check_homework(self, lesson_set, date):
         for lesson in lesson_set:
-          pass
+          lesson.homework = [homework for homework in lesson.homework_set if
+                             homework.due_date == date]
+        return lesson_set
 
     def get_min_periods(self, date):
         periodmeta = PeriodMeta().get_periodmeta(date)
@@ -172,7 +174,10 @@ class LessonListMixin(object):
         return lesson_list
         '''
         periodmeta = PeriodMeta().get_periodmeta(date)
-        break_course = StrCourse(topic=break_lesson_tekst)
+        break_course = StrCourse(
+            topic=break_lesson_tekst,
+            day_of_week=date.strftime('%a')
+        )
 
         for index, lesson in enumerate(lesson_list):
             period = index + 1
@@ -323,6 +328,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
     Done | get_allow_weekend()
     Done | check_allow_weekend()
     get_coming_homework()
+    Done | check_homework()
     Done | get_anouncements()
     Done | get_legend()
     Done | lesson_set_cleanup(*args)
@@ -344,9 +350,8 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         return announcements
 
     def get_coming_homework(self, date, user):
-        if self.coming_homework is not None:
-            coming_homework = self.coming_homework
-        else:
+        coming_homework = self.coming_homework
+        if coming_homework is not None:
             # stuff
             coming_homework = None
 

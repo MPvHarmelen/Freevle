@@ -75,11 +75,11 @@
             </div>
           {% endfor %}
 
-          {# if weekend after day #}
+          {% ifequal lesson|last.day_of_week "Fri" %}
             <div id="weekend">
               <span>Weekend</span>
             </div>
-          {# endif #}
+          {% endifequal %}
         </div>
 
         <div class="divider"></div>
