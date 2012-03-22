@@ -55,12 +55,21 @@ header {
   width: 900px;
   margin: auto;
   text-align: center;
-  padding: 1px 0;
+  padding: 20px 0;
+}
+
+img#logo {
+  float: left;
+  width: 140px;
+  margin: 10px 0 10px 35px;
 }
 
 h1 {
   font-family: Aldus, Georgia, serif;
-  font-size: 90px;
+  font-size: 82px;
+  float: right;
+  margin: 70px 35px 70px 0;
+  text-decoration: none;
 }
 
 h1 a {
@@ -103,7 +112,7 @@ ul.dropdown {
   -moz-box-shadow: 0px 0px 6px #777;
   -webkit-box-shadow: 0px 0px 6px #777;
   z-index: 3;
-  top: 47px;
+  top: 46px;
 }
 
 li.navmenu {
@@ -129,7 +138,7 @@ a.menuitem:hover {
 }
 
 a.menuitem:active {
-  padding: 10px 15px 11px;
+  padding: 11px 15px 10px;
 }
 
 a.submenu-item:link, a.submenu-item:visited {
@@ -143,13 +152,12 @@ a.submenu-item:link, a.submenu-item:visited {
 }
 
 a.submenu-item:hover {
-  background: #444;
+  background: #008;
   color: #eee;
 } 
 
 a.submenu-item:active {
-  padding: 10px 15px;
-  cursor: pointer;
+  padding: 11px 15px 9px;
 }
 
 li.liright {
@@ -159,10 +167,6 @@ li.liright {
 
 ul#menu img {
   height: 46px;
-}
-
-a.imagenav#homebtn:hover {
-  background: #008 url(../img/home.png) 0 -46px;
 }
 
 a.imagenav#homebtn {
@@ -176,6 +180,13 @@ a.imagenav#homebtn {
   -moz-border-radius-bottomleft: 3px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+a.imagenav#homebtn:hover {
+  background: #008 url(../img/home.png) 0 -46px;
 }
 
 /*------------------------------search------------------------------*/
@@ -185,7 +196,7 @@ a.imagenav#homebtn {
 }
 
 #search input[type="text"] {
-  padding: 12px 10px 12px 36px;
+  padding: 12px 10px 12px 38px;
   width: 35px;
   height: 46px;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
@@ -200,10 +211,12 @@ a.imagenav#homebtn {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   position: relative;
+  color: #f5f5f5;
 }
 
 #search input[type="text"]:hover {
   background: url(../img/mag.png) 0 -46px no-repeat #008;
+  color: #008;
 }
 
 #search input[type="text"]:focus {
@@ -213,6 +226,7 @@ a.imagenav#homebtn {
   -moz-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   cursor: text;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
+  color: #333;
 }​
 
 /*------------------------------loginform------------------------------*/
@@ -240,7 +254,7 @@ div#darken {
 }
 
 div#inlogform {
-  padding: 15px 15px 35px;
+  padding: 15px;
   text-align: center;
   position: relative;
   background: #ddd;
@@ -284,7 +298,7 @@ form#login {
   margin: -25px auto;
   background: #fff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-  padding: 0px 50px 40px;
+  padding: 20px 50px 40px;
   position: relative;
   word-wrap: break-word;
   z-index: 0;
@@ -333,20 +347,38 @@ a.leesmeer {
   text-decoration: none;
 }
 
+a.pagenav {
+  display: block;
+  float: left;
+  width: 25px;
+  padding: 5px;
+  margin: 10px 7px 10px 0;
+  background: #EEE;
+  text-decoration: none;
+  text-align: center;
+}
 
-/*------------------------------foto's------------------------------*/
+a.pagenav:hover {
+  background: #006;
+  color: #FFF;
+}
+
+
+/*------------------------------photos------------------------------*/
 div.photos {
   padding: 0;
   border-bottom: 1px solid #cfcfcf;
+  width: 799px;
 }
 
 div#slider {
   overflow: hidden;
+  padding: 0 0 0 1px;
 }
 
 img.slide {
   height: 180px;
-  width: 260px;
+  width: 266px;
   float: left;
 }
 
@@ -724,6 +756,70 @@ li.odd a, li.even a {
   text-decoration: none;
 }
 
+/*------------------------------courses------------------------------*/
+
+ul#courses {
+  width: 320px;
+  margin: 30px 0;
+  padding: 0 240px;
+}
+
+li.evencourse {
+  list-style: none;
+  background: #FEFEFE;
+}
+
+a.course {
+  display: block;
+  padding: 8px 12px;
+  width: 250px;
+  text-decoration: none;
+  float: left;
+}
+
+li.oddcourse {
+  padding: 0;
+  list-style: none;
+  background: #EEE;
+}
+
+li.head {
+  list-style: none;
+  font-weight: bold;
+}
+
+li.head span.coursename {
+  padding: 0 0 2px 10px;
+  width: 200px;
+}
+
+li.head span.year {
+  padding: 0 10px 2px 0;
+}
+
+span.coursename {
+  float: left;
+  width: 220px;
+}
+
+span.year {
+  float: right;
+}
+
+span.menu {
+  float: right;
+}
+
+input.course[type="submit"] {
+  width: 320px;
+  margin: 0 240px;
+}
+
+label.checkbox {
+  float: right;
+  padding: 8px 12px;
+}
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
@@ -742,6 +838,8 @@ li.odd a, li.even a {
   background: #d44;
   color: #fff;
   padding: 8px 15px;
+  margin: 30px auto;
+  position: relative;
 }
 
 #loginformpage {
@@ -758,13 +856,15 @@ input.text, #id_username, #id_password {
   background: #f9f9f9;
   box-shadow: 0 0 5px #aaa;
   border-radius: 2px;
+  border: none;
+  outline: none;
 }
 
 input.text:focus, #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
 }
 
-input.button, input[type=submit] {
+input[type=submit] {
   padding: 8px 10px;
   width: 100px;
   cursor: pointer;
@@ -786,6 +886,8 @@ input.button, input[type=submit] {
   box-shadow: 1px 1px 1px #000;
   border-radius: 3px;
   margin: 10px auto 0;
+  outline: none;
+  border: none;
 }
 
 input.button:active, input[type=submit]:active {
@@ -804,6 +906,101 @@ input.button:active, input[type=submit]:active {
     );
 }
 
+/*------------------------------contact------------------------------*/
+
+div#location {
+  width: 480px;
+}
+
+div#adress {
+  width: 480px;
+}
+
+p.contact {
+ margin: 0;
+}
+
+div#map {
+ float: right;
+ width: 300px;
+ height: 360px;
+}
+div#map iframe {
+ width: 300px;
+ height: 250px;
+}
+
+div#map a {
+  display: block;
+  padding: 8px 10px;
+  cursor: pointer;
+  background-image: linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -o-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -ms-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -moz-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-gradient(
+   left bottom,
+   linear,
+   left top,
+   color-stop(0.17, #2828C7),
+   color-stop(1.00, #3A43FA)
+   );
+  font-size: 14px;
+  text-transform: capitalize;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
+}
+
+ul#contactpersons {
+ padding: 0;
+ margin: 10px 0;
+}
+
+ul#contactpersons li a {
+}
+
+span.persondescription {
+ float: right;
+}
+
+span.morecontacts a {
+  float: right;
+  width: 300px;
+  padding: 8px 0;
+  cursor: pointer;
+  background-image: linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -o-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -ms-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -moz-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
+  background-image: -webkit-gradient(
+   left bottom,
+   linear,
+   left top,
+   color-stop(0.17, #2828C7),
+   color-stop(1.00, #3A43FA)
+   );
+  font-size: 14px;
+  text-transform: capitalize;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
+}
+
+/*------------------------------settings------------------------------*/
+
+form#settings ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 /*------------------------------footer------------------------------*/
 
 footer {
@@ -816,7 +1013,9 @@ footer {
   color: #eee;
 }
 
-#breadcrumbs {
+ul#breadcrumbs {
+  list-style: none;
+  padding: 0;
   position: relative;
   width: 900px;
   float: left;
@@ -827,27 +1026,35 @@ footer {
   text-decoration: none;
 }
 
-#breadcrumbs a {
+ul#breadcrumbs a {
+  display: block;
   float: left;
   color: #FFF;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 10px 30px;
+  background: url(../img/breadcrumbsdivider.png) right top no-repeat;
+  margin: 0 -15px 0 0;
 }
 
-span.divider {
+ul#breadcrumbs a:hover {
   display: block;
   float: left;
-  height: 46px;
-  width: 15px;
-  padding: 0;
-  background: url(../img/breadcrumbsdivider.png);
+  color: #333;
+  text-decoration: none;
+  padding: 10px 30px;
+  background: url(../img/breadcrumbsdividerhoverleft.png) left top no-repeat, url(../img/breadcrumbsdividerhover.png) right top no-repeat;
+  background-color: #FFF;
+}
+
+a.home:hover {
+  background: #FFF url(../img/breadcrumbsdividerhover.png) right top no-repeat !important;
 }
 
 span.current {
   float: left;
   color: #FFF;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 10px 30px;
   font-style: italic;
 }
 
