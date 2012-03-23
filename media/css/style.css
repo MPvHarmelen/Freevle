@@ -993,6 +993,14 @@ span.morecontacts a {
   border-radius: 3px;
 }
 
+/*------------------------------settings------------------------------*/
+
+form#settings ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 /*------------------------------footer------------------------------*/
 
 footer {
