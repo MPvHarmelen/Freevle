@@ -12,7 +12,7 @@ body {
   background-image: -webkit-linear-gradient(-60deg, rgba(0, 0, 0, 0) 50%, #f5ae3c 50%, #f5ae3c 100%), -webkit-linear-gradient(70deg, rgba(0, 0, 128, 0.77) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%);
   overflow-y: scroll;
   background-attachment: fixed;
-  background-size: 100% 900px;
+  background-size: 100% 800px;
   background-position: bottom;
 }
 
@@ -1004,6 +1004,17 @@ form#settings ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/*------------------------------photos------------------------------*/
+div#photopage img {
+  height: 105px;
+  border: 4px white solid;
+  box-shadow: 0 0 1px #111;
+  -moz-box-shadow: 0 0 1px #111;
+  -webkit-box-shadow: 0 0 2px #333;
+  float: left;
+  margin: 6px;
 }
 
 /*------------------------------footer------------------------------*/
