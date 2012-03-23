@@ -8,7 +8,9 @@ body {
   line-height: 160%;
   text-align: justify;
   background: #f0f0f0 url(../img/background.png) repeat-x;
+  background: -webkit-linear-gradient(50deg, #000088 50%, #eeeeee 50%, #eeeeee 100%), -webkit-linear-gradient(45deg, #F69C0E 50%, #eeeeee 50%, #eeeeee 100%);
   overflow-y: scroll;
+  background-position: fixed;
 }
 
 @font-face {
