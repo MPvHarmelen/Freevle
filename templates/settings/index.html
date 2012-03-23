@@ -8,40 +8,63 @@
   <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
 
   <form id="settings">
-    <div class="persona">
-      <li>
-        <label for="picture">John Doe</label>
-        <img id="profile" src="/media/img/johndoe.png">
-      </li>
-      <li>
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" disabled="disabled" placeholder="John Doe">
-      </li>
-      <li>
-        <label for="class">Class</label>
-        <input id="class" name="class" type="text" disabled="disabled" placeholder="G4Z"></textarea>
-      </li>
-      <li>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" disabled="disabled" placeholder="example@domain.com" required>
-      </li>
-      <li>
-        <label for="phone">Number</label>
-        <input id="phone" name="phone" type="tel" placeholder="+3165432123">
-        <input id="visibility" name="phone" type="checkbox"> 
-      </li>
-      <li>
-        <label for="twitter">Twittername</label>
-        <input id="twitter" name="twitter" type="text" placeholder="@cygy">
-        <input id="visibility" name="twitter" type="checkbox"> 
-      </li>
-      <li>
-        <label for="phone">Facebook</label>
-        <input id="facebook" name="facebook" type="text" placeholder="<facebookurl>">
-        <input id="visibility" name="twitter" type="checkbox"> 
-      </li>   
-        <input type="submit" name="Submit" class="settings" value="Edit my settings" />
-    </div>
+    
+    <h3>Persona</h3>
+      <ul class="persona">
+        <li>
+          <label for="picture">John Doe</label>
+          <img id="profile" src="/media/img/johndoe.png">
+        </li>
+        <li>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" disabled="disabled" placeholder="John Doe">
+        </li>
+        <li>
+          <label for="class">Class</label>
+          <input id="class" name="class" type="text" disabled="disabled" placeholder="G4Z"></textarea>
+        </li>
+        <li>
+          <label for="email1">School mailadress</label>
+          <input id="email1" name="email" type="email" disabled="disabled" placeholder="myschoolmail@domain.com" required>
+        </li>
+        <li>
+          <label for="email2">Secondary mailadress</label>
+          <input id="email2" name="email" type="email" placeholder="myextramail@domain.com">
+        </li>
+      </ul>  
+    
+    <h3>How others can contact you:</h3>
+      <ul class="extrapersona">  
+        <li>
+          <label for="phone">Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+3165432123">
+          <input id="visibility" name="phone" type="checkbox"> 
+        </li>
+        <li>
+          <label for="twitter">Twittername</label>
+          <input id="twitter" name="twitter" type="text" placeholder="@cygy">
+          <input id="visibility" name="twitter" type="checkbox"> 
+        </li>
+        <li>
+          <label for="phone">Facebook</label>
+          <input id="facebook" name="facebook" type="text" placeholder="<facebookurl>">
+          <input id="visibility" name="twitter" type="checkbox"> 
+        </li>
+      </ul>    
+      <div class="submit"> 
+          <input type="submit" name="Submit" class="settings" value="Edit my settings" />
+      </div>
+      <ul class="buttons">
+        <li>
+          <span class="button"><a href="#">Courses</a>
+        </li>
+        <li>
+          <span class="button"><a href="#"></a>
+        </li>
+        <li>
+        </li>      
+      </ul>
+    
   </form>   
 </div>
 {% endblock %}
