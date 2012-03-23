@@ -8,9 +8,12 @@ body {
   line-height: 160%;
   text-align: justify;
   background: #f0f0f0 url(../img/background.png) repeat-x;
-  background: -webkit-linear-gradient(50deg, #000088 50%, #eeeeee 50%, #eeeeee 100%), -webkit-linear-gradient(45deg, #F69C0E 50%, #eeeeee 50%, #eeeeee 100%);
+  background-color: #f0f0f0;
+  background-image: -webkit-linear-gradient(-60deg, rgba(0, 0, 0, 0) 50%, #f5ae3c 50%, #f5ae3c 100%), -webkit-linear-gradient(70deg, rgba(0, 0, 128, 0.77) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%);
   overflow-y: scroll;
-  background-position: fixed;
+  background-attachment: fixed;
+  background-size: 100% 900px;
+  background-position: bottom;
 }
 
 @font-face {
