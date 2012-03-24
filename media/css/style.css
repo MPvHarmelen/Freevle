@@ -8,7 +8,12 @@ body {
   line-height: 160%;
   text-align: justify;
   background: #f0f0f0 url(../img/background.png) repeat-x;
+  background-color: #f0f0f0;
+  background-image: -webkit-linear-gradient(-60deg, rgba(0, 0, 0, 0) 50%, #f5ae3c 50%, #f5ae3c 100%), -webkit-linear-gradient(70deg, rgba(0, 0, 128, 0.77) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%);
   overflow-y: scroll;
+  background-attachment: fixed;
+  background-size: 100% 800px;
+  background-position: bottom;
 }
 
 @font-face {
@@ -254,16 +259,16 @@ div#darken {
 }
 
 div#inlogform {
-  padding: 15px;
   text-align: center;
   position: relative;
   background: #ddd;
   margin: 100px auto 0;
-  width: 250px;
+  width: 280px;
   box-shadow: 0 0 100px #000;
   font-size: 13px;
   border-radius: 2px;
   height: 337px;
+  overflow: visible !important;
 }
 
 #closelogin {
@@ -290,6 +295,19 @@ div#inlogform a:hover, div#inlogform a:active {
 
 form#login {
   margin: 0 0 20px;
+}
+
+div#loginandpassword {
+  width: 560px;
+}
+
+div#password, div#focuslogin {
+  padding: 15px;
+  float: left;
+  width: 250px;
+}
+div#password {
+  float: right;
 }
 
 /*------------------------------content------------------------------*/
@@ -820,6 +838,11 @@ label.checkbox {
   padding: 8px 12px;
 }
 
+img.fileicon {
+  height: 18px;
+  margin: 2px 2px 0 0;
+}
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
@@ -888,6 +911,21 @@ input[type=submit] {
   margin: 10px auto 0;
   outline: none;
   border: none;
+}
+
+input.button:hover, input[type=submit]:hover {
+  background-image:           linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
+    background-image:      -o-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
+    background-image:     -ms-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
+    background-image:    -moz-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.17, rgb(50,50,210)),
+	    color-stop(1.00, rgb(68,77,255))
+    );
 }
 
 input.button:active, input[type=submit]:active {
@@ -994,11 +1032,21 @@ span.morecontacts a {
 }
 
 /*------------------------------settings------------------------------*/
-
 form#settings ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/*------------------------------photos------------------------------*/
+div#photopage img {
+  height: 105px;
+  border: 4px white solid;
+  box-shadow: 0 0 1px #111;
+  -moz-box-shadow: 0 0 1px #111;
+  -webkit-box-shadow: 0 0 2px #333;
+  float: left;
+  margin: 6px;
 }
 
 /*------------------------------footer------------------------------*/
