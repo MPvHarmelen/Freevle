@@ -838,6 +838,11 @@ label.checkbox {
   padding: 8px 12px;
 }
 
+img.fileicon {
+  height: 18px;
+  margin: 2px 2px 0 0;
+}
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
