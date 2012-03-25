@@ -12,7 +12,6 @@ $(document).ready(function(){
 
   function advance() {
     $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 798 + 'px'});
-    console.log(currentPos);
   }
 
   function autoAdvance() {
@@ -123,8 +122,48 @@ $(document).ready(function(){
   if(document.getElementById('focus')) {
     document.getElementById('focus').focus();
   }
+
+
+  //Login and password functionality
+  $('#password').hide();
+  $('#focusonpassword').click(function() {
+    $('#password').fadeIn('fast');
+    $('#loginandpassword').animate({'margin-left': '-280px'}, 'fast');
+    $('#focuslogin').fadeOut('fast');
+    $('#inlogform').animate({'height': '357px'}, 'fast');
+  });
+  $('#focusonlogin').click(function() {
+    $('#password').fadeOut('fast');
+    $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
+    $('#focuslogin').fadeIn('fast');
+    $('#inlogform').animate({'height': '337px'}, 'fast');
+  });
+
+});
+
+//Ctrl+
+$.ctrl = function(key, callback, args) {
+    $(document).keydown(function(e) {
+        if(!args) args=[];
+        if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
+            callback.apply(this, args);
+            return false;
+        }
+    });
+};
+$.ctrl('S', function() {
+  $('.course').click();
+});
+
+//Other keyboardfunctions
+$(document.documentElement).keyup(function(e) {
+  if (e.keyCode == 27) {
+    $('#closelogin').click();
+  }
+  if (e.keyCode == 145) {
+    $('#loginhome').click();
+  }
 });
 
 document.createElement('header');
 document.createElement('footer');
-
