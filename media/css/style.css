@@ -386,7 +386,7 @@ a.pagenav:hover {
 div.photos {
   padding: 0;
   border-bottom: 1px solid #cfcfcf;
-  width: 799px;
+  width: 798px;
 }
 
 div#slider {
@@ -394,10 +394,15 @@ div#slider {
   padding: 0 0 0 1px;
 }
 
-img.slide {
-  height: 180px;
+a.slide {
+  height: 200px;
   width: 266px;
   float: left;
+  text-align: center;
+  display: block;
+}
+a.slide img {
+  height: 200px;
 }
 
 ul#sliderul {
