@@ -7,13 +7,8 @@ body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: #f0f0f0 url(../img/background.png) repeat-x;
-  background-color: #f0f0f0;
-  background-image: -webkit-linear-gradient(-60deg, rgba(0, 0, 0, 0) 50%, #f5ae3c 50%, #f5ae3c 100%), -webkit-linear-gradient(70deg, rgba(0, 0, 128, 0.77) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%);
+  background: #f0f0f0 url(../img/backgroundlarge.png) no-repeat fixed center;
   overflow-y: scroll;
-  background-attachment: fixed;
-  background-size: 100% 800px;
-  background-position: bottom;
 }
 
 @font-face {
@@ -267,6 +262,8 @@ div#inlogform {
   box-shadow: 0 0 100px #000;
   font-size: 13px;
   border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
   height: 337px;
   overflow: visible !important;
 }
@@ -276,6 +273,8 @@ div#inlogform {
   width: 24px;
   background: #000 url(../img/cross.png);
   border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
   position: absolute;
   top: -15px;
   right: -15px;
@@ -781,6 +780,34 @@ li.odd a, li.even a {
 
 /*------------------------------courses------------------------------*/
 
+header#courseheader {
+  width: 800px;
+  margin: -21px -50px 30px;
+  text-align: left;
+  padding: 34px 50px 20px;
+  background: #444;
+  background-size: 900px;
+  color: white;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  position: relative;
+}
+header#courseheader:after {
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  bottom: 0px;
+  height: 12px;
+  width: 876px;
+  margin: 0 auto;
+  -moz-border-radius: 433px / 7px;
+  border-radius: 433px / 7px;
+  content: "";
+  position: absolute;
+  left: 15px; 
+  z-index: -1;
+}
+
 ul#courses {
   width: 320px;
   margin: 30px 0;
@@ -1041,6 +1068,41 @@ form#settings ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+img#profile {
+  float: left;
+}
+
+label.name, label.class, label.email1, label.email2, label.phone, label.twitter, label.facebook {
+  float: left; 
+  clear: left; 
+  margin: 0px 20px 0 0; 
+  width: 170px;
+  text-align: right; 
+  font-size: 16px; 
+}
+
+input#name, input#class, input#email1, input#email2, input#phone, input#twitter, input#facebook {
+  width: 200px; 
+  height: 20px; 
+  padding: 5px 20px 3px 10px; 
+  margin: 0 0 20px 0;
+  color: #000;
+  background: #EEE;
+  border-radius: 5px; -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 0px 1px 0px #f2f2f2;
+  -webkit-box-shadow: 0px 1px 0px #f2f2f2;
+}
+
+input[disabled=disabled] {
+  background: #C6C6C6 !important;
+  color: #0e0e0e !important;
+}
+
+input.settings {
+  width: 200px; 
 }
 
 /*------------------------------photos------------------------------*/
