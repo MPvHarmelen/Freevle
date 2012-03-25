@@ -1,4 +1,5 @@
 import random
+import sys
 from datetime import datetime
 
 from django.db.models.signals import post_syncdb
@@ -9,6 +10,7 @@ from django.db.utils import IntegrityError
 from cygy.cms import models
 from cygy.settings import DEBUG
 from cygy.custom.debug.markov import Markov
+from cygy.custom.progressbar import ProgressBar
 
 THIS_YEAR = datetime.today().year
 NOW = datetime.now()
@@ -35,6 +37,9 @@ def debug_data(sender, **kwargs):
     shakespeare = Markov(file)
     if verbosity > 1:
         print ' Writing pages'
+    elif verbosity == 1:
+        prog = ProgressBar(0, 6, 77, mode='fixed')
+        print prog, '\r',
     for i in xrange(3):
         title = shakespeare.generate_markov_text(1)
         slug = slugify(title)
@@ -55,6 +60,10 @@ def debug_data(sender, **kwargs):
         parent.save()
         if verbosity > 1:
             print '- {}'.format(title)
+        elif verbosity == 1:
+            prog.increment_amount()
+            print prog, '\r',
+            sys.stdout.flush()
 
         for i in xrange(random.randint(2, 5)):
             title = shakespeare.generate_markov_text(random.randint(1, 3))
@@ -76,10 +85,14 @@ def debug_data(sender, **kwargs):
             sub.save()
             if verbosity > 1:
                 print '  - {} @ {}'.format(title, last_edit)
+        if verbosity == 1:
+            prog.increment_amount()
+            print prog, '\r',
+            sys.stdout.flush()
 
     file.close()
-    if verbosity > 1:
-        print
+    print
+    print
 
 if DEBUG:
     post_syncdb.connect(debug_data, sender=models)

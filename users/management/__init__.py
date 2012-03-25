@@ -1,8 +1,12 @@
 import random
+import sys
+
 from django.db.models.signals import post_syncdb
 from django.contrib.auth import models
 from django.db.utils import IntegrityError
+
 from cygy.settings import DEBUG
+from cygy.custom.progressbar import ProgressBar
 
 def create_groups(sender, **kwargs):
     models.Group(name='teachers').save()
@@ -60,23 +64,38 @@ def debug_data(sender, **kwargs):
     print ('Imagining 20 terrifying teachers (this may take a while)'
            + (': ' if verbosity > 1 else '.'))
 
+    if verbosity == 1:
+        prog = ProgressBar(0, 20, 77, mode='fixed')
+        print prog, '\r',
+
     teachers_group = models.Group.objects.get(name='teachers') 
     for i in xrange(20):
         create_user(teachers_group, verbosity)
+        if verbosity == 1:
+            prog.increment_amount()
+            print prog, '\r',
+            sys.stdout.flush()
     teachers_group.save()
-    if verbosity > 1:
-        print
+    print
 
     # Create 100 students
     print ('Thinking of 100 stupid students (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
+    if verbosity == 1:
+        prog = ProgressBar(0, 100, 77, mode='fixed')
+        print prog, '\r',
+
     students_group = models.Group.objects.get(name='students') 
     for i in xrange(100):
         create_user(students_group, verbosity, False)
+        if verbosity < 2:
+            prog.increment_amount()
+            print prog, '\r',
+            sys.stdout.flush()
     students_group.save()
-    if verbosity > 1:
-        print
+    print
+    print
 
 if DEBUG:
     post_syncdb.connect(debug_data, sender=models)
