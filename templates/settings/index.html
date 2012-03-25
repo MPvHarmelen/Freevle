@@ -7,14 +7,8 @@
   <h2>Settings</h2>
   <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
 
-  
-  <h3>Persona</h3>
-
-  <div class="profile">
-    <img class="profile" src="/media/img/johndoe.png">
-  </div>
-  
-  <form id="settings">
+  <form id="settings-persona">
+    <h3 class="bottom-line">Persona</h3>
       <ul class="persona">
         <li>
           <label for="name" class="name">Name</label>
@@ -22,16 +16,23 @@
         </li>
         <li>
           <label for="class" class="class">Class</label>
-          <input id="class" name="class" type="text" disabled="disabled" placeholder="G4Z"></textarea>
+          <input id="class" name="class" type="text" disabled="disabled" placeholder="G4X"></textarea>
         </li>
         <li>
           <label for="email1" class="email1">School mailadress</label>
-          <input id="email1" name="email" type="email" disabled="disabled" placeholder="myschoolmail@domain.com" required>
+          <input id="email1" name="email" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
         </li>
-      </ul>  
-    <div class="clear"></div>
-    
-    <h3>How others can contact you:</h3>
+      </ul> 
+      
+      <div class="profile">
+        <img class="profile" src="/media/img/johndoe.png">
+      </div>
+      
+     <div class="clear"></div>     
+  </form> 
+   
+  <form id="settings-contact">  
+    <h3 class="bottom-line">Contactinfo</h3>
       <ul class="extrapersona">  
         <li>
           <label for="email2" class="email2">Secondary mailadress</label>
@@ -49,13 +50,40 @@
         </li>
         <li>
           <label for="facebook" class="facebook">Facebook</label>
-          <input id="facebook" name="facebook" type="text" placeholder="<facebookurl>">
-          <input id="visibility" name="twitter" type="checkbox"> 
+          <input id="facebook" name="facebook" type="url" placeholder="<facebookurl>">
+          <input id="visibility" name="facebook" type="checkbox"> 
         </li>
-      </ul>    
+      </ul>
+      
       <div class="submit"> 
-          <input type="submit" name="Submit" class="settings" value="Edit my settings" />
+          <input type="submit" name="Submit" class="settings-contact" value="Submit new contactinfo!" />
       </div>
+      <div class="clear"></div>
+  </form> 
+   
+  <form id="settings-password">
+    <h3 class="bottom-line">Change Password</h3>
+      <ul class="password">  
+        <li>
+          <label for="old-password" class="old-password">Old password</label>
+          <input id="old-password" name="old-password" type="password" requird>
+        </li>
+        <li>
+          <label for="new-password" class="new-password">New password</label>
+          <input id="old-password" name="new-password" type="password" requird>
+        </li>
+        <li>
+          <label for="confirm-password" class="confirm-password">Confirm password</label>
+          <input id="confirm-password" name="confirm-password" type="password" requird>
+        </li>
+      </ul>
+          
+      <div class="submit"> 
+          <input type="submit" name="Submit" class="settings-password" value="Get me my new password!" />
+      </div>
+    <div class="clear"></div> 
+  </form>
+  
       <ul class="buttons">
         <li>
           <span class="button"><a href="#">Courses</a>
@@ -64,7 +92,11 @@
           <span class="button"><a href="#">Change password</a>
         </li>    
       </ul>
+      
+      <div class="clear"></div> 
     
-  </form>   
+  </form>  
 </div>
+
+
 {% endblock %}
