@@ -7,13 +7,16 @@ body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: #f0f0f0 url(../img/background.png) repeat-x;
-  background-color: #f0f0f0;
-  background-image: -webkit-linear-gradient(-60deg, rgba(0, 0, 0, 0) 50%, #f5ae3c 50%, #f5ae3c 100%), -webkit-linear-gradient(70deg, rgba(0, 0, 128, 0.77) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%);
+  background: #f0f0f0 url(../img/backgroundlarge.png) no-repeat;
   overflow-y: scroll;
   background-attachment: fixed;
-  background-size: 100% 800px;
-  background-position: bottom;
+  background-position: center;
+}
+
+@media (max-device-width: 1921px) {
+  body {
+    background-image: url(../img/backgroundmed.png);
+  }
 }
 
 @font-face {
