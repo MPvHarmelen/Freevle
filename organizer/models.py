@@ -1,7 +1,8 @@
 import datetime
+import re
 from django.db import models
-from cygy.custom import fields
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
@@ -33,6 +34,10 @@ class PeriodMeta(models.Model):
     break_lengths = models.CommaSeparatedIntegerField(max_length=32)
     start_of_day = models.TimeField()
     min_periods = models.IntegerField()
+    
+    def __unicode__(self):
+        return '{} ({} - {})'.format(self.day_of_week, self.start_date,
+                                     self.end_date)
 
     def get_periodmeta(self, date):
         """
@@ -49,7 +54,8 @@ class PeriodMeta(models.Model):
         )
 
         if len(queryset) == 0:
-            raise ObjectDoesNotExist
+            raise ObjectDoesNotExist('There is no periodmeta set for {}'
+                                     ''.format(date))
 
         if len(queryset) == 1:
             periodmeta = queryset[0]
@@ -184,9 +190,27 @@ class Lesson(models.Model):
                                  self.period)
 
 class HomeworkType(models.Model):
+    COLOR_CHOICES = (
+        ('#FF5860',_('red')),
+        ('#70b6f2',_('blue')),
+        ('#f6e44b',_('yellow')),
+        ('#9ffe49',_('green')),
+     )
+
+    def validate_hex(value):
+        hex_error = _('This is an invalid color code. It must be a html hex'
+                      'color code e.g. #000000')
+        
+        value_length = len(value)
+
+        match = re.match('^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', value)
+        if value_length != 7 or not match:
+            raise ValidationError(hex_error)
+
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=8)
-    color = fields.HexColorField()
+    color = models.CharField(max_length=7, choices=COLOR_CHOICES,
+                             validators=[validate_hex])
     weight = models.IntegerField()
 
     def __unicode__(self):
@@ -201,6 +225,9 @@ class Homework(models.Model):
 
     def __unicode__(self):
         return '{} {}'.format(self.homework_type, self.lesson.course.topic)
+    
+    class Meta:
+        verbose_name_plural = 'homework'
 
 class Cancellation(models.Model):
     teacher = models.ForeignKey(

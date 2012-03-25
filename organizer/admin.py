@@ -1,5 +1,9 @@
 from django.contrib import admin
 from cygy.organizer.models import Topic, Course, Lesson, HomeworkType, Homework
+from cygy.organizer.models import PeriodMeta
+
+class PeriodMetaAdmin(admin.ModelAdmin):
+    list_display = ('start_date','end_date','day_of_week')
 
 class TopicAdmin(admin.ModelAdmin):
     list_display = ('name',)
@@ -17,6 +21,7 @@ class HomeworkAdmin(admin.ModelAdmin):
     list_display = ('homework_type', 'content',)
 
 
+admin.site.register(PeriodMeta,PeriodMetaAdmin)
 admin.site.register(Topic,TopicAdmin)
 admin.site.register(Course,CourseAdmin)
 admin.site.register(Lesson,LessonAdmin)

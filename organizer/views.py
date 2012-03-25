@@ -50,7 +50,7 @@ class DateMixin(object):
                 year = self.kwargs['year']
             except KeyError:
                 year = datetime.date.today().year
-        return year
+        return str(year)
 
     ## Edited
     def get_month(self):
@@ -63,7 +63,7 @@ class DateMixin(object):
                 month = self.kwargs['month']
             except KeyError:
                 month = datetime.date.today().month
-        return month
+        return str(month)
 
     ## Edited
     def get_day(self):
@@ -76,7 +76,7 @@ class DateMixin(object):
                 day = self.kwargs['day']
             except KeyError:
                 day = datetime.date.today().day
-        return day
+        return str(day)
 
     def get_year_format(self):
         """
@@ -138,6 +138,7 @@ class DateMixin(object):
         date_string = delim.join((year, month, day))
 
         date = datetime.datetime.strptime(date_string, date_format).date()
+        date = self.check_allow_weekend(date)
 
         return date
 
@@ -175,18 +176,20 @@ class LessonListMixin(object):
         '''
         periodmeta = PeriodMeta().get_periodmeta(date)
         break_course = StrCourse(
-            topic=break_lesson_tekst,
-            day_of_week=date.strftime('%a')
+            topic=self.break_lesson_tekst,
         )
-
+        latest_period = lesson_list[-1].period
         for index, lesson in enumerate(lesson_list):
             period = index + 1
             if periodmeta.is_next_period_break(period):
-                break_lesson = BreakLesson(course=break_course)
+                break_lesson = BreakLesson(
+                    course=break_course,
+                    day_of_week=date.strftime('%a')
+                )
                 # insert a break after the current lesson
                 lesson_list[index + 1:index + 1] = [break_lesson]
 
-        period_times = periodmeta.get_period_times()
+        period_times = periodmeta.get_period_times(latest_period)
 
         for index, time in enumerate(period_times):
             try:
@@ -225,7 +228,7 @@ class LessonListMixin(object):
                     list_date = date
                 else:
                     list_date = date_list[-1] + datetime.timedelta(days=1)
-                    list_date = check_allow_weekend(list_date)
+                    list_date = self.check_allow_weekend(list_date)
 
                 date_list.append(list_date)
 
@@ -236,14 +239,15 @@ class LessonListMixin(object):
             # For loop to get the length for lesson_set_cleanup
             length = 0
             for index, lesson_set in enumerate(lesson_lists):
-                latest_period = lesson_set[-1].period
-                list_date = date_list[index]
-                min_period = self.get_min_periods(list_date)
+                if len(lesson_set) != 0:
+                    latest_period = lesson_set[-1].period
+                    list_date = date_list[index]
+                    min_period = self.get_min_periods(list_date)
 
-                if latest_period > length:
-                    length = latest_period
-                if min_period > length:
-                    length = min_period
+                    if latest_period > length:
+                        length = latest_period
+                    if min_period > length:
+                        length = min_period
 
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
@@ -289,7 +293,8 @@ class LessonListMixin(object):
         if length < min_length:
             lesson_list.extend([empty_lesson] * (min_length - length))
 
-        lesson_list = self.set_breaks_and_period_times(lesson_list, date)
+        if len(lesson_list) > 0:
+            lesson_list = self.set_breaks_and_period_times(lesson_list, date)
 
         # Set day_of_week to full regional name
         for lesson in lesson_list:
@@ -380,7 +385,7 @@ class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
         ordered by period
         """
 
-        date = self.check_allow_weekend(date)
+#        date = self.check_allow_weekend(date) I think it's unnecesary here
         day_of_week = date.strftime('%a')
         lesson_set = user.takes_courses.filter(
             lesson__day_of_week=day_of_week,
