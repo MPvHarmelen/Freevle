@@ -7,16 +7,8 @@ body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: #f0f0f0 url(../img/backgroundlarge.png) no-repeat;
+  background: #f0f0f0 url(../img/backgroundlarge.png) no-repeat fixed center;
   overflow-y: scroll;
-  background-attachment: fixed;
-  background-position: center;
-}
-
-@media (max-device-width: 1921px) {
-  body {
-    background-image: url(../img/backgroundmed.png);
-  }
 }
 
 @font-face {
