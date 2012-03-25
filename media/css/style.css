@@ -262,6 +262,8 @@ div#inlogform {
   box-shadow: 0 0 100px #000;
   font-size: 13px;
   border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
   height: 337px;
   overflow: visible !important;
 }
@@ -271,6 +273,8 @@ div#inlogform {
   width: 24px;
   background: #000 url(../img/cross.png);
   border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
   position: absolute;
   top: -15px;
   right: -15px;
@@ -775,6 +779,34 @@ li.odd a, li.even a {
 }
 
 /*------------------------------courses------------------------------*/
+
+header#courseheader {
+  width: 800px;
+  margin: -21px -50px 30px;
+  text-align: left;
+  padding: 34px 50px 20px;
+  background: #444;
+  background-size: 900px;
+  color: white;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  position: relative;
+}
+header#courseheader:after {
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  bottom: 0px;
+  height: 12px;
+  width: 876px;
+  margin: 0 auto;
+  -moz-border-radius: 433px / 7px;
+  border-radius: 433px / 7px;
+  content: "";
+  position: absolute;
+  left: 15px; 
+  z-index: -1;
+}
 
 ul#courses {
   width: 320px;
