@@ -1081,13 +1081,27 @@ ul.persona {
   margin: 10px 0 0 0 !important;
 }
 
+ul.contactinfo, ul.password {
+  display: block;
+  width: 100%;
+}
+
 .profile {
   float: right;
   height: 160px;
   width: 140px;
 }
 
-label.name, label.class, label.email1, label.email2, label.phone, label.twitter, label.facebook, label.old-password, label.new-password, label.confirm-password {
+label.name, 
+label.class, 
+label.email1, 
+label.email2, 
+label.phone, 
+label.twitter, 
+label.facebook, 
+label.old-password, 
+label.new-password, 
+label.confirm-password {
   float: left; 
   clear: left; 
   margin: 4px 20px 0 0; 
@@ -1096,10 +1110,19 @@ label.name, label.class, label.email1, label.email2, label.phone, label.twitter,
   font-size: 16px; 
 }
 
-input#name, input#class, input#email1, input#email2, input#phone, input#twitter, input#facebook, input#old-password, input#new-password, input#confirm-password {
+input#name, 
+input#class, 
+input#email1,
+input#email2,
+input#phone,
+input#twitter,
+input#facebook,
+input#old-password,
+input#new-password,
+input#confirm-password {
   width: 200px; 
   height: 20px; 
-  padding: 5px 20px 3px 10px; 
+  padding: 5px 10px 3px 10px; 
   margin: 0 0 20px 0;
   color: #000;
   background: #EEE;
@@ -1116,9 +1139,41 @@ input[disabled=disabled] {
   color: #0e0e0e !important;
 }
 
-input.settings {
-  width: 200px; 
+input.settings-contact, input.settings-password {
+  width: 222px;
+  margin: 0 0 0 190px; 
 }
+
+ul.notifications {
+  display: block;
+  padding: 0 240px;
+}
+
+li.evennotification {
+  display: block;
+  background: #FEFEFE;
+}
+
+li.oddnotification {
+  display: block;
+  background: #EEE;
+}
+
+label.new-letter,
+label.new-course {
+  display: block;
+  width: 300px;
+  padding: 8px 12px;
+  text-decoration: none;
+  float: left;
+}
+
+input#new-letter,
+input#new-course {
+  float: right;
+  padding: 8px 12px;
+}
+
 
 /*------------------------------photos------------------------------*/
 div#photopage img {
