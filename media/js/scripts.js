@@ -160,7 +160,7 @@ $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 27) {
     $('#closelogin').click();
   }
-  if (e.keyCode == 19) {
+  if (e.keyCode == 76) {
     $('#loginhome').click();
   }
   if (e.keyCode == 145) {
