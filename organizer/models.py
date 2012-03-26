@@ -24,7 +24,7 @@ DAY_CHOICES = (
 
 class PeriodMeta(models.Model):
     """Defines the length of periods and more"""
-    
+
     start_date = models.DateField()
     end_date = models.DateField()
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
@@ -34,7 +34,7 @@ class PeriodMeta(models.Model):
     break_lengths = models.CommaSeparatedIntegerField(max_length=32)
     start_of_day = models.TimeField()
     min_periods = models.IntegerField()
-    
+
     def __unicode__(self):
         return '{} ({} - {})'.format(self.day_of_week, self.start_date,
                                      self.end_date)
@@ -64,8 +64,8 @@ class PeriodMeta(models.Model):
             date_len = lambda a: a.end_date - a.start_date
             smallest_date_len = min([date_len(a) for a in queryset])
             periodmeta_set = [a for a in queryset
-                                 if date_len(a) == smalles_date_len]
-            
+                                 if date_len(a) == smallest_date_len]
+
             if len(periodmeta_set) == 1:
                 periodmeta = periodmeta_set[0]
             else:
@@ -97,25 +97,18 @@ class PeriodMeta(models.Model):
                         )
 
         return periodmeta
-    
-    def is_next_period_break(self, period):
-        """Returns if there is a break after this period"""
-        if period in self.brakes_after_period:
-            return True
-        else:
-            return False
 
     def get_period_times(self, periods):
         """
-        Get a tuple of starting and ending times of periods and breaks
+        Get a tuple of starting and ending times of periods
         """
         if periods < self.min_periods:
             periods = self.min_periods
-        
+
         # make dict of break lengths
         breaks = dict([(value, datetime.timedelta(minute=self.break_lengths[index])) for
                        index, value in enumerate(breaks_after_period)])
-        
+
         period_times = []
         # We need to use datetime objects instead of time objects, because
         # Python failed on me and can't add timedelta's to time objects.
@@ -132,23 +125,23 @@ class PeriodMeta(models.Model):
             **default_date
         )
         period_length = datetime.timedelta(minutes=self.period_length)
-        
-        for period in [i+1 for i in range(periods)]:
-            if period in breaks.keys():
-                duration = breaks[period]
-                is_break = True
-            else:
-                duration = period_length
-                is_break = False
-            
-            end_time = start_time + duration
-            
-            if period == 1:
+
+        # Don't forget periods aren't zero based!
+        for prev_period in range(periods):
+            # If there was a break after the previous period, we need to
+            # compensate for that.
+            if prev_period in breaks.keys():
+                start_time = start_time + breaks[prev_period]
+
+            end_time = start_time + period_length
+
+            # Version 0.bla, Cygnus has a five minute day opening
+            if prev_period == 0:
                 end_time += datetime.timedelta(minutes=5)
-            
-            period_times.append((sart_time,end_time,is_break))
+
+            period_times.append((sart_time,end_time))
             start_time = end_time
-        
+
         period_times = tuple(period_times)
         return period_times
 
@@ -200,7 +193,7 @@ class HomeworkType(models.Model):
     def validate_hex(value):
         hex_error = _('This is an invalid color code. It must be a html hex'
                       'color code e.g. #000000')
-        
+
         value_length = len(value)
 
         match = re.match('^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', value)
@@ -225,7 +218,7 @@ class Homework(models.Model):
 
     def __unicode__(self):
         return '{} {}'.format(self.homework_type, self.lesson.course.topic)
-    
+
     class Meta:
         verbose_name_plural = 'homework'
 
@@ -242,10 +235,10 @@ class Cancellation(models.Model):
         blank=True, null=True,
         limit_choices_to={'groups__name': 'teachers'}
     )
-    
+
     classroom = models.CharField(max_length=16, blank=True)
     new_classroom = models.CharField(max_length=16, blank=True)
-    
+
     date = models.DateTimeField()
     begin_period = models.IntegerField()
     end_period = models.IntegerField()
@@ -257,6 +250,6 @@ class Announcements(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     content = models.CharField(max_length=255)
-    
+
     def __unicode__(self):
         return content

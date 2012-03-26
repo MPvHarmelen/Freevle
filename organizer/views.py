@@ -20,10 +20,6 @@ from cygy.organizer.models import *
 class StrCourse(Course):
     topic = str()
 
-class BreakLesson(Lesson):
-    is_break = True
-
-
 class DateMixin(object):
     year = None
     month = None
@@ -154,8 +150,6 @@ class CancellationMixin(object):
 class LessonListMixin(object):
     lesson_lists = None
     empty_lesson_tekst = '-'
-    break_lesson_tekst = _('break')
-
 
     def check_homework(self, lesson_set, date):
         for lesson in lesson_set:
@@ -167,43 +161,17 @@ class LessonListMixin(object):
         periodmeta = PeriodMeta().get_periodmeta(date)
         return periodmeta.min_periods
 
-    def set_breaks_and_period_times(self, lesson_list, date):
+    def set_period_times(self, lesson_list, date):
         '''
-        get the right times and breaks
-
-        put them in lesson_list
-        return lesson_list
+        Get the right times for periods
         '''
         periodmeta = PeriodMeta().get_periodmeta(date)
-        break_course = StrCourse(
-            topic=self.break_lesson_tekst,
-        )
         latest_period = lesson_list[-1].period
-        for index, lesson in enumerate(lesson_list):
-            period = index + 1
-            if periodmeta.is_next_period_break(period):
-                break_lesson = BreakLesson(
-                    course=break_course,
-                    day_of_week=date.strftime('%a')
-                )
-                # insert a break after the current lesson
-                lesson_list[index + 1:index + 1] = [break_lesson]
-
         period_times = periodmeta.get_period_times(latest_period)
 
         for index, time in enumerate(period_times):
-            try:
-                if lesson_list[index].is_break != time[2]:
-                    raise ImproperlyConfigured("The breaks didn't match!")
-            except AttributeError:
-                # if the attribute is_break didn't exist, this wasn't a break
-                if time[2]:
-                    # but if time sais it should be, there's something wrong
-                    raise ImproperlyConfigured("The breaks didn't match!")
-
             lesson_list[index].start_time = time[0]
             lesson_list[index].end_time = time[1]
-            lesson_list[index].is_break = time[2]
 
         return lesson_list
 
@@ -294,7 +262,7 @@ class LessonListMixin(object):
             lesson_list.extend([empty_lesson] * (min_length - length))
 
         if len(lesson_list) > 0:
-            lesson_list = self.set_breaks_and_period_times(lesson_list, date)
+            lesson_list = self.set_period_times(lesson_list, date)
 
         # Set day_of_week to full regional name
         for lesson in lesson_list:
