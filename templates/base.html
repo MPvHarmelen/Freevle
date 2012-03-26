@@ -5,10 +5,12 @@
 
     <title>{% trans "Cygnus Template" %}</title>
     <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
-    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/media/css/slimbox2.css" />
 
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/media/js/scripts.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
   </head>
   <body>
@@ -17,16 +19,37 @@
       <div id="darken">
         <div id="inlogform">
           <div id="closelogin"></div>
-          <h2>{% trans "Login" %}</h2>
-          <form method="post" action="/user/login/" id="login">
-            {% csrf_token %}
-            <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
-            <input class="text" type="password" id="id_password" name="password" placeholder="{% trans "Password" %}" /><br>
-            <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
-            <input type="hidden" name="next" value="{{ request.get_full_path }}">
-          </form>
-          <a href="">{% blocktrans %}No account?{% endblocktrans %}</a><br>
-          <a href="">{% blocktrans %}Forgot your password?{% endblocktrans %}</a>
+          
+          <div id="loginandpassword">
+
+            <div id="focuslogin">
+              <h2>{% trans "Login" %}</h2>
+              <form method="post" action="/user/login/" id="login">
+                {% csrf_token %}
+                <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
+                <input class="text" type="password" id="id_password" name="password" placeholder="{% trans "Password" %}" /><br>
+                <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              </form>
+              <a id="focusonpassword" href="#">{% blocktrans %}Forgotten your username or password?{% endblocktrans %}</a>
+            </div>
+
+            <div id="password">
+              <h2>{% trans "Lost & found" %}</h2>
+              <form method="post" action="/user/lostandfound/" id="login">
+                {% csrf_token %}
+                <p>{% blocktrans %}Forgotten your password or username? Enter your email and your username and a new password will be sent to you.{% endblocktrans %}</p>
+                <input class="text" type="email" id="id_email" name="email" placeholder="{% trans "Email" %}" /><br>
+                <input class="button" type="submit" value="{% trans "Send" %}" name="submit" />
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              </form>
+              <a id="focusonlogin" href="#">{% blocktrans %}Just want to login?{% endblocktrans %}</a><br>
+            </div>
+            
+            <div class="clear"></div>
+
+          </div>
+
         </div>
       </div>
     {% endif %}
