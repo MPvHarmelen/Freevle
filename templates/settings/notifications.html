@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+  <h2>Settings</h2>
+  <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
+
+  <div class="settingsmenu">
+		<h3 class="menu"><a href="#">Persona</a></h3>
+		<h3 class="menu"><a href="/settings/contact">Contactinfo</a></h3>
+		<h3 class="menu"><a href="/settings/password">Change Password</a></h3>
+		<h3 class="menu"><a href="/settings/notifications">Notifications</a></h3>
+	</div>
+
+  <form id="settings-notifications">
+			<p>Manage your notifications by checking the checkboxes of the events you want to be notifed of with an email.</p>
+				<ul class="notifications">  
+					<li class="evennotification">
+						<label for="new-letter" class="new-letter">When a new letter is published</label>
+						<input id="new-letter" name="new-letter" type="checkbox">
+					</li>
+					<li class="oddnotification">
+						<label for="new-course" class="new-course">When you're added to a course</label>
+						<input id="new-course" name="new-course" type="checkbox">
+					</li>
+				</ul>
+					
+				<div class="submit"> 
+					<input type="submit" name="Submit" class="settings-notifications" value="Update my notifications!" />
+				</div>
+	
+	<div class="clear"></div> 
+  
+	</form>
+  
+</div>
+
+{% endblock %}
