@@ -3,11 +3,13 @@ import datetime
 from bs4 import BeautifulSoup
 
 from django.db.models.signals import post_syncdb
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.template.defaultfilters import slugify
 from django.db.utils import IntegrityError
 
+from cygy.custom.debug.markov import Markov
 from cygy.organizer import models
+from cygy.users.models import UserProfile
 from cygy.settings import DEBUG
 
 def debug_data(sender, **kwargs):
@@ -22,6 +24,11 @@ def debug_data(sender, **kwargs):
         if not cont.lower() in ('yes', 'y', '',):
             return
 
+    if verbosity > 1:
+        print ' Reading the complete works of William Shakespeare for inspiration.'
+    file = open('custom/debug/shakespeare.txt')
+    shakespeare = Markov(file)
+
     #infoweb = raw_input('Enter the webaddress to your infoweb root (like http://example.com/infoweb/): ')
     infoweb = 'http://cygy.nl/ftp_cg/roosters/infoweb/'
     cookies = requests.get(infoweb + 'index.php').cookies
@@ -35,14 +42,28 @@ def debug_data(sender, **kwargs):
     for option in classes_soup.find_all('option')[2:]:
         classes_names.append(option['value'])
 
-    #classes = []
+    students_group, created = Group.objects.get_or_create(name='students')
     students = []
     for cls in classes_names:
         students_page = requests.get('{}selectie.inc.php?wat=groep&weeknummer={}&type=0&groep={}'.format(infoweb, this_week, cls), cookies=cookies)
         students_soup = BeautifulSoup(students_page.text)
 
-        #students = []
         for option in students_soup('option')[2:]:
+            name = option.string
+            first_name = name.split()[0]
+            last_name = ' '.join(name.split()[1:])
+            abbr = option['value']
+            password = shakespeare.generate_markov_text(2).replace(' ', '')
+            student = User(username=abbr, first_name=first_name, last_name=last_name)
+            student.set_password(password)
+            student.save()
+            class_group, created = Group.objects.get_or_create(name=cls)
+            student.groups.add(class_group, students_group)
+            student.save()
+            profile = student.get_profile()
+            profile.designation = abbr
+            profile.save()
+
             students.append([int(option['value']), option.string])
 
         #classes.append(students)
@@ -60,9 +81,15 @@ def debug_data(sender, **kwargs):
                 if 'class' in td.attrs:
                     data = [[], [], [],]
                 else:
-                    data = td.span.string.strip().split()
+                    teacher, topic, classroom = td.span.string.strip().split()
+                    try:
+                        teacher = User.objects.get(username=teacher)
+                    except User.DoesNotExist:
+                        password = shakespeare.generate_markov_text(2).replace(' ', '')
+                        teacher = User(username=teacher, first_name=teacher, last_name=teacher)
+                        teacher.set_password(password)
+                        teacher.save()
                 days[i].append(data)
-        print days
 
     if verbosity > 1:
         print
