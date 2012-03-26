@@ -89,4 +89,3 @@ INSTALLED_APPS = (
 
 FORCE_SCRIPT_NAME = ""
 AUTH_PROFILE_MODULE = 'users.UserProfile'
-
