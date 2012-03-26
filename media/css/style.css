@@ -1146,32 +1146,41 @@ input.settings-contact, input.settings-password {
 
 ul.notifications {
   display: block;
-  padding: 0 240px;
+  padding: 0 0 0 240px;
 }
 
 li.evennotification {
   display: block;
+  width: 300px;
   background: #FEFEFE;
+  height: 41px;
 }
 
 li.oddnotification {
   display: block;
+  width: 300px;
   background: #EEE;
+  height: 41px;
 }
 
 label.new-letter,
 label.new-course {
   display: block;
-  width: 300px;
-  padding: 8px 12px;
+  width: 240px;
+  margin: 8px 12px;
   text-decoration: none;
   float: left;
 }
 
 input#new-letter,
 input#new-course {
-  float: right;
-  padding: 8px 12px;
+  float: left;
+  margin: 15px 0 0 0;
+}
+
+input.settings-notifications {
+  width: 300px;
+  margin: 20px 0 20px 240px; 
 }
 
 
