@@ -7,9 +7,7 @@ body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: #f0f0f0 url(../img/background.png) repeat-x;
-  background-color: #f0f0f0;
-  background-image: -webkit-linear-gradient(-60deg, rgba(0, 0, 0, 0) 50%, #f5ae3c 50%, #f5ae3c 100%), -webkit-linear-gradient(70deg, rgba(0, 0, 128, 0.77) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%);
+  background: #f0f0f0 url(../img/backgroundlarge.png) no-repeat fixed center;
   overflow-y: scroll;
   background-attachment: fixed;
   background-size: 100% 800px;
@@ -267,6 +265,8 @@ div#inlogform {
   box-shadow: 0 0 100px #000;
   font-size: 13px;
   border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
   height: 337px;
   overflow: visible !important;
 }
@@ -276,6 +276,8 @@ div#inlogform {
   width: 24px;
   background: #000 url(../img/cross.png);
   border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
   position: absolute;
   top: -15px;
   right: -15px;
@@ -386,7 +388,7 @@ a.pagenav:hover {
 div.photos {
   padding: 0;
   border-bottom: 1px solid #cfcfcf;
-  width: 799px;
+  width: 798px;
 }
 
 div#slider {
@@ -394,10 +396,15 @@ div#slider {
   padding: 0 0 0 1px;
 }
 
-img.slide {
-  height: 180px;
+a.slide {
+  height: 200px;
   width: 266px;
   float: left;
+  text-align: center;
+  display: block;
+}
+a.slide img {
+  height: 200px;
 }
 
 ul#sliderul {
@@ -776,6 +783,34 @@ li.odd a, li.even a {
 
 /*------------------------------courses------------------------------*/
 
+header#courseheader {
+  width: 800px;
+  margin: -21px -50px 30px;
+  text-align: left;
+  padding: 34px 50px 20px;
+  background: #444;
+  background-size: 900px;
+  color: white;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  position: relative;
+}
+header#courseheader:after {
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  bottom: 0px;
+  height: 12px;
+  width: 876px;
+  margin: 0 auto;
+  -moz-border-radius: 433px / 7px;
+  border-radius: 433px / 7px;
+  content: "";
+  position: absolute;
+  left: 15px; 
+  z-index: -1;
+}
+
 ul#courses {
   width: 320px;
   margin: 30px 0;
@@ -1030,6 +1065,118 @@ span.morecontacts a {
   box-shadow: 1px 1px 1px #000;
   border-radius: 3px;
 }
+
+/*------------------------------settings------------------------------*/
+form ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+h3.bottom-line {
+  border-bottom: 1px solid #CFCFCF;
+  padding: 0 0 3px 0;
+}
+
+ul.persona {
+  display: block;
+  margin: 10px 0 0 0 !important;
+}
+
+ul.contactinfo, ul.password {
+  display: block;
+  width: 100%;
+}
+
+.profile {
+  float: right;
+  height: 160px;
+  width: 140px;
+}
+
+label.name, 
+label.class, 
+label.email1, 
+label.email2, 
+label.phone, 
+label.twitter, 
+label.facebook, 
+label.old-password, 
+label.new-password, 
+label.confirm-password {
+  float: left; 
+  clear: left; 
+  margin: 4px 20px 0 0; 
+  width: 170px;
+  text-align: right; 
+  font-size: 16px; 
+}
+
+input#name, 
+input#class, 
+input#email1,
+input#email2,
+input#phone,
+input#twitter,
+input#facebook,
+input#old-password,
+input#new-password,
+input#confirm-password {
+  width: 200px; 
+  height: 20px; 
+  padding: 5px 10px 3px 10px; 
+  margin: 0 0 20px 0;
+  color: #000;
+  background: #EEE;
+  -moz-box-shadow: 0px 1px 0px #fcfcfc;
+  -webkit-box-shadow: 0px 1px 0px #fcfcfc;
+}
+
+input#visibility {
+  margin: 0 0 0 10px;
+}
+
+input[disabled=disabled] {
+  background: #C6C6C6 !important;
+  color: #0e0e0e !important;
+}
+
+input.settings-contact, input.settings-password {
+  width: 222px;
+  margin: 0 0 0 190px; 
+}
+
+ul.notifications {
+  display: block;
+  padding: 0 240px;
+}
+
+li.evennotification {
+  display: block;
+  background: #FEFEFE;
+}
+
+li.oddnotification {
+  display: block;
+  background: #EEE;
+}
+
+label.new-letter,
+label.new-course {
+  display: block;
+  width: 300px;
+  padding: 8px 12px;
+  text-decoration: none;
+  float: left;
+}
+
+input#new-letter,
+input#new-course {
+  float: right;
+  padding: 8px 12px;
+}
+
 
 /*------------------------------photos------------------------------*/
 div#photopage img {

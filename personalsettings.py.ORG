@@ -33,4 +33,3 @@ SECRET_KEY = 'SomethingRandom'
 # Whether you want debug options.
 DEBUG = True
 STATIC = True
-
