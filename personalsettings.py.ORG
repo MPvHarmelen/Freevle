@@ -19,10 +19,10 @@ ROOT_DIR = '/absolute/path/to/cygy/'
 
 # The apps you want installed.
 INSTALLED_APPS = (
+    'cygy.organizer',
     'cygy.news',
     'cygy.cms',
     'cygy.letters',
-    'cygy.organizer',
     'cygy.galleries',
 )
 
