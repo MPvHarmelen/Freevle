@@ -1118,14 +1118,14 @@ ul.notifications {
 
 li.evennotification {
   display: block;
-  width: 300px;
+  width: 320px;
   background: #FEFEFE;
   height: 41px;
 }
 
 li.oddnotification {
   display: block;
-  width: 300px;
+  width: 320px;
   background: #EEE;
   height: 41px;
 }
@@ -1159,7 +1159,7 @@ input.settings-contact, input.settings-password {
 }
 
 input.settings-notifications {
-  width: 300px;
+  width: 320px;
   margin: 20px 0 20px 240px; 
 }
 
@@ -1174,8 +1174,8 @@ label.new-course {
 
 input#new-letter,
 input#new-course {
-  float: left;
-  margin: 15px 0 0 0;
+  float: right;
+  margin: 15px 12px 0 12px;
 }
 
 
