@@ -1,4 +1,5 @@
 import random
+import sys
 from datetime import datetime
 
 from django.db.models.signals import post_syncdb
@@ -9,6 +10,7 @@ from django.db.utils import IntegrityError
 from cygy.news import models
 from cygy.settings import DEBUG
 from cygy.custom.debug.markov import Markov
+from cygy.custom.progressbar import ProgressBar
 
 THIS_YEAR = datetime.today().year
 NOW = datetime.now()
@@ -35,6 +37,10 @@ def debug_data(sender, **kwargs):
     shakespeare = Markov(file)
     if verbosity > 1:
         print ' Writing news messages'
+    elif verbosity == 1:
+        prog = ProgressBar(0, 150, 77, mode='fixed')
+        print prog, '\r',
+
     for i in xrange(150):
         writer = User.objects.filter(groups__name='teachers').order_by('?')[0]
         title = shakespeare.generate_markov_text(random.randint(5, 10))
@@ -56,9 +62,13 @@ def debug_data(sender, **kwargs):
         if verbosity > 1:
             print '- {} <{} @ {}>'.format(title, writer.get_full_name(),
                     publish)
+        elif verbosity == 1:
+            prog.increment_amount()
+            print prog, '\r',
+            sys.stdout.flush()
     file.close()
-    if verbosity > 1:
-        print
+    print
+    print
 
 if DEBUG:
     post_syncdb.connect(debug_data, sender=models)

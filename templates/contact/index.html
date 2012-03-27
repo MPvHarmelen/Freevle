@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+  <h2>{% trans "Contact" %}</h2>
+    <span class="intro"><p>{% blocktrans %}You can contact our school in different ways. Calling and sending an email are the fastest, but stopping by with an appointment is possible as well!{% endblocktrans %}</p></span>
+</div>
+
+<div class="item">
+  
+  <div id="map">
+    <h3>{% trans "Map" %}</h3>    
+      <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.nl/maps?f=q&amp;source=s_q&amp;hl=nl&amp;geocode=&amp;q=vrolikstraat+8+amsterdam&amp;aq=&amp;sll=52.355413,4.912962&amp;sspn=0.001378,0.002411&amp;gl=nl&amp;ie=UTF8&amp;hq=&amp;hnear=Vrolikstraat+8,+Weesperzijde,+Amsterdam,+Noord-Holland&amp;t=m&amp;ll=52.354268,4.914665&amp;spn=0.015727,0.034332&amp;z=14&amp;output=embed"></iframe>
+      <span class="button"><a href="http://maps.google.nl/maps?f=q&amp;source=embed&amp;hl=nl&amp;geocode=&amp;q=vrolikstraat+8+amsterdam&amp;aq=&amp;sll=52.355413,4.912962&amp;sspn=0.001378,0.002411&amp;gl=nl&amp;ie=UTF8&amp;hq=&amp;hnear=Vrolikstraat+8,+Weesperzijde,+Amsterdam,+Noord-Holland&amp;t=m&amp;ll=52.354268,4.914665&amp;spn=0.015727,0.034332&amp;z=14">Show bigger map</a></span>
+  </div>
+
+  <div id="location">
+    <h3>{% trans "Location" %}</h3>
+      <span class="locationdescription">
+        <p>{% blocktrans %}The Cygnus Gymansium accomodated in the monumental building 'het schip' in Amsterdam East at het Wibautstraat.{% endblocktrans %}</p>
+        <p>{% blocktrans %}The Cygnus is reachable by train (Amstel Station), metro (Stop Wibautstraat), bicycle or by foot.</p>
+      </span>
+  </div>
+    
+  <div id="adress">
+    <h3>{% trans "Adress" %}</h3> 
+    <p class="contact">
+      <span class="street">Vrolikstraat</span>
+      <span class="number">8</span>
+    </p>
+    <p class="contact">
+      <span class="postcode">1092 TV</span>
+      <span class="city">Amsterdam</span>
+    </p>
+    <p class="contact">
+      <span class="telephone">020-1234567</span>
+    </p>
+ </div>
+    
+  <div class="clear"></div>
+       
+</div>
+
+<div class="item">
+  <h3>{% trans "Mail" %}</h3>
+    <span class="locationdescription"><p>{% blocktrans %}You can mail questions to people in this list.{% endblocktrans %}</p></span>
+    
+    <ul id="contactpersons">
+      <li class="odd">
+        <a href="mailto:Darry@langeschoolnaam.nl">Darry Boehoe</a>
+        <span class="persondescription">{% trans "Rector" %}</span>
+      </li>
+      
+      <li class="even">
+        <a href="mailto:Harry@langeschoolnaam.nl">Harry de Boer</a>
+        <span class="persondescription">{% blocktrans %}Deparment leader year 1 en 2{% endblocktrans %}</span>
+      </li>
+      
+      <li class="odd">
+        <a href="mailto:Larry@langeschoolnaam.nl">Larry Schoffelaar</a>
+        <span class="persondescription">{% blocktrans %}Department leader year 3 en 4{% endblocktrans %}</span>
+      </li>
+      
+      <li class="even">
+        <a href="mailto:Barry@langeschoolnaam.nl">Barry Haha</a>
+        <span class="persondescription">{% blocktrans %}Department ledader year 5 en 6{% endblocktrans %}</span>
+      </li>
+      
+      <li class="odd">
+        <a href="mailto:Marry@langeschoolnaam.nl">Harry Achternaam</a>
+        <span class="persondescription">{% trans "Administration" %}"</span>
+      </li>
+      
+      <li class="even">
+        <a href="mailto:Garry@langeschoolnaam.nl">Garry Niksers</a>
+        <span class="persondescription">{% trans "Absencecoordinator" %}</span>
+      </li>
+    </ul>
+    
+    <span class="morecontacts"><a href="/user/login/">{% blocktrans %}Login to see more mailadresses{% endblocktrans %}</a></span>
+    
+    <div class="clear"></div>
+</div>
+{% endblock %}
+

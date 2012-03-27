@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+  <h2>Settings</h2>
+  <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
+
+  <div class="settingsmenu">
+    <h3 class="menu"><a href="/settings">Persona</a></h3>
+    <h3 class="menu"><a href="/settings/contact">Contactinfo</a></h3>
+    <h3 class="menu"><a href="/settings/password">Change Password</a></h3>
+    <h3 class="menu"><a href="/settings/notifications">Notifications</a></h3>
+  </div>
+
+  <form id="settings-persona">
+      <ul class="persona">
+        <li>
+          <label for="name" class="name">Name</label>
+          <input id="name" name="name" type="text" disabled="disabled" placeholder="John Doe">
+        </li>
+        <li>
+          <label for="class" class="class">Class</label>
+          <input id="class" name="class" type="text" disabled="disabled" placeholder="G4X"></textarea>
+        </li>
+        <li>
+          <label for="email1" class="email1">School mailadress</label>
+          <input id="email1" name="email" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
+        </li>
+      </ul> 
+      
+      <div class="profile">
+        <img class="profile" src="/media/img/johndoe.png">
+      </div>
+      
+     <div class="clear"></div>     
+  </form> 
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+  <h2>Settings</h2>
+  <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
+
+  <div class="settingsmenu">
+		<h3 class="menu"><a href="#">Persona</a></h3>
+		<h3 class="menu"><a href="/settings/contact">Contactinfo</a></h3>
+		<h3 class="menu"><a href="/settings/password">Change Password</a></h3>
+		<h3 class="menu"><a href="/settings/notifications">Notifications</a></h3>
+	</div>
+
+  <form id="settings-contact">  
+			<ul class="contactinfo">  
+			<li>
+				<label for="email2" class="email2">Secondary mailadress</label>
+				<input id="email2" name="email" type="email" placeholder="myextramail@domain.com">
+			</li>
+			<li>
+				<label for="phone" class="phone">Phonenumber</label>
+				<input id="phone" name="phone" type="tel" placeholder="+3165432123">
+				<input id="visibility" name="phone" type="checkbox"> 
+			</li>
+			<li>
+				<label for="twitter" class="twitter">Twittername</label>
+				<input id="twitter" name="twitter" type="text" placeholder="@cygy">
+				<input id="visibility" name="twitter" type="checkbox"> 
+			</li>
+			<li>
+				<label for="facebook" class="facebook">Facebook</label>
+				<input id="facebook" name="facebook" type="url" placeholder="<facebookurl>">
+				<input id="visibility" name="facebook" type="checkbox"> 
+			</li>
+			</ul>
+			
+	<div class="submit"> 
+		<input type="submit" name="Submit" class="settings-contact" value="Update my contactinfo!" />
+	</div>
+	
+	<div class="clear"></div>
+  
+	</form>
+  
+</div>
+
+{% endblock %}

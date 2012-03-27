@@ -6,13 +6,12 @@ $(document).ready(function(){
 
   var amountPictures = 9;
 
-  var totWidth = amountPictures * 266;
+  var totWidth = amountPictures * $('.slide').width();
   $('#slides').width(totWidth);
   var currentPos = 0;
 
   function advance() {
-    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 798 + 'px'});
-    console.log(currentPos);
+    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 799 + 'px'});
   }
 
   function autoAdvance() {
@@ -98,28 +97,76 @@ $(document).ready(function(){
   centerInlogForm();
 
   $(window).resize(centerInlogForm);
-//Menu backgrounds
-  var menuLi = $('li.menu, div.header');
 
-  menuLi.hover(function() {
-      $(this).children('a.header').css('background-color', '#eee');
+//Menu backgrounds
+
+  $('ul.dropdown').hover(function() {
+      $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
   }, function() {
-      $(this).children('a.header').css('background-color', '#fff');
+      $(this).prev('a.menuitem').css('background-color', 'transparent').css('color', '#333');
   });
 
+  $('a.menuitem').hover(function(){
+    $(this).css('background-color', '#008').css('color', '#fff');
+  }, function() {
+    $(this).css('background-color', 'transparent').css('color', '#333');
+  });
 
   $('ul.dropdown').hide();
-  $("li.menu").hover(function() {
-      $(this).children("ul.dropdown").stop(true, true).slideDown('fast');
+  $('li.navmenu').hover(function() {
+      $(this).children('ul.dropdown').stop(true, true).slideDown('fast');
     }, function() {
-      $(this).children("ul.dropdown").stop(true, true).slideUp('fast');
+      $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
 
   if(document.getElementById('focus')) {
     document.getElementById('focus').focus();
   }
+
+
+  //Login and password functionality
+  $('#password').hide();
+  $('#focusonpassword').click(function() {
+    $('#password').fadeIn('fast');
+    $('#loginandpassword').animate({'margin-left': '-280px'}, 'fast');
+    $('#focuslogin').fadeOut('fast');
+    $('#inlogform').animate({'height': '357px'}, 'fast');
+  });
+  $('#focusonlogin').click(function() {
+    $('#password').fadeOut('fast');
+    $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
+    $('#focuslogin').fadeIn('fast');
+    $('#inlogform').animate({'height': '337px'}, 'fast');
+  });
+
+});
+
+//Ctrl+
+$.ctrl = function(key, callback, args) {
+    $(document).keydown(function(e) {
+        if(!args) args=[];
+        if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
+            callback.apply(this, args);
+            return false;
+        }
+    });
+};
+$.ctrl('S', function() {
+  $('.course').click();
+});
+
+//Other keyboardfunctions
+$(document.documentElement).keyup(function(e) {
+  if (e.keyCode == 27) {
+    $('#closelogin').click();
+  }
+  if (e.keyCode == 76) {
+    $('#loginhome').click();
+  }
+  if (e.keyCode == 145) {
+    $('#loginhome').click();
+  }
 });
 
 document.createElement('header');
 document.createElement('footer');
-

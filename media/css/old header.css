@@ -1,0 +1,189 @@
+header {
+  margin: 0 auto;
+  width: 900px;
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+}
+header:before {
+  -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  top: 0px;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+  height: 62px;
+  -moz-border-radius: 400px / 7px;
+  border-radius: 400px / 7px;
+  content: "";
+  position: absolute;
+  z-index: 0;
+}
+
+#logotext {
+  float: left;
+  font-size: 16px;
+  font-family: Georgia;
+  margin-bottom: -1px;
+}
+#firstletter {
+  font-size: 18px;
+}
+#logo {
+  float: left;
+  margin: 0 12px 0 5px;
+  height: 25px;
+}
+a.header:link, a.header:visited, div.header {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 15px 15px;
+  cursor: pointer;
+  background: #fff;
+}
+
+a.header:active, div.header:active {
+  padding: 16px 15px 14px;
+  cursor: pointer;
+}
+div.header, li.menu {
+  border-top: #008 8px solid;
+}
+div.header:hover, li.menu:hover {
+  border-top: #3355bb 8px solid !important;
+  background: #eee;
+}
+div.header:active, li.menu:active {
+  border-top: #F69C0E 8px solid !important;
+}
+
+ul#menu li {
+  float: left;
+  background: white;
+  position: relative;
+}
+#vakken {
+  float: right !important;
+}
+
+input {
+  border: none;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  padding: 2px 8px 2px 30px;
+}
+
+#loginhome {
+  float: right !important;
+}
+
+#settingicon {
+  float: right !important;
+  height: 55px;
+  position: relative;
+}
+#nopaddingmenu {
+  padding: 0;
+  max-height: 55px;
+}
+#rightdrop {
+  top: 55px;
+  right: 0px;
+}
+
+nav#menunav {
+  width: 900px;
+  background: #fff url(../img/background.png) repeat-x;
+  position: relative;
+  z-index: 1;
+}
+h1 {
+  font-size: 60px;
+  font-family: 'Cabin', sans-serif;
+  font-weight: normal;
+  margin: 40px 0 80px;
+}
+span#first-letter {
+  font-size: 70px;
+}
+
+div#darken {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(1, 1, 1);
+  background: rgba(10, 10, 10, 0.8);
+  position: fixed;
+  z-index: 6;
+}
+div#inlogform {
+  padding: 15px 15px 35px;
+  text-align: center;
+  position: relative;
+  background: #ddd;
+  margin: 100px auto 0;
+  width: 250px;
+  box-shadow: 0 0 100px #000;
+  font-size: 13px;
+  border-radius: 2px;
+  height: 337px;
+}
+#closelogin {
+  height: 24px;
+  width: 24px;
+  background: #000 url(../img/cross.png);
+  border-radius: 15px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #000;
+  cursor: pointer;
+}
+div#inlogform a:link, div#inlogform a:visited {
+  text-decoration: none;
+  color: #006;
+}
+div#inlogform a:hover, div#inlogform a:active {
+  text-decoration: underline;
+}
+form#login {
+  margin: 0 0 20px;
+}
+
+ul#menu, ul.dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.dropdown {
+  position: absolute;
+  width: 200px;
+  background: #eee;
+  box-shadow: 0px 0px 6px #777;
+  z-index: 3;
+  top: 55px;
+}
+a.menu-item:link, a.menu-item:visited {
+  background: #eee;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 15px;
+  width: 170px;
+  cursor: pointer;
+}
+
+a.menu-item:hover {
+  background: #444;
+  color: #eee;
+} 
+
+a.menu-item:active {
+  padding: 16px 15px 14px;
+  cursor: pointer;
+}

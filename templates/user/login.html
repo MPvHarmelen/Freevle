@@ -16,7 +16,6 @@
       <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
       <input type="hidden" name="next" value="{{ request.get_full_path }}">
     </form>
-    <p><a href="">Heb je nog geen account?</a></p>
-    <p><a href="">Ben je je wachtwoord vergeten?</a></p>
+    <p><a href="#">{% blocktrans %}Forgotten your username or password?{% endblocktrans %}</a></p>
   </div>
 {% endblock %}

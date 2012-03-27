@@ -5,10 +5,12 @@
 
     <title>{% trans "Cygnus Template" %}</title>
     <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
-    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/media/css/slimbox2.css" />
 
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/media/js/scripts.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
   </head>
   <body>
@@ -17,94 +19,146 @@
       <div id="darken">
         <div id="inlogform">
           <div id="closelogin"></div>
-          <h2>{% trans "Login" %}</h2>
-          <form method="post" action="/user/login/" id="login">
-            {% csrf_token %}
-            <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
-            <input class="text" type="password" id="id_password" name="password" placeholder="{% trans "Password" %}" /><br>
-            <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
-            <input type="hidden" name="next" value="{{ request.get_full_path }}">
-          </form>
-          <a href="">{% blocktrans %}No account?{% endblocktrans %}</a><br>
-          <a href="">{% blocktrans %}Forgot your password?{% endblocktrans %}</a>
+          
+          <div id="loginandpassword">
+
+            <div id="focuslogin">
+              <h2>{% trans "Login" %}</h2>
+              <form method="post" action="/user/login/" id="login">
+                {% csrf_token %}
+                <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
+                <input class="text" type="password" id="id_password" name="password" placeholder="{% trans "Password" %}" /><br>
+                <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              </form>
+              <a id="focusonpassword" href="#">{% blocktrans %}Forgotten your username or password?{% endblocktrans %}</a>
+            </div>
+
+            <div id="password">
+              <h2>{% trans "Lost & found" %}</h2>
+              <form method="post" action="/user/lostandfound/" id="login">
+                {% csrf_token %}
+                <p>{% blocktrans %}Forgotten your password or username? Enter your email and your username and a new password will be sent to you.{% endblocktrans %}</p>
+                <input class="text" type="email" id="id_email" name="email" placeholder="{% trans "Email" %}" /><br>
+                <input class="button" type="submit" value="{% trans "Send" %}" name="submit" />
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              </form>
+              <a id="focusonlogin" href="#">{% blocktrans %}Just want to login?{% endblocktrans %}</a><br>
+            </div>
+            
+            <div class="clear"></div>
+
+          </div>
+
         </div>
       </div>
     {% endif %}
 
-    <div id="shadow">
-      <header>
-
-        <nav id="menunav">
-          <ul id="menu">
-            <li class="menu">
-              <a class="header" href="/">
-                <img id="logo" src="/media/img/littleswan.png" alt="logo">
-                <span id="logotext"><span id="firstletter">C</span>YGNUS GYMNASIUM</span>
-                <div class="clear"></div>
-              </a>
-            </li>
-            {% for page in pages %}
+        <header>
+          <a href="/">
+            <img src="/media/img/zwaanheader.png" alt="logo" id="logo">
+          </a>
+          <h1 id="cygnus">
+            <a href="/"><span id="firstletter">C</span>ygnus gymnasium</a>
+          </h1>
+          <div class="clear"></div>
+        </header>
+    
+      <nav>
+        <ul id="menu">
+          
+          <li class="navmenu">
+            <a class="imagenav" id="homebtn" href="/"></a>
+          </li>
+          
+          {% for page in pages %}
             {% if not page.parent %} 
-            <li class="menu"><a class="header" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+            <li class="navmenu"><a class="menuitem" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
               {% if page.page_set.all %}
                 <ul class="dropdown">
                 {% for child in page.page_set.all %}
-                    <li><a class="menu-item" href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
+                    <li><a class="submenu-item" href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
                 {% endfor %}
                 </ul>
               {% endif %}
             </li>
             {% endif %}
             {% endfor %}
-            <li class="menu"><a class="header" href="/news">News</a></li>
-            <li class="menu"><a class="header" href="">Contact</a></li>
+            <li class="navmenu"><a class="menuitem" href="/news">News</a></li>
+            <li class="navmenu"><a class="menuitem" href="/contact">Contact</a></li>
+          
+            <li class="navmenu liright" id="searchcont">
+              <form id="search" method="post" action="">
+                <input id="search-box" type="text" placeholder="Zoeken...">
+              </form>​
+            </li>
 
-            {% if user.is_authenticated %}
-              <li id="settingicon" class="menu">
-                <a class="header" href="/">{{ user.first_name}} {{ user.last_name}}</a>
+          {% if user.is_authenticated %}
+              <li class="navmenu liright">
+                <a class="menuitem" href="/">{{ user.first_name}} {{ user.last_name}}</a>
                 <ul class="dropdown" id="rightdrop">
-                  <li><a class="menu-item" href="/letters/">{% trans "Letters" %}</a></li>
-                  <li><a class="menu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
-                  <li><a class="menu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
+                  <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>
+                  <li><a class="submenu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
+                  {% if user.is_staff %}
+                  <li><a class="submenu-item" href="/admin/">{% trans "Admin" %}</a></li>
+                  {% endif %}
+                  <li><a class="submenu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
                 </ul>
               </li>
-              <li id="vakken" class="menu"><a class="header" href="/courses">{% trans "Courses" %}</a>
+              
+              <li class="navmenu liright"><a class="menuitem" href="">{% trans "Courses" %}</a>
                 <ul class="dropdown" id="rightdrop">
-                  <li><a class="menu-item" href="/">Grieks</a></li>
-                  <li><a class="menu-item" href="/">Geschiedenis</a></li>
-                  <li><a class="menu-item" href="/">Frans</a></li>
-                  <li><a class="menu-item" href="/">Wiskunde</a></li>
-                  <li><a class="menu-item" href="/">Meer...</a></li>
+                  <li><a class="submenu-item" href="/">Grieks</a></li>
+                  <li><a class="submenu-item" href="/">Geschiedenis</a></li>
+                  <li><a class="submenu-item" href="/">Frans</a></li>
+                  <li><a class="submenu-item" href="/">Wiskunde</a></li>
+                  <li><a class="submenu-item" href="/courses">More...</a></li>
                 </ul>
               </li>
             {% else %}
-              <li id="loginhome" class="menu"><a href="#" class="header">{% trans "Login" %}</a></li>
+              <li id="loginhome" class="navmenu"><a class="menuitem" href="#" class="header">{% trans "Login" %}</a></li>
             {% endif %}
-          </ul>
+            
           <div class="clear"></div>
-        </nav>
+        
+        </ul>
+      </nav>
+       
       </header>
 
-      <div id="wrapper">
+      <div class="wrapper">
         
-       <div class="breadcrumbs">
-        <span class="home"><a href="#">Home</a></span>
-        <span class="divider">&rsaquo;</span>
-        <span class="second"><a href="#">Second level</a></span>
-        <span class="divider">&rsaquo;</span>
-        <span class="third"><a href="#">Third level</a></span>
-        <span class="divider">&rsaquo;</span>
-        <span class="current">Current page</span>
-      </div>
-
         {% block content %}
         {% endblock content %}
 
       </div>
 
       <footer>
-        <div id="center">
         
+        <ul id="breadcrumbs">
+          <li class="home">  
+            <a class="home" href="#">Home</a>
+            <span class="divider"></span>
+          </li>  
+          <li class="second">  
+            <a class="second" href="#">Second level</a>
+            <span class="divider"></span>
+          </li>  
+          <li class="thrid">  
+            <a class="third" href="#">Third level</a>
+            <span class="divider"></span>
+          </li>  
+          <li class="fourth">
+            <a class="fourth" href="#">Fourth level</a>
+            <span class="divider"></span>
+          </li>  
+          <li class="current">  
+            <span class="current">Current page</span>
+          </li>
+        </ul>
+          
+        <div id="center">
+          
           <div class="footercolumn" id="leftcolumn">
 
             <img id="swan" src="/media/img/zwaan.png" alt="logo">
@@ -150,8 +204,6 @@
 
         </div>
       </footer>
-
-    </div>
-
+  
   </body>
 </html>
