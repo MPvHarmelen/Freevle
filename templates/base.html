@@ -41,7 +41,6 @@
                 <p>{% blocktrans %}Forgotten your password or username? Enter your email and your username and a new password will be sent to you.{% endblocktrans %}</p>
                 <input class="text" type="email" id="id_email" name="email" placeholder="{% trans "Email" %}" /><br>
                 <input class="button" type="submit" value="{% trans "Send" %}" name="submit" />
-                <input type="hidden" name="next" value="{{ request.get_full_path }}">
               </form>
               <a id="focusonlogin" href="#">{% blocktrans %}Just want to login?{% endblocktrans %}</a><br>
             </div>

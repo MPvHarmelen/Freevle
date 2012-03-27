@@ -14,7 +14,7 @@
       <input class="text" id="focus" type="text" name="username" placeholder="{% trans "Username" %}" /><br>
       <input class="text" type="password" name="password" placeholder="{% trans "Password" %}" /><br>
       <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
-      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <input type="hidden" name="next" value="{{ request.POST.next }}">
     </form>
     <p><a href="#">{% blocktrans %}Forgotten your username or password?{% endblocktrans %}</a></p>
   </div>
