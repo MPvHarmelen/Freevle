@@ -17,16 +17,16 @@
   <form id="settings-persona">
       <ul class="persona">
         <li>
-          <label for="name" class="name">Name</label>
-          <input id="name" name="name" type="text" disabled="disabled" placeholder="John Doe">
+          <label for="name" class="settings">Name</label>
+          <input id="name" name="name" class="text wider" type="text" disabled="disabled" placeholder="John Doe">
         </li>
         <li>
-          <label for="class" class="class">Class</label>
-          <input id="class" name="class" type="text" disabled="disabled" placeholder="G4X"></textarea>
+          <label for="class" class="settings">Class</label>
+          <input id="class" name="class" class="text wider" type="text" disabled="disabled" placeholder="G4X"></textarea>
         </li>
         <li>
-          <label for="email1" class="email1">School mailadress</label>
-          <input id="email1" name="email" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
+          <label for="email1" class="settings">School mailadress</label>
+          <input id="email1" name="email" class="text wider" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
         </li>
       </ul> 
       
@@ -36,7 +36,80 @@
       
      <div class="clear"></div>     
   </form> 
-
+  
+  <form id="settings-contact">  
+    <ul class="contactinfo">  
+      <li>
+        <label for="email2" class="settings">Secondary mailadress</label>
+        <input id="email2" name="email" type="email" class="text" placeholder="myextramail@domain.com">
+      </li>
+      <li>
+        <label for="phone" class="settings">Phonenumber</label>
+        <input id="phone" name="phone" type="tel" class="text wider" placeholder="+3165432123">
+        <input id="visibility" name="phone" type="checkbox"> 
+      </li>
+      <li>
+        <label for="twitter" class="settings">Twittername</label>
+        <input id="twitter" name="twitter" type="text" class="text wider" placeholder="@cygy">
+        <input id="visibility" name="twitter" type="checkbox"> 
+      </li>
+      <li>
+        <label for="facebook" class="settings">Facebook</label>
+        <input id="facebook" name="facebook" type="url" class="text wider" placeholder="<facebookurl>">
+        <input id="visibility" name="facebook" type="checkbox"> 
+      </li>
+    </ul>
+      
+  <div class="submit"> 
+    <input type="submit" name="Submit" class="settings-contact" value="Update my contactinfo!" />
+  </div>
+  
+  <div class="clear"></div>
+  
+  </form>
+  
+  <form id="settings-password">
+    <ul class="password">  
+      <li>
+        <label for="old-password" class="settings">Old password</label>
+        <input id="old-password" name="old-password" type="password" class="text wider" requird>
+      </li>
+      <li>
+        <label for="new-password" class="settings">New password</label>
+        <input id="old-password" name="new-password" type="password" class="text wider" requird>
+      </li>
+      <li>
+        <label for="confirm-password" class="settings">Confirm password</label>
+        <input id="confirm-password" name="confirm-password" type="password" class="text wider" requird>
+      </li>
+    </ul>
+        
+  <div class="submit"> 
+    <input type="submit" name="Submit" class="settings-password" value="Update my password!" />
+  </div>
+  
+  <div class="clear"></div>
+  
+  <form id="settings-notifications">
+      <p>Manage your notifications by checking the checkboxes of the events you want to be notifed of with an email.</p>
+        <ul class="notifications">  
+          <li class="evennotification">
+            <label for="new-letter" class="new-letter">When a new letter is published</label>
+            <input id="new-letter" name="new-letter" type="checkbox">
+          </li>
+          <li class="oddnotification">
+            <label for="new-course" class="new-course">When you're added to a course</label>
+            <input id="new-course" name="new-course" type="checkbox">
+          </li>
+        </ul>
+          
+        <div class="submit"> 
+          <input type="submit" name="Submit" class="settings-notifications" value="Update my notifications!" />
+        </div>
+  
+  <div class="clear"></div> 
+  
+  </form>
 </div>
 
 

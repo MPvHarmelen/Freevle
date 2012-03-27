@@ -1111,16 +1111,7 @@ ul.contactinfo, ul.password {
   width: 140px;
 }
 
-label.name, 
-label.class, 
-label.email1, 
-label.email2, 
-label.phone, 
-label.twitter, 
-label.facebook, 
-label.old-password, 
-label.new-password, 
-label.confirm-password {
+label.settings {
   float: left; 
   clear: left; 
   margin: 4px 20px 0 0; 
@@ -1129,24 +1120,9 @@ label.confirm-password {
   font-size: 16px; 
 }
 
-input#name, 
-input#class, 
-input#email1,
-input#email2,
-input#phone,
-input#twitter,
-input#facebook,
-input#old-password,
-input#new-password,
-input#confirm-password {
+input.wider {
   width: 200px; 
   height: 20px; 
-  padding: 5px 10px 3px 10px; 
-  margin: 0 0 20px 0;
-  color: #000;
-  background: #EEE;
-  -moz-box-shadow: 0px 1px 0px #fcfcfc;
-  -webkit-box-shadow: 0px 1px 0px #fcfcfc;
 }
 
 input#visibility {
