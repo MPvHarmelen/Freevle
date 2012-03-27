@@ -23,7 +23,7 @@ class UserProfile(models.Model):
         Returns the (sort of) longest possible name smaller than max_length
         '''
         full_name = self.user.get_full_name()
-        if  full_name not > max_length:
+        if not full_name > max_length:
             display_name = full_name
         else:
             diff = len(full_name) - max_length
