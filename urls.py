@@ -27,7 +27,10 @@ urlpatterns += patterns('',
     # TEMP for Floris' work.
     url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
     url(r'^contact/', TemplateView.as_view(template_name='contact/index.html')),
-    url(r'^settings/', TemplateView.as_view(template_name='settings/index.html')),
+    url(r'^settings/$', TemplateView.as_view(template_name='settings/index.html')),
+    url(r'^settings/contact/', TemplateView.as_view(template_name='settings/contact.html')),
+    url(r'^settings/password/', TemplateView.as_view(template_name='settings/password.html')),
+    url(r'^settings/notifications/', TemplateView.as_view(template_name='settings/notifications.html')),
     url(r'^photos/', TemplateView.as_view(template_name='photos/index.html')),
     url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
 

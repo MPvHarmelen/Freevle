@@ -7,8 +7,14 @@
   <h2>Settings</h2>
   <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
 
+  <div class="settingsmenu">
+    <h3 class="menu"><a href="/settings">Persona</a></h3>
+    <h3 class="menu"><a href="/settings/contact">Contactinfo</a></h3>
+    <h3 class="menu"><a href="/settings/password">Change Password</a></h3>
+    <h3 class="menu"><a href="/settings/notifications">Notifications</a></h3>
+  </div>
+
   <form id="settings-persona">
-    <h3 class="bottom-line">Persona</h3>
       <ul class="persona">
         <li>
           <label for="name" class="name">Name</label>
@@ -30,92 +36,7 @@
       
      <div class="clear"></div>     
   </form> 
-   
-  <form id="settings-contact">  
-    <h3 class="bottom-line">Contactinfo</h3>
-      <ul class="contactinfo">  
-        <li>
-          <label for="email2" class="email2">Secondary mailadress</label>
-          <input id="email2" name="email" type="email" placeholder="myextramail@domain.com">
-        </li>
-        <li>
-          <label for="phone" class="phone">Phonenumber</label>
-          <input id="phone" name="phone" type="tel" placeholder="+3165432123">
-          <input id="visibility" name="phone" type="checkbox"> 
-        </li>
-        <li>
-          <label for="twitter" class="twitter">Twittername</label>
-          <input id="twitter" name="twitter" type="text" placeholder="@cygy">
-          <input id="visibility" name="twitter" type="checkbox"> 
-        </li>
-        <li>
-          <label for="facebook" class="facebook">Facebook</label>
-          <input id="facebook" name="facebook" type="url" placeholder="<facebookurl>">
-          <input id="visibility" name="facebook" type="checkbox"> 
-        </li>
-      </ul>
-      
-      <div class="submit"> 
-          <input type="submit" name="Submit" class="settings-contact" value="Update my contactinfo!" />
-      </div>
-      <div class="clear"></div>
-  </form> 
-   
-  <form id="settings-password">
-    <h3 class="bottom-line">Change Password</h3>
-      <ul class="password">  
-        <li>
-          <label for="old-password" class="old-password">Old password</label>
-          <input id="old-password" name="old-password" type="password" requird>
-        </li>
-        <li>
-          <label for="new-password" class="new-password">New password</label>
-          <input id="old-password" name="new-password" type="password" requird>
-        </li>
-        <li>
-          <label for="confirm-password" class="confirm-password">Confirm password</label>
-          <input id="confirm-password" name="confirm-password" type="password" requird>
-        </li>
-      </ul>
-          
-      <div class="submit"> 
-          <input type="submit" name="Submit" class="settings-password" value="Get me my new password!" />
-      </div>
-    <div class="clear"></div> 
-  </form>
-  
-  <form id="settings-notifications">
-    <h3 class="bottom-line">Notifications</h3>
-    <p>Manage your notifications by checking the checkboxes of the events you want to be notifed of with an email.</p>
-      <ul class="notifications">  
-        <li class="evennotification">
-          <label for="new-letter" class="new-letter">When a new letter is published</label>
-          <input id="new-letter" name="new-letter" type="checkbox">
-        </li>
-        <li class="oddnotification">
-          <label for="new-course" class="new-course">When your added to a course</label>
-          <input id="new-course" name="new-course" type="checkbox">
-        </li>
-      </ul>
-          
-      <div class="submit"> 
-          <input type="submit" name="Submit" class="settings-password" value="Update my notifications!" />
-      </div>
-    <div class="clear"></div> 
-  </form>
-  
-      <ul class="buttons">
-        <li>
-          <span class="button"><a href="#">Courses</a>
-        </li>
-        <li>
-          <span class="button"><a href="#">Change password</a>
-        </li>    
-      </ul>
-      
-      <div class="clear"></div> 
-    
-  </form>  
+
 </div>
 
 
