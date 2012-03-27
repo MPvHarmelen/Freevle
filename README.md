@@ -31,6 +31,8 @@ Installation
 
 * Python 2.7
 * Django 1.3+
+* Requests
+* BeautifulSoup 4
 
 ### Development
 
