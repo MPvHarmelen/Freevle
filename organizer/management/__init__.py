@@ -29,13 +29,15 @@ def debug_data(sender, **kwargs):
     file = open('custom/debug/shakespeare.txt')
     shakespeare = Markov(file)
 
-    #infoweb = raw_input('Enter the webaddress to your infoweb root (like http://example.com/infoweb/): ')
+    #infoweb = raw_input(('Enter the webaddress to your infoweb root '
+    #                     '(like http://example.com/infoweb/):'))
     infoweb = 'http://cygy.nl/ftp_cg/roosters/infoweb/'
     cookies = requests.get(infoweb + 'index.php').cookies
 
     this_week = datetime.datetime.today().isocalendar()[1]
 
-    classes_page = requests.get('{}selectie.inc.php?wat=week&weeknummer={}&type=0'.format(infoweb, this_week), cookies=cookies)
+    url = '{}selectie.inc.php?wat=week&weeknummer={}&type=0'.format(infoweb, this_week)
+    classes_page = requests.get(url, cookies=cookies)
     classes_soup = BeautifulSoup(classes_page.text)
 
     classes_names = []
@@ -45,7 +47,8 @@ def debug_data(sender, **kwargs):
     students_group, created = Group.objects.get_or_create(name='students')
     students = []
     for cls in classes_names:
-        students_page = requests.get('{}selectie.inc.php?wat=groep&weeknummer={}&type=0&groep={}'.format(infoweb, this_week, cls), cookies=cookies)
+        url = '{}selectie.inc.php?wat=groep&weeknummer={}&type=0&groep={}'.format(infoweb, this_week, cls)
+        students_page = requests.get(url, cookies=cookies)
         students_soup = BeautifulSoup(students_page.text)
 
         for option in students_soup('option')[2:]:
@@ -71,7 +74,8 @@ def debug_data(sender, **kwargs):
     timetables = []
     cookies = requests.get(infoweb + 'index.php').cookies
     for student in students:
-        timetable_page = requests.get('{}print.php?week={}&id={}&type=0'.format(infoweb, this_week, student[0]), cookies=cookies)
+        url = '{}print.php?week={}&id={}&type=0'.format(infoweb, this_week, student[0])
+        timetable_page = requests.get(url, cookies=cookies)
         timetable_soup = BeautifulSoup(timetable_page.text)
 
         table = timetable_soup('table')[0]
