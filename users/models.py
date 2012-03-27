@@ -18,6 +18,22 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return '{}: <{}>'.format(self.designation, self.user.username)
 
+    def get_display_name(self, max_length):
+        '''
+        Returns the (sort of) longest possible name smaller than max_length
+        '''
+        full_name = self.user.get_full_name()
+        if  full_name not > max_length:
+            display_name = full_name
+        else:
+            diff = len(full_name) - max_length
+            if len(full_name) > 2:
+                middle_names = full_name.split()[1:-1]
+                #possible_
+            #split_name
+
+        return display_name
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
