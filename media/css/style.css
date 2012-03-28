@@ -113,6 +113,7 @@ ul.dropdown {
   -webkit-box-shadow: 0px 0px 6px #777;
   z-index: 3;
   top: 46px;
+  text-align: left;
 }
 
 li.navmenu {
