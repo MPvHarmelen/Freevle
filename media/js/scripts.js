@@ -142,15 +142,29 @@ $(document).ready(function(){
 //Settings-tabs
   $('#tabs').width($('.tab').length * 850);
   var url = $(location).attr('href');
+  var tabIdUrl = '#tab' + url.split('#')[1];
+  var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
   if (/#/i.test(url)) {
-    var idurl = '#tab' + url.split('#')[1];
-    $('#tabbrowser').height($(idurl).height());
+    $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
+    if($(tabIdUrl).height() > 275) {
+      $('#tabbrowser').height($(tabIdUrl).height());
+    } else {
+      $('#tabbrowser').height(275);
+    }
   } else {
-    $('#tabbrowser').height($('.tab:first').height());
+    $('#tabbrowser').height(275);
   }
   $('a.tabnav').click(function() {
-    var marginMove = '-' + $($(this).attr('href')).parent('.tab').prevAll('.tab').length * 850 + 'px';
-    $('#tabs').animate('margin-left', marginMove);
+    var tabId = '#tab' + $(this).attr('href').split('#')[1];
+    var amountTabs = $(tabId).prevAll('.tab').length
+    var marginMove = '-' + amountTabs * 850 + 'px';
+    if($(tabId).height() > 275) {
+      var changeHeight = $(tabId).height() + 'px';
+    } else {
+      var changeHeight = '275px';
+    }
+    $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
+    $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
   });
 
 });
