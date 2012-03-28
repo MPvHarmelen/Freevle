@@ -8,7 +8,7 @@ class Letter(models.Model):
     def validate_pdf(value):
         extension = value.url.split('.')[-1].lower()
         if extension != 'pdf':
-            raise ValidationError(_('This should be a pdf file'))
+            raise ValidationError(_('This should be a PDF file'))
     
     def _update_filename(self, filename):
         path = 'letters/'
