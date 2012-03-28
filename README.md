@@ -9,7 +9,7 @@ examples of those out there, but CyGy is different. We wanted to integrate
 every aspect of a school into CyGy: the website for non-students, parents or
 teachers; the schedules for teachers, students, classes and classrooms; the
 environment for putting assignments online as well as ways to learn or study on
-the web and some more tools, like a students-only forum and a project
+the web and other tools, like a students-only forum and a project
 management system.
 
 Features
@@ -36,16 +36,14 @@ Installation
 
 To install the CyGy software on a development server you pretty much just have
 to set up Python, Django and edit the `personalsettings.py.ORG` accordingly.
-You'll only have to edit the following options:
+You'll want to copy it and rename the copy to `personalsettings.py`. After that 
+you have to edit the following options:
 
 * `ADMINS`
 * `URL_ROOT`
-* `PATH_ROOT`
+* `ROOT_DIR`
 
-Then copy it and rename the copy to `personalsettings.py`
-
-And there's one last thing you have to do, run the following command in the
-terminal:
+Finally, run the following command in the terminal:
 
     python manage.py syncdb
 
