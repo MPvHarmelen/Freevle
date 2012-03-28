@@ -951,6 +951,11 @@ input.text, #id_username, #id_password {
   border-radius: 2px;
   border: none;
   outline: none;
+  transition: box-shadow 300ms;
+  -o-transition: box-shadow 300ms;
+  -ms-transition: box-shadow 300ms;
+  -moz-transition: box-shadow 300ms;
+  -webkit-transition: box-shadow 300ms;
 }
 
 input.text:focus, #id_username:focus, #id_password:focus {
@@ -961,7 +966,6 @@ input[type=submit] {
   padding: 8px 10px;
   width: 100px;
   cursor: pointer;
-  text-transform: capitalize;
   background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
     background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
@@ -1115,6 +1119,7 @@ h3.menu a {
   margin: 0 7px 0 0;
   text-decoration: none;
   color: #000;
+  font-size: 17px;
 }
 
 h3.menu a:hover {
@@ -1169,17 +1174,17 @@ li.oddnotification {
 }
 
 label.settings {
-  float: left; 
-  clear: left; 
-  margin: 5px 20px 0 0; 
+  float: left;
+  clear: left;
+  margin: 5px 20px 0 0;
   width: 170px;
-  text-align: right; 
-  font-size: 16px; 
+  text-align: right;
+  font-size: 16px;
 }
 
 input.wider {
-  width: 200px; 
-  height: 20px; 
+  width: 200px;
+  height: 20px;
 }
 
 input#visibility {
