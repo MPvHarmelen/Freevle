@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+	<span class="404">
+    <h2>{% blocktrans %}Page not found{% endblocktrans%}</h2>
+      <p>{% blocktrans %}We're terribilly sorry, but the url you're trying to surf to does not exsist.{% endblocktrans %}</p>
+      <p>{% blocktrans %}Try going back to <a href="/">Home</a> or use the search function in the upperright corner to find what you were searching for.{% endblocktrans %}</p>
+  </span>
+</div>
+
+{% endblock %}

@@ -22,7 +22,8 @@ urlpatterns += patterns('',
     url(r'^news/', include('cygy.news.urls')),
     url(r'^letters/', include('cygy.letters.urls')),
     url(r'^galleries/', include('cygy.galleries.urls')),
-    # TEMP for Floris' work.
+    # TEMP for Floris' and Pim's brilliant work.
+    url(r'^404/', TemplateView.as_view(template_name='404.html')),
     url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
     url(r'^contact/', TemplateView.as_view(template_name='contact/index.html')),
     url(r'^settings/$', TemplateView.as_view(template_name='settings/index.html')),

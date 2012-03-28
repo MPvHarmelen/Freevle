@@ -1,12 +1,13 @@
-{% extends "admin/base_site.html" %}
+{% extends 'base.html' %}
 {% load i18n %}
-
-{% block title %}{% trans 'Page not found' %}{% endblock %}
 
 {% block content %}
 
-<h2>{% trans 'Page not found' %}</h2>
+<h2>{% blocktrans %}Page not found{% endblocktrans%}</h2>
 
-<p>{% trans "We're sorry, but the requested page could not be found." %}</p>
+<div class="item">
+	<p>{% blocktrans %}We're terribilly sorry, but the url you're trying to surf to does not exsist.{% endblocktrans %}</p>
+  <p>{% blocktrans %}Try going back to <a href="/">Home</a> or use the search function in the upperright corner to find what you were searching for.{% endblocktrans %}</p>
+</div>
 
 {% endblock %}
