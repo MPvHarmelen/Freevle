@@ -20,6 +20,7 @@ p.clear, div.clear {
   clear: both;
   margin: 0;
 }
+
 a:link, a:visited {
   color: #006;
 }
@@ -30,10 +31,13 @@ header, footer {
 
 span.bold {
   font-weight: bold;
+
 }
+
 span.italic {
   font-style: italic;
 }
+
 #shadow {
   box-shadow: 0 0 7px #777;
   margin: 0 auto;
@@ -45,10 +49,11 @@ p, li {
   word-wrap: break-word;
 }
 
-div.clear {
-  clear: both;
+span.404 {
+  background: url(../img/404.png) no-repeat;
+  width: 800px;
+  height: 250px;
 }
-
 
 /*------------------------------header------------------------------*/    
 header {
