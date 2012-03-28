@@ -364,6 +364,12 @@ a.leesmeer {
   text-decoration: none;
 }
 
+div.pagination {
+  width: 400px;
+  height: 30px;
+  padding: 0 0 0 200px;
+}
+
 a.pagenav {
   display: block;
   float: left;
@@ -380,6 +386,16 @@ a.pagenav:hover {
   color: #FFF;
 }
 
+p.morepages {
+  display: block;
+  float: left;
+  width: 25px;
+  padding: 5px;
+  margin: 10px 7px 10px 0;
+  background: #EEE;
+  text-decoration: none;
+  text-align: center;
+}
 
 /*------------------------------photos------------------------------*/
 div.photos {
