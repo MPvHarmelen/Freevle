@@ -1112,6 +1112,15 @@ span.morecontacts a {
   height: 28px;
   margin: 30px 0 30px 0;
 }
+#tabbrowser {
+  overflow: hidden;
+  width: 800px;
+}
+.tab {
+  float: left;
+  width: 800px;
+  margin-right: 50px;
+}
 
 h3.menu a {
   float: left;
