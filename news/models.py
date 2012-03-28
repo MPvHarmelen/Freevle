@@ -7,7 +7,7 @@ import datetime
 class NewsMessage(models.Model):
     writer = models.ForeignKey(User)
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique_for_date='publish', help_text=_('URL-friendly version of the title, can be left alone most of the time.'))
+    slug = models.SlugField(unique_for_date='publish', help_text=_('URL-friendly version of the title, can be left blank most of the time.'))
     publish = models.DateTimeField(default=datetime.datetime.now())
 
     content = models.TextField(help_text=_('The news message.'))

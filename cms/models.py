@@ -10,7 +10,7 @@ class Page(models.Model):
     slug = models.SlugField(
 #        unique=True,
         help_text=_('URL-friendly version of the title,\
-                    can be left alone most of the time.')
+                    can be ignored most of the time.')
     )
     content = models.TextField(help_text=_('Content of the page.'))
     
