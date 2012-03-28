@@ -124,7 +124,7 @@ $(document).ready(function(){
   }
 
 
-  //Login and password functionality
+//Login and password functionality
   $('#password').hide();
   $('#focusonpassword').click(function() {
     $('#password').fadeIn('fast');
@@ -137,6 +137,20 @@ $(document).ready(function(){
     $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
     $('#focuslogin').fadeIn('fast');
     $('#inlogform').animate({'height': '337px'}, 'fast');
+  });
+
+//Settings-tabs
+  $('#tabs').width($('.tab').length * 850);
+  var url = $(location).attr('href');
+  if (/#/i.test(url)) {
+    var idurl = '#tab' + url.split('#')[1];
+    $('#tabbrowser').height($(idurl).height());
+  } else {
+    $('#tabbrowser').height($('.tab:first').height());
+  }
+  $('a.tabnav').click(function() {
+    var marginMove = '-' + $($(this).attr('href')).parent('.tab').prevAll('.tab').length * 850 + 'px';
+    $('#tabs').animate('margin-left', marginMove);
   });
 
 });
