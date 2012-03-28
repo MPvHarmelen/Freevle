@@ -842,65 +842,6 @@ header#courseheader:after {
   z-index: -1;
 }
 
-li.head {
-  list-style: none;
-  font-weight: bold;
-  width: 340px;
-  height: 30px;
-}
-
-li.head span.year {
-  padding: 0 10px 2px 0;
-  float: right;
-}
-
-ul#courses {
-  width: 340px;
-  margin: 10px 0;
-  padding: 0 240px;
-}
-
-a.course {
-  display: block;
-  width: 280px;
-  text-decoration: none;
-  float: left;
-  padding: 9px 0;
-}
-
-.oddcourse {
-  list-style: none;
-  background: #EEE;
-}
-
-.evencourse {
-  list-style: none;
-  background: #FEFEFE;
-}
-
-span.coursename {
-  float: left;
-  width: 220px;
-}
-
-span.year {
-  float: right;
-}
-
-span.menu {
-  float: right;
-}
-
-input.course[type="submit"] {
-  width: 320px;
-  margin: 14px 240px;
-}
-
-input[type="checkbox"] {
-  float: right;
-  margin: 14px 12px;
-}
-
 img.fileicon {
   height: 18px;
   margin: 2px 2px 0 0;
@@ -1179,10 +1120,6 @@ label.settings {
 input.wider {
   width: 200px;
   height: 20px;
-}
-
-input#visibility {
-  margin: 0 0 0 10px;
 }
 
 input[disabled=disabled] {
