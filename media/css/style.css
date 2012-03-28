@@ -50,7 +50,7 @@ p, li {
 }
 
 div.four-o-four {
-  background: url(../img/404.png) no-repeat;
+  background: url(../img/404-wit.png) no-repeat;
   width: 800px;
   height: 250px;
   margin: 60px 0 20px 0;
@@ -58,13 +58,13 @@ div.four-o-four {
 
 h3.four-o-four {
   margin: 0 0 0 240px;
-  padding: 27px 0 0 0;
+  padding: 30px 0 0 0;
 }
 
 p.four-o-four {
   width: 250px;
   margin: 7px 0 7px 240px;
-  color: #011;
+  color: #444;
 }
 
 /*------------------------------header------------------------------*/    
