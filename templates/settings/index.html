@@ -19,6 +19,10 @@
     <div id="tabs">
 
       <div class="tab" id="tabpersona">
+        <div class="profile">
+          <img class="profile" src="/media/img/johndoe.png">
+        </div>
+        
         <ul class="persona">
           <li>
             <label for="name" class="settings">Name</label>
@@ -33,9 +37,9 @@
             <input id="email1" name="email" class="text wider" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
           </li>
         </ul> 
-            
-        <div class="profile">
-          <img class="profile" src="/media/img/johndoe.png">
+        
+        <div class="submit"> 
+            <input type="submit" name="Submit" class="settings-submit" value="This isn't true!" />
         </div>
             
         <div class="clear"></div>
@@ -43,6 +47,7 @@
       
       <div class="tab" id="tabcontactinfo">
         <form id="settings-contact">  
+          <p class="settings">This info is visible for everyone with an account. How do you want that others contact you?</p>
           <ul class="contactinfo">  
             <li>
               <label for="email2" class="settings">Secondary mailadress</label>
@@ -63,7 +68,7 @@
           </ul>
             
           <div class="submit"> 
-            <input type="submit" name="Submit" class="settings-contact" value="Update my contactinfo!" />
+            <input type="submit" name="Submit" class="settings-submit" value="Update my contactinfo!" />
           </div>
           
           <div class="clear"></div>
@@ -73,6 +78,7 @@
       
       <div class="tab" id="tabchangepassword">
         <form id="settings-password">
+          <p class="settings">Not happy with your password? No problemo! Change it here.</p>
           <ul class="password">  
             <li>
               <label for="old-password" class="settings">Old password</label>
@@ -89,7 +95,7 @@
           </ul>
               
           <div class="submit"> 
-            <input type="submit" name="Submit" class="settings-password" value="Update my password!" />
+            <input type="submit" name="Submit" class="settings-submit" value="Update my password!" />
           </div>
           
           <div class="clear"></div>
@@ -98,15 +104,15 @@
       
       <div class="tab" id="tabnotifications">
         <form id="settings-notifications">
-          <p>Manage your notifications by checking the checkboxes of the events you want to be notifed of with an email.</p>
+          <p class="settings">Manage your notifications by checking the checkboxes of the events you want to be notifed of with an email.</p>
           <ul class="notifications">  
             <li class="evennotification">
-              <label for="new-letter" class="new-letter">When a new letter is published</label>
-              <input id="new-letter" name="new-letter" type="checkbox">
+              <label for="new-letter" class="notifications">When a new letter is published</label>
+              <input id="new-letter" name="notifications" class="notifications" type="checkbox">
             </li>
             <li class="oddnotification">
-              <label for="new-course" class="new-course">When you're added to a course</label>
-              <input id="new-course" name="new-course" type="checkbox">
+              <label for="new-course" class="notifications">When you're added to a course</label>
+              <input id="new-course" name="new-course" class="notifications" type="checkbox">
             </li>
           </ul>
             
@@ -120,7 +126,7 @@
       
       <div class="tab" id="tabcoursesmenu">
         <form id="settings-courses" action="">
-          <p>In the <span class="bold">Menucolumn</span> you can check the boxes next to the coursenames that should be fast accesible through the courses dropdown menu in the navigationbar.</p>    
+          <p class="settings">In the <span class="bold">Menucolumn</span> you can check the boxes next to the coursenames that should be fast accesible through the courses dropdown menu in the navigationbar.</p>    
           <ul id="courses">
             <li class="head">
               <span class="coursename">Coursename</span>

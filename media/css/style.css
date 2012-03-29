@@ -1105,11 +1105,14 @@ span.morecontacts a {
   border-bottom: 1px solid #EEE;
   height: 28px;
   margin: 30px 0 0;
+  padding: 0 0 0 80px;
 }
+
 #tabbrowser {
   overflow: hidden;
   width: 800px;
 }
+
 .tab {
   float: left;
   width: 800px;
@@ -1133,25 +1136,48 @@ h3.menu a:hover {
 .tab ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 90px;
   float: left;
   margin-top: 15px;
 }
 
+label.settings {
+  float: left;
+  clear: left;
+  margin: 5px 20px 0 0;
+  width: 170px;
+  text-align: right;
+  font-size: 16px;
+}
+
+input.wider {
+  width: 220px;
+  height: 20px;
+}
+
+input[disabled=disabled] {
+  background: #DDDDDD !important;
+  color: #0e0e0e !important;
+}
+
+input.settings-submit {
+  width: 240px;
+  margin: 0 280px; 
+}
+
+p.settings {
+  text-align: center;
+}
+
 .profile {
-  float: right;
+  float: left;
+  margin: 5px 165px 10px 165px;
   height: 160px;
   width: 140px;
 }
 
-ul.contactinfo, ul.password {
-  display: block;
-  width: 100%;
-}
-
 ul.notifications {
-  display: block;
-  padding: 0 0 20px 240px;
+  margin: 0 240px;
 }
 
 li.evennotification {
@@ -1168,41 +1194,7 @@ li.oddnotification {
   height: 41px;
 }
 
-label.settings {
-  float: left;
-  clear: left;
-  margin: 5px 20px 0 0;
-  width: 170px;
-  text-align: right;
-  font-size: 16px;
-}
-
-input.wider {
-  width: 200px;
-  height: 20px;
-}
-
-input#visibility {
-  margin: 0 0 0 10px;
-}
-
-input[disabled=disabled] {
-  background: #DDDDDD !important;
-  color: #0e0e0e !important;
-}
-
-input.settings-contact, input.settings-password {
-  width: 222px;
-  margin: 0 0 20px 190px; 
-}
-
-input.settings-notifications {
-  width: 320px;
-  margin: 20px 0 20px 240px; 
-}
-
-label.new-letter,
-label.new-course {
+label.notifications {
   display: block;
   width: 240px;
   margin: 8px 12px;
@@ -1210,10 +1202,14 @@ label.new-course {
   float: left;
 }
 
-input#new-letter,
-input#new-course {
+input.notifications {
   float: right;
   margin: 15px 12px 0 12px;
+}
+
+input.settings-notifications {
+  width: 320px;
+  margin: 20px 0 20px 240px; 
 }
 
 
