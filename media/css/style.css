@@ -935,8 +935,12 @@ input.course {
   margin: 6px 10px 0;
 }
 
-img#question {
+a#question {
   float: right;
+  width: 90px !important;
+  margin: -35px !important;
+  box-shadow: 2px 2px 2px #000 !important;
+  text-decoration: none;
 }
 
 /*------------------------------loginpage------------------------------*/
@@ -988,7 +992,7 @@ input.text:focus, #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
 }
 
-input[type=submit] {
+input[type=submit], a#question {
   padding: 8px 10px;
   width: 100px;
   cursor: pointer;
@@ -1013,7 +1017,7 @@ input[type=submit] {
   border: none;
 }
 
-input.button:hover, input[type=submit]:hover {
+input.button:hover, input[type=submit]:hover, a#question:hover {
   background-image:           linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
     background-image:     -ms-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
@@ -1028,7 +1032,7 @@ input.button:hover, input[type=submit]:hover {
     );
 }
 
-input.button:active, input[type=submit]:active {
+input.button:active, input[type=submit]:active, a#question:active {
   box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
   background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
