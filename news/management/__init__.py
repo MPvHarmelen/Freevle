@@ -23,12 +23,12 @@ def debug_data(sender, **kwargs):
     if not kwargs['interactive']:
         return
     else:
-        cont = raw_input('Do you want to generate 150 random news messages (Y/n): ')
+        cont = raw_input('Do you want to generate 150 random news articles (Y/n): ')
         if not cont.lower() in ('yes', 'y', '',):
             return
 
     # Create 150 news messages
-    print ('Writing 150 brilliant news messages (this may take a while)'
+    print ('Writing 150 amazing articles (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
