@@ -870,7 +870,7 @@ input.course[type="submit"] {
   margin: 14px 240px;
 }
 
-input[type="checkbox"] {
+input.notifications {
   float: right;
   margin: 14px 12px;
 }
@@ -894,6 +894,7 @@ header#courseheader {
   font-weight: normal;
   position: relative;
 }
+
 header#courseheader:after {
   -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
   -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
@@ -912,32 +913,26 @@ header#courseheader:after {
 
 ul#coursemenu {
   display: block;
-  width: 800px;
-  height: 46px;
-  margin: 0 0 0 -50px;
-  padding: 0 50px;
-  background: #f5f5f5;
+  width: 505px;
+  height: 30px;
+  margin: 0 auto;
+  padding: 0;
   font-size: 14px;
-  z-index: -1;
 }
 
 li.coursemenu-item {
   list-style: none;
   float: left;
-  padding: 10px 15px 11px;
+  padding: 5px 10px 0 0;
 }
 
-.coursemenu-item a {
-  text-decoration: none;
-  color: #333;
-  padding: 10px 15px 11px;
+label.course {
+  float: left;
 }
 
-.coursemenu-item a:hover {
-  text-decoration: none;
-  background: #008;
-  color: #fff;
-  padding: 10px 15px 11px;
+input.course {
+  float: right;
+  margin: 6px 10px 0;
 }
 
 img#question {
