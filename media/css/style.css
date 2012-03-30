@@ -935,9 +935,8 @@ input.course {
 }
 
 a#question {
-  float: right;
   width: 90px !important;
-  margin: -35px !important;
+  margin: 20px 0 5px 300px !important;
   box-shadow: 2px 2px 2px #000 !important;
   text-decoration: none;
 }
