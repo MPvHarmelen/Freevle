@@ -173,6 +173,12 @@ $(document).ready(function(){
     $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
   });
 
+  var focussatus = false;
+  $('input, textarea').focus(function() {
+    focussatus = true;
+  }, function() {
+    focussatus = false;
+  });
 });
 
 //Ctrl+
@@ -191,14 +197,12 @@ $.ctrl('S', function() {
 
 //Other keyboardfunctions
 $(document.documentElement).keyup(function(e) {
-  if (e.keyCode == 27) {
+  if (e.keyCode == 27) {//Esc
     $('#closelogin').click();
   }
-  if (e.keyCode == 76) {
+  if (e.keyCode == 76 && focusstatus) {//L
     $('#loginhome').click();
-  }
-  if (e.keyCode == 145) {
-    $('#loginhome').click();
+    alert(focussatus);
   }
 });
 
