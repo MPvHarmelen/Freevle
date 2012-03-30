@@ -5,7 +5,7 @@
 
 <div class="item">
   <h2>{% trans "Settings" %}</h2>
-  <p>{% blocktrans %}Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.{% endblocktrans %}</p>
+  <p>{% blocktrans %}Change your settings: ways others can contact you, which info about you is visible etc. etc.{% endblocktrans %}</p>
 
   <div class="settingsmenu">
     <h3 class="menu"><a class="tabnav" href="#persona">{% trans "Persona" %}</a></h3>
@@ -19,30 +19,30 @@
     <div id="tabs">
 
       <div class="tab" id="tabpersona">
-        <div class="profile">
-          <img class="profile" src="/media/img/johndoe.png">
+        <div id="profile">
+          <img id="profilepic" src="/media/img/johndoe.png">
         </div>
         
         <ul class="persona">
           <li>
-            <label for="name" class="settings">{% trans "Name" %}</label>
-            <input id="name" name="name" class="text wider" type="text" disabled="disabled" value="John Doe">
+            <span class="personalabel">{% trans "Name" %}:</span>
+            <span class="personainfo">John Doe</span>
+            <div class="clear"></div>
           </li>
           <li>
-            <label for="class" class="settings">{% trans "Class" %}</label>
-            <input id="class" name="class" class="text wider" type="text" disabled="disabled" placeholder="G4X"></textarea>
+            <span class="personalabel">{% trans "Class" %}:</span>
+            <span class="personainfo">G4X</span>
+            <div class="clear"></div>
           </li>
           <li>
-            <label for="email1" class="settings">{% trans "School mailadress" %}</label>
-            <input id="email1" name="email" class="text wider" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
+            <span class="personalabel">{% trans "School mailadress" %}:</span>
+            <span class="personainfo">Jdoe@cygnusgymnasium.eu</span>
+            <div class="clear"></div>
           </li>
         </ul> 
         
-        <div class="submit"> 
-            <input type="submit" name="Submit" class="settings-submit" value="{% trans "This isn't true!" %}" />
-        </div>
+        <input type="submit" name="Submit" class="settings-submit" value="{% trans "This isn't true!" %}" />
             
-        <div class="clear"></div>
       </div>
       
       <div class="tab" id="tabcontactinfo">

@@ -854,6 +854,7 @@ a.course {
 span.coursename {
   float: left;
   width: 220px;
+  padding-left: 12px;
 }
 
 span.year {
@@ -1155,31 +1156,40 @@ span.morecontacts a {
   margin: 10px 50px 0 0;
 }
 
-h3.menu a {
+.tabnav {
   float: left;
-  padding: 0 5px 3px 5px;
-  margin: 0 7px 0 0;
+  padding: 0 8px 3px 8px;
   text-decoration: none;
   color: #000;
   font-size: 17px;
 }
 
-h3.menu a:hover {
+.tabnav:hover {
   border-bottom: 3px solid #008;
-  padding: 0 5px 1px 5px;
+  padding: 0 8px 1px 8px;
 }
 
 .tab ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 0 90px;
+  margin: 15px 0 20px 90px;
+}
+
+span.personalabel {
+  margin: 0 20px 0 0;
+  min-width: 170px;
+  text-align: right;
+  display: block;
   float: left;
-  margin-top: 15px;
+}
+span.personainfo {
+  display: block;
+  float: left;
+  min-width: 80px;
 }
 
 label.settings {
   float: left;
-  clear: left;
   margin: 5px 20px 0 0;
   width: 170px;
   text-align: right;
@@ -1205,11 +1215,13 @@ p.settings {
   text-align: center;
 }
 
-.profile {
-  float: left;
-  margin: 5px 165px 10px 165px;
-  height: 160px;
-  width: 140px;
+div#profile {
+  margin: 5px auto 10px;
+  height: 140px;
+  width: 123px;
+}
+img#profilepic {
+  height: 140px;
 }
 
 ul.notifications {
