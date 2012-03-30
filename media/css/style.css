@@ -7,7 +7,7 @@ body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: #f0f0f0 url(../img/backgroundlarge2.png) no-repeat fixed center;
+  background: #f0f0f0 url(../img/backgroundlarge4.png) no-repeat fixed center;
   overflow-y: scroll;
 }
 
@@ -940,9 +940,8 @@ input.course[type="checkbox"] {
 }
 
 a#question {
-  float: right;
   width: 90px !important;
-  margin: -35px !important;
+  margin: 20px 0 5px 300px !important;
   box-shadow: 2px 2px 2px #000 !important;
   text-decoration: none;
 }
