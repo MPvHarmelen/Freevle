@@ -145,6 +145,7 @@ $(document).ready(function(){
   var tabIdUrl = '#tab' + url.split('#')[1];
   var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
   if (/#/i.test(url)) {
+    $(tabIdUrl).css('border-color', '#007');
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
     if($(tabIdUrl).height() > 365) {
       $('#tabbrowser').height($(tabIdUrl).height());
@@ -154,7 +155,10 @@ $(document).ready(function(){
   } else {
     $('#tabbrowser').height(365);
   }
+  $(this).css('border-color', '#007');
   $('a.tabnav').click(function() {
+    $('a.tabnav').css('border-color', '#fff');
+    $(this).css('border-color', '#007');
     var tabId = '#tab' + $(this).attr('href').split('#')[1];
     var amountTabs = $(tabId).prevAll('.tab').length
     var marginMove = '-' + amountTabs * 850 + 'px';

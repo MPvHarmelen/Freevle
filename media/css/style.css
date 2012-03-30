@@ -829,7 +829,7 @@ li.head span.year {
 ul#courses {
   width: 340px;
   margin: 10px 0;
-  padding: 0 240px;
+  padding: 0 230px;
 }
 
 a.course {
@@ -853,7 +853,7 @@ a.course {
 
 span.coursename {
   float: left;
-  width: 220px;
+  width: 208px;
   padding-left: 12px;
 }
 
@@ -866,8 +866,12 @@ span.menu {
 }
 
 input.course[type="submit"] {
-  width: 320px;
-  margin: 14px 240px;
+  width: 340px;
+  margin: 14px 230px;
+}
+input.courses[type="checkbox"] {
+  margin: 14px 14px 0;
+  float: right;
 }
 
 input.notifications {
@@ -930,7 +934,7 @@ label.course {
   float: left;
 }
 
-input.course {
+input.course[type="checkbox"] {
   float: right;
   margin: 6px 10px 0;
 }
@@ -1157,15 +1161,15 @@ span.morecontacts a {
 
 .tabnav {
   float: left;
-  padding: 0 8px 3px 8px;
+  border-bottom: 3px solid #fff;
+  padding: 0 8px;
   text-decoration: none;
-  color: #000;
+  color: #111;
   font-size: 17px;
 }
 
 .tabnav:hover {
-  border-bottom: 3px solid #008;
-  padding: 0 8px 1px 8px;
+  border-color: #00a !important;
 }
 
 .tab ul {
