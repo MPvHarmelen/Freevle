@@ -8,7 +8,11 @@ body {
     font-size: 12px;
     font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
     color: #333;
-    background: blue;
+<<<<<<< HEAD
+    background: #f0f0f0;
+=======
+    background: #eee;
+>>>>>>> 9d39dffa3dd0c6aa8d63f4a8444eda1c321e9189
 }
 
 /* LINKS */
