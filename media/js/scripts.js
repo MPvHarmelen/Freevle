@@ -1,3 +1,4 @@
+var focusstatus = false;
 $(document).ready(function(){
 
 //Slider
@@ -124,7 +125,7 @@ $(document).ready(function(){
   }
 
 
-  //Login and password functionality
+//Login and password functionality
   $('#password').hide();
   $('#focusonpassword').click(function() {
     $('#password').fadeIn('fast');
@@ -139,6 +140,48 @@ $(document).ready(function(){
     $('#inlogform').animate({'height': '337px'}, 'fast');
   });
 
+//Settings-tabs
+  $('#tabs').width($('.tab').length * 850);
+  var url = $(location).attr('href');
+  var aLink = 'a.tabnav[href="#' + url.split('#')[1] + '"]';
+  var tabIdUrl = '#tab' + url.split('#')[1];
+  var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
+  if (/#/i.test(url)) {
+    $(aLink).css('border-color', '#007');
+    $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
+    if($(tabIdUrl).height() > 365) {
+      $('#tabbrowser').height($(tabIdUrl).height());
+    } else {
+      $('#tabbrowser').height(365);
+    }
+  } else {
+    $('#tabbrowser').height(365);
+    $('a.tabnav:first').css('border-color', '#007');
+  }
+  $(this).css('border-color', '#007');
+  $('a.tabnav').click(function() {
+    $('a.tabnav').css('border-color', '#fff');
+    $(this).css('border-color', '#007');
+    var tabId = '#tab' + $(this).attr('href').split('#')[1];
+    var amountTabs = $(tabId).prevAll('.tab').length
+    var marginMove = '-' + amountTabs * 850 + 'px';
+    if($(tabId).height() > 365) {
+      var changeHeight = $(tabId).height() + 'px';
+    } else {
+      var changeHeight = '365px';
+    }
+    $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
+    $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
+  });
+
+  $('input, textarea').focus(function() {
+    focusstatus = true;
+    console.log(focusstatus);
+  });
+  $('input, textarea').focusout(function() {
+    focusstatus = false;
+    console.log(focusstatus);
+  });
 });
 
 //Ctrl+
@@ -157,14 +200,12 @@ $.ctrl('S', function() {
 
 //Other keyboardfunctions
 $(document.documentElement).keyup(function(e) {
-  if (e.keyCode == 27) {
+  if (e.keyCode == 27) {//Esc
     $('#closelogin').click();
   }
-  if (e.keyCode == 76) {
+  if (e.keyCode == 76 && focusstatus) {//L
     $('#loginhome').click();
-  }
-  if (e.keyCode == 145) {
-    $('#loginhome').click();
+    alert(focusstatus);
   }
 });
 

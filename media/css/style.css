@@ -7,7 +7,7 @@ body {
   color: #111;
   line-height: 160%;
   text-align: justify;
-  background: #f0f0f0 url(../img/backgroundlarge.png) no-repeat fixed center;
+  background: #f0f0f0 url(../img/backgroundlarge4.png) no-repeat fixed center;
   overflow-y: scroll;
   background-attachment: fixed;
   background-size: 100% 800px;
@@ -23,6 +23,7 @@ p.clear, div.clear {
   clear: both;
   margin: 0;
 }
+
 a:link, a:visited {
   color: #006;
 }
@@ -33,10 +34,13 @@ header, footer {
 
 span.bold {
   font-weight: bold;
+
 }
+
 span.italic {
   font-style: italic;
 }
+
 #shadow {
   box-shadow: 0 0 7px #777;
   margin: 0 auto;
@@ -48,10 +52,23 @@ p, li {
   word-wrap: break-word;
 }
 
-div.clear {
-  clear: both;
+div.four-o-four {
+  background: url(../img/404.png) no-repeat;
+  width: 800px;
+  height: 250px;
+  margin: 60px 0 20px 0;
 }
 
+h3.four-o-four {
+  margin: 10px 0 0 40px;
+  padding: 40px 0 0 0;
+}
+
+p.four-o-four {
+  width: 360px;
+  margin: 7px 0 7px 40px;
+  color: #444;
+}
 
 /*------------------------------header------------------------------*/    
 header {
@@ -116,6 +133,7 @@ ul.dropdown {
   -webkit-box-shadow: 0px 0px 6px #777;
   z-index: 3;
   top: 46px;
+  text-align: left;
 }
 
 li.navmenu {
@@ -367,6 +385,12 @@ a.leesmeer {
   text-decoration: none;
 }
 
+div.pagination {
+  width: 400px;
+  height: 30px;
+  padding: 0 0 0 200px;
+}
+
 a.pagenav {
   display: block;
   float: left;
@@ -383,6 +407,16 @@ a.pagenav:hover {
   color: #FFF;
 }
 
+p.morepages {
+  display: block;
+  float: left;
+  width: 25px;
+  padding: 5px;
+  margin: 10px 7px 10px 0;
+  background: #EEE;
+  text-decoration: none;
+  text-align: center;
+}
 
 /*------------------------------photos------------------------------*/
 div.photos {
@@ -781,11 +815,83 @@ li.odd a, li.even a {
   text-decoration: none;
 }
 
-/*------------------------------courses------------------------------*/
+/*------------------------------courses overview------------------------------*/
+
+li.head {
+  list-style: none;
+  font-weight: bold;
+  width: 340px;
+  height: 30px;
+}
+
+li.head span.year {
+  padding: 0 10px 2px 0;
+  float: right;
+}
+
+ul#courses {
+  width: 340px;
+  margin: 10px 0;
+  padding: 0 230px;
+}
+
+a.course {
+  display: block;
+  width: 280px;
+  text-decoration: none;
+  float: left;
+  padding: 9px 0;
+}
+
+.oddcourse {
+  list-style: none;
+  background: #EEE;
+  
+}
+
+.evencourse {
+  list-style: none;
+  background: #FEFEFE;
+}
+
+span.coursename {
+  float: left;
+  width: 208px;
+  padding-left: 12px;
+}
+
+span.year {
+  float: right;
+}
+
+span.menu {
+  float: right;
+}
+
+input.course[type="submit"] {
+  width: 340px;
+  margin: 14px 230px;
+}
+input.courses[type="checkbox"] {
+  margin: 14px 14px 0;
+  float: right;
+}
+
+input.notifications {
+  float: right;
+  margin: 14px 12px;
+}
+
+img.fileicon {
+  height: 18px;
+  margin: 2px 2px 0 0;
+}
+
+/*------------------------------course------------------------------*/
 
 header#courseheader {
   width: 800px;
-  margin: -21px -50px 30px;
+  margin: -21px -50px 3px;
   text-align: left;
   padding: 34px 50px 20px;
   background: #444;
@@ -795,6 +901,7 @@ header#courseheader {
   font-weight: normal;
   position: relative;
 }
+
 header#courseheader:after {
   -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
   -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
@@ -811,71 +918,35 @@ header#courseheader:after {
   z-index: -1;
 }
 
-ul#courses {
-  width: 320px;
-  margin: 30px 0;
-  padding: 0 240px;
-}
-
-li.evencourse {
-  list-style: none;
-  background: #FEFEFE;
-}
-
-a.course {
+ul#coursemenu {
   display: block;
-  padding: 8px 12px;
-  width: 250px;
-  text-decoration: none;
-  float: left;
-}
-
-li.oddcourse {
+  width: 505px;
+  height: 30px;
+  margin: 0 auto;
   padding: 0;
+  font-size: 14px;
+}
+
+li.coursemenu-item {
   list-style: none;
-  background: #EEE;
-}
-
-li.head {
-  list-style: none;
-  font-weight: bold;
-}
-
-li.head span.coursename {
-  padding: 0 0 2px 10px;
-  width: 200px;
-}
-
-li.head span.year {
-  padding: 0 10px 2px 0;
-}
-
-span.coursename {
   float: left;
-  width: 220px;
+  padding: 5px 10px 0 0;
 }
 
-span.year {
+label.course {
+  float: left;
+}
+
+input.course[type="checkbox"] {
   float: right;
+  margin: 6px 10px 0;
 }
 
-span.menu {
-  float: right;
-}
-
-input.course[type="submit"] {
-  width: 320px;
-  margin: 0 240px;
-}
-
-label.checkbox {
-  float: right;
-  padding: 8px 12px;
-}
-
-img.fileicon {
-  height: 18px;
-  margin: 2px 2px 0 0;
+a#question {
+  width: 90px !important;
+  margin: 20px 0 5px 300px !important;
+  box-shadow: 2px 2px 2px #000 !important;
+  text-decoration: none;
 }
 
 /*------------------------------loginpage------------------------------*/
@@ -916,17 +987,21 @@ input.text, #id_username, #id_password {
   border-radius: 2px;
   border: none;
   outline: none;
+  transition: box-shadow 120ms;
+  -o-transition: box-shadow 120ms;
+  -ms-transition: box-shadow 120ms;
+  -moz-transition: box-shadow 120ms;
+  -webkit-transition: box-shadow 120ms;
 }
 
 input.text:focus, #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
 }
 
-input[type=submit] {
+input[type=submit], a#question {
   padding: 8px 10px;
   width: 100px;
   cursor: pointer;
-  text-transform: capitalize;
   background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
     background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
@@ -948,7 +1023,7 @@ input[type=submit] {
   border: none;
 }
 
-input.button:hover, input[type=submit]:hover {
+input.button:hover, input[type=submit]:hover, a#question:hover {
   background-image:           linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
     background-image:     -ms-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
@@ -963,7 +1038,7 @@ input.button:hover, input[type=submit]:hover {
     );
 }
 
-input.button:active, input[type=submit]:active {
+input.button:active, input[type=submit]:active, a#question:active {
   box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
   background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
     background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
@@ -1067,126 +1142,112 @@ span.morecontacts a {
 }
 
 /*------------------------------settings------------------------------*/
-form ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  float: left;
-}
-
 .settingsmenu {
   display: block;
   border-bottom: 1px solid #EEE;
   height: 28px;
-  margin: 30px 0 30px 0;
+  margin: 30px 0 0;
+  padding: 0 0 0 80px;
 }
 
-h3.menu a {
+#tabbrowser {
+  overflow: hidden;
+  width: 800px;
+}
+
+.tab {
   float: left;
-  padding: 0 5px 3px 5px;
-  margin: 0 7px 0 0;
+  width: 800px;
+  margin: 10px 50px 0 0;
+}
+
+.tabnav {
+  float: left;
+  border-bottom: 3px solid #fff;
+  padding: 0 8px;
   text-decoration: none;
-  color: #000;
+  color: #111;
+  font-size: 17px;
 }
 
-h3.menu a:hover {
-  border-bottom: 3px solid #008;
-  padding: 0 5px 1px 5px;
+.tabnav:hover {
+  border-color: #00a !important;
 }
 
-form#settings-persona {
-  margin: -10px 0 0 0;
+.tab ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 20px 90px;
 }
 
-ul.persona {
+span.personalabel {
+  margin: 0 20px 0 0;
+  min-width: 170px;
+  text-align: right;
   display: block;
-  margin: 15px 0 0 0 !important;
+  float: left;
 }
-
-ul.contactinfo, ul.password {
+span.personainfo {
   display: block;
-  width: 100%;
+  float: left;
+  min-width: 80px;
 }
 
-.profile {
-  float: right;
-  height: 160px;
-  width: 140px;
-}
-
-label.name, 
-label.class, 
-label.email1, 
-label.email2, 
-label.phone, 
-label.twitter, 
-label.facebook, 
-label.old-password, 
-label.new-password, 
-label.confirm-password {
-  float: left; 
-  clear: left; 
-  margin: 4px 20px 0 0; 
+label.settings {
+  float: left;
+  margin: 5px 20px 0 0;
   width: 170px;
-  text-align: right; 
-  font-size: 16px; 
+  text-align: right;
+  font-size: 16px;
 }
 
-input#name, 
-input#class, 
-input#email1,
-input#email2,
-input#phone,
-input#twitter,
-input#facebook,
-input#old-password,
-input#new-password,
-input#confirm-password {
-  width: 200px; 
-  height: 20px; 
-  padding: 5px 10px 3px 10px; 
-  margin: 0 0 20px 0;
-  color: #000;
-  background: #EEE;
-  -moz-box-shadow: 0px 1px 0px #fcfcfc;
-  -webkit-box-shadow: 0px 1px 0px #fcfcfc;
-}
-
-input#visibility {
-  margin: 0 0 0 10px;
+input.wider {
+  width: 220px;
+  height: 20px;
 }
 
 input[disabled=disabled] {
-  background: #C6C6C6 !important;
+  background: #DDDDDD !important;
   color: #0e0e0e !important;
 }
 
-input.settings-contact, input.settings-password {
-  width: 222px;
-  margin: 0 0 20px 190px; 
+input.settings-submit {
+  width: 240px;
+  margin: 0 280px; 
+}
+
+p.settings {
+  text-align: center;
+}
+
+div#profile {
+  margin: 5px auto 10px;
+  height: 140px;
+  width: 123px;
+}
+img#profilepic {
+  height: 140px;
 }
 
 ul.notifications {
-  display: block;
-  padding: 0 0 20px 240px;
+  margin: 0 240px;
 }
 
 li.evennotification {
   display: block;
-  width: 300px;
+  width: 320px;
   background: #FEFEFE;
   height: 41px;
 }
 
 li.oddnotification {
   display: block;
-  width: 300px;
+  width: 320px;
   background: #EEE;
   height: 41px;
 }
 
-label.new-letter,
-label.new-course {
+label.notifications {
   display: block;
   width: 240px;
   margin: 8px 12px;
@@ -1194,14 +1255,13 @@ label.new-course {
   float: left;
 }
 
-input#new-letter,
-input#new-course {
-  float: left;
-  margin: 15px 0 0 0;
+input.notifications {
+  float: right;
+  margin: 15px 12px 0 12px;
 }
 
 input.settings-notifications {
-  width: 300px;
+  width: 320px;
   margin: 20px 0 20px 240px; 
 }
 

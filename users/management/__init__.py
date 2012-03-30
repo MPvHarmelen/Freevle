@@ -5,8 +5,8 @@ from django.db.models.signals import post_syncdb
 from django.contrib.auth import models
 from django.db.utils import IntegrityError
 
-from cygy.settings import DEBUG
-from cygy.custom.progressbar import ProgressBar
+from schoolr.settings import DEBUG
+from schoolr.custom.progressbar import ProgressBar
 
 def create_groups(sender, **kwargs):
     models.Group(name='teachers').save()

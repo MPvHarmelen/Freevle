@@ -3,7 +3,7 @@ from django.views.generic.dates import ArchiveIndexView
 from django.views.generic.dates import MonthArchiveView, DayArchiveView
 from django.views.generic.dates import DateDetailView
 
-from cygy.news.models import NewsMessage
+from schoolr.news.models import NewsMessage
 
 urlpatterns = patterns('',
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]*)/$',

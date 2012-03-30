@@ -4,38 +4,282 @@
 {% block content %}
 
 <div class="item">
-  <h2>Settings</h2>
-  <p>Change your settings: picture, ways others can contact you, which info about you is visable etc. etc.</p>
+  <h2>{% trans "Settings" %}</h2>
+  <p>{% blocktrans %}Change your settings: ways others can contact you, which info about you is visible etc. etc.{% endblocktrans %}</p>
 
   <div class="settingsmenu">
-    <h3 class="menu"><a href="/settings">Persona</a></h3>
-    <h3 class="menu"><a href="/settings/contact">Contactinfo</a></h3>
-    <h3 class="menu"><a href="/settings/password">Change Password</a></h3>
-    <h3 class="menu"><a href="/settings/notifications">Notifications</a></h3>
+    <h3 class="menu"><a class="tabnav" href="#persona">{% trans "Persona" %}</a></h3>
+    <h3 class="menu"><a class="tabnav" href="#contactinfo">{% trans "Contactinfo" %}</a></h3>
+    <h3 class="menu"><a class="tabnav" href="#changepassword">{% trans "Change Password" %}</a></h3>
+    <h3 class="menu"><a class="tabnav" href="#notifications">{% trans "Notifications" %}</a></h3>
+    <h3 class="menu"><a class="tabnav" href="#coursesmenu">{% trans "Courses menu" %}</a></h3>
   </div>
 
-  <form id="settings-persona">
-      <ul class="persona">
-        <li>
-          <label for="name" class="name">Name</label>
-          <input id="name" name="name" type="text" disabled="disabled" placeholder="John Doe">
-        </li>
-        <li>
-          <label for="class" class="class">Class</label>
-          <input id="class" name="class" type="text" disabled="disabled" placeholder="G4X"></textarea>
-        </li>
-        <li>
-          <label for="email1" class="email1">School mailadress</label>
-          <input id="email1" name="email" type="email" disabled="disabled" placeholder="Jdoe@cygnusgymnasium.eu" required>
-        </li>
-      </ul> 
-      
-      <div class="profile">
-        <img class="profile" src="/media/img/johndoe.png">
+  <div id="tabbrowser">
+    <div id="tabs">
+
+      <div class="tab" id="tabpersona">
+        <div id="profile">
+          <img id="profilepic" src="/media/img/johndoe.png">
+        </div>
+        
+        <ul class="persona">
+          <li>
+            <span class="personalabel">{% trans "Name" %}:</span>
+            <span class="personainfo">John Doe</span>
+            <div class="clear"></div>
+          </li>
+          <li>
+            <span class="personalabel">{% trans "Class" %}:</span>
+            <span class="personainfo">G4X</span>
+            <div class="clear"></div>
+          </li>
+          <li>
+            <span class="personalabel">{% trans "School mailadress" %}:</span>
+            <span class="personainfo">Jdoe@cygnusgymnasium.eu</span>
+            <div class="clear"></div>
+          </li>
+        </ul> 
+        
+        <input type="submit" name="Submit" class="settings-submit" value="{% trans "This isn't true!" %}" />
+            
       </div>
       
-     <div class="clear"></div>     
-  </form> 
+      <div class="tab" id="tabcontactinfo">
+        <form id="settings-contact">  
+          <p class="settings">{% blocktrans %}This info is visible for everyone with an account. How do you want that others contact you?{% endblocktrans %}</p>
+          <ul class="contactinfo">  
+            <li>
+              <label for="email2" class="settings">{% trans "Secondary mailadress" %}</label>
+              <input id="email2" name="email" type="email" class="text wider" placeholder="myextramail@domain.com">
+            </li>
+            <li>
+              <label for="phone" class="settings">{% trans "Phonenumber" %}</label>
+              <input id="phone" name="phone" type="tel" class="text wider" placeholder="+3165432123">
+            </li>
+            <li>
+              <label for="twitter" class="settings">{% trans "Twitter" %}</label>
+              <input id="twitter" name="twitter" type="text" class="text wider" placeholder="@schoolr">
+            </li>
+            <li>
+              <label for="facebook" class="settings">{% trans "Facebook" %}</label>
+              <input id="facebook" name="facebook" type="url" class="text wider" placeholder="<facebookurl>">
+            </li>
+          </ul>
+            
+          <div class="submit"> 
+            <input type="submit" name="Submit" class="settings-submit" value="{% trans "Update my info!" %}" />
+          </div>
+          
+          <div class="clear"></div>
+        
+        </form>
+      </div>
+      
+      <div class="tab" id="tabchangepassword">
+        <form id="settings-password">
+          <p class="settings">{% blocktrans %}Not happy with your password? No problemo! Change it here.{% endblocktrans %}</p>
+          <ul class="password">  
+            <li>
+              <label for="old-password" class="settings">{% trans "Old password" %}</label>
+              <input id="old-password" name="old-password" type="password" class="text wider" requird>
+            </li>
+            <li>
+              <label for="new-password" class="settings">{% trans "New password" %}</label>
+              <input id="old-password" name="new-password" type="password" class="text wider" requird>
+            </li>
+            <li>
+              <label for="confirm-password" class="settings">{% trans "Confirm password" %}</label>
+              <input id="confirm-password" name="confirm-password" type="password" class="text wider" requird>
+            </li>
+          </ul>
+              
+          <div class="submit"> 
+            <input type="submit" name="Submit" class="settings-submit" value="{% trans "Update my password!" %}" />
+          </div>
+          
+          <div class="clear"></div>
+        </form>
+      </div>
+      
+      <div class="tab" id="tabnotifications">
+        <form id="settings-notifications">
+          <p class="settings">{% blocktrans %}Manage your notifications by checking the checkboxes of the events you want to be notifed of with an email.{% endblocktrans %}</p>
+          <ul class="notifications">  
+            <li class="evennotification">
+              <label for="new-letter" class="notifications">{% blocktrans %}When a new letter is published{% endblocktrans %}</label>
+              <input id="new-letter" name="notifications" class="notifications" type="checkbox">
+            </li>
+            <li class="oddnotification">
+              <label for="new-course" class="notifications">{% blocktrans %}When you're added to a course{% endblocktrans %}</label>
+              <input id="new-course" name="new-course" class="notifications" type="checkbox">
+            </li>
+          </ul>
+            
+          <div class="submit"> 
+            <input type="submit" name="Submit" class="settings-notifications" value="{% trans "Update my notifications!" %}" />
+          </div>
+      
+          <div class="clear"></div>    
+        </form>
+      </div>
+      
+      <div class="tab" id="tabcoursesmenu">
+        <form id="settings-courses" action="">
+          <p class="settings">{% blocktrans %}In the <span class="bold">Menucolumn</span> you can check the boxes next to the coursenames that should be fast accesible through the courses dropdown menu in the navigationbar.{% endblocktrans %}</p>    
+          <ul id="courses">
+            <li class="head">
+              <span class="coursename">Coursename</span>
+              <span class="menu">Menu</span>
+              <span class="year">Year</span>
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">Central</span>
+                <span class="year">All</span>
+                <div class="clear"></div>
+              </a>
+            <input type="checkbox" class="courses" name="central"/>
+              <div class="clear"></div>
+            </li>    
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">Maths</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+            <input type="checkbox" class="courses" name="maths" />
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">English</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="english" />
+              <div class="clear"></div>
+            </li>
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">Sience</span>  
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="sience" />
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">P.E.</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="pe" />
+              <div class="clear"></div>
+            </li>
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">French</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="french" />
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">Dutch</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="dutch" />
+              <div class="clear"></div>
+            </li>
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">History</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="history" />
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">Biology</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="biology" />
+              <div class="clear"></div>
+            </li>
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">Latin</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="latin" />
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">Art</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="art" />
+              <div class="clear"></div>
+            </li>
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">Greek</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+              <input type="checkbox" class="courses" name="greek" />
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">Biology</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+            <input type="checkbox" class="courses" name="biology" />
+              <div class="clear"></div>
+            </li>
+            <li class="oddcourse">
+              <a class="course" href="">
+                <span class="coursename">State of the art Freaking long coursename</span>
+                <span class="year">4</span>
+                <div class="clear"></div>
+              </a>
+
+              <input type="checkbox" class="courses" name="freakinglongcoursename" />
+              </span>
+              <div class="clear"></div>
+            </li>
+            <li class="evencourse">
+              <a class="course" href="">
+                <span class="coursename">Tutor</span>
+                <span class="year">All</span>
+              <div class="clear"></div>
+              </a>
+            <input type="checkbox" class="courses" name="tutor" />
+              <div class="clear"></div>
+            </li>            
+          </ul>
+       
+          <input type="submit" name="Submit" class="course" value="Save my menu" />
+      
+        </form>
+      </div>
+      <div class="clear"></div> 
+    </div>
+  </div>
 
 </div>
 

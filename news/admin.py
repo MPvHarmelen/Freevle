@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cygy.news.models import NewsMessage
+from schoolr.news.models import NewsMessage
 
 class NewsMessageAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'

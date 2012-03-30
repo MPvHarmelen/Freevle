@@ -4,157 +4,125 @@
 {% block content %}
 
 <div class="item">
-  <h2>All Your Courses</h2>
-  <p>A this page you can view all the courses that you are a member of. Courses which you are not a member of can be found by using the search function.</p>
-  <p>In the <span class="bold">Menucolumn</span> you can check the boxes next to the coursenames that should be fast accesible through the courses dropdown menu in the navigationbar. Push the button to save!</p>
+  <h2>{% blocktrans %}All Your Courses{% endblocktrans %}</h2>
+  <p>{% blocktrans %}All your courses in one place! Courses which you are not a member of can be found using the search function.{% endblocktrans %}</p>
 
   <form action="">
     <ul id="courses">
       <li class="head">
         <span class="coursename">Coursename</span>
-        <span class="menu">Menu</span>
         <span class="year">Year</span>
         <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">Central</span>
           <span class="year">All</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="central"/></label>
-        <div class="clear"></div>
       </li>    
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">Maths</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="maths"/></label>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">English</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="english"/></label>
-        <div class="clear"></div>
       </li>
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">Sience</span>  
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="sience"/></label>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">P.E.</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="pe"/></label>
-        <div class="clear"></div>
       </li>
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">French</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="french"/></label>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">Dutch</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="dutch"/></label>
-        <div class="clear"></div>
       </li>
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">History</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="history"/></label>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">Biology</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="biology"/></label>
-        <div class="clear"></div>
       </li>
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">Latin</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="latin"/></label>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">Art</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="art"/></label>
-        <div class="clear"></div>
       </li>
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">Greek</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-          <label class="checkbox"><input type="checkbox" name="greek"/></label>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">Biology</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-        <label class="checkbox"><input type="checkbox" name="biology"/></label>
-        <div class="clear"></div>
       </li>
       <li class="oddcourse">
-        <a class="course" href="">
+        <a class="course even" href="#">
           <span class="coursename">State of the art Freaking long coursename</span>
           <span class="year">4</span>
           <div class="clear"></div>
         </a>
-
-          <label class="checkbox"><input type="checkbox" name="freakinglongcoursename"/></label>
-        </span>
-        <div class="clear"></div>
       </li>
       <li class="evencourse">
-        <a class="course" href="">
+        <a class="course odd" href="#">
           <span class="coursename">Tutor</span>
           <span class="year">All</span>
         <div class="clear"></div>
         </a>
-        <label class="checkbox"><input type="checkbox" name="tutor"/></label>
-        <div class="clear"></div>
       </li>            
     </ul>
-   <input type="submit" name="Submit" class="course" value="Save my menu" />
-  </form>   
+  </form>
+  
+  <div class="clear"></div>
+     
 </div>
 {% endblock %}
