@@ -1,3 +1,4 @@
+var focusstatus = false;
 $(document).ready(function(){
 
 //Slider
@@ -173,11 +174,13 @@ $(document).ready(function(){
     $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
   });
 
-  var focussatus = false;
   $('input, textarea').focus(function() {
-    focussatus = true;
-  }, function() {
-    focussatus = false;
+    focusstatus = true;
+    console.log(focusstatus);
+  });
+  $('input, textarea').focusout(function() {
+    focusstatus = false;
+    console.log(focusstatus);
   });
 });
 
@@ -202,7 +205,7 @@ $(document.documentElement).keyup(function(e) {
   }
   if (e.keyCode == 76 && focusstatus) {//L
     $('#loginhome').click();
-    alert(focussatus);
+    alert(focusstatus);
   }
 });
 
