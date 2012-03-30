@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.utils import IntegrityError
 
-from cygy.news import models
-from cygy.settings import DEBUG
-from cygy.custom.debug.markov import Markov
-from cygy.custom.progressbar import ProgressBar
+from schoolr.news import models
+from schoolr.settings import DEBUG
+from schoolr.custom.debug.markov import Markov
+from schoolr.custom.progressbar import ProgressBar
 
 THIS_YEAR = datetime.today().year
 NOW = datetime.now()

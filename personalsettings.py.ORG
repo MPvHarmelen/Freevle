@@ -1,6 +1,6 @@
 # Database settings. If you have no clue what this means, keep it at this.
 DATABASE_ENGINE = 'sqlite3'   # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'cygy.sqlite' # Or path to database file if using sqlite3.
+DATABASE_NAME = 'schoolr.sqlite' # Or path to database file if using sqlite3.
 DATABASE_USER = ''            # Not used with sqlite3.
 DATABASE_PASSWORD = ''        # Not used with sqlite3.
 DATABASE_HOST = ''            # Set to empty string for localhost. Not used with sqlite3.
@@ -15,15 +15,15 @@ URL_ROOT = 'localhost:8000/'
 
 # The absolute path to the CyGy directory on your system.
 # We do not officially support Windows, but you can try it...
-ROOT_DIR = '/absolute/path/to/cygy/'
+ROOT_DIR = '/absolute/path/to/schoolr/'
 
 # The apps you want installed.
 INSTALLED_APPS = (
-    'cygy.news',
-    'cygy.cms',
-    'cygy.letters',
-    'cygy.organizer',
-    'cygy.galleries',
+    'schoolr.news',
+    'schoolr.cms',
+    'schoolr.letters',
+    'schoolr.organizer',
+    'schoolr.galleries',
 )
 
 # Make this unique, and don't share it with anybody.

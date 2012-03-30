@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cygy.organizer.models import Topic, Course, Lesson, HomeworkType, Homework
+from schoolr.organizer.models import Topic, Course, Lesson, HomeworkType, Homework
 
 class TopicAdmin(admin.ModelAdmin):
     list_display = ('name',)

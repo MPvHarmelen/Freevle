@@ -1,5 +1,5 @@
 from django.db import models
-from cygy.custom import fields
+from schoolr.custom import fields
 from django.core.validators import EMPTY_VALUES
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _

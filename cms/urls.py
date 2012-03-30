@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
-from cygy.cms.views import PageDetailView
+from schoolr.cms.views import PageDetailView
 
-from cygy.cms.models import Page
+from schoolr.cms.models import Page
 
 urlpatterns = patterns('',
     url(r'^(?P<slug>[\w-]+)/$', PageDetailView.as_view(model=Page),

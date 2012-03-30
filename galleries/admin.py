@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cygy.galleries.models import Gallery, Photo
+from schoolr.galleries.models import Gallery, Photo
 
 class GalleryAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}

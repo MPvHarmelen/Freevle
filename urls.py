@@ -17,11 +17,11 @@ if settings.STATIC:
 
 urlpatterns += patterns('',
     # Example:
-    # (r'^foo/', include('cygy.foo.urls')),
+    # (r'^foo/', include('schoolr.foo.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^news/', include('cygy.news.urls')),
-    url(r'^letters/', include('cygy.letters.urls')),
-    url(r'^galleries/', include('cygy.galleries.urls')),
+    url(r'^news/', include('schoolr.news.urls')),
+    url(r'^letters/', include('schoolr.letters.urls')),
+    url(r'^galleries/', include('schoolr.galleries.urls')),
     # TEMP for Floris' and Pim's brilliant work.
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
     url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
@@ -45,5 +45,5 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     # If no url could be found, include cms:
-    url('', include('cygy.cms.urls'))
+    url('', include('schoolr.cms.urls'))
 )
