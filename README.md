@@ -55,6 +55,9 @@ Now you can simply start up the server with this command:
 
     python manage.py runserver
 
+Also, please read BRANCHINGMODEL.md for details on how to work with our branches,
+is quite important.
+
 ### Production
 
 To set up Schoolr for a production server (like for your school), you're going to
