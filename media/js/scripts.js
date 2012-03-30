@@ -142,10 +142,11 @@ $(document).ready(function(){
 //Settings-tabs
   $('#tabs').width($('.tab').length * 850);
   var url = $(location).attr('href');
+  var aLink = 'a.tabnav[href="#' + url.split('#')[1] + '"]';
   var tabIdUrl = '#tab' + url.split('#')[1];
   var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
   if (/#/i.test(url)) {
-    $(tabIdUrl).css('border-color', '#007');
+    $(aLink).css('border-color', '#007');
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
     if($(tabIdUrl).height() > 365) {
       $('#tabbrowser').height($(tabIdUrl).height());
@@ -154,6 +155,7 @@ $(document).ready(function(){
     }
   } else {
     $('#tabbrowser').height(365);
+    $('a.tabnav:first').css('border-color', '#007');
   }
   $(this).css('border-color', '#007');
   $('a.tabnav').click(function() {
