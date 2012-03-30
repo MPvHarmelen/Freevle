@@ -146,22 +146,22 @@ $(document).ready(function(){
   var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
   if (/#/i.test(url)) {
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
-    if($(tabIdUrl).height() > 275) {
+    if($(tabIdUrl).height() > 365) {
       $('#tabbrowser').height($(tabIdUrl).height());
     } else {
-      $('#tabbrowser').height(275);
+      $('#tabbrowser').height(365);
     }
   } else {
-    $('#tabbrowser').height(275);
+    $('#tabbrowser').height(365);
   }
   $('a.tabnav').click(function() {
     var tabId = '#tab' + $(this).attr('href').split('#')[1];
     var amountTabs = $(tabId).prevAll('.tab').length
     var marginMove = '-' + amountTabs * 850 + 'px';
-    if($(tabId).height() > 275) {
+    if($(tabId).height() > 365) {
       var changeHeight = $(tabId).height() + 'px';
     } else {
-      var changeHeight = '275px';
+      var changeHeight = '365px';
     }
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
     $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
