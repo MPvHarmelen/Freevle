@@ -23,7 +23,7 @@ def debug_data(sender, **kwargs):
     if not kwargs['interactive']:
         return
     else:
-        cont = raw_input('Do you want to generate 150 random news articles (Y/n): ')
+        cont = raw_input('Do you want to generate 150 random news articles (Yes/no): ')
         if not cont.lower() in ('yes', 'y', '',):
             return
 
@@ -38,7 +38,7 @@ def debug_data(sender, **kwargs):
     if verbosity > 1:
         print ' Writing news messages'
     elif verbosity == 1:
-        prog = ProgressBar(0, 150, 77, mode='fixed')
+        prog = ProgressBar(0, 150, 72, mode='fixed')
         print prog, '\r',
 
     for i in xrange(150):
