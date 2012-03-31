@@ -19,10 +19,10 @@ urlpatterns += patterns('',
     # Example:
     # (r'^foo/', include('schoolr.foo.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^news/', include('cygy.news.urls')),
-    url(r'^letters/', include('cygy.letters.urls')),
-    url(r'^galleries/', include('cygy.galleries.urls')),
-    url(r'^organizer/', include('cygy.organizer.urls')),
+    url(r'^news/', include('schoolr.news.urls')),
+    url(r'^letters/', include('schoolr.letters.urls')),
+    url(r'^galleries/', include('schoolr.galleries.urls')),
+    url(r'^organizer/', include('schoolr.organizer.urls')),
 
     # TEMP for Floris' and Pim's brilliant work.
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
