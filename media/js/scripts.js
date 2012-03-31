@@ -177,8 +177,7 @@ $(document).ready(function(){
   $('input, textarea').focus(function() {
     focusstatus = true;
     console.log(focusstatus);
-  });
-  $('input, textarea').focusout(function() {
+  }).focusout(function() {
     focusstatus = false;
     console.log(focusstatus);
   });
@@ -203,9 +202,8 @@ $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 27) {//Esc
     $('#closelogin').click();
   }
-  if (e.keyCode == 76 && focusstatus) {//L
+  if (e.keyCode == 76 && !focusstatus) {//L
     $('#loginhome').click();
-    alert(focusstatus);
   }
 });
 
