@@ -1262,6 +1262,64 @@ input.settings-notifications {
   margin: 20px 0 20px 240px; 
 }
 
+ul#password li {
+  position: relative;
+}
+
+input#confirm-password {
+  background-position: 215px center;
+  background-size: 17px 17px;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+  width: 200px;  
+}
+div#checkifsame {
+  padding: 5px 8px 5px 17px;
+  background: #fefefe;
+  position: absolute;
+  box-shadow: 0 0 5px #777;
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
+  z-index: 2;
+  font-size: 12px;
+  left: 457px;
+  top: 0;
+  display: none;
+}
+  div#checkifsame:before {
+    background-color: #fefefe;
+    content: "";
+    display: block;
+    height: 16px;
+    width:  16px;
+    left: -8px;
+    position: absolute;
+    top: 10px;
+    transform:           rotate(45deg);
+      -o-transform:      rotate(45deg);
+      -ms-transform:     rotate(45deg);
+      -moz-transform:    rotate(45deg);
+      -webkit-transform: rotate(45deg);
+  }
+div#triangleleft {
+  box-shadow:         0 0 5px #777;
+  -moz-box-shadow:    0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
+  background-color: #fefefe;
+  height: 16px;
+  width: 16px;
+  position: relative;
+  top: 10px;
+  left: 449px;
+  transform:           rotate(45deg);
+    -o-transform:      rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    -moz-transform:    rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
 
 /*------------------------------photos------------------------------*/
 div#photopage img {

@@ -46,7 +46,7 @@
       </div>
       
       <div class="tab" id="tabcontactinfo">
-        <form id="settings-contact">  
+        <form id="settings-contact" action="" method="post">  
           <p class="settings">{% blocktrans %}This info is visible for everyone with an account. How do you want that others contact you?{% endblocktrans %}</p>
           <ul class="contactinfo">  
             <li>
@@ -77,20 +77,22 @@
       </div>
       
       <div class="tab" id="tabchangepassword">
-        <form id="settings-password">
+        <form id="settings-password" action="" method="post">
           <p class="settings">{% blocktrans %}Not happy with your password? No problemo! Change it here.{% endblocktrans %}</p>
-          <ul class="password">  
+          <ul id="password">  
             <li>
               <label for="old-password" class="settings">{% trans "Old password" %}</label>
-              <input id="old-password" name="old-password" type="password" class="text wider" requird>
+              <input id="old-password" name="old-password" type="password" class="text wider" required>
             </li>
             <li>
               <label for="new-password" class="settings">{% trans "New password" %}</label>
-              <input id="old-password" name="new-password" type="password" class="text wider" requird>
+              <input id="new-password" name="new-password" type="password" class="text wider" required>
             </li>
             <li>
               <label for="confirm-password" class="settings">{% trans "Confirm password" %}</label>
-              <input id="confirm-password" name="confirm-password" type="password" class="text wider" requird>
+              <input id="confirm-password" name="confirm-password" type="password" class="text wider" required>
+              <div id="triangleleft"></div>
+              <div id="checkifsame"></div>
             </li>
           </ul>
               
@@ -125,7 +127,7 @@
       </div>
       
       <div class="tab" id="tabcoursesmenu">
-        <form id="settings-courses" action="">
+        <form id="settings-courses" action="" method="post">
           <p class="settings">{% blocktrans %}In the <span class="bold">Menucolumn</span> you can check the boxes next to the coursenames that should be fast accesible through the courses dropdown menu in the navigationbar.{% endblocktrans %}</p>    
           <ul id="courses">
             <li class="head">
