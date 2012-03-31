@@ -9,10 +9,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.base import View
 from django.utils.translation import ugettext_lazy as _
 
-from cygy.custom.classes import sortable_list
+from schoolr.custom.classes import sortable_list
 
 from django.contrib.auth.models import User
-from cygy.organizer.models import *
+from schoolr.organizer.models import *
 
 # You have to be careful with Empty- and BreakLesson, because empty
 # ForeignKey fields raise DoesNotExist.
