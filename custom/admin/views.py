@@ -1,0 +1,1 @@
+from django.contrib.sites import AdminSite
