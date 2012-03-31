@@ -240,8 +240,9 @@ a.imagenav#homebtn:hover {
 #search input[type="text"]:focus {
   width: 260px;
   outline: none;
-  -webkit-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
+  box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   -moz-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
+  -webkit-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   cursor: text;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
   color: #333;
@@ -993,6 +994,9 @@ input.text, #id_username, #id_password {
 
 input.text:focus, #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
+  -moz-box-shadow: 0 0 10px #60c6ff;
+  -webkit-box-shadow: 0 0 10px #60c6ff;
+  background: #fff;
 }
 
 input[type=submit], a#question {
