@@ -985,11 +985,11 @@ input.text, #id_username, #id_password {
   border-radius: 2px;
   border: none;
   outline: none;
-  transition: box-shadow 120ms;
-  -o-transition: box-shadow 120ms;
-  -ms-transition: box-shadow 120ms;
-  -moz-transition: box-shadow 120ms;
-  -webkit-transition: box-shadow 120ms;
+  transition: box-shadow 120ms, background 120ms;
+  -o-transition: box-shadow 120ms, background 120ms;
+  -ms-transition: box-shadow 120ms, background 120ms;
+  -moz-transition: box-shadow 120ms, background 120ms;
+  -webkit-transition: box-shadow 120ms, background 120ms;
 }
 
 input.text:focus, #id_username:focus, #id_password:focus {
