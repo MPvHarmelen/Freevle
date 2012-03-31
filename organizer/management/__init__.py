@@ -7,10 +7,10 @@ from django.contrib.auth.models import User, Group
 from django.template.defaultfilters import slugify
 from django.db.utils import IntegrityError
 
-from cygy.custom.debug.markov import Markov
-from cygy.organizer import models
-from cygy.users.models import UserProfile
-from cygy.settings import DEBUG
+from schoolr.custom.debug.markov import Markov
+from schoolr.organizer import models
+from schoolr.users.models import UserProfile
+from schoolr.settings import DEBUG
 
 def debug_data(sender, **kwargs):
     verbosity = kwargs['verbosity']
@@ -31,7 +31,7 @@ def debug_data(sender, **kwargs):
 
     #infoweb = raw_input(('Enter the webaddress to your infoweb root '
     #                     '(like http://example.com/infoweb/):'))
-    infoweb = 'http://cygy.nl/ftp_cg/roosters/infoweb/'
+    infoweb = 'http://schoolr.nl/ftp_cg/roosters/infoweb/'
     cookies = requests.get(infoweb + 'index.php').cookies
 
     this_week = datetime.datetime.today().isocalendar()[1]
