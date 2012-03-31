@@ -205,6 +205,9 @@ $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 76 && !focusstatus) {//L
     $('#loginhome').click();
   }
+  if (e.keyCode == 83 && !focusstatus) {//L
+    $('#search-box').focus();
+  }
 });
 
 document.createElement('header');
