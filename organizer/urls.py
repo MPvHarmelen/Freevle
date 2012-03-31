@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from cygy.organizer.views import UserView
+from schoolr.organizer.views import UserView
 
 urlpatterns = patterns('',
 	url(r'^(?P<username>[\w-]+)/$', UserView.as_view(template_name='organizer/my_schedule.html'),
