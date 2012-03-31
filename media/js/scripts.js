@@ -121,8 +121,9 @@ $(document).ready(function(){
       $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
 
-  if(document.getElementById('focus')) {
-    document.getElementById('focus').focus();
+  if($('#focus')) {
+    $('#focus').focus();
+    focusstatus = true;
   }
 
 
