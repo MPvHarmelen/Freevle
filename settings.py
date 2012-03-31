@@ -61,17 +61,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
     'django.core.context_processors.csrf',
-<<<<<<< HEAD
-    'cygy.custom.context_processors.cms',
-)
-
-ROOT_URLCONF = 'cygy.urls'
-=======
     'schoolr.custom.context_processors.cms',
 )
 
 ROOT_URLCONF = 'schoolr.urls'
->>>>>>> 02877cd1d3f132660be31b2ae3efb6a140616190
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -83,11 +76,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # These need to be first in order for debug data generation to work.
     'django.contrib.auth',
-<<<<<<< HEAD
-    'cygy.users',
-=======
     'schoolr.users',
->>>>>>> 02877cd1d3f132660be31b2ae3efb6a140616190
 
     ) + INSTALLED_APPS + (
 
