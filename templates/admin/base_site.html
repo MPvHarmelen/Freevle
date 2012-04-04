@@ -3,6 +3,10 @@
 
 {% block title %}{{ title }} | {% trans 'Cygy Dashboard' %}{% endblock %}
 
+{% block branding %}
+<h1 id="site-name">{% trans 'Django administration' %}</h1>
+{% endblock %}
+
 {% block nav-global %}
 	{% if user.is_staff %}
 	<div id="adminnav">
