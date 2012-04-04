@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  <div id="loginpage">
+    <h2>{% trans "Lost & found" %}</h2>
+
+    {% if form.errors %}
+    <p id="loginerror">{% blocktrans %}The given email is not recognized by us.{% endblocktrans %}</p>
+    {% endif %}
+
+    <form method="post" action="/user/lostandfound/">
+      {% csrf_token %}
+      <p>{% blocktrans %}Forgotten your password or username? Enter your email and your username and a new password will be sent to you.{% endblocktrans %}</p>
+      <input class="text wider" type="email" id="id_email" name="email" placeholder="{% trans "Email" %}" /><br>
+      <input class="button" type="submit" value="{% trans "Send" %}" name="submit" />
+      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    </form>
+  </div>
+{% endblock %}
