@@ -9,8 +9,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.base import View
 from django.utils.translation import ugettext_lazy as _
 
-from schoolr.custom.classes import sortable_list
-
 from django.contrib.auth.models import User
 from schoolr.organizer.models import *
 
@@ -200,7 +198,7 @@ class LessonListMixin(object):
 
                 date_list.append(list_date)
 
-            sort = lambda a: sortable_list(a).sorted(key=lambda b: b.period)
+            sort = lambda a: sorted(a, key=lambda b: b.period)
             lesson_lists = [sort(self.get_lesson_set(date_list[n], obj))
                             for n in range(number_days)]
 
