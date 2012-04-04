@@ -8,7 +8,7 @@ body {
     font-size: 12px;
     font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
     color: #333;
-    background: #f0f0f0;
+    background: #f0f0f0 url(/media/admin/img/background.png) repeat;
 }
 
 /* LINKS */
@@ -711,8 +711,9 @@ table#change-history tbody th {
 /* HEADER */
 
 #header {
-    background: #417690;
-    color: #ffc;
+    background: #ECD078;
+    color: #fff;
+    height: 40px;
     overflow: hidden;
 }
 
@@ -722,6 +723,11 @@ table#change-history tbody th {
 
 #header a:hover {
     text-decoration: underline;
+}
+
+#adminnav {
+    padding: 1.2em 10px;
+    font-size: 11px;
 }
 
 #branding h1 {

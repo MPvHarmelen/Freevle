@@ -15,7 +15,7 @@ URL_ROOT = 'localhost:8000/'
 
 # The absolute path to the CyGy directory on your system.
 # We do not officially support Windows, but you can try it...
-ROOT_DIR = '/absolute/path/to/schoolr/'
+ROOT_DIR = 'c:/schoolr/'
 
 # The apps you want installed.
 INSTALLED_APPS = (
