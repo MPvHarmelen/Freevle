@@ -1,5 +1,10 @@
 /* DASHBOARD */
 
+@font-face {
+  font-family: EntypoRegular;
+  src: url(../fonts/entypo/entypo-webfont.ttf);
+}
+
 img#admin-header {
     float: left;
     display: block;
@@ -13,7 +18,7 @@ h1.admintitle {
     font-family: 'Open Sans', sans-serif;
     margin: 50px 0 0 0;
     color: #fff;
-    text-shadow: #FEFEFE 1px 1px 3px;
+    text-shadow: #CCCCCC 1px 1px 15px;
 }
 
 .dashboard #content {
@@ -27,22 +32,37 @@ ul#adminmenu-main {
     margin: 20px 0;
 }
 
+span.entypo {
+    font-family: EntypoRegular;
+}
+
+span.icon {
+    display: block;
+    font-size: 80px;
+    color: #FFFFFF;
+    padding: 15px 0 0;
+}
+
+span.button-text {
+    display: block;
+    text-align: center;
+    padding: 25px 0;
+}
+
 li.adminmenu-item {
     list-style: none;
     margin: 15px;
-    width: 220px;
-    height: 100px;
     float: left;
-    background: #D95B43 url(/media/admin/img/button-background.png);
-    border-radius: 15px;
+    background: #225CCC;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.6);
 }
 
 li.adminmenu-item a {
     display: block;
-    width: 220px;
-    height: 60px;
-    padding: 40px 0 0 0;
     color: #FFF;
+    width: 220px;
+    height: 90px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;

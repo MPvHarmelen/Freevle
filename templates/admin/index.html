@@ -14,7 +14,7 @@
             {% for model in app.models %}
                 <li class="adminmenu-item">
                 {% if model.perms.change %}
-                    <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                    <a href="{{ model.admin_url }}"><span class="entypo icon">,</span><span class="button-text">{{ model.name }}</span></a>
                 {% else %}
                     {{ model.name }}
                 {% endif %}
