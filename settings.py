@@ -91,10 +91,11 @@ FORCE_SCRIPT_NAME = ""
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 ADMIN_REORDER = (
-        ("News", ("")),
-        ("Cms", ("Sites")),
+        ("News", ("News messages")),
         ("Photos", ("Sites"))
-        ("Letters", ("Sites"))
-        ("Courses", ("Sites"))
-        ("Auth", ("Users", "Groups")), 
+        ("Letters", ("Letters"))
+        ("Organizer", ("Courses", "Homeworks", "Homeworktypes", "Topics"))
+        ("Auth", ("Users", "Groups")),
+        ("Cms", ("Pages")), 
         ("Sites", ("Sites")),
+)
