@@ -63,8 +63,8 @@
     <!-- Content -->
     <div id="content">
         {% block pretitle %}{% endblock %}
-        <img id="admin-header" src="/media/img/zwaanheader.png">
-        {% block content_title %}{% if title %}<h1 class="admintitle">Cygy Controlcenter</h1>{% endif %}{% endblock %}
+        
+        {% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
         {% block content %}
         {% block object-tools %}{% endblock %}
         {{ content }}

@@ -9,9 +9,7 @@
 
 {% block content %}
 <ul id="adminmenu-main">
-  {% load custom_tags %}
     {% if app_list %}
-      {% app_order %}
         {% for app in app_list %}
             {% for model in app.models %}
                 <li class="adminmenu-item">
