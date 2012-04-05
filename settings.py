@@ -89,3 +89,12 @@ INSTALLED_APPS = (
 
 FORCE_SCRIPT_NAME = ""
 AUTH_PROFILE_MODULE = 'users.UserProfile'
+
+ADMIN_REORDER = (
+        ("News", ("")),
+        ("Cms", ("Sites")),
+        ("Photos", ("Sites"))
+        ("Letters", ("Sites"))
+        ("Courses", ("Sites"))
+        ("Auth", ("Users", "Groups")), 
+        ("Sites", ("Sites")),
