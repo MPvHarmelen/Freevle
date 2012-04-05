@@ -246,17 +246,9 @@ a.imagenav#homebtn:hover {
   cursor: text;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
   color: #333;
-}​
-
-/*------------------------------loginform------------------------------*/
-input {
-  border: none;
-  font-size: 14px;
-  color: #333;
-  outline: none;
-  padding: 2px 8px 2px 30px;
 }
 
+/*------------------------------loginform------------------------------*/
 #loginhome {
   float: right !important;
 }
@@ -867,8 +859,7 @@ span.menu {
 }
 
 input.course[type="submit"] {
-  width: 340px;
-  margin: 14px 230px;
+  margin: 14px 320px;
 }
 input.courses[type="checkbox"] {
   margin: 14px 14px 0;
@@ -1000,59 +991,30 @@ input.text:focus, #id_username:focus, #id_password:focus {
 }
 
 input[type=submit], a#question {
-  padding: 8px 10px;
-  width: 100px;
+  padding: 8px 20px;
   cursor: pointer;
-  background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image: -webkit-gradient(
-	    left bottom,
-	    linear,
-	    left top,
-	    color-stop(0.17, rgb(40,40,199)),
-	    color-stop(1.00, rgb(58,67,250))
-    );
+  background: #225ccc;
   font-size: 17px;
   color: #fff;
-  box-shadow: 1px 1px 1px #000;
-  border-radius: 3px;
+  box-shadow: 0 1px 1px #000;
+  -moz-box-shadow: 0 1px 1px #000;
+  -webkit-box-shadow: 0 1px 1px #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   margin: 10px auto 0;
   outline: none;
   border: none;
 }
 
 input.button:hover, input[type=submit]:hover, a#question:hover {
-  background-image:           linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.17, rgb(50,50,210)),
-	    color-stop(1.00, rgb(68,77,255))
-    );
+  background: #326cdc;
+
 }
 
 input.button:active, input[type=submit]:active, a#question:active {
-  box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
-  background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.17, rgb(58,67,250)),
-	    color-stop(1.00, rgb(40,40,199))
-    );
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  background: #1a4fbf;
 }
 
 /*------------------------------contact------------------------------*/
@@ -1213,8 +1175,7 @@ input[disabled=disabled] {
 }
 
 input.settings-submit {
-  width: 240px;
-  margin: 0 280px; 
+  margin: 0 320px; 
 }
 
 p.settings {
@@ -1256,14 +1217,8 @@ label.notifications {
   float: left;
 }
 
-input.notifications {
-  float: right;
-  margin: 15px 12px 0 12px;
-}
-
 input.settings-notifications {
-  width: 320px;
-  margin: 20px 0 20px 240px; 
+  margin: 20px 0 20px 300px; 
 }
 
 ul#passwordlist li {
