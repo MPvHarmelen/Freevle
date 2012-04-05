@@ -859,7 +859,7 @@ span.menu {
 }
 
 input.course[type="submit"] {
-  margin: 14px 320px;
+  margin: 14px auto;
 }
 input.courses[type="checkbox"] {
   margin: 14px 14px 0;
@@ -1113,6 +1113,10 @@ span.morecontacts a {
   padding: 0 0 0 80px;
 }
 
+div.submit {
+  text-align: center;
+}
+
 #tabbrowser {
   overflow: hidden;
   width: 800px;
@@ -1175,7 +1179,7 @@ input[disabled=disabled] {
 }
 
 input.settings-submit {
-  margin: 0 320px; 
+  margin: 0 auto; 
 }
 
 p.settings {
@@ -1218,7 +1222,7 @@ label.notifications {
 }
 
 input.settings-notifications {
-  margin: 20px 0 20px 300px; 
+  margin: 20px auto;
 }
 
 ul#passwordlist li {
