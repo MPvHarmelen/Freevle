@@ -117,18 +117,15 @@
       </div>
     {% endblock %}
 
-    <div id="shadowcont">
-      <div id="shadow">
-        <div id="content">
-            {% block pretitle %}{% endblock %}
-            
-            {% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
-            {% block content %}
-            {% block object-tools %}{% endblock %}
-            {{ content }}
-            {% endblock %}
-        </div>
-        <div id="bottomer"></div>
+    <div id="shadow">
+      <div id="content">
+          {% block pretitle %}{% endblock %}
+          
+          {% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
+          {% block content %}
+          {% block object-tools %}{% endblock %}
+          {{ content }}
+          {% endblock %}
       </div>
     </div>
     <!-- END Content -->
