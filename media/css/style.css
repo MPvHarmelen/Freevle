@@ -932,10 +932,9 @@ input.course[type="checkbox"] {
 }
 
 a#question {
-  width: 90px !important;
-  margin: 20px 0 5px 300px !important;
-  box-shadow: 2px 2px 2px #000 !important;
+  margin: 20px 341px 20px 341px !important;
   text-decoration: none;
+  display: block;
 }
 
 /*------------------------------loginpage------------------------------*/
