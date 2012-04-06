@@ -1,10 +1,5 @@
 /* DASHBOARD */
 
-@font-face {
-  font-family: EntypoRegular;
-  src: url(../fonts/entypo/entypo-webfont.ttf);
-}
-
 .dashboard #content {
     width: 750px;
     margin: 0 auto;
@@ -14,10 +9,6 @@ ul#adminmenu-main {
     list-style: none;
     padding: 0;
     margin: 20px 0;
-}
-
-span.entypo {
-    font-family: EntypoRegular;
 }
 
 span.icon {

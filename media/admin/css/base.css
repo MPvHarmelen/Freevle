@@ -1,6 +1,17 @@
 /*
   DJANGO Admin styles
 */
+@font-face {
+  font-family: EntypoRegular;
+  src: url(/media/fonts/entypo/entypo-webfont.eot);
+  src: url(/media/fonts/entypo/entypo-webfont.eot?#iefix) format('embedded-opentype'),
+       url(/media/fonts/entypo/entypo-webfont.woff) format('woff'),
+       url(/media/fonts/entypo/entypo-webfont.ttf) format('truetype'),
+       url(/media/fonts/entypo/entypo-webfont.svg#EntypoRegular) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   height: 100%;
 }
@@ -13,6 +24,10 @@ body {
   color: #333;
   background: #f0f0f0 url(/media/admin/img/background.png) repeat;
   height: 100%;
+}
+
+.entypo {
+    font-family: EntypoRegular;
 }
 
 /* LINKS */
@@ -664,20 +679,31 @@ table#change-history tbody th {
   min-height: 100%;
 }
 
-#content {
-  padding: 66px 0 30px;
-  position: relative;
+#shadowcont {
+  padding-left: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   min-height: 100%;
+  position: absolute;
 }
 
 #shadow {
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  margin-left: 100px;
+  position: absolute;
+  left: 100px;
+  right: 0;
+  min-height: 100%;
+  z-index: 3;
+}
+
+#content {
+  padding: 66px 0 30px;
+  position: relative;
+  min-height: 100%;
 }
 
 #header {
@@ -808,8 +834,60 @@ div#sidebar {
   position: fixed;
   height: 100%;
   top: 0;
-  z-index: 0;
-  padding-top: 65px;
+  padding-top: 67px;
+  z-index: 2;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+li.sidebar-item {
+  height: 100px;
+}
+
+li.sidebar-item a {
+  display: block;
+  height: 80px;
+  padding: 10px;
+  border-top: 1px solid #e9e9e9;
+  border-bottom: 1px solid #ccc;
+}
+
+li.sidebar-item a:hover {
+  background: #e5e5e5;
+  color: #FFAE5A;
+}
+li.sidebar-item a:active {
+  background: #e0e0e0;
+  color: #F39E4A;
+  border-bottom: 1px solid #f1f1f1;
+  border-top: 1px solid #c9c9c9;
+}
+
+li.sidebar-item.active {
+  background: #f0f0f0;
+  position: relative;
+  z-index: 6;
+}
+li.sidebar-item.active a {
+  color: #FFAE5A;
+}
+li.sidebar-item.active a:hover {
+  background: #eee;
+}
+li.sidebar-item.active a:active {
+  background: #eee;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
+}
+
+#sidebar p.entypo {
+  font-size: 50px;
+  margin: 0;
 }
 
 #content-related h3 {

@@ -64,33 +64,71 @@
     <!-- Content -->
     {% block sidebar %}
       <div id="sidebar">
-        {% if app_list %}
-          {% for app in app_list %}
-            {% for model in app.models %}
-              <div class="">
-                {% if model.perms.change %}
-                  <a href="{{ model.admin_url }}"><span class="entypo icon">,</span><span class="button-text">{{ model.name }}</span></a>
-                {% else %}
-                  {{ model.name }}
-                {% endif %}
-              </div>
-          {% endfor %}
-        {% endfor %}
-        {% else %}
-          <p>{% trans "You don't have permission to edit anything." %}</p>
-        {% endif %}
+        <ul id="sidebarbuttons">
+          <li class="sidebar-item active">
+            <a href="/admin/auth/user/">
+              <p class="entypo">,</p>
+              <span class="button-text">Users</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/cms/page/">
+              <p class="entypo">n</p>
+              <span class="button-text">Pages</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/galleries/photo/">
+              <p class="entypo">p</p>
+              <span class="button-text">Photos</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/letters/letter/">
+              <p class="entypo">%</p>
+              <span class="button-text">Letters</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/news/newsmessage/">
+              <p class="entypo">l</p>
+              <span class="button-text">News messages</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/organizer/course/">
+              <p class="entypo">t</p>
+              <span class="button-text">Courses</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/organizer/homework/">
+              <p class="entypo">&oacute;</p>
+              <span class="button-text">Homeworks</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/admin/organizer/lesson/">
+              <p class="entypo">,</p>
+              <span class="button-text">Lessons</span>
+            </a>
+          </li>
+        </ul>
       </div>
     {% endblock %}
 
-    <div id="shadow">
-      <div id="content">
-          {% block pretitle %}{% endblock %}
-          
-          {% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
-          {% block content %}
-          {% block object-tools %}{% endblock %}
-          {{ content }}
-          {% endblock %}
+    <div id="shadowcont">
+      <div id="shadow">
+        <div id="content">
+            {% block pretitle %}{% endblock %}
+            
+            {% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
+            {% block content %}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
+            {% endblock %}
+        </div>
+        <div id="bottomer"></div>
       </div>
     </div>
     <!-- END Content -->
