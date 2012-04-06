@@ -871,8 +871,8 @@ body.login {
 
 .login .submit-row {
   clear: both;
-  text-align: right;
-  padding-right: 40px;
+  text-align: center;
+  padding-left: 7px;
 }
 
 #id_username, #id_password {
@@ -900,27 +900,29 @@ body.login {
 }
 
 input[type=submit] {
-  padding: 8px 10px;
-  width: 100px;
+  padding: 8px 20px;
   cursor: pointer;
-  background-image:       linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-  background-image:    -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-  background-image:   -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-  background-image:  -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-  background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-  background-image: -webkit-gradient(
-	  left bottom,
-	  linear,
-	  left top,
-	  color-stop(0.17, rgb(40,40,199)),
-	  color-stop(1.00, rgb(58,67,250))
-  );
+  background: #225ccc;
   font-size: 17px;
   color: #fff;
-  box-shadow: 1px 1px 1px #000;
-  border-radius: 3px;
+  box-shadow: 0 1px 1px #000;
+  -moz-box-shadow: 0 1px 1px #000;
+  -webkit-box-shadow: 0 1px 1px #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   margin: 10px auto 0;
   outline: none;
   border: none;
+}
+
+input[type=submit]:hover {
+  background: #326cdc;
+
+}
+
+input[type=submit]:active {
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  background: #1a4fbf;
 }
 
