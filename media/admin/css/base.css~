@@ -471,13 +471,15 @@ ul.messagelist li.error{
 }
 
 .errornote {
-  font-size: 12px !important;
+  font-size: 13px !important;
   display: block;
-  padding: 4px 5px 4px 25px;
-  margin: 0 0 3px 0;
-  border: 1px solid red;
-  color: red;
-  background: #ffc url(../img/admin/icon_error.gif) 5px .3em no-repeat;
+  padding: 7px 6px 7px 25px;
+  margin: 0 auto 3px;
+  background: #d44 url(../img/admin/icon_error.gif) 5px 7px no-repeat;
+  color: #fff;
+  position: relative;
+  max-width: 800px;
+  text-align: center;
 }
 
 ul.errorlist {
@@ -663,17 +665,19 @@ table#change-history tbody th {
 }
 
 #content {
-  padding: 1px 0 30px;
-  margin-left: 100px;
+  padding: 66px 0 30px;
   position: relative;
   min-height: 100%;
 }
 
 #shadow {
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 100%;
   width: 100%;
+  margin-left: 100px;
 }
 
 #header {
@@ -681,6 +685,8 @@ table#change-history tbody th {
   z-index: 5;
   position: fixed;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
   top: 0;
 }
 
@@ -780,7 +786,7 @@ img#admin-header {
 h1.admintitle {
   font-size: 40px;
   font-family: 'Open Sans', sans-serif;
-  margin: 70px auto 30px;
+  margin: 20px auto 30px;
   color: #fff;
   text-shadow: #CCCCCC 1px 1px 15px;
   width: 850px;
@@ -803,6 +809,7 @@ div#sidebar {
   height: 100%;
   top: 0;
   z-index: 0;
+  padding-top: 65px;
 }
 
 #content-related h3 {
@@ -818,5 +825,102 @@ div#sidebar {
 #content-related .module h2 {
   background: #eee url(../img/admin/nav-bg.gif) bottom left repeat-x;
   color: #666;
+}
+
+/* LOGIN FORM */
+
+body.login {
+  background: #eee;
+}
+
+.login h2 {
+  font-size: 40px;
+  font-family: 'Cabin';
+  font-weight: normal;
+  margin: 30px 0 30px;
+  line-height: 38px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.login form {
+  margin: 20px auto;
+  width: 334px;
+}
+
+.login .form-row {
+  padding: 4px 0;
+  float: left;
+  width: 100%;
+}
+
+.login .form-row label {
+  float: left;
+  width: 110px;
+  padding: 9px 12px 0 0;
+  text-align: right;
+  font-size: 16px;
+  color: #333;
+}
+
+
+.login span.help {
+  font-size: 10px;
+  display: block;
+}
+
+.login .submit-row {
+  clear: both;
+  text-align: right;
+  padding-right: 40px;
+}
+
+#id_username, #id_password {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  width: 150px;
+  font-size: 17px;
+  background: #f9f9f9;
+  box-shadow: 0 0 5px #aaa;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  transition: box-shadow 120ms, background 120ms;
+  -o-transition: box-shadow 120ms, background 120ms;
+  -ms-transition: box-shadow 120ms, background 120ms;
+  -moz-transition: box-shadow 120ms, background 120ms;
+  -webkit-transition: box-shadow 120ms, background 120ms;
+}
+
+#id_username:focus, #id_password:focus {
+  box-shadow: 0 0 10px #60c6ff;
+  -moz-box-shadow: 0 0 10px #60c6ff;
+  -webkit-box-shadow: 0 0 10px #60c6ff;
+  background: #fff;
+}
+
+input[type=submit] {
+  padding: 8px 10px;
+  width: 100px;
+  cursor: pointer;
+  background-image:       linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+  background-image:    -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+  background-image:   -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+  background-image:  -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
+  background-image: -webkit-gradient(
+	  left bottom,
+	  linear,
+	  left top,
+	  color-stop(0.17, rgb(40,40,199)),
+	  color-stop(1.00, rgb(58,67,250))
+  );
+  font-size: 17px;
+  color: #fff;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 3px;
+  margin: 10px auto 0;
+  outline: none;
+  border: none;
 }
 

@@ -8,53 +8,54 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-<ul id="adminmenu-main">
+  <ul id="adminmenu-main">
     {% if app_list %}
-        {% for app in app_list %}
-            {% for model in app.models %}
-                <li class="adminmenu-item">
-                {% if model.perms.change %}
-                    <a href="{{ model.admin_url }}"><span class="entypo icon">,</span><span class="button-text">{{ model.name }}</span></a>
-                {% else %}
-                    {{ model.name }}
-                {% endif %}
-                </li>
-            {% endfor %}
+      {% for app in app_list %}
+        {% for model in app.models %}
+          <li class="adminmenu-item">
+            {% if model.perms.change %}
+              <a href="{{ model.admin_url }}"><span class="entypo icon">,</span><span class="button-text">{{ model.name }}</span></a>
+            {% else %}
+              {{ model.name }}
+            {% endif %}
+          </li>
         {% endfor %}
+      {% endfor %}
     {% else %}
-        <p>{% trans "You don't have permission to edit anything." %}</p>
+      <p>{% trans "You don't have permission to edit anything." %}</p>
     {% endif %}
-</ul>
+  </ul>
 {% endblock %}
 
 <div class="clear"></div>
 
 {% block sidebar %}
-  <div id="recent-actions-menu">
-    <h2>{% trans 'Recent Actions' %}</h2>
-    <h3>{% trans 'My Actions' %}</h3>
-        {% load log %}
-        {% get_admin_log 10 as admin_log for_user user %}
-        {% if not admin_log %}
+  <div id="sidebar">
+    <div id="recent-actions-menu">
+      <h2>{% trans 'Recent Actions' %}</h2>
+      <h3>{% trans 'My Actions' %}</h3>
+      {% load log %}
+      {% get_admin_log 10 as admin_log for_user user %}
+      {% if not admin_log %}
         <p>{% trans 'None available' %}</p>
-        {% else %}
+      {% else %}
         <ul class="actionlist">
         {% for entry in admin_log %}
-        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+          <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
             {% if entry.is_deletion or not entry.get_admin_url %}
-                {{ entry.object_repr }}
+              {{ entry.object_repr }}
             {% else %}
-                <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+              <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
             {% endif %}
-            <br/>
             {% if entry.content_type %}
-                <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
+              <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
             {% else %}
-                <span class="mini quiet">{% trans 'Unknown content' %}</span>
+              <span class="mini quiet">{% trans 'Unknown content' %}</span>
             {% endif %}
-        </li>
+          </li>
         {% endfor %}
         </ul>
-        {% endif %}
+      {% endif %}
+    </div>
   </div>
 {% endblock %}
