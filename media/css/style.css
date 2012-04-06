@@ -1006,7 +1006,7 @@ input[type=submit], a#question {
   border: none;
 }
 
-input.button:hover, input[type=submit]:hover, a#question:hover {
+input.button:hover, input[type=submit]:hover, a#question:hover, input.button:focus, input[type=submit]:focus, a#question:focus {
   background: #326cdc;
 
 }
