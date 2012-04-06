@@ -655,7 +655,7 @@ table#change-history tbody th {
 /* PAGE STRUCTURE */
 
 #container {
-  position: relative;
+  position: absolute;
   width: 100%;
   min-width: 760px;
   padding: 0;
@@ -664,10 +664,16 @@ table#change-history tbody th {
 
 #content {
   padding: 1px 0 30px;
-  margin-left: 100px;
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   position: relative;
   min-height: 100%;
+}
+
+#shadow {
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  margin-left: 100px;
 }
 
 #header {
