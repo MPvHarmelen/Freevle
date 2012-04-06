@@ -61,6 +61,10 @@
         {% endif %}
 
     <!-- Content -->
+        {% block sidebar %}
+          <div id="sidebar">
+          </div>
+        {% endblock %}
     <div id="content">
         {% block pretitle %}{% endblock %}
         
@@ -69,12 +73,9 @@
         {% block object-tools %}{% endblock %}
         {{ content }}
         {% endblock %}
-        <!---{% block sidebar %}{% endblock %}-->
-        <br class="clear" />
     </div>
     <!-- END Content -->
 
-    {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->
 
