@@ -679,17 +679,6 @@ table#change-history tbody th {
   min-height: 100%;
 }
 
-#shadowcont {
-  padding-left: 80px;
-  width: 100%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  min-height: 100%;
-  position: absolute;
-  z-index: 2;
-}
-
 #shadow {
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
@@ -835,7 +824,7 @@ div#sidebar {
   position: fixed;
   height: 100%;
   top: 0;
-  padding-top: 67px;
+  padding-top: 68px;
 }
 
 ul {
@@ -875,7 +864,7 @@ li.sidebar-item.active a {
   color: #FFAE5A;
 }
 li.sidebar-item.active a:hover {
-  background: #eee;
+  background: #f0f0f0;
 }
 li.sidebar-item.active a:active {
   background: #eee;
@@ -887,6 +876,8 @@ li.sidebar-item.active a:active {
   font-size: 60px;
   margin: 12px 0 3px;
   line-height: 0;
+  dusplay: block;
+  height: 26px;
 }
 
 #content-related h3 {

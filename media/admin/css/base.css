@@ -864,7 +864,7 @@ li.sidebar-item.active a {
   color: #FFAE5A;
 }
 li.sidebar-item.active a:hover {
-  background: #eee;
+  background: #f0f0f0;
 }
 li.sidebar-item.active a:active {
   background: #eee;
@@ -876,6 +876,8 @@ li.sidebar-item.active a:active {
   font-size: 60px;
   margin: 12px 0 3px;
   line-height: 0;
+  dusplay: block;
+  height: 26px;
 }
 
 #content-related h3 {
