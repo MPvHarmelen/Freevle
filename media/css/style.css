@@ -1186,7 +1186,7 @@ div.submit {
   margin: 10px 50px 0 0;
 }
 
-.tabnav {
+.tabnav:link, .tabnav:visited {
   float: left;
   border-bottom: 3px solid #fff;
   padding: 0 8px;
