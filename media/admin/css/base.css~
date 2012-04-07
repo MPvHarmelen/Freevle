@@ -681,7 +681,6 @@ table#change-history tbody th {
 
 #shadow {
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
-  -o-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -ms-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
@@ -991,6 +990,7 @@ input[type=submit] {
   -moz-box-shadow: 0 1px 1px #000;
   -webkit-box-shadow: 0 1px 1px #000;
   border-radius: 4px;
+  -o-border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   margin: 10px auto 0;
