@@ -681,6 +681,8 @@ table#change-history tbody th {
 
 #shadow {
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -701,6 +703,8 @@ table#change-history tbody th {
   z-index: 5;
   position: fixed;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  -ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
   top: 0;
@@ -825,7 +829,6 @@ div#sidebar {
   height: 100%;
   top: 0;
   padding-top: 67px;
-  
 }
 
 ul {
@@ -953,6 +956,10 @@ body.login {
   font-size: 17px;
   background: #f9f9f9;
   box-shadow: 0 0 5px #aaa;
+  -o-box-shadow: 0 0 5px #aaa;
+  -ms-box-shadow: 0 0 5px #aaa;
+  -moz-box-shadow: 0 0 5px #aaa;
+  -webkit-box-shadow: 0 0 5px #aaa;
   border-radius: 2px;
   border: none;
   outline: none;
@@ -965,6 +972,8 @@ body.login {
 
 #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
+  -o-box-shadow: 0 0 10px #60c6ff;
+  -ms-box-shadow: 0 0 10px #60c6ff;
   -moz-box-shadow: 0 0 10px #60c6ff;
   -webkit-box-shadow: 0 0 10px #60c6ff;
   background: #fff;
@@ -977,6 +986,8 @@ input[type=submit] {
   font-size: 17px;
   color: #fff;
   box-shadow: 0 1px 1px #000;
+  -o-box-shadow: 0 1px 1px #000;
+  -ms-box-shadow: 0 1px 1px #000;
   -moz-box-shadow: 0 1px 1px #000;
   -webkit-box-shadow: 0 1px 1px #000;
   border-radius: 4px;
@@ -994,6 +1005,10 @@ input[type=submit]:hover, input[type=submit]:focus {
 
 input[type=submit]:active {
   box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  -o-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  -ms-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
   background: #1a4fbf;
 }
 
