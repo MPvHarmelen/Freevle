@@ -35,11 +35,11 @@
     <div class="form-row">
       {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
       <label for="id_password" class="required">{% trans 'Password:' %}</label> {{ form.password }}
-      <input type="hidden" name="this_is_the_login_form" value="1" />
-      <input type="hidden" name="next" value="{{ next }}" />
+      <input type="hidden" name="this_is_the_login_form" value="1" class="admin-login" />
+      <input type="hidden" name="next" value="{{ next }}" class="admin-login" />
     </div>
     <div class="submit-row">
-      <input type="submit" value="{% trans 'Log in' %}" />
+      <input type="submit" value="{% trans 'Log in' %}" class="admin-login" />
     </div>
   </form>
 

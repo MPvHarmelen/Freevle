@@ -159,7 +159,7 @@ fieldset.monospace textarea {
 /* SUBMIT ROW */
 
 .submit-row {
-    padding: 5px 7px;
+    padding: 7px 7px !important;
     text-align: right;
     background: white url(../img/admin/nav-bg.gif) 0 100% repeat-x;
     border: 1px solid #ccc;

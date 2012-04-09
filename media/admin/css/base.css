@@ -263,7 +263,7 @@ td, th {
   line-height: 13px;
   border-bottom: 1px solid #eee;
   vertical-align: top;
-  padding: 5px;
+  padding: 7px;
   font-family: "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
@@ -381,44 +381,6 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 }
 
 /* FORM BUTTONS */
-
-.button, input[type=submit], input[type=button], .submit-row input {
-  background: white url(../img/admin/nav-bg.gif) bottom repeat-x;
-  padding: 3px 5px;
-  color: black;
-  border: 1px solid #bbb;
-  border-color: #ddd #aaa #aaa #ddd;
-}
-
-.button:active, input[type=submit]:active, input[type=button]:active {
-  background-image: url(../img/admin/nav-bg-reverse.gif);
-  background-position: top;
-}
-
-.button[disabled], input[type=submit][disabled], input[type=button][disabled] {
-	background-image: url(../img/admin/nav-bg.gif);
-	background-position: bottom;
-	opacity: 0.4;
-}
-
-.button.default, input[type=submit].default, .submit-row input.default {
-  border: 2px solid #5b80b2;
-  background: #7CA0C7 url(../img/admin/default-bg.gif) bottom repeat-x;
-  font-weight: bold;
-  color: white;
-  float: right;
-}
-
-.button.default:active, input[type=submit].default:active {
-  background-image: url(../img/admin/default-bg-reverse.gif);
-  background-position: top;
-}
-
-.button[disabled].default, input[type=submit][disabled].default, input[type=button][disabled].default {
-	background-image: url(../img/admin/default-bg.gif);
-	background-position: bottom;
-	opacity: 0.4;
-}
 
 
 /* MODULES */
@@ -579,19 +541,6 @@ div.breadcrumbs {
 .changelink {
   padding-left: 12px;
   background: url(../img/admin/icon_changelink.gif) 0 .2em no-repeat;
-}
-
-.deletelink {
-  padding-left: 12px;
-  background: url(../img/admin/icon_deletelink.gif) 0 .25em no-repeat;
-}
-
-a.deletelink:link, a.deletelink:visited {
-  color: #CC3434;
-}
-
-a.deletelink:hover {
-  color: #993333;
 }
 
 /* OBJECT TOOLS */
@@ -976,10 +925,8 @@ body.login {
 }
 
 input[type=submit] {
-  padding: 8px 20px;
   cursor: pointer;
   background: #225ccc;
-  font-size: 17px;
   color: #fff;
   box-shadow: 0 1px 1px #000;
   -ms-box-shadow: 0 1px 1px #000;
@@ -988,9 +935,18 @@ input[type=submit] {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  margin: 10px auto 0;
   outline: none;
   border: none;
+}
+
+input[type=submit].admin-login {
+  padding: 8px 20px;
+  font-size: 17px;  
+  margin: 10px auto 0; 
+}
+
+input[type=submit].admin-save, .admin-saveasnew, .admin-addanother, .admin-continue {
+  padding: 7px 15px;
 }
 
 input[type=submit]:hover, input[type=submit]:focus {

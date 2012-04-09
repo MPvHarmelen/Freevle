@@ -285,5 +285,18 @@
 
 #changelist .actions .button {
     font-size: 11px;
-    padding: 1px 2px;
+    padding: 2px 8px;
+    cursor: pointer;
+    background: #225ccc;
+    color: #fff;
+    box-shadow: 0 1px 1px #000;
+    -ms-box-shadow: 0 1px 1px #000;
+    -moz-box-shadow: 0 1px 1px #000;
+    -webkit-box-shadow: 0 1px 1px #000;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    margin: 10px auto 0;
+    outline: none;
+    border: none;
 }
