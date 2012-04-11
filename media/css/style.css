@@ -67,6 +67,11 @@ p.four-o-four {
   color: #444;
 }
 
+a img {
+  outline: none;
+  border: none;
+}
+
 /*------------------------------header------------------------------*/    
 header {
   width: 900px;
@@ -87,6 +92,7 @@ h1 {
   float: right;
   margin: 70px 35px 70px 0;
   text-decoration: none;
+  font-weight: normal;
 }
 
 h1 a {
@@ -106,6 +112,7 @@ nav {
   position: relative;
   z-index: 1;
   border-radius: 3px;
+  -o-border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
@@ -126,6 +133,7 @@ ul.dropdown {
   width: 200px;
   background: #eee;
   box-shadow: 0px 0px 6px #777;
+  -ms-box-shadow: 0px 0px 6px #777;
   -moz-box-shadow: 0px 0px 6px #777;
   -webkit-box-shadow: 0px 0px 6px #777;
   z-index: 3;
@@ -198,9 +206,11 @@ a.imagenav#homebtn {
   -moz-border-radius-bottomleft: 3px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
   transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 
 a.imagenav#homebtn:hover {
@@ -219,9 +229,11 @@ a.imagenav#homebtn:hover {
   height: 46px;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
   line-height: 20px;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
   transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
   cursor: pointer;
   border: none;
   margin: 0;
@@ -241,22 +253,50 @@ a.imagenav#homebtn:hover {
   width: 260px;
   outline: none;
   box-shadow: 0 0 5px rgba(100, 100, 100, 1);
+  -ms-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   -moz-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   -webkit-box-shadow: 0 0 5px rgba(100, 100, 100, 1);
   cursor: text;
   background: #f5f5f5 url(../img/mag.png) no-repeat;
   color: #333;
-}​
-
-/*------------------------------loginform------------------------------*/
-input {
-  border: none;
-  font-size: 14px;
-  color: #333;
-  outline: none;
-  padding: 2px 8px 2px 30px;
 }
 
+#search input:-moz-placeholder {
+  color: #f5f5f5;
+  -moz-transition: all 0.5s;
+}
+#search input:hover:-moz-placeholder {
+  color: #008;
+}
+#search input:focus:-moz-placeholder {
+  color: #999;
+}
+#search input::-webkit-input-placeholder {
+  color: #f5f5f5;
+  transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+#search input:hover::-webkit-input-placeholder {
+  color: #008;
+}
+#search input:focus::-webkit-input-placeholder {
+  color: #999;
+}
+#search input::-ms-input-placeholder {
+  color: #f5f5f5;
+  -ms-transition: all 0.5s;
+}
+#search input:hover::-ms-input-placeholder {
+  color: #008;
+}
+#search input:focus::-ms-input-placeholder {
+  color: #999;
+}
+
+/*------------------------------loginform------------------------------*/
 #loginhome {
   float: right !important;
 }
@@ -341,9 +381,10 @@ div#password {
 }
 
 .wrapper:after {
-  -webkit-box-shadow: 0 0 15px #000;
-  -moz-box-shadow: 0 0 15px #000;
   box-shadow: 0 0 15px #000;
+  -ms-box-shadow: 0 0 15px #000;
+  -moz-box-shadow: 0 0 15px #000;
+  -webkit-box-shadow: 0 0 15px #000;
   bottom: -10px;
   height: 12px;
   width: 850px;
@@ -480,6 +521,7 @@ div#rooster {
   position: relative;
   float: left;
   box-shadow: 0 0 5px #777;
+  -ms-box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
   width: 800px;
@@ -615,6 +657,7 @@ ul.huiswerk {
   background: #fefefe;
   position: relative;
   box-shadow: 0 0 7px #777;
+  -ms-box-shadow: 0 0 7px #777;
   -moz-box-shadow: 0 0 7px #777;
   -webkit-box-shadow: 0 0 7px #777;
   z-index: 2;
@@ -640,6 +683,7 @@ ul.huiswerk:before {
 
 div.triangle {
   box-shadow: 0 0 7px #777;
+  -ms-box-shadow: 0 0 7px #777;
   -moz-box-shadow: 0 0 7px #777;
   -webkit-box-shadow: 0 0 7px #777;
   background-color: #fefefe;
@@ -704,18 +748,21 @@ div.note:before, div.note:after {
   top: 80%;
   max-width:300px;
   background: rgba(0, 0, 0, 0.7); 
-  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
-  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -ms-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
   -webkit-transform: rotate(-2deg);    
   -moz-transform: rotate(-2deg);   
   -o-transform: rotate(-2deg);
-    }
+}
 
 div.note:after {
-  -webkit-transform: rotate(2deg);
-  -moz-transform: rotate(2deg);
+  transform: rotate(2deg);
   -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
   right: 10px;
   left: auto;
 }
@@ -734,6 +781,7 @@ ul.belangrijk {
 
 div#komend {
   box-shadow: 0 0 5px #777;
+  -ms-box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
   padding: 1px 15px 15px;
@@ -867,8 +915,7 @@ span.menu {
 }
 
 input.course[type="submit"] {
-  width: 340px;
-  margin: 14px 230px;
+  margin: 14px auto;
 }
 input.courses[type="checkbox"] {
   margin: 14px 14px 0;
@@ -901,9 +948,10 @@ header#courseheader {
 }
 
 header#courseheader:after {
-  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
   box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  -ms-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 1);
   bottom: 0px;
   height: 12px;
   width: 876px;
@@ -941,10 +989,9 @@ input.course[type="checkbox"] {
 }
 
 a#question {
-  width: 90px !important;
-  margin: 20px 0 5px 300px !important;
-  box-shadow: 2px 2px 2px #000 !important;
+  margin: 20px 341px 20px 341px !important;
   text-decoration: none;
+  display: block;
 }
 
 /*------------------------------loginpage------------------------------*/
@@ -994,65 +1041,38 @@ input.text, #id_username, #id_password {
 
 input.text:focus, #id_username:focus, #id_password:focus {
   box-shadow: 0 0 10px #60c6ff;
+  -ms-box-shadow: 0 0 10px #60c6ff;
   -moz-box-shadow: 0 0 10px #60c6ff;
   -webkit-box-shadow: 0 0 10px #60c6ff;
   background: #fff;
 }
 
 input[type=submit], a#question {
-  padding: 8px 10px;
-  width: 100px;
+  padding: 8px 20px;
   cursor: pointer;
-  background-image:           linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(40,40,199) 17%, rgb(58,67,250) 100%);
-    background-image: -webkit-gradient(
-	    left bottom,
-	    linear,
-	    left top,
-	    color-stop(0.17, rgb(40,40,199)),
-	    color-stop(1.00, rgb(58,67,250))
-    );
+  background: #225ccc;
   font-size: 17px;
   color: #fff;
-  box-shadow: 1px 1px 1px #000;
-  border-radius: 3px;
+  box-shadow: 0 1px 1px #000;
+  -ms-box-shadow: 0 1px 1px #000;
+  -moz-box-shadow: 0 1px 1px #000;
+  -webkit-box-shadow: 0 1px 1px #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   margin: 10px auto 0;
   outline: none;
   border: none;
 }
 
-input.button:hover, input[type=submit]:hover, a#question:hover {
-  background-image:           linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(50,50,210) 17%, rgb(68,77,255) 100%);
-    background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.17, rgb(50,50,210)),
-	    color-stop(1.00, rgb(68,77,255))
-    );
+input.button:hover, input[type=submit]:hover, a#question:hover, input.button:focus, input[type=submit]:focus, a#question:focus {
+  background: #326cdc;
+
 }
 
 input.button:active, input[type=submit]:active, a#question:active {
-  box-shadow: 1px 1px 2px #fff, inset 1px 1px 2px #333;
-  background-image:           linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:      -o-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:     -ms-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image:    -moz-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(58,67,250) 17%, rgb(40,40,199) 100%);
-    background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.17, rgb(58,67,250)),
-	    color-stop(1.00, rgb(40,40,199))
-    );
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  background: #1a4fbf;
 }
 
 /*------------------------------contact------------------------------*/
@@ -1151,6 +1171,10 @@ span.morecontacts a {
   padding: 0 0 0 80px;
 }
 
+div.submit {
+  text-align: center;
+}
+
 #tabbrowser {
   overflow: hidden;
   width: 800px;
@@ -1162,7 +1186,7 @@ span.morecontacts a {
   margin: 10px 50px 0 0;
 }
 
-.tabnav {
+.tabnav:link, .tabnav:visited {
   float: left;
   border-bottom: 3px solid #fff;
   padding: 0 8px;
@@ -1213,8 +1237,7 @@ input[disabled=disabled] {
 }
 
 input.settings-submit {
-  width: 240px;
-  margin: 0 280px; 
+  margin: 0 auto; 
 }
 
 p.settings {
@@ -1256,14 +1279,8 @@ label.notifications {
   float: left;
 }
 
-input.notifications {
-  float: right;
-  margin: 15px 12px 0 12px;
-}
-
 input.settings-notifications {
-  width: 320px;
-  margin: 20px 0 20px 240px; 
+  margin: 20px auto;
 }
 
 ul#passwordlist li {
@@ -1282,6 +1299,7 @@ div#checkifsame {
   background: #fefefe;
   position: absolute;
   box-shadow: 0 0 5px #777;
+  -ms-box-shadow: 0 0 5px #777;
   -moz-box-shadow: 0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
   z-index: 2;
@@ -1307,6 +1325,7 @@ div#checkifsame {
   }
 div#triangleleft {
   box-shadow:         0 0 5px #777;
+  -ms-box-shadow:    0 0 5px #777;
   -moz-box-shadow:    0 0 5px #777;
   -webkit-box-shadow: 0 0 5px #777;
   background-color: #fefefe;
@@ -1330,6 +1349,7 @@ div#photopage img {
   height: 105px;
   border: 4px white solid;
   box-shadow: 0 0 1px #111;
+  -ms-box-shadow: 0 0 1px #111;
   -moz-box-shadow: 0 0 1px #111;
   -webkit-box-shadow: 0 0 2px #333;
   float: left;
