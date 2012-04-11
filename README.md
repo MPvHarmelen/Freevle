@@ -31,6 +31,8 @@ Installation
 
 * Python 2.7
 * Django 1.3+
+
+## Dependencies for Infoweb fetcher
 * Requests
 * BeautifulSoup 4
 
