@@ -1,16 +1,44 @@
 /* DASHBOARD */
 
-.dashboard .module table th {
-    width: 100%;
+h1.admintitle {
+    font-size: 40px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    margin: 50px 0 0 0;
+    color: #fff;
+    text-shadow: #FEFEFE 1px 1px 3px;
 }
 
-.dashboard .module table td {
-    white-space: nowrap;
+.dashboard #content {
+    width: 720px;
+    margin: 0 auto;
 }
 
-.dashboard .module table td a {
+ul#adminmenu-main {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+li.adminmenu-item {
+    list-style: none;
+    margin: 10px;
+    width: 220px;
+    height: 100px;
+    float: left;
+    background: #D95B43;
+    border-radius: 15px;
+}
+
+li.adminmenu-item a {
     display: block;
-    padding-right: .6em;
+    width: 220px;
+    height: 100px;
+    padding: 40px 0 0 0;
+    color: #FFF;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* RECENT ACTIONS MODULE */

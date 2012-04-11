@@ -58,13 +58,13 @@ $(document).ready(function(){
 
 //Speech bubbles
   $("div.uure,div.uuru").hover(function(event) {
-			if(event.target != $(this).children("ul.huiswerk")[0]) {
-				$(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
-				$(this).children("div.triangle").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
-			}
+      if(event.target != $(this).children("ul.huiswerk")[0]) {
+        $(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+        $(this).children("div.triangle").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+      }
     }, function(event) {
-			$(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
-			$(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+      $(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+      $(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
     });
 
   $('div.uure, div.uuru, div.uuri').each(function() {
@@ -89,12 +89,13 @@ $(document).ready(function(){
 //Inlogform
   $('#darken').hide();
   $('#loginhome').click(function() {
-      $('#darken').fadeIn('fast');
-      document.getElementById('id_username').focus();
-    });
+    $('#darken').fadeIn('fast');
+    $('#id_username').focus();
+  });
   $('#closelogin').click(function() {
-      $('#darken').fadeOut('fast');
-    });
+    $('#darken').fadeOut('fast');
+    $('#id_username, #id_password, #id_email').blur();
+  });
   centerInlogForm();
 
   $(window).resize(centerInlogForm);
@@ -120,8 +121,9 @@ $(document).ready(function(){
       $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
 
-  if(document.getElementById('focus')) {
-    document.getElementById('focus').focus();
+  if($('#focus')) {
+    $('#focus').focus();
+    focusstatus = true;
   }
 
 
@@ -174,13 +176,35 @@ $(document).ready(function(){
     $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
   });
 
+//Focusstatus
   $('input, textarea').focus(function() {
     focusstatus = true;
-    console.log(focusstatus);
-  });
-  $('input, textarea').focusout(function() {
+  }).focusout(function() {
     focusstatus = false;
-    console.log(focusstatus);
+  });
+
+//Live passwordchecker
+  $('#confirm-password').keyup(function() {
+    if($('#new-password').val() != $('#confirm-password').val()) { 
+      if($('#checkifsame').is(":hidden")) {
+        $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+        $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+      }
+      $('#checkifsame').text('The passwords don\'t match.');
+      $('#confirm-password').css('background-image', 'url(/media/img/redcross.png)');
+    } else {
+      $('#confirm-password').css('background-image', 'url(/media/img/check.png)');
+      $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+      $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+    }
+  }).focus(function() {
+    if($('#confirm-password').val()) {
+      $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+      $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+    }
+  }).focusout(function() {
+    $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+    $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
   });
 });
 
@@ -203,9 +227,11 @@ $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 27) {//Esc
     $('#closelogin').click();
   }
-  if (e.keyCode == 76 && focusstatus) {//L
+  if (e.keyCode == 76 && !focusstatus) {//L
     $('#loginhome').click();
-    alert(focusstatus);
+  }
+  if (e.keyCode == 83 && !focusstatus) {//S
+    $('#search-box').focus();
   }
 });
 
