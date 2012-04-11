@@ -546,14 +546,12 @@ div.breadcrumbs {
 /* OBJECT TOOLS */
 
 .object-tools {
-  font-size: 10px;
-  font-weight: bold;
-  font-family: Arial,Helvetica,sans-serif;
-  padding-left: 0;
+  font-size: 11px;
   float: right;
   position: relative;
-  margin-top: -2.4em;
-  margin-bottom: -2em;
+  font-family: Arial,Helvetica,sans-serif;
+  padding: 5px;
+  margin-top: -34px;
 }
 
 .form-row .object-tools {
@@ -567,45 +565,25 @@ div.breadcrumbs {
 .object-tools li {
   display: block;
   float: left;
-  background: url(../img/admin/tool-left.gif) 0 0 no-repeat;
-  padding: 0 0 0 8px;
-  margin-left: 2px;
-  height: 16px;
-}
-
-.object-tools li:hover {
-  background: url(../img/admin/tool-left_over.gif) 0 0 no-repeat;
+  margin: 0 0 0 5px;
 }
 
 .object-tools a:link, .object-tools a:visited {
   display: block;
   float: left;
-  color: white;
-  padding: .1em 14px .1em 8px;
-  height: 14px;
-  background: #999 url(../img/admin/tool-right.gif) 100% 0 no-repeat;
-}
-
-.object-tools a:hover, .object-tools li:hover a {
-  background: #5b80b2 url(../img/admin/tool-right_over.gif) 100% 0 no-repeat;
-}
-
-.object-tools a.viewsitelink, .object-tools a.golink {
-  background: #999 url(../img/admin/tooltag-arrowright.gif) top right no-repeat;
-  padding-right: 28px;
-}
-
-.object-tools a.viewsitelink:hover, .object-tools a.golink:hover {
-  background: #5b80b2 url(../img/admin/tooltag-arrowright_over.gif) top right no-repeat;
-}
-
-.object-tools a.addlink {
-  background: #999 url(../img/admin/tooltag-add.gif) top right no-repeat;
-  padding-right: 28px;
-}
-
-.object-tools a.addlink:hover {
-  background: #5b80b2 url(../img/admin/tooltag-add_over.gif) top right no-repeat;
+  padding: 4px 15px;
+  cursor: pointer;
+  background: #225ccc;
+  color: #fff;
+  box-shadow: 0 1px 1px #000;
+  -ms-box-shadow: 0 1px 1px #000;
+  -moz-box-shadow: 0 1px 1px #000;
+  -webkit-box-shadow: 0 1px 1px #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  outline: none;
+  border: none;
 }
 
 /* OBJECT HISTORY */
