@@ -56,7 +56,7 @@ def debug_data(sender, **kwargs):
     if not kwargs['interactive']:
         return
     else:
-        cont = raw_input('Do you want to generate random users (Y/n): ')
+        cont = raw_input('Do you want to generate random users (Yes/no): ')
         if not cont.lower() in ('yes', 'y', '',):
             return
 
@@ -65,7 +65,7 @@ def debug_data(sender, **kwargs):
            + (': ' if verbosity > 1 else '.'))
 
     if verbosity == 1:
-        prog = ProgressBar(0, 20, 77, mode='fixed')
+        prog = ProgressBar(0, 20, 72, mode='fixed')
         print prog, '\r',
 
     teachers_group = models.Group.objects.get(name='teachers') 

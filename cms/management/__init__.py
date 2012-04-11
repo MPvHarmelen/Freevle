@@ -23,12 +23,12 @@ def debug_data(sender, **kwargs):
     if not kwargs['interactive']:
         return
     else:
-        cont = raw_input('Do you want to generate random pages (Y/n): ')
+        cont = raw_input('Do you want to generate random pages (Yes/no): ')
         if not cont.lower() in ('yes', 'y', '',):
             return
 
     # Create 500 news messages
-    print ('Writing 3 insightful pages and subpages (this may take a while)'
+    print ('Writing 3 prolific pages and spellbinding subpages (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
@@ -38,7 +38,7 @@ def debug_data(sender, **kwargs):
     if verbosity > 1:
         print ' Writing pages'
     elif verbosity == 1:
-        prog = ProgressBar(0, 6, 77, mode='fixed')
+        prog = ProgressBar(0, 6, 72, mode='fixed')
         print prog, '\r',
     for i in xrange(3):
         title = shakespeare.generate_markov_text(1)
