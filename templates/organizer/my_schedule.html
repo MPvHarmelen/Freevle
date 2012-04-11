@@ -77,9 +77,16 @@
           {% endfor %}
 
           {% ifequal lesson.day_of_week "Fri" %}
+            <script type="text/javascript">
+              var vrijdag = true;
+            </script>
             <div id="weekend">
               <span>Weekend</span>
             </div>
+          {% else %}
+            <script type="text/javascript">
+              var vrijdag = false;
+            </script>
           {% endifequal %}
         </div>
 
