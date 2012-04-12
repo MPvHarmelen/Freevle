@@ -531,12 +531,12 @@ div#rooster {
 }
 
 div.dag {
-  width: 250px;
+  width: 253px;
   float: left;
 }
 
 div#nummers {
-  width: 39px;
+  width: 38px;
   float: left;
   margin-top: 57px;
   color: #333;
@@ -619,7 +619,7 @@ div.lokaal {
 }
 
 #weekend {
-  width: 79px;
+  width: 80px;
   border-left: #bbb 1px solid;
   float: left;
   background: #efefef;

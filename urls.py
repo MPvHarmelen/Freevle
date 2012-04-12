@@ -34,6 +34,7 @@ urlpatterns += patterns('',
     url(r'^settings/notifications/', TemplateView.as_view(template_name='settings/notifications.html')),
     url(r'^photos/', TemplateView.as_view(template_name='photos/index.html')),
     url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
+    url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
