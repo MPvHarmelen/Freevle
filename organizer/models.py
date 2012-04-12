@@ -183,13 +183,6 @@ class Lesson(models.Model):
                                  self.period)
 
 class HomeworkType(models.Model):
-    COLOR_CHOICES = (
-        ('#FF5860',_('red')),
-        ('#70b6f2',_('blue')),
-        ('#f6e44b',_('yellow')),
-        ('#9ffe49',_('green')),
-     )
-
     def validate_hex(value):
         hex_error = _('This is an invalid color code. It must be a html hex'
                       'color code e.g. #000000')
@@ -202,7 +195,7 @@ class HomeworkType(models.Model):
 
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=8)
-    color = models.CharField(max_length=7, choices=COLOR_CHOICES,
+    color = models.CharField(max_length=7,
                              validators=[validate_hex])
     weight = models.IntegerField()
 
