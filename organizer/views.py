@@ -150,9 +150,16 @@ class LessonListMixin(object):
     empty_lesson_tekst = '-'
 
     def check_homework(self, lesson_set, date):
+        key = lambda a: a.homework_type.weight
         for lesson in lesson_set:
-          lesson.homework = [homework for homework in lesson.homework_set if
-                             homework.due_date == date]
+            lesson.homework = sorted(
+                [homework for homework in lesson.homework_set if
+                 homework.due_date == date],
+                 key=key,
+                 # Higher weights is more important & more important homework
+                 # should go first, thus:
+                 reverse=True
+            )
         return lesson_set
 
     def get_min_periods(self, date):
@@ -268,7 +275,7 @@ class LessonListMixin(object):
 
         return lesson_list
 
-class UserView(View, DateMixin, CancellationMixin, LessonListMixin):
+class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
     """
     Context:
     > announcements = queryset
