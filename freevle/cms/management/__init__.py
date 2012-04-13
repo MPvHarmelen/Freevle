@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.utils import IntegrityError
 
-from schoolr.cms import models
-from schoolr.settings import DEBUG
-from schoolr.custom.debug.markov import Markov
-from schoolr.custom.progressbar import ProgressBar
+from freevle.cms import models
+from freevle.settings import DEBUG
+from freevle.custom.debug.markov import Markov
+from freevle.custom.progressbar import ProgressBar
 
 THIS_YEAR = datetime.today().year
 NOW = datetime.now()
@@ -28,7 +28,7 @@ def debug_data(sender, **kwargs):
             return
 
     # Create 500 news messages
-    print ('Writing 3 insightful pages and subpages (this may take a while)'
+    print ('Writing 3 prolific pages and spellbinding subpages (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
@@ -38,7 +38,7 @@ def debug_data(sender, **kwargs):
     if verbosity > 1:
         print ' Writing pages'
     elif verbosity == 1:
-        prog = ProgressBar(0, 6, 77, mode='fixed')
+        prog = ProgressBar(0, 6, 72, mode='fixed')
         print prog, '\r',
     for i in xrange(3):
         title = shakespeare.generate_markov_text(1)
