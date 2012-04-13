@@ -17,11 +17,11 @@ if settings.STATIC:
 
 urlpatterns += patterns('',
     # Example:
-    # (r'^foo/', include('schoolr.foo.urls')),
+    # (r'^foo/', include('freevle.foo.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^news/', include('schoolr.news.urls')),
-    url(r'^letters/', include('schoolr.letters.urls')),
-    url(r'^galleries/', include('schoolr.galleries.urls')),
+    url(r'^news/', include('freevle.news.urls')),
+    url(r'^letters/', include('freevle.letters.urls')),
+    url(r'^galleries/', include('freevle.galleries.urls')),
     # TEMP for Floris' and Pim's brilliant work.
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
     url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
@@ -47,5 +47,5 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     # If no url could be found, include cms:
-    url('', include('schoolr.cms.urls'))
+    url('', include('freevle.cms.urls'))
 )
