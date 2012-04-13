@@ -29,7 +29,11 @@
                 <input class="text" type="text" id="id_username" name="username" placeholder="{% trans "Username" %}" /><br>
                 <input class="text" type="password" id="id_password" name="password" placeholder="{% trans "Password" %}" /><br>
                 <input class="button" type="submit" value="{% trans "Login" %}" name="submit" />
+                {% ifequal request.get_full_path '/user/logout/' %}
+                <input type="hidden" name="next" value="/">
+                {% else %}
                 <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                {% endifequal %}
               </form>
               <a id="focusonpassword" href="#">{% blocktrans %}Forgotten your username or password?{% endblocktrans %}</a>
             </div>
@@ -39,9 +43,13 @@
               <form method="post" action="/user/lostandfound/">
                 {% csrf_token %}
                 <p>{% blocktrans %}Forgotten your password or username? Enter your email and your username and a new password will be sent to you.{% endblocktrans %}</p>
-                <input class="text" type="email" id="id_email" name="email" placeholder="{% trans "Email" %}" /><br>
+                <input class="text" type="email" id="id_email" name="email" placeholder="{% trans 'Email' %}" /><br>
                 <input class="button" type="submit" value="{% trans "Send" %}" name="submit" />
+                {% ifequal request.get_full_path '/user/logout/' %}
+                <input type="hidden" name="next" value="/">
+                {% else %}
                 <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                {% endifequal %}
               </form>
               <a id="focusonlogin" href="#">{% blocktrans %}Just want to login?{% endblocktrans %}</a><br>
             </div>
@@ -95,7 +103,7 @@
 
           {% if user.is_authenticated %}
               <li class="navmenu liright">
-                <a class="menuitem" href="/">{{ user.first_name}} {{ user.last_name}}</a>
+                <a class="menuitem" href="/">{{ user.userprofile.get_display_name }}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>
                   <li><a class="submenu-item" href="/user/settings/">{% trans "Settings" %}</a></li>

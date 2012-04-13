@@ -41,7 +41,9 @@
           </li>
         </ul> 
         
-        <input type="submit" name="Submit" class="settings-submit" value="{% trans "This isn't true!" %}" />
+        <div class="submit">
+          <input type="submit" name="Submit" class="settings-submit" value="{% trans "This isn't true!" %}" />
+        </div>
             
       </div>
       
@@ -67,12 +69,12 @@
             </li>
           </ul>
             
+          <div class="clear"></div>
+        
           <div class="submit"> 
             <input type="submit" name="Submit" class="settings-submit" value="{% trans "Update my info!" %}" />
           </div>
           
-          <div class="clear"></div>
-        
         </form>
       </div>
       
@@ -96,11 +98,11 @@
             </li>
           </ul>
               
+          <div class="clear"></div>
+
           <div class="submit"> 
             <input type="submit" name="Submit" class="settings-submit" value="{% trans "Update my password!" %}" />
           </div>
-          
-          <div class="clear"></div>
         </form>
       </div>
       
@@ -118,11 +120,12 @@
             </li>
           </ul>
             
+          <div class="clear"></div>    
+
           <div class="submit"> 
             <input type="submit" name="Submit" class="settings-notifications" value="{% trans "Update my notifications!" %}" />
           </div>
       
-          <div class="clear"></div>    
         </form>
       </div>
       
@@ -275,11 +278,14 @@
             </li>            
           </ul>
        
-          <input type="submit" name="Submit" class="course" value="Save my menu" />
+          <div class="clear"></div>
+
+          <div class="submit">
+            <input type="submit" name="Submit" class="course" value="Save my menu" />
+          </div>
       
         </form>
       </div>
-      <div class="clear"></div> 
     </div>
   </div>
 
