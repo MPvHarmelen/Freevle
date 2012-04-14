@@ -17,7 +17,7 @@ DATABASES = {
 }
 
 ADMINS = (
-    ('Pim', 'Pim@freevle.org'),
+    ('Yourname', 'Your.email@domain.com'),
 )
 
 # The URL to this instance of CyGy. Just keep it at this for testing.
