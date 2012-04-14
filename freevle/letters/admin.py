@@ -1,5 +1,5 @@
 from django.contrib import admin
-from schoolr.letters.models import Letter
+from freevle.letters.models import Letter
 
 class LetterAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}

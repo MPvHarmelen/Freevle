@@ -1,10 +1,14 @@
 # Database settings. If you have no clue what this means, keep it at this.
-DATABASE_ENGINE = 'sqlite3'   # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'schoolr.sqlite' # Or path to database file if using sqlite3.
-DATABASE_USER = ''            # Not used with sqlite3.
-DATABASE_PASSWORD = ''        # Not used with sqlite3.
-DATABASE_HOST = ''            # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''            # Set to empty string for default. Not used with sqlite3.
+DATABASES = {
+    'default': {  
+        'ENGINE': 'django.db.backends.', # Append 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                      # Database name or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 ADMINS = (
     ('Your Name', 'your.email@domain.com'),
@@ -15,15 +19,15 @@ URL_ROOT = 'localhost:8000/'
 
 # The absolute path to the CyGy directory on your system.
 # We do not officially support Windows, but you can try it...
-ROOT_DIR = 'c:/schoolr/'
+ROOT_DIR = '/absolute/path/to/freevle/'
 
 # The apps you want installed.
 INSTALLED_APPS = (
-    'schoolr.news',
-    'schoolr.cms',
-    'schoolr.letters',
-    'schoolr.organizer',
-    'schoolr.galleries',
+    'freevle.news',
+    'freevle.cms',
+    'freevle.letters',
+    'freevle.organizer',
+    'freevle.galleries',
 )
 
 # Make this unique, and don't share it with anybody.

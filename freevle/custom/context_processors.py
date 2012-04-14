@@ -1,3 +1,3 @@
 def cms(request):
-	from schoolr.cms.models import Page
+	from freevle.cms.models import Page
 	return {'pages':Page.objects.all()}
