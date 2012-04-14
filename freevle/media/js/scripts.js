@@ -121,7 +121,7 @@ $(document).ready(function(){
       $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
 
-  if($('#focus')) {
+  if($('#focus').length != 0) {
     $('#focus').focus();
     focusstatus = true;
   }
@@ -209,29 +209,32 @@ $(document).ready(function(){
 });
 
 //Ctrl+
-$.ctrl = function(key, callback, args) {
-    $(document).keydown(function(e) {
-        if(!args) args=[];
-        if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
-            callback.apply(this, args);
-            return false;
-        }
-    });
-};
-$.ctrl('S', function() {
-  $('.course').click();
-});
+//$.ctrl = function(key, callback, args) {
+//    $(document).keydown(function(e) {
+//        if(!args) args=[];
+//        if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
+//            callback.apply(this, args);
+//            return false;
+//        }
+//    });
+//};
+//$.ctrl('S', function() {
+//  $('.course').click();
+//});
 
 //Other keyboardfunctions
 $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 27) {//Esc
     $('#closelogin').click();
+    $('input[type="text"], input[type="password"]').blur();
   }
   if (e.keyCode == 76 && !focusstatus) {//L
     $('#loginhome').click();
+    console.log('L is pressed');
   }
   if (e.keyCode == 83 && !focusstatus) {//S
     $('#search-box').focus();
+    console.log('S is pressed');
   }
 });
 
