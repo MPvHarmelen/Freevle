@@ -5,8 +5,8 @@ from django.db.models.signals import post_syncdb
 from django.contrib.auth import models
 from django.db.utils import IntegrityError
 
-from schoolr.settings import DEBUG
-from schoolr.custom.progressbar import ProgressBar
+from freevle.settings import DEBUG
+from freevle.custom.progressbar import ProgressBar
 
 def create_groups(sender, **kwargs):
     models.Group(name='teachers').save()
@@ -65,7 +65,7 @@ def debug_data(sender, **kwargs):
            + (': ' if verbosity > 1 else '.'))
 
     if verbosity == 1:
-        prog = ProgressBar(0, 20, 77, mode='fixed')
+        prog = ProgressBar(0, 20, 72, mode='fixed')
         print prog, '\r',
 
     teachers_group = models.Group.objects.get(name='teachers') 
@@ -83,7 +83,7 @@ def debug_data(sender, **kwargs):
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity == 1:
-        prog = ProgressBar(0, 100, 77, mode='fixed')
+        prog = ProgressBar(0, 100, 72, mode='fixed')
         print prog, '\r',
 
     students_group = models.Group.objects.get(name='students') 

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from schoolr.organizer.models import Topic, Course, Lesson, HomeworkType, Homework
-from schoolr.organizer.models import PeriodMeta
+from freevle.organizer.models import Topic, Course, Lesson, HomeworkType, Homework
+from freevle.organizer.models import PeriodMeta
 
 class PeriodMetaAdmin(admin.ModelAdmin):
     list_display = ('start_date','end_date','day_of_week')
