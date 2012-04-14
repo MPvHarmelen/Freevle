@@ -105,8 +105,9 @@
               <li class="navmenu liright">
                 <a class="menuitem" href="/">{{ user.userprofile.get_display_name }}</a>
                 <ul class="dropdown" id="rightdrop">
+                  <li><a class="submenu-item" href="/rooster/">{% trans "Organizer" %}</a></li>
                   <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>
-                  <li><a class="submenu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
+                  <li><a class="submenu-item" href="/settings/">{% trans "Settings" %}</a></li>
                   {% if user.is_staff %}
                   <li><a class="submenu-item" href="/admin/">{% trans "Admin" %}</a></li>
                   {% endif %}
