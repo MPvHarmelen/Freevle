@@ -71,4 +71,3 @@ a *real* HTTP server, like [lighttpd](http://www.lighttpd.net/) or
 [Apache](http://httpd.apache.org/) or any other server that supports FastCGI. I
 recommend reading the Django docs on
 [this subject](https://docs.djangoproject.com/en/dev/howto/deployment/fastcgi/)
-
