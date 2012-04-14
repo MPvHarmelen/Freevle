@@ -1,12 +1,12 @@
-Schoolr Software for Schools
+Freevle Software for Schools
 =========================
 
-What is Schoolr
+What is Freevle
 ------------
 
-Schoolr is a Virtual Learning Environment (VLE). Now, there's some pretty good
-examples of those out there, but Schoolr is different. We wanted to integrate
-every aspect of a school into Schoolr: the website for non-students, parents or
+Freevle is a Virtual Learning Environment (VLE). Now, there's some pretty good
+examples of those out there, but Freevle is different. We wanted to integrate
+every aspect of a school into Freevle: the website for non-students, parents or
 teachers; the schedules for teachers, students, classes and classrooms; the
 environment for putting assignments online as well as ways to learn or study on
 the web and other tools, like a students-only forum and a project
@@ -34,7 +34,7 @@ Installation
 
 ### Development
 
-To install the Schoolr software on a development server you pretty much just have
+To install the Freevle software on a development server you pretty much just have
 to set up Python, Django and edit the `personalsettings.py.ORG` accordingly.
 You'll want to copy it and rename the copy to `personalsettings.py`. After that 
 you have to edit the following options:
@@ -60,7 +60,7 @@ is quite important.
 
 ### Production
 
-To set up Schoolr for a production server (like for your school), you're going to
+To set up Freevle for a production server (like for your school), you're going to
 have to edit all the settings in the `personalsettings.py` file. Change your
 database settings and set `DEBUG` and `STATIC` to `False`. Also mash some keys
 into the `SECRET_KEY` option. Now run the `syncdb` command.

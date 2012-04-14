@@ -4,7 +4,7 @@ from datetime import datetime
 from django.views.generic.detail import DetailView
 from django.shortcuts import render_to_response
 
-from schoolr.news.models import NewsMessage
+from freevle.news.models import NewsMessage
 
 class PageDetailView(DetailView):
     def get_queryset(self):

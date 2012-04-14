@@ -1,6 +1,6 @@
 from personalsettings import *
 
-# Django settings for schoolr project.
+# Django settings for Freevle project.
 TEMPLATE_DEBUG = DEBUG
 
 MANAGERS = ADMINS
@@ -61,10 +61,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
     'django.core.context_processors.csrf',
-    'schoolr.custom.context_processors.cms',
+    'freevle.custom.context_processors.cms',
 )
 
-ROOT_URLCONF = 'schoolr.urls'
+ROOT_URLCONF = 'freevle.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -76,7 +76,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # These need to be first in order for debug data generation to work.
     'django.contrib.auth',
-    'schoolr.users',
+    'freevle.users',
 
     ) + INSTALLED_APPS + (
 

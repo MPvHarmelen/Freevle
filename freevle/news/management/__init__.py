@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.utils import IntegrityError
 
-from schoolr.news import models
-from schoolr.settings import DEBUG
-from schoolr.custom.debug.markov import Markov
-from schoolr.custom.progressbar import ProgressBar
+from freevle.news import models
+from freevle.settings import DEBUG
+from freevle.custom.debug.markov import Markov
+from freevle.custom.progressbar import ProgressBar
 
 THIS_YEAR = datetime.today().year
 NOW = datetime.now()
@@ -23,12 +23,12 @@ def debug_data(sender, **kwargs):
     if not kwargs['interactive']:
         return
     else:
-        cont = raw_input('Do you want to generate 150 random news messages (Y/n): ')
+        cont = raw_input('Do you want to generate 150 random news articles (Y/n): ')
         if not cont.lower() in ('yes', 'y', '',):
             return
 
     # Create 150 news messages
-    print ('Writing 150 brilliant news messages (this may take a while)'
+    print ('Writing 150 amazing articles (this may take a while)'
             + (': ' if verbosity > 1 else '.'))
 
     if verbosity > 1:
@@ -38,7 +38,7 @@ def debug_data(sender, **kwargs):
     if verbosity > 1:
         print ' Writing news messages'
     elif verbosity == 1:
-        prog = ProgressBar(0, 150, 77, mode='fixed')
+        prog = ProgressBar(0, 150, 72, mode='fixed')
         print prog, '\r',
 
     for i in xrange(150):
