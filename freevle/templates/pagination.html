@@ -1,0 +1,32 @@
+{% if is_paginated %}
+  <div class="pagination">
+  {% if page_obj.number != 1 %}
+    <a class="pagenav" href="{{ request.path }}?page=1">1</a>
+  {% endif %}
+  {% if page_obj.number == 4 %}
+    <a class="pagenav" href="{{ request.path }}?page=2">2</a>
+  {% endif %}
+  {% if page_obj.number > 4 %}
+    <p class="morepages">...</p>
+  {% endif %}
+  {% if page_obj.number > 2 %}
+    <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number|add:'-1' }}">{{ page_obj.number|add:"-1" }}</a>
+  {% endif %}
+
+    <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+
+  {% if paginator.num_pages > page_obj.number|add:"1" %}
+    <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number|add:'1' }}">{{ page_obj.number|add:"1" }}</a>
+  {% endif %}
+  {% if paginator.num_pages > page_obj.number|add:"3" %}
+    <p class="morepages">...</p>
+  {% endif %}
+  {% if paginator.num_pages == page_obj.number|add:"3" %}
+    <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number|add:'2' }}">{{ page_obj.number|add:"2" }}</a>
+  {% endif %}
+  {% if paginator.num_pages != page_obj.number %}
+    <a class="pagenav" href="{{ request.path }}?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+  {% endif %}
+  </div>
+  <div class="clear"></div>
+{% endif %}
