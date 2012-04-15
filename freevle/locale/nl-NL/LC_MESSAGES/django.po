@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 18:08+0200\n"
+"POT-Creation-Date: 2012-04-15 18:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,117 +16,118 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\cms\models.py:12
-msgid ""
-"URL-friendly version of the title,                    can be left alone most "
-"of the time."
+#: .\cms\models.py:12 .\news\models.py:10
+msgid "URL-friendly version of the title, can be left alone most of the time."
 msgstr ""
+"URL-vriendlijke versie van de titel, kan meestal met rust gelaten worden."
 
 #: .\cms\models.py:15
 msgid "Content of the page."
-msgstr ""
+msgstr "Inhoud van de pagina."
 
 #: .\cms\models.py:20
 msgid "There's already a page with this parent and slug"
-msgstr ""
+msgstr "Er is al een pagina met dezelfde ouder en slug"
 
 #: .\custom\fields.py:9
 msgid "Hexadecimal color field (e.g. #000000)"
-msgstr ""
+msgstr "Hexidecimaal kleuren veld (bijv. #000000)"
 
 #: .\custom\fields.py:12
 msgid ""
 "This is an invalid color code. It must be a html hex                       "
 "color code e.g. #000000"
 msgstr ""
+"Dit is geen juiste kleurcode. Het moet een een html hex kleucode zijn (zoals "
+"#000000)"
 
 #: .\letters\models.py:11
 msgid "This should be a pdf file"
-msgstr ""
-
-#: .\news\models.py:10
-msgid "URL-friendly version of the title, can be left alone most of the time."
-msgstr ""
+msgstr "Dit moet een pdf bestand zijn"
 
 #: .\news\models.py:13
 msgid "The news message."
-msgstr ""
+msgstr "Het nieuwsbericht"
 
 #: .\organizer\models.py:38
 msgid "Sunday"
-msgstr ""
+msgstr "zondag"
 
 #: .\organizer\models.py:39
 msgid "Monday"
-msgstr ""
+msgstr "maandag"
 
 #: .\organizer\models.py:40
 msgid "Tuesday"
-msgstr ""
+msgstr "dinsdag"
 
 #: .\organizer\models.py:41
 msgid "Wednesday"
-msgstr ""
+msgstr "woensdag"
 
 #: .\organizer\models.py:42
 msgid "Thursday"
-msgstr ""
+msgstr "donderdag"
 
 #: .\organizer\models.py:43
 msgid "Friday"
-msgstr ""
+msgstr "vrijdag"
 
 #: .\organizer\models.py:44
 msgid "Saturday"
-msgstr ""
+msgstr "zaterdag"
 
 #: .\templates\404.html.py:7 .\templates\admin\404.html.py:6
 msgid "Page not found"
-msgstr ""
+msgstr "Pagina niet gevonden"
 
 #: .\templates\404.html.py:8
 msgid "We're sorry, but there's really nothing to find here."
-msgstr ""
+msgstr "Het spijt ons, maar er is hier echt niets te vinden."
 
-#: .\templates\404.html.py:9
+#: .\templates\404.html.py:9 .\templates\admin\404.html.py:10
 msgid ""
 "Try going back to <a href=\"/\">Home</a> or use the search function in the "
 "upperright corner to find what you were looking for."
 msgstr ""
+"Probeer terug naar <a href=\"/\">Thuis</a> te gaan, of gebruik de zoek "
+"functie in de rechter bovenhoek om te vinden waar u naar op zoek was."
 
 #: .\templates\base.html.py:6
 msgid "Cygnus Template"
-msgstr ""
+msgstr "Cygnus Sjabloon"
 
 #: .\templates\base.html.py:26 .\templates\base.html.py:31
 #: .\templates\base.html.py:128 .\templates\old header.html.py:48
 #: .\templates\user\login.html.py:16
 msgid "Login"
-msgstr ""
+msgstr "Inloggen"
 
 #: .\templates\base.html.py:29 .\templates\user\login.html.py:14
 msgid "Username"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 #: .\templates\base.html.py:30
 #: .\templates\admin\auth\user\change_password.html.py:36
 #: .\templates\user\login.html.py:15
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #: .\templates\base.html.py:38 .\templates\user\login.html.py:19
 msgid "Forgotten your username or password?"
-msgstr ""
+msgstr "Wachtwoord of gebruikersnaam vergeten?"
 
 #: .\templates\base.html.py:42 .\templates\user\lostandfound.html.py:6
 msgid "Lost & found"
-msgstr ""
+msgstr "Gevonden voorwerpen"
 
 #: .\templates\base.html.py:45 .\templates\user\lostandfound.html.py:14
 msgid ""
 "Forgotten your password or username? Enter your email and your username and "
 "a new password will be sent to you."
 msgstr ""
+"Wachtwoord of gebruikersnaam vergeten? Voer hier uw email adres in en uw "
+"gerbuikersnaam en wachtwoord zullen u toegestuurd worden."
 
 #: .\templates\base.html.py:46 .\templates\user\lostandfound.html.py:15
 msgid "Email"
@@ -134,21 +135,22 @@ msgstr ""
 
 #: .\templates\base.html.py:47 .\templates\user\lostandfound.html.py:16
 msgid "Send"
-msgstr ""
+msgstr "Verstuur"
 
 #: .\templates\base.html.py:54
 msgid "Just want to login?"
-msgstr ""
+msgstr "Wilt u alleen maar inloggen?"
 
 #: .\templates\base.html.py:95 .\templates\base.html.py:194
 msgid "News"
-msgstr ""
+msgstr "Nieuws"
 
 #: .\templates\base.html.py:96 .\templates\base.html.py:195
 #: .\templates\base.html.py:201 .\templates\contact\index.html.py:7
 msgid "Contact"
 msgstr ""
 
+# To do
 #: .\templates\base.html.py:108
 msgid "Organizer"
 msgstr ""
@@ -156,26 +158,28 @@ msgstr ""
 #: .\templates\base.html.py:109 .\templates\old header.html.py:30
 #: .\templates\letters\letter_archive.html.py:6
 msgid "Letters"
-msgstr ""
+msgstr "Brieven"
 
 #: .\templates\base.html.py:110 .\templates\old header.html.py:31
 #: .\templates\settings\index.html.py:7
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: .\templates\base.html.py:112 .\templates\old header.html.py:33
 msgid "Admin"
-msgstr ""
+msgstr "Beheer"
 
 #: .\templates\base.html.py:114 .\templates\old header.html.py:35
 #: .\templates\admin\base.html.py:49
 msgid "Log out"
-msgstr ""
+msgstr "Uitloggen"
 
+# To do
 #: .\templates\base.html.py:118 .\templates\old header.html.py:38
 msgid "Courses"
 msgstr ""
 
+# To do
 #: .\templates\base.html.py:178
 msgid "Sitemap"
 msgstr ""
@@ -190,30 +194,24 @@ msgstr ""
 #: .\templates\admin\object_history.html.py:6
 #: .\templates\admin\auth\user\change_password.html.py:12
 msgid "Home"
-msgstr ""
+msgstr "Thuis"
 
-#: .\templates\index.html.py:8
+#: .\templates\index.html.py:8 .\templates\admin\base.html.py:29
 msgid "Welcome"
-msgstr ""
+msgstr "Welkom"
 
 #: .\templates\index.html.py:15
 msgid "Photos"
-msgstr ""
+msgstr "Foto's"
 
 #: .\templates\printrooster.html.py:370
 msgid "Search..."
-msgstr ""
+msgstr "Zoeken..."
 
 #: .\templates\admin\404.html.py:9
 msgid ""
 "We're terribilly sorry, but the url you're trying to surf to does not exsist."
-msgstr ""
-
-#: .\templates\admin\404.html.py:10
-msgid ""
-"Try going back to <a href=\"/\">Home</a> or use the search function in the "
-"upperright corner to find what you were searching for."
-msgstr ""
+msgstr "Het spijt ons zeer, maar de url waar u naar op zoek was, bestaat niet."
 
 #: .\templates\admin\500.html.py:4
 msgid "Server error"
@@ -232,15 +230,21 @@ msgid ""
 "There's been an error. It's been reported to the site administrators via e-"
 "mail and should be fixed shortly. Thanks for your patience."
 msgstr ""
+"Er heeft zich een error voorgedaan. De sitebeheerders zijn op de hoogte "
+"gesteld via e-mail en zouden het snel moeten repareren. Bedankt voor uw "
+"geduld."
 
+# To do
 #: .\templates\admin\actions.html.py:4
 msgid "Run the selected action"
 msgstr ""
 
+# To do
 #: .\templates\admin\actions.html.py:4
 msgid "Go"
 msgstr ""
 
+# To do
 #: .\templates\admin\actions.html.py:11
 msgid "Click here to select the objects across all pages"
 msgstr ""
@@ -248,8 +252,9 @@ msgstr ""
 #: .\templates\admin\actions.html.py:11
 #, python-format
 msgid "Select all %(total_count)s %(module_name)s"
-msgstr ""
+msgstr "Selecteer alle %(total_count)s %(module_name)s"
 
+# To do
 #: .\templates\admin\actions.html.py:13
 msgid "Clear selection"
 msgstr ""
@@ -259,51 +264,47 @@ msgstr ""
 msgid "%(name)s"
 msgstr ""
 
-#: .\templates\admin\base.html.py:29
-msgid "Welcome,"
-msgstr ""
-
 #: .\templates\admin\base.html.py:34
 msgid "Documentation"
-msgstr ""
+msgstr "Documentatie"
 
 #: .\templates\admin\base.html.py:42
 #: .\templates\admin\auth\user\change_password.html.py:16
 #: .\templates\admin\auth\user\change_password.html.py:49
 msgid "Change password"
-msgstr ""
+msgstr "Wachtwoord veranderen"
 
 #: .\templates\admin\base_site.html.py:4
 msgid "Cygy Dashboard"
-msgstr ""
+msgstr "Cygy Dashbord"
 
 #: .\templates\admin\change_form.html.py:22
 msgid "Add"
-msgstr ""
+msgstr "Voeg toe"
 
 #: .\templates\admin\change_form.html.py:31
 #: .\templates\admin\object_history.html.py:10
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 #: .\templates\admin\change_form.html.py:32
 #: .\templates\admin\edit_inline\stacked.html.py:9
 #: .\templates\admin\edit_inline\tabular.html.py:28
 msgid "View on site"
-msgstr ""
+msgstr "Bekijk op de site"
 
 #: .\templates\admin\change_form.html.py:43
 #: .\templates\admin\change_list.html.py:73 .\templates\admin\login.html.py:17
 #: .\templates\admin\auth\user\change_password.html.py:25
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Herstel alstublieft onderstaande fout"
+msgstr[1] "Herstel alstublieft onderstaande fouten"
 
 #: .\templates\admin\change_list.html.py:64
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Voeg %(name)s toe"
 
 #: .\templates\admin\change_list.html.py:84
 msgid "Filter"
@@ -312,7 +313,7 @@ msgstr ""
 #: .\templates\admin\delete_confirmation.html.py:10
 #: .\templates\admin\submit_line.html.py:4
 msgid "Delete"
-msgstr ""
+msgstr "Verwijder"
 
 #: .\templates\admin\delete_confirmation.html.py:17
 #, python-format
@@ -770,3 +771,9 @@ msgstr ""
 #: .\templates\user\lostandfound.html.py:9
 msgid "The given email is not recognized by us."
 msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "URL-friendly version of the title,can be left alone most of the time."
+#~ msgstr ""
+#~ "URL-vriendlijke versie van de titel, kan meestal met rust worden gelaten."
