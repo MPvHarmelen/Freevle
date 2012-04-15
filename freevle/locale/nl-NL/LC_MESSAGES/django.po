@@ -1,0 +1,772 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-15 18:08+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\cms\models.py:12
+msgid ""
+"URL-friendly version of the title,                    can be left alone most "
+"of the time."
+msgstr ""
+
+#: .\cms\models.py:15
+msgid "Content of the page."
+msgstr ""
+
+#: .\cms\models.py:20
+msgid "There's already a page with this parent and slug"
+msgstr ""
+
+#: .\custom\fields.py:9
+msgid "Hexadecimal color field (e.g. #000000)"
+msgstr ""
+
+#: .\custom\fields.py:12
+msgid ""
+"This is an invalid color code. It must be a html hex                       "
+"color code e.g. #000000"
+msgstr ""
+
+#: .\letters\models.py:11
+msgid "This should be a pdf file"
+msgstr ""
+
+#: .\news\models.py:10
+msgid "URL-friendly version of the title, can be left alone most of the time."
+msgstr ""
+
+#: .\news\models.py:13
+msgid "The news message."
+msgstr ""
+
+#: .\organizer\models.py:38
+msgid "Sunday"
+msgstr ""
+
+#: .\organizer\models.py:39
+msgid "Monday"
+msgstr ""
+
+#: .\organizer\models.py:40
+msgid "Tuesday"
+msgstr ""
+
+#: .\organizer\models.py:41
+msgid "Wednesday"
+msgstr ""
+
+#: .\organizer\models.py:42
+msgid "Thursday"
+msgstr ""
+
+#: .\organizer\models.py:43
+msgid "Friday"
+msgstr ""
+
+#: .\organizer\models.py:44
+msgid "Saturday"
+msgstr ""
+
+#: .\templates\404.html.py:7 .\templates\admin\404.html.py:6
+msgid "Page not found"
+msgstr ""
+
+#: .\templates\404.html.py:8
+msgid "We're sorry, but there's really nothing to find here."
+msgstr ""
+
+#: .\templates\404.html.py:9
+msgid ""
+"Try going back to <a href=\"/\">Home</a> or use the search function in the "
+"upperright corner to find what you were looking for."
+msgstr ""
+
+#: .\templates\base.html.py:6
+msgid "Cygnus Template"
+msgstr ""
+
+#: .\templates\base.html.py:26 .\templates\base.html.py:31
+#: .\templates\base.html.py:128 .\templates\old header.html.py:48
+#: .\templates\user\login.html.py:16
+msgid "Login"
+msgstr ""
+
+#: .\templates\base.html.py:29 .\templates\user\login.html.py:14
+msgid "Username"
+msgstr ""
+
+#: .\templates\base.html.py:30
+#: .\templates\admin\auth\user\change_password.html.py:36
+#: .\templates\user\login.html.py:15
+msgid "Password"
+msgstr ""
+
+#: .\templates\base.html.py:38 .\templates\user\login.html.py:19
+msgid "Forgotten your username or password?"
+msgstr ""
+
+#: .\templates\base.html.py:42 .\templates\user\lostandfound.html.py:6
+msgid "Lost & found"
+msgstr ""
+
+#: .\templates\base.html.py:45 .\templates\user\lostandfound.html.py:14
+msgid ""
+"Forgotten your password or username? Enter your email and your username and "
+"a new password will be sent to you."
+msgstr ""
+
+#: .\templates\base.html.py:46 .\templates\user\lostandfound.html.py:15
+msgid "Email"
+msgstr ""
+
+#: .\templates\base.html.py:47 .\templates\user\lostandfound.html.py:16
+msgid "Send"
+msgstr ""
+
+#: .\templates\base.html.py:54
+msgid "Just want to login?"
+msgstr ""
+
+#: .\templates\base.html.py:95 .\templates\base.html.py:194
+msgid "News"
+msgstr ""
+
+#: .\templates\base.html.py:96 .\templates\base.html.py:195
+#: .\templates\base.html.py:201 .\templates\contact\index.html.py:7
+msgid "Contact"
+msgstr ""
+
+#: .\templates\base.html.py:108
+msgid "Organizer"
+msgstr ""
+
+#: .\templates\base.html.py:109 .\templates\old header.html.py:30
+#: .\templates\letters\letter_archive.html.py:6
+msgid "Letters"
+msgstr ""
+
+#: .\templates\base.html.py:110 .\templates\old header.html.py:31
+#: .\templates\settings\index.html.py:7
+msgid "Settings"
+msgstr ""
+
+#: .\templates\base.html.py:112 .\templates\old header.html.py:33
+msgid "Admin"
+msgstr ""
+
+#: .\templates\base.html.py:114 .\templates\old header.html.py:35
+#: .\templates\admin\base.html.py:49
+msgid "Log out"
+msgstr ""
+
+#: .\templates\base.html.py:118 .\templates\old header.html.py:38
+msgid "Courses"
+msgstr ""
+
+#: .\templates\base.html.py:178
+msgid "Sitemap"
+msgstr ""
+
+#: .\templates\base.html.py:180 .\templates\admin\500.html.py:4
+#: .\templates\admin\app_index.html.py:8 .\templates\admin\base.html.py:56
+#: .\templates\admin\change_form.html.py:19
+#: .\templates\admin\change_list.html.py:42
+#: .\templates\admin\delete_confirmation.html.py:6
+#: .\templates\admin\delete_selected_confirmation.html.py:6
+#: .\templates\admin\invalid_setup.html.py:4
+#: .\templates\admin\object_history.html.py:6
+#: .\templates\admin\auth\user\change_password.html.py:12
+msgid "Home"
+msgstr ""
+
+#: .\templates\index.html.py:8
+msgid "Welcome"
+msgstr ""
+
+#: .\templates\index.html.py:15
+msgid "Photos"
+msgstr ""
+
+#: .\templates\printrooster.html.py:370
+msgid "Search..."
+msgstr ""
+
+#: .\templates\admin\404.html.py:9
+msgid ""
+"We're terribilly sorry, but the url you're trying to surf to does not exsist."
+msgstr ""
+
+#: .\templates\admin\404.html.py:10
+msgid ""
+"Try going back to <a href=\"/\">Home</a> or use the search function in the "
+"upperright corner to find what you were searching for."
+msgstr ""
+
+#: .\templates\admin\500.html.py:4
+msgid "Server error"
+msgstr ""
+
+#: .\templates\admin\500.html.py:6
+msgid "Server error (500)"
+msgstr ""
+
+#: .\templates\admin\500.html.py:9
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: .\templates\admin\500.html.py:10
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: .\templates\admin\actions.html.py:4
+msgid "Run the selected action"
+msgstr ""
+
+#: .\templates\admin\actions.html.py:4
+msgid "Go"
+msgstr ""
+
+#: .\templates\admin\actions.html.py:11
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: .\templates\admin\actions.html.py:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: .\templates\admin\actions.html.py:13
+msgid "Clear selection"
+msgstr ""
+
+#: .\templates\admin\app_index.html.py:10
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: .\templates\admin\base.html.py:29
+msgid "Welcome,"
+msgstr ""
+
+#: .\templates\admin\base.html.py:34
+msgid "Documentation"
+msgstr ""
+
+#: .\templates\admin\base.html.py:42
+#: .\templates\admin\auth\user\change_password.html.py:16
+#: .\templates\admin\auth\user\change_password.html.py:49
+msgid "Change password"
+msgstr ""
+
+#: .\templates\admin\base_site.html.py:4
+msgid "Cygy Dashboard"
+msgstr ""
+
+#: .\templates\admin\change_form.html.py:22
+msgid "Add"
+msgstr ""
+
+#: .\templates\admin\change_form.html.py:31
+#: .\templates\admin\object_history.html.py:10
+msgid "History"
+msgstr ""
+
+#: .\templates\admin\change_form.html.py:32
+#: .\templates\admin\edit_inline\stacked.html.py:9
+#: .\templates\admin\edit_inline\tabular.html.py:28
+msgid "View on site"
+msgstr ""
+
+#: .\templates\admin\change_form.html.py:43
+#: .\templates\admin\change_list.html.py:73 .\templates\admin\login.html.py:17
+#: .\templates\admin\auth\user\change_password.html.py:25
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\templates\admin\change_list.html.py:64
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: .\templates\admin\change_list.html.py:84
+msgid "Filter"
+msgstr ""
+
+#: .\templates\admin\delete_confirmation.html.py:10
+#: .\templates\admin\submit_line.html.py:4
+msgid "Delete"
+msgstr ""
+
+#: .\templates\admin\delete_confirmation.html.py:17
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: .\templates\admin\delete_confirmation.html.py:25
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: .\templates\admin\delete_confirmation.html.py:33
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: .\templates\admin\delete_confirmation.html.py:38
+#: .\templates\admin\delete_selected_confirmation.html.py:43
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: .\templates\admin\delete_selected_confirmation.html.py:9
+msgid "Delete multiple objects"
+msgstr ""
+
+#: .\templates\admin\delete_selected_confirmation.html.py:16
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: .\templates\admin\delete_selected_confirmation.html.py:24
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: .\templates\admin\delete_selected_confirmation.html.py:32
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: .\templates\admin\filter.html.py:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: .\templates\admin\index.html.py:28
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: .\templates\admin\index.html.py:36
+msgid "Recent Actions"
+msgstr ""
+
+#: .\templates\admin\index.html.py:37
+msgid "My Actions"
+msgstr ""
+
+#: .\templates\admin\index.html.py:41
+msgid "None available"
+msgstr ""
+
+#: .\templates\admin\index.html.py:55
+msgid "Unknown content"
+msgstr ""
+
+#: .\templates\admin\invalid_setup.html.py:7
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: .\templates\admin\login.html.py:33
+msgid "Username:"
+msgstr ""
+
+#: .\templates\admin\login.html.py:37
+msgid "Password:"
+msgstr ""
+
+#: .\templates\admin\login.html.py:42
+msgid "Log in"
+msgstr ""
+
+#: .\templates\admin\object_history.html.py:22
+msgid "Date/time"
+msgstr ""
+
+#: .\templates\admin\object_history.html.py:23
+msgid "User"
+msgstr ""
+
+#: .\templates\admin\object_history.html.py:24
+msgid "Action"
+msgstr ""
+
+#: .\templates\admin\object_history.html.py:38
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: .\templates\admin\pagination.html.py:10
+msgid "Show all"
+msgstr ""
+
+#: .\templates\admin\pagination.html.py:11
+#: .\templates\admin\submit_line.html.py:3
+msgid "Save"
+msgstr ""
+
+#: .\templates\admin\search_form.html.py:8
+msgid "Search"
+msgstr ""
+
+#: .\templates\admin\search_form.html.py:10
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\templates\admin\search_form.html.py:10
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: .\templates\admin\submit_line.html.py:5
+msgid "Save as new"
+msgstr ""
+
+#: .\templates\admin\submit_line.html.py:6
+msgid "Save and add another"
+msgstr ""
+
+#: .\templates\admin\submit_line.html.py:7
+msgid "Save and continue editing"
+msgstr ""
+
+#: .\templates\admin\auth\user\add_form.html.py:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: .\templates\admin\auth\user\add_form.html.py:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: .\templates\admin\auth\user\change_password.html.py:29
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: .\templates\admin\auth\user\change_password.html.py:42
+msgid "Password (again)"
+msgstr ""
+
+#: .\templates\admin\auth\user\change_password.html.py:43
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: .\templates\admin\edit_inline\stacked.html.py:67
+#: .\templates\admin\edit_inline\tabular.html.py:113
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: .\templates\admin\edit_inline\stacked.html.py:70
+#: .\templates\admin\edit_inline\tabular.html.py:116
+msgid "Remove"
+msgstr ""
+
+#: .\templates\admin\edit_inline\tabular.html.py:15
+msgid "Delete?"
+msgstr ""
+
+#: .\templates\contact\index.html.py:8
+msgid ""
+"You can contact our school in different ways. Calling and sending an email "
+"are the fastest, but stopping by with an appointment is possible as well!"
+msgstr ""
+
+#: .\templates\contact\index.html.py:14
+msgid "Map"
+msgstr ""
+
+#: .\templates\contact\index.html.py:20
+msgid "Location"
+msgstr ""
+
+#: .\templates\contact\index.html.py:22
+msgid ""
+"The Cygnus Gymansium accomodated in the monumental building 'het schip' in "
+"Amsterdam East at het Wibautstraat."
+msgstr ""
+
+#: .\templates\contact\index.html.py:23
+msgid ""
+"The Cygnus is reachable by train (Amstel Station), metro (Stop "
+"Wibautstraat), bicycle or by foot."
+msgstr ""
+
+#: .\templates\contact\index.html.py:28
+msgid "Adress"
+msgstr ""
+
+#: .\templates\contact\index.html.py:47
+msgid "Mail"
+msgstr ""
+
+#: .\templates\contact\index.html.py:48
+msgid "You can mail questions to people in this list."
+msgstr ""
+
+#: .\templates\contact\index.html.py:53
+msgid "Rector"
+msgstr ""
+
+#: .\templates\contact\index.html.py:58
+msgid "Deparment leader year 1 en 2"
+msgstr ""
+
+#: .\templates\contact\index.html.py:63
+msgid "Department leader year 3 en 4"
+msgstr ""
+
+#: .\templates\contact\index.html.py:68
+msgid "Department ledader year 5 en 6"
+msgstr ""
+
+#: .\templates\contact\index.html.py:73
+msgid "Administration"
+msgstr ""
+
+#: .\templates\contact\index.html.py:78
+msgid "Absencecoordinator"
+msgstr ""
+
+#: .\templates\contact\index.html.py:82
+msgid "Login to see more mailadresses"
+msgstr ""
+
+#: .\templates\courses\index.html.py:7
+msgid "All Your Courses"
+msgstr ""
+
+#: .\templates\courses\index.html.py:8
+msgid ""
+"All your courses in one place! Courses which you are not a member of can be "
+"found using the search function."
+msgstr ""
+
+#: .\templates\courses\wiskunde.html.py:17
+msgid "All infopages"
+msgstr ""
+
+#: .\templates\courses\wiskunde.html.py:21
+msgid "All Links"
+msgstr ""
+
+#: .\templates\courses\wiskunde.html.py:25
+msgid "All Assigments"
+msgstr ""
+
+#: .\templates\courses\wiskunde.html.py:29
+msgid "All Questions"
+msgstr ""
+
+#: .\templates\letters\letter_archive.html.py:14
+msgid "Woopsie"
+msgstr ""
+
+#: .\templates\letters\letter_archive.html.py:15
+msgid "We couldn't find any letters."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:8
+#: .\templates\news\newsmessage_archive_day.html.py:8
+#: .\templates\news\newsmessage_archive_month.html.py:8
+#: .\templates\news\newsmessage_detail.html.py:7
+msgid "Published on:"
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:11
+#: .\templates\news\newsmessage_archive_day.html.py:11
+#: .\templates\news\newsmessage_archive_month.html.py:11
+#: .\templates\news\newsmessage_detail.html.py:10
+msgid "By:"
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:13
+#: .\templates\news\newsmessage_archive_day.html.py:13
+#: .\templates\news\newsmessage_archive_month.html.py:13
+msgid "Read more..."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:18
+#: .\templates\news\newsmessage_archive_day.html.py:18
+#: .\templates\news\newsmessage_archive_month.html.py:18
+msgid "Whoopsie"
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:19
+msgid "We couldn't find any news."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive_day.html.py:19
+msgid "We couldn't find any news for this day."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive_month.html.py:19
+msgid "We couldn't find any news for this month."
+msgstr ""
+
+#: .\templates\organizer\my_schedule.html.py:9
+msgid "Schedule"
+msgstr ""
+
+#: .\templates\settings\index.html.py:8
+msgid ""
+"Change your settings: ways others can contact you, which info about you is "
+"visible etc. etc."
+msgstr ""
+
+#: .\templates\settings\index.html.py:11
+msgid "Persona"
+msgstr ""
+
+#: .\templates\settings\index.html.py:12
+msgid "Contactinfo"
+msgstr ""
+
+#: .\templates\settings\index.html.py:13
+msgid "Change Password"
+msgstr ""
+
+#: .\templates\settings\index.html.py:14
+msgid "Notifications"
+msgstr ""
+
+#: .\templates\settings\index.html.py:15
+msgid "Courses menu"
+msgstr ""
+
+#: .\templates\settings\index.html.py:28
+msgid "Name"
+msgstr ""
+
+#: .\templates\settings\index.html.py:33
+msgid "Class"
+msgstr ""
+
+#: .\templates\settings\index.html.py:38
+msgid "School mailadress"
+msgstr ""
+
+#: .\templates\settings\index.html.py:45
+msgid "This isn't true!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:52
+msgid ""
+"This info is visible for everyone with an account. How do you want that "
+"others contact you?"
+msgstr ""
+
+#: .\templates\settings\index.html.py:55
+msgid "Secondary mailadress"
+msgstr ""
+
+#: .\templates\settings\index.html.py:59
+msgid "Phonenumber"
+msgstr ""
+
+#: .\templates\settings\index.html.py:63
+msgid "Twitter"
+msgstr ""
+
+#: .\templates\settings\index.html.py:67
+msgid "Facebook"
+msgstr ""
+
+#: .\templates\settings\index.html.py:75
+msgid "Update my info!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:83
+msgid "Not happy with your password? No problemo! Change it here."
+msgstr ""
+
+#: .\templates\settings\index.html.py:86
+msgid "Old password"
+msgstr ""
+
+#: .\templates\settings\index.html.py:90
+msgid "New password"
+msgstr ""
+
+#: .\templates\settings\index.html.py:94
+msgid "Confirm password"
+msgstr ""
+
+#: .\templates\settings\index.html.py:104
+msgid "Update my password!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:111
+msgid ""
+"Manage your notifications by checking the checkboxes of the events you want "
+"to be notifed of with an email."
+msgstr ""
+
+#: .\templates\settings\index.html.py:114
+msgid "When a new letter is published"
+msgstr ""
+
+#: .\templates\settings\index.html.py:118
+msgid "When you're added to a course"
+msgstr ""
+
+#: .\templates\settings\index.html.py:126
+msgid "Update my notifications!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:134
+msgid ""
+"In the <span class=\"bold\">Menucolumn</span> you can check the boxes next "
+"to the coursenames that should be fast accesible through the courses "
+"dropdown menu in the navigationbar."
+msgstr ""
+
+#: .\templates\user\logout.html.py:6
+msgid "Going already?"
+msgstr ""
+
+#: .\templates\user\logout.html.py:7
+msgid "At least we can be pretty sure you'll come back."
+msgstr ""
+
+#: .\templates\user\lostandfound.html.py:9
+msgid "The given email is not recognized by us."
+msgstr ""
