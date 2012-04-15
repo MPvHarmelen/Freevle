@@ -53,7 +53,7 @@
               </form>
               <a id="focusonlogin" href="#">{% blocktrans %}Just want to login?{% endblocktrans %}</a><br>
             </div>
-            
+
             <div class="clear"></div>
 
           </div>
@@ -71,16 +71,16 @@
           </h1>
           <div class="clear"></div>
         </header>
-    
+
       <nav>
         <ul id="menu">
-          
+
           <li class="navmenu">
             <a class="imagenav" id="homebtn" href="/"></a>
           </li>
-          
+
           {% for page in pages %}
-            {% if not page.parent %} 
+            {% if not page.parent %}
             <li class="navmenu"><a class="menuitem" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
               {% if page.page_set.all %}
                 <ul class="dropdown">
@@ -92,9 +92,9 @@
             </li>
             {% endif %}
             {% endfor %}
-            <li class="navmenu"><a class="menuitem" href="/news">News</a></li>
-            <li class="navmenu"><a class="menuitem" href="/contact">Contact</a></li>
-          
+            <li class="navmenu"><a class="menuitem" href="/news">{% trans "News" %}</a></li>
+            <li class="navmenu"><a class="menuitem" href="/contact">{% trans "Contact" %}</a></li>
+
             <li class="navmenu liright" id="searchcont">
               <form id="search" method="post" action="">
                 <input id="search-box" type="text" placeholder="Zoeken...">
@@ -114,7 +114,7 @@
                   <li><a class="submenu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
                 </ul>
               </li>
-              
+
               <li class="navmenu liright"><a class="menuitem" href="">{% trans "Courses" %}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="submenu-item" href="/">Grieks</a></li>
@@ -127,59 +127,59 @@
             {% else %}
               <li id="loginhome" class="navmenu"><a class="menuitem" href="#" class="header">{% trans "Login" %}</a></li>
             {% endif %}
-            
+
           <div class="clear"></div>
-        
+
         </ul>
       </nav>
-       
+
       </header>
 
       <div class="wrapper">
-        
+
         {% block content %}
         {% endblock content %}
 
       </div>
 
       <footer>
-        
+
         <ul id="breadcrumbs">
-          <li class="home">  
+          <li class="home">
             <a class="home" href="#">Home</a>
             <span class="divider"></span>
-          </li>  
-          <li class="second">  
+          </li>
+          <li class="second">
             <a class="second" href="#">Second level</a>
             <span class="divider"></span>
-          </li>  
-          <li class="thrid">  
+          </li>
+          <li class="thrid">
             <a class="third" href="#">Third level</a>
             <span class="divider"></span>
-          </li>  
+          </li>
           <li class="fourth">
             <a class="fourth" href="#">Fourth level</a>
             <span class="divider"></span>
-          </li>  
-          <li class="current">  
+          </li>
+          <li class="current">
             <span class="current">Current page</span>
           </li>
         </ul>
-          
+
         <div id="center">
-          
+
           <div class="footercolumn" id="leftcolumn">
 
             <img id="swan" src="/media/img/zwaan.png" alt="logo">
 
           </div>
-        
+
           <div class="footercolumn" id="middlecolumn">
             <h2 class="footerh">{% trans "Sitemap" %}</h2>
             <ul class="sitemaplist">
               <li><a href="">{% trans "Home" %}</a></li>
               {% for page in pages %}
-              {% if not page.parent %} 
+              {% if not page.parent %}
                 <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
                   {% if page.page_set.all %}
                     <ul class="sitemaplist2">
@@ -196,7 +196,7 @@
             </ul>
             <div class="clear"></div>
           </div>
-                
+
           <div class="footercolumn" id="rightcolumn">
             <h2 class="footerh"><a href="">{% trans "Contact" %}</a></h2>
             <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
@@ -208,11 +208,11 @@
             1097 CA Amsterdam<br>
             020-462 14 50</p>
           </div>
-          
+
            <div class="clear"></div>
 
         </div>
       </footer>
-  
+
   </body>
 </html>
