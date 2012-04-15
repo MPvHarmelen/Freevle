@@ -4,6 +4,9 @@
 personalsettings.py
 media/letters/
 
+# Database files
+*.sqlite
+
 # Packages
 *.egg
 *.egg-info
