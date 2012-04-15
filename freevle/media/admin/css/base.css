@@ -749,7 +749,7 @@ h1.admintitle {
 /* SIDEBAR */
 div#sidebar {
   width: 80px;
-  background: #dadada;
+  background: #e5e5e5;
   position: fixed;
   height: 100%;
   top: 0;
@@ -780,7 +780,7 @@ li.sidebar-item a {
 
 li.sidebar-item a:hover {
   background: #e5e5e5;
-  color: #777;
+  color: #225CCC;
 }
 li.sidebar-item a:active {
   background: #d0d0d0;
@@ -807,7 +807,7 @@ li.sidebar-item.active a:active {
   font-size: 60px;
   margin: 12px 0 3px;
   line-height: 0;
-  dusplay: block;
+  display: block;
   height: 26px;
 }
 
