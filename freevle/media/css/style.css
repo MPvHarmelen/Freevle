@@ -425,9 +425,9 @@ a.leesmeer {
 }
 
 div.pagination {
-  width: 400px;
-  height: 30px;
-  padding: 0 0 0 200px;
+  display: block;
+  width: 300px;
+  margin: 0 auto;
 }
 
 a.pagenav {
