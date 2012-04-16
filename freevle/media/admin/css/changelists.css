@@ -24,7 +24,7 @@
 }
 
 .change-list .filtered .results, .change-list .filtered .paginator, .filtered #toolbar, .filtered div.xfull {
-    margin-right: 160px !important;
+    margin-right: 148px !important;
     width: auto !important;
 }
 
@@ -106,7 +106,7 @@
     top: 0;
     right: 0;
     z-index: 1000;
-    width: 160px;
+    width: 148px;
     border-left: 1px solid #ddd;
     background: #efefef;
     margin: 0;
@@ -166,8 +166,7 @@
 
 .change-list ul.toplinks li {
     float: left;
-    width: 9em;
-    padding: 3px 6px;
+    padding: 10px 10px;
     font-weight: bold;
     list-style-type: none;
 }
@@ -229,7 +228,7 @@
 /* ACTIONS */
 
 .filtered .actions {
-    margin-right: 160px !important;
+    margin-right: 148px !important;
     border-right: 1px solid #ddd;
 }
 

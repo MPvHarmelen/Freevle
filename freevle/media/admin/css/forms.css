@@ -179,6 +179,9 @@ fieldset.monospace textarea {
     float: left;
 }
 
+.admin-deletelink {
+}
+
 .submit-row .deletelink {
     background: url(../img/admin/icon_deletelink.gif) 0 50% no-repeat;
     padding-left: 14px;
