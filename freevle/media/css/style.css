@@ -1101,27 +1101,24 @@ div#map iframe {
 
 div#map a {
   display: block;
-  padding: 8px 10px;
-  cursor: pointer;
-  background-image: linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -o-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -ms-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -moz-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -webkit-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -webkit-gradient(
-   left bottom,
-   linear,
-   left top,
-   color-stop(0.17, #2828C7),
-   color-stop(1.00, #3A43FA)
-   );
-  font-size: 14px;
-  text-transform: capitalize;
+  width: 250px;
+  background: #225ccc;
+  color: #fff;
+  padding: 8px 20px;
+  margin: 0 5px;
+  font-size: 17px;
   text-decoration: none;
   text-align: center;
-  color: white;
-  box-shadow: 1px 1px 1px #000;
-  border-radius: 3px;
+  box-shadow: 0 1px 1px #000;
+  -ms-box-shadow: 0 1px 1px #000;
+  -moz-box-shadow: 0 1px 1px #000;
+  -webkit-box-shadow: 0 1px 1px #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 ul#contactpersons {
@@ -1134,32 +1131,6 @@ ul#contactpersons li a {
 
 span.persondescription {
  float: right;
-}
-
-span.morecontacts a {
-  float: right;
-  width: 300px;
-  padding: 8px 0;
-  cursor: pointer;
-  background-image: linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -o-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -ms-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -moz-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -webkit-linear-gradient(bottom, #2828C7 17%, #3A43FA 100%);
-  background-image: -webkit-gradient(
-   left bottom,
-   linear,
-   left top,
-   color-stop(0.17, #2828C7),
-   color-stop(1.00, #3A43FA)
-   );
-  font-size: 14px;
-  text-transform: capitalize;
-  text-decoration: none;
-  text-align: center;
-  color: white;
-  box-shadow: 1px 1px 1px #000;
-  border-radius: 3px;
 }
 
 /*------------------------------settings------------------------------*/
