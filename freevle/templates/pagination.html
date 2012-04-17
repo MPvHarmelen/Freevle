@@ -13,7 +13,7 @@
     <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number|add:'-1' }}">{{ page_obj.number|add:"-1" }}</a>
   {% endif %}
 
-    <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    <a class="pagenav currentpage" href="{{ request.path }}?page={{ page_obj.number }}">{{ page_obj.number }}</a>
 
   {% if paginator.num_pages > page_obj.number|add:"1" %}
     <a class="pagenav" href="{{ request.path }}?page={{ page_obj.number|add:'1' }}">{{ page_obj.number|add:"1" }}</a>

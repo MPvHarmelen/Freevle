@@ -457,6 +457,14 @@ p.morepages {
   text-align: center;
 }
 
+.currentpage {
+  background: #006;
+  color: #FFF;
+    
+}
+
+
+
 /*------------------------------photos------------------------------*/
 div.photos {
   padding: 0;
