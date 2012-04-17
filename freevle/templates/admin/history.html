@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
+
+{% block content %}
+	<div id="content-main">
+		<div id="recent-actions-menu">
+		  <h2>{% trans 'Recent Actions' %}</h2>
+		  <h3>{% trans 'My Actions' %}</h3>
+		  {% load log %}
+		  {% get_admin_log 10 as admin_log for_user user %}
+		  {% if not admin_log %}
+			<p>{% trans 'None available' %}</p>
+		  {% else %}
+			<ul class="actionlist">
+			{% for entry in admin_log %}
+			  <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+				{% if entry.is_deletion or not entry.get_admin_url %}
+				  {{ entry.object_repr }}
+				{% else %}
+				  <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+				{% endif %}
+				{% if entry.content_type %}
+				  <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
+				{% else %}
+				  <span class="mini quiet">{% trans 'Unknown content' %}</span>
+				{% endif %}
+			  </li>
+			{% endfor %}
+			</ul>
+		  {% endif %}
+		</div>
+	</div>
+{% endblock %}

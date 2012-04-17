@@ -27,9 +27,6 @@ urlpatterns += patterns('',
     url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
     url(r'^contact/', TemplateView.as_view(template_name='contact/index.html')),
     url(r'^settings/$', TemplateView.as_view(template_name='settings/index.html')),
-    url(r'^settings/contact/', TemplateView.as_view(template_name='settings/contact.html')),
-    url(r'^settings/password/', TemplateView.as_view(template_name='settings/password.html')),
-    url(r'^settings/notifications/', TemplateView.as_view(template_name='settings/notifications.html')),
     url(r'^photos/', TemplateView.as_view(template_name='photos/index.html')),
     url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
 
@@ -45,6 +42,9 @@ urlpatterns += patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    
+    #Work arround for history template. Needs to be intergrated in admin.
+    url(r'^admin/history', TemplateView.as_view(template_name='admin/history.html')),
     
     # If no url could be found, include cms:
     url('', include('freevle.cms.urls'))
