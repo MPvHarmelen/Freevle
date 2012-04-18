@@ -24,12 +24,14 @@ urlpatterns += patterns('',
     url(r'^galleries/', include('freevle.galleries.urls')),
     # TEMP for Floris' and Pim's brilliant work.
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
-    url(r'^courses/', TemplateView.as_view(template_name='courses/index.html')),
+    url(r'^courses/$', TemplateView.as_view(template_name='courses/index.html')),
+    url(r'^courses/grieks', TemplateView.as_view(template_name='courses/grieks.html')),
+    url(r'^courses/wiskunde', TemplateView.as_view(template_name='courses/wiskunde.html')),
+    url(r'^courses/duits', TemplateView.as_view(template_name='courses/duits.html')),
     url(r'^contact/', TemplateView.as_view(template_name='contact/index.html')),
     url(r'^settings/', TemplateView.as_view(template_name='settings/index.html')),
     url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
     url(r'^photos/', TemplateView.as_view(template_name='photos/index.html')),
-    url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
     url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
 
     # User urls
