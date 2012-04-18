@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+  
+  <header id="courseheader" style="background-image: url(/media/img/ariadne_1.jpg);">
+	<h2>Grieks</h2>
+  </header>
+
+  <p>Upload four assigment here.</p>
+	 
+  <div class="uploadfile"
+    <form id="upload">
+      <input type="file" />
+      <input type="submit" value="upload" />
+    </form>
+  </div> 
+ 
+</div>
+
+{% endblock %}
