@@ -1009,6 +1009,31 @@ a#question {
   display: block;
 }
 
+/*------------------------------fileupload-----------------------------*/
+
+.uploadfile {
+  width: 415px;
+  margin: 0 auto;
+}
+
+input[type=file] {
+  padding: 5px 7px;
+  cursor: pointer;
+  background: #eee;
+  font-size: 17px;
+  box-shadow: 0 1px 1px #333;
+  -ms-box-shadow: 0 1px 1px #333;
+  -moz-box-shadow: 0 1px 1px #333;
+  -webkit-box-shadow: 0 1px 1px #333;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin: 10px auto 0;
+  outline: none;
+  border: none;
+}
+
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
