@@ -10,7 +10,7 @@ from django.views.generic.base import View
 from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
-from schoolr.organizer.models import *
+from freevle.organizer.models import *
 
 # You have to be careful with Empty- and BreakLesson, because empty
 # ForeignKey fields raise DoesNotExist.
