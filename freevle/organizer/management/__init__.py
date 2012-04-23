@@ -13,6 +13,24 @@ from freevle.organizer import models
 from freevle.users.models import UserProfile
 from freevle.settings import DEBUG
 
+class Course(object):
+    def __init__(self, topic, teacher, students):
+        self.topic = topic
+        self.teacher = teacher
+        self.students = students
+
+    def __eq__(self, other):
+        if (self.topic == other.topic and self.teacher == other.teacher and
+            self.students == other.students):
+            return True
+        return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __repr__(self):
+        return '<Course {} by {}>'.format(self.topic, self.teacher)
+
 
 class Lesson(object):
     def __init__(self, teacher, topic, classroom, period, day):
@@ -23,17 +41,22 @@ class Lesson(object):
         self.day = day
         self.students = []
         self.course = None
+        self.lesson = models.Lesson()
 
     def save(self, start_date, end_date):
-        day = models.DAY_CHOICES[self.day+1]
-        self.lesson = models.Lesson(classroom=self.teacher, day_of_week=day,
-                                    start_date=start_date, end_date=end_date)
+        day = models.DAY_CHOICES[self.day+1][0]
+        self.lesson.classroom = self.classroom
+        self.lesson.day_of_week = day
+        self.lesson.period = self.period
+        self.lesson.start_date = start_date
+        self.lesson.end_date = end_date
+        self.lesson.course = self.course
         self.lesson.save()
 
     def __eq__(self, other):
         if (self.teacher == other.teacher and self.topic == other.topic and
-                self.classroom == other.classroom and
-                self.period == other.period and self.day == other.day):
+            self.classroom == other.classroom and
+            self.period == other.period and self.day == other.day):
             return True
         return False
 
@@ -75,7 +98,6 @@ def debug_data(sender, **kwargs):
     today = datetime.datetime.today()
     start_date = today + datetime.timedelta(days=-today.weekday(), weeks=0)
     end_date = start_date + datetime.timedelta(days=7)
-    print start_date, end_date
 
     url = '{}selectie.inc.php?wat=week&weeknummer={}&type=0'.format(infoweb,
                                                                     this_week)
@@ -86,7 +108,6 @@ def debug_data(sender, **kwargs):
     for option in classes_soup.find_all('option')[2:]:
         classes_names.append(option['value'])
         print option['value']
-    classes_names = [classes_names[0]]
 
     students_group, created = Group.objects.get_or_create(name='students')
     students = []
@@ -118,8 +139,6 @@ def debug_data(sender, **kwargs):
 
         #classes.append(students)
 
-    students = students[:3]
-
     lessons = []
     cookies = requests.get(infoweb + 'index.php').cookies
     for student in students:
@@ -129,8 +148,8 @@ def debug_data(sender, **kwargs):
         timetable_soup = BeautifulSoup(timetable_page.text)
 
         table = timetable_soup('table')[0]
-        for day, tr in enumerate(table('tr')[1:]):
-            for period, td in enumerate(tr('td')):
+        for period, tr in enumerate(table('tr')[1:]):
+            for day, td in enumerate(tr('td')):
                 if not 'class' in td.attrs:
                     options = td.span.string.strip().split()
                     teacher, topic, classroom = (options + [None] * 2)[:3]
@@ -144,26 +163,26 @@ def debug_data(sender, **kwargs):
                         teacher.set_password(password)
                         teacher.save()
 
-                    try:
-                        topic = models.Topic.objects.get_or_create(name=topic,
-                                                                   abbr=topic)
-                        topic = topic[0]
-                    except IntegrityError:
-                        topic = None
+                    if topic is None:
+                        teacher, topic = topic, teacher.username
+                        teacher, _ = User.objects.get_or_create(username='-')
+                    topic = models.Topic.objects.get_or_create(name=topic,
+                                                               abbr=topic)
+                    topic = topic[0]
 
                     l = Lesson(teacher, topic, classroom, period, day)
+                    print l
                     exists = False
                     for lesson in lessons:
                         if l == lesson:
-                            print student
                             lesson.students.append(student[2])
                             exists = True
                             break
                     if not exists:
                         l.students.append(student[2])
                         lessons.append(l)
-                    l.save(start_date, end_date)
 
+    courses = []
     for lesson in lessons:
         for other in lessons:
             if (lesson.topic == other.topic and lesson.teacher == other.teacher
@@ -173,24 +192,30 @@ def debug_data(sender, **kwargs):
                 elif lesson.course is None and other.course is not None:
                     lesson.course = other.course
                 elif lesson.course is None and other.course is None:
-                    try:
-                        print lesson.topic, lesson.teacher, lesson.students
-                        course = models.Course.objects.get_or_create(
-                            topic=lesson.topic,
-                            teacher=lesson.teacher,
-                        )
-                        course.students.add(*[i[2] for i in lesson.students])
-                    except IntegrityError:
-                        # Need to fix this for lessons without enough
-                        # data.
-                        course = None
-                    lesson.lesson.course = course
-                    lesson.lesson.save()
-                    other.lesson.course = course
-                    other.lesson.save()
+                    course = Course(lesson.topic, lesson.teacher,
+                                    lesson.students)
+                    for othercourse in courses:
+                        if course == othercourse:
+                            course = othercourse
+                            break
+                    lesson.course = course
+                    other.course = course
+                    courses.append(course)
+                    print course, course.students
 
+    for course in courses:
+        coursemodel = models.Course(topic=course.topic,
+                                    teacher=course.teacher)
+        coursemodel.save()
+        coursemodel.students.add(*course.students)
+        for lesson in lessons:
+            if lesson.course == course:
+                lesson.course = coursemodel
 
-                print course
+    for lesson in lessons:
+        if lesson.classroom is None:
+            lesson.classroom = '-'
+        lesson.save(start_date, end_date)
 
     if verbosity > 1:
         print
