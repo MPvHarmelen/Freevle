@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 def changepassword(request):
-    data = RequestContext(request, {'success': None})
+    data = RequestContext(request)
     if request.method == 'POST':
         user = request.user
         oldpass = request.POST['old-password']
