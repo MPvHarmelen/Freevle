@@ -26,17 +26,17 @@
         <ul class="persona">
           <li>
             <span class="personalabel">{% trans "Name" %}:</span>
-            <span class="personainfo">John Doe</span>
+            <span class="personainfo">{{ request.user.get_full_name }}</span>
             <div class="clear"></div>
           </li>
           <li>
             <span class="personalabel">{% trans "Class" %}:</span>
-            <span class="personainfo">G4X</span>
+            <span class="personainfo">G4Placeholder</span>
             <div class="clear"></div>
           </li>
           <li>
             <span class="personalabel">{% trans "School mailadress" %}:</span>
-            <span class="personainfo">Jdoe@cygnusgymnasium.eu</span>
+            <span class="personainfo">{{ request.user.email }}</span>
             <div class="clear"></div>
           </li>
         </ul> 
