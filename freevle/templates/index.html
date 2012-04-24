@@ -58,11 +58,13 @@
 
     <article>
       <div class="item">
-        <h2>Nog geen aanmeldingen schooljaar 2016/2017</h2>
-        <p class="date"><span class="bold">Geplaatst op:</span> 22/22/2222&emsp;&emsp;<span class="bold">Door:</span> Harry de schrijver</p>
-        <p>We zijn blij om te kunnen melden dat er zich al x-aantal 8ste groepers aangemeld hebben om volgend jaar bij ons 1ste klasser te worden! Allemaal kiezen ze voor een school waar <a href="">wereldburgers en wetenschappers</a> centraal staan. Ook kregen we etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
-        <p>Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
-        <a class="leesmeer" href="">Lees meer...</a>
+        <h2><a href="{{ lastnews.get_absolute_url }}">{{ lastnews.title }}</a></h2>
+        <p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
+          {{ lastnews.publish|date:'d m Y' }}
+          &emsp;&emsp;
+          <span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ lastnews.writer }}</p>
+        <p>{{ lastnews.content|slice:":300" }}...</p>
+        <a class="leesmeer" href="{{ lastnews.get_absolute_url }}">{% blocktrans %}Read more...{% endblocktrans %}</a>
         <p class="clear"></p>
       </div>
     </article>

@@ -18,7 +18,7 @@ if settings.STATIC:
 urlpatterns += patterns('',
     # Example:
     # (r'^foo/', include('freevle.foo.urls')),
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^$', 'freevle.cms.views.index'),
     url(r'^news/', include('freevle.news.urls')),
     url(r'^letters/', include('freevle.letters.urls')),
     url(r'^settings/', include('freevle.users.urls')),
