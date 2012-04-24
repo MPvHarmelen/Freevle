@@ -80,6 +80,7 @@
       
       <div class="tab" id="tabchangepassword">
         <form id="settings-password" action="" method="post">
+          {% csrf_token %}
           <p class="settings">{% blocktrans %}Not happy with your password? No problemo! Change it here.{% endblocktrans %}</p>
           <ul id="passwordlist">  
             <li>
@@ -97,6 +98,7 @@
               <div id="checkifsame"></div>
             </li>
           </ul>
+          {{ success }}
               
           <div class="clear"></div>
 
