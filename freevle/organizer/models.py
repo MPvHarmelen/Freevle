@@ -16,7 +16,7 @@ DAY_CHOICES = (
     ('Sun', _('Sunday')),
     ('Mon', _('Monday')),
     ('Tue', _('Tuesday')),
-    ('Wen', _('Wednesday')),
+    ('Wed', _('Wednesday')),
     ('Thu', _('Thursday')),
     ('Fri', _('Friday')),
     ('Sat', _('Saturday')),
@@ -104,10 +104,11 @@ class PeriodMeta(models.Model):
         """
         if periods < self.min_periods:
             periods = self.min_periods
-
+        self.breaks_after_period = [int(i) for i in self.breaks_after_period.split(',')]
+        self.break_lengths = [int(i) for i in self.break_lengths.split(',')]
         # make dict of break lengths
-        breaks = dict([(value, datetime.timedelta(minute=self.break_lengths[index])) for
-                       index, value in enumerate(breaks_after_period)])
+        breaks = dict([(value, datetime.timedelta(minutes=self.break_lengths[index])) for
+                       index, value in enumerate(self.breaks_after_period)])
 
         period_times = []
         # We need to use datetime objects instead of time objects, because
@@ -115,9 +116,9 @@ class PeriodMeta(models.Model):
         # We'll just take the start date to use as a date, but it won't and
         # shouldn't be used anywhere else.
         default_date = {
-            year:self.start_date.year,
-            month:self.start_date.month,
-            day:self.start_date.day,
+            'year':self.start_date.year,
+            'month':self.start_date.month,
+            'day':self.start_date.day,
         }
         start_time = datetime.datetime(
             hour=self.start_of_day.hour,
@@ -125,7 +126,6 @@ class PeriodMeta(models.Model):
             **default_date
         )
         period_length = datetime.timedelta(minutes=self.period_length)
-
         # Don't forget periods aren't zero based!
         for prev_period in range(periods):
             # If there was a break after the previous period, we need to
@@ -139,7 +139,7 @@ class PeriodMeta(models.Model):
             if prev_period == 0:
                 end_time += datetime.timedelta(minutes=5)
 
-            period_times.append((sart_time,end_time))
+            period_times.append((start_time,end_time))
             start_time = end_time
 
         period_times = tuple(period_times)

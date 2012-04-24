@@ -153,7 +153,7 @@ class LessonListMixin(object):
         key = lambda a: a.homework_type.weight
         for lesson in lesson_set:
             lesson.homework = sorted(
-                [homework for homework in lesson.homework_set if
+                [homework for homework in lesson.homework_set.all() if
                  homework.due_date == date],
                  key=key,
                  # Higher weights is more important & more important homework
@@ -225,12 +225,16 @@ class LessonListMixin(object):
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
-                lesson_set = self.check_homework(lesson_set, date)
+                try:
+                    lesson_set = self.check_homework(lesson_set, date)
+                except AttributeError:
+                    pass
                 try:
                     lesson_set = self.check_cancellation(lesson_set)
                 except AttributeError:
                     # The cancellation mixin isn't required
                     pass
+                lesson_lists[index] = lesson_set
 
         return lesson_lists
 
@@ -268,10 +272,18 @@ class LessonListMixin(object):
 
         if len(lesson_list) > 0:
             lesson_list = self.set_period_times(lesson_list, date)
-
+        
+        days_dict = dict(DAY_CHOICES)
         # Set day_of_week to full regional name
         for lesson in lesson_list:
-            lesson.day_of_week = DAY_CHOICES[lesson.day_of_week]
+            try:
+                lesson.day_of_week = days_dict[lesson.day_of_week]
+                day_of_week = lesson.day_of_week
+            except KeyError:
+                try:
+                    lesson.day_of_week = day_of_week
+                except UnboundLocalError:
+                    pass
 
         return lesson_list
 
@@ -360,14 +372,21 @@ class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
 
 #        date = self.check_allow_weekend(date) I think it's unnecesary here
         day_of_week = date.strftime('%a')
-        lesson_set = user.takes_courses.filter(
-            lesson__day_of_week=day_of_week,
-            lesson__start_date__lt=date,
-            lesson__end_date__gt=date
-        )
+        lesson_list = []
+        for course in user.takes_courses.all():
+            lesson_subset = course.lesson_set.filter(
+                day_of_week=day_of_week,
+                start_date__lt=date,
+                end_date__gt=date
+            )
+            lesson_list.extend(lesson_subset)
+        return lesson_list
 
-        return lesson_set
-
+    def get_day_names(self, lesson_lists):
+        day_names = []
+        for lesson_list in lesson_lists:
+            day_names.append(lesson_list[0].day_of_week)
+        return day_names
 
     # -- Done --
     ## Original
@@ -413,11 +432,13 @@ class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
         coming_homework = self.get_coming_homework(date, user)
         lesson_lists = self.get_lesson_lists(date, user)
         legend = self.get_legend()
+        day_names = self.get_day_names(lesson_lists)
 
         context = {
             'announcements': announcements,
             'coming_homework': coming_homework,
             'lesson_lists': lesson_lists,
-            'legend': legend
+            'legend': legend,
+            'day_names' : day_names,
         }
         return context

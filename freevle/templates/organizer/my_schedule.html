@@ -23,7 +23,7 @@
           <h3>Legenda</h3>
           <ul id="legendul">
             {% for homework_type in legend %}
-            <li class="huiswerkitem legend{% cycle 'left' 'right' %}" style="border-color: {{ homework_type.color }};">homework_type.name</li>
+            <li class="huiswerkitem legend{% cycle 'left' 'right' %}" style="border-color: {{ homework_type.color }};">{{ homework_type.abbr }}</li>
             {% endfor %}
             <div class="clear"></div>
             <li class="huiswerkitem" id="valtuitlegend">{% trans "This hour is cancelled" %}</li>
@@ -33,46 +33,41 @@
       </div>
 
       <div id="nummers">
-        {# Make this dynamic! #}
+    
         <div class="uuru"><p class="vak">1</p></div>
         <div class="uure"><p class="vak">2</p></div>
         <div class="uuru"><p class="vak">3</p></div>
-        <div class="uuri"> </div>
         <div class="uure"><p class="vak">4</p></div>
         <div class="uuru"><p class="vak">5</p></div>
-        <div class="uuri"> </div>
         <div class="uure"><p class="vak">6</p></div>
         <div class="uuru"><p class="vak">7</p></div>
-        <div class="uuri"> </div>
         <div class="uure"><p class="vak">8</p></div>
         <div class="uuru"><p class="vak">9</p></div>
       </div>
 
-      <div class="divider"></div>
-
       {% for day in lesson_lists %}
+        <div class="divider"></div>
         <div class="dag">
-          <p class="dag">{{ day.name }}</p>
+            <p class="dag">{{ name }}Foosday</p>
 
           {% for lesson in day %}
-            {% if lesson.is_break %}
-              <div class="uuri">
-                <p class="vak">
-                  <span class="bold">{% trans "break" %}</span>
-            {% else %}
-              <div class="{% cycle 'uuru' 'uure' %}">
-                <p class="vak">
-                  <span class="bold">{{ lesson.course.topic }}</span>
-            {% endif %}
-                  <span class="right">{{ lesson.start_time }} - {{ lesson.end_time }}</span>
-                </p>
-
+            <div class="{% cycle 'uuru' 'uure' %}">
+              <div class="leraarles">
+                <span class="bold">{{ lesson.course.topic }}</span>
+                {{ lesson.course.teacher }}
+              </div>
+              <div class="time">{{ lesson.start_time.hour }}:{{ lesson.start_time.minute }} - {{ lesson.end_time.hour }}:{{ lesson.start_time.minute }}</div>
+              <div class="lokaal">{{ lesson.classroom }}</div>
+              <div class="clear"></div>
+              
+            {% if lesson.homework %}
               <div class="triangle"></div>
-              <ul class="huiswerk">
+                <ul class="huiswerk">
                 {% for item in lesson.homework %}
                   <li class="huiswerkitem" style="border-color: {{ item.homework_type.color }};">{{ item.content }}</li>
                 {% endfor %}
-              </ul>
+                </ul>
+            {% endif %}
             </div>
           {% endfor %}
 
@@ -89,10 +84,8 @@
             </script>
           {% endifequal %}
         </div>
-
-        <div class="divider"></div>
-      </div>
     {% endfor %}
+    </div>
 
     <div class="clear"></div>
 
