@@ -145,10 +145,11 @@ $(document).ready(function(){
 //Settings-tabs
   $('#tabs').width($('.tab').length * 850);
   var url = $(location).attr('href');
-  var aLink = 'a.tabnav[href="#' + url.split('#')[1] + '"]';
-  var tabIdUrl = '#tab' + url.split('#')[1];
+  var urlParts = url.split('/')
+  var aLink = 'a.tabnav[href="/settings/' + urlParts[urlParts.length-2] + '/"]';
+  var tabIdUrl = '#tab' + urlParts[urlParts.length-2];
   var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
-  if (/#/i.test(url)) {
+  if (/settings\/(\w*)\//i.test(url)) {
     $(aLink).css('border-color', '#007');
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
     if($(tabIdUrl).height() > 365) {
@@ -164,7 +165,8 @@ $(document).ready(function(){
   $('a.tabnav').click(function() {
     $('a.tabnav').css('border-color', '#fff');
     $(this).css('border-color', '#007');
-    var tabId = '#tab' + $(this).attr('href').split('#')[1];
+    var href = $(this).attr('href')
+    var tabId = '#tab' + href.split('/')[href.split('/').length-2];
     var amountTabs = $(tabId).prevAll('.tab').length
     var marginMove = '-' + amountTabs * 850 + 'px';
     if($(tabId).height() > 365) {
@@ -174,6 +176,13 @@ $(document).ready(function(){
     }
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
     $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
+  });
+
+//Prettier history
+  var History = window.History;
+  $('.settingsmenu a').click(function(e) {
+    History.replaceState(null, null, $(this).attr('href'));
+    e.preventDefault();
   });
 
 //Focusstatus
