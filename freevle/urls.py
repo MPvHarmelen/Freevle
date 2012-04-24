@@ -21,9 +21,8 @@ urlpatterns += patterns('',
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^news/', include('freevle.news.urls')),
     url(r'^letters/', include('freevle.letters.urls')),
-    url(r'^galleries/', include('freevle.galleries.urls')),
     url(r'^settings/', include('freevle.users.urls')),
-
+    #url(r'^galleries/', include('freevle.galleries.urls')),
     # TEMP for Floris' and Pim's brilliant work.
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
     url(r'^courses/$', TemplateView.as_view(template_name='courses/index.html')),
@@ -34,6 +33,7 @@ urlpatterns += patterns('',
     url(r'^contact/', TemplateView.as_view(template_name='contact/index.html')),
     url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
     url(r'^photos/', TemplateView.as_view(template_name='photos/index.html')),
+    url(r'^galleries/', TemplateView.as_view(template_name='photos/galleries.html')),
     url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
 
     # User urls
