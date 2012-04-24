@@ -408,6 +408,7 @@ h2 {
   font-weight: normal;
   margin: 30px 0 30px;
   line-height: 38px;
+  text-align: left;
 }
 
 h2 a:link, a:visited{
