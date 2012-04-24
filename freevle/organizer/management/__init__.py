@@ -117,7 +117,7 @@ def debug_data(sender, **kwargs):
         students_page = requests.get(url, cookies=cookies)
         students_soup = BeautifulSoup(students_page.text)
 
-        for option in students_soup('option')[2:]:
+        for option in students_soup('option')[1:]:
             name = option.string
             first_name = name.split()[0]
             last_name = ' '.join(name.split()[1:])
