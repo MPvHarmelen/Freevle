@@ -601,19 +601,17 @@ p.vak {
 }
 
 div.leraarles {
-  width: 68px;
   float: left;
 }
 
 div.time {
-  width: 77px;
+  width: 90px;
   text-align: right;
   margin-left: 15px;
   float: right;
 }
 
 div.lokaal {
-  width: 25px;
   margin-left: 10px;
   float: right;
 }

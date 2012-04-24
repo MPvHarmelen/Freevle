@@ -42,9 +42,9 @@ $(document).ready(function(){
 
 
 //Height
-  var height = $('.dag').css('height');
-  $('.divider').css('height', height);
-  $('#weekend').css('height', height);
+  var heightr = $('.dag').height('height');
+  $('.divider').height(heightr);
+  $('#weekend').height(heightr);
 
 
 //Weekend
