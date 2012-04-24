@@ -193,27 +193,32 @@ $(document).ready(function(){
   });
 
 //Live passwordchecker
-  $('#confirm-password').keyup(function() {
-    if($('#new-password').val() != $('#confirm-password').val()) { 
-      if($('#checkifsame').is(":hidden")) {
-        $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
-        $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+  var confirmPasswd = $('#confirm-password');
+  var newPasswd = $('#new-password');
+  var checkIfSame = $('#checkifsame');
+  var triangleLeft = $('#triangleleft');
+
+  confirmPasswd.keyup(function() {
+    if(newPasswd.val() != confirmPasswd.val()) { 
+      if(checkIfSame.is(":hidden")) {
+        checkIfSame.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+        triangleLeft.animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
       }
-      $('#checkifsame').text('The passwords don\'t match.');
-      $('#confirm-password').css('background-image', 'url(/media/img/redcross.png)');
+      checkIfSame.text('The passwords don\'t match.');
+      confirmPasswd.css('background-image', 'url(/media/img/redcross.png)');
     } else {
-      $('#confirm-password').css('background-image', 'url(/media/img/check.png)');
-      $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
-      $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+      confirmPasswd.css('background-image', 'url(/media/img/check.png)');
+      checkIfSame.animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+      triangleLeft.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
     }
   }).focus(function() {
-    if($('#confirm-password').val()) {
-      $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
-      $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+    if(confirmPasswd.val()) {
+      checkIfSame.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+      triangleLeft.animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
     }
   }).focusout(function() {
-    $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
-    $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+    checkIfSame.animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+    triangleLeft.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
   });
 });
 
