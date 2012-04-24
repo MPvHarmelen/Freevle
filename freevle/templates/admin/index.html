@@ -10,24 +10,41 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-<ul id="adminmenu-main">
+<div id="content-main">
 
 {% if app_list %}
     {% for app in app_list %}
+        <div class="module">
+        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+        <caption><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></caption>
         {% for model in app.models %}
-            <li class="adminmenu-item">
+            <tr>
             {% if model.perms.change %}
-                <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
             {% else %}
-                {{ model.name }}
+                <th scope="row">{{ model.name }}</th>
             {% endif %}
-            </li>
+
+            {% if model.perms.add %}
+                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+
+            {% if model.perms.change %}
+                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+            </tr>
         {% endfor %}
+        </table>
+        </div>
     {% endfor %}
 {% else %}
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}
-</ul>
+</div>
 {% endblock %}
 
 {% block sidebar %}

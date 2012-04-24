@@ -1,17 +1,10 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | {% trans 'Cygy Dashboard' %}{% endblock %}
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name">Cygy Controlcenter</h1>
+<h1 id="site-name">{% trans 'Django administration' %}</h1>
 {% endblock %}
 
-{% block nav-global %}
-	{% if user.is_staff %}
-	<div id="adminnav">
-		<a class="adminnav" href="/">Website home</a>  
-		<a class="adminnav" href="/admin/">Admin home</a>
-	</div>
-	{% endif %}
-{% endblock %}
+{% block nav-global %}{% endblock %}
