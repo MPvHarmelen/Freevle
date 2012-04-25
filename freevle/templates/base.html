@@ -10,6 +10,7 @@
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/media/js/jquery.history.js"></script>
     <script type="text/javascript" src="/media/js/scripts.js"></script>
+    <script type="text/javascript" src="/media/js/autocompletion.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
@@ -101,6 +102,9 @@
               <form id="search" method="post" action="">
                 <input id="search-box" type="text" placeholder="Zoeken...">
               </form>
+              <ul id="searchresults">
+                <li class="activeres"></li>
+              </ul>
             </li>
 
           {% if user.is_authenticated %}
