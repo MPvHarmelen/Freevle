@@ -82,6 +82,19 @@
         <form id="settings-password" action="" method="post">
           {% csrf_token %}
           <p class="settings">{% blocktrans %}Not happy with your password? No problemo! Change it here.{% endblocktrans %}</p>
+
+          {% if success == "succes" %}
+            <p id="setsuccess">
+              {% blocktrans %}Your password has been changed.{% endblocktrans %}
+            </p>
+          {% else %}
+            {% if success == "error" %}
+              <p id="seterror">
+              {% blocktrans %}Something went wrong, please try again.{% endblocktrans %}
+              </p>
+            {% endif %}
+          {% endif %}
+
           <ul id="passwordlist">  
             <li>
               <label for="old-password" class="settings">{% trans "Old password" %}</label>
@@ -98,7 +111,6 @@
               <div id="checkifsame"></div>
             </li>
           </ul>
-          {{ success }}
 
           <div class="clear"></div>
 

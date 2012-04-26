@@ -1389,6 +1389,19 @@ div#triangleleft {
   display: none;
 }
 
+#setsuccess {
+  text-align: center;
+  color: #fff;
+  background: #3c3;
+  padding: 8px 15px;
+}
+#seterror {
+  text-align: center;
+  background: #d44;
+  color: #fff;
+  padding: 8px 15px;
+}
+
 /*------------------------------photos------------------------------*/
 div#photopage img {
   height: 105px;

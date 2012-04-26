@@ -73,16 +73,15 @@ $(document).ready(function() {
 
 
 $('form#search').submit(function(e) {
-    if (!$('li.activeres#hiddenres')[0]) {
+  if (!$('li.activeres#hiddenres')[0]) {
     e.preventDefault();
-//    window.location.href = '/courses/wiskunde' /*$('.activeres').data*/;
-    alert('boe');
+    window.location.href = '/courses/wiskunde' /*$('.activeres').data*/;
   } else {
     e.preventDefault();
     alert('baa');
   }
 });
-​
+
 //  $('form#search').submit(function(e) {
 //    if(!$('li.activeres#hiddenres')[0]) {
 //      e.preventDefault();
