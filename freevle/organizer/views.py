@@ -107,9 +107,9 @@ class DateMixin(object):
         allow_weekend = self.get_allow_weekend()
 
         if not allow_weekend:
-            if date.strftime('%a') is 'Sat':
+            if date.strftime('%a') == 'Sat':
                 date += datetime.timedelta(days=2)
-            elif date.strftime('%a') is 'Sun':
+            elif date.strftime('%a') == 'Sun':
                 date += datetime.timedelta(days=1)
 
         return date
@@ -145,11 +145,44 @@ class CancellationMixin(object):
 
         return lesson_list
 
-class LessonListMixin(object):
+class HomeworkMixin(object):
+    comming_homework_days = 14
+    def set_homework(self, lesson_set, date):
+        key = lambda a: a.homework_type.weight
+        for lesson in lesson_set:
+            lesson.homework = sorted(
+                [homework for homework in lesson.homework_set.filter(
+                    due_date=date
+                 )],
+                key=key,
+                # A higher weight is more important & more important homework
+                # should go first, thus:
+                reverse=True
+            )
+        return lesson_set
+
+    def get_coming_homework(self, date, user):
+        coming_homework = self.coming_homework
+
+        if coming_homework is None:
+            comming_homework = []
+            for course in user.takes_courses.all():
+                for lesson in course.lesson_set.all():
+                    days = self.comming_homework_days
+                    end_date = date + datetime.timedelta(days=days)
+                    comming_homework.extend(
+                        lesson.homework_set.filter(due_date__gt=date,
+                                                   due_date__lt=end_date)
+                    )
+
+        return coming_homework
+
+
+class LessonListMixin(DateMixin):
     lesson_lists = None
     empty_lesson_tekst = '-'
 
-    def check_homework(self, lesson_set, date):
+    def set_homework(self, lesson_set, date):
         key = lambda a: a.homework_type.weight
         for lesson in lesson_set:
             lesson.homework = sorted(
@@ -175,8 +208,13 @@ class LessonListMixin(object):
         period_times = periodmeta.get_period_times(latest_period)
 
         for index, time in enumerate(period_times):
-            lesson_list[index].start_time = time[0]
-            lesson_list[index].end_time = time[1]
+            start_hour = str(time[0].hour).rjust(2,'0')
+            start_minute = str(time[0].minute).rjust(2,'0')
+            end_hour = str(time[1].hour).rjust(2,'0')
+            end_minute = str(time[1].minute).rjust(2,'0')
+
+            lesson_list[index].start_time = start_hour + ':' + start_minute
+            lesson_list[index].end_time = end_hour + ':' + end_minute
 
         return lesson_list
 
@@ -184,7 +222,7 @@ class LessonListMixin(object):
         '''
         Returns an iterable of lessons for the given date and object.
         '''
-        raise ImproperlyConfigured('You must write your own get_lesson_set')
+        raise ImproperlyConfigured('You must write your own `get_lesson_set`')
 
     def get_lesson_lists(self, date, obj):
         """
@@ -226,14 +264,11 @@ class LessonListMixin(object):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
                 try:
-                    lesson_set = self.check_homework(lesson_set, date)
+                    lesson_set = self.set_homework(lesson_set, date)
                 except AttributeError:
+                    # The Homework mixin isn't required
                     pass
-                try:
-                    lesson_set = self.check_cancellation(lesson_set)
-                except AttributeError:
-                    # The cancellation mixin isn't required
-                    pass
+                lesson_set = self.check_cancellation(lesson_set)
                 lesson_lists[index] = lesson_set
 
         return lesson_lists
@@ -272,7 +307,7 @@ class LessonListMixin(object):
 
         if len(lesson_list) > 0:
             lesson_list = self.set_period_times(lesson_list, date)
-        
+
         days_dict = dict(DAY_CHOICES)
         # Set day_of_week to full regional name
         for lesson in lesson_list:
@@ -283,11 +318,12 @@ class LessonListMixin(object):
                 try:
                     lesson.day_of_week = day_of_week
                 except UnboundLocalError:
+                    # This should be done differently
                     pass
 
         return lesson_list
 
-class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
+class StudentView(View, CancellationMixin, LessonListMixin, HomeworkMixin):
     """
     Context:
     > announcements = queryset
@@ -311,41 +347,22 @@ class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
     To write:
     class CancellationMixin
         check_cancellation(lesson)
-    Done | class LessonListMixin
-    Done | get_lesson_lists()
-    Done | get_lesson_set()
-    Done | get_date()
-    Done | get_allow_weekend()
-    Done | check_allow_weekend()
-    get_coming_homework()
-    Done | check_homework()
-    Done | get_anouncements()
-    Done | get_legend()
-    Done | lesson_set_cleanup(*args)
-    Done | get_periods_in_day(*args)
+    class HomeworkMixin
+        get_coming_homework()
     """
     username_url_kwarg = 'username'
     announcements = None
     coming_homework = None
 
     def get_announcements(self, date):
-        if self.announcements is not None:
-            announcements = self.announcements
-        else:
+        announcements = self.announcements
+        if announcements is None:
             announcements = Announcements.objects.filter(
                 start_date__lt=date,
                 end_date__gt=date
             )
 
         return announcements
-
-    def get_coming_homework(self, date, user):
-        coming_homework = self.coming_homework
-        if coming_homework is not None:
-            # stuff
-            coming_homework = None
-
-        return coming_homework
 
     def get_legend(self):
         return HomeworkType.objects.all()
@@ -357,9 +374,9 @@ class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
             try:
                 user = User.objects.all().get(username=username)
             except ObjectDoesNotExist:
-                raise Http404
+                raise Http404("This user doesn't exist")
         else:
-            raise ImproperlyConfigured("UserView needs to be called with "
+            raise ImproperlyConfigured("StudentView should be called with "
                                        "a username")
         return user
 
@@ -370,7 +387,6 @@ class StudentView(View, DateMixin, CancellationMixin, LessonListMixin):
         ordered by period
         """
 
-#        date = self.check_allow_weekend(date) I think it's unnecesary here
         day_of_week = date.strftime('%a')
         lesson_list = []
         for course in user.takes_courses.all():

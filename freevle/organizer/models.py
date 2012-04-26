@@ -1,10 +1,11 @@
 import datetime
 import re
 from django.db import models
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+
+from freevle.custom.validators import validate_hex
 
 
 # Create your models here.
@@ -54,7 +55,7 @@ class PeriodMeta(models.Model):
         )
 
         if len(queryset) == 0:
-            raise ObjectDoesNotExist('There is no periodmeta set for {}'
+            raise ImproperlyConfigured('There is no periodmeta set for {}'
                                      ''.format(date))
 
         if len(queryset) == 1:
@@ -183,21 +184,12 @@ class Lesson(models.Model):
                                  self.period)
 
 class HomeworkType(models.Model):
-    def validate_hex(value):
-        hex_error = _('This is an invalid color code. It must be a html hex'
-                      'color code e.g. #000000')
-
-        value_length = len(value)
-
-        match = re.match('^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', value)
-        if value_length != 7 or not match:
-            raise ValidationError(hex_error)
-
     name = models.CharField(max_length=32)
     abbr = models.CharField(max_length=8)
-    color = models.CharField(max_length=7,
-                             validators=[validate_hex])
-    weight = models.IntegerField()
+    color = models.CharField(max_length=7, validators=[validate_hex])
+    weight = models.IntegerField(help_text=_('Homework with a weight higher '
+                                              'than 10 will appear under '
+                                              '`comming homework`'))
 
     def __unicode__(self):
         return self.name
