@@ -45,6 +45,7 @@ urlpatterns += patterns('',
     
     #Work arround for history template. Needs to be intergrated in admin.
     url(r'^admin/history', TemplateView.as_view(template_name='admin/history.html')),
+    url(r'^admin/planner', TemplateView.as_view(template_name='admin/planner.html')),    
     
     # If no url could be found, include cms:
     url('', include('freevle.cms.urls'))
