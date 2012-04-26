@@ -2,117 +2,119 @@
 {% load i18n %}
 
 {% block content %}
-  <div id="content-main">
-    <h2>Planner<h2>
-      <p>Fill in this planner for each course that you provide. Of course you can copy and/or modify old planners or start a new one.</p>
-      <p>Select your class and course and the dates of lessons will be filled out for your automaticly. We wish you luck!</p>
-   
-    <li>Select your course:</li>
-      <ul>
-        <li>Math</li>
-        <li>Deutsch</li>
-        <li>Physics</li>
-        <li>Dutch</li>
-      </ul>
+  <div id="content">
+    <div id="content-main">
+      <h2>Planner<h2>
+        <p>Fill in this planner for each course that you provide. Of course you can copy and/or modify old planners or start a new one.</p>
+        <p>Select your class and course and the dates of lessons will be filled out for your automaticly. We wish you luck!</p>
+     
+      <li>Select your course:</li>
+        <ul>
+          <li>Math</li>
+          <li>Deutsch</li>
+          <li>Physics</li>
+          <li>Dutch</li>
+        </ul>
+        
+      <li>Select your class:</li>
+        <ul>
+          <li>1A</li>
+          <li>3D</li>
+          <li>5C</li>
+          <li>6B</li>
+        </ul>
       
-    <li>Select your class:</li>
-      <ul>
-        <li>1A</li>
-        <li>3D</li>
-        <li>5C</li>
-        <li>6B</li>
-      </ul>
-    
-    <li>Select the block you want to plan:</li>
-      <ul>
-        <li>Block 1</li>
-        <li>Block 2</li>
-        <li>Block 3</li>
-        <li>Block 4</li>
-      </ul>
+      <li>Select the block you want to plan:</li>
+        <ul>
+          <li>Block 1</li>
+          <li>Block 2</li>
+          <li>Block 3</li>
+          <li>Block 4</li>
+        </ul>
+        
+      <li>Copy existing planner:</li>
+        <ul>
+          <li>Planner 1A Renee Kloos Dutch 11/11/2003 Block 1</li>
+          <li>Planner 2B Renee Kloos Dutch 12/11/2003 Block 1</li>
+          <li>Planner 3C Renee Kloos Dutch 13/11/2003 Block 1</li>
+          <li>Planner 4D Renee Kloos Dutch 14/11/2003 Block 1</li>
+        </ul>
       
-    <li>Copy existing planner:</li>
-      <ul>
-        <li>Planner 1A Renee Kloos Dutch 11/11/2003 Block 1</li>
-        <li>Planner 2B Renee Kloos Dutch 12/11/2003 Block 1</li>
-        <li>Planner 3C Renee Kloos Dutch 13/11/2003 Block 1</li>
-        <li>Planner 4D Renee Kloos Dutch 14/11/2003 Block 1</li>
-      </ul>
-    
-    <table id="Planner">     
-      <tr>
-        <th>Weeknr</th>
-        <th>Date</th>
-        <th>Homework type</th>
-        <th>Homework</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Thu 04/01</td>
-        <td>Opdr</td>
-        <td>Wb. Blz. 16/18</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Wed 05/01</td>
-        <td>Opdr</td>
-        <td>Lezen tekstboek Blz. 20 + Maken. Wb. Blz. 22</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Fri 07/01</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Thu 11/01</td>
-        <td>Opdr</td>
-        <td>Herhalen moeilijke dicteewoorden</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Wed 12/01</td>
-        <td>SO</td>
-        <td>Dictee woorden Blz. 10 t/m 20</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Fri 14/01</td>
-        <td>PW</td>
-        <td>Tekstverklaring</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Tue 18/01</td>
-        <td></td>
-        <td class=">valtuit">Vakantie</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Wed 19/01</td>
-        <td></td>
-        <td class=">valtuit"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Fri 14/01</td>
-        <td></td>
-        <td class=">valtuit"></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Tue 25/01</td>
-        <td>Opdr</td>
-        <td>Voorbereiden presentatie</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Wed 26/01</td>
-        <td>Pr</td>
-        <td>Presentaties</td>
-      </tr>                  
-    </table>       
+      <table id="Planner">     
+        <tr>
+          <th>Weeknr</th>
+          <th>Date</th>
+          <th>Homework type</th>
+          <th>Homework</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Thu 04/01</td>
+          <td>Opdr</td>
+          <td>Wb. Blz. 16/18</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Wed 05/01</td>
+          <td>Opdr</td>
+          <td>Lezen tekstboek Blz. 20 + Maken. Wb. Blz. 22</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Fri 07/01</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Thu 11/01</td>
+          <td>Opdr</td>
+          <td>Herhalen moeilijke dicteewoorden</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Wed 12/01</td>
+          <td>SO</td>
+          <td>Dictee woorden Blz. 10 t/m 20</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Fri 14/01</td>
+          <td>PW</td>
+          <td>Tekstverklaring</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Tue 18/01</td>
+          <td></td>
+          <td class=">valtuit">Vakantie</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Wed 19/01</td>
+          <td></td>
+          <td class=">valtuit"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Fri 14/01</td>
+          <td></td>
+          <td class=">valtuit"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Tue 25/01</td>
+          <td>Opdr</td>
+          <td>Voorbereiden presentatie</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Wed 26/01</td>
+          <td>Pr</td>
+          <td>Presentaties</td>
+        </tr>                  
+      </table>       
+    </div>
   </div>
-
+  
 {% endblock content %}
