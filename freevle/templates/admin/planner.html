@@ -5,115 +5,218 @@
   <div id="content">
     <div id="content-main">
       <h2>Planner<h2>
-        <p>Fill in this planner for each course that you provide. Of course you can copy and/or modify old planners or start a new one.</p>
-        <p>Select your class and course and the dates of lessons will be filled out for your automaticly. We wish you luck!</p>
-     
-      <li>Select your course:</li>
-        <ul>
-          <li>Math</li>
-          <li>Deutsch</li>
-          <li>Physics</li>
-          <li>Dutch</li>
-        </ul>
+        <p>Fill in this planner for each course that you provide. Of course you can copy and modify an old planner but you can also start a completely new one.</p>
+        <p>Your course is auto-selected for your account. Select your class and the block you want to plan for. When you copy an existing planner the dates will be adjusted autmagically. We wish you luck!</p>
+    
+      <form id="Planner">  
+        <h3>Your course:<h3>
+          <input type="text" value="Math" disabled/>
+           
+        <h3>Select your class:</h3>
+          <select>
+            <option>1A</option>
+            <option>3D</option>
+            <option>4C</option>
+            <option>6A</option>
+          </select>
+                
+        <h3>Select the block:</h3>
+          <select>
+            <option>Block 1</option>
+            <option>Block 2</option>
+            <option>Block 3</option>
+            <option>Block 4</option>
+          </select>
+          
+        <h3>Copy existing planner?</h3>
+            <select>
+              <option>No, create new</option>
+              <option>Planner 1A Renee Kloos Dutch 11/11/2003 Block 1</option>
+              <option>Planner 2B Renee Kloos Dutch 12/11/2003 Block 2</option>
+              <option>Planner 3C Renee Kloos Dutch 13/11/2003 Block 3</option>
+              <option>Planner 4D Renee Kloos Dutch 14/11/2003 Block 4</option>           
+            </select>
         
-      <li>Select your class:</li>
-        <ul>
-          <li>1A</li>
-          <li>3D</li>
-          <li>5C</li>
-          <li>6B</li>
-        </ul>
-      
-      <li>Select the block you want to plan:</li>
-        <ul>
-          <li>Block 1</li>
-          <li>Block 2</li>
-          <li>Block 3</li>
-          <li>Block 4</li>
-        </ul>
+        <h3>Create your planner:</h3>
+        <table id="Planner">     
+          <tr>
+            <th>Weeknr</th>
+            <th>Date</th>
+            <th>Homework type</th>
+            <th>Homework</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Thu 04/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>              
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Wed 05/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>  
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Fri 07/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>  
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Thu 11/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option> 
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Wed 12/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>   
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Fri 14/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>   
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Tue 18/01</td>
+            <td class=">valtuit">
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>   
+              </select>
+            </td>
+            <td class=">valtuit"><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Wed 19/01</td>
+            <td class=">valtuit">
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>   
+              </select>
+            </td>
+            <td class=">valtuit"><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Fri 14/01</td>
+            <td class=">valtuit">
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option> 
+              </select>
+            </td>
+            <td class=">valtuit"><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Tue 25/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>   
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Wed 26/01</td>
+            <td>
+              <select>
+                <option>--</option>
+                <option>Mk</option>
+                <option>Lr</option>
+                <option>So</option>
+                <option>Pw</option>
+                <option>Se</option>  
+              </select>
+            </td>
+            <td><input type="text" /></td>
+          </tr>                  
+        </table>
         
-      <li>Copy existing planner:</li>
-        <ul>
-          <li>Planner 1A Renee Kloos Dutch 11/11/2003 Block 1</li>
-          <li>Planner 2B Renee Kloos Dutch 12/11/2003 Block 1</li>
-          <li>Planner 3C Renee Kloos Dutch 13/11/2003 Block 1</li>
-          <li>Planner 4D Renee Kloos Dutch 14/11/2003 Block 1</li>
-        </ul>
+        <input type="submit" value="Save"/>
+        <input type="submit" value="Save and continue"/>
+        <input type="submit" value="Save and start new planner"/>
       
-      <table id="Planner">     
-        <tr>
-          <th>Weeknr</th>
-          <th>Date</th>
-          <th>Homework type</th>
-          <th>Homework</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Thu 04/01</td>
-          <td>Opdr</td>
-          <td>Wb. Blz. 16/18</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Wed 05/01</td>
-          <td>Opdr</td>
-          <td>Lezen tekstboek Blz. 20 + Maken. Wb. Blz. 22</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Fri 07/01</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Thu 11/01</td>
-          <td>Opdr</td>
-          <td>Herhalen moeilijke dicteewoorden</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Wed 12/01</td>
-          <td>SO</td>
-          <td>Dictee woorden Blz. 10 t/m 20</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Fri 14/01</td>
-          <td>PW</td>
-          <td>Tekstverklaring</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Tue 18/01</td>
-          <td></td>
-          <td class=">valtuit">Vakantie</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Wed 19/01</td>
-          <td></td>
-          <td class=">valtuit"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Fri 14/01</td>
-          <td></td>
-          <td class=">valtuit"></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Tue 25/01</td>
-          <td>Opdr</td>
-          <td>Voorbereiden presentatie</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Wed 26/01</td>
-          <td>Pr</td>
-          <td>Presentaties</td>
-        </tr>                  
-      </table>       
+      </form>       
     </div>
   </div>
   
