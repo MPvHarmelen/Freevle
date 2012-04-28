@@ -844,11 +844,17 @@ li.sidebar-item.active a:active {
 #sided:hover {
   background-image: url(/media/admin/img/d-h.png);
 }
-#sidecomma, #sidecomma2 {
+#sidecomma {
   background-image: url(/media/admin/img/comma-a.png);
 }
-#sidecomma:hover, #sidecomma2:hover {
+#sidecomma:hover {
   background-image: url(/media/admin/img/comma-a.png);
+}
+#sidecomma2 {
+  background-image: url(/media/admin/img/comma.png);
+}
+#sidecomma2:hover {
+  background-image: url(/media/admin/img/comma-h.png);
 }
 
 

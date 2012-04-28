@@ -529,6 +529,10 @@ div.breadcrumbs {
   position: fixed;
   top: 40px;
   width: 100%;
+  height: 27px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 /* ACTION ICONS */
