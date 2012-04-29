@@ -27,6 +27,7 @@ $(document).ready(function() {
       }
   });
 
+  var results = [];
 
   searchfield.keyup(function(e) {
       if(e.keyCode == 40) {
@@ -58,11 +59,11 @@ $(document).ready(function() {
 //                  var results = data;
 //                }
 //              )
-              var results = ['aaaaa', 'aaaab', 'bbbbb'];
+              results = [['aaaaa', '/courses/wiskunde'], ['aaaab', '/contact'], ['bbbbb', '/news']];
               for(var i = 0; i < results.length; i++) {
-                  result = results[i];
+                  result = results[i][0];
                   result = result.replace(chars, '<strong>' + chars + '</strong>');
-                  rearea.append('<li class="resul">' + result + '</li>');
+                  rearea.append('<li class="resul"><a href="' + results[i][1] + '">' + result + '</a></li>');
               }
               rearea.slideDown('fast');
           } else {
@@ -75,10 +76,7 @@ $(document).ready(function() {
   $('form#search').submit(function(e) {
     if (!$('li.activeres#hiddenres')[0]) {
       e.preventDefault();
-      window.location.href = '/courses/wiskunde' /*$('.activeres').data*/;
-    } else {
-      e.preventDefault();
-      alert('baa');
+      window.location.href = $('.activeres').children('a').attr('href');
     }
   });
 

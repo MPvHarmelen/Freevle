@@ -316,14 +316,16 @@ strong {
   font-weight: bold;
 }
 
-.resul {
+.resul a {
   padding: 6px;
+  display: block;
+  text-decoration: none;
 }
-.resul:hover {
+.resul a:hover {
   background: #e5e5ff;
 }
 
-.activeres {
+.activeres a {
   background: #ddf;
 }
 
