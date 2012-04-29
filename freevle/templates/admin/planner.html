@@ -2,11 +2,12 @@
 {% load i18n %}
 
 {% block content %}
-  <div id="content">
     <div id="content-main">
-      <h2>Planner<h2>
-        <p>Fill in this planner for each course that you provide. Of course you can copy and modify an old planner but you can also start a completely new one.</p>
-        <p>Your course is auto-selected for your account. Select your class and the block you want to plan for. When you copy an existing planner the dates will be adjusted autmagically. We wish you luck!</p>
+      <div class="planner-intro">
+        <h2>Planner</h2>
+          <p>Fill in this planner for each course that you provide. Of course you can copy and modify an old planner but you can also start a completely new one.</p>
+          <p>Your course is auto-selected for your account. Select your class and the block you want to plan for. When you copy an existing planner the dates will be adjusted autmagically. We wish you luck!</p>
+      </div>
     
       <form id="Planner">  
         <h3>Your course:<h3>
@@ -218,6 +219,5 @@
       
       </form>       
     </div>
-  </div>
   
 {% endblock content %}
