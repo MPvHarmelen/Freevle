@@ -1,5 +1,3 @@
-# Create your views here.
-
 import datetime
 
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
@@ -147,6 +145,9 @@ class CancellationMixin(object):
 
 class HomeworkMixin(object):
     comming_homework_days = 14
+    comming_homework_min_weight = 10
+    coming_homework = None
+
     def set_homework(self, lesson_set, date):
         key = lambda a: a.homework_type.weight
         for lesson in lesson_set:
@@ -163,6 +164,7 @@ class HomeworkMixin(object):
 
     def get_coming_homework(self, date, user):
         coming_homework = self.coming_homework
+        min_weight = self.comming_homework_min_weight
 
         if coming_homework is None:
             comming_homework = []
@@ -171,16 +173,14 @@ class HomeworkMixin(object):
                     days = self.comming_homework_days
                     end_date = date + datetime.timedelta(days=days)
                     comming_homework.extend(
-                        lesson.homework_set.filter(due_date__gt=date,
-                                                   due_date__lt=end_date)
+                        lesson.homework_set.filter(
+                            due_date__gt=date,
+                            due_date__lt=end_date,
+                            homework_type__weight__gt=min_weight
+                        )
                     )
 
         return coming_homework
-
-
-class LessonListMixin(DateMixin):
-    lesson_lists = None
-    empty_lesson_tekst = '-'
 
     def set_homework(self, lesson_set, date):
         key = lambda a: a.homework_type.weight
@@ -194,6 +194,10 @@ class LessonListMixin(DateMixin):
                  reverse=True
             )
         return lesson_set
+
+class LessonListMixin(DateMixin):
+    lesson_lists = None
+    empty_lesson_tekst = '-'
 
     def get_min_periods(self, date):
         periodmeta = PeriodMeta().get_periodmeta(date)
@@ -323,36 +327,15 @@ class LessonListMixin(DateMixin):
 
         return lesson_list
 
-class StudentView(View, CancellationMixin, LessonListMixin, HomeworkMixin):
-    """
-    Context:
-    > announcements = queryset
-    > coming_homework = queryset
-    > lesson_sets = [lesson_list1, lesson_list2, (...)]
-    > legend = queryset
+class OrganizerView(View, CancellationMixin, LessonListMixin):
+    template_name = None
+    response_class = TemplateResponse
 
-    With:
-    lesson_list1 = [<lesson object>, <lesson object>, (...)]
-    lesson_list2 = [<lesson object>, <lesson object>, (...)]
-    ...
-
-    The day name is done by changing the dayname AFTER the list has been
-    created from the queryset
-
-    Cancellation is done by creating extra attributes to the lesson objects,
-    like is_cancelled and changed_teacher.
-
-    The same for period times.
-
-    To write:
-    class CancellationMixin
-        check_cancellation(lesson)
-    class HomeworkMixin
-        get_coming_homework()
-    """
-    username_url_kwarg = 'username'
-    announcements = None
-    coming_homework = None
+    def get_day_names(self, lesson_lists):
+        day_names = []
+        for lesson_list in lesson_lists:
+            day_names.append(lesson_list[0].day_of_week)
+        return day_names
 
     def get_announcements(self, date):
         announcements = self.announcements
@@ -366,6 +349,67 @@ class StudentView(View, CancellationMixin, LessonListMixin, HomeworkMixin):
 
     def get_legend(self):
         return HomeworkType.objects.all()
+
+    def get_template_names(self):
+        """
+        Returns a list of template names to be used for the request. Must return
+        a list. May not be called if render_to_response is overridden.
+        """
+        if self.template_name is None:
+            raise ImproperlyConfigured(
+                "TemplateResponseMixin requires either a definition of "
+                "'template_name' or an implementation of 'get_template_names()'")
+        else:
+            return [self.template_name]
+
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Returns a response with a template rendered with the given context.
+        """
+        return self.response_class(
+            request=self.request,
+            template=self.get_template_names(),
+            context=context,
+            **response_kwargs
+        )
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return self.render_to_response(context)
+
+    def get_context_data(self):
+        """
+        Get the context for this view.
+        """
+        date = self.get_date()
+        user = self.get_user()
+        announcements = self.get_announcements(date)
+        coming_homework = self.get_coming_homework(date, user)
+        lesson_lists = self.get_lesson_lists(date, user)
+        legend = self.get_legend()
+        day_names = self.get_day_names(lesson_lists)
+
+        context = {
+            'announcements': announcements,
+            'coming_homework': coming_homework,
+            'lesson_lists': lesson_lists,
+            'legend': legend,
+            'day_names' : day_names,
+        }
+        return context
+
+    announcements = None
+
+
+
+class StudentView(OrganizerView, HomeworkMixin):
+    """
+    To write:
+    class CancellationMixin
+        check_cancellation(lesson)
+    """
+    username_url_kwarg = 'username'
 
     def get_user(self):
         username = self.kwargs.get(self.username_url_kwarg, None)
@@ -398,63 +442,3 @@ class StudentView(View, CancellationMixin, LessonListMixin, HomeworkMixin):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
-    def get_day_names(self, lesson_lists):
-        day_names = []
-        for lesson_list in lesson_lists:
-            day_names.append(lesson_list[0].day_of_week)
-        return day_names
-
-    # -- Done --
-    ## Original
-    def get_template_names(self):
-        """
-        Returns a list of template names to be used for the request. Must return
-        a list. May not be called if render_to_response is overridden.
-        """
-        if self.template_name is None:
-            raise ImproperlyConfigured(
-                "TemplateResponseMixin requires either a definition of "
-                "'template_name' or an implementation of 'get_template_names()'")
-        else:
-            return [self.template_name]
-
-    ## Original
-    template_name = None
-    response_class = TemplateResponse
-    def render_to_response(self, context, **response_kwargs):
-        """
-        Returns a response with a template rendered with the given context.
-        """
-        return self.response_class(
-            request=self.request,
-            template=self.get_template_names(),
-            context=context,
-            **response_kwargs
-        )
-
-    ## Edited
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        return self.render_to_response(context)
-
-    ## Edited
-    def get_context_data(self):
-        """
-        Get the context for this view.
-        """
-        date = self.get_date()
-        user = self.get_user()
-        announcements = self.get_announcements(date)
-        coming_homework = self.get_coming_homework(date, user)
-        lesson_lists = self.get_lesson_lists(date, user)
-        legend = self.get_legend()
-        day_names = self.get_day_names(lesson_lists)
-
-        context = {
-            'announcements': announcements,
-            'coming_homework': coming_homework,
-            'lesson_lists': lesson_lists,
-            'legend': legend,
-            'day_names' : day_names,
-        }
-        return context
