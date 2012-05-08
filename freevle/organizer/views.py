@@ -283,7 +283,7 @@ class LessonListMixin(DateMixin):
         itterated for the template. (No cancellation is checked)
         """
         empty_course = StrCourse(topic=self.empty_lesson_tekst)
-        empty_lesson = Lesson(course=empty_course)
+        empty_lesson = lambda: Lesson(course=empty_course)
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
@@ -300,14 +300,14 @@ class LessonListMixin(DateMixin):
             if lesson.period != previous_period + 1:
                 difference = lesson.period - previous_period
                 # Two adjacent hours differ 1
-                lesson_list.extend([empty_lesson] * (difference - 1))
+                lesson_list.extend([empty_lesson()] * (difference - 1))
 
             lesson_list.append(lesson)
 
         # Correct length
         length = len(lesson_list)
         if length < min_length:
-            lesson_list.extend([empty_lesson] * (min_length - length))
+            lesson_list.extend([empty_lesson()] * (min_length - length))
 
         if len(lesson_list) > 0:
             lesson_list = self.set_period_times(lesson_list, date)
@@ -441,4 +441,28 @@ class StudentView(OrganizerView, HomeworkMixin):
             )
             lesson_list.extend(lesson_subset)
         return lesson_list
+
+
+def organizer_view(*args, **kwargs):
+    pass
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
