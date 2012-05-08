@@ -442,27 +442,6 @@ class StudentView(OrganizerView, HomeworkMixin):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
-
-def organizer_view(*args, **kwargs):
-    pass
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def organizer_view(**viewkwargs):
+    raise KeyError('Je lult')
+    slug = viewkwargs['kwargs'].get['slug']
