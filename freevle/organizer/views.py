@@ -327,7 +327,7 @@ class LessonListMixin(DateMixin):
 
         return lesson_list
 
-class OrganizerView(View, CancellationMixin, LessonListMixin):
+class OrganizerMixin(View, CancellationMixin, LessonListMixin):
     template_name = None
     response_class = TemplateResponse
 
@@ -403,7 +403,7 @@ class OrganizerView(View, CancellationMixin, LessonListMixin):
 
 
 
-class StudentView(OrganizerView, HomeworkMixin):
+class StudentView(OrganizerMixin, HomeworkMixin):
     """
     To write:
     class CancellationMixin
