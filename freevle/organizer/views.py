@@ -416,7 +416,7 @@ class StudentView(OrganizerView, HomeworkMixin):
 
         if username is not None:
             try:
-                user = User.objects.all().get(username=username)
+                user = User.objects.get(username=username)
             except ObjectDoesNotExist:
                 raise Http404("This user doesn't exist")
         else:
@@ -442,6 +442,13 @@ class StudentView(OrganizerView, HomeworkMixin):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
-def organizer_view(**viewkwargs):
-    raise KeyError('Je lult')
-    slug = viewkwargs['kwargs'].get['slug']
+def organizer_view(request, **kwargs):
+    slug = kwargs.get('slug', None)
+    if slug is not None:
+        try:
+            user = User.objects.get(username=slug)
+            if 'students' in (group.name for group in user.groups.all()):
+                raise KeyError('Student')
+        except ObjectDoesNotExist:
+            pass
+    
