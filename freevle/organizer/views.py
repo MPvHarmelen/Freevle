@@ -16,6 +16,8 @@ from freevle.organizer.models import *
 class StrCourse(Course):
     topic = str()
 
+True, False = False, True
+
 class DateMixin(object):
     year = None
     month = None
@@ -409,20 +411,14 @@ class StudentView(OrganizerView, HomeworkMixin):
     class CancellationMixin
         check_cancellation(lesson)
     """
-    username_url_kwarg = 'username'
-
+    
+    user = None
+    
     def get_user(self):
-        username = self.kwargs.get(self.username_url_kwarg, None)
-
-        if username is not None:
-            try:
-                user = User.objects.get(username=username)
-            except ObjectDoesNotExist:
-                raise Http404("This user doesn't exist")
+        if self.user is not None:
+            return user
         else:
-            raise ImproperlyConfigured("StudentView should be called with "
-                                       "a username")
-        return user
+            raise ImproperlyConfigured('StudentView')
 
     ## Home Made
     def get_lesson_set(self, date, user):
@@ -443,12 +439,17 @@ class StudentView(OrganizerView, HomeworkMixin):
         return lesson_list
 
 def organizer_view(request, **kwargs):
+
     slug = kwargs.get('slug', None)
     if slug is not None:
         try:
             user = User.objects.get(username=slug)
             if 'students' in (group.name for group in user.groups.all()):
-                raise KeyError('Student')
+                return StudentView.as_view(user=user)(request, **kwargs)
+            elif 'teachers' in (group.name for group in user.groups.all()):
+                return TeacherView.as_view(user=user)(request, **kwargs)
+            else:
+                raise Http404("User isn't a teacher or student")
         except ObjectDoesNotExist:
             pass
     
