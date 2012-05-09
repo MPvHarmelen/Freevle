@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from freevle.organizer.models import *
 
-# You have to be careful with Empty- and BreakLesson, because empty
+# You have to be careful with EmptyLesson, because empty
 # ForeignKey fields raise DoesNotExist.
 
 class StrCourse(Course):
@@ -168,9 +168,9 @@ class HomeworkMixin(object):
 
         if coming_homework is None:
             comming_homework = []
+            days = self.comming_homework_days
             for course in user.takes_courses.all():
                 for lesson in course.lesson_set.all():
-                    days = self.comming_homework_days
                     end_date = date + datetime.timedelta(days=days)
                     comming_homework.extend(
                         lesson.homework_set.filter(
@@ -410,18 +410,22 @@ class StudentView(OrganizerView, HomeworkMixin):
         check_cancellation(lesson)
     """
     username_url_kwarg = 'username'
+    user = None
 
     def get_user(self):
         username = self.kwargs.get(self.username_url_kwarg, None)
 
-        if username is not None:
+        if self.user is not None:
+            return self.user
+        elif username is not None:
             try:
-                user = User.objects.get(username=username)
+                user = User.objects.get(username=username,
+                                        groups__name='students')
             except ObjectDoesNotExist:
                 raise Http404("This user doesn't exist")
         else:
             raise ImproperlyConfigured("StudentView should be called with "
-                                       "a username")
+                                       "a user or username")
         return user
 
     ## Home Made
@@ -443,12 +447,17 @@ class StudentView(OrganizerView, HomeworkMixin):
         return lesson_list
 
 def organizer_view(request, **kwargs):
-    slug = kwargs.get('slug', None)
+    slug = kwargs.pop('slug', None)
     if slug is not None:
         try:
             user = User.objects.get(username=slug)
             if 'students' in (group.name for group in user.groups.all()):
-                raise KeyError('Student')
+                # Twice giving **kwargs is ugly, but it works :(
+                return StudentView.as_view(user=user, **kwargs)(request, **kwargs)
+            elif 'teachers' in (group.name for group in user.groups.all()):
+                raise KeyError('Teacher')
+            else:
+                raise Http404("Couldn't find organizer data for this slug.")
         except ObjectDoesNotExist:
-            pass
-    
+            raise ObjectDoesNotExist
+
