@@ -300,14 +300,14 @@ class LessonListMixin(DateMixin):
             if lesson.period != previous_period + 1:
                 difference = lesson.period - previous_period
                 # Two adjacent hours differ 1
-                lesson_list.extend([empty_lesson()] * (difference - 1))
+                lesson_list.extend((empty_lesson() for i in range(difference - 1)))
 
             lesson_list.append(lesson)
 
         # Correct length
         length = len(lesson_list)
         if length < min_length:
-            lesson_list.extend([empty_lesson()] * (min_length - length))
+            lesson_list.extend((empty_lesson() for i in range(min_length - length)))
 
         if len(lesson_list) > 0:
             lesson_list = self.set_period_times(lesson_list, date)
