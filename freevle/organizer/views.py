@@ -273,7 +273,6 @@ class LessonListMixin(DateMixin):
                     # The Homework mixin isn't required
                     pass
                 lesson_set = self.check_cancellation(lesson_set)
-                lesson_lists[index] = lesson_set
 
         return lesson_lists
 
@@ -316,8 +315,7 @@ class LessonListMixin(DateMixin):
         # Set day_of_week to full regional name
         for lesson in lesson_list:
             try:
-                lesson.day_of_week = days_dict[lesson.day_of_week]
-                day_of_week = lesson.day_of_week
+                lesson.day_of_week = day_of_week = days_dict[lesson.day_of_week]
             except KeyError:
                 try:
                     lesson.day_of_week = day_of_week
@@ -330,12 +328,7 @@ class LessonListMixin(DateMixin):
 class OrganizerView(View, CancellationMixin, LessonListMixin):
     template_name = None
     response_class = TemplateResponse
-
-    def get_day_names(self, lesson_lists):
-        day_names = []
-        for lesson_list in lesson_lists:
-            day_names.append(lesson_list[0].day_of_week)
-        return day_names
+    announcements = None
 
     def get_announcements(self, date):
         announcements = self.announcements
@@ -388,18 +381,14 @@ class OrganizerView(View, CancellationMixin, LessonListMixin):
         coming_homework = self.get_coming_homework(date, user)
         lesson_lists = self.get_lesson_lists(date, user)
         legend = self.get_legend()
-        day_names = self.get_day_names(lesson_lists)
 
         context = {
             'announcements': announcements,
             'coming_homework': coming_homework,
             'lesson_lists': lesson_lists,
             'legend': legend,
-            'day_names' : day_names,
         }
         return context
-
-    announcements = None
 
 
 
