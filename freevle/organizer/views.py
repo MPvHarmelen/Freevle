@@ -144,8 +144,8 @@ class CancellationMixin(object):
         return lesson_list
 
 class HomeworkMixin(object):
-    comming_homework_days = 14
-    comming_homework_min_weight = 10
+    coming_homework_days = 14
+    coming_homework_min_weight = 10
     coming_homework = None
 
     def set_homework(self, lesson_set, date):
@@ -164,19 +164,19 @@ class HomeworkMixin(object):
 
     def get_coming_homework(self, date, user):
         coming_homework = self.coming_homework
-        min_weight = self.comming_homework_min_weight
+        min_weight = self.coming_homework_min_weight
 
         if coming_homework is None:
-            comming_homework = []
-            days = self.comming_homework_days
+            coming_homework = []
+            days = self.coming_homework_days
             for course in user.takes_courses.all():
                 for lesson in course.lesson_set.all():
                     end_date = date + datetime.timedelta(days=days)
-                    comming_homework.extend(
+                    coming_homework.extend(
                         lesson.homework_set.filter(
-                            due_date__gt=date,
-                            due_date__lt=end_date,
-                            homework_type__weight__gt=min_weight
+                            due_date__ge=date,
+                            due_date__le=end_date,
+                            homework_type__weight__ge=min_weight
                         )
                     )
 
@@ -334,8 +334,8 @@ class OrganizerView(View, CancellationMixin, LessonListMixin):
         announcements = self.announcements
         if announcements is None:
             announcements = Announcements.objects.filter(
-                start_date__lt=date,
-                end_date__gt=date
+                start_date__le=date,
+                end_date__ge=date
             )
 
         return announcements
@@ -429,8 +429,8 @@ class StudentView(OrganizerView, HomeworkMixin):
         for course in user.takes_courses.all():
             lesson_subset = course.lesson_set.filter(
                 day_of_week=day_of_week,
-                start_date__lt=date,
-                end_date__gt=date
+                start_date__le=date,
+                end_date__ge=date
             )
             lesson_list.extend(lesson_subset)
         return lesson_list
