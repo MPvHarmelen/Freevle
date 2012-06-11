@@ -435,7 +435,7 @@ def organizer_view(request, **kwargs):
         try:
             user = User.objects.get(username=slug)
             if 'students' in (group.name for group in user.groups.all()):
-                # Twice giving **kwargs is ugly, but it works :(
+                # Giving **kwargs twice is ugly, but it works :(
                 return StudentView.as_view(user=user, **kwargs)(request, **kwargs)
             elif 'teachers' in (group.name for group in user.groups.all()):
                 raise KeyError('Teacher')
