@@ -174,9 +174,9 @@ class HomeworkMixin(object):
                     end_date = date + datetime.timedelta(days=days)
                     coming_homework.extend(
                         lesson.homework_set.filter(
-                            due_date__ge=date,
-                            due_date__le=end_date,
-                            homework_type__weight__ge=min_weight
+                            due_date__gte=date,
+                            due_date__lte=end_date,
+                            homework_type__weight__gte=min_weight
                         )
                     )
 
@@ -208,7 +208,7 @@ class LessonListMixin(DateMixin):
         Get the right times for periods
         '''
         periodmeta = PeriodMeta().get_periodmeta(date)
-        latest_period = lesson_list[-1].period
+        latest_period = len(lesson_list)
         period_times = periodmeta.get_period_times(latest_period)
 
         for index, time in enumerate(period_times):
@@ -273,13 +273,14 @@ class LessonListMixin(DateMixin):
                     # The Homework mixin isn't required
                     pass
                 lesson_set = self.check_cancellation(lesson_set)
+                lesson_lists[index] = lesson_set
 
         return lesson_lists
 
     def lesson_set_cleanup(self, lesson_set, min_length, date):
         """
         Takes an iterable of lessons, returns a lesson_list ready to be
-        itterated for the template. (No cancellation is checked)
+        iterated for the template. (No cancellation is checked)
         """
         empty_course = StrCourse(topic=self.empty_lesson_tekst)
         empty_lesson = lambda: Lesson(course=empty_course)
@@ -311,17 +312,7 @@ class LessonListMixin(DateMixin):
         if len(lesson_list) > 0:
             lesson_list = self.set_period_times(lesson_list, date)
 
-        days_dict = dict(DAY_CHOICES)
-        # Set day_of_week to full regional name
-        for lesson in lesson_list:
-            try:
-                lesson.day_of_week = day_of_week = days_dict[lesson.day_of_week]
-            except KeyError:
-                try:
-                    lesson.day_of_week = day_of_week
-                except UnboundLocalError:
-                    # This should be done differently
-                    pass
+        lesson_list.insert(0, _(date.strftime('%A')))
 
         return lesson_list
 
@@ -334,14 +325,17 @@ class OrganizerMixin(View, CancellationMixin, LessonListMixin):
         announcements = self.announcements
         if announcements is None:
             announcements = Announcements.objects.filter(
-                start_date__le=date,
-                end_date__ge=date
+                start_date__lte=date,
+                end_date__gte=date
             )
 
         return announcements
 
     def get_legend(self):
         return HomeworkType.objects.all()
+
+    def get_period_range(self, lesson_lists):
+        return range(1, len(lesson_lists[0]))
 
     def get_template_names(self):
         """
@@ -372,21 +366,21 @@ class OrganizerMixin(View, CancellationMixin, LessonListMixin):
         return self.render_to_response(context)
 
     def get_context_data(self):
-        """
-        Get the context for this view.
-        """
+        """ Get the context for this view. """
         date = self.get_date()
         user = self.get_user()
         announcements = self.get_announcements(date)
         coming_homework = self.get_coming_homework(date, user)
         lesson_lists = self.get_lesson_lists(date, user)
         legend = self.get_legend()
+        period_range = self.get_period_range(lesson_lists)
 
         context = {
             'announcements': announcements,
             'coming_homework': coming_homework,
             'lesson_lists': lesson_lists,
             'legend': legend,
+            'period_range': period_range,
         }
         return context
 
@@ -429,8 +423,8 @@ class StudentView(OrganizerMixin, HomeworkMixin):
         for course in user.takes_courses.all():
             lesson_subset = course.lesson_set.filter(
                 day_of_week=day_of_week,
-                start_date__le=date,
-                end_date__ge=date
+                start_date__lte=date,
+                end_date__gte=date
             )
             lesson_list.extend(lesson_subset)
         return lesson_list
@@ -449,4 +443,3 @@ def organizer_view(request, **kwargs):
                 raise Http404("Couldn't find organizer data for this slug.")
         except ObjectDoesNotExist:
             raise ObjectDoesNotExist
-
