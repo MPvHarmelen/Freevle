@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from freevle.organizer.models import *
 
-# You have to be careful with Empty- and BreakLesson, because empty
+# You have to be careful with EmptyLesson, because empty
 # ForeignKey fields raise DoesNotExist.
 
 class StrCourse(Course):
@@ -144,8 +144,8 @@ class CancellationMixin(object):
         return lesson_list
 
 class HomeworkMixin(object):
-    comming_homework_days = 14
-    comming_homework_min_weight = 10
+    coming_homework_days = 14
+    coming_homework_min_weight = 10
     coming_homework = None
 
     def set_homework(self, lesson_set, date):
@@ -164,19 +164,19 @@ class HomeworkMixin(object):
 
     def get_coming_homework(self, date, user):
         coming_homework = self.coming_homework
-        min_weight = self.comming_homework_min_weight
+        min_weight = self.coming_homework_min_weight
 
         if coming_homework is None:
-            comming_homework = []
+            coming_homework = []
+            days = self.coming_homework_days
             for course in user.takes_courses.all():
                 for lesson in course.lesson_set.all():
-                    days = self.comming_homework_days
                     end_date = date + datetime.timedelta(days=days)
-                    comming_homework.extend(
+                    coming_homework.extend(
                         lesson.homework_set.filter(
-                            due_date__gt=date,
-                            due_date__lt=end_date,
-                            homework_type__weight__gt=min_weight
+                            due_date__ge=date,
+                            due_date__le=end_date,
+                            homework_type__weight__ge=min_weight
                         )
                     )
 
@@ -273,7 +273,6 @@ class LessonListMixin(DateMixin):
                     # The Homework mixin isn't required
                     pass
                 lesson_set = self.check_cancellation(lesson_set)
-                lesson_lists[index] = lesson_set
 
         return lesson_lists
 
@@ -283,7 +282,7 @@ class LessonListMixin(DateMixin):
         itterated for the template. (No cancellation is checked)
         """
         empty_course = StrCourse(topic=self.empty_lesson_tekst)
-        empty_lesson = Lesson(course=empty_course)
+        empty_lesson = lambda: Lesson(course=empty_course)
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
@@ -300,14 +299,14 @@ class LessonListMixin(DateMixin):
             if lesson.period != previous_period + 1:
                 difference = lesson.period - previous_period
                 # Two adjacent hours differ 1
-                lesson_list.extend([empty_lesson] * (difference - 1))
+                lesson_list.extend((empty_lesson() for i in range(difference - 1)))
 
             lesson_list.append(lesson)
 
         # Correct length
         length = len(lesson_list)
         if length < min_length:
-            lesson_list.extend([empty_lesson] * (min_length - length))
+            lesson_list.extend((empty_lesson() for i in range(min_length - length)))
 
         if len(lesson_list) > 0:
             lesson_list = self.set_period_times(lesson_list, date)
@@ -316,8 +315,7 @@ class LessonListMixin(DateMixin):
         # Set day_of_week to full regional name
         for lesson in lesson_list:
             try:
-                lesson.day_of_week = days_dict[lesson.day_of_week]
-                day_of_week = lesson.day_of_week
+                lesson.day_of_week = day_of_week = days_dict[lesson.day_of_week]
             except KeyError:
                 try:
                     lesson.day_of_week = day_of_week
@@ -330,19 +328,14 @@ class LessonListMixin(DateMixin):
 class OrganizerMixin(View, CancellationMixin, LessonListMixin):
     template_name = None
     response_class = TemplateResponse
-
-    def get_day_names(self, lesson_lists):
-        day_names = []
-        for lesson_list in lesson_lists:
-            day_names.append(lesson_list[0].day_of_week)
-        return day_names
+    announcements = None
 
     def get_announcements(self, date):
         announcements = self.announcements
         if announcements is None:
             announcements = Announcements.objects.filter(
-                start_date__lt=date,
-                end_date__gt=date
+                start_date__le=date,
+                end_date__ge=date
             )
 
         return announcements
@@ -388,18 +381,14 @@ class OrganizerMixin(View, CancellationMixin, LessonListMixin):
         coming_homework = self.get_coming_homework(date, user)
         lesson_lists = self.get_lesson_lists(date, user)
         legend = self.get_legend()
-        day_names = self.get_day_names(lesson_lists)
 
         context = {
             'announcements': announcements,
             'coming_homework': coming_homework,
             'lesson_lists': lesson_lists,
             'legend': legend,
-            'day_names' : day_names,
         }
         return context
-
-    announcements = None
 
 
 
@@ -410,18 +399,22 @@ class StudentView(OrganizerMixin, HomeworkMixin):
         check_cancellation(lesson)
     """
     username_url_kwarg = 'username'
+    user = None
 
     def get_user(self):
         username = self.kwargs.get(self.username_url_kwarg, None)
 
-        if username is not None:
+        if self.user is not None:
+            return self.user
+        elif username is not None:
             try:
-                user = User.objects.all().get(username=username)
+                user = User.objects.get(username=username,
+                                        groups__name='students')
             except ObjectDoesNotExist:
                 raise Http404("This user doesn't exist")
         else:
             raise ImproperlyConfigured("StudentView should be called with "
-                                       "a username")
+                                       "a user or username")
         return user
 
     ## Home Made
@@ -436,9 +429,24 @@ class StudentView(OrganizerMixin, HomeworkMixin):
         for course in user.takes_courses.all():
             lesson_subset = course.lesson_set.filter(
                 day_of_week=day_of_week,
-                start_date__lt=date,
-                end_date__gt=date
+                start_date__le=date,
+                end_date__ge=date
             )
             lesson_list.extend(lesson_subset)
         return lesson_list
+
+def organizer_view(request, **kwargs):
+    slug = kwargs.pop('slug', None)
+    if slug is not None:
+        try:
+            user = User.objects.get(username=slug)
+            if 'students' in (group.name for group in user.groups.all()):
+                # Twice giving **kwargs is ugly, but it works :(
+                return StudentView.as_view(user=user, **kwargs)(request, **kwargs)
+            elif 'teachers' in (group.name for group in user.groups.all()):
+                raise KeyError('Teacher')
+            else:
+                raise Http404("Couldn't find organizer data for this slug.")
+        except ObjectDoesNotExist:
+            raise ObjectDoesNotExist
 

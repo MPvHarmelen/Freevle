@@ -50,7 +50,7 @@
       {% for day in lesson_lists %}
         <div class="divider"></div>
         <div class="dag">
-            <p class="dag">{{ name }}Foosday</p>
+            <p class="dag">{{ bla }}Foosday</p>
 
           {% for lesson in day %}
             <div class="{% cycle 'uuru' 'uure' %}">
@@ -91,12 +91,14 @@
 
     <div class="clear"></div>
 
-    {# this... #}
     <div id="komend">
       <h3>{% trans "Coming homework" %}</h3>
       <ul class="belangrijk">
-        <li class="huiswerkitem pw"><span class="italic">21/6</span>&nbsp;&nbsp;<span class="bold">WiB:</span> PW H3 en H4</li>
-        <li class="huiswerkitem so"><span class="italic">22/6</span>&nbsp;&nbsp;<span class="bold">EN:</span> SO Units 86, 87, 113-120</li>
+        {% for hw in coming_homework %}
+          <li class="huiswerkitem" style="border-color: {{ hw.homework_type.color }};"><span class="italic">{{ hw.due_date|date:'d/m' }}</span>&nbsp;&nbsp;<span class="bold">{{ hw.lesson.course.topic }}: </span>{{ hw.content }}</li>
+        {% empty %}
+          <li class="huiswerkitem">Oh yeah, no homework!</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
