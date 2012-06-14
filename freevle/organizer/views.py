@@ -174,9 +174,9 @@ class HomeworkMixin(object):
                     end_date = date + datetime.timedelta(days=days)
                     coming_homework.extend(
                         lesson.homework_set.filter(
-                            due_date__ge=date,
-                            due_date__le=end_date,
-                            homework_type__weight__ge=min_weight
+                            due_date__gte=date,
+                            due_date__lte=end_date,
+                            homework_type__weight__gte=min_weight
                         )
                     )
 
@@ -334,8 +334,8 @@ class OrganizerView(View, CancellationMixin, LessonListMixin):
         announcements = self.announcements
         if announcements is None:
             announcements = Announcements.objects.filter(
-                start_date__le=date,
-                end_date__ge=date
+                start_date__lte=date,
+                end_date__gte=date
             )
 
         return announcements
@@ -429,8 +429,8 @@ class StudentView(OrganizerView, HomeworkMixin):
         for course in user.takes_courses.all():
             lesson_subset = course.lesson_set.filter(
                 day_of_week=day_of_week,
-                start_date__le=date,
-                end_date__ge=date
+                start_date__lte=date,
+                end_date__gte=date
             )
             lesson_list.extend(lesson_subset)
         return lesson_list
