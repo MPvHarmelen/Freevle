@@ -35,25 +35,18 @@
       </div>
 
       <div id="nummers">
-
-        <div class="uuru"><p class="vak">1</p></div>
-        <div class="uure"><p class="vak">2</p></div>
-        <div class="uuru"><p class="vak">3</p></div>
-        <div class="uure"><p class="vak">4</p></div>
-        <div class="uuru"><p class="vak">5</p></div>
-        <div class="uure"><p class="vak">6</p></div>
-        <div class="uuru"><p class="vak">7</p></div>
-        <div class="uure"><p class="vak">8</p></div>
-        <div class="uuru"><p class="vak">9</p></div>
+        {% for period in period_range %}
+        <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}"><p class="vak">{{ period }}</p></div>
+        {% endfor %}
       </div>
 
       {% for day in lesson_lists %}
         <div class="divider"></div>
         <div class="dag">
-            <p class="dag">{{ bla }}Foosday</p>
+            <p class="dag">{% for name in day|slice:"0:1" %}{{ name }} {% endfor %}</p>
 
-          {% for lesson in day %}
-            <div class="{% cycle 'uuru' 'uure' %}">
+          {% for lesson in day|slice:"1:" %}
+            <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
               <div class="leraarles">
                 <span class="bold">{{ lesson.course.topic }}</span>
                 {{ lesson.course.teacher }}
