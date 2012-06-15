@@ -2,9 +2,8 @@ import datetime
 
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.http import Http404
-from django.template.response import TemplateResponse
 from django.views.generic.detail import DetailView
-from django.views.generic.base import View
+from django.views.generic.base import TemplateView
 from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
@@ -31,7 +30,6 @@ class DateMixin(object):
     def get_number_days(self):
         return self.number_days
 
-    ## Edited
     def get_year(self):
         """
         Return the year for which this view should display data
@@ -44,7 +42,6 @@ class DateMixin(object):
                 year = datetime.date.today().year
         return str(year)
 
-    ## Edited
     def get_month(self):
         """
         Return the month for which this view should display data
@@ -57,7 +54,6 @@ class DateMixin(object):
                 month = datetime.date.today().month
         return str(month)
 
-    ## Edited
     def get_day(self):
         """
         Return the day for which this view should display data
@@ -164,14 +160,16 @@ class HomeworkMixin(object):
 
     def get_coming_homework(self, date, user):
         coming_homework = self.coming_homework
-        min_weight = self.coming_homework_min_weight
 
         if coming_homework is None:
-            coming_homework = []
+
+            min_weight = self.coming_homework_min_weight
             days = self.coming_homework_days
+            end_date = date + datetime.timedelta(days=days)
+            coming_homework = []
+
             for course in user.takes_courses.all():
                 for lesson in course.lesson_set.all():
-                    end_date = date + datetime.timedelta(days=days)
                     coming_homework.extend(
                         lesson.homework_set.filter(
                             due_date__gte=date,
@@ -252,7 +250,7 @@ class LessonListMixin(DateMixin):
                             for n in range(number_days)]
 
             # For loop to get the length for lesson_set_cleanup
-            length = 0
+            length = self.get_min_periods(date)
             for index, lesson_set in enumerate(lesson_lists):
                 if len(lesson_set) != 0:
                     latest_period = lesson_set[-1].period
@@ -306,19 +304,17 @@ class LessonListMixin(DateMixin):
 
         # Correct length
         length = len(lesson_list)
+        print length, min_length
         if length < min_length:
-            lesson_list.extend((empty_lesson() for i in range(min_length - length)))
+            lesson_list.extend(empty_lesson() for i in range(min_length - length))
 
-        if len(lesson_list) > 0:
-            lesson_list = self.set_period_times(lesson_list, date)
+        lesson_list = self.set_period_times(lesson_list, date)
 
         lesson_list.insert(0, _(date.strftime('%A')))
 
         return lesson_list
 
-class OrganizerMixin(View, CancellationMixin, LessonListMixin):
-    template_name = None
-    response_class = TemplateResponse
+class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
     announcements = None
 
     def get_announcements(self, date):
@@ -336,34 +332,6 @@ class OrganizerMixin(View, CancellationMixin, LessonListMixin):
 
     def get_period_range(self, lesson_lists):
         return range(1, len(lesson_lists[0]))
-
-    def get_template_names(self):
-        """
-        Returns a list of template names to be used for the request. Must return
-        a list. May not be called if render_to_response is overridden.
-        """
-        if self.template_name is None:
-            raise ImproperlyConfigured(
-                "TemplateResponseMixin requires either a definition of "
-                "'template_name' or an implementation of 'get_template_names()'")
-        else:
-            return [self.template_name]
-
-
-    def render_to_response(self, context, **response_kwargs):
-        """
-        Returns a response with a template rendered with the given context.
-        """
-        return self.response_class(
-            request=self.request,
-            template=self.get_template_names(),
-            context=context,
-            **response_kwargs
-        )
-
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        return self.render_to_response(context)
 
     def get_context_data(self):
         """ Get the context for this view. """
@@ -384,13 +352,9 @@ class OrganizerMixin(View, CancellationMixin, LessonListMixin):
         }
         return context
 
-
-
-class StudentView(OrganizerMixin, HomeworkMixin):
+class StudentView(OrganizerView, HomeworkMixin):
     """
-    To write:
-    class CancellationMixin
-        check_cancellation(lesson)
+
     """
     username_url_kwarg = 'username'
     user = None
@@ -434,12 +398,12 @@ def organizer_view(request, **kwargs):
     if slug is not None:
         try:
             user = User.objects.get(username=slug)
-            if 'students' in (group.name for group in user.groups.all()):
-                # Giving **kwargs twice is ugly, but it works :(
-                return StudentView.as_view(user=user, **kwargs)(request, **kwargs)
-            elif 'teachers' in (group.name for group in user.groups.all()):
+            group_names = (group.name for group in user.groups.all())
+            if 'students' in group_names:
+                return StudentView.as_view(user=user, **kwargs)(request)
+            elif 'teachers' in group_names:
                 raise KeyError('Teacher')
             else:
-                raise Http404("Couldn't find organizer data for this slug.")
+                raise Http404("This user isn't a student or a teacher.")
         except ObjectDoesNotExist:
-            raise ObjectDoesNotExist
+            raise ObjectDoesNotExist("This slug isn't a username.")
