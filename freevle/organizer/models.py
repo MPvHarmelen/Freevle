@@ -1,5 +1,4 @@
 import datetime
-import re
 from django.db import models
 from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth.models import User

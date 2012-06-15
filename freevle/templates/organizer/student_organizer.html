@@ -35,25 +35,18 @@
       </div>
 
       <div id="nummers">
-
-        <div class="uuru"><p class="vak">1</p></div>
-        <div class="uure"><p class="vak">2</p></div>
-        <div class="uuru"><p class="vak">3</p></div>
-        <div class="uure"><p class="vak">4</p></div>
-        <div class="uuru"><p class="vak">5</p></div>
-        <div class="uure"><p class="vak">6</p></div>
-        <div class="uuru"><p class="vak">7</p></div>
-        <div class="uure"><p class="vak">8</p></div>
-        <div class="uuru"><p class="vak">9</p></div>
+        {% for period in period_range %}
+        <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}"><p class="vak">{{ period }}</p></div>
+        {% endfor %}
       </div>
 
       {% for day in lesson_lists %}
         <div class="divider"></div>
         <div class="dag">
-            <p class="dag">{{ name }}Foosday</p>
+            <p class="dag">{% for name in day|slice:"0:1" %}{{ name }} {% endfor %}</p>
 
-          {% for lesson in day %}
-            <div class="{% cycle 'uuru' 'uure' %}">
+          {% for lesson in day|slice:"1:" %}
+            <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
               <div class="leraarles">
                 <span class="bold">{{ lesson.course.topic }}</span>
                 {{ lesson.course.teacher }}
@@ -73,30 +66,35 @@
             </div>
           {% endfor %}
 
-          {% ifequal lesson.day_of_week "Fri" %}
-            <script type="text/javascript">
-              var vrijdag = true;
-            </script>
-            <div id="weekend">
-              <span>Weekend</span>
-            </div>
-          {% else %}
-            <script type="text/javascript">
-              var vrijdag = false;
-            </script>
-          {% endifequal %}
+          {% for name in day|slice:"0:1" %}
+            {% ifequal name "Friday" %}
+              <script type="text/javascript">
+                var vrijdag = true;
+              </script>
+              <div id="weekend">
+                <span>Weekend</span>
+              </div>
+            {% else %}
+              <script type="text/javascript">
+                var vrijdag = false;
+              </script>
+            {% endifequal %}
+          {% endfor%}
+
         </div>
     {% endfor %}
     </div>
 
     <div class="clear"></div>
 
-    {# this... #}
     <div id="komend">
       <h3>{% trans "Coming homework" %}</h3>
       <ul class="belangrijk">
-        <li class="huiswerkitem pw"><span class="italic">21/6</span>&nbsp;&nbsp;<span class="bold">WiB:</span> PW H3 en H4</li>
-        <li class="huiswerkitem so"><span class="italic">22/6</span>&nbsp;&nbsp;<span class="bold">EN:</span> SO Units 86, 87, 113-120</li>
+        {% for hw in coming_homework %}
+          <li class="huiswerkitem" style="border-color: {{ hw.homework_type.color }};"><span class="italic">{{ hw.due_date|date:'d/m' }}</span>&nbsp;&nbsp;<span class="bold">{{ hw.lesson.course.topic }}: </span>{{ hw.content }}</li>
+        {% empty %}
+          <li class="huiswerkitem">Oh yeah, no homework!</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
