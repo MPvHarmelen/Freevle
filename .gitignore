@@ -3,6 +3,7 @@
 *.pid
 personalsettings.py
 media/letters/
+*.sqlite
 
 # Packages
 *.egg
