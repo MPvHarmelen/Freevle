@@ -43,7 +43,7 @@
       {% for day in lesson_lists %}
         <div class="divider"></div>
         <div class="dag">
-            <p class="dag">{% for name in day|slice:"0:1" %}{{ name }} {% endfor %}</p>
+            <p class="dag">{{ day.0 }}</p>
 
           {% for lesson in day|slice:"1:" %}
             <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
