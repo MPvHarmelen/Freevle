@@ -168,9 +168,15 @@ class Course(models.Model):
     def __unicode__(self):
         return '{} ({})'.format(self.topic, self.teacher.get_profile().designation)
 
+class Classroom(models.Model):
+    name = models.CharField(max_length=16)
+    
+    def __unicode__(self):
+        return self.name
+
 class Lesson(models.Model):
     course = models.ForeignKey(Course)
-    classroom = models.CharField(max_length=16)
+    classroom = models.ForeignKey(Classroom)
 
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
     period = models.IntegerField()
@@ -220,8 +226,8 @@ class Cancellation(models.Model):
         limit_choices_to={'groups__name': 'teachers'}
     )
 
-    classroom = models.CharField(max_length=16, blank=True)
-    new_classroom = models.CharField(max_length=16, blank=True)
+    classroom = models.ForeignKey(Classroom, blank=True)
+    new_classroom = models.ForeignKey(Classroom, blank=True)
 
     date = models.DateTimeField()
     begin_period = models.IntegerField()
