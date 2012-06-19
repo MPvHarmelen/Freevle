@@ -306,7 +306,6 @@ class LessonListMixin(DateMixin):
 
         # Correct length
         length = len(lesson_list)
-        print length, min_length
         if length < min_length:
             lesson_list.extend(empty_lesson() for i in range(min_length - length))
 
@@ -362,16 +361,16 @@ class StudentView(OrganizerView, HomeworkMixin):
     user = None
 
     def get_user(self):
-        username = self.kwargs.get(self.username_url_kwarg, None)
 
         if self.user is not None:
             return self.user
         elif username is not None:
+            username = self.kwargs.get(self.username_url_kwarg, None)
             try:
                 user = User.objects.get(username=username,
                                         groups__name='students')
             except ObjectDoesNotExist:
-                raise Http404("This user doesn't exist")
+                raise Http404("There is no student with this username.")
         else:
             raise ImproperlyConfigured("StudentView should be called with "
                                        "a user or username")
@@ -395,17 +394,55 @@ class StudentView(OrganizerView, HomeworkMixin):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
+class TeacherView(OrganizerView, HomeworkMixin):
+    username_url_kwarg = 'username'
+    user = None
+
+    def get_user(self):
+
+        if self.user is not None:
+            return self.user
+        elif username is not None:
+            username = self.kwargs.get(self.username_url_kwarg, None)
+            try:
+                user = User.objects.get(username=username,
+                                        groups__name='teachers')
+            except ObjectDoesNotExist:
+                raise Http404("There is no teacher with this username.")
+        else:
+            raise ImproperlyConfigured("TeacherView should be called with "
+                                       "a user or username")
+        return user
+
+    ## Home Made
+    def get_lesson_set(self, date, user):
+        """
+        Returns a list of lessons for the given user and date,
+        ordered by period
+        """
+
+        day_of_week = date.strftime('%a')
+        lesson_list = []
+        for course in user.gives_courses.all():
+            lesson_subset = course.lesson_set.filter(
+                day_of_week=day_of_week,
+                start_date__lte=date,
+                end_date__gte=date
+            )
+            lesson_list.extend(lesson_subset)
+        return lesson_list
+
 def organizer_view(request, **kwargs):
     slug = kwargs.pop('slug', None)
     if slug is not None:
         try:
             user = User.objects.get(username=slug)
-            group_names = (group.name for group in user.groups.all())
+            group_names = [group.name for group in user.groups.all()]
             if 'students' in group_names:
                 return StudentView.as_view(user=user, **kwargs)(request)
             elif 'teachers' in group_names:
-                raise KeyError('Teacher')
+                return TeacherView.as_view(user=user, **kwargs)(request)
             else:
                 raise Http404("This user isn't a student or a teacher.")
         except ObjectDoesNotExist:
-            raise ObjectDoesNotExist("This slug isn't a username.")
+            raise Http404("This slug isn't a username.")
