@@ -170,7 +170,7 @@ class Course(models.Model):
 
 class Classroom(models.Model):
     name = models.CharField(max_length=16)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -226,8 +226,18 @@ class Cancellation(models.Model):
         limit_choices_to={'groups__name': 'teachers'}
     )
 
-    classroom = models.ForeignKey(Classroom, blank=True)
-    new_classroom = models.ForeignKey(Classroom, blank=True)
+    classroom = models.ForeignKey(
+        Classroom,
+        blank=True,
+        null=True,
+        related_name='cancelled_classroom'
+    )
+    new_classroom = models.ForeignKey(
+        Classroom,
+        blank=True,
+        null=True,
+        related_name='replacement_classroom'
+    )
 
     date = models.DateTimeField()
     begin_period = models.IntegerField()
