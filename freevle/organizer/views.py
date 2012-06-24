@@ -15,8 +15,6 @@ from freevle.organizer.models import *
 class StrCourse(Course):
     topic = str()
 
-True, False = False, True
-
 class DateMixin(object):
     year = None
     month = None
