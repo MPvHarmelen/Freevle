@@ -430,6 +430,47 @@ class TeacherView(OrganizerView):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
+
+this_shouldnt_be_like_this = '''
+class ClassroomView(OrganizerView, HomeworkMixin):
+    classroom_url_kwarg = 'classroom_name'
+    classroom = None
+
+    def get_classroom(self):
+
+        if self.classroom is not None:
+            return self.classroom
+        elif  is not None:
+            username = self.kwargs.get(self.username_url_kwarg, None)
+            try:
+                user = User.objects.get(username=username,
+                                        groups__name='teachers')
+            except ObjectDoesNotExist:
+                raise Http404("There is no teacher with this username.")
+        else:
+            raise ImproperlyConfigured("TeacherView should be called with "
+                                       "a user or username")
+        return user
+
+    ## Home Made
+    def get_lesson_set(self, date, user):
+        """
+        Returns a list of lessons for the given user and date,
+        ordered by period
+        """
+
+        day_of_week = date.strftime('%a')
+        lesson_list = []
+        for course in user.gives_courses.all():
+            lesson_subset = course.lesson_set.filter(
+                day_of_week=day_of_week,
+                start_date__lte=date,
+                end_date__gte=date
+            )
+            lesson_list.extend(lesson_subset)
+        return lesson_list
+'''
+
 def organizer_view(request, **kwargs):
     slug = kwargs.pop('slug', None)
     if slug is not None:
@@ -443,4 +484,7 @@ def organizer_view(request, **kwargs):
             else:
                 raise Http404("This user isn't a student or a teacher.")
         except ObjectDoesNotExist:
-            raise Http404("This slug isn't a username.")
+            try:
+                classroom = Classroom.objects.get(name=slug)
+            except ObjectDoesNotExist:
+                raise Http404("This slug isn't a username.")
