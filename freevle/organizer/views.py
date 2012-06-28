@@ -392,7 +392,7 @@ class StudentView(OrganizerView, HomeworkMixin):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
-class TeacherView(OrganizerView, HomeworkMixin):
+class TeacherView(OrganizerView):
     username_url_kwarg = 'username'
     user = None
 
