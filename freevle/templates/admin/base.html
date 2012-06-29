@@ -5,7 +5,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}/media/admin/css/base.css{% endblock %}" />
     <link rel="stylesheet" type="text/css" href="{% load adminmedia %}/media/fonts/entypo/stylesheet.css">
-    <link href="http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Cabin|Open+Sans:300,400,700" rel="stylesheet" type="text/css">
     {% block extrastyle %}{% endblock %}
     <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}/media/admin/css/rtl.css{% endblock %}" />{% endif %}
@@ -65,7 +65,7 @@
     {% block sidebar %}
       <div id="sidebar">
         <ul id="sidebarbuttons">
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a href="/admin/auth/user/" id="sidecomma">
               <span class="button-text">Users</span>
             </a>
@@ -75,7 +75,7 @@
               <span class="button-text">Pages</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a href="/admin/galleries/photo/" id="sidep">
               <span class="button-text">Photos</span>
             </a>
@@ -117,7 +117,7 @@
     <div id="content">
         {% block pretitle %}{% endblock %}
 
-        {% block content_title %}{% if title %}<h1 class="admintitle"><img id="admin-header" src="/media/img/zwaanheader.png">Cygy Controlcenter</h1>{% endif %}{% endblock %}
+        {% block content_title %}{% if title %}<h1 class="admintitle">Users</h1>{% endif %}{% endblock %}
         {% block content %}
         {% block object-tools %}{% endblock %}
         {{ content }}
