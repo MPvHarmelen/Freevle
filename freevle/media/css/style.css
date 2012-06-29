@@ -1136,7 +1136,7 @@ input[type=submit], a#question {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  margin: 10px auto 0;
+  margin: 10px auto 2px;
   outline: none;
   border: none;
 }
@@ -1147,8 +1147,12 @@ input.button:hover, input[type=submit]:hover, a#question:hover, input.button:foc
 }
 
 input.button:active, input[type=submit]:active, a#question:active {
-  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
   background: #1a4fbf;
+}
+input[type=submit]:active, a#question:active {
+  margin-top: 12px;
+  margin-bottom: 0;
 }
 
 /*------------------------------contact------------------------------*/
