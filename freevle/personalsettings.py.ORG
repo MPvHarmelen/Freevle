@@ -36,6 +36,18 @@ INSTALLED_APPS = (
     'freevle.galleries',
 )
 
+# The structure of apps on the admin page
+ADMIN_STRUCT = (
+    ('Users', 'auth.user'),
+    ('Pages', 'cms.page'),
+    ('Photos', 'galleries.photo'),
+    ('Letters', 'letters.letter'),
+    ('News messages', 'news.newsmessage'),
+    #('Courses', 'courses'),
+    ('Homework', 'organizer.homework'),
+    ('Lessons', 'organizer.lesson'),
+)
+
 # Make this unique, and don't share it with anybody.
 # Not really needed for development servers. Production? YES.
 SECRET_KEY = 'SomethingRandom'

@@ -9,17 +9,11 @@
 
 {% block content %}
   <ul id="adminmenu-main">
-    {% if app_list %}
-      {% for app in app_list %}
-        {% for model in app.models %}
-          <li class="adminmenu-item">
-            {% if model.perms.change %}
-              <a href="{{ model.admin_url }}"><span class="entypo icon">,</span><span class="button-text">{{ model.name }}</span></a>
-            {% else %}
-              {{ model.name }}
-            {% endif %}
-          </li>
-        {% endfor %}
+    {% if apps %}
+      {% for app in apps %}
+        <li class="adminmenu-item">
+          <a href="{{ app.1 }}"><span class="entypo icon">,</span><span class="button-text">{{ app.0 }}</span></a>
+        </li>
       {% endfor %}
       <div class="clear"></div>
     {% else %}
