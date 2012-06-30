@@ -96,30 +96,38 @@ $(document).ready(function(){
     $('#darken').fadeOut('fast');
     $('#id_username, #id_password, #id_email').blur();
   });
-  centerInlogForm();
+  if($(window).width() > 900) {
+    centerInlogForm();
+  }
 
-  $(window).resize(centerInlogForm);
+  $(window).resize(function() {
+    if($(window).width() > 900) {
+      centerInlogForm();
+    }
+  });
 
 //Menu backgrounds
 
-  $('ul.dropdown').hover(function() {
-      $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
-  }, function() {
-      $(this).prev('a.menuitem').css('background-color', 'transparent').css('color', '#333');
-  });
+  if($(window).width() > 900) {
+    $('ul.dropdown').hover(function() {
+        $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
+    }, function() {
+        $(this).prev('a.menuitem').css('background-color', 'transparent').css('color', '#333');
+    });
 
-  $('a.menuitem').hover(function(){
-    $(this).css('background-color', '#008').css('color', '#fff');
-  }, function() {
-    $(this).css('background-color', 'transparent').css('color', '#333');
-  });
+    $('a.menuitem').hover(function(){
+      $(this).css('background-color', '#008').css('color', '#fff');
+    }, function() {
+      $(this).css('background-color', 'transparent').css('color', '#333');
+    });
 
-  $('ul.dropdown').hide();
-  $('li.navmenu').hover(function() {
+    $('ul.dropdown').hide();
+    $('li.navmenu').hover(function() {
       $(this).children('ul.dropdown').stop(true, true).slideDown('fast');
     }, function() {
       $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
+  }
 
   if($('#focus').length != 0) {
     $('#focus').focus();
@@ -131,15 +139,21 @@ $(document).ready(function(){
   $('#password').hide();
   $('#focusonpassword').click(function() {
     $('#password').fadeIn('fast');
-    $('#loginandpassword').animate({'margin-left': '-280px'}, 'fast');
     $('#focuslogin').fadeOut('fast');
-    $('#inlogform').animate({'height': '357px'}, 'fast');
+    if($(window).width() > 900) {
+      $('#inlogform').animate({'height': '371px'}, 'fast');
+      $('#loginandpassword').animate({'margin-left': '-280px'}, 'fast');
+    } else {
+      $('#loginandpassword').animate({'margin-left': -$(window).width() + 'px'}, 'fast');
+    }
   });
   $('#focusonlogin').click(function() {
     $('#password').fadeOut('fast');
-    $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
     $('#focuslogin').fadeIn('fast');
-    $('#inlogform').animate({'height': '337px'}, 'fast');
+    $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
+    if($(window).width() > 900) {
+      $('#inlogform').animate({'height': '337px'}, 'fast');
+    }
   });
 
 //Settings-tabs
@@ -220,6 +234,18 @@ $(document).ready(function(){
     checkIfSame.animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
     triangleLeft.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
   });
+
+
+
+  if($(window).width() < 900) {
+    $('#menutoggle').click(function() {
+      if($('nav').css('left') === '-100%') {
+        $('nav').animate({ 'left': '-54px' }, 'fast');
+      } else {
+        $('nav').animate({ 'left': '-100%' }, 'fast');
+      }
+    });
+  }
 });
 
 //Ctrl+
