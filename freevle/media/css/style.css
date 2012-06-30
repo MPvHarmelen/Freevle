@@ -1838,7 +1838,7 @@ footer a:hover, footer a:active {
 
   .wrapper {
     width: 100%;
-    padding: 30px 20px;
+    padding: 10px 20px;
     box-sizing:         border-box;
     -moz-box-sizing:    border-box;
     -webkit-box-sizing: border-box;
@@ -1849,6 +1849,7 @@ footer a:hover, footer a:active {
 
   h2 {
     font-size: 28px;
+    text-align: center;
   }
 
   footer {
