@@ -11,6 +11,9 @@ class TopicAdmin(admin.ModelAdmin):
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('topic','teacher')
 
+class ClassroomAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
 class LessonAdmin(admin.ModelAdmin):
     list_display = ('course', 'day_of_week', 'period')
 
@@ -24,6 +27,7 @@ class HomeworkAdmin(admin.ModelAdmin):
 admin.site.register(PeriodMeta,PeriodMetaAdmin)
 admin.site.register(Topic,TopicAdmin)
 admin.site.register(Course,CourseAdmin)
+admin.site.register(Classroom,ClassroomAdmin)
 admin.site.register(Lesson,LessonAdmin)
 admin.site.register(HomeworkType,HomeworkTypeAdmin)
 admin.site.register(Homework,HomeworkAdmin)
