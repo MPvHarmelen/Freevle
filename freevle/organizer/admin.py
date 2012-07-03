@@ -1,5 +1,5 @@
 from django.contrib import admin
-from freevle.organizer.models import Topic, Course, Lesson, HomeworkType, Homework
+from freevle.organizer.models import *
 from freevle.organizer.models import PeriodMeta
 
 class PeriodMetaAdmin(admin.ModelAdmin):
