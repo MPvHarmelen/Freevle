@@ -343,7 +343,7 @@ div#darken {
 div#inlogform {
   text-align: center;
   position: relative;
-  background: #ddd;
+  background: #eaeaea;
   margin: 100px auto 0;
   width: 280px;
   box-shadow:         0 0 100px #000;
@@ -961,6 +961,10 @@ span.menu {
 input.course[type="submit"] {
   margin: 14px auto;
 }
+input.course[type="submit"]:active {
+  margin: 16px auto 12px;
+}
+
 input.courses[type="checkbox"] {
   margin: 14px 14px 0;
   float: right;
@@ -1094,26 +1098,28 @@ input.text, #id_username, #id_password {
   padding: 8px 10px;
   width: 150px;
   font-size: 17px;
-  background: #f9f9f9;
-  box-shadow:         0 0 5px #aaa;
-  -moz-box-shadow:    0 0 5px #aaa;
-  -webkit-box-shadow: 0 0 5px #aaa;
+  background: #fcfcfc;
   border-radius:         2px;
   -moz-border-radius:    2px;
   -webkit-border-radius: 2px;
-  border: none;
   outline: none;
   transition:         box-shadow 120ms, background 120ms;
   -moz-transition:    box-shadow 120ms, background 120ms;
   -webkit-transition: box-shadow 120ms, background 120ms;
+  border: 1px solid #e5e5e5;
+}
+
+input.text:hover, #id_username:hover, #id_password:hover {
+  border: 1px solid #d5d5d5;
 }
 
 input.text:focus, #id_username:focus, #id_password:focus {
-  box-shadow: 0 0 10px #60c6ff;
-  -ms-box-shadow: 0 0 10px #60c6ff;
-  -moz-box-shadow: 0 0 10px #60c6ff;
-  -webkit-box-shadow: 0 0 10px #60c6ff;
+  box-shadow:         0 0 8px #60c6ff;
+  -moz-box-shadow:    0 0 8px #60c6ff;
+  -webkit-box-shadow: 0 0 8px #60c6ff;
+  border: none;
   background: #fff;
+  padding: 9px 11px;
 }
 
 input[type=submit], a#question {
@@ -1281,7 +1287,10 @@ input[disabled=disabled] {
 }
 
 input.settings-submit {
-  margin: 0 auto; 
+  margin: 0 auto 2px;
+}
+input.settings-submit:active {
+  margin: 2px auto 0;
 }
 
 p.settings {
@@ -1325,6 +1334,9 @@ label.notifications {
 
 input.settings-notifications {
   margin: 20px auto;
+}
+input.settings-notifications:active {
+  margin: 22px auto 18px;
 }
 
 ul#passwordlist li {
