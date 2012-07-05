@@ -228,7 +228,10 @@ class LessonListMixin(DateMixin):
         '''
         Returns an iterable of lessons for the given date and object.
         '''
-        raise ImproperlyConfigured('You must write your own `get_lesson_set`')
+        raise ImproperlyConfigured('You must write your own `get_lesson_set`.')
+
+    def get_obj(self):
+        raise ImproperlyConfigured('You must write your own `get_obj`.')
 
     def get_lesson_lists(self, date, obj):
         """
