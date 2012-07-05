@@ -16,7 +16,7 @@ body {
   src: url(../fonts/aldus.ttf);
 }
 
-p.clear, div.clear {
+li.clear, p.clear, div.clear {
   clear: both;
   margin: 0;
 }
@@ -187,6 +187,11 @@ a.submenu-item:link, a.submenu-item:visited {
 a.submenu-item:hover {
   background: #fff;
 } 
+li:nth-child(1) a.submenu-item:hover {
+  box-shadow:         inset 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow:    inset 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+}
 
 a.submenu-item:active {
   padding: 11px 15px 9px;
@@ -1396,6 +1401,152 @@ div#photopage img {
   -webkit-box-shadow: 0 0 2px #333;
   float: left;
   margin: 6px;
+}
+
+/*-----------------------------messages-----------------------------*/
+ul#messagebuttons {
+  list-style: none;
+  padding: 0;
+  margin: 50px 0 0;
+}
+
+li.messagebutton {
+  display: block;
+  float: left;
+  padding: 5px 14px;
+  font-size: 11px;
+  background: #59e;
+  background-image:         linear-gradient(top, #60A4FA, #5599EE);
+  background-image:    -moz-linear-gradient(top, #60A4FA, #5599EE);
+  background-image: -webkit-linear-gradient(top, #60A4FA, #5599EE);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#60A4FA), to(#5599EE));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#60A4FA', EndColorStr='#5599EE');
+  border: 1px solid #59e;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+li.messagebutton:hover {
+  background: #59e;
+  background-image:         linear-gradient(top, #66AAFF, #5094EA);
+  background-image:    -moz-linear-gradient(top, #66AAFF, #5094EA);
+  background-image: -webkit-linear-gradient(top, #66AAFF, #5094EA);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#66AAFF), to(#5094EA));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#66AAFF', EndColorStr='#5094EA');
+  border-color: #48d;
+  box-shadow:         0 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow:    0 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.5);
+}
+li.messagebutton:active {
+  border-color: #59e;
+  box-shadow:         inset 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow:    inset 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  padding: 6px 14px 4px;
+}
+
+li.disabled {
+  background: #fafafa;
+  color: #999;
+  text-shadow: 0 1px 0 #fff;
+  border-color: #eaeaea;
+  cursor: default;
+}
+li.disabled:hover {
+  background: #fafafa;
+  box-shadow:         none;
+  -moz-box-shadow:    none;
+  -webkit-box-shadow: none;
+  border-color: #eaeaea;
+}
+li.disabled:active {
+  padding: 5px 14px;
+  box-shadow: none;
+}
+
+li.buttondivider {
+  width: 6px;
+  display: block;
+  float: left;
+  height: 2px;
+}
+
+ul#conversationlist {
+  margin: 30px -50px -40px;
+  padding: 0;
+  list-style: none;
+}
+
+li.conversation {
+  height: 75px;
+  background: #f7f7f7;
+  transition:         background-color 60ms;
+  -moz-transition:    background-color 60ms;
+  -webkit-transition: background-color 60ms;
+  cursor: pointer;
+}
+li.conversation.selected {
+  background-image:         linear-gradient(top, rgba(60, 135, 255, 0.15), rgba(60, 135, 255, 0.15));
+  background-image:    -moz-linear-gradient(top, rgba(60, 135, 255, 0.15), rgba(60, 135, 255, 0.15));
+  background-image: -webkit-linear-gradient(top, rgba(60, 135, 255, 0.15), rgba(60, 135, 255, 0.15));
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(60, 135, 255, 0.15)), to(rgba(60, 135, 255, 0.15)));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='rgba(60, 135, 255, 0.15)', EndColorStr='rgba(60, 135, 255, 0.15)');
+}
+li.conversation.new {
+  background-color: #fff;
+}
+li.conversation:hover {
+  background-color: #fff;
+}
+
+
+img.conversationavatar {
+  height: 75px;
+  width: 75px;
+  float: left;
+}
+
+div.amountnew {
+  width: 39px;
+  float: left;
+  height: 48px;
+  border-top: 1px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
+  padding: 26px 0 0;
+  text-align: center;
+  background: #6af;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+div.conversationtext {
+  height: 74px;
+  width: 820px;
+  float: left;
+  color: #555;
+  border-top: 1px solid #f2f2f2;
+}
+li.new .conversationtext {
+  width: 780px;
+}
+
+h4 {
+  margin: 11px 15px 0;
+  display: block;
+}
+
+.conversationtext p {
+  margin: 0;
+  padding: 0 15px;
+  font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 20px;
+	white-space: nowrap;
 }
 
 /*------------------------------footer------------------------------*/

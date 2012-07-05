@@ -258,17 +258,25 @@ $(document).ready(function(){
 
 //Other keyboardfunctions
 $(document.documentElement).keyup(function(e) {
-  if (e.keyCode == 27) {//Esc
+  if(e.keyCode == 27) {//Esc
     $('#closelogin').click();
     $('input[type="text"], input[type="password"]').blur();
   }
-  if (e.keyCode == 76 && !focusstatus) {//L
+  if(e.keyCode == 76 && !focusstatus) {//L
     $('#loginhome').click();
-    console.log('L is pressed');
   }
-  if (e.keyCode == 83 && !focusstatus) {//S
+  if(e.keyCode == 83 && !focusstatus) {//S
     $('#search-box').focus();
-    console.log('S is pressed');
+  }
+  if(e.keyCode == 75 && !focusstatus && $('.conversation').length > 1) {
+    if($('.conversation:first').hasClass('selected') !== true) {
+      $('.selected').removeClass('selected').prev('li').addClass('selected');
+    }
+  }
+  if(e.keyCode == 74 && !focusstatus && $('.conversation').length > 1) {
+    if($('.conversation:last').hasClass('selected') !== true) {
+      $('.selected').removeClass('selected').next('li').addClass('selected');
+    }
   }
 });
 

@@ -3,5 +3,44 @@
 
 {% block content %}
 <h2>Messages</h2>
-  
+<ul id="messagebuttons">
+  <li class="messagebutton">{% trans "New message" %}</li>
+  <li class="buttondivider"></li>
+  <li class="buttondivider"></li>
+  <li class="buttondivider"></li>
+  <li class="messagebutton disabled">{% trans "Archive" %}</li>
+  <li class="buttondivider"></li>
+  <li class="messagebutton disabled">{% trans "Trash" %}</li>
+  <li class="buttondivider"></li>
+  <li class="clear"></li>
+</ul>
+<ul id="conversationlist">
+  <li class="conversation selected new" data-convid="1">
+    <img class="conversationavatar" src="/media/img/johndoe.png">
+    <div class="amountnew">1</div>
+    <div class="conversationtext">
+      <h4>john.doe@coldmail.com</h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+
+  <li class="conversation" data-convid="1">
+    <img class="conversationavatar" src="/media/img/avatars/Sarah_alt.png">
+    <div class="conversationtext">
+      <h4>Sarah Alternate</h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+
+  <li class="conversation" data-convid="1">
+    <img class="conversationavatar" src="/media/img/avatars/Rob.jpg">
+    <div class="conversationtext">
+      <h4>Rob Appleseed</h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+</ul>
 {% endblock %}
