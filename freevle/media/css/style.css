@@ -419,21 +419,6 @@ div#password {
   z-index: 0;
 }
 
-.wrapper:after {
-  box-shadow:         0 0 15px #000;
-  -moz-box-shadow:    0 0 15px #000;
-  -webkit-box-shadow: 0 0 15px #000;
-  bottom: -10px;
-  height: 12px;
-  width: 850px;
-  margin: 0 auto;
-  background: #007;
-  -moz-border-radius: 400px / 7px;
-  border-radius: 400px / 7px;
-  content: "";
-  position: absolute;
-}
-
 h2 {
   font-size: 40px;
   font-family: 'Cabin', sans-serif;
@@ -1428,6 +1413,9 @@ footer {
   padding: 0;
   background: #006;
   color: #eee;
+  box-shadow:         0 0 6px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:    0 0 6px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 }
 
 ul#breadcrumbs {
