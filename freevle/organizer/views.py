@@ -1,4 +1,5 @@
 import datetime
+import warnings
 
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.http import Http404
@@ -13,6 +14,12 @@ from freevle.organizer.models import *
 # ForeignKey fields raise DoesNotExist.
 
 class StrCourse(Course):
+    """
+    This is a derivative  of freevle.organizer.Course, but with the foreignkey
+    for the topic changed into a string. Like this it can be used for an
+    empty lesson, without raising errors or having to change a lot of
+    complicated code.
+    """
     topic = str()
 
 class DateMixin(object):
@@ -131,15 +138,19 @@ class DateMixin(object):
         return date
 
 
+warnings.warn("\n\n\t CancellationMixin isn't working correctly!\n")
 class CancellationMixin(object):
     def check_cancellation(self, lesson_list):
         for lesson in lesson_list:
             # do stuff
-            pass
+            break
 
         return lesson_list
 
 class HomeworkMixin(object):
+    # The variable here is used to check if  HomeworkMixin is used in another mixin
+    warnings.warn("\n\n\t There's ugly code here!\n")
+    homework_mixin = True
     coming_homework_days = 14
     coming_homework_min_weight = 10
     coming_homework = None
@@ -162,7 +173,6 @@ class HomeworkMixin(object):
         coming_homework = self.coming_homework
 
         if coming_homework is None:
-
             min_weight = self.coming_homework_min_weight
             days = self.coming_homework_days
             end_date = date + datetime.timedelta(days=days)
@@ -180,18 +190,12 @@ class HomeworkMixin(object):
 
         return coming_homework
 
-    def set_homework(self, lesson_set, date):
-        key = lambda a: a.homework_type.weight
-        for lesson in lesson_set:
-            lesson.homework = sorted(
-                [homework for homework in lesson.homework_set.all() if
-                 homework.due_date == date],
-                 key=key,
-                 # Higher weights is more important & more important homework
-                 # should go first, thus:
-                 reverse=True
-            )
-        return lesson_set
+    def get_context_data(self, **kwargs):
+        coming_homework = self.get_coming_homework(date, user)
+        context = {'coming_homework':coming_homework}
+        context.update(kwargs)
+
+        return super(HomeWorkMixin, self).get_context_data(context)
 
 class LessonListMixin(DateMixin):
     lesson_lists = None
@@ -265,12 +269,18 @@ class LessonListMixin(DateMixin):
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
+
+                warnings.warn("\n\n\t There's ugly code here!\n")
                 try:
-                    lesson_set = self.set_homework(lesson_set, date)
+                    set_homework = self.set_homework
                 except AttributeError:
                     # The Homework mixin isn't required
-                    pass
+                    def set_homework(lesson_set, date):
+                        return lesson_set
+
+                lesson_set = set_homework(lesson_set, date)
                 lesson_set = self.check_cancellation(lesson_set)
+                lesson_set.insert(0, _(date.strftime('%A')))
                 lesson_lists[index] = lesson_set
 
         return lesson_lists
@@ -309,8 +319,6 @@ class LessonListMixin(DateMixin):
 
         lesson_list = self.set_period_times(lesson_list, date)
 
-        lesson_list.insert(0, _(date.strftime('%A')))
-
         return lesson_list
 
 class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
@@ -332,23 +340,34 @@ class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
     def get_period_range(self, lesson_lists):
         return range(1, len(lesson_lists[0]))
 
-    def get_context_data(self):
+    def get_context_data(self, **kwargs):
         """ Get the context for this view. """
         date = self.get_date()
-        user = self.get_user()
+        obj = self.get_obj()
         announcements = self.get_announcements(date)
-        coming_homework = self.get_coming_homework(date, user)
-        lesson_lists = self.get_lesson_lists(date, user)
+        lesson_lists = self.get_lesson_lists(date, obj)
         legend = self.get_legend()
         period_range = self.get_period_range(lesson_lists)
 
         context = {
             'announcements': announcements,
-            'coming_homework': coming_homework,
             'lesson_lists': lesson_lists,
             'legend': legend,
             'period_range': period_range,
         }
+
+        try:
+            get_coming_homework = self.get_coming_homework
+        except AttributeError:
+            def get_coming_homework(date, user):
+                return None
+
+        coming_homework = get_coming_homework(date, obj)
+
+        if coming_homework is not None:
+            context['coming_homework'] = coming_homework
+
+        context.update(kwargs)
         return context
 
 class StudentView(OrganizerView, HomeworkMixin):
@@ -358,7 +377,7 @@ class StudentView(OrganizerView, HomeworkMixin):
     username_url_kwarg = 'username'
     user = None
 
-    def get_user(self):
+    def get_obj(self):
 
         if self.user is not None:
             return self.user
@@ -377,8 +396,7 @@ class StudentView(OrganizerView, HomeworkMixin):
     ## Home Made
     def get_lesson_set(self, date, user):
         """
-        Returns a list of lessons for the given user and date,
-        ordered by period
+        Returns a list of lessons for the given user and date.
         """
 
         day_of_week = date.strftime('%a')
@@ -393,15 +411,14 @@ class StudentView(OrganizerView, HomeworkMixin):
         return lesson_list
 
 class TeacherView(OrganizerView):
-    username_url_kwarg = 'username'
+    username = None
     user = None
 
-    def get_user(self):
+    def get_obj(self):
 
         if self.user is not None:
             return self.user
-        elif username is not None:
-            username = self.kwargs.get(self.username_url_kwarg, None)
+        elif self.username is not None:
             try:
                 user = User.objects.get(username=username,
                                         groups__name='teachers')
@@ -415,8 +432,7 @@ class TeacherView(OrganizerView):
     ## Home Made
     def get_lesson_set(self, date, user):
         """
-        Returns a list of lessons for the given user and date,
-        ordered by period
+        Returns a list of lessons for the given user and date.
         """
 
         day_of_week = date.strftime('%a')
@@ -431,45 +447,40 @@ class TeacherView(OrganizerView):
         return lesson_list
 
 
-this_shouldnt_be_like_this = '''
-class ClassroomView(OrganizerView, HomeworkMixin):
-    classroom_url_kwarg = 'classroom_name'
+
+class ClassroomView(OrganizerView):
+    classroom_url_kwarg = 'classroom'
     classroom = None
 
-    def get_classroom(self):
+    def get_obj(self):
+        name = self.kwargs.get(self.classroom_url_kwarg, None)
 
         if self.classroom is not None:
-            return self.classroom
-        elif  is not None:
-            username = self.kwargs.get(self.username_url_kwarg, None)
+            classroom = self.classroom
+        elif name is not None:
             try:
-                user = User.objects.get(username=username,
-                                        groups__name='teachers')
+                classroom = Classroom.objects.get(name=name)
             except ObjectDoesNotExist:
-                raise Http404("There is no teacher with this username.")
+                raise Http404("There is no classroom with this name.")
         else:
-            raise ImproperlyConfigured("TeacherView should be called with "
-                                       "a user or username")
-        return user
+            raise ImproperlyConfigured("ClassroomView should be called with "
+                                       "a classroom or name.")
+        return classroom
 
     ## Home Made
-    def get_lesson_set(self, date, user):
+    def get_lesson_set(self, date, classroom):
         """
-        Returns a list of lessons for the given user and date,
-        ordered by period
+        Returns a list of lessons for the given classroom and date.
         """
 
         day_of_week = date.strftime('%a')
-        lesson_list = []
-        for course in user.gives_courses.all():
-            lesson_subset = course.lesson_set.filter(
-                day_of_week=day_of_week,
-                start_date__lte=date,
-                end_date__gte=date
-            )
-            lesson_list.extend(lesson_subset)
+        lesson_list = list(classroom.lesson_set.filter(
+            start_date__lte=date,
+            end_date__gte=date,
+            day_of_week=day_of_week
+        ))
         return lesson_list
-'''
+
 
 def organizer_view(request, **kwargs):
     slug = kwargs.pop('slug', None)
@@ -486,5 +497,8 @@ def organizer_view(request, **kwargs):
         except ObjectDoesNotExist:
             try:
                 classroom = Classroom.objects.get(name=slug)
+                return ClassroomView.as_view(classroom=classroom, **kwargs)(request)
             except ObjectDoesNotExist:
-                raise Http404("This slug isn't a username.")
+                raise Http404("This slug isn't a username or classroom.")
+    else:
+        raise ImproperlyConfigured("organizer_view mast be called with a slug.")
