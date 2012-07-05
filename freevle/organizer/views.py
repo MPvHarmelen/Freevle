@@ -486,7 +486,8 @@ def organizer_view(request, **kwargs):
     slug = kwargs.pop('slug', None)
     if slug is not None:
         try:
-            user = User.objects.get(username=slug)
+            # __iexact makes for a case insensitive lookup
+            user = User.objects.get(username__iexact=slug)
             group_names = [group.name for group in user.groups.all()]
             if 'students' in group_names:
                 return StudentView.as_view(user=user, **kwargs)(request)
@@ -496,7 +497,7 @@ def organizer_view(request, **kwargs):
                 raise Http404("This user isn't a student or a teacher.")
         except ObjectDoesNotExist:
             try:
-                classroom = Classroom.objects.get(name=slug)
+                classroom = Classroom.objects.get(name__iexact=slug)
                 return ClassroomView.as_view(classroom=classroom, **kwargs)(request)
             except ObjectDoesNotExist:
                 raise Http404("This slug isn't a username or classroom.")
