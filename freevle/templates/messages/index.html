@@ -2,16 +2,17 @@
 {% load i18n %}
 
 {% block content %}
-<h2>Messages</h2>
+<h2>{% trans "Messages" %}</h2>
 <ul id="messagebuttons">
-  <li class="messagebutton">{% trans "New message" %}</li>
+  <li><a class="messagea" href="new/">{% trans "New message" %}</a></li>
   <li class="buttondivider"></li>
+  <li class="messagebutton grey" id="archive">{% trans "Archive" %}</li>
   <li class="buttondivider"></li>
-  <li class="buttondivider"></li>
-  <li class="messagebutton disabled">{% trans "Archive" %}</li>
-  <li class="buttondivider"></li>
-  <li class="messagebutton disabled">{% trans "Trash" %}</li>
-  <li class="buttondivider"></li>
+  <li class="messagebutton grey" id="trash">{% trans "Trash" %}</li>
+  
+  <li class="messagebutton grey right" id="prev">{% trans "Previous" %}</li>
+  <li class="right" id="pagenumbers">1 {% trans "of" %} 3</li>
+  <li class="messagebutton grey right" id="next">{% trans "Next" %}</li>
   <li class="clear"></li>
 </ul>
 <ul id="conversationlist">
@@ -19,25 +20,62 @@
     <img class="conversationavatar" src="/media/img/johndoe.png">
     <div class="amountnew">1</div>
     <div class="conversationtext">
-      <h4>john.doe@coldmail.com</h4>
+      <h4>john.doe@coldmail.com <span class="messagetime">- 18:43</span></h4>
       <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
     </div>
     <div class="clear"></div>
   </li>
 
-  <li class="conversation" data-convid="1">
+  <li class="conversation new" data-convid="2">
     <img class="conversationavatar" src="/media/img/avatars/Sarah_alt.png">
+    <div class="amountnew">3</div>
     <div class="conversationtext">
-      <h4>Sarah Alternate</h4>
+      <h4>Sarah Alternate <span class="messagetime">- 15:18</span></h4>
       <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
     </div>
     <div class="clear"></div>
   </li>
 
-  <li class="conversation" data-convid="1">
+  <li class="conversation" data-convid="3">
+    <img class="conversationavatar" src="/media/img/avatars/Adrian.png">
+    <div class="conversationtext">
+      <h4>Adrian Boredom <span class="messagetime">- Yesterday, 14:13</span></h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+
+  <li class="conversation" data-convid="3">
     <img class="conversationavatar" src="/media/img/avatars/Rob.jpg">
     <div class="conversationtext">
-      <h4>Rob Appleseed</h4>
+      <h4>Rob Appleseed <span class="messagetime">- 3 days ago, 20:16</span></h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+
+  <li class="conversation" data-convid="3">
+    <img class="conversationavatar" src="/media/img/avatars/Liz.jpg">
+    <div class="conversationtext">
+      <h4>Liz Berrymore <span class="messagetime">- 9 days ago, 21:55</span></h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+
+  <li class="conversation" data-convid="3">
+    <img class="conversationavatar" src="/media/img/johndoe.png">
+    <div class="conversationtext">
+      <h4>Danny Jefferson [danny@jefferson.co.uk] <span class="messagetime">- 2 weeks ago 8:33</span></h4>
+      <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
+    </div>
+    <div class="clear"></div>
+  </li>
+
+  <li class="conversation" data-convid="3">
+    <img class="conversationavatar" src="/media/img/avatars/Sarah.png">
+    <div class="conversationtext">
+      <h4>Jane Doe <span class="messagetime">- 1 year ago, 19:06</span></h4>
       <p>Costard, and sent him forth From courtly friends, with camping foes to nobleness. CORIOLANUS. Why, this was moulded on one side. CORIN. For not alone in habit and these pearl</p>
     </div>
     <div class="clear"></div>

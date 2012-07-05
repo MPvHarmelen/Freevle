@@ -1410,7 +1410,7 @@ ul#messagebuttons {
   margin: 50px 0 0;
 }
 
-li.messagebutton {
+li.messagebutton, a.messagea, form#sendmessage button {
   display: block;
   float: left;
   padding: 5px 14px;
@@ -1427,8 +1427,9 @@ li.messagebutton {
   text-transform: uppercase;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  text-decoration: none;
 }
-li.messagebutton:hover {
+li.messagebutton:hover, a.messagea:hover, form#sendmessage button:hover {
   background: #59e;
   background-image:         linear-gradient(top, #66AAFF, #5094EA);
   background-image:    -moz-linear-gradient(top, #66AAFF, #5094EA);
@@ -1440,7 +1441,7 @@ li.messagebutton:hover {
   -moz-box-shadow:    0 1px 2px -1px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.5);
 }
-li.messagebutton:active {
+li.messagebutton:active, a.messagea:active, form#sendmessage button:active {
   border-color: #59e;
   box-shadow:         inset 0 1px 1px 0 rgba(0, 0, 0, 0.5);
   -moz-box-shadow:    inset 0 1px 1px 0 rgba(0, 0, 0, 0.5);
@@ -1448,34 +1449,49 @@ li.messagebutton:active {
   padding: 6px 14px 4px;
 }
 
-li.disabled {
+li.right {
+  float: right;
+}
+
+li.grey {
   background: #fafafa;
   color: #999;
   text-shadow: 0 1px 0 #fff;
   border-color: #eaeaea;
   cursor: default;
 }
-li.disabled:hover {
-  background: #fafafa;
-  box-shadow:         none;
-  -moz-box-shadow:    none;
-  -webkit-box-shadow: none;
-  border-color: #eaeaea;
+li.grey:hover {
+  background-image:         linear-gradient(top, #fff, #fafafa);
+  background-image:    -moz-linear-gradient(top, #fff, #fafafa);
+  background-image: -webkit-linear-gradient(top, #fff, #fafafa);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#fafafa));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#60A4FA', EndColorStr='#5599EE');
+  border-color: #ddd;
+  box-shadow:         0 1px 2px -1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow:    0 1px 2px -1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.2);
 }
-li.disabled:active {
-  padding: 5px 14px;
-  box-shadow: none;
+li.grey:active {
+  box-shadow:         inset 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow:    inset 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+li#pagenumbers {
+  color: #999;
+  padding: 6px 14px 4px;
+  font-size: 13px;
 }
 
 li.buttondivider {
-  width: 6px;
+  width: 10px;
   display: block;
   float: left;
   height: 2px;
 }
 
 ul#conversationlist {
-  margin: 30px -50px -40px;
+  margin: 30px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -1510,11 +1526,10 @@ img.conversationavatar {
 }
 
 div.amountnew {
-  width: 39px;
+  width: 40px;
   float: left;
   height: 48px;
-  border-top: 1px solid #f2f2f2;
-  border-right: 1px solid #f2f2f2;
+  border-top: 1px solid #59e;
   padding: 26px 0 0;
   text-align: center;
   background: #6af;
@@ -1525,18 +1540,24 @@ div.amountnew {
 
 div.conversationtext {
   height: 74px;
-  width: 820px;
+  width: 724px;
   float: left;
   color: #555;
   border-top: 1px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
 }
 li.new .conversationtext {
-  width: 780px;
+  width: 684px;
 }
 
 h4 {
   margin: 11px 15px 0;
   display: block;
+}
+
+span.messagetime {
+  font-weight: 300;
+  margin-left: 3px;
 }
 
 .conversationtext p {
@@ -1547,6 +1568,56 @@ h4 {
 	text-overflow: ellipsis;
 	height: 20px;
 	white-space: nowrap;
+}
+
+form#sendmessage input, form#sendmessage textarea {
+  width: 784px;
+  border: 1px solid #eee;
+  padding: 8px;
+  font-size: 14px;
+  transition:         border 100ms;
+  -moz-transition:    border 100ms;
+  -webkit-transition: border 100ms;
+  margin: 8px 0;
+  border-radius:         3px;
+  -moz-border-radius:    3px;
+  -webkit-border-radius: 3px;
+  font-family: 'Open Sans', sans-serif;
+  
+}
+form#sendmessage input:hover, form#sendmessage textarea:hover {
+  border-color: #ccc;
+}
+form#sendmessage input:focus, form#sendmessage textarea:focus {
+  box-shadow:         0 0 6px #8BF;
+  -moz-box-shadow:    0 0 6px #8BF;
+  -webkit-box-shadow: 0 0 6px #8BF;
+  outline: none;
+  border-color: #8bf;
+}
+form#sendmessage button {
+  padding: 10px 14px;
+  font-size: 12px;
+  float: right;
+  text-align: right;
+  margin: 0;
+}
+form#sendmessage button:active {
+  padding: 11px 14px 9px;
+}
+
+form#sendmessage textarea {
+  height: 240px;
+}
+
+a#messageback {
+  color: #999;
+  font-weight: 300;
+  text-decoration: none;
+}
+a#messageback:hover {
+  color: #777;
+  text-decoration: underline;
 }
 
 /*------------------------------footer------------------------------*/
