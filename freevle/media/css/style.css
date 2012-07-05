@@ -108,13 +108,13 @@ h1 a {
 nav {
   width: 852px;
   margin: 0 auto 25px;
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
-  background-image: -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image: -moz-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image: -ms-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image: -o-linear-gradient(top, #FAFAFA, #F7F7F7); 
   background-color: #F7F7F7;
+  background-image:      -o-linear-gradient(top, #FAFAFA, #F7F7F7); 
+  background-image:     -ms-linear-gradient(top, #FAFAFA, #F7F7F7);
+  background-image:    -moz-linear-gradient(top, #FAFAFA, #F7F7F7);
+  background-image: -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
   box-shadow:         0 0 1px rgba(0, 0, 0, 0.4);
   -moz-box-shadow:    0 0 1px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
@@ -235,8 +235,8 @@ a.imagenav#homebtn:hover {
   background: url(../img/mag.png) no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
   line-height: 20px;
-  transition:         background-color 100ms;
-  -moz-transition:    background-color 100ms;
+  transition:         background-color 100ms, width 300ms;
+  -moz-transition:    background-color 100ms, width 300ms;
   -webkit-transition: background-color 100ms, width 300ms;
   cursor: pointer;
   border: none;
