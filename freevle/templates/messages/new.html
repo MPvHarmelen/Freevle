@@ -2,9 +2,10 @@
 {% load i18n %}
 
 {% block content %}
-<a href="../messages" id="messageback">Back</a>
+<a href="../" id="messageback">Back</a>
 <h2>{% trans "New message" %}</h2>
 <form id="sendmessage" method="post">
+  {% csrf_token %}
   <input type="text" placeholder="{% trans "To..." %}">
   <input type="text" placeholder="{% trans "Subject" %}">
   <textarea placeholder="Message"></textarea>

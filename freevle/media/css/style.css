@@ -1465,7 +1465,7 @@ li.grey:hover {
   background-image:    -moz-linear-gradient(top, #fff, #fafafa);
   background-image: -webkit-linear-gradient(top, #fff, #fafafa);
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#fafafa));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#60A4FA', EndColorStr='#5599EE');
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fff', EndColorStr='#fafafa');
   border-color: #ddd;
   box-shadow:         0 1px 2px -1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow:    0 1px 2px -1px rgba(0, 0, 0, 0.2);
@@ -1602,6 +1602,21 @@ form#sendmessage button {
   text-align: right;
   margin: 0;
 }
+form#sendmessage button:focus {
+  padding: 10px 14px;
+  border-color: #8bf;
+  box-shadow:         0 0 6px #8BF;
+  -moz-box-shadow:    0 0 6px #8BF;
+  -webkit-box-shadow: 0 0 6px #8BF;
+  background-image:         linear-gradient(top, #fafafa, #eee);
+  background-image:    -moz-linear-gradient(top, #fafafa, #eee);
+  background-image: -webkit-linear-gradient(top, #fafafa, #eee);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fafafa), to(#eee));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fafafa', EndColorStr='#eee');
+  color: #666;
+  text-shadow: 0 1px 0#fff;
+  outline: none;
+}
 form#sendmessage button:active {
   padding: 11px 14px 9px;
 }
@@ -1614,6 +1629,8 @@ a#messageback {
   color: #999;
   font-weight: 300;
   text-decoration: none;
+  margin: 10px 0 -10px;
+  display: block;
 }
 a#messageback:hover {
   color: #777;
