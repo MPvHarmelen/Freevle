@@ -522,24 +522,25 @@ a.li {
 	width: 14px;
 	display: block;
 	height: 14px;
-	border-radius: 7px;
-	-moz-border-radius: 7px;
+  border-radius:         8px;
+	-moz-border-radius:    8px;
+	-webkit-border-radius: 8px;
 }
 
 .act {
-	background: #11b;
-	border-radius:         7px;
-	-moz-border-radius:    7px;
-	-webkit-border-radius: 7px;
-  box-shadow:         inset 0 2px 4px #000;
-  -moz-box-shadow:    inset 0 2px 4px #000;
-  -webkit-box-shadow: inset 0 2px 4px #000;
+	background: #45f;
+  border: 1px solid #12c;
+  transition:         all 100ms;
+  -moz-transition:    all 100ms;
+  -webkit-transition: all 100ms;
 }
 
 .inact {
-	background: #777;
-  border-radius: 7px;
-	-moz-border-radius: 7px;
+	background: #fafafa;
+	border: 1px solid #ddd;
+}
+.inact:hover {
+	border: 1px solid #cacaca;
 }
 
 /*------------------------------rooster------------------------------*/
