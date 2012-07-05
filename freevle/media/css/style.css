@@ -211,6 +211,7 @@ a.imagenav#homebtn {
   -webkit-box-sizing: border-box;
   padding-left: 46px;
   overflow: hidden;
+  border-right: 1px solid #f0f0f0;
 }
 
 a.imagenav#homebtn:hover {
@@ -315,6 +316,7 @@ strong {
 /*------------------------------loginform------------------------------*/
 #loginhome {
   float: right !important;
+  border-left: 1px solid #f0f0f0;
 }
 
 div#darken {
