@@ -110,15 +110,9 @@ $(document).ready(function(){
 
   if($(window).width() > 900) {
     $('ul.dropdown').hover(function() {
-        $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
+        $(this).prev('a.menuitem').addClass('menuhover');
     }, function() {
-        $(this).prev('a.menuitem').css('background-color', 'transparent').css('color', '#333');
-    });
-
-    $('a.menuitem').hover(function(){
-      $(this).css('background-color', '#008').css('color', '#fff');
-    }, function() {
-      $(this).css('background-color', 'transparent').css('color', '#333');
+        $(this).prev('a.menuitem').removeClass('menuhover');
     });
 
     $('ul.dropdown').hide();
