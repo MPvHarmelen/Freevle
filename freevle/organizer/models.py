@@ -153,6 +153,7 @@ class Topic(models.Model):
         return self.name
 
 class Course(models.Model):
+    name = models.CharField(max_length=32)
     topic = models.ForeignKey(Topic)
     teacher = models.ForeignKey(
         User,
