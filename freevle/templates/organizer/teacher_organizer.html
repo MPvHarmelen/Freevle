@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{# COMMENTS ARE TODO #}
+
+{% block content %}
+<article>
+  <div class="item">
+
+    <h2>{% trans "Schedule" %}</h2>
+
+    <div id="rooster">
+      <div class="meldingen">
+        <div id="meldingenlinks">
+          <h3>{% trans "Important announcements" %}</h3>
+          <ul class="belangrijk">
+            {% for announcement in announcements %}
+              <li>{{ announcement.content }}</li>
+            {% empty %}
+              <li>{% blocktrans %}No announcements today{% endblocktrans%}
+            {% endfor %}
+          </ul>
+        </div>
+        <div id="legend">
+          <h3>Legenda</h3>
+          <ul id="legendul">
+            {% for homework_type in legend %}
+            <li class="huiswerkitem legend{% cycle 'left' 'right' %}" style="border-color: {{ homework_type.color }};">{{ homework_type.abbr }}</li>
+            {% endfor %}
+            <div class="clear"></div>
+            <li class="huiswerkitem" id="valtuitlegend">{% trans "This hour is cancelled" %}</li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="nummers">
+        {% for period in period_range %}
+        <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}"><p class="vak">{{ period }}</p></div>
+        {% endfor %}
+      </div>
+
+      {% for day in lesson_lists %}
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">{{ day.0 }}</p>
+
+          {% for lesson in day|slice:"1:" %}
+            <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
+              <div class="leraarles">
+                <span class="bold">{{ lesson.course.topic }}</span>
+                {{ 'There should be a  }}
+              </div>
+              <div class="time">{{ lesson.start_time }} - {{ lesson.end_time }}</div>
+              <div class="lokaal">{{ lesson.classroom }}</div>
+              <div class="clear"></div>
+            </div>
+          {% endfor %}
+
+          {% for name in day|slice:"0:1" %}
+            {% ifequal name "Friday" %}
+              <script type="text/javascript">
+                var vrijdag = true;
+              </script>
+              <div id="weekend">
+                <span>Weekend</span>
+              </div>
+            {% else %}
+              <script type="text/javascript">
+                var vrijdag = false;
+              </script>
+            {% endifequal %}
+          {% endfor%}
+
+        </div>
+    {% endfor %}
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</article>
+{% endblock %}
