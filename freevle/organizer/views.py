@@ -374,9 +374,7 @@ class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
         return context
 
 class StudentView(OrganizerView, HomeworkMixin):
-    """
-
-    """
+    template_name = 'organizer/student_organizer.html'
     username_url_kwarg = 'username'
     user = None
 
@@ -414,6 +412,7 @@ class StudentView(OrganizerView, HomeworkMixin):
         return lesson_list
 
 class TeacherView(OrganizerView):
+    template_name = 'organizer/teacher_organizer.html'
     username = None
     user = None
 
@@ -452,6 +451,7 @@ class TeacherView(OrganizerView):
 
 
 class ClassroomView(OrganizerView):
+    template_name = 'organizer/classroom_organizer.html'
     classroom_url_kwarg = 'classroom'
     classroom = None
 
