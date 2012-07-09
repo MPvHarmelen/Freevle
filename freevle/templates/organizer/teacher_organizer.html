@@ -24,10 +24,6 @@
         <div id="legend">
           <h3>Legenda</h3>
           <ul id="legendul">
-            {% for homework_type in legend %}
-            <li class="huiswerkitem legend{% cycle 'left' 'right' %}" style="border-color: {{ homework_type.color }};">{{ homework_type.abbr }}</li>
-            {% endfor %}
-            <div class="clear"></div>
             <li class="huiswerkitem" id="valtuitlegend">{% trans "This hour is cancelled" %}</li>
           </ul>
         </div>
@@ -49,7 +45,7 @@
             <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
               <div class="leraarles">
                 <span class="bold">{{ lesson.course.topic }}</span>
-                {{ 'There should be a  }}
+                {{ lesson.course.name }}
               </div>
               <div class="time">{{ lesson.start_time }} - {{ lesson.end_time }}</div>
               <div class="lokaal">{{ lesson.classroom }}</div>
