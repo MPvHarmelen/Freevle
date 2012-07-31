@@ -217,13 +217,15 @@ class Cancellation(models.Model):
     teacher = models.ForeignKey(
         User,
         related_name='cancelled_teacher',
-        blank=True, null=True,
+        blank=True,
+        null=True,
         limit_choices_to={'groups__name': 'teachers'}
     )
     new_teacher = models.ForeignKey(
         User,
         related_name='replacement_teacher',
-        blank=True, null=True,
+        blank=True,
+        null=True,
         limit_choices_to={'groups__name': 'teachers'}
     )
 
@@ -241,13 +243,17 @@ class Cancellation(models.Model):
     )
 
     date = models.DateTimeField()
-    begin_period = models.IntegerField()
+    start_period = models.IntegerField()
     end_period = models.IntegerField()
+    is_cancelled = models.BooleanField()
 
     def __unicode__(self):
-        return '{} from {} to {}'.format(self.date, self.begin_period, self.end_period)
+        date = self.date.strftime('%m/%d-%Y')
+        return 'Cancellation on {} from {} to {}'.format(date,
+                                                         self.begin_period,
+                                                         self.end_period)
 
-class Announcements(models.Model):
+class Announcement(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     content = models.CharField(max_length=255)

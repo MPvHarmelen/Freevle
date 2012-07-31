@@ -2,6 +2,7 @@ import datetime
 import warnings
 
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import MultipleObjectsReturned
 from django.http import Http404
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
@@ -39,7 +40,7 @@ class DateMixin(object):
 
     def get_year(self):
         """
-        Return the year for which this view should display data
+        Return the (still formatted) year for which this view should display data
         """
         year = self.year
         if year is None:
@@ -51,7 +52,7 @@ class DateMixin(object):
 
     def get_month(self):
         """
-        Return the month for which this view should display data
+        Return the (still formatted) month for which this view should display data
         """
         month = self.month
         if month is None:
@@ -63,7 +64,7 @@ class DateMixin(object):
 
     def get_day(self):
         """
-        Return the day for which this view should display data
+        Return the (still formatted) day for which this view should display data
         """
         day = self.day
         if day is None:
@@ -140,10 +141,78 @@ class DateMixin(object):
 
 warnings.warn("\n\n\t CancellationMixin isn't working correctly!\n")
 class CancellationMixin(object):
-    def check_cancellation(self, lesson_list):
+    def check_cancelled(self, lesson, date):
+        period = lesson.period
+
+        cancellations = Cancellation.objects.filter(
+            start_period__lte=period,
+            end_period__gte=period,
+            date=date
+        )
+
+        lesson.is_cancelled = False
+        for cancellation in cancellations:
+            if cancellation.is_cancelled == True:
+                lesson.is_cancelled = True
+                break
+            elif cancellation.is_cancelled != False:
+                raise TypeError('cancellation.is_cancelled must be a boolean.')
+
+        return lesson
+
+    def check_teacher(self, lesson, date):
+        period = lesson.period
+        teacher = lesson.course.teacher
+
+        try:
+            warnings.warn('\n\n\t This here could lead to problems because of '
+                          'course being the same object in different lessons and '
+                          "who the hell knows what's going to happen!!\n")
+            lesson.course.teacher = Cancellation.objects.get(
+                start_period__lte=period,
+                end_period__gte=period,
+                teacher=teacher,
+                date=date
+            ).new_teacher
+
+        except ObjectDoesNotExist: pass
+        except MultipleObjectsReturned:
+            raise ImproperlyConfigured(
+                'There are multiple replacement teachers assigned to {} in '
+                'period {} on {}.'.format(teacher.get_full_name(),
+                                          period,
+                                          date.strftime('%m/%d-Y'))
+            )
+        return lesson
+
+    def check_classroom(self, lesson, date):
+        period = lesson.period
+        classroom = lesson.classroom
+
+        try:
+            lesson.classroom = Cancellation.objects.get(
+                start_period__lte=period,
+                end_period__gte=period,
+                classroom=classroom,
+                date=date
+            ).new_classroom
+        # nothing HAS to be cancelled
+        except ObjectDoesNotExist: pass
+        except MultipleObjectsReturned:
+            raise ImproperlyConfigured(
+                'There are multiple replacement classrooms assigned to {} in '
+                'period {} on {}.'.format(classroom,
+                                          period,
+                                          date.strftime('%m/%d-Y'))
+            )
+        return lesson
+
+    def check_cancellation(self, lesson_list, date):
         for lesson in lesson_list:
-            # do stuff
-            break
+            lesson = self.check_cancelled(lesson, date)
+            if not lesson.is_cancelled:
+                lesson = self.check_teacher(lesson, date)
+                lesson = self.check_classroom(lesson, date)
 
         return lesson_list
 
@@ -282,7 +351,7 @@ class LessonListMixin(DateMixin):
                         return lesson_set
 
                 lesson_set = set_homework(lesson_set, date)
-                lesson_set = self.check_cancellation(lesson_set)
+                lesson_set = self.check_cancellation(lesson_set, date)
                 lesson_set.insert(0, _(date.strftime('%A')))
                 lesson_lists[index] = lesson_set
 
@@ -330,7 +399,7 @@ class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
     def get_announcements(self, date):
         announcements = self.announcements
         if announcements is None:
-            announcements = Announcements.objects.filter(
+            announcements = Announcement.objects.filter(
                 start_date__lte=date,
                 end_date__gte=date
             )
