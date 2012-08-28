@@ -110,6 +110,7 @@ def debug_data(sender, **kwargs):
         print option['value']
 
     students_group, created = Group.objects.get_or_create(name='students')
+    teachers_group, created = Group.objects.get_or_create(name='teachers')
     students = []
     for cls in classes_names:
         url = '{}selectie.inc.php?wat=groep&weeknummer={}&type=0&groep={}'
@@ -161,6 +162,7 @@ def debug_data(sender, **kwargs):
                         teacher = User(username=teacher, first_name=teacher,
                                        last_name=teacher)
                         teacher.set_password(password)
+                        teacher.groups.add(teachers_group)
                         teacher.save()
 
                     if topic is None:
