@@ -1,8 +1,7 @@
 import datetime
 import warnings
 
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
-from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
@@ -141,24 +140,25 @@ class DateMixin(object):
 
 warnings.warn("\n\n\t CancellationMixin isn't working correctly!\n")
 class CancellationMixin(object):
-    def check_cancelled(self, lesson, date):
-        period = lesson.period
-
-        cancellations = Cancellation.objects.filter(
-            start_period__lte=period,
-            end_period__gte=period,
-            date=date
-        )
-
-        lesson.is_cancelled = False
-        for cancellation in cancellations:
-            if cancellation.is_cancelled == True:
-                lesson.is_cancelled = True
-                break
-            elif cancellation.is_cancelled != False:
-                raise TypeError('cancellation.is_cancelled must be a boolean.')
-
-        return lesson
+#    def check_cancelled(self, lesson, date):
+#        period = lesson.period
+#
+#        cancellations = Cancellation.objects.filter(
+#            start_period__lte=period,
+#            end_period__gte=period,
+#            start_date__lte=date,
+#            end_date__gte=date
+#        )
+#
+#        lesson.is_cancelled = False
+#        for cancellation in cancellations:
+#            if cancellation.is_cancelled:
+#                lesson.is_cancelled = True
+#                break
+#            elif cancellation.is_cancelled != False:
+#                raise TypeError('cancellation.is_cancelled must be a boolean.')
+#
+#        return lesson
 
     def check_teacher(self, lesson, date):
         period = lesson.period
@@ -172,11 +172,12 @@ class CancellationMixin(object):
                 start_period__lte=period,
                 end_period__gte=period,
                 teacher=teacher,
-                date=date
+                start_date__lte=date,
+                end_date__gte=date
             ).new_teacher
 
-        except ObjectDoesNotExist: pass
-        except MultipleObjectsReturned:
+        except Cancellation.DoesNotExist: pass
+        except Cancellation.MultipleObjectsReturned:
             raise ImproperlyConfigured(
                 'There are multiple replacement teachers assigned to {} in '
                 'period {} on {}.'.format(teacher.get_full_name(),
@@ -194,11 +195,12 @@ class CancellationMixin(object):
                 start_period__lte=period,
                 end_period__gte=period,
                 classroom=classroom,
-                date=date
+                start_date__lte=date,
+                end_date__gte=date
             ).new_classroom
         # nothing HAS to be cancelled
-        except ObjectDoesNotExist: pass
-        except MultipleObjectsReturned:
+        except Cancellation.DoesNotExist: pass
+        except Cancellation.MultipleObjectsReturned:
             raise ImproperlyConfigured(
                 'There are multiple replacement classrooms assigned to {} in '
                 'period {} on {}.'.format(classroom,
@@ -209,17 +211,15 @@ class CancellationMixin(object):
 
     def check_cancellation(self, lesson_list, date):
         for lesson in lesson_list:
-            lesson = self.check_cancelled(lesson, date)
-            if not lesson.is_cancelled:
+            # Empty lessons have no period, can not be cancelled and raise
+            # all kinds of error
+            if lesson.period is not None:
                 lesson = self.check_teacher(lesson, date)
                 lesson = self.check_classroom(lesson, date)
 
         return lesson_list
 
 class HomeworkMixin(object):
-    # The variable here is used to check if  HomeworkMixin is used in another mixin
-    warnings.warn("\n\n\t There's ugly code here!\n")
-    homework_mixin = True
     coming_homework_days = 14
     coming_homework_min_weight = 10
     coming_homework = None
@@ -258,13 +258,6 @@ class HomeworkMixin(object):
                     )
 
         return coming_homework
-
-    def get_context_data(self, **kwargs):
-        coming_homework = self.get_coming_homework(date, user)
-        context = {'coming_homework':coming_homework}
-        context.update(kwargs)
-
-        return super(HomeWorkMixin, self).get_context_data(context)
 
 class LessonListMixin(DateMixin):
     lesson_lists = None
@@ -342,7 +335,6 @@ class LessonListMixin(DateMixin):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
 
-                warnings.warn("\n\n\t There's ugly code here!\n")
                 try:
                     set_homework = self.set_homework
                 except AttributeError:
@@ -456,7 +448,7 @@ class StudentView(OrganizerView, HomeworkMixin):
             try:
                 user = User.objects.get(username=username,
                                         groups__name='students')
-            except ObjectDoesNotExist:
+            except User.DoesNotExist:
                 raise Http404("There is no student with this username.")
         else:
             raise ImproperlyConfigured("StudentView should be called with "
@@ -493,7 +485,7 @@ class TeacherView(OrganizerView):
             try:
                 user = User.objects.get(username=username,
                                         groups__name='teachers')
-            except ObjectDoesNotExist:
+            except User.DoesNotExist:
                 raise Http404("There is no teacher with this username.")
         else:
             raise ImproperlyConfigured("TeacherView should be called with "
@@ -532,7 +524,7 @@ class ClassroomView(OrganizerView):
         elif name is not None:
             try:
                 classroom = Classroom.objects.get(name=name)
-            except ObjectDoesNotExist:
+            except Classroom.DoesNotExist:
                 raise Http404("There is no classroom with this name.")
         else:
             raise ImproperlyConfigured("ClassroomView should be called with "
@@ -567,11 +559,11 @@ def organizer_view(request, **kwargs):
                 return TeacherView.as_view(user=user, **kwargs)(request)
             else:
                 raise Http404("This user isn't a student or a teacher.")
-        except ObjectDoesNotExist:
+        except User.DoesNotExist:
             try:
                 classroom = Classroom.objects.get(name__iexact=slug)
                 return ClassroomView.as_view(classroom=classroom, **kwargs)(request)
-            except ObjectDoesNotExist:
+            except Classroom.DoesNotExist:
                 raise Http404("This slug isn't a username or classroom.")
     else:
         raise ImproperlyConfigured("organizer_view mast be called with a slug.")
