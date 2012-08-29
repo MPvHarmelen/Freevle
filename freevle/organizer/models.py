@@ -90,10 +90,10 @@ class PeriodMeta(models.Model):
                     else:
                         # Rule 4
                         raise ImproperlyConfigured(
-                            'There are too many Periodlengths defined. '
+                            'There are too many PeriodMetas defined. '
                             'Please contact your administrators and tell them '
                             "they're idiots and can't even configure "
-                            'Periodlengths. Thank you.'
+                            'PeriodMetas. Thank you.'
                         )
 
         return periodmeta
@@ -242,10 +242,9 @@ class Cancellation(models.Model):
         related_name='replacement_classroom'
     )
 
-    date = models.DateTimeField()
+    date = models.DateField()
     start_period = models.IntegerField()
     end_period = models.IntegerField()
-    is_cancelled = models.BooleanField()
 
     def __unicode__(self):
         date = self.date.strftime('%m/%d-%Y')
