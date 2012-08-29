@@ -1,6 +1,5 @@
 from django.contrib import admin
 from freevle.organizer.models import *
-from freevle.organizer.models import PeriodMeta
 
 class PeriodMetaAdmin(admin.ModelAdmin):
     list_display = ('start_date','end_date','day_of_week')
@@ -23,6 +22,10 @@ class HomeworkTypeAdmin(admin.ModelAdmin):
 class HomeworkAdmin(admin.ModelAdmin):
     list_display = ('homework_type', 'content',)
 
+class CancellationAdmin(admin.ModelAdmin):
+    list_display = ('teacher', 'new_teacher', 'classroom', 'new_classroom',
+                    'date', 'start_period', 'end_period',)
+
 
 admin.site.register(PeriodMeta,PeriodMetaAdmin)
 admin.site.register(Topic,TopicAdmin)
@@ -31,3 +34,4 @@ admin.site.register(Classroom,ClassroomAdmin)
 admin.site.register(Lesson,LessonAdmin)
 admin.site.register(HomeworkType,HomeworkTypeAdmin)
 admin.site.register(Homework,HomeworkAdmin)
+admin.site.register(Cancellation,CancellationAdmin)
