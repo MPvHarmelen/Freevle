@@ -172,8 +172,7 @@ class CancellationMixin(object):
                 start_period__lte=period,
                 end_period__gte=period,
                 teacher=teacher,
-                start_date__lte=date,
-                end_date__gte=date
+                date=date,
             ).new_teacher
 
         except Cancellation.DoesNotExist: pass
@@ -195,8 +194,7 @@ class CancellationMixin(object):
                 start_period__lte=period,
                 end_period__gte=period,
                 classroom=classroom,
-                start_date__lte=date,
-                end_date__gte=date
+                date=date,
             ).new_classroom
         # nothing HAS to be cancelled
         except Cancellation.DoesNotExist: pass
@@ -264,14 +262,14 @@ class LessonListMixin(DateMixin):
     empty_lesson_tekst = '-'
 
     def get_min_periods(self, date):
-        periodmeta = PeriodMeta().get_periodmeta(date)
+        periodmeta = PeriodMeta.get_periodmeta(date)
         return periodmeta.min_periods
 
     def set_period_times(self, lesson_list, date):
         '''
         Get the right times for periods
         '''
-        periodmeta = PeriodMeta().get_periodmeta(date)
+        periodmeta = PeriodMeta.get_periodmeta(date)
         latest_period = len(lesson_list)
         period_times = periodmeta.get_period_times(latest_period)
 
