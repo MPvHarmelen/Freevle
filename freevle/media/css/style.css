@@ -115,9 +115,9 @@ nav {
   background-image: -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
-  box-shadow:         0 0 1px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow:    0 0 1px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  box-shadow:         0 0 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow:    0 0 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
   padding: 0 48px 0 0;
   position: relative;
   z-index: 3;
@@ -143,20 +143,22 @@ li.navmenu {
 }
 
 a.menuitem:link, a.menuitem:visited {
-  transition:         background-color 100ms;
-  -moz-transition:    background-color 100ms;
-  -webkit-transition: background-color 100ms;
+  transition:         background-color 100ms, color 100ms, border-color 100ms;
+  -moz-transition:    background-color 100ms, color 100ms, border-color 100ms;
+  -webkit-transition: background-color 100ms, color 100ms, border-color 100ms;
   padding: 10px 15px 11px;
   display: block;
   text-decoration: none;
   color: #333;
   position: relative;
   z-index: 1;
-  border-right: 1px solid #f0f0f0;
+  border-right: 1px solid #eee;
 }
 
 a.menuitem:hover, a.menuhover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.6);
+  color: #eee !important;
+  border-color: #777 !important;
 }
 
 a.menuitem:active {
@@ -185,7 +187,8 @@ a.submenu-item:link, a.submenu-item:visited {
 }
 
 a.submenu-item:hover {
-  background: #fff;
+  background: #555;
+  color: #eee;
 } 
 li:nth-child(1) a.submenu-item:hover {
   box-shadow:         inset 0 2px 2px -2px rgba(0, 0, 0, 0.3);
@@ -216,11 +219,16 @@ a.imagenav#homebtn {
   -webkit-box-sizing: border-box;
   padding-left: 46px;
   overflow: hidden;
-  border-right: 1px solid #f0f0f0;
+  border-right: 1px solid #eee;
+  transition:         background 200ms, border-color 200ms;
+  -moz-transition:    background 200ms, border-color 200ms;
+  -webkit-transition: background 200ms, border-color 200ms;
 }
 
 a.imagenav#homebtn:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.6);
+  background-position: 0 -46px;
+  border-color: #777;
 }
 
 /*------------------------------search------------------------------*/
@@ -241,9 +249,9 @@ a.imagenav#homebtn:hover {
   background: url(../img/mag.png) no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
   line-height: 20px;
-  transition:         background-color 100ms, width 300ms;
-  -moz-transition:    background-color 100ms, width 300ms;
-  -webkit-transition: background-color 100ms, width 300ms;
+  transition:         background 200ms, width 300ms;
+  -moz-transition:    background 200ms, width 300ms;
+  -webkit-transition: background 200ms, width 300ms;
   cursor: pointer;
   border: none;
   margin: 0;
@@ -256,7 +264,7 @@ a.imagenav#homebtn:hover {
 }
 
 #search input[type="text"]:hover {
-  background:  url(../img/mag.png) no-repeat #fff;
+  background:  url(../img/mag.png) 0 -46px no-repeat #6b6b6b;
   color: #fff;
 }
 
