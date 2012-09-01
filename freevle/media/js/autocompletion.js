@@ -51,7 +51,7 @@ $(document).ready(function() {
         results = [['aaaaa', '/courses/wiskunde'], ['aaaab', '/contact'], ['bbbbb', '/news']];
         for(var i = 0; i < results.length; i++) {
           result = results[i][0];
-          result = result.replace(chars, '<strong>' + chars + '</strong>');
+          result = result.replace(new RegExp('(' + chars.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")+ ')', 'i'), '<strong>$1</strong>');
           rearea.append('<li class="resul"><a href="' + results[i][1] + '">' + result + '</a></li>');
         }
         rearea.slideDown('fast');
