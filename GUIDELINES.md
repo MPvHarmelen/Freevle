@@ -18,26 +18,30 @@ Python
 * See PEP 8 for mostly everything.
 * Use four spaces. Always. No exceptions. Ever.
 * Use single quotes (`'`) not double (`"`).
-* Our goals are personalization, so put everything specific to a certain app
-  into the app's folder, where possible. Anything shared may go into `custom`
+* One of our goals is personalization, so put everything specific to a certain
+  app into the app's folder, where possible. Anything shared may go into `custom`.
 
 HTML
 ----
 
+Starting with a simple example:
+
+    <div></div>
+    <div></div>
+
+    <a href="foo">
+      <img src="bar" alt="baz">
+    </a>
+
 * Indentation: 2 spaces
-* In general, new elements go on new lines:
-      <div></div>
-      <div></div>
-* If the line gets too long, the closing tag will be on a new line, like so:
-      <a href="foo">
-        <img src="bar" alt="baz">
-      </a>
+* In general, new elements go on new lines.
+* If the line gets too long, the closing tag will be on a new line.
 * We're writing HTML5, so no `<b>`, `<u>` or `<i>` tags.
 
 CSS
 ---
 
-Starting with a simple example:
+Code examples are cool:
 
     #idelement, .classelement, a:hover {
       color: #F00;
