@@ -46,14 +46,17 @@
             <p class="dag">{{ day.0 }}</p>
 
           {% for lesson in day|slice:"1:" %}
-            <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
+            <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}
+            {%- if lesson.is_cancelled %} cancelled{% endif %}">
               <div class="les">
                 {{ lesson.course.topic }}
               </div>
-              <div class="leraar">
+              <div class="leraar {% if lesson.course.teacher.is_changed %}modified{% endif %}">
                 {{ lesson.course.teacher }}
               </div>
-              <div class="lokaal">{{ lesson.classroom }}</div>
+              <div class="lokaal {% if lesson.classroom.is_changed %}modified{% endif %}">
+                {{ lesson.classroom }}
+              </div>
               <div class="clear"></div>
 
             {% if lesson.homework %}
