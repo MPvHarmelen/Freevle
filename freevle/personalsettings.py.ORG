@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'freevle.cms',
     'freevle.letters',
     'freevle.organizer',
+    'freevle.virtualcr',
     'freevle.galleries',
 )
 
