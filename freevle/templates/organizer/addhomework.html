@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  <form>
+    <ul id="makeplanner">
+      <li class="lesson">
+        <p class="weeknumber">39</p>
+        <p class="lessondate">24-09-2012</p>
+        <select class="homeworktype">
+          <option value="none">Huiswerktype:</option>
+          <option value="pw">Proefwerk</option>
+          <option value="so">SO</option>
+        </select>
+        <input type="text" name="homework" class="homework" placeholder="Het huiswerk">
+        <div class="clear"></div>
+      </li>
+      <li class="lesson">
+        <p class="weeknumber">39</p>
+        <p class="lessondate">26-09-2012</p>
+        <select class="homeworktype">
+          <option value="none">Huiswerktype:</option>
+          <option value="pw">Proefwerk</option>
+          <option value="so">SO</option>
+        </select>
+        <input type="text" name="homework" class="homework" placeholder="Het huiswerk">
+        <div class="clear"></div>
+      </li>
+    </ul>
+    <button>Submit</button>
+  </form>
+{% endblock %}
