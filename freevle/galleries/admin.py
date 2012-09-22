@@ -9,5 +9,5 @@ class PhotoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     list_display = ('title',)
 
-admin.site.register(Gallery,GalleryAdmin)
-admin.site.register(Photo,PhotoAdmin)
+admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(Photo, PhotoAdmin)
