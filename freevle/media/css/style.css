@@ -1399,6 +1399,48 @@ div#photopage img {
   margin: 6px;
 }
 
+
+/*------------------------------add homework------------------------------*/
+ul#makeplanner {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.lesson {
+  width: 100%;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+p.weeknumber {
+  float: left;
+  width: 30px;
+  margin: 8px 0;
+}
+
+p.lessondate {
+  float: left;
+  width: 90px;
+  margin: 8px 0;
+}
+
+select.homeworktype {
+  float: left;
+  margin: 8px 0;
+  padding: 3px;
+  border: 1px solid #ccc;
+  background: #eee;
+}
+
+input.homework {
+  border: 1px solid #ccc;
+  margin: 8px 0 8px 8px;
+  padding: 4px;
+  float: left;
+  width: 547px;
+}
+
 /*------------------------------footer------------------------------*/
 
 footer {
