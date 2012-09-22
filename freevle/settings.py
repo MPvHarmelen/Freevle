@@ -50,6 +50,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -84,6 +85,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     # Uncomment the next line to enable the admin:
+    'django.contrib.messages',
     'django.contrib.admin',
 )
 
