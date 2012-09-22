@@ -43,32 +43,27 @@
 
           {% for lesson in day|slice:"1:" %}
             <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
-              <div class="leraarles">
-                <span class="bold">{{ lesson.course.topic }}</span>
+              <div class="les">
+                {{ lesson.course.topic }}
+              </div>
+              <div class="leraar">
                 {{ lesson.course.name }}
               </div>
-              <div class="time">{{ lesson.start_time }} - {{ lesson.end_time }}</div>
               <div class="lokaal">{{ lesson.classroom }}</div>
               <div class="clear"></div>
             </div>
           {% endfor %}
 
-          {% for name in day|slice:"0:1" %}
-            {% ifequal name "Friday" %}
-              <script type="text/javascript">
-                var vrijdag = true;
-              </script>
-              <div id="weekend">
-                <span>Weekend</span>
-              </div>
-            {% else %}
-              <script type="text/javascript">
-                var vrijdag = false;
-              </script>
-            {% endifequal %}
-          {% endfor%}
-
         </div>
+
+        {% for name in day|slice:"0:1" %}
+          {% ifequal name "Friday" %}
+            <div id="weekend">
+              <span>Weekend</span>
+            </div>
+          {% endifequal %}
+        {% endfor%}
+
     {% endfor %}
     </div>
 
