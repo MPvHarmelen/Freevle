@@ -6,4 +6,6 @@ urlpatterns = patterns('',
         name='organizer'),
     url(r'^(?P<slug>[\d\w-]+)/(?P<day>\d{2})-(?P<month>\d{2})/$', organizer_view, {},
         name='organizer-date'),
+    url(r'^print/(?P<slug>[\d\w-]+)/$', organizer_view, {'template_name':'organizer/organizer_print.html'},
+        name='organizer-print'),
 )

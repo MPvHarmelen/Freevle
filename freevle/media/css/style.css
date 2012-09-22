@@ -530,6 +530,42 @@ div#rooster {
   width: 800px;
 }
 
+#print {
+  background: #fff;
+  padding: 5px;
+}
+
+#print * {
+  background: #fff;
+  color: #333 !important;
+}
+
+#print .uure, #print .uuru {
+  border-bottom: 1px solid #bbb;
+  border-left: none !important;
+}
+#print div.uuru:nth-child(2), #print div.uuru:nth-child(1) {
+  border-top: 1px solid #bbb;
+}
+
+#print div.divider {
+  border-left: 1px solid #bbb;
+  width: 0 !important;
+}
+
+#printrooster {
+  border-left: 1px solid #bbb;
+  border-top: 1px solid #bbb;
+  border-right: 1px solid #bbb;
+  float: left;
+}
+
+@page {
+	size: landscape;
+	margin: 1cm;
+}
+
+
 div.dag {
   float: left;
 }
@@ -543,7 +579,7 @@ div#nummers {
 
 div.divider {
   width: 1px;
-  background: #bbb;
+  background: #bbb !important;
   float: left;
 }
 
@@ -615,6 +651,10 @@ div.leraar {
 div.lokaal {
   float: left;
   width: 24px;
+}
+
+div.time {
+  float: left;
 }
 
 #weekend {
