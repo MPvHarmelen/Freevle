@@ -214,11 +214,11 @@ class Homework(models.Model):
         verbose_name_plural = 'homework'
 
 class ChangedLesson(models.Model):
-    date = models.DateField()
     lesson = models.ForeignKey(
         Lesson,
         related_name='changed'
     )
+    date = models.DateField()
     new_date = models.DateField(
         blank=True,
         null=True
@@ -239,26 +239,42 @@ class ChangedLesson(models.Model):
         null=True
     )
 
-class ChangedTeacher(models.Model):
+    class Meta:
+        unique_together = (lesson, date)
+
+    def __unicode__(self):
+        return 'Modification of {} on {}'.format(lesson,
+                                                 date.strftime('%d-%m-%Y'))
+
+
+class CancelledTeacher(models.Model):
     teacher = models.ForeignKey(
         User,
         limit_choices_to={'groups__name':'teachers'},
-        related_name='changed'
+        related_name='cancelled'
     )
     start_date = models.DateField()
     start_period = models.IntegerField()
     end_date = models.DateField()
     end_period = models.IntegerField()
 
-class ChangedClassroom(models.Model):
+    def __unicode__(self):
+        return 'Modification of {} on {}'.format(teacher,
+                                                 start_date.strftime('%d-%m-%Y'))
+
+class CancelledClassroom(models.Model):
     classroom = models.ForeignKey(
         Classroom,
-        related_name='changed'
+        related_name='cancelled'
     )
     start_date = models.DateField()
     start_period = models.IntegerField()
     end_date = models.DateField()
     end_period = models.IntegerField()
+
+    def __unicode__(self):
+        return 'Modification of {} on {}'.format(classroom,
+                                                 start_date.strftime('%d-%m-%Y'))
 
 class Announcement(models.Model):
     start_date = models.DateField()
