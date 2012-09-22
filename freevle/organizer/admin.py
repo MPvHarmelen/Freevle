@@ -22,10 +22,17 @@ class HomeworkTypeAdmin(admin.ModelAdmin):
 class HomeworkAdmin(admin.ModelAdmin):
     list_display = ('homework_type', 'content',)
 
-class CancellationAdmin(admin.ModelAdmin):
-    list_display = ('teacher', 'new_teacher', 'classroom', 'new_classroom',
-                    'date', 'start_period', 'end_period',)
+class ChangedLessonAdmin(admin.ModelAdmin):
+    list_display = ('lesson', 'date', 'new_teacher', 'new_classroom',
+                    'new_period',)
 
+class ChangedTeacherAdmin(admin.ModelAdmin):
+    list_display = ('teacher', 'start_date', 'start_period','end_date',
+                    'end_period',)
+
+class ChangedClassroomAdmin(admin.ModelAdmin):
+    list_display = ('classroom', 'start_date', 'start_period','end_date',
+                    'end_period',)
 
 admin.site.register(PeriodMeta,PeriodMetaAdmin)
 admin.site.register(Topic,TopicAdmin)
@@ -34,4 +41,6 @@ admin.site.register(Classroom,ClassroomAdmin)
 admin.site.register(Lesson,LessonAdmin)
 admin.site.register(HomeworkType,HomeworkTypeAdmin)
 admin.site.register(Homework,HomeworkAdmin)
-admin.site.register(Cancellation,CancellationAdmin)
+admin.site.register(ChangedLesson,ChangedLessonAdmin)
+admin.site.register(ChangedTeacher,ChangedTeacherAdmin)
+admin.site.register(ChangedClassroom,ChangedCassroomAdmin)
