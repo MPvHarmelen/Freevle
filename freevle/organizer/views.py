@@ -137,104 +137,82 @@ class DateMixin(object):
 
         return date
 
+class ModificationMixin(object):
+    warnings.warn("\n\n\t ModificationMixin isn't working correctly!\n")
 
-warnings.warn("\n\n\t CancellationMixin isn't working correctly!\n")
-class CancellationMixin(object):
-#    def check_cancelled(self, lesson, date):
-#        period = lesson.period
-#
-#        cancellations = Cancellation.objects.filter(
-#            start_period__lte=period,
-#            end_period__gte=period,
-#            start_date__lte=date,
-#            end_date__gte=date
-#        )
-#
-#        lesson.is_cancelled = False
-#        for cancellation in cancellations:
-#            if cancellation.is_cancelled:
-#                lesson.is_cancelled = True
-#                break
-#            elif cancellation.is_cancelled != False:
-#                raise TypeError('cancellation.is_cancelled must be a boolean.')
-#
-#        return lesson
+    def cancelled_classroom(self, classroom, period, date):
+        '''Checks if a classroom is cancelled.'''
+        changes = classroom.cancelled.filter(
+            start_date__lte=date,
+            start_period__lte=period,
+            end_date__gte=date,
+            end_period__gte=period
+        )
 
-    def check_teacher(self, lesson, date):
-        period = lesson.period
-        teacher = lesson.course.teacher
+        if changes.count() > 0:
+            return True
+        else:
+            return False
 
-        try:
-            warnings.warn('\n\n\t This here could lead to problems because of '
-                          'course being the same object in different lessons and '
-                          "who the hell knows what's going to happen!!\n")
-            lesson.course.teacher = Cancellation.objects.get(
-                start_period__lte=period,
-                end_period__gte=period,
-                teacher=teacher,
-                date=date,
-            ).new_teacher
+    def cancelled_teacher(self, teacher, period, date):
+        '''Checks if a teacher is cancelled.'''
+        changes = teacher.cancelled.filter(
+            start_date__lte=date,
+            start_period__lte=period,
+            end_date__gte=date,
+            end_period__gte=period
+        )
 
-        except Cancellation.DoesNotExist: pass
-        except Cancellation.MultipleObjectsReturned:
-            raise ImproperlyConfigured(
-                'There are multiple replacement teachers assigned to {} in '
-                'period {} on {}.'.format(teacher.get_full_name(),
-                                          period,
-                                          date.strftime('%m/%d-Y'))
-            )
-        return lesson
+        if changes.count() > 0:
+            return True
+        else:
+            return False
 
-    def check_classroom(self, lesson, date):
-        period = lesson.period
-        classroom = lesson.classroom
+    def modify_lesson(self, lesson, date):
+        '''
+        Modifies a lesson according to cancelled classroom, teacher or `changed`
+        attribute.
+        '''
+        if self.cancelled_classroom(lesson.classroom, lesson.period, date):
+            lesson.classroom = None
+        if self.cancelled_teacher(lesson.teacher, lesson.period, date):
+            warnings.warn("\n\n\t This could make things go wrong, 'cause"
+                          'courses are used by multiple lessons and ARGH!\n')
+            lesson.course.teacher = None
 
         try:
-            lesson.classroom = Cancellation.objects.get(
-                start_period__lte=period,
-                end_period__gte=period,
-                classroom=classroom,
-                date=date,
-            ).new_classroom
-        # nothing HAS to be cancelled
-        except Cancellation.DoesNotExist: pass
-        except Cancellation.MultipleObjectsReturned:
-            raise ImproperlyConfigured(
-                'There are multiple replacement classrooms assigned to {} in '
-                'period {} on {}.'.format(classroom,
-                                          period,
-                                          date.strftime('%m/%d-Y'))
-            )
+            changes = lesson.changed.get(date=date)
+            lesson.course.teacher = changes.new_teacher or lesson.course.teacher
+            lesson.classroom = changes.new_classroom or lesson.classroom
+            lesson.period = changes.new_period or lesson.period
+        except ChangedLesson.DoesNotExist:
+            pass
+
+        if lesson.course.teacher is None or lesson.classroom is None:
+            lesson.is_cancelled = True
+        else:
+            lesson.is_cancelled = False
+
         return lesson
 
-    def check_cancellation(self, lesson_list, date):
-        for lesson in lesson_list:
-            # Empty lessons have no period, can not be cancelled and raise
-            # all kinds of error
-            if lesson.period is not None:
-                lesson = self.check_teacher(lesson, date)
-                lesson = self.check_classroom(lesson, date)
-
-        return lesson_list
 
 class HomeworkMixin(object):
     coming_homework_days = 14
     coming_homework_min_weight = 10
     coming_homework = None
 
-    def set_homework(self, lesson_set, date):
+    def set_homework(self, lesson, date):
         key = lambda a: a.homework_type.weight
-        for lesson in lesson_set:
-            lesson.homework = sorted(
-                [homework for homework in lesson.homework_set.filter(
-                    due_date=date
-                 )],
-                key=key,
-                # A higher weight is more important & more important homework
-                # should go first, thus:
-                reverse=True
-            )
-        return lesson_set
+        lesson.homework = sorted(
+            [homework for homework in lesson.homework_set.filter(
+                due_date=date
+             )],
+            key=key,
+            # A higher weight is more important & more important homework
+            # should go first, thus:
+            reverse=True
+        )
+        return lesson
 
     def get_coming_homework(self, date, user):
         coming_homework = self.coming_homework
@@ -470,8 +448,10 @@ class StudentView(StudentPrintView, CancellationMixin, HomeworkMixin):
                 start_date__lte=date,
                 end_date__gte=date
             )
-            lesson_subset = self.set_homework(lesson_subset, date)
-            lesson_list.extend(lesson_subset)
+            for lesson in lesson_subset:
+                lesson = self.set_homework(lesson, date)
+                lesson = self.modify_lesson(lesson, date)
+                lesson_list.append(lesson)
         return lesson_list
 
 
