@@ -150,7 +150,7 @@ $(document).ready(function(){
     }
   });
 
-//Settings-tabs
+/*Settings-tabs
   $('#tabs').width($('.tab').length * 850);
   var url = $(location).attr('href');
   var urlParts = url.split('/')
@@ -191,7 +191,7 @@ $(document).ready(function(){
   $('.settingsmenu a').click(function(e) {
     History.replaceState(null, null, $(this).attr('href'));
     e.preventDefault();
-  });
+  });*/
 
 //Focusstatus
   $('input, textarea').focus(function() {
