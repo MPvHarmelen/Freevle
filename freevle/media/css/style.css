@@ -605,20 +605,20 @@ p.vak {
 div.les {
   float: left;
   font-weight: bold;
-  width: 36px;
+  width: 38px;
 }
 div.leraar {
   float: left;
-  width: 38px;
+  width: 43px;
 }
 
 div.lokaal {
-  margin-left: 10px;
   float: left;
+  width: 24px;
 }
 
 #weekend {
-  width: 83px;
+  width: 81px;
   border-left: #bbb 1px solid;
   float: left;
   background: #fafafa;
