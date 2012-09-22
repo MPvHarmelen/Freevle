@@ -96,32 +96,34 @@ $(document).ready(function(){
     $('#darken').fadeOut('fast');
     $('#id_username, #id_password, #id_email').blur();
   });
-  centerInlogForm();
+  if($(window).width() > 900) {
+    centerInlogForm();
+  }
 
-  $(window).resize(centerInlogForm);
+  $(window).resize(function() {
+    if($(window).width() > 900) {
+      centerInlogForm();
+    }
+  });
 
 //Menu backgrounds
 
-  $('ul.dropdown').hover(function() {
-      $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
-  }, function() {
-      $(this).prev('a.menuitem').css('background-color', 'transparent').css('color', '#333');
-  });
+  if($(window).width() > 900) {
+    $('ul.dropdown').hover(function() {
+        $(this).prev('a.menuitem').addClass('menuhover');
+    }, function() {
+        $(this).prev('a.menuitem').removeClass('menuhover');
+    });
 
-  $('a.menuitem').hover(function(){
-    $(this).css('background-color', '#008').css('color', '#fff');
-  }, function() {
-    $(this).css('background-color', 'transparent').css('color', '#333');
-  });
-
-  $('ul.dropdown').hide();
-  $('li.navmenu').hover(function() {
+    $('ul.dropdown').hide();
+    $('li.navmenu').hover(function() {
       $(this).children('ul.dropdown').stop(true, true).slideDown('fast');
     }, function() {
       $(this).children('ul.dropdown').stop(true, true).slideUp('fast');
     });
+  }
 
-  if($('#focus')) {
+  if($('#focus').length != 0) {
     $('#focus').focus();
     focusstatus = true;
   }
@@ -131,24 +133,31 @@ $(document).ready(function(){
   $('#password').hide();
   $('#focusonpassword').click(function() {
     $('#password').fadeIn('fast');
-    $('#loginandpassword').animate({'margin-left': '-280px'}, 'fast');
     $('#focuslogin').fadeOut('fast');
-    $('#inlogform').animate({'height': '357px'}, 'fast');
+    if($(window).width() > 900) {
+      $('#inlogform').animate({'height': '371px'}, 'fast');
+      $('#loginandpassword').animate({'margin-left': '-280px'}, 'fast');
+    } else {
+      $('#loginandpassword').animate({'margin-left': -$(window).width() + 'px'}, 'fast');
+    }
   });
   $('#focusonlogin').click(function() {
     $('#password').fadeOut('fast');
-    $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
     $('#focuslogin').fadeIn('fast');
-    $('#inlogform').animate({'height': '337px'}, 'fast');
+    $('#loginandpassword').animate({'margin-left': '0'}, 'fast');
+    if($(window).width() > 900) {
+      $('#inlogform').animate({'height': '337px'}, 'fast');
+    }
   });
 
 //Settings-tabs
   $('#tabs').width($('.tab').length * 850);
   var url = $(location).attr('href');
-  var aLink = 'a.tabnav[href="#' + url.split('#')[1] + '"]';
-  var tabIdUrl = '#tab' + url.split('#')[1];
+  var urlParts = url.split('/')
+  var aLink = 'a.tabnav[href="/settings/' + urlParts[urlParts.length-2] + '/"]';
+  var tabIdUrl = '#tab' + urlParts[urlParts.length-2];
   var marginMove = '-' + $(tabIdUrl).prevAll('.tab').length * 850 + 'px';
-  if (/#/i.test(url)) {
+  if (/settings\/(\w*)\//i.test(url)) {
     $(aLink).css('border-color', '#007');
     $('#tabs').animate({ 'margin-left': marginMove }, 'fast');
     if($(tabIdUrl).height() > 365) {
@@ -164,7 +173,8 @@ $(document).ready(function(){
   $('a.tabnav').click(function() {
     $('a.tabnav').css('border-color', '#fff');
     $(this).css('border-color', '#007');
-    var tabId = '#tab' + $(this).attr('href').split('#')[1];
+    var href = $(this).attr('href')
+    var tabId = '#tab' + href.split('/')[href.split('/').length-2];
     var amountTabs = $(tabId).prevAll('.tab').length
     var marginMove = '-' + amountTabs * 850 + 'px';
     if($(tabId).height() > 365) {
@@ -176,6 +186,13 @@ $(document).ready(function(){
     $('#tabbrowser').animate({ 'height': changeHeight }, 'fast');
   });
 
+//Prettier history
+  var History = window.History;
+  $('.settingsmenu a').click(function(e) {
+    History.replaceState(null, null, $(this).attr('href'));
+    e.preventDefault();
+  });
+
 //Focusstatus
   $('input, textarea').focus(function() {
     focusstatus = true;
@@ -184,54 +201,82 @@ $(document).ready(function(){
   });
 
 //Live passwordchecker
-  $('#confirm-password').keyup(function() {
-    if($('#new-password').val() != $('#confirm-password').val()) { 
-      if($('#checkifsame').is(":hidden")) {
-        $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
-        $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+  var confirmPasswd = $('#confirm-password');
+  var newPasswd = $('#new-password');
+  var checkIfSame = $('#checkifsame');
+  var triangleLeft = $('#triangleleft');
+
+  confirmPasswd.keyup(function() {
+    if(newPasswd.val() != confirmPasswd.val()) { 
+      if(checkIfSame.is(":hidden")) {
+        checkIfSame.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+        triangleLeft.animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
       }
-      $('#checkifsame').text('The passwords don\'t match.');
-      $('#confirm-password').css('background-image', 'url(/media/img/redcross.png)');
+      checkIfSame.text('The passwords don\'t match.');
+      confirmPasswd.css('background-image', 'url(/media/img/redcross.png)');
     } else {
-      $('#confirm-password').css('background-image', 'url(/media/img/check.png)');
-      $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
-      $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+      confirmPasswd.css('background-image', 'url(/media/img/check.png)');
+      checkIfSame.animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+      triangleLeft.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
     }
   }).focus(function() {
-    if($('#confirm-password').val()) {
-      $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
-      $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+    if(confirmPasswd.val()) {
+      checkIfSame.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
+      triangleLeft.animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
     }
   }).focusout(function() {
-    $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
-    $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+    checkIfSame.animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+    triangleLeft.animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
   });
+
+
+
+  if($(window).width() < 900) {
+    $('#menutoggle').click(function() {
+      if($('nav').css('left') === '-100%') {
+        $('nav').animate({ 'left': '-54px' }, 'fast');
+      } else {
+        $('nav').animate({ 'left': '-100%' }, 'fast');
+      }
+    });
+  }
 });
 
 //Ctrl+
-$.ctrl = function(key, callback, args) {
-    $(document).keydown(function(e) {
-        if(!args) args=[];
-        if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
-            callback.apply(this, args);
-            return false;
-        }
-    });
-};
-$.ctrl('S', function() {
-  $('.course').click();
-});
+//$.ctrl = function(key, callback, args) {
+//    $(document).keydown(function(e) {
+//        if(!args) args=[];
+//        if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
+//            callback.apply(this, args);
+//            return false;
+//        }
+//    });
+//};
+//$.ctrl('S', function() {
+//  $('.course').click();
+//});
 
 //Other keyboardfunctions
 $(document.documentElement).keyup(function(e) {
-  if (e.keyCode == 27) {//Esc
+  if(e.keyCode == 27) {//Esc
     $('#closelogin').click();
+    $('input[type="text"], input[type="password"]').blur();
   }
-  if (e.keyCode == 76 && !focusstatus) {//L
+  if(e.keyCode == 76 && !focusstatus) {//L
     $('#loginhome').click();
   }
-  if (e.keyCode == 83 && !focusstatus) {//S
+  if(e.keyCode == 83 && !focusstatus) {//S
     $('#search-box').focus();
+  }
+  if(e.keyCode == 75 && !focusstatus && $('.conversation').length > 1) {
+    if($('.conversation:first').hasClass('selected') !== true) {
+      $('.selected').removeClass('selected').prev('li').addClass('selected');
+    }
+  }
+  if(e.keyCode == 74 && !focusstatus && $('.conversation').length > 1) {
+    if($('.conversation:last').hasClass('selected') !== true) {
+      $('.selected').removeClass('selected').next('li').addClass('selected');
+    }
   }
 });
 

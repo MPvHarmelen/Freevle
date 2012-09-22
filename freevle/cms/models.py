@@ -9,8 +9,8 @@ class Page(models.Model):
     title = models.CharField(max_length=18)
     slug = models.SlugField(
 #        unique=True,
-        help_text=_('URL-friendly version of the title,\
-                    can be left alone most of the time.')
+        help_text=_('URL-friendly version of the title, '
+                    'can be left alone most of the time.')
     )
     content = models.TextField(help_text=_('Content of the page.'))
 

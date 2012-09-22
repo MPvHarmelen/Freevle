@@ -8,9 +8,14 @@
     <link rel="stylesheet" type="text/css" href="/media/css/slimbox2.css" />
 
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/jquery.history.js"></script>
     <script type="text/javascript" src="/media/js/scripts.js"></script>
+    <script type="text/javascript" src="/media/js/autocompletion.js"></script>
 
-    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta charset="utf-8">
+
+    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
 
   </head>
   <body>
@@ -53,7 +58,7 @@
               </form>
               <a id="focusonlogin" href="#">{% blocktrans %}Just want to login?{% endblocktrans %}</a><br>
             </div>
-            
+
             <div class="clear"></div>
 
           </div>
@@ -62,25 +67,26 @@
       </div>
     {% endif %}
 
-        <header>
-          <a href="/">
-            <img src="/media/img/zwaanheader.png" alt="logo" id="logo">
-          </a>
-          <h1 id="cygnus">
-            <a href="/"><span id="firstletter">C</span>ygnus gymnasium</a>
-          </h1>
-          <div class="clear"></div>
-        </header>
-    
+      <header>
+        <a href="/">
+          <img src="/media/img/zwaanheader.png" alt="logo" id="logo">
+        </a>
+        <h1 id="cygnus">
+          <a href="/"><span id="firstletter">C</span>ygnus gymnasium</a>
+        </h1>
+        <div class="clear"></div>
+      </header>
+
       <nav>
+        <div id="menutoggle">Menu</div>
         <ul id="menu">
-          
+
           <li class="navmenu">
-            <a class="imagenav" id="homebtn" href="/"></a>
+            <a class="imagenav" id="homebtn" href="/">Home</a>
           </li>
-          
+
           {% for page in pages %}
-            {% if not page.parent %} 
+            {% if not page.parent %}
             <li class="navmenu"><a class="menuitem" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
               {% if page.page_set.all %}
                 <ul class="dropdown">
@@ -92,93 +98,100 @@
             </li>
             {% endif %}
             {% endfor %}
-            <li class="navmenu"><a class="menuitem" href="/news">News</a></li>
-            <li class="navmenu"><a class="menuitem" href="/contact">Contact</a></li>
-          
+            <li class="navmenu"><a class="menuitem" href="/news">{% trans "News" %}</a></li>
+            <li class="navmenu"><a class="menuitem" href="/galleries">{% trans "Photos" %}</a></li>
+            <li class="navmenu"><a class="menuitem" href="/contact">{% trans "Contact" %}</a></li>
+
             <li class="navmenu liright" id="searchcont">
-              <form id="search" method="post" action="">
+              <form id="search" method="get" action="/search/">
                 <input id="search-box" type="text" placeholder="Zoeken...">
-              </form>​
+              </form>
+              <ul id="searchresults">
+                <li id="hiddenres" class="activeres"></li>
+              </ul>
             </li>
 
           {% if user.is_authenticated %}
               <li class="navmenu liright">
                 <a class="menuitem" href="/">{{ user.userprofile.get_display_name }}</a>
                 <ul class="dropdown" id="rightdrop">
+                  <li><a class="submenu-item" href="/rooster/">{% trans "Organizer" %}</a></li>
                   <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>
-                  <li><a class="submenu-item" href="/user/settings/">{% trans "Settings" %}</a></li>
+                  <li><a class="submenu-item" href="/settings/">{% trans "Settings" %}</a></li>
+                  <li><a class="submenu-item" href="/messages/">{% trans "Messages" %}</a></li>
                   {% if user.is_staff %}
                   <li><a class="submenu-item" href="/admin/">{% trans "Admin" %}</a></li>
                   {% endif %}
                   <li><a class="submenu-item" href="/user/logout/">{% trans "Log out" %}</a></li>
                 </ul>
               </li>
-              
-              <li class="navmenu liright"><a class="menuitem" href="">{% trans "Courses" %}</a>
+
+              <li class="navmenu liright" id="loginhome"><a class="menuitem" href="">{% trans "Courses" %}</a>
                 <ul class="dropdown" id="rightdrop">
-                  <li><a class="submenu-item" href="/">Grieks</a></li>
-                  <li><a class="submenu-item" href="/">Geschiedenis</a></li>
-                  <li><a class="submenu-item" href="/">Frans</a></li>
-                  <li><a class="submenu-item" href="/">Wiskunde</a></li>
+                  <li><a class="submenu-item" href="/courses/grieks">Grieks</a></li>
+                  <li><a class="submenu-item" href="/courses/wiskunde">Wiskunde</a></li>
+                  <li><a class="submenu-item" href="/courses/duits">Duits</a></li>
                   <li><a class="submenu-item" href="/courses">More...</a></li>
                 </ul>
               </li>
             {% else %}
               <li id="loginhome" class="navmenu"><a class="menuitem" href="#" class="header">{% trans "Login" %}</a></li>
             {% endif %}
-            
+
           <div class="clear"></div>
-        
+
         </ul>
       </nav>
-       
+
       </header>
 
       <div class="wrapper">
-        
+
         {% block content %}
         {% endblock content %}
 
       </div>
 
       <footer>
-        
+
+      <!--
         <ul id="breadcrumbs">
-          <li class="home">  
+          <li class="home">
             <a class="home" href="#">Home</a>
             <span class="divider"></span>
-          </li>  
-          <li class="second">  
+          </li>
+          <li class="second">
             <a class="second" href="#">Second level</a>
             <span class="divider"></span>
-          </li>  
-          <li class="thrid">  
+          </li>
+          <li class="thrid">
             <a class="third" href="#">Third level</a>
             <span class="divider"></span>
-          </li>  
+          </li>
           <li class="fourth">
             <a class="fourth" href="#">Fourth level</a>
             <span class="divider"></span>
-          </li>  
-          <li class="current">  
+          </li>
+          <li class="current">
             <span class="current">Current page</span>
           </li>
         </ul>
-          
+      -->
+
         <div id="center">
-          
+
           <div class="footercolumn" id="leftcolumn">
 
             <img id="swan" src="/media/img/zwaan.png" alt="logo">
 
           </div>
-        
+
           <div class="footercolumn" id="middlecolumn">
             <h2 class="footerh">{% trans "Sitemap" %}</h2>
             <ul class="sitemaplist">
               <li><a href="">{% trans "Home" %}</a></li>
               {% for page in pages %}
-              {% if not page.parent %} 
+              {% if not page.parent %}
                 <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
                   {% if page.page_set.all %}
                     <ul class="sitemaplist2">
@@ -195,7 +208,7 @@
             </ul>
             <div class="clear"></div>
           </div>
-                
+
           <div class="footercolumn" id="rightcolumn">
             <h2 class="footerh"><a href="">{% trans "Contact" %}</a></h2>
             <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
@@ -207,11 +220,11 @@
             1097 CA Amsterdam<br>
             020-462 14 50</p>
           </div>
-          
+
            <div class="clear"></div>
 
         </div>
       </footer>
-  
+
   </body>
 </html>

@@ -1,0 +1,1082 @@
+# This file is distributed under the same license as the Django package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-23 17:45+0200\n"
+"PO-Revision-Date: 2011-03-04 18:44+0000\n"
+"Last-Translator: jeffrey <jeffrey@noppo.pro>\n"
+"Language-Team: Dutch <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: .\cms\models.py:12 .\news\models.py:10
+msgid "URL-friendly version of the title, can be left alone most of the time."
+msgstr ""
+
+#: .\cms\models.py:15
+msgid "Content of the page."
+msgstr ""
+
+#: .\cms\models.py:20
+msgid "There's already a page with this parent and slug"
+msgstr ""
+
+#: .\custom\fields.py:9
+msgid "Hexadecimal color field (e.g. #000000)"
+msgstr ""
+
+#: .\custom\fields.py:12
+msgid ""
+"This is an invalid color code. It must be a html hex                       "
+"color code e.g. #000000"
+msgstr ""
+
+#: .\letters\models.py:11
+msgid "This should be a pdf file"
+msgstr ""
+
+#: .\news\models.py:13
+#, fuzzy
+msgid "The news message."
+msgstr "wijzig bericht"
+
+#: .\organizer\models.py:38
+msgid "Sunday"
+msgstr ""
+
+#: .\organizer\models.py:39
+#, fuzzy
+msgid "Monday"
+msgstr "Vandaag"
+
+#: .\organizer\models.py:40
+#, fuzzy
+msgid "Tuesday"
+msgstr "Vandaag"
+
+#: .\organizer\models.py:41
+msgid "Wednesday"
+msgstr ""
+
+#: .\organizer\models.py:42
+#, fuzzy
+msgid "Thursday"
+msgstr "Vandaag"
+
+#: .\organizer\models.py:43
+msgid "Friday"
+msgstr ""
+
+#: .\organizer\models.py:44
+msgid "Saturday"
+msgstr ""
+
+#: .\templates\404.html.py:7 .\templates\admin\404.html.py:6
+msgid "Page not found"
+msgstr "Pagina niet gevonden"
+
+#: .\templates\404.html.py:8
+#, fuzzy
+msgid "We're sorry, but there's really nothing to find here."
+msgstr "Onze excuses, maar de gevraagde pagina bestaat niet."
+
+#: .\templates\404.html.py:9 .\templates\admin\404.html.py:10
+msgid ""
+"Try going back to <a href=\"/\">Home</a> or use the search function in the "
+"upperright corner to find what you were looking for."
+msgstr ""
+
+#: .\templates\base.html.py:6
+msgid "Cygnus Template"
+msgstr ""
+
+#: .\templates\base.html.py:26 .\templates\base.html.py:31
+#: .\templates\base.html.py:127 .\templates\old header.html.py:48
+#: .\templates\user\login.html.py:16
+#, fuzzy
+msgid "Login"
+msgstr "Inloggen"
+
+#: .\templates\base.html.py:29 .\templates\user\login.html.py:14
+#, fuzzy
+msgid "Username"
+msgstr "Gebruikersnaam:"
+
+#: .\templates\base.html.py:30
+#: .\templates\admin\auth\user\change_password.html.py:36
+#: .\templates\user\login.html.py:15
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: .\templates\base.html.py:38 .\templates\user\login.html.py:19
+#, fuzzy
+msgid "Forgotten your username or password?"
+msgstr "Voer een gebruikersnaam en wachtwoord in."
+
+#: .\templates\base.html.py:42 .\templates\user\lostandfound.html.py:6
+#, fuzzy
+msgid "Lost & found"
+msgstr "Pagina niet gevonden"
+
+#: .\templates\base.html.py:45 .\templates\user\lostandfound.html.py:14
+#, fuzzy
+msgid ""
+"Forgotten your password or username? Enter your email and your username and "
+"a new password will be sent to you."
+msgstr ""
+"Uw wachtwoord vergeten? Geef uw e-mailadres op en we sturen u per e-mail de "
+"instructies voor het instellen van een nieuw wachtwoord."
+
+#: .\templates\base.html.py:46 .\templates\user\lostandfound.html.py:15
+msgid "Email"
+msgstr ""
+
+#: .\templates\base.html.py:47 .\templates\user\lostandfound.html.py:16
+msgid "Send"
+msgstr ""
+
+#: .\templates\base.html.py:54
+msgid "Just want to login?"
+msgstr ""
+
+#: .\templates\base.html.py:95 .\templates\base.html.py:193
+msgid "News"
+msgstr ""
+
+#: .\templates\base.html.py:96 .\templates\base.html.py:194
+#: .\templates\base.html.py:200 .\templates\contact\index.html.py:7
+msgid "Contact"
+msgstr ""
+
+#: .\templates\base.html.py:108
+msgid "Organizer"
+msgstr ""
+
+#: .\templates\base.html.py:109 .\templates\old header.html.py:30
+#: .\templates\letters\letter_archive.html.py:6
+msgid "Letters"
+msgstr ""
+
+#: .\templates\base.html.py:110 .\templates\old header.html.py:31
+#: .\templates\settings\index.html.py:7
+msgid "Settings"
+msgstr ""
+
+#: .\templates\base.html.py:112 .\templates\old header.html.py:33
+msgid "Admin"
+msgstr ""
+
+#: .\templates\base.html.py:114 .\templates\old header.html.py:35
+#: .\templates\admin\base.html.py:49
+msgid "Log out"
+msgstr "Afmelden"
+
+#: .\templates\base.html.py:118 .\templates\old header.html.py:38
+msgid "Courses"
+msgstr ""
+
+#: .\templates\base.html.py:177
+msgid "Sitemap"
+msgstr ""
+
+#: .\templates\base.html.py:179 .\templates\admin\500.html.py:4
+#: .\templates\admin\app_index.html.py:8 .\templates\admin\base.html.py:56
+#: .\templates\admin\change_form.html.py:19
+#: .\templates\admin\change_list.html.py:42
+#: .\templates\admin\delete_confirmation.html.py:6
+#: .\templates\admin\delete_selected_confirmation.html.py:6
+#: .\templates\admin\invalid_setup.html.py:4
+#: .\templates\admin\object_history.html.py:6
+#: .\templates\admin\auth\user\change_password.html.py:12
+msgid "Home"
+msgstr "Voorpagina"
+
+#: .\templates\index.html.py:8 .\templates\admin\base.html.py:29
+#, fuzzy
+msgid "Welcome"
+msgstr "Welkom,"
+
+#: .\templates\index.html.py:15
+msgid "Photos"
+msgstr ""
+
+#: .\templates\printrooster.html.py:370
+#, fuzzy
+msgid "Search..."
+msgstr "Zoek"
+
+#: .\templates\admin\404.html.py:9
+msgid ""
+"We're terribilly sorry, but the url you're trying to surf to does not exsist."
+msgstr ""
+
+#: .\templates\admin\500.html.py:4
+msgid "Server error"
+msgstr "Serverfout"
+
+#: .\templates\admin\500.html.py:6
+msgid "Server error (500)"
+msgstr "Serverfout (500)"
+
+#: .\templates\admin\500.html.py:9
+msgid "Server Error <em>(500)</em>"
+msgstr "Serverfout <em>(500)</em>"
+
+#: .\templates\admin\500.html.py:10
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+"Er is een fout opgetreden. Dit is inmiddels doorgegeven aan de sitebeheerder "
+"via e-mail en zal spoedig worden gerepareerd. Bedankt voor uw geduld."
+
+#: .\templates\admin\actions.html.py:4
+msgid "Run the selected action"
+msgstr "Voer de geselecteerde actie uit"
+
+#: .\templates\admin\actions.html.py:4
+msgid "Go"
+msgstr "Voer Uit"
+
+#: .\templates\admin\actions.html.py:11
+msgid "Click here to select the objects across all pages"
+msgstr "Klik hier om alle objecten op alle pagina's te selecteren"
+
+#: .\templates\admin\actions.html.py:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr "Selecteer alle %(total_count)s %(module_name)s"
+
+#: .\templates\admin\actions.html.py:13
+msgid "Clear selection"
+msgstr "Leeg selectie"
+
+#: .\templates\admin\app_index.html.py:10
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: .\templates\admin\base.html.py:34
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: .\templates\admin\base.html.py:42
+#: .\templates\admin\auth\user\change_password.html.py:16
+#: .\templates\admin\auth\user\change_password.html.py:49
+msgid "Change password"
+msgstr "Wachtwoord wijzigen"
+
+#: .\templates\admin\base_site.html.py:4
+msgid "Cygy Dashboard"
+msgstr ""
+
+#: .\templates\admin\change_form.html.py:22
+msgid "Add"
+msgstr "Toevoegen"
+
+#: .\templates\admin\change_form.html.py:31
+#: .\templates\admin\object_history.html.py:10
+msgid "History"
+msgstr "Geschiedenis"
+
+#: .\templates\admin\change_form.html.py:32
+#: .\templates\admin\edit_inline\stacked.html.py:9
+#: .\templates\admin\edit_inline\tabular.html.py:28
+msgid "View on site"
+msgstr "Toon op site"
+
+#: .\templates\admin\change_form.html.py:43
+#: .\templates\admin\change_list.html.py:73 .\templates\admin\login.html.py:17
+#: .\templates\admin\auth\user\change_password.html.py:25
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Herstel de fout hieronder."
+msgstr[1] "Herstel de fouten hieronder."
+
+#: .\templates\admin\change_list.html.py:64
+#, python-format
+msgid "Add %(name)s"
+msgstr "%(name)s toevoegen"
+
+#: .\templates\admin\change_list.html.py:84
+msgid "Filter"
+msgstr "Filter"
+
+#: .\templates\admin\delete_confirmation.html.py:10
+#: .\templates\admin\submit_line.html.py:4
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: .\templates\admin\delete_confirmation.html.py:17
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+"Het verwijderen van %(object_name)s '%(escaped_object)s' zal ook "
+"gerelateerde objecten verwijderen. Echter u heeft geen rechten om de "
+"volgende typen objecten te verwijderen:"
+
+#: .\templates\admin\delete_confirmation.html.py:25
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+"Het verwijderen van %(object_name)s '%(escaped_object)s' vereist het "
+"verwijderen van de volgende gerelateerde objecten:"
+
+#: .\templates\admin\delete_confirmation.html.py:33
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+"Weet u zeker dat u %(object_name)s \"%(escaped_object)s\" wilt verwijderen? "
+"Alle volgende objecten worden verwijderd:"
+
+#: .\templates\admin\delete_confirmation.html.py:38
+#: .\templates\admin\delete_selected_confirmation.html.py:43
+msgid "Yes, I'm sure"
+msgstr "Ja, ik weet het zeker"
+
+#: .\templates\admin\delete_selected_confirmation.html.py:9
+msgid "Delete multiple objects"
+msgstr "Verwijder meerdere objecten"
+
+#: .\templates\admin\delete_selected_confirmation.html.py:16
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+"Het verwijderen van de geselecteerde %(objects_name)s vereist het "
+"verwijderen van gerelateerde objecten, maar uw account heeft geen "
+"toestemming om de volgende soorten objecten te verwijderen:"
+
+#: .\templates\admin\delete_selected_confirmation.html.py:24
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+"Het verwijderen van de geselecteerde %(objects_name)s vereist het "
+"verwijderen van de volgende beschermde gerelateerde objecten:"
+
+#: .\templates\admin\delete_selected_confirmation.html.py:32
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+"Weet u zeker dat u de geselecteerde %(objects_name)s wilt verwijderen? Alle "
+"volgende objecten en hun aanverwante items zullen worden verwijderd:"
+
+#: .\templates\admin\filter.html.py:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr " Op %(filter_title)s "
+
+#: .\templates\admin\index.html.py:28
+msgid "You don't have permission to edit anything."
+msgstr "U heeft geen rechten om iets te wijzigen."
+
+#: .\templates\admin\index.html.py:36
+msgid "Recent Actions"
+msgstr "Recente acties"
+
+#: .\templates\admin\index.html.py:37
+msgid "My Actions"
+msgstr "Mijn acties"
+
+#: .\templates\admin\index.html.py:41
+msgid "None available"
+msgstr "Geen beschikbaar"
+
+#: .\templates\admin\index.html.py:55
+msgid "Unknown content"
+msgstr "Onbekende inhoud"
+
+#: .\templates\admin\invalid_setup.html.py:7
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+"Er is iets mis met de database. Verzeker u ervan dat de benodigde tabellen "
+"zijn aangemaakt en dat de database toegankelijk is voor de juiste gebruiker."
+
+#: .\templates\admin\login.html.py:33
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+#: .\templates\admin\login.html.py:37
+msgid "Password:"
+msgstr "Wachtwoord:"
+
+#: .\templates\admin\login.html.py:42
+msgid "Log in"
+msgstr "Inloggen"
+
+#: .\templates\admin\object_history.html.py:22
+msgid "Date/time"
+msgstr "Datum/tijd"
+
+#: .\templates\admin\object_history.html.py:23
+msgid "User"
+msgstr "Gebruiker"
+
+#: .\templates\admin\object_history.html.py:24
+msgid "Action"
+msgstr "Actie"
+
+#: .\templates\admin\object_history.html.py:38
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+"Dit object heeft geen wijzigingsgeschiedenis. Het is mogelijk niet via de "
+"beheersite toegevoegd."
+
+#: .\templates\admin\pagination.html.py:10
+msgid "Show all"
+msgstr "Alles tonen"
+
+#: .\templates\admin\pagination.html.py:11
+#: .\templates\admin\submit_line.html.py:3
+msgid "Save"
+msgstr "Opslaan"
+
+#: .\templates\admin\search_form.html.py:8
+msgid "Search"
+msgstr "Zoek"
+
+#: .\templates\admin\search_form.html.py:10
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] "%(counter)s resultaat"
+msgstr[1] "%(counter)s resultaten"
+
+#: .\templates\admin\search_form.html.py:10
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr "%(full_result_count)s totaal"
+
+#: .\templates\admin\submit_line.html.py:5
+msgid "Save as new"
+msgstr "Opslaan als nieuw item"
+
+#: .\templates\admin\submit_line.html.py:6
+msgid "Save and add another"
+msgstr "Opslaan en nieuwe toevoegen"
+
+#: .\templates\admin\submit_line.html.py:7
+msgid "Save and continue editing"
+msgstr "Opslaan en opnieuw bewerken"
+
+#: .\templates\admin\auth\user\add_form.html.py:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+"Vul allereerst een gebruikersnaam en wachtwoord in. Vervolgens kunt u de "
+"andere opties instellen."
+
+#: .\templates\admin\auth\user\add_form.html.py:8
+msgid "Enter a username and password."
+msgstr "Voer een gebruikersnaam en wachtwoord in."
+
+#: .\templates\admin\auth\user\change_password.html.py:29
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr "Geef een nieuw passwoord voor gebruiker <strong>%(username)s</strong>."
+
+#: .\templates\admin\auth\user\change_password.html.py:42
+msgid "Password (again)"
+msgstr "Wachtwoord (nogmaals)"
+
+#: .\templates\admin\auth\user\change_password.html.py:43
+msgid "Enter the same password as above, for verification."
+msgstr "Vul hetzelfde wachtwoord als hierboven in, ter bevestiging."
+
+#: .\templates\admin\edit_inline\stacked.html.py:67
+#: .\templates\admin\edit_inline\tabular.html.py:113
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr "Voeg nog een %(verbose_name)s toe"
+
+#: .\templates\admin\edit_inline\stacked.html.py:70
+#: .\templates\admin\edit_inline\tabular.html.py:116
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: .\templates\admin\edit_inline\tabular.html.py:15
+msgid "Delete?"
+msgstr "Verwijderen?"
+
+#: .\templates\contact\index.html.py:8
+msgid ""
+"You can contact our school in different ways. Call us or send an email and "
+"we will respond as fast as we can! Of course is stopping by with an "
+"appointment also possible!"
+msgstr ""
+
+#: .\templates\contact\index.html.py:14
+msgid "Map"
+msgstr ""
+
+#: .\templates\contact\index.html.py:20
+#, fuzzy
+msgid "Location"
+msgstr "Actie"
+
+#: .\templates\contact\index.html.py:22
+msgid ""
+"The Cygnus Gymansium is accomodated in the monumental building 'het schip' "
+"in Amsterdam East at het Wibautstraat."
+msgstr ""
+
+#: .\templates\contact\index.html.py:23
+msgid ""
+"The Cygnus is reachable by train (Amstel Station), metro (Stop "
+"Wibautstraat), bicycle or by foot."
+msgstr ""
+
+#: .\templates\contact\index.html.py:28
+msgid "Adress"
+msgstr ""
+
+#: .\templates\contact\index.html.py:47
+msgid "Mail"
+msgstr ""
+
+#: .\templates\contact\index.html.py:48
+msgid "Mail your questions!"
+msgstr ""
+
+#: .\templates\contact\index.html.py:53
+msgid "Rector"
+msgstr ""
+
+#: .\templates\contact\index.html.py:58
+msgid "Department leader year 1 en 2"
+msgstr ""
+
+#: .\templates\contact\index.html.py:63
+msgid "Department leader year 3 en 4"
+msgstr ""
+
+#: .\templates\contact\index.html.py:68
+msgid "Department leader year 5 en 6"
+msgstr ""
+
+#: .\templates\contact\index.html.py:73
+#, fuzzy
+msgid "Administration"
+msgstr "%s beheer"
+
+#: .\templates\contact\index.html.py:78
+msgid "Absencecoordinator"
+msgstr ""
+
+#: .\templates\courses\duits.html.py:17 .\templates\courses\grieks.html.py:17
+#: .\templates\courses\wiskunde.html.py:25
+#, fuzzy
+msgid "All infopages"
+msgstr "Alle data"
+
+#: .\templates\courses\duits.html.py:21 .\templates\courses\grieks.html.py:21
+#: .\templates\courses\wiskunde.html.py:29
+msgid "All Links"
+msgstr ""
+
+#: .\templates\courses\duits.html.py:25 .\templates\courses\grieks.html.py:25
+#: .\templates\courses\wiskunde.html.py:33
+msgid "All Assigments"
+msgstr ""
+
+#: .\templates\courses\duits.html.py:29 .\templates\courses\grieks.html.py:29
+#: .\templates\courses\wiskunde.html.py:37
+msgid "All Questions"
+msgstr ""
+
+#: .\templates\courses\index.html.py:7
+msgid "All Your Courses"
+msgstr ""
+
+#: .\templates\courses\index.html.py:8
+msgid ""
+"All your courses in one place! Courses which you are not a member of can be "
+"found using the search function."
+msgstr ""
+
+#: .\templates\letters\letter_archive.html.py:14
+msgid "Woopsie"
+msgstr ""
+
+#: .\templates\letters\letter_archive.html.py:15
+msgid "We couldn't find any letters."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:8
+#: .\templates\news\newsmessage_archive_day.html.py:8
+#: .\templates\news\newsmessage_archive_month.html.py:8
+#: .\templates\news\newsmessage_detail.html.py:7
+msgid "Published on:"
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:11
+#: .\templates\news\newsmessage_archive_day.html.py:11
+#: .\templates\news\newsmessage_archive_month.html.py:11
+#: .\templates\news\newsmessage_detail.html.py:10
+msgid "By:"
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:13
+#: .\templates\news\newsmessage_archive_day.html.py:13
+#: .\templates\news\newsmessage_archive_month.html.py:13
+msgid "Read more..."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:18
+#: .\templates\news\newsmessage_archive_day.html.py:18
+#: .\templates\news\newsmessage_archive_month.html.py:18
+msgid "Whoopsie"
+msgstr ""
+
+#: .\templates\news\newsmessage_archive.html.py:19
+msgid "We couldn't find any news."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive_day.html.py:19
+msgid "We couldn't find any news for this day."
+msgstr ""
+
+#: .\templates\news\newsmessage_archive_month.html.py:19
+msgid "We couldn't find any news for this month."
+msgstr ""
+
+#: .\templates\organizer\my_schedule.html.py:9
+msgid "Schedule"
+msgstr ""
+
+#: .\templates\settings\index.html.py:8
+msgid ""
+"Change your settings: ways others can contact you, which info about you is "
+"visible etc. etc."
+msgstr ""
+
+#: .\templates\settings\index.html.py:11
+msgid "Persona"
+msgstr ""
+
+#: .\templates\settings\index.html.py:12
+msgid "Contactinfo"
+msgstr ""
+
+#: .\templates\settings\index.html.py:13
+#, fuzzy
+msgid "Change Password"
+msgstr "Wachtwoord wijzigen"
+
+#: .\templates\settings\index.html.py:14
+msgid "Notifications"
+msgstr ""
+
+#: .\templates\settings\index.html.py:15
+msgid "Courses menu"
+msgstr ""
+
+#: .\templates\settings\index.html.py:28
+msgid "Name"
+msgstr ""
+
+#: .\templates\settings\index.html.py:33
+msgid "Class"
+msgstr ""
+
+#: .\templates\settings\index.html.py:38
+#, fuzzy
+msgid "School mailadress"
+msgstr "E-mailadres:"
+
+#: .\templates\settings\index.html.py:45
+msgid "This isn't true!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:52
+msgid ""
+"This info is visible for everyone with an account. How do you want that "
+"others contact you?"
+msgstr ""
+
+#: .\templates\settings\index.html.py:55
+msgid "Secondary mailadress"
+msgstr ""
+
+#: .\templates\settings\index.html.py:59
+msgid "Phonenumber"
+msgstr ""
+
+#: .\templates\settings\index.html.py:63
+#, fuzzy
+msgid "Twitter"
+msgstr "Filter"
+
+#: .\templates\settings\index.html.py:67
+msgid "Facebook"
+msgstr ""
+
+#: .\templates\settings\index.html.py:75
+msgid "Update my info!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:83
+msgid "Not happy with your password? No problemo! Change it here."
+msgstr ""
+
+#: .\templates\settings\index.html.py:86
+msgid "Old password"
+msgstr "Oud wachtwoord"
+
+#: .\templates\settings\index.html.py:90
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+#: .\templates\settings\index.html.py:94
+#, fuzzy
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord:"
+
+#: .\templates\settings\index.html.py:104
+#, fuzzy
+msgid "Update my password!"
+msgstr "Wijzig mijn wachtwoord"
+
+#: .\templates\settings\index.html.py:111
+msgid ""
+"Manage your notifications by checking the checkboxes of the events you want "
+"to be notifed of with an email."
+msgstr ""
+
+#: .\templates\settings\index.html.py:114
+msgid "When a new letter is published"
+msgstr ""
+
+#: .\templates\settings\index.html.py:118
+msgid "When you're added to a course"
+msgstr ""
+
+#: .\templates\settings\index.html.py:126
+msgid "Update my notifications!"
+msgstr ""
+
+#: .\templates\settings\index.html.py:134
+msgid ""
+"In the <span class=\"bold\">Menucolumn</span> you can check the boxes next "
+"to the coursenames that should be fast accesible through the courses "
+"dropdown menu in the navigationbar."
+msgstr ""
+
+#: .\templates\user\logout.html.py:6
+msgid "Going already?"
+msgstr ""
+
+#: .\templates\user\logout.html.py:7
+msgid "At least we can be pretty sure you'll come back."
+msgstr ""
+
+#: .\templates\user\lostandfound.html.py:9
+msgid "The given email is not recognized by us."
+msgstr ""
+
+#~ msgid "Successfully deleted %(count)d %(items)s."
+#~ msgstr "%(count)d %(items)s succesvol verwijderd."
+
+#~ msgid "Cannot delete %(name)s"
+#~ msgstr "%(name)s kan niet worden verwijderd "
+
+#~ msgid "Are you sure?"
+#~ msgstr "Weet u het zeker?"
+
+#~ msgid "Delete selected %(verbose_name_plural)s"
+#~ msgstr "Verwijder geselecteerde %(verbose_name_plural)s"
+
+#~ msgid ""
+#~ "<h3>By %s:</h3>\n"
+#~ "<ul>\n"
+#~ msgstr ""
+#~ "<h3>Op %s:</h3>\n"
+#~ "<ul>\n"
+
+#~ msgid "All"
+#~ msgstr "Alle"
+
+#~ msgid "Yes"
+#~ msgstr "Ja"
+
+#~ msgid "No"
+#~ msgstr "Nee"
+
+#~ msgid "Unknown"
+#~ msgstr "Onbekend"
+
+#~ msgid "Any date"
+#~ msgstr "Elke datum"
+
+#~ msgid "Past 7 days"
+#~ msgstr "Afgelopen zeven dagen"
+
+#~ msgid "This month"
+#~ msgstr "Deze maand"
+
+#~ msgid "This year"
+#~ msgstr "Dit jaar"
+
+#~ msgid ""
+#~ "Please enter a correct username and password. Note that both fields are "
+#~ "case-sensitive."
+#~ msgstr ""
+#~ "Voer een correcte gebruikersnaam en wachtwoord in. Let op, de velden zijn "
+#~ "hoofdletter-gevoelig."
+
+#~ msgid "Please log in again, because your session has expired."
+#~ msgstr "Uw sessie is verlopen, meld u opnieuw aan."
+
+#~ msgid "Your e-mail address is not your username. Try '%s' instead."
+#~ msgstr "Uw e-mailadres is niet uw gebruikersnaam. Probeer '%s' eens."
+
+#~ msgid "Action:"
+#~ msgstr "Actie:"
+
+#~ msgid "action time"
+#~ msgstr "actietijd"
+
+#~ msgid "object id"
+#~ msgstr "object-id"
+
+#~ msgid "object repr"
+#~ msgstr "object-repr"
+
+#~ msgid "action flag"
+#~ msgstr "actievlag"
+
+#~ msgid "log entry"
+#~ msgstr "logregistratie"
+
+#~ msgid "log entries"
+#~ msgstr "logregistraties"
+
+#~ msgid "None"
+#~ msgstr "Geen"
+
+#~ msgid "Changed %s."
+#~ msgstr "%s gewijzigd."
+
+#~ msgid "and"
+#~ msgstr "en"
+
+#~ msgid "Added %(name)s \"%(object)s\"."
+#~ msgstr "%(name)s \"%(object)s\" toegevoegd."
+
+#~ msgid "Changed %(list)s for %(name)s \"%(object)s\"."
+#~ msgstr "%(list)s aangepast voor %(name)s \"%(object)s\"."
+
+#~ msgid "Deleted %(name)s \"%(object)s\"."
+#~ msgstr "%(name)s \"%(object)s\" verwijderd."
+
+#~ msgid "No fields changed."
+#~ msgstr "Geen velden gewijzigd."
+
+#~ msgid "The %(name)s \"%(obj)s\" was added successfully."
+#~ msgstr "De %(name)s \"%(obj)s\" is toegevoegd."
+
+#~ msgid "You may edit it again below."
+#~ msgstr "U kunt dit hieronder weer bewerken."
+
+#~ msgid "You may add another %s below."
+#~ msgstr "U kunt hieronder de volgende %s toevoegen."
+
+#~ msgid "The %(name)s \"%(obj)s\" was changed successfully."
+#~ msgstr "Het wijzigen van %(name)s \"%(obj)s\" is geslaagd."
+
+#~ msgid ""
+#~ "The %(name)s \"%(obj)s\" was added successfully. You may edit it again "
+#~ "below."
+#~ msgstr ""
+#~ "De %(name)s \"%(obj)s\" was toegevoegd. U kunt het hieronder wijzigen."
+
+#~ msgid ""
+#~ "Items must be selected in order to perform actions on them. No items have "
+#~ "been changed."
+#~ msgstr ""
+#~ "Er moeten items worden geselecteerd om acties op uit te voeren. Geen "
+#~ "items zijn veranderd."
+
+#~ msgid "No action selected."
+#~ msgstr "Geen actie geselecteerd."
+
+#~ msgid "Add %s"
+#~ msgstr "Toevoegen %s"
+
+#~ msgid "%(name)s object with primary key %(key)r does not exist."
+#~ msgstr "%(name)s object met primaire sleutel %(key)r bestaat niet."
+
+#~ msgid "Change %s"
+#~ msgstr "Wijzig %s"
+
+#~ msgid "Database error"
+#~ msgstr "Databasefout"
+
+#~ msgid "%(count)s %(name)s was changed successfully."
+#~ msgid_plural "%(count)s %(name)s were changed successfully."
+#~ msgstr[0] "%(count)s %(name)s is succesvol gewijzigd."
+#~ msgstr[1] "%(count)s %(name)s zijn succesvol gewijzigd."
+
+#~ msgid "%(total_count)s selected"
+#~ msgid_plural "All %(total_count)s selected"
+#~ msgstr[0] "%(total_count)s geselecteerd"
+#~ msgstr[1] "Alle %(total_count)s geselecteerd"
+
+#~ msgid "0 of %(cnt)s selected"
+#~ msgstr "0 van de %(cnt)s geselecteerd"
+
+#~ msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+#~ msgstr "De verwijdering van %(name)s \"%(obj)s\" is geslaagd."
+
+#~ msgid "Change history: %s"
+#~ msgstr "Wijzigingsgeschiedenis: %s"
+
+#~ msgid "Site administration"
+#~ msgstr "Sitebeheer"
+
+#~ msgid "Date:"
+#~ msgstr "Datum:"
+
+#~ msgid "Time:"
+#~ msgstr "Tijd:"
+
+#~ msgid "Lookup"
+#~ msgstr "Opzoeken"
+
+#~ msgid "Add Another"
+#~ msgstr "Voeg nog één toe"
+
+#~ msgid "Django site admin"
+#~ msgstr "Django sitebeheer"
+
+#~ msgid "Django administration"
+#~ msgstr "Djangobeheer"
+
+#~ msgid "Models available in the %(name)s application."
+#~ msgstr "Beschikbare modellen in de %(name)s toepassing."
+
+#~ msgid "Change"
+#~ msgstr "Wijzigen"
+
+#~ msgid "Thanks for spending some quality time with the Web site today."
+#~ msgstr "Bedankt voor de aanwezigheid op de site vandaag."
+
+#~ msgid "Log in again"
+#~ msgstr "Log opnieuw in"
+
+#~ msgid "Password change"
+#~ msgstr "Wachtwoordwijziging"
+
+#~ msgid "Password change successful"
+#~ msgstr "Wachtwoord wijzigen is geslaagd"
+
+#~ msgid "Your password was changed."
+#~ msgstr "Uw wachtwoord is gewijzigd."
+
+#~ msgid ""
+#~ "Please enter your old password, for security's sake, and then enter your "
+#~ "new password twice so we can verify you typed it in correctly."
+#~ msgstr ""
+#~ "Vanwege de beveiliging moet u uw oude en twee keer uw nieuwe wachtwoord "
+#~ "invoeren, zodat we kunnen controleren of er geen typefouten zijn gemaakt."
+
+#~ msgid "Password reset"
+#~ msgstr "Wachtwoord hersteld"
+
+#~ msgid "Password reset complete"
+#~ msgstr "Wachtwoord herstellen volooid"
+
+#~ msgid "Your password has been set.  You may go ahead and log in now."
+#~ msgstr "Uw wachtwoord is ingesteld. U kunt nu verder gaan en inloggen."
+
+#~ msgid "Password reset confirmation"
+#~ msgstr "Bevestiging wachtwoord herstellen"
+
+#~ msgid "Enter new password"
+#~ msgstr "Voer nieuw wachtwoord in"
+
+#~ msgid ""
+#~ "Please enter your new password twice so we can verify you typed it in "
+#~ "correctly."
+#~ msgstr ""
+#~ "Voer het nieuwe wachtwoord twee keer in, zodat we kunnen controleren of "
+#~ "er geen typefouten zijn gemaakt."
+
+#~ msgid "New password:"
+#~ msgstr "Nieuw wachtwoord:"
+
+#~ msgid "Password reset unsuccessful"
+#~ msgstr "Wachtwoord herstel mislukt"
+
+#~ msgid ""
+#~ "The password reset link was invalid, possibly because it has already been "
+#~ "used.  Please request a new password reset."
+#~ msgstr ""
+#~ "De link voor het herstellen van het wachtwoord is ongeldig, misschien "
+#~ "omdat de link al eens is gebruikt. Vraag opnieuw het wachtwoord "
+#~ "herstellenaan."
+
+#~ msgid "Password reset successful"
+#~ msgstr "Wachtwoord herstel geslaagd"
+
+#~ msgid ""
+#~ "We've e-mailed you instructions for setting your password to the e-mail "
+#~ "address you submitted. You should be receiving it shortly."
+#~ msgstr ""
+#~ "We hebben u de instructies voor het instellen van een nieuw wachtwoord "
+#~ "per e-mail gestuurd. U zou dit spoedig moeten ontvangen."
+
+#~ msgid ""
+#~ "You're receiving this e-mail because you requested a password reset for "
+#~ "your user account at %(site_name)s."
+#~ msgstr ""
+#~ "U heeft deze email ontvangen, omdat u een wachtwoord reset heeft "
+#~ "aangevraagd voor uw gebruikersaccount op %(site_name)s."
+
+#~ msgid "Please go to the following page and choose a new password:"
+#~ msgstr "Gaat u naar de volgende pagina en kies een nieuw wachtwoord:"
+
+#~ msgid "Your username, in case you've forgotten:"
+#~ msgstr "Uw gebruikersnaam, mocht u deze vergeten zijn:"
+
+#~ msgid "Thanks for using our site!"
+#~ msgstr "Bedankt voor het gebruik van onze site!"
+
+#~ msgid "The %(site_name)s team"
+#~ msgstr "Het %(site_name)s team"
+
+#~ msgid "Reset my password"
+#~ msgstr "Herstel mijn wachtwoord"
+
+#~ msgid "(None)"
+#~ msgstr "(Geen)"
+
+#~ msgid "Select %s"
+#~ msgstr "Selecteer %s"
+
+#~ msgid "Select %s to change"
+#~ msgstr "Selecteer %s om te wijzigen"

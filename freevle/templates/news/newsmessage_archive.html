@@ -4,7 +4,7 @@
 {% block content %}
   {% for message in latest %}
     <div class="item">
-        <h2><a href="{{ message.get_absolute_url }}">{{ message.title }}</a></h2>
+      <h2><a href="{{ message.get_absolute_url }}">{{ message.title }}</a></h2>
     <p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
       {{ message.publish|date:'d m Y' }}
       &emsp;&emsp;
@@ -19,15 +19,5 @@
     <p>{% blocktrans %}We couldn't find any news.{% endblocktrans %}</p>
     </div>
   {% endfor %}
-  {% if is_paginated %}
-    <div class="pagination">   
-    {% for page in paginator.page_range %} 
-      {% if page > request.GET.page|add:"-5" and page < request.GET.page|add:"5" or page < 4 or page > paginator.num_pages|add:"-3" or not request.GET.page and page < 6 %}
-            <a class="pagenav" href="{{ request.path }}?page={{ page }}">{{ page }}</a>
-      {% else %}
-        {% if page == request.GET.page|add:"-5" or page == request.GET.page|add:"5" or not request.GET.page and page == 6 %}<p class="morepages">...</p>{% endif %}
-      {% endif %} 
-    {% endfor %}
-    </div> 
-  {% endif %}
+  {% include 'pagination.html' %}
 {% endblock %}

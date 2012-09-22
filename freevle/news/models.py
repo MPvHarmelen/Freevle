@@ -24,3 +24,7 @@ class NewsMessage(models.Model):
     class Meta:
         verbose_name = 'news message'
 
+    def __unicode__(self):
+        return '{title} by {author}'.format(title=self.title,
+                                            author=self.writer)
+

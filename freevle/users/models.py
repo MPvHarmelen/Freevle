@@ -13,7 +13,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
 
     designation = models.CharField(max_length=32, blank=True)
-    avatar = models.ImageField(upload_to=update_filename, blank=True)
+    avatar = models.ImageField(upload_to=update_filename,
+                               default='img/johndoe.png', blank=True)
 
     def __unicode__(self):
         return '{}: <{}>'.format(self.designation, self.user.username)
