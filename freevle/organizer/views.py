@@ -274,13 +274,8 @@ class LessonListMixin(DateMixin):
         period_times = periodmeta.get_period_times(latest_period)
 
         for index, time in enumerate(period_times):
-            start_hour = str(time[0].hour).rjust(2,'0')
-            start_minute = str(time[0].minute).rjust(2,'0')
-            end_hour = str(time[1].hour).rjust(2,'0')
-            end_minute = str(time[1].minute).rjust(2,'0')
-
-            lesson_list[index].start_time = start_hour + ':' + start_minute
-            lesson_list[index].end_time = end_hour + ':' + end_minute
+            lesson_list[index].start_time = time[0].strftime('%H:%M')
+            lesson_list[index].end_time = time[1].strftime('%H:%M')
 
         return lesson_list
 
@@ -291,6 +286,9 @@ class LessonListMixin(DateMixin):
         raise ImproperlyConfigured('You must write your own `get_lesson_set`.')
 
     def get_obj(self):
+        '''
+        Returns the object for which this view is generating an organizer.
+        '''
         raise ImproperlyConfigured('You must write your own `get_obj`.')
 
     def get_lesson_lists(self, date, obj):
@@ -332,16 +330,7 @@ class LessonListMixin(DateMixin):
             for index, lesson_set in enumerate(lesson_lists):
                 date = date_list[index]
                 lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
-
-                try:
-                    set_homework = self.set_homework
-                except AttributeError:
-                    # The Homework mixin isn't required
-                    def set_homework(lesson_set, date):
-                        return lesson_set
-
-                lesson_set = set_homework(lesson_set, date)
-                lesson_set = self.check_cancellation(lesson_set, date)
+                # Add the day of week for the template.
                 lesson_set.insert(0, _(date.strftime('%A')))
                 lesson_lists[index] = lesson_set
 
@@ -383,7 +372,7 @@ class LessonListMixin(DateMixin):
 
         return lesson_list
 
-class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
+class OrganizerView(TemplateView, LessonListMixin):
     announcements = None
 
     def get_announcements(self, date):
@@ -395,6 +384,9 @@ class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
             )
 
         return announcements
+
+    def get_coming_homework(self, date, obj):
+        return None
 
     def get_legend(self):
         return HomeworkType.objects.all()
@@ -418,13 +410,7 @@ class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
             'period_range': period_range,
         }
 
-        try:
-            get_coming_homework = self.get_coming_homework
-        except AttributeError:
-            def get_coming_homework(date, user):
-                return None
-
-        coming_homework = get_coming_homework(date, obj)
+        coming_homework = self.get_coming_homework(date, obj)
 
         if coming_homework is not None:
             context['coming_homework'] = coming_homework
@@ -432,7 +418,7 @@ class OrganizerView(TemplateView, CancellationMixin, LessonListMixin):
         context.update(kwargs)
         return context
 
-class StudentView(OrganizerView, HomeworkMixin):
+class StudentPrintView(OrganizerView):
     template_name = 'organizer/student_organizer.html'
     username_url_kwarg = 'username'
     user = None
@@ -469,6 +455,26 @@ class StudentView(OrganizerView, HomeworkMixin):
             )
             lesson_list.extend(lesson_subset)
         return lesson_list
+
+class StudentView(StudentPrintView, CancellationMixin, HomeworkMixin):
+    def get_lesson_set(self, date, user):
+        """
+        Returns a list of lessons for the given user and date with homework
+        and modifications.
+        """
+        day_of_week = date.strftime('%a')
+        lesson_list = []
+        for course in user.takes_courses.all():
+            lesson_subset = course.lesson_set.filter(
+                day_of_week=day_of_week,
+                start_date__lte=date,
+                end_date__gte=date
+            )
+            lesson_subset = self.set_homework(lesson_subset, date)
+            lesson_list.extend(lesson_subset)
+        return lesson_list
+
+
 
 class TeacherView(OrganizerView):
     template_name = 'organizer/teacher_organizer.html'
