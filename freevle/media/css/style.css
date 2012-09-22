@@ -531,7 +531,6 @@ div#rooster {
 }
 
 div.dag {
-  width: 253px;
   float: left;
 }
 
@@ -559,7 +558,7 @@ div.uure {
   position: relative;
   border-left: 6px solid #eaeaea;
   height: 25px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 div.uuru {
@@ -568,7 +567,7 @@ div.uuru {
   position: relative;
   border-left: 6px solid #f3f3f3;
   height: 25px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 div.uuri {
@@ -600,24 +599,23 @@ p.vak {
   margin: 0;
 }
 
-div.leraarles {
+div.les {
   float: left;
+  font-weight: bold;
+  width: 36px;
 }
-
-div.time {
-  width: 90px;
-  text-align: right;
-  margin-left: 15px;
-  float: right;
+div.leraar {
+  float: left;
+  width: 38px;
 }
 
 div.lokaal {
   margin-left: 10px;
-  float: right;
+  float: left;
 }
 
 #weekend {
-  width: 80px;
+  width: 83px;
   border-left: #bbb 1px solid;
   float: left;
   background: #efefef;

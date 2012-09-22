@@ -32,7 +32,7 @@ class DateMixin(object):
     day_format = '%d'
 
     allow_weekend = False
-    number_days = 3
+    number_days = 5
 
     def get_number_days(self):
         return self.number_days

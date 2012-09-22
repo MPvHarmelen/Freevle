@@ -47,15 +47,6 @@ $(document).ready(function(){
   $('#weekend').css('height', height);
 
 
-//Weekend
-  if($('#rooster').length) {
-    if(vrijdag === true) {
-      $('div.dag').addClass('weekendday');
-      $('#weekend').css('height', height);
-    }
-  }
-
-
 //Speech bubbles
   $("div.uure,div.uuru").hover(function(event) {
       if(event.target != $(this).children("ul.huiswerk")[0]) {
