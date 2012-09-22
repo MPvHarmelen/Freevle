@@ -213,76 +213,52 @@ class Homework(models.Model):
     class Meta:
         verbose_name_plural = 'homework'
 
-class Cancellation(models.Model):
-    teacher = models.ForeignKey(
-        User,
-        related_name='cancelled_teacher',
+class ChangedLesson(models.Model):
+    date = models.DateField()
+    lesson = models.ForeignKey(
+        Lesson,
+        related_name='changed'
+    )
+    new_date = models.DateField(
         blank=True,
-        null=True,
-        limit_choices_to={'groups__name': 'teachers'}
+        null=True
     )
     new_teacher = models.ForeignKey(
         User,
-        related_name='replacement_teacher',
         blank=True,
         null=True,
-        limit_choices_to={'groups__name': 'teachers'}
-    )
-
-    classroom = models.ForeignKey(
-        Classroom,
-        blank=True,
-        null=True,
-        related_name='cancelled_classroom'
+        limit_choices_to={'groups__name':'teachers'}
     )
     new_classroom = models.ForeignKey(
         Classroom,
         blank=True,
-        null=True,
-        related_name='replacement_classroom'
+        null=True
+    )
+    new_period = models.IntegerField(
+        blank=True,
+        null=True
     )
 
-    date = models.DateField()
+class ChangedTeacher(models.Model):
+    teacher = models.ForeignKey(
+        User,
+        limit_choices_to={'groups__name':'teachers'},
+        related_name='changed'
+    )
+    start_date = models.DateField()
     start_period = models.IntegerField()
+    end_date = models.DateField()
     end_period = models.IntegerField()
 
-    def __unicode__(self):
-        date = self.date.strftime('%m/%d-%Y')
-        return 'Cancellation on {} from {} to {}'.format(date,
-                                                         self.begin_period,
-                                                         self.end_period)
-
-#class ChangedLesson(models.Model):
-#    date = models.DateField()
-#    lesson = ForeignKey(
-#        related_name='changed'
-#    )
-#    new_date = models.DateField(
-#        blank=True,
-#        null=True
-#    )
-#    new_teacher = models.Foreignkey(
-#        User,
-#        blank=True,
-#        null=True,
-#        limit_choices_to={'groups_name':'teachers'}
-#    )
-#    new_classroom = models.Foreignkey(
-#        Classroom,
-#        blank=True,
-#        null=True
-#    )
-#    new_period = models.IntegerField(
-#        blank=True,
-#        null=True
-#    )
-#
-#class ChangedTeacher(models.Model):
-#    pass
-#class ChangedClassroom(models.Model):
-#    pass
-
-
+class ChangedClassroom(models.Model):
+    classroom = models.ForeignKey(
+        Classroom,
+        related_name='changed'
+    )
+    start_date = models.DateField()
+    start_period = models.IntegerField()
+    end_date = models.DateField()
+    end_period = models.IntegerField()
 
 class Announcement(models.Model):
     start_date = models.DateField()
