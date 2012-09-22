@@ -240,11 +240,11 @@ class ChangedLesson(models.Model):
     )
 
     class Meta:
-        unique_together = (lesson, date)
+        unique_together = ('lesson', 'date')
 
     def __unicode__(self):
-        return 'Modification of {} on {}'.format(lesson,
-                                                 date.strftime('%d-%m-%Y'))
+        return 'Modification of {} on {}'.format(self.lesson,
+                                                 self.date.strftime('%d-%m-%Y'))
 
 
 class CancelledTeacher(models.Model):
@@ -259,8 +259,8 @@ class CancelledTeacher(models.Model):
     end_period = models.IntegerField()
 
     def __unicode__(self):
-        return 'Modification of {} on {}'.format(teacher,
-                                                 start_date.strftime('%d-%m-%Y'))
+        return 'Modification of {} on {}'.format(self.teacher,
+                                                 self.start_date.strftime('%d-%m-%Y'))
 
 class CancelledClassroom(models.Model):
     classroom = models.ForeignKey(
@@ -273,8 +273,8 @@ class CancelledClassroom(models.Model):
     end_period = models.IntegerField()
 
     def __unicode__(self):
-        return 'Modification of {} on {}'.format(classroom,
-                                                 start_date.strftime('%d-%m-%Y'))
+        return 'Modification of {} on {}'.format(self.classroom,
+                                                 self.start_date.strftime('%d-%m-%Y'))
 
 class Announcement(models.Model):
     start_date = models.DateField()
