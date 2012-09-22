@@ -252,6 +252,38 @@ class Cancellation(models.Model):
                                                          self.begin_period,
                                                          self.end_period)
 
+#class ChangedLesson(models.Model):
+#    date = models.DateField()
+#    lesson = ForeignKey(
+#        related_name='changed'
+#    )
+#    new_date = models.DateField(
+#        blank=True,
+#        null=True
+#    )
+#    new_teacher = models.Foreignkey(
+#        User,
+#        blank=True,
+#        null=True,
+#        limit_choices_to={'groups_name':'teachers'}
+#    )
+#    new_classroom = models.Foreignkey(
+#        Classroom,
+#        blank=True,
+#        null=True
+#    )
+#    new_period = models.IntegerField(
+#        blank=True,
+#        null=True
+#    )
+#
+#class ChangedTeacher(models.Model):
+#    pass
+#class ChangedClassroom(models.Model):
+#    pass
+
+
+
 class Announcement(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
