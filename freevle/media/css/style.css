@@ -657,14 +657,15 @@ ul.huiswerk {
   margin: 10px 5px;
   padding: 0 12px 12px;
   background: #fefefe;
-  position: relative;
+  position: absolute;
   box-shadow: 0 0 7px #777;
   -ms-box-shadow: 0 0 7px #777;
   -moz-box-shadow: 0 0 7px #777;
   -webkit-box-shadow: 0 0 7px #777;
   z-index: 2;
   display: none;
-  top: 20px;
+  top: 55px;
+  width: 200px;
 }
 
 ul.huiswerk:before {

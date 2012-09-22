@@ -50,11 +50,11 @@ $(document).ready(function(){
 //Speech bubbles
   $("div.uure,div.uuru").hover(function(event) {
       if(event.target != $(this).children("ul.huiswerk")[0]) {
-        $(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+        $(this).children("ul.huiswerk").stop(true, true).animate({top: '33px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
         $(this).children("div.triangle").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
       }
     }, function(event) {
-      $(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+      $(this).children("ul.huiswerk").stop(true, true).animate({top: '55px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
       $(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
     });
 
