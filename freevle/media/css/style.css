@@ -902,7 +902,7 @@ li.head span.year {
 ul#courses {
   width: 340px;
   margin: 10px 0;
-  padding: 0 230px;
+  padding: 0;
 }
 
 a.course {
@@ -913,21 +913,13 @@ a.course {
   padding: 9px 0;
 }
 
-a.odd {
-  background: #EEE;  
-}
-
-a.even {
-  background: #FEFEFE;
-}
-
 .oddcourse {
   list-style: none;
+  background: #fafafa;
 }
 
 .evencourse {
   list-style: none;
-  background: #FEFEFE;
 }
 
 span.coursename {
@@ -1271,40 +1263,7 @@ input.settings-submit:active {
 }
 
 p.settings {
-  text-align: center;
-}
-
-ul.notifications {
-  margin: 0 240px;
-}
-
-li.evennotification {
-  display: block;
-  width: 320px;
-  background: #FEFEFE;
-  height: 41px;
-}
-
-li.oddnotification {
-  display: block;
-  width: 320px;
-  background: #EEE;
-  height: 41px;
-}
-
-label.notifications {
-  display: block;
-  width: 240px;
-  margin: 8px 12px;
-  text-decoration: none;
-  float: left;
-}
-
-input.settings-notifications {
-  margin: 20px auto;
-}
-input.settings-notifications:active {
-  margin: 22px auto 18px;
+  margin-top: 0;
 }
 
 ul#passwordlist li {
@@ -1330,6 +1289,7 @@ div#checkifsame {
   left: 457px;
   top: 0;
   display: none;
+  width: 160px;
 }
   div#checkifsame:before {
     background-color: #fefefe;

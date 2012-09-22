@@ -39,7 +39,6 @@ urlpatterns += patterns('',
     url(r'^messages/new', TemplateView.as_view(template_name='messages/new.html')),
     url(r'^settings/personal', TemplateView.as_view(template_name='user/personal.html')),
     url(r'^settings/changepassword', TemplateView.as_view(template_name='user/password.html')),
-    url(r'^settings/notifications', TemplateView.as_view(template_name='user/notifications.html')),
     url(r'^settings/coursesmenu', TemplateView.as_view(template_name='user/coursesmenu.html')),
 
     # User urls
