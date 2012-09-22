@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 class VirtualClassroom(models.Model):
     def _update_filename(self, filename):
-        path = 'classes/'
+        path = 'virtualcr/'
         new_file_name = self.slug
         extension = filename.split('.')[-1]
         return path + new_file_name + '.' + extension
