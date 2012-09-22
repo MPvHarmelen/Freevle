@@ -537,7 +537,7 @@ div.dag {
 div#nummers {
   width: 38px;
   float: left;
-  margin-top: 57px;
+  margin-top: 41px;
   color: #333;
 }
 
@@ -550,6 +550,9 @@ div.divider {
 p.dag {
   text-align: center;
   font-weight: bold;
+  font-size: 14px;
+  margin: 8px 0;
+  color: #777;
 }
 
 div.uure {
@@ -618,9 +621,9 @@ div.lokaal {
   width: 83px;
   border-left: #bbb 1px solid;
   float: left;
-  background: #efefef;
-  font-size: 23px;
-  color: #777;
+  background: #fafafa;
+  font-size: 20px;
+  color: #999;
   word-wrap: normal;
 }
 
@@ -632,7 +635,7 @@ div.lokaal {
     -o-transform:      rotate(45deg);
     -webkit-transform: rotate(90deg);
   text-align: center;
-  margin: 220px 0 0 5px;
+  margin: 160px 0 0 5px;
   font-weight: bold;
 }
 
