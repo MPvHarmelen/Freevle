@@ -210,17 +210,20 @@ a.imagenav#homebtn {
   display: block;
   height: 46px;
   width: 46px;
-  background: url(../img/home.png) 0 0 no-repeat;
+  background: url(../img/home.png) 0 0;
   box-sizing:         border-box;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
+          transition: background 200ms ease;
+     -moz-transition: background 200ms ease;
+  -webkit-transition: background 200ms ease;
   padding-left: 46px;
   overflow: hidden;
   border-right: 1px solid #f0f0f0;
 }
 
 a.imagenav#homebtn:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: url(../img/home.png) 0 -46px #fff;
 }
 
 /*------------------------------search------------------------------*/
@@ -234,16 +237,16 @@ a.imagenav#homebtn:hover {
   width: 35px;
   height: 46px;
   background: #F7F7F7;
-  background: url(../img/mag.png) no-repeat,      -o-linear-gradient(top, #FAFAFA, #F7F7F7); 
-  background: url(../img/mag.png) no-repeat,     -ms-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat,    -moz-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat, -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
+  background: url(../img/mag.png),      -o-linear-gradient(top, #FAFAFA, #F7F7F7); 
+  background: url(../img/mag.png),     -ms-linear-gradient(top, #FAFAFA, #F7F7F7);
+  background: url(../img/mag.png),    -moz-linear-gradient(top, #FAFAFA, #F7F7F7);
+  background: url(../img/mag.png), -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
+  background: url(../img/mag.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
   line-height: 20px;
-  transition:         background-color 100ms, width 300ms;
-  -moz-transition:    background-color 100ms, width 300ms;
-  -webkit-transition: background-color 100ms, width 300ms;
+  transition:         background 200ms, width 300ms;
+  -moz-transition:    background 200ms, width 300ms;
+  -webkit-transition: background 200ms, width 300ms;
   cursor: pointer;
   border: none;
   margin: 0;
@@ -256,7 +259,7 @@ a.imagenav#homebtn:hover {
 }
 
 #search input[type="text"]:hover {
-  background:  url(../img/mag.png) no-repeat #fff;
+  background:  url(../img/mag.png) 0 -46px #fff;
   color: #fff;
 }
 
