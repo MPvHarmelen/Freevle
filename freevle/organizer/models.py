@@ -39,7 +39,7 @@ class PeriodMeta(models.Model):
         return '{} ({} - {})'.format(self.day_of_week, self.start_date,
                                      self.end_date)
 
-    def get_periodmeta(date):
+    def get_periodmeta(self, date):
         """
         Rules:
             1. smallest (end_date - start_date) wins
