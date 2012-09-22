@@ -14,6 +14,8 @@ class PageDetailView(DetailView):
 
 def index(request):
     now = datetime.now()
-    lastnews = NewsMessage.objects.filter(publish__lt=now)[0]
+    lastnews = NewsMessage.objects.filter(publish__lt=now)
+    if lastnews.count() > 0:
+        lastnews = lastnews[0]
     data = RequestContext(request, {'lastnews': lastnews})
     return render_to_response('index.html', data)
