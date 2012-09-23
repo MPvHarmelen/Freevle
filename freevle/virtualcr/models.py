@@ -21,3 +21,7 @@ class VirtualClassroom(models.Model):
 class Section(models.Model):
     virtualcr = models.ForeignKey(VirtualClassroom)
     content = models.TextField(help_text=_('Content of the page.'))
+
+class Attachment(models.Model):
+    section = models.ForeignKey(Section)
+    order = models.IntegerField()
