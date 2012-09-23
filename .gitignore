@@ -6,6 +6,7 @@ media/letters/
 
 # Database files
 *.sqlite
+*~
 
 # Packages
 *.egg
