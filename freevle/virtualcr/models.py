@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from freevle.virtualcr import plugins
 
 # Create your models here.
 class VirtualClassroom(models.Model):
@@ -26,4 +25,15 @@ class Section(models.Model):
 class Attachment(models.Model):
     section = models.ForeignKey(Section)
     order = models.IntegerField()
-    plugin = models.OneToOneField(plugins.Plugin, related_name='attachment')
+
+    def get_plugin(self):
+        plugin_list = [x for x in dir(self) if x[:7] == 'plugin_']
+        for related_name in plugin_list:
+            plugin = self.__getattribute__(related_name)
+            if plugin is not None:
+                return plugin
+
+        raise AttributeError('No plugin found.')
+
+    def __unicode__(self):
+        return '{}.{}'.format(self.section.virtualcr, self.order)

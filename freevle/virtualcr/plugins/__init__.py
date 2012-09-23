@@ -1,10 +1,10 @@
 import os
 from django.db import models
-
 from freevle.settings import ROOT_DIR
+from freevle.virtualcr.models import Attachment
 
 # Baseclass for VirtualCR plugins
-class Plugin(models.Model):
+class PluginBase(models.Model):
     def _get_icon_name(self, filename):
         return filename
 
@@ -15,6 +15,10 @@ class Plugin(models.Model):
         return path + new_file_name + '.' + extension
 
     icon = models.ImageField(upload_to=_update_filename)
+    attachment = models.OneToOneField(Attachment, related_name='plugin_%(app_label)s')
+
+    class Meta:
+        abstract = True
 
 def get_plugins():
     plugins = []

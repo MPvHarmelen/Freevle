@@ -15,7 +15,7 @@ class VirtualCRView(DetailView):
             section.attachments = section.attachment_set.all()
 
             for attachment in section.attachments:
-                list_data = attachment.plugin.get_list_data()
+                list_data = attachment.get_plugin().get_list_data()
                 attachment.url = list_data[0]
                 attachment.label = list_data[1]
 
