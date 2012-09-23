@@ -23,5 +23,15 @@ class Section(models.Model):
     content = models.TextField(help_text=_('Content of the page.'))
 
 class Attachment(models.Model):
+    def _get_icon_name(self, filename):
+        return filename
+
+    def _update_filename(self, filename):
+        path = 'virtualcr/plugins/icons/'
+        new_file_name = self._get_icon_name(filename)
+        extension = filename.split('.')[-1]
+        return path + new_file_name + '.' + extension
+
     section = models.ForeignKey(Section)
     order = models.IntegerField()
+    icon = models.ImageField(upload_to=_update_filename)

@@ -19,6 +19,9 @@ class VirtualCRView(DetailView):
                 attachment.url = list_data[0]
                 attachment.label = list_data[1]
 
+            section.attachments = sorted(section.attachments,
+                                         key=lambda a: a.order)
+
         context['object'] = context['virtualcr']
 
         return context
