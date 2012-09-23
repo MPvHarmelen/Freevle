@@ -15,6 +15,10 @@ class VirtualClassroom(models.Model):
     header = models.ImageField(upload_to=_update_filename)
     users = models.ManyToManyField(User)
 
+    @models.permalink
+    def get_url(self):
+        return ('virtualcr-detail', (), {'vcr_slug':self.slug})
+
     def __unicode__(self):
         return self.name
 
@@ -26,6 +30,9 @@ class Attachment(models.Model):
     section = models.ForeignKey(Section)
     order = models.IntegerField()
 
+    def __unicode__(self):
+        return '{}.{}'.format(self.section.virtualcr, self.order)
+
     def get_plugin(self):
         plugin_list = [x for x in dir(self) if x[:7] == 'plugin_']
         for related_name in plugin_list:
@@ -33,7 +40,4 @@ class Attachment(models.Model):
             if plugin is not None:
                 return plugin
 
-        raise AttributeError('No plugin found.')
-
-    def __unicode__(self):
-        return '{}.{}'.format(self.section.virtualcr, self.order)
+        raise AttributeError('No plugin found for {}'.format(self))

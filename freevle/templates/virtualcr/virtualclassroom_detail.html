@@ -18,7 +18,7 @@
 
   <ul id="letters">
     {% for attachment in section.attachments %}
-    <li class="odd">
+    <li class="{% cycle 'odd' 'even' %}">
       <a class="lettername" href="">
         <img class="fileicon" src="/media/{{ attachment.get_plugin.icon }}">
         <span class="left"><a href="{{ attachment.url }}">{{ attachment.label }}</a></span>
