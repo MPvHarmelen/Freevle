@@ -259,8 +259,9 @@ class CancelledTeacher(models.Model):
     end_period = models.IntegerField()
 
     def __unicode__(self):
-        return 'Modification of {} on {}'.format(self.teacher,
-                                                 self.start_date.strftime('%d-%m-%Y'))
+        return 'Modification of {} from {} to {}'.format(self.teacher,
+                                                 self.start_date.strftime('%d-%m-%Y'),
+                                                 self.end_date.strftime('%d-%m-%Y'))
 
 class CancelledClassroom(models.Model):
     classroom = models.ForeignKey(
@@ -273,8 +274,9 @@ class CancelledClassroom(models.Model):
     end_period = models.IntegerField()
 
     def __unicode__(self):
-        return 'Modification of {} on {}'.format(self.classroom,
-                                                 self.start_date.strftime('%d-%m-%Y'))
+        return 'Modification of {} from {} to {}'.format(self.classroom,
+                                                 self.start_date.strftime('%d-%m-%Y'),
+                                                 self.end_date.strftime('%d-%m-%Y'))
 
 class Announcement(models.Model):
     start_date = models.DateField()

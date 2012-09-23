@@ -1,5 +1,6 @@
 import datetime
 import warnings
+import copy
 
 from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
@@ -142,28 +143,42 @@ class ModificationMixin(object):
 
     def cancelled_classroom(self, classroom, period, date):
         '''Checks if a classroom is cancelled.'''
-        changes = classroom.cancelled.filter(
-            start_date__lte=date,
-            start_period__lte=period,
-            end_date__gte=date,
-            end_period__gte=period
-        )
+        part1 = list(classroom.cancelled.filter(
+            start_date=date,
+            start_period__lte=period
+        ))
+        part2 = list(classroom.cancelled.filter(
+            start_date__lt=date,
+            end_date__gt=date
+        ))
+        part3 = list(classroom.cancelled.filter(
+            end_date=date,
+            end_period__lte=period
+        ))
+        changes = part1 + part2 + part3
 
-        if changes.count() > 0:
+        if len(changes) > 0:
             return True
         else:
             return False
 
     def cancelled_teacher(self, teacher, period, date):
         '''Checks if a teacher is cancelled.'''
-        changes = teacher.cancelled.filter(
-            start_date__lte=date,
-            start_period__lte=period,
-            end_date__gte=date,
-            end_period__gte=period
-        )
+        part1 = list(teacher.cancelled.filter(
+            start_date=date,
+            start_period__lte=period
+        ))
+        part2 = list(teacher.cancelled.filter(
+            start_date__lt=date,
+            end_date__gt=date
+        ))
+        part3 = list(teacher.cancelled.filter(
+            end_date=date,
+            end_period__lte=period
+        ))
+        changes = part1 + part2 + part3
 
-        if changes.count() > 0:
+        if len(changes) > 0:
             return True
         else:
             return False
@@ -173,25 +188,35 @@ class ModificationMixin(object):
         Modifies a lesson according to cancelled classroom, teacher or `changed`
         attribute.
         '''
+        lesson = copy.copy(lesson)
+        lesson.classroom = copy.copy(lesson.classroom)
         if self.cancelled_classroom(lesson.classroom, lesson.period, date):
-            lesson.classroom = None
-        if self.cancelled_teacher(lesson.teacher, lesson.period, date):
-            warnings.warn("\n\n\t This could make things go wrong, 'cause"
-                          'courses are used by multiple lessons and ARGH!\n')
-            lesson.course.teacher = None
+            lesson.classroom.is_cancelled = True
+        else:
+            lesson.classroom.is_cancelled = False
+        lesson.course = copy.copy(lesson.course)
+        lesson.course.teacher = copy.copy(lesson.course.teacher)
+        if self.cancelled_teacher(lesson.course.teacher, lesson.period, date):
+            lesson.course.teacher.is_cancelled = True
+        else:
+            lesson.course.teacher.is_cancelled = False
 
         try:
             changes = lesson.changed.get(date=date)
-            lesson.course.teacher = changes.new_teacher or lesson.course.teacher
-            lesson.classroom = changes.new_classroom or lesson.classroom
+            if changes.new_teacher is not None:
+                lesson.course = copy.copy(lesson.course)
+                lesson.course.teacher = copy.copy(changes.new_teacher)
+                lesson.course.teacher.is_changed = True
+                lesson.course.teacher.is_cancelled = False
+            if changes.new_classroom is not None:
+                lesson.classroom = copy.copy(changes.new_classroom)
+                lesson.classroom.is_changed = True
+                lesson.classroom.is_cancelled = False
             lesson.period = changes.new_period or lesson.period
         except ChangedLesson.DoesNotExist:
             pass
 
-        if lesson.course.teacher is None or lesson.classroom is None:
-            lesson.is_cancelled = True
-        else:
-            lesson.is_cancelled = False
+        lesson.is_cancelled = lesson.course.teacher.is_cancelled or lesson.classroom.is_cancelled
 
         return lesson
 
@@ -388,6 +413,12 @@ class OrganizerView(TemplateView, LessonListMixin):
             'period_range': period_range,
         }
 
+        try:
+            get_coming_homework = self.get_coming_homework
+        except AttributeError:
+            def get_coming_homework(date, obj):
+                pass
+
         coming_homework = self.get_coming_homework(date, obj)
 
         if coming_homework is not None:
@@ -434,7 +465,7 @@ class StudentPrintView(OrganizerView):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
-class StudentView(StudentPrintView, CancellationMixin, HomeworkMixin):
+class StudentView(StudentPrintView, ModificationMixin, HomeworkMixin):
     def get_lesson_set(self, date, user):
         """
         Returns a list of lessons for the given user and date with homework
@@ -456,7 +487,7 @@ class StudentView(StudentPrintView, CancellationMixin, HomeworkMixin):
 
 
 
-class TeacherView(OrganizerView):
+class TeacherPrintView(OrganizerView):
     template_name = 'organizer/teacher_organizer.html'
     username = None
     user = None
@@ -476,15 +507,13 @@ class TeacherView(OrganizerView):
                                        "a user or username")
         return user
 
-    ## Home Made
     def get_lesson_set(self, date, user):
         """
         Returns a list of lessons for the given user and date.
         """
-
         day_of_week = date.strftime('%a')
         lesson_list = []
-        for course in user.gives_courses.all():
+        for course in teacher.gives_courses.all():
             lesson_subset = course.lesson_set.filter(
                 day_of_week=day_of_week,
                 start_date__lte=date,
@@ -493,9 +522,31 @@ class TeacherView(OrganizerView):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
+class TeacherView(TeacherPrintView, ModificationMixin):
+    def get_lesson_set(self, date, teacher):
+        day_of_week = date.strftime('%a')
+        lesson_list = []
+        for course in teacher.gives_courses.all():
+            lesson_subset = course.lesson_set.filter(
+                day_of_week=day_of_week,
+                start_date__lte=date,
+                end_date__gte=date
+            )
+            lesson_list.extend(lesson_subset)
 
+        for changes in ChangedLesson.objects.filter(new_teacher=teacher,
+                                                    date=date):
+            lesson = copy.copy(changes.lesson)
+            lesson.is_changed = True
+            lesson_list.append(lesson)
 
-class ClassroomView(OrganizerView):
+        lesson_list2 = []
+        for lesson in lesson_list:
+            lesson_list2.append(self.modify_lesson(lesson, date))
+
+        return lesson_list2
+
+class ClassroomPrintView(OrganizerView):
     template_name = 'organizer/classroom_organizer.html'
     classroom_url_kwarg = 'classroom'
     classroom = None
@@ -528,6 +579,27 @@ class ClassroomView(OrganizerView):
             day_of_week=day_of_week
         ))
         return lesson_list
+
+class ClassroomView(ClassroomPrintView, ModificationMixin):
+    def get_lesson_set(self, date, classroom):
+        day_of_week = date.strftime('%a')
+        lesson_list = list(classroom.lesson_set.filter(
+            start_date__lte=date,
+            end_date__gte=date,
+            day_of_week=day_of_week
+        ))
+
+        for changed in ChangedLesson.objects.filter(new_classroom=classroom,
+                                                    date=date):
+            lesson = copy.copy(changed.lesson)
+            lesson.is_changed = True
+            lesson_list.append(lesson)
+
+        lesson_list2 = []
+        for lesson in lesson_list:
+            lesson_list2.append(self.modify_lesson(lesson))
+
+        return lesson_list2
 
 
 def organizer_view(request, **kwargs):
