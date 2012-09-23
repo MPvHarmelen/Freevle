@@ -1722,6 +1722,26 @@ footer a:hover, footer a:active {
   display: none;
 }
 
+
+
+body#konami {
+  position: relative;
+}
+div#rainbow {
+  height: 100%;
+  background: url(/media/img/rainbow.gif) repeat-x center;
+  width: 50%;
+  position: fixed;
+  top: 0;
+}
+div#flyingbird {
+  height: 100%;
+  width: 100%;
+  background: url(/media/img/freevle.png) no-repeat center;
+  position: fixed;
+  top: 0;
+}
+
 @media screen and (max-width : 900px) {
   div#inlogform {
     text-align: center;

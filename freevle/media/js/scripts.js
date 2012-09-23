@@ -240,6 +240,13 @@ $(document).ready(function(){
       }
     });
   }
+
+/*----------------EASTEREGG, YEEEY :D :D :D :D----------------*/
+konami = new Konami()
+  konami.code = function() {
+    $('body').attr('id', 'konami').append('<div id="rainbow"></div><div id="flyingbird"></div><audio src="/media/Nyan_cat.ogg" loop controls autoplay>');
+  }
+  konami.load()
 });
 
 //Ctrl+
