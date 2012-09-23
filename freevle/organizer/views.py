@@ -203,20 +203,32 @@ class ModificationMixin(object):
 
         try:
             changes = lesson.changed.get(date=date)
-            if changes.new_teacher is not None:
-                lesson.course = copy.copy(lesson.course)
-                lesson.course.teacher = copy.copy(changes.new_teacher)
-                lesson.course.teacher.is_changed = True
-                lesson.course.teacher.is_cancelled = False
-            if changes.new_classroom is not None:
-                lesson.classroom = copy.copy(changes.new_classroom)
-                lesson.classroom.is_changed = True
-                lesson.classroom.is_cancelled = False
-            lesson.period = changes.new_period or lesson.period
         except ChangedLesson.DoesNotExist:
-            pass
+            try:
+                changes = lesson.changed.get(new_date=date)
+            except ChangedLesson.DoesNotExist:
+                changes = None
 
-        lesson.is_cancelled = lesson.course.teacher.is_cancelled or lesson.classroom.is_cancelled
+        if changes is not None:
+            if changes.new_date != date:
+                lesson.is_cancelled = True
+            else:
+                lesson.is_cancelled = False
+                lesson.is_changed = True
+                if changes.new_teacher is not None:
+                    lesson.course = copy.copy(lesson.course)
+                    lesson.course.teacher = copy.copy(changes.new_teacher)
+                    lesson.course.teacher.is_changed = True
+                    lesson.course.teacher.is_cancelled = False
+                if changes.new_classroom is not None:
+                    lesson.classroom = copy.copy(changes.new_classroom)
+                    lesson.classroom.is_changed = True
+                    lesson.classroom.is_cancelled = False
+                lesson.period = changes.new_period or lesson.period
+        else:
+            lesson.is_cancelled = False
+
+        lesson.is_cancelled = lesson.course.teacher.is_cancelled or lesson.classroom.is_cancelled or lesson.is_cancelled
 
         return lesson
 
@@ -474,15 +486,20 @@ class StudentView(StudentPrintView, ModificationMixin, HomeworkMixin):
         day_of_week = date.strftime('%a')
         lesson_list = []
         for course in user.takes_courses.all():
-            lesson_subset = course.lesson_set.filter(
+            lesson_subset = list(course.lesson_set.filter(
                 day_of_week=day_of_week,
                 start_date__lte=date,
                 end_date__gte=date
+            ))
+
+            lesson_subset.extend(
+                course.lesson_set.filter(changed__new_date=date)
             )
             for lesson in lesson_subset:
                 lesson = self.set_homework(lesson, date)
                 lesson = self.modify_lesson(lesson, date)
                 lesson_list.append(lesson)
+
         return lesson_list
 
 
@@ -527,10 +544,13 @@ class TeacherView(TeacherPrintView, ModificationMixin):
         day_of_week = date.strftime('%a')
         lesson_list = []
         for course in teacher.gives_courses.all():
-            lesson_subset = course.lesson_set.filter(
+            lesson_subset = list(course.lesson_set.filter(
                 day_of_week=day_of_week,
                 start_date__lte=date,
                 end_date__gte=date
+            ))
+            lesson_subset.extend(
+                course.lesson_set.filter(changed__new_date=date)
             )
             lesson_list.extend(lesson_subset)
 
@@ -588,7 +608,9 @@ class ClassroomView(ClassroomPrintView, ModificationMixin):
             end_date__gte=date,
             day_of_week=day_of_week
         ))
-
+        lesson_list.extend(
+            classroom.lesson_set.filter(changed__new_date=date)
+        )
         for changed in ChangedLesson.objects.filter(new_classroom=classroom,
                                                     date=date):
             lesson = copy.copy(changed.lesson)
@@ -597,7 +619,7 @@ class ClassroomView(ClassroomPrintView, ModificationMixin):
 
         lesson_list2 = []
         for lesson in lesson_list:
-            lesson_list2.append(self.modify_lesson(lesson))
+            lesson_list2.append(self.modify_lesson(lesson, date))
 
         return lesson_list2
 

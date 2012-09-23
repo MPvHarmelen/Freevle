@@ -47,7 +47,8 @@
 
           {% for lesson in day|slice:"1:" %}
             <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}
-            {% if lesson.is_cancelled %} cancelled{% endif %}">
+            {% if lesson.is_cancelled %} cancelled{% endif %}
+            {% if lesson.is_changed %} changed{% endif %}">
               <div class="les">
                 {{ lesson.course.topic }}
               </div>
