@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="item">
+
+  <header id="courseheader" style="background-image: url(/media/{{ page.attachment.section.virtualcr.header }});">
+    <h2><a href="{{ page.attachment.section.virtualcr.get_url }}">{{ page.attachment.section.virtualcr.name }}</a></h2>
+  </header>
+
+</div>
+
+<div class="item">
+  <h2>{{ page.title }}</h2>
+  <p> {{ page.content }}</p>
+</div>
+
+
+{% endblock %}
