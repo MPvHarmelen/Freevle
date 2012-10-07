@@ -4,7 +4,6 @@ import copy
 
 from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
-from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 from django.utils.translation import ugettext_lazy as _
 
@@ -308,11 +307,12 @@ class LessonListMixin(DateMixin):
 
     def get_lesson_lists(self, date, obj):
         """
-        Get the list of lessonsets. This is a list of iterables.
+        Returns a list with lists of lessons, ready for a template.
         """
         if self.lesson_lists is not None:
             lesson_lists = self.lesson_lists
         else:
+            # Create date list
             number_days = self.get_number_days()
 
             date_list = []
@@ -325,6 +325,7 @@ class LessonListMixin(DateMixin):
 
                 date_list.append(list_date)
 
+            # Retrieve lesson sets
             sort = lambda a: sorted(a, key=lambda b: b.period)
             lesson_lists = [sort(self.get_lesson_set(date_list[n], obj))
                             for n in range(number_days)]
@@ -334,19 +335,21 @@ class LessonListMixin(DateMixin):
             for index, lesson_set in enumerate(lesson_lists):
                 if len(lesson_set) != 0:
                     latest_period = lesson_set[-1].period
-                    list_date = date_list[index]
-                    min_period = self.get_min_periods(list_date)
+                    loop_date = date_list[index]
+                    min_period = self.get_min_periods(loop_date)
 
                     if latest_period > length:
                         length = latest_period
                     if min_period > length:
                         length = min_period
 
+            # Prepare lesson sets for view
             for index, lesson_set in enumerate(lesson_lists):
-                date = date_list[index]
-                lesson_set = self.lesson_set_cleanup(lesson_set, length, date)
+                loop_date = date_list[index]
+                lesson_set = self.lesson_set_cleanup(lesson_set, length,
+                                                     loop_date)
                 # Add the day of week for the template.
-                lesson_set.insert(0, _(date.strftime('%A')))
+                lesson_set.insert(0, _(loop_date.strftime('%A')))
                 lesson_lists[index] = lesson_set
 
         return lesson_lists
@@ -400,9 +403,6 @@ class OrganizerView(TemplateView, LessonListMixin):
 
         return announcements
 
-    def get_coming_homework(self, date, obj):
-        return None
-
     def get_legend(self):
         return HomeworkType.objects.all()
 
@@ -429,7 +429,7 @@ class OrganizerView(TemplateView, LessonListMixin):
             get_coming_homework = self.get_coming_homework
         except AttributeError:
             def get_coming_homework(date, obj):
-                pass
+                return None
 
         coming_homework = self.get_coming_homework(date, obj)
 
