@@ -1,4 +1,6 @@
 from django.views.generic import  DetailView
+from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 from freevle.virtualcr.models import VirtualClassroom
 
 # Create your views here.
