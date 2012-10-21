@@ -12,7 +12,7 @@ $(document).ready(function(){
   var currentPos = 0;
 
   function advance() {
-    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 799 + 'px'});
+    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 798 + 'px'});
   }
 
   function autoAdvance() {
@@ -47,23 +47,14 @@ $(document).ready(function(){
   $('#weekend').css('height', height);
 
 
-//Weekend
-  if($('#rooster').length) {
-    if(vrijdag === true) {
-      $('div.dag').addClass('weekendday');
-      $('#weekend').css('height', height);
-    }
-  }
-
-
 //Speech bubbles
   $("div.uure,div.uuru").hover(function(event) {
       if(event.target != $(this).children("ul.huiswerk")[0]) {
-        $(this).children("ul.huiswerk").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
+        $(this).children("ul.huiswerk").stop(true, true).animate({top: '33px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
         $(this).children("div.triangle").stop(true, true).animate({top: '2px'}, {queue: false, duration: 'fast'}).fadeIn('fast');
       }
     }, function(event) {
-      $(this).children("ul.huiswerk").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
+      $(this).children("ul.huiswerk").stop(true, true).animate({top: '55px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
       $(this).children("div.triangle").stop(true, true).animate({top: '20px'}, {queue: false, duration: 'fast'}).fadeOut('fast');
     });
 
