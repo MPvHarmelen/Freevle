@@ -213,17 +213,20 @@ a.imagenav#homebtn {
   display: block;
   height: 46px;
   width: 46px;
-  background: url(../img/home.png) 0 0 no-repeat;
+  background: url(../img/home.png) 0 0;
   box-sizing:         border-box;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
+          transition: background 200ms ease;
+     -moz-transition: background 200ms ease;
+  -webkit-transition: background 200ms ease;
   padding-left: 46px;
   overflow: hidden;
   border-right: 1px solid #f0f0f0;
 }
 
 a.imagenav#homebtn:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: url(../img/home.png) 0 -46px #fff;
 }
 
 /*------------------------------search------------------------------*/
@@ -244,9 +247,9 @@ a.imagenav#homebtn:hover {
   background: url(../img/mag.png) no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
   line-height: 20px;
-  transition:         background-color 100ms, width 300ms;
-  -moz-transition:    background-color 100ms, width 300ms;
-  -webkit-transition: background-color 100ms, width 300ms;
+  transition:         background 200ms, width 300ms;
+  -moz-transition:    background 200ms, width 300ms;
+  -webkit-transition: background 200ms, width 300ms;
   cursor: pointer;
   border: none;
   margin: 0;
@@ -259,7 +262,7 @@ a.imagenav#homebtn:hover {
 }
 
 #search input[type="text"]:hover {
-  background:  url(../img/mag.png) no-repeat #fff;
+  background:  url(../img/mag.png) 0 -46px #fff;
   color: #fff;
 }
 
@@ -943,7 +946,7 @@ li.head span.year {
 ul#courses {
   width: 340px;
   margin: 10px 0;
-  padding: 0 230px;
+  padding: 0;
 }
 
 a.course {
@@ -954,21 +957,13 @@ a.course {
   padding: 9px 0;
 }
 
-a.odd {
-  background: #EEE;
-}
-
-a.even {
-  background: #FEFEFE;
-}
-
 .oddcourse {
   list-style: none;
+  background: #fafafa;
 }
 
 .evencourse {
   list-style: none;
-  background: #FEFEFE;
 }
 
 span.coursename {
@@ -1234,85 +1229,74 @@ ul#contactpersons {
  margin: 10px 0;
 }
 
-ul#contactpersons li a {
-}
-
 span.persondescription {
  float: right;
 }
 
 /*------------------------------settings------------------------------*/
-.settingsmenu {
+ul#settingsmenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 128px;
+  float: left;
+  border-top: 1px solid #ddd;
+  margin-left: -50px;
+}
+
+a.settinglink {
   display: block;
-  border-bottom: 1px solid #EEE;
-  height: 28px;
-  margin: 30px 0 0;
-  padding: 0 0 0 80px;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: #444;
 }
 
 div.submit {
   text-align: center;
 }
 
-#tabbrowser {
-  overflow: hidden;
-  width: 800px;
-}
-
-.tab {
+#settingscont {
   float: left;
-  width: 800px;
-  margin: 10px 50px 0 0;
+  border-left: 1px solid #ddd;
+  width: 661px;
+  padding: 24px 30px;
+  margin-bottom: -40px;
 }
 
-.tabnav:link, .tabnav:visited {
+img#profilepic {
+  height: 100px;
   float: left;
-  border-bottom: 3px solid #fff;
-  padding: 0 8px;
-  text-decoration: none;
-  color: #111;
-  font-size: 17px;
+  margin-right: 14px;
+  margin-bottom: 30px
 }
 
-.tabnav:hover {
-  border-color: #00a !important;
-}
-
-.tab ul {
-  list-style: none;
+ul.contactinfo {
+  margin: 0;
   padding: 0;
-  margin: 15px 0 20px 90px;
+  list-style: none;
+  float: left;
 }
 
-span.personalabel {
-  margin: 0 20px 0 0;
-  min-width: 170px;
-  text-align: right;
-  display: block;
+p.personalabel {
+  min-width: 110px;
   float: left;
+  margin: 2px 0;
 }
-span.personainfo {
-  display: block;
+p.personainfo {
   float: left;
-  min-width: 80px;
+  margin: 2px 0;
 }
 
-label.settings {
+p.inputlabel {
   float: left;
-  margin: 5px 20px 0 0;
-  width: 170px;
-  text-align: right;
-  font-size: 16px;
+  width: 180px;
+  margin: 8px 0;
 }
 
 input.wider {
   width: 220px;
-  height: 20px;
-}
-
-input[disabled=disabled] {
-  background: #DDDDDD !important;
-  color: #0e0e0e !important;
 }
 
 input.settings-submit {
@@ -1323,49 +1307,7 @@ input.settings-submit:active {
 }
 
 p.settings {
-  text-align: center;
-}
-
-div#profile {
-  margin: 5px auto 10px;
-  height: 140px;
-  width: 123px;
-}
-img#profilepic {
-  height: 140px;
-}
-
-ul.notifications {
-  margin: 0 240px;
-}
-
-li.evennotification {
-  display: block;
-  width: 320px;
-  background: #FEFEFE;
-  height: 41px;
-}
-
-li.oddnotification {
-  display: block;
-  width: 320px;
-  background: #EEE;
-  height: 41px;
-}
-
-label.notifications {
-  display: block;
-  width: 240px;
-  margin: 8px 12px;
-  text-decoration: none;
-  float: left;
-}
-
-input.settings-notifications {
-  margin: 20px auto;
-}
-input.settings-notifications:active {
-  margin: 22px auto 18px;
+  margin-top: 0;
 }
 
 ul#passwordlist li {
@@ -1391,6 +1333,7 @@ div#checkifsame {
   left: 457px;
   top: 0;
   display: none;
+  width: 160px;
 }
   div#checkifsame:before {
     background-color: #fefefe;
@@ -1628,6 +1571,26 @@ footer a:hover, footer a:active {
 
 #menutoggle {
   display: none;
+}
+
+
+
+body#konami {
+  position: relative;
+}
+div#rainbow {
+  height: 100%;
+  background: url(/media/img/rainbow.gif) repeat-x center;
+  width: 50%;
+  position: fixed;
+  top: 0;
+}
+div#flyingbird {
+  height: 100%;
+  width: 100%;
+  background: url(/media/img/freevle.png) no-repeat center;
+  position: fixed;
+  top: 0;
 }
 
 @media screen and (max-width : 900px) {

@@ -141,7 +141,7 @@ $(document).ready(function(){
     }
   });
 
-//Settings-tabs
+/*Settings-tabs
   $('#tabs').width($('.tab').length * 850);
   var url = $(location).attr('href');
   var urlParts = url.split('/')
@@ -182,7 +182,7 @@ $(document).ready(function(){
   $('.settingsmenu a').click(function(e) {
     History.replaceState(null, null, $(this).attr('href'));
     e.preventDefault();
-  });
+  });*/
 
 //Focusstatus
   $('input, textarea').focus(function() {
@@ -231,6 +231,13 @@ $(document).ready(function(){
       }
     });
   }
+
+/*----------------EASTEREGG, YEEEY :D :D :D :D----------------*/
+konami = new Konami()
+  konami.code = function() {
+    $('body').attr('id', 'konami').append('<div id="rainbow"></div><div id="flyingbird"></div><audio src="/media/Nyan_cat.ogg" loop controls autoplay>');
+  }
+  konami.load()
 });
 
 //Ctrl+
