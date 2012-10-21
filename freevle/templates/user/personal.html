@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+  <h2>{% trans "Settings" %} - {% trans "Personal info" %}</h2>
+
+  <ul id="settingsmenu">
+    <li><a class="settinglink" href="/settings/personal/">{% trans "Personal" %}</a></li>
+    <li><a class="settinglink" href="/settings/changepassword/">{% trans "Password" %}</a></li>
+    <li><a class="settinglink" href="/settings/coursesmenu/">{% trans "Courses menu" %}</a></li>
+  </ul>
+
+  <div id="settingscont">
+      <img id="profilepic" src="/media/{{ request.user.get_profile.avatar.url }}">
+    
+      <ul class="contactinfo">
+        <li>
+          <p class="personalabel">{% trans "Name" %}:</p>
+          <p class="personainfo">{{ request.user.get_full_name }}</p>
+          <div class="clear"></div>
+        </li>
+        <li>
+          <p class="personalabel">{% trans "Class" %}:</p>
+          <p class="personainfo">G5D</p>
+          <div class="clear"></div>
+        </li>
+        <li>
+          <p class="personalabel">{% trans "Mailadress" %}:</p>
+          <p class="personainfo">A@A.CO{{ request.user.email }}</p>
+          <div class="clear"></div>
+        </li>
+      </ul> 
+      <div class="clear"></div>
+      
+      <form id="settings-contact" action="" method="post">  
+        <ul class="contactinfo">
+          <li>
+            <p class="inputlabel">{% trans "Secondary mailadress" %}</p>
+            <input id="email2" name="email" type="email" class="text wider" placeholder="myextramail@domain.com">
+            <div class="clear"></div>
+          </li>
+          <li>
+            <p class="inputlabel">{% trans "Phonenumber" %}</p>
+            <input id="phone" name="phone" type="tel" class="text wider" placeholder="+3165432123">
+            <div class="clear"></div>
+          </li>
+          <li>
+            <p class="inputlabel">{% trans "Twitter" %}</p>
+            <input id="twitter" name="twitter" type="text" class="text wider" placeholder="@freevle">
+            <div class="clear"></div>
+          </li>
+          <li>
+            <p class="inputlabel">{% trans "Facebook" %}</p>
+            <input id="facebook" name="facebook" type="url" class="text wider" placeholder="<facebookurl>">
+            <div class="clear"></div>
+          </li>
+        </ul>
+          
+        <div class="clear"></div>    
+        <input type="submit" name="Submit" class="settings-submit" value="{% trans "Save settings" %}">
+      </form>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+{% endblock %}
