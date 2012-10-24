@@ -1,6 +1,4 @@
-import requests
 import datetime
-from bs4 import BeautifulSoup
 
 from django.db.models.signals import post_syncdb
 from django.contrib.auth.models import User, Group
@@ -82,6 +80,10 @@ def debug_data(sender, **kwargs):
         cont = raw_input('Do you want sync with infoweb? (Y/n): ')
         if not cont.lower() in ('yes', 'y', '',):
             return
+        else:
+            import requests
+            from bs4 import BeautifulSoup
+
 
     if verbosity > 1:
         print (' Reading the complete works of William Shakespeare for'
@@ -91,7 +93,7 @@ def debug_data(sender, **kwargs):
 
     #infoweb = raw_input(('Enter the webaddress to your infoweb root '
     #                     '(like http://example.com/infoweb/):'))
-    infoweb = 'http://cygy.nl/ftp_cg/roosters/infoweb/'
+    infoweb = 'http://www.cygnusgymnasium.nl/ftp_cg/roosters/infoweb/'
     cookies = requests.get(infoweb + 'index.php').cookies
 
     this_week = datetime.datetime.today().isocalendar()[1]
@@ -103,6 +105,8 @@ def debug_data(sender, **kwargs):
                                                                     this_week)
     classes_page = requests.get(url, cookies=cookies)
     classes_soup = BeautifulSoup(classes_page.text)
+
+    print classes_page, classes_soup
 
     classes_names = []
     for option in classes_soup.find_all('option')[2:]:
@@ -138,7 +142,7 @@ def debug_data(sender, **kwargs):
             students.append([int(option['value']), option.string, student])
             print student
 
-        #classes.append(students)
+        classes.append(students)
 
     lessons = []
     cookies = requests.get(infoweb + 'index.php').cookies
