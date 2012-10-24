@@ -106,8 +106,6 @@ def debug_data(sender, **kwargs):
     classes_page = requests.get(url, cookies=cookies)
     classes_soup = BeautifulSoup(classes_page.text)
 
-    print classes_page, classes_soup
-
     classes_names = []
     for option in classes_soup.find_all('option')[2:]:
         classes_names.append(option['value'])
@@ -142,7 +140,7 @@ def debug_data(sender, **kwargs):
             students.append([int(option['value']), option.string, student])
             print student
 
-        classes.append(students)
+        #classes.append(students)
 
     lessons = []
     cookies = requests.get(infoweb + 'index.php').cookies
