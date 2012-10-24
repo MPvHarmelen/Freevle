@@ -32,6 +32,10 @@ Installation
 * Python 2.7
 * Django 1.3+
 
+## Dependencies for Infoweb fetcher
+* Requests
+* BeautifulSoup 4
+
 ### Development
 
 To install the Freevle software on a development server you pretty much just have

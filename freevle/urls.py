@@ -21,8 +21,10 @@ urlpatterns += patterns('',
     url(r'^$', 'freevle.cms.views.index'),
     url(r'^news/', include('freevle.news.urls')),
     url(r'^letters/', include('freevle.letters.urls')),
-    url(r'^settings/', include('freevle.users.urls')),
+    #url(r'^settings/', include('freevle.users.urls')),
     #url(r'^galleries/', include('freevle.galleries.urls')),
+    url(r'^organizer/', include('freevle.organizer.urls')),
+
     # TEMP for Floris' and Pim's brilliant work.
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
     url(r'^courses/$', TemplateView.as_view(template_name='courses/index.html')),
@@ -34,9 +36,13 @@ urlpatterns += patterns('',
     url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
     url(r'^photos/', TemplateView.as_view(template_name='photos/index.html')),
     url(r'^galleries/', TemplateView.as_view(template_name='photos/galleries.html')),
-    url(r'^rooster/', TemplateView.as_view(template_name='rooster.html')),
     url(r'^messages/$', TemplateView.as_view(template_name='messages/index.html')),
     url(r'^messages/new', TemplateView.as_view(template_name='messages/new.html')),
+    url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
+    url(r'^addhomework/', TemplateView.as_view(template_name='organizer/addhomework.html')),
+    url(r'^settings/personal', TemplateView.as_view(template_name='user/personal.html')),
+    url(r'^settings/changepassword', TemplateView.as_view(template_name='user/password.html')),
+    url(r'^settings/coursesmenu', TemplateView.as_view(template_name='user/coursesmenu.html')),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
@@ -50,7 +56,7 @@ urlpatterns += patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    
+
     # If no url could be found, include cms:
     url('', include('freevle.cms.urls'))
 )

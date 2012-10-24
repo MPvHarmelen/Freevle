@@ -1,0 +1,46 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/scripts.js"></script>
+  </head>
+  <body id="print">
+
+    <h2>NAAM EIGENAAR ROOSTER</h2>
+
+    <div id="printrooster">
+      <div id="nummers">
+        {% for period in period_range %}
+        <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}"><p class="vak">{{ period }}</p></div>
+        {% endfor %}
+      </div>
+
+      {% for day in lesson_lists %}
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">{{ day.0 }}</p>
+
+          {% for lesson in day|slice:"1:" %}
+            <div class="{% if forloop.counter|divisibleby:2 %}uure{% else %}uuru{% endif %}">
+              <div class="les">
+                {{ lesson.course.topic }}
+              </div>
+              <div class="leraar">
+                {{ lesson.course.teacher }}
+              </div>
+              <div class="lokaal">{{ lesson.classroom }}</div>
+              <div class="time">{{ lesson.start_time }}</div>
+              <div class="clear"></div>
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+
+      <div class="clear"></div>
+    </div>
+  </body>
+</html>

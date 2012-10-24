@@ -3,9 +3,12 @@
 *.pid
 personalsettings.py
 media/letters/
+*.sqlite
+*~
 
 # Database files
 *.sqlite
+*~
 
 # Packages
 *.egg
