@@ -1154,10 +1154,6 @@ div#location {
   width: 480px;
 }
 
-div#adress {
-  width: 480px;
-}
-
 p.contact {
  margin: 0;
 }
@@ -2067,6 +2063,25 @@ footer a:hover, footer a:active {
 
   #logo {
     display: none;
+  }
+  
+  div#map {
+    width: auto;
+    float: none;
+  }
+
+  div#map iframe {
+    width: 100%;
+  }
+
+  div#map a {
+    width: 100%;
+    padding: 8px 0;
+    margin: 0;
+  }
+
+  div#location {
+    width: 100%;
   }
 
   .wrapper {
