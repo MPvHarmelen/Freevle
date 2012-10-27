@@ -114,7 +114,7 @@
 
           {% if user.is_authenticated %}
               <li class="navmenu liright">
-                <a class="menuitem" href="/">{{ user.userprofile.get_display_name }}</a>
+                <a class="menuitem" href="/profile/">{{ user.userprofile.get_display_name }}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="submenu-item" href="/rooster/">{% trans "Organizer" %}</a></li>
                   <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>

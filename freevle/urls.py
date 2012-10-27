@@ -43,6 +43,7 @@ urlpatterns += patterns('',
     url(r'^settings/personal', TemplateView.as_view(template_name='user/personal.html')),
     url(r'^settings/changepassword', TemplateView.as_view(template_name='user/password.html')),
     url(r'^settings/coursesmenu', TemplateView.as_view(template_name='user/coursesmenu.html')),
+    url(r'^profile/', TemplateView.as_view(template_name='user/profile.html')),
 
     # User urls
     url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
