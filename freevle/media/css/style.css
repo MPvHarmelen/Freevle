@@ -1823,6 +1823,7 @@ div#flyingbird {
     width: 100%;
     padding: 10px 0 0 46px;
     text-decoration: none;
+    background-repeat: no-repeat;
   }
 
   a.imagenav#homebtn:hover {

@@ -12,7 +12,7 @@ $(document).ready(function(){
   var currentPos = 0;
 
   function advance() {
-    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 798 + 'px'});
+    $('#slides').stop(true, true).animate({marginLeft: '-' + currentPos * 799 + 'px'});
   }
 
   function autoAdvance() {
