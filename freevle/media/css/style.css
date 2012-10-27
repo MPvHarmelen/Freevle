@@ -112,12 +112,12 @@ nav {
   width: 852px;
   margin: 0 auto 25px;
   background-color: #F7F7F7;
-  background-image:      -o-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image:     -ms-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image:    -moz-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image: -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
+  background-image:      -o-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background-image:     -ms-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background-image:    -moz-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background-image: -webkit-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F8F8F8), to(#F5F5F5));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#F8F8F8', EndColorStr='#F5F5F5');
   box-shadow:         0 0 1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow:    0 0 1px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
@@ -159,9 +159,7 @@ a.menuitem:link, a.menuitem:visited {
 }
 
 a.menuitem:hover, a.menuhover {
-  background: rgba(0, 0, 0, 0.6);
-  color: #eee !important;
-  border-color: #777 !important;
+  background: #fff;
 }
 
 a.menuitem:active {
@@ -234,7 +232,6 @@ a.imagenav#homebtn {
 a.imagenav#homebtn:hover {
   background-color: rgba(0, 0, 0, 0.6);
   background-position: 0 -46px;
-  border-color: #777;
   background: url(../img/home.png) 0 -46px #fff;
 }
 
@@ -1434,6 +1431,40 @@ input.homework {
   padding: 4px;
   float: left;
   width: 547px;
+}
+
+/*------------------------------profile------------------------------*/
+h2.profile {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+img#avatar {
+  margin: auto;
+  display: block;
+  width: 180px;
+}
+
+div#profileinfo {
+  overflow: hidden;
+  margin-top: 1em;
+}
+
+p.label {
+  width: 48.5%;
+  text-align: right;
+  padding-right: 1.5%;
+  float: left;
+  margin: 0.2em 0;
+  color: #333;
+}
+
+p.personadata {
+  font-weight: 300;
+  margin: 0.2em 0;
+  float: left;
+  width: 50%
 }
 
 /*------------------------------footer------------------------------*/
