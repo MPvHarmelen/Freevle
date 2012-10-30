@@ -1382,14 +1382,17 @@ div#triangleleft {
 }
 
 /*------------------------------photos------------------------------*/
-div#photopage img {
-  height: 105px;
-  border: 4px white solid;
-  box-shadow:         0 0 2px #333;
-  -moz-box-shadow:    0 0 2px #333;
-  -webkit-box-shadow: 0 0 2px #333;
+div#photopage a {
+  width: 159px;
+  margin: 0.5px;
+  display: block;
   float: left;
-  margin: 6px;
+  height: 100px;
+  overflow: hidden;
+}
+
+div#photopage img {
+  width: 100%;
 }
 
 /*------------------------------add homework------------------------------*/
