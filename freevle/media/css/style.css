@@ -1382,6 +1382,18 @@ div#triangleleft {
 }
 
 /*------------------------------photos------------------------------*/
+div.photorow {
+  overflow: hidden;
+  height: 130px;
+  margin-bottom: 2em;
+}
+
+div.photorow img {
+  float: left;
+  margin-right: 1px;
+  height: 100%;
+}
+
 div#photopage a {
   width: 159px;
   margin: 0.5px;
