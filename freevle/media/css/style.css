@@ -246,12 +246,12 @@ a.imagenav#homebtn:hover {
   width: 35px;
   height: 46px;
   background: #F7F7F7;
-  background: url(../img/mag.png) no-repeat,      -o-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat,     -ms-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat,    -moz-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat, -webkit-linear-gradient(top, #FAFAFA, #F7F7F7);
-  background: url(../img/mag.png) no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F7F7F7));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#FAFAFA', EndColorStr='#F7F7F7');
+  background: url(../img/mag.png) no-repeat,      -o-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background: url(../img/mag.png) no-repeat,     -ms-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background: url(../img/mag.png) no-repeat,    -moz-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background: url(../img/mag.png) no-repeat, -webkit-linear-gradient(top, #F8F8F8, #F5F5F5);
+  background: url(../img/mag.png) no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F8F8F8), to(#F5F5F5));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#F8F8F8', EndColorStr='#F5F5F5');
   line-height: 20px;
   transition:         background 200ms, width 300ms;
   -moz-transition:    background 200ms, width 300ms;
