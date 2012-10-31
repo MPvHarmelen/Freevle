@@ -94,6 +94,7 @@ class Command(BaseCommand):
             self.process_file(source, destination, media_root, **options)
 
     def handle_app(self, app, **options):
+        app_name = app.split('.')[-1]
         if isinstance(app, basestring):
             if app == 'publisher':
                 return
@@ -111,7 +112,8 @@ class Command(BaseCommand):
                     files[:] = self.filter_names(files, exclude=exclude)
                     for filename in files:
                         absolute_path = os.path.join(root, filename)
-                        relative_path = absolute_path[prefix_length:]
+                        relative_path = app_name + os.sep
+                        relative_path += absolute_path[prefix_length:]
                         yield (relative_path, absolute_path)
 
     def process_file(self, source, destination, root, link=False, **options):
