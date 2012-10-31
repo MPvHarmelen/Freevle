@@ -21,7 +21,7 @@ urlpatterns += patterns('',
     url(r'^$', 'freevle.cms.views.index'),
     url(r'^news/', include('freevle.news.urls')),
     url(r'^letters/', include('freevle.letters.urls')),
-    #url(r'^settings/', include('freevle.users.urls')),
+    url(r'^settings/', include('freevle.users.urls')),
     #url(r'^galleries/', include('freevle.galleries.urls')),
     url(r'^organizer/', include('freevle.organizer.urls')),
 
@@ -40,9 +40,6 @@ urlpatterns += patterns('',
     url(r'^messages/new', TemplateView.as_view(template_name='messages/new.html')),
     url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
     url(r'^addhomework/', TemplateView.as_view(template_name='organizer/addhomework.html')),
-    url(r'^settings/personal', TemplateView.as_view(template_name='user/personal.html')),
-    url(r'^settings/changepassword', TemplateView.as_view(template_name='user/password.html')),
-    url(r'^settings/coursesmenu', TemplateView.as_view(template_name='user/coursesmenu.html')),
     url(r'^profile/', TemplateView.as_view(template_name='user/profile.html')),
 
     # User urls
