@@ -28,7 +28,7 @@ class UserProfile(models.Model):
             display_name = self.user.username
         else:
             display_name = full_name
-        
+
         return display_name
 
 

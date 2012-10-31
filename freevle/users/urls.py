@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from freevle.users.views import *
 
 urlpatterns = patterns('',
+    url(r'^(?:personal)?/$', changepassword),
     url(r'^changepassword/$', changepassword),
-    url(r'^(?P<page>\w*/?)$',
-        TemplateView.as_view(template_name='user/settings.html')),
+    url(r'^virtualcrs/$', changepassword),
 )
