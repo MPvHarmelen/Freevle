@@ -13,7 +13,7 @@
 
   <div id="settingscont">
       <img id="profilepic" src="/media/{{ request.user.get_profile.avatar.url }}">
-    
+
       <ul class="contactinfo">
         <li>
           <p class="personalabel">{% trans "Name" %}:</p>
@@ -27,13 +27,13 @@
         </li>
         <li>
           <p class="personalabel">{% trans "Mailadress" %}:</p>
-          <p class="personainfo">A@A.CO{{ request.user.email }}</p>
+          <p class="personainfo">{{ request.user.email }}</p>
           <div class="clear"></div>
         </li>
-      </ul> 
+      </ul>
       <div class="clear"></div>
-      
-      <form id="settings-contact" action="" method="post">  
+
+      <form id="settings-contact" action="" method="post">
         <ul class="contactinfo">
           <li>
             <p class="inputlabel">{% trans "Secondary mailadress" %}</p>
@@ -56,14 +56,13 @@
             <div class="clear"></div>
           </li>
         </ul>
-          
-        <div class="clear"></div>    
+
+        <div class="clear"></div>
         <input type="submit" name="Submit" class="settings-submit" value="{% trans "Save settings" %}">
       </form>
 
     </div>
     <div class="clear"></div>
   </div>
-
 
 {% endblock %}
