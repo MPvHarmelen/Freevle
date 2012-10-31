@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     # These need to be first in order for debug data generation to work.
     'django.contrib.auth',
     'freevle.users',
+    'freevle.collectmedia',
 
     ) + INSTALLED_APPS + (
 
