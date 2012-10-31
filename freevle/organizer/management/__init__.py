@@ -164,6 +164,7 @@ def debug_data(sender, **kwargs):
                         teacher = User(username=teacher, first_name=teacher,
                                        last_name=teacher)
                         teacher.set_password(password)
+                        teacher.save()
                         teacher.groups.add(teachers_group)
                         teacher.save()
 
