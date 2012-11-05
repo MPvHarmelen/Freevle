@@ -40,13 +40,13 @@ urlpatterns += patterns('',
     url(r'^messages/new', TemplateView.as_view(template_name='messages/new.html')),
     url(r'^course/', TemplateView.as_view(template_name='courses/wiskunde.html')),
     url(r'^addhomework/', TemplateView.as_view(template_name='organizer/addhomework.html')),
-    url(r'^profile/', TemplateView.as_view(template_name='user/profile.html')),
+    url(r'^profile/', TemplateView.as_view(template_name='users/profile.html')),
 
     # User urls
-    url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'user/login.html'}),
-    url(r'^user/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'user/logout.html'}),
+    url(r'^user/login/$', 'django.contrib.auth.views.login', {'template_name': 'users/login.html'}),
+    url(r'^user/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'users/logout.html'}),
 
-    url(r'^user/lostandfound/$', 'django.contrib.auth.views.logout', {'template_name': 'user/lostandfound.html'}),
+    url(r'^user/lostandfound/$', 'django.contrib.auth.views.logout', {'template_name': 'users/lostandfound.html'}),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
