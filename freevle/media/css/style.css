@@ -1388,9 +1388,13 @@ div.photorow {
   margin-bottom: 2em;
 }
 
+div.imagefiller {
+  width: 200%;
+}
+
 div.photorow img {
   float: left;
-  margin-right: 1px;
+  margin-right: 3px;
   height: 100%;
 }
 
