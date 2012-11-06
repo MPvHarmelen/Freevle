@@ -77,6 +77,25 @@ a img {
   border: none;
 }
 
+
+a#banner {
+  text-align: center;
+  color: #fff;
+  background: #f90;
+  border-bottom: 1px solid #c70;
+  text-decoration: none;
+  display: block;
+}
+a#banner p {
+  margin: 0;
+  font-size: 0.9em;
+  padding: 0.4em 0.5em 0.5em;
+  font-weight: bold;
+}
+span.underline {
+  text-decoration: underline;
+}
+
 /*------------------------------header------------------------------*/
 header {
   width: 900px;
