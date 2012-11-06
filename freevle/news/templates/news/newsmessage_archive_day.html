@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  {% for message in message_list %}
+    <div class="item">
+    <h2><a href="{{ message.get_absolute_url }}">{{ message.title }}</a></h2>
+    <p class="date"><span class="bold">{% blocktrans %}Published on:{% endblocktrans %}</span>
+      {{ message.publish|date:'d m Y' }}
+      &emsp;&emsp;
+      <span class="bold">{% blocktrans %}By:{% endblocktrans %}</span> {{ message.writer }}</p>
+    <p>{{ message.content|slice:":300" }}...</p>
+    <a class="leesmeer" href="{{ message.get_absolute_url }}">{% blocktrans %}Read more...{% endblocktrans %}</a>
+    <p class="clear"></p>
+    </div>
+  {% empty %}
+    <div class="item">
+    <h2>{% trans "Whoopsie" %}</h2>
+    <p>{% blocktrans %}We couldn't find any news for this day.{% endblocktrans %}</p>
+    </div>
+  {% endfor %}
+  {% include 'pagination.html' %}
+{% endblock %}
+
