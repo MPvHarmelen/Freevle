@@ -1489,21 +1489,28 @@ div#profileinfo {
   margin-top: 1em;
 }
 
-p.label {
-  width: 48.5%;
-  text-align: right;
-  padding-right: 1.5%;
-  float: left;
-  margin: 0.2em 0;
-  color: #333;
-}
-
 p.personadata {
-  font-weight: 300;
   margin: 0.2em 0;
-  float: left;
-  width: 50%
+  padding: 0.3em 0.2em 0.3em 40px;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: 1px center;
 }
+  p.personadata.class {
+    background-image: url(/media/img/class.png);
+  }
+  p.personadata.email {
+    background-image: url(/media/img/mail.png);
+  }
+  p.personadata.phone {
+    background-image: url(/media/img/phone.png);
+  }
+  p.personadata.twitter {
+    background-image: url(/media/img/twitter.png);
+  }
+  p.personadata.facebook {
+    background-image: url(/media/img/facebook.png);
+  }
 
 /*------------------------------footer------------------------------*/
 

@@ -6,28 +6,22 @@
   <img src="/media/img/avatars/wolverine.png" alt="Profile picture NAME" id="avatar">
   <h2 class="profile">NAME</h2>
 
-  <p class="label">{% trans "Class" %}:</p>
-  <p class="personadata">G5D</p>
+  <p class="personadata class">G5D</p>
   <div class="clear"></div>
 
-  <p class="label">{% trans "Mailadress" %}:</p>
-  <p class="personadata">{{ request.user.email }}</p>
+  <p class="personadata email">{{ request.user.email }}</p>
   <div class="clear"></div>
 
-  <p class="label">{% trans "Secondary mailadress" %}:</p>
-  <p class="personadata">john@doe.co</p>
+  <p class="personadata email">john@doe.co</p>
   <div class="clear"></div>
 
-  <p class="label">{% trans "Phonenumber" %}:</p>
-  <p class="personadata">06 12345678</p>
+  <p class="personadata phone">06 12345678</p>
   <div class="clear"></div>
 
-  <p class="label">{% trans "Twitter" %}:</p>
-  <p class="personadata">@Johndoe</p>
+  <p class="personadata twitter">@Johndoe</p>
   <div class="clear"></div>
 
-  <p class="label">{% trans "Facebook" %}:</p>
-  <p class="personadata">Johndoe</p>
+  <p class="personadata facebook">Johndoe</p>
   <div class="clear"></div>
 </div>
 {% endblock %}
