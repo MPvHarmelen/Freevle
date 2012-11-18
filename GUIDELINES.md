@@ -4,6 +4,14 @@ Guidelines
 We've put together some guidelines for coding. Keep true to these quasi-rules
 or your code will never be accepted into the repo.
 
+* [In general](#in-general)
+* [Python](#python)
+* [HTML](#html)
+* [CSS](#css)
+* [Git](#git)
+  * [Committing: when and how](#committing-when-and-how)
+  * [Branching model](#branching-model)
+
 In general
 ----------
 
@@ -73,6 +81,8 @@ as much as possible. So here's a when and how to commit:
 1. You've fixed an issue.
 2. You're working on an issue, but need to work on it further elsewhere.
 3. You're working on an issue, but someone else needs to look at it/work on it.
+4. You've made a tiny change. This is the only cause for *not* having an issue
+ linked to your commit!
 
 #### Commit how...
 
@@ -81,10 +91,12 @@ Here's an example commit message:
     Made /settings/personal work (#40)
 
 It's a usual Git commit message: no longer than 80 characters, describing what
-you did as concise as possible. Then there's the added `(#40)`, this is the
-issue number on github's issue tracker. If the commit doesn't complete the
-issue - meaning you won't close the issue after committing -, use `(WIP #xx)`,
-where xx obviously stands for the issue number.
+you did as concise as possible.
+
+Usually there's also the added `(#40)`, this is the issue number on github's
+issue tracker. If the commit doesn't complete the issue - meaning you won't
+close the issue after committing -, use `(WIP #xx)`, where xx obviously
+stands for the issue number.
 
 ### Branching model
 
