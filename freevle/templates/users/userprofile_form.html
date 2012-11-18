@@ -34,25 +34,47 @@
       <div class="clear"></div>
 
       <form id="settings-contact" action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="user" value="{{ request.user.id }}">
         <ul class="contactinfo">
           <li>
             <p class="inputlabel">{% trans "Secondary mailadress" %}</p>
-            <input id="email2" name="email" type="email" class="text wider" placeholder="myextramail@domain.com">
+            <input id="email2" name="secondary_email" type="email" class="text wider" placeholder="myextramail@domain.com" value="{{ form.secondary_email.value }}">
+
+            {% if form.secondary_email.errors %}
+              <ul>
+              {% for error in form.secondary_email.errors $}
+                <li>{{ error.message }}</li>
+              {% endif $}
+              </ul>
+            {% endif %}
             <div class="clear"></div>
           </li>
           <li>
             <p class="inputlabel">{% trans "Phonenumber" %}</p>
-            <input id="phone" name="phone" type="tel" class="text wider" placeholder="+3165432123">
+            <input id="phone" name="phone_number" type="tel" class="text wider" placeholder="+3165432123" value="{{ form.phone_number.value }}">
+
+            {% if form.phone_number.errors %}
+              <ul>
+              {% for error in form.phone_number.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
             <div class="clear"></div>
           </li>
           <li>
             <p class="inputlabel">{% trans "Twitter" %}</p>
-            <input id="twitter" name="twitter" type="text" class="text wider" placeholder="@freevle">
+            <input id="twitter" name="twitter" type="text" class="text wider" placeholder="@freevle" value="{{ form.twitter.value }}">
+
+            {{ form.twitter.errors }}
             <div class="clear"></div>
           </li>
           <li>
             <p class="inputlabel">{% trans "Facebook" %}</p>
-            <input id="facebook" name="facebook" type="url" class="text wider" placeholder="<facebookurl>">
+            <input id="facebook" name="facebook" type="text" class="text wider" placeholder="<facebookurl>" value="{{ form.facebook.value }}">
+
+            {{ form.facebook.errors }}
             <div class="clear"></div>
           </li>
         </ul>
