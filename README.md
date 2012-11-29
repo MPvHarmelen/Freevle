@@ -7,10 +7,10 @@ What is Freevle
 Freevle is a Virtual Learning Environment (VLE). Now, there's some pretty good
 examples of those out there, but Freevle is different. We wanted to integrate
 every aspect of a school into Freevle: the website for non-students, parents or
-teachers; the schedules for teachers, students, classes and classrooms; the
-environment for putting assignments online as well as ways to learn or study on
-the web and other tools, like a students-only forum and a project
-management system.
+teachers; the schedules for teachers, students, classes and classrooms, with
+homework integrated; the environment for putting assignments online as well as
+ways to learn or study on the web and other tools, like a students-only forum
+and a project management system.
 
 Features
 --------
@@ -18,6 +18,8 @@ Features
 ### Current features
 
 * News
+* Organizer
+
 
 ### Planned features
 
