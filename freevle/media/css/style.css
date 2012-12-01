@@ -585,9 +585,9 @@ a.li {
 div#rooster {
   position: relative;
   float: left;
-  box-shadow:         0 0 5px #777;
-  -moz-box-shadow:    0 0 5px #777;
-  -webkit-box-shadow: 0 0 5px #777;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   width: 800px;
 }
 
@@ -629,6 +629,7 @@ div#rooster {
 
 div.dag {
   float: left;
+  max-width: 135px;
 }
 
 div#nummers {
@@ -640,7 +641,7 @@ div#nummers {
 
 div.divider {
   width: 1px;
-  background: #bbb !important;
+  background: #ddd !important;
   float: left;
 }
 
@@ -714,13 +715,35 @@ div.lokaal {
   width: 24px;
 }
 
-div.time {
-  float: left;
+.double:hover {
+  width: 230px;
+  z-index: 2;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.double .lokaal, .double .leraar, .double .les {
+  display: none;
+}
+
+.double:hover .lokaal, .double:hover .leraar, .double:hover .les {
+  display: block;
+}
+
+.double:hover .summaryhour {
+  display: none;
+}
+
+.double:hover div.les:nth-child(5) {
+  margin-left: 10px;
+  padding-left: 9px;
+  border-left: 1px solid #dadada;
 }
 
 #weekend {
   width: 81px;
-  border-left: #bbb 1px solid;
+  border-left: #ddd 1px solid;
   float: left;
   background: #fafafa;
   font-size: 20px;
@@ -825,40 +848,7 @@ span.verkort {
 
 .meldingen {
   font-size: 14px;
-  border-bottom: 1px solid #bbb;
-}
-
-div.note {
-  background: #ececec;
-  padding: 10px 20px 20px;
-  text-shadow: 0 1px 0 #fff;
-  margin: 0 0 20px;
-}
-
-div.note:before, div.note:after {
-  z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: rgba(0, 0, 0, 0.7);
-  box-shadow:         0 15px 10px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow:    0 15px 10px rgba(0, 0, 0, 0.7);
-  -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  transform:         rotate(-2deg);
-  -moz-transform:    rotate(-2deg);
-  -webkit-transform: rotate(-2deg);
-}
-
-div.note:after {
-  transform:         rotate(2deg);
-  -moz-transform:    rotate(2deg);
-  -webkit-transform: rotate(2deg);
-  right: 10px;
-  left: auto;
+  border-bottom: 1px solid #ddd;
 }
 
 .headermessage {
@@ -874,9 +864,9 @@ ul.belangrijk {
 }
 
 div#komend {
-  box-shadow:         0 0 5px #777;
-  -moz-box-shadow:    0 0 5px #777;
-  -webkit-box-shadow: 0 0 5px #777;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 1px 15px 15px;
   font-size: 14px;
   margin: 20px 0 10px;
@@ -896,7 +886,7 @@ div#komend li.huiswerkitem {
   float: left;
   width: 200px;
   padding-left: 20px;
-  border-left: #bbb 1px solid;
+  border-left: #ddd 1px solid;
 }
 
 .legendleft {
