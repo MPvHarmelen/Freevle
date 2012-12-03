@@ -5,12 +5,12 @@
 
 <script type="text/javascript" src="/media/js/slimbox2.js"></script>
 <div class="item">
-  <h2>{{object.name}}</h2>
-  <p>{{object.description}}</p>
+  <h2>{{ object.name }}</h2>
+  <p>{{ object.description }}</p>
   <div id="photopage">
     {% for photo in object.photo_set.all %}
-    <a href="media/{{photo.image}}" rel="lightbox-serie" title="{{photo.title}}">
-      <img src="{{photo.image}}">
+    <a href="/media/{{ photo.image }}" rel="lightbox-serie" title="{{ photo.title }}">
+      <img src="/media/{{ photo.image }}">
     </a>
     {% endfor %}
     <div class="clear"></div>
