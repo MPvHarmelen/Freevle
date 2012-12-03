@@ -560,9 +560,16 @@ class TeacherView(TeacherPrintView, ModificationMixin):
             lesson.is_changed = True
             lesson_list.append(lesson)
 
+        for changes in ChangedLesson.objects.filter(new_teacher=teacher,
+                                                    new_date=date):
+            lesson = copy.copy(changes.lesson)
+            lesson.is_changed = True
+            lesson_list.append(lesson)
+
         lesson_list2 = []
         for lesson in lesson_list:
-            lesson_list2.append(self.modify_lesson(lesson, date))
+            modified_lesson = self.modify_lesson(lesson, date)
+            lesson_list2.append(modified_lesson)
 
         return lesson_list2
 
