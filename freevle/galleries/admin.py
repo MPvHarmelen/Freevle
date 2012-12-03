@@ -3,11 +3,11 @@ from freevle.galleries.models import Gallery, Photo
 
 class GalleryAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
-	list_display = ('name','date')
+	list_display = ('name', 'creation_date')
 
 class PhotoAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',)}
-	list_display = ('title',)
+	list_display = ('title', 'gallery')
 
 admin.site.register(Gallery,GalleryAdmin)
 admin.site.register(Photo,PhotoAdmin)
