@@ -5,7 +5,8 @@ class Gallery(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField()
     slug = models.SlugField(unique=True)
-    date = models.DateField()
+    creation_date = models.DateField(auto_now_add=True)
+    last_modified = models.DateField(auto_now=True)
 
     def __unicode__(self):
         return self.name
@@ -25,7 +26,7 @@ class Photo(models.Model):
     title = models.CharField(max_length=32)
     slug = models.SlugField()
     gallery = models.ForeignKey(Gallery)
-    date = models.DateField()
+    upload_date = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to=_upload_to)
 
     class Meta:
