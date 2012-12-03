@@ -3,8 +3,7 @@
 *.pid
 personalsettings.py
 media/letters/
-*.sqlite
-*~
+media/galleries/
 
 # Database files
 *.sqlite
