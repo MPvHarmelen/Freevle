@@ -2,8 +2,8 @@
 *.sh
 *.pid
 personalsettings.py
-media/letters/
-media/galleries/
+freevle/media/letters/
+freevle/media/galleries/
 
 # Database files
 *.sqlite
