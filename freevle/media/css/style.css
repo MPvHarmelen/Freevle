@@ -1395,13 +1395,14 @@ div#triangleleft {
   overflow: hidden;
   height: 130px;
   margin-bottom: 2em;
+  display: block;
 }
 
 div.imagefiller {
   width: 200%;
 }
 
-div.photorow img {
+.photorow img {
   float: left;
   margin-right: 3px;
   height: 100%;
