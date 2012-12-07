@@ -1391,7 +1391,7 @@ div#triangleleft {
 }
 
 /*------------------------------photos------------------------------*/
-div.photorow {
+.photorow {
   overflow: hidden;
   height: 130px;
   margin-bottom: 2em;
