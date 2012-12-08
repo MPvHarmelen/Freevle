@@ -455,7 +455,7 @@ h2 {
   text-align: left;
 }
 
-h2 a:link, a:visited{
+h2 a:link, h2 a:visited{
   text-decoration: none;
   color: #000;
 }
@@ -1396,6 +1396,12 @@ div#triangleleft {
   height: 130px;
   margin-bottom: 2em;
   display: block;
+  text-decoration: none;
+}
+
+div.photoalbum a {
+  text-decoration: none !important;
+  color: #111;
 }
 
 div.imagefiller {
