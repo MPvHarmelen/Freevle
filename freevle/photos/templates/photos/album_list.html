@@ -5,14 +5,14 @@
 
 <script type="text/javascript" src="/media/js/slimbox2.js"></script>
 <div class="item">
-  <h2>{% trans 'Galleries' %}</h2>
-  {% for gallery in object_list %}
+  <h2>{% trans 'Photo Albums' %}</h2>
+  {% for album in object_list %}
   <div class="photoalbum">
-  <a href="{{ gallery.get_absolute_url }}">
-    <h3>{{ gallery.name }}</h3>
+  <a href="{{ album.get_absolute_url }}">
+    <h3>{{ album.name }}</h3>
     <div class="photorow">
       <div class="imagefiller">
-        {% for photo in gallery.photo_set.all|slice:":8" %}
+        {% for photo in album.photo_set.all|slice:":8" %}
         <img src="/media/{{ photo.image }}">
         {% empty %}
         <p>{% blocktrans %}No pictures to display.{% endblocktrans %}</p>
@@ -22,7 +22,7 @@
   </a>
   </div>
   {% empty %}
-  <h3>{% blocktrans %}Ohoh, there are no galleries{% endblocktrans %}</h3>
+  <h3>{% blocktrans %}Ohoh, there are no photo albums{% endblocktrans %}</h3>
   {% endfor %}
 </div>
 

@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here.
-class Gallery(models.Model):
+class Album(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField()
     slug = models.SlugField(unique=True)
@@ -13,24 +12,24 @@ class Gallery(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('gallery-detail', (), {'slug':self.slug})
+        return ('album-detail', (), {'slug':self.slug})
 
 class Photo(models.Model):
 
     def _upload_to(self, filename):
-        path = 'galleries/' + self.gallery.slug + '/'
+        path = 'photos/' + self.album.slug + '/'
         new_file_name = self.slug
         extension = filename.split('.')[-1]
         return path + new_file_name + '.' + extension
 
     title = models.CharField(max_length=32)
     slug = models.SlugField()
-    gallery = models.ForeignKey(Gallery)
+    album = models.ForeignKey(Album)
     upload_date = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to=_upload_to)
 
     class Meta:
-        unique_together = ('gallery','slug')
+        unique_together = ('album','slug')
 
     def __unicode__(self):
         return self.title

@@ -3,7 +3,7 @@
 *.pid
 personalsettings.py
 freevle/media/letters/
-freevle/media/galleries/
+freevle/media/photos/
 
 # Database files
 *.sqlite

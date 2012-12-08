@@ -1,13 +1,13 @@
 from django.contrib import admin
-from freevle.galleries.models import Gallery, Photo
+from freevle.photos.models import Album, Photo
 
-class GalleryAdmin(admin.ModelAdmin):
+class AlbumAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
 	list_display = ('name', 'creation_date')
 
 class PhotoAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',)}
-	list_display = ('title', 'gallery')
+	list_display = ('title', 'album')
 
-admin.site.register(Gallery,GalleryAdmin)
+admin.site.register(Album,AlbumAdmin)
 admin.site.register(Photo,PhotoAdmin)

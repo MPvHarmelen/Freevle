@@ -33,7 +33,7 @@ INSTALLED_APPS = (
     'freevle.cms',
     'freevle.letters',
     'freevle.organizer',
-    'freevle.galleries',
+    'freevle.photos',
 )
 
 # Make this unique, and don't share it with anybody.
