@@ -11,5 +11,5 @@ class DetailView(GenericDetail):
 
 class PhotoDetailView(DetailView):
 	def get_queryset(self):
-		gallery_slug = self.kwargs.get('gallery', None)
-		return self.model._default_manager.filter(gallery__slug=gallery_slug)
+		album_slug = self.kwargs.get('album', None)
+		return self.model._default_manager.filter(album__slug=album_slug)
