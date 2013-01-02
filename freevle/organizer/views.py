@@ -431,7 +431,7 @@ class OrganizerView(TemplateView, LessonListMixin):
             def get_coming_homework(date, obj):
                 return None
 
-        coming_homework = self.get_coming_homework(date, obj)
+        coming_homework = get_coming_homework(date, obj)
 
         if coming_homework is not None:
             context['coming_homework'] = coming_homework
