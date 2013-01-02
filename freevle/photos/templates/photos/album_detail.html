@@ -9,7 +9,7 @@
   <p>{{ object.description }}</p>
   <div id="photopage">
     {% for photo in object.photo_set.all %}
-    <a href="/media/{{ photo.image }}" rel="lightbox-serie" title="{{ photo.title }}">
+    <a href="/media/{{ photo.image }}" rel="lightbox-serie" title="{{ photo.title }}" {% if photo.image.height > photo.image.width %} class="portrait" {% else %} class="landscape" {% endif %}>
       <img src="/media/{{ photo.image }}">
     </a>
     {% endfor %}
