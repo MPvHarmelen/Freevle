@@ -119,8 +119,9 @@ h1 {
   font-weight: normal;
 }
 
-h1 a {
+h1 a:link, h1 a:visited {
   text-decoration: none;
+  color: #333;
 }
 
 #firstletter {
