@@ -39,65 +39,6 @@ class PeriodMeta(models.Model):
         return '{} ({} - {})'.format(self.day_of_week, self.start_date,
                                      self.end_date)
 
-    def get_periodmeta(self, date):
-        """
-        Rules:
-            1. smallest (end_date - start_date) wins
-            2. shortest period wins
-            3. least number of breaks wins
-            4. Error, the one who filled out the times sucks
-        """
-        queryset = PeriodMeta.objects.filter(
-            start_date__lt = date,
-            end_date__gt = date,
-            day_of_week = date.strftime('%a')
-        )
-
-        if len(queryset) == 0:
-            raise ImproperlyConfigured('There is no periodmeta set for {}'
-                                     ''.format(date))
-
-        if len(queryset) == 1:
-            periodmeta = queryset[0]
-        else:
-            # Check rule 1
-            date_len = lambda a: a.end_date - a.start_date
-            smallest_date_len = min([date_len(a) for a in queryset])
-            periodmeta_set = [a for a in queryset
-                                 if date_len(a) == smallest_date_len]
-
-            if len(periodmeta_set) == 1:
-                periodmeta = periodmeta_set[0]
-            else:
-                # Check rule 2
-                shortest_period = min([a.period for a in periodmeta_set])
-                periodmeta_set = ([a for a in periodmeta_set
-                                     if a.period == shortest_period])
-
-                if len(periodmeta_set) == 0:
-                    periodmeta = periodmeta_set[0]
-                else:
-                    # Check rule 3
-                    least_breaks = min([len(a.breaks_after_period) for a in
-                                        periodmeta_set])
-                    periodmeta_set = min(
-                       [a for a in periodmeta_set
-                        if len(a.breaks_after_period) == least_breaks]
-                    )
-
-                    if len(periodmeta_set) == 0:
-                        periodmeta = periodmeta_set[0]
-                    else:
-                        # Rule 4
-                        raise ImproperlyConfigured(
-                            'There are too many PeriodMetas defined. '
-                            'Please contact your administrators and tell them '
-                            "they're idiots and can't even configure "
-                            'PeriodMetas. Thank you.'
-                        )
-
-        return periodmeta
-
     def get_period_times(self, periods):
         """
         Get a tuple of starting and ending times of periods
@@ -144,6 +85,65 @@ class PeriodMeta(models.Model):
 
         period_times = tuple(period_times)
         return period_times
+
+def get_periodmeta(date):
+    """
+    Rules:
+        1. smallest (end_date - start_date) wins
+        2. shortest period wins
+        3. least number of breaks wins
+        4. Error, the one who filled out the times sucks
+    """
+    queryset = PeriodMeta.objects.filter(
+        start_date__lt = date,
+        end_date__gt = date,
+        day_of_week = date.strftime('%a')
+    )
+
+    if len(queryset) == 0:
+        raise ImproperlyConfigured('There is no periodmeta set for {}'
+                                 ''.format(date))
+
+    if len(queryset) == 1:
+        periodmeta = queryset[0]
+    else:
+        # Check rule 1
+        date_len = lambda a: a.end_date - a.start_date
+        smallest_date_len = min([date_len(a) for a in queryset])
+        periodmeta_set = [a for a in queryset
+                             if date_len(a) == smallest_date_len]
+
+        if len(periodmeta_set) == 1:
+            periodmeta = periodmeta_set[0]
+        else:
+            # Check rule 2
+            shortest_period = min([a.period for a in periodmeta_set])
+            periodmeta_set = ([a for a in periodmeta_set
+                                 if a.period == shortest_period])
+
+            if len(periodmeta_set) == 0:
+                periodmeta = periodmeta_set[0]
+            else:
+                # Check rule 3
+                least_breaks = min([len(a.breaks_after_period) for a in
+                                    periodmeta_set])
+                periodmeta_set = min(
+                   [a for a in periodmeta_set
+                    if len(a.breaks_after_period) == least_breaks]
+                )
+
+                if len(periodmeta_set) == 0:
+                    periodmeta = periodmeta_set[0]
+                else:
+                    # Rule 4
+                    raise ImproperlyConfigured(
+                        'There are too many PeriodMetas defined. '
+                        'Please contact your administrators and tell them '
+                        "they're idiots and can't even configure "
+                        'PeriodMetas. Thank you.'
+                    )
+
+    return periodmeta
 
 class Topic(models.Model):
     name = models.CharField(max_length=32)
@@ -208,7 +208,7 @@ class Homework(models.Model):
     due_date = models.DateField()
 
     def __unicode__(self):
-        return '{} {}'.format(self.homework_type, self.lesson.course.topic)
+        return '{} {}'.format(self.lesson.course.topic, self.homework_type)
 
     class Meta:
         verbose_name_plural = 'homework'
