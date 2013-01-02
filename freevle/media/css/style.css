@@ -1420,12 +1420,30 @@ div#photopage a {
   margin: 0.5px;
   display: block;
   float: left;
-  height: 100px;
+  height: 159px;
   overflow: hidden;
 }
 
-div#photopage img {
+div#photopage a.portrait img {
   width: 100%;
+  display: block;
+  margin: auto;
+}
+
+div#photopage a.landscape img {
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+
+div#photopage a.portrait:hover img {
+  width: auto;
+  height: 100%;
+}
+
+div#photopage a.landscape:hover img {
+  width: 100%;
+  height: auto;
 }
 
 /*------------------------------add homework------------------------------*/
