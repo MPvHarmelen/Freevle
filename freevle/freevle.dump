@@ -1203,7 +1203,6 @@ INSERT INTO "auth_user_groups" VALUES(1174,620,1);
 INSERT INTO "auth_user_groups" VALUES(1175,621,1);
 INSERT INTO "auth_user_groups" VALUES(1176,622,1);
 DELETE FROM "auth_user";
-INSERT INTO "auth_user" VALUES(1,'Martin','','','Martin@vanharmelen.com','sha1$6f062$05f5039dfe69b7e1e466529bbad71ea76ca092b4',1,1,1,'2012-09-01 01:56:03.159000','2012-05-09 17:26:22.340000');
 INSERT INTO "auth_user" VALUES(2,'101143','Robin','Alberts','','sha1$1a5b7$3ec50c0f7dfd6adf6fe05582aa2431db98066ff0',0,1,0,'2012-05-09 17:26:35.230000','2012-05-09 17:26:35.230000');
 INSERT INTO "auth_user" VALUES(3,'101270','Eline','van den Berg','','sha1$1ba49$4c9639fa3b8b1697c50d5f843fe3cd18b5ff74cf',0,1,0,'2012-05-09 17:26:35.318000','2012-05-09 17:26:35.318000');
 INSERT INTO "auth_user" VALUES(4,'101354','Noah','Claassen','','sha1$f3938$08d6784168dd798760dd5d4ee26975ec9fcdd1de',0,1,0,'2012-05-09 17:26:35.364000','2012-05-09 17:26:35.364000');
