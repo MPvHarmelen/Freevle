@@ -2,11 +2,16 @@
 {% load i18n %}
 
 {% block content %}
-  <form>
+  <form method='get'>
+  {% csrf_token %}
     <select>
       <option value="none">Course:</option>
       <option value="course-x">Course X</option>
     </select>
+  </form>
+  <br><br>
+  <form method='post'>
+  {% csrf_token %}
     <ul id="makeplanner">
       <li class="lesson">
         <p class="weeknumber">39</p>
@@ -18,6 +23,7 @@
         <input type="text" name="homework" class="homework" placeholder="Homework">
         <div class="clear"></div>
       </li>
+      <li>{{ form }}</li>
       <li class="lesson">
         <p class="weeknumber">39</p>
         <p class="lessondate">Tue 26-09-2012 hour 2</p>
