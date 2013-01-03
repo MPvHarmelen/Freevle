@@ -13,16 +13,25 @@ from django.contrib.auth.models import User
 from freevle.organizer.models import *
 # The above is already there in organier.views
 
-from django.views.genereic.edit import CreateView, UpdateView, DeleteView
-
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from freevle.organizer.forms import HomeworkForm
 
 class HomeworkUpdate(UpdateView):
     template_name = 'organizer/add_homework.html'
     form_class = HomeworkForm
-    # succes_url =
+
+class HomeworkCreate(CreateView):
+    model = Homework
+    course_slug = None
+
+
+class HomeworkView(FormView):
+    template_name = 'organizer/homework_form.html'
+    form_class = HomeworkForm
+    succes_url = '/organizer/'
 
     def get_context_data(self, **kwargs):
-        pass
+        return super(HomeworkView, self).get_context_data(**kwargs)
 
     def form_valid(self, form):
         # bla bla
