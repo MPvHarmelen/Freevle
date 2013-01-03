@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.forms.formsets import formset_factory
 
-from freelve.organizer.models import Homework
+from freevle.organizer.models import Homework
 
 class HomeworkForm(ModelForm):
     class Meta:
