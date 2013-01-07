@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'freevle.galleries',
     'freevle.virtualcr',
     'freevle.virtualcr.plugins.vcr_pages',
+    'freevle.virtualcr.plugins.vcr_files',
 )
 
 # Make this unique, and don't share it with anybody.
