@@ -4,7 +4,7 @@ from freevle.virtualcr.plugins.vcr_files.models import File
 
 urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]*)/$',
-        DetailView.as_view(model=File, context_object_name='page'),
+        DetailView.as_view(model=File, context_object_name='file'),
         name='virtualcr-file-detail')
 )
 
