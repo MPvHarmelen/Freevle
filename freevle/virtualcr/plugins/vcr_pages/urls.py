@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.detail import DetailView
-from freevle.virtualcr.plugins.pages.models import Page
+from freevle.virtualcr.plugins.vcr_pages.models import Page
 
 urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]*)/$',

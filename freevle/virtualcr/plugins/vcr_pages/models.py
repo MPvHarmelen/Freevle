@@ -16,5 +16,3 @@ class Page(PluginBase):
     def get_url(self):
         return ('virtualcr-page-detail', (), {'slug':self.slug,
                 'vcr_slug':self.attachment.section.virtualcr.slug})
-
-
