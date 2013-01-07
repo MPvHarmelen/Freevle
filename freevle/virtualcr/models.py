@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your models here.
 class VirtualClassroom(models.Model):
@@ -36,8 +37,10 @@ class Attachment(models.Model):
     def get_plugin(self):
         plugin_list = [x for x in dir(self) if x[:7] == 'plugin_']
         for related_name in plugin_list:
-            plugin = self.__getattribute__(related_name)
-            if plugin is not None:
+            try:
+                plugin = self.__getattribute__(related_name)
                 return plugin
+            except ObjectDoesNotExist:
+                pass
 
         raise AttributeError('No plugin found for {}'.format(self))
