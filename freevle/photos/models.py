@@ -1,30 +1,35 @@
 from django.db import models
 
-# Create your models here.
-class Gallery(models.Model):
+class Album(models.Model):
     name = models.CharField(max_length=32)
+    description = models.TextField()
     slug = models.SlugField(unique=True)
-    date = models.DateField()
+    creation_date = models.DateField(auto_now_add=True)
+    last_modified = models.DateField(auto_now=True)
 
     def __unicode__(self):
         return self.name
 
     @models.permalink
     def get_absolute_url(self):
-        pass
+        return ('album-detail', (), {'slug':self.slug})
 
 class Photo(models.Model):
-    def _update_filename(self, filename):
-        path = self.gallery.slug + '/photos/'
+
+    def _upload_to(self, filename):
+        path = 'photos/' + self.album.slug + '/'
         new_file_name = self.slug
         extension = filename.split('.')[-1]
         return path + new_file_name + '.' + extension
 
     title = models.CharField(max_length=32)
-    slug = models.SlugField(unique=True)
-    gallery = models.ForeignKey(Gallery)
-    date = models.DateField()
-    content = models.ImageField(upload_to=_update_filename)
+    slug = models.SlugField()
+    album = models.ForeignKey(Album)
+    upload_date = models.DateField(auto_now_add=True)
+    image = models.ImageField(upload_to=_upload_to)
+
+    class Meta:
+        unique_together = ('album','slug')
 
     def __unicode__(self):
         return self.title

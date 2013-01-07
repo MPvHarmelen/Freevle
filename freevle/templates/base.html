@@ -9,6 +9,7 @@
 
     <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/media/js/jquery.history.js"></script>
+    <script type="text/javascript" src="/media/js/konami.js"></script>
     <script type="text/javascript" src="/media/js/scripts.js"></script>
     <script type="text/javascript" src="/media/js/autocompletion.js"></script>
 
@@ -67,6 +68,12 @@
       </div>
     {% endif %}
 
+      <!--[if lt IE 9]>
+        <a id="banner" href="http://browsehappy.com">
+          <p>{% blocktrans %}It looks like you're using an old browser. Some things may not work. To get the most out of this website, please visit <span class="underline">browsehappy.com</span> and download a modern browser.{% endblocktrans %}</p>
+        </a>
+      <![endif]-->
+
       <header>
         <a href="/">
           <img src="/media/img/zwaanheader.png" alt="logo" id="logo">
@@ -98,9 +105,9 @@
             </li>
             {% endif %}
             {% endfor %}
-            <li class="navmenu"><a class="menuitem" href="/news">{% trans "News" %}</a></li>
-            <li class="navmenu"><a class="menuitem" href="/galleries">{% trans "Photos" %}</a></li>
-            <li class="navmenu"><a class="menuitem" href="/contact">{% trans "Contact" %}</a></li>
+            <li class="navmenu"><a class="menuitem" href="/news/">{% trans "News" %}</a></li>
+            <li class="navmenu"><a class="menuitem" href="/photos/">{% trans "Photos" %}</a></li>
+            <li class="navmenu"><a class="menuitem" href="/contact/">{% trans "Contact" %}</a></li>
 
             <li class="navmenu liright" id="searchcont">
               <form id="search" method="get" action="/search/">
@@ -113,7 +120,7 @@
 
           {% if user.is_authenticated %}
               <li class="navmenu liright">
-                <a class="menuitem" href="/">{{ user.userprofile.get_display_name }}</a>
+                <a class="menuitem" href="/profile/">{{ user.userprofile.get_display_name }}</a>
                 <ul class="dropdown" id="rightdrop">
                   <li><a class="submenu-item" href="/rooster/">{% trans "Organizer" %}</a></li>
                   <li><a class="submenu-item" href="/letters/">{% trans "Letters" %}</a></li>

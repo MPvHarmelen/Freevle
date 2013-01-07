@@ -1,0 +1,1218 @@
+
+
+<!doctype html>
+<html>
+  <head>
+
+    <title>Cygnus Template</title>
+    <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/media/css/slimbox2.css" />
+
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/jquery.history.js"></script>
+    <script type="text/javascript" src="/media/js/konami.js"></script>
+    <script type="text/javascript" src="/media/js/scripts.js"></script>
+    <script type="text/javascript" src="/media/js/autocompletion.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta charset="utf-8">
+
+    <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body>
+
+    
+      <div id="darken">
+        <div id="inlogform">
+          <div id="closelogin"></div>
+
+          <div id="loginandpassword">
+
+            <div id="focuslogin">
+              <h2>Login</h2>
+              <form method="post" action="/user/login/" id="login">
+                <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='7fe518ef76d0facca70ec692d44b8ad2' /></div>
+                <input class="text" type="text" id="id_username" name="username" placeholder="Username" /><br>
+                <input class="text" type="password" id="id_password" name="password" placeholder="Password" /><br>
+                <input class="button" type="submit" value="Login" name="submit" />
+                
+                <input type="hidden" name="next" value="/organizer/99363/">
+                
+              </form>
+              <a id="focusonpassword" href="#">Forgotten your username or password?</a>
+            </div>
+
+            <div id="password">
+              <h2>Lost & found</h2>
+              <form method="post" action="/user/lostandfound/">
+                <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='7fe518ef76d0facca70ec692d44b8ad2' /></div>
+                <p>Forgotten your password or username? Enter your email and your username and a new password will be sent to you.</p>
+                <input class="text" type="email" id="id_email" name="email" placeholder="Email" /><br>
+                <input class="button" type="submit" value="Send" name="submit" />
+                
+                <input type="hidden" name="next" value="/organizer/99363/">
+                
+              </form>
+              <a id="focusonlogin" href="#">Just want to login?</a><br>
+            </div>
+
+            <div class="clear"></div>
+
+          </div>
+
+        </div>
+      </div>
+    
+
+      <!--[if lt IE 9]>
+        <a id="banner" href="http://browsehappy.com">
+          <p>It looks like you're using an old browser. Some things may not work. To get the most out of this website, please visit <span class="underline">browsehappy.com</span> and download a modern browser.</p>
+        </a>
+      <![endif]-->
+
+      <header>
+        <a href="/">
+          <img src="/media/img/zwaanheader.png" alt="logo" id="logo">
+        </a>
+        <h1 id="cygnus">
+          <a href="/"><span id="firstletter">C</span>ygnus gymnasium</a>
+        </h1>
+        <div class="clear"></div>
+      </header>
+
+      <nav>
+        <div id="menutoggle">Menu</div>
+        <ul id="menu">
+
+          <li class="navmenu">
+            <a class="imagenav" id="homebtn" href="/">Home</a>
+          </li>
+
+          
+            
+            <li class="navmenu"><a class="menuitem" href="/antonio-you/">ANTONIO. you</a>
+              
+                <ul class="dropdown">
+                
+                    <li><a class="submenu-item" href="/antonio-you/cato-brutus/">Cato, BRUTUS.</a></li>
+                
+                    <li><a class="submenu-item" href="/antonio-you/match-from-and/">match from And</a></li>
+                
+                </ul>
+              
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            <li class="navmenu"><a class="menuitem" href="/his-arms/">his arms.</a>
+              
+                <ul class="dropdown">
+                
+                    <li><a class="submenu-item" href="/his-arms/blest-that-had/">blest That had</a></li>
+                
+                    <li><a class="submenu-item" href="/his-arms/viola-my-what/">VIOLA. My what</a></li>
+                
+                    <li><a class="submenu-item" href="/his-arms/not-fox/">not fox.</a></li>
+                
+                    <li><a class="submenu-item" href="/his-arms/bear-them-hence-from/">bear them hence From</a></li>
+                
+                    <li><a class="submenu-item" href="/his-arms/mother-in-her-call/">mother in her call</a></li>
+                
+                </ul>
+              
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="navmenu"><a class="menuitem" href="/once-those/">once, those</a>
+              
+                <ul class="dropdown">
+                
+                    <li><a class="submenu-item" href="/once-those/magic-antony-on/">magic, Antony, on</a></li>
+                
+                    <li><a class="submenu-item" href="/once-those/this-slave-upon-naked/">this slave Upon naked</a></li>
+                
+                </ul>
+              
+            </li>
+            
+            
+            
+            
+            
+            
+            <li class="navmenu"><a class="menuitem" href="/news">News</a></li>
+            <li class="navmenu"><a class="menuitem" href="/galleries">Photos</a></li>
+            <li class="navmenu"><a class="menuitem" href="/contact">Contact</a></li>
+
+            <li class="navmenu liright" id="searchcont">
+              <form id="search" method="get" action="/search/">
+                <input id="search-box" type="text" placeholder="Zoeken...">
+              </form>
+              <ul id="searchresults">
+                <li id="hiddenres" class="activeres"></li>
+              </ul>
+            </li>
+
+          
+              <li id="loginhome" class="navmenu"><a class="menuitem" href="#" class="header">Login</a></li>
+            
+
+          <div class="clear"></div>
+
+        </ul>
+      </nav>
+
+      </header>
+
+      <div class="wrapper">
+
+        
+<article>
+  <div class="item">
+
+    <h2>Schedule</h2>
+
+    <div id="rooster">
+      <div class="meldingen">
+        <div id="meldingenlinks">
+          <h3>Important announcements</h3>
+          <ul class="belangrijk">
+            
+              <li>No announcements today
+            
+          </ul>
+        </div>
+        <div id="legend">
+          <h3>Legenda</h3>
+          <ul id="legendul">
+            
+            <div class="clear"></div>
+            <li class="huiswerkitem" id="valtuitlegend">This hour is cancelled</li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="nummers">
+        
+        <div class="uuru"><p class="vak">1</p></div>
+        
+        <div class="uure"><p class="vak">2</p></div>
+        
+        <div class="uuru"><p class="vak">3</p></div>
+        
+        <div class="uure"><p class="vak">4</p></div>
+        
+        <div class="uuru"><p class="vak">5</p></div>
+        
+        <div class="uure"><p class="vak">6</p></div>
+        
+        <div class="uuru"><p class="vak">7</p></div>
+        
+        <div class="uure"><p class="vak">8</p></div>
+        
+        <div class="uuru"><p class="vak">9</p></div>
+        
+      </div>
+
+      
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">Monday</p>
+
+          
+            <div class="uure double">
+              <div class="summaryhour">
+                <span class="bold">MA</span> (s09), <span class="bold">EC</span> (s08)
+              </div>
+              <div class="les">
+                MA
+              </div>
+              <div class="leraar ">
+                PRAM
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="les">
+                EC
+              </div>
+              <div class="leraar ">
+                PVRE
+              </div>
+              <div class="lokaal ">
+                s08
+              </div>
+              <div class="clear"></div>
+            </div>
+          
+            <div class="uuru">
+              <div class="les">
+                MA
+              </div>
+              <div class="leraar ">
+                PRAM
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                FA
+              </div>
+              <div class="leraar ">
+                PVIF
+              </div>
+              <div class="lokaal ">
+                s07
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                GS
+              </div>
+              <div class="leraar ">
+                PRHG
+              </div>
+              <div class="lokaal ">
+                s02
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                WB
+              </div>
+              <div class="leraar ">
+                PBNW
+              </div>
+              <div class="lokaal ">
+                s08
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                ENTL
+              </div>
+              <div class="leraar ">
+                PHEE
+              </div>
+              <div class="lokaal ">
+                s03
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                NETL
+              </div>
+              <div class="leraar ">
+                PMIN
+              </div>
+              <div class="lokaal ">
+                s02
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                NETL
+              </div>
+              <div class="leraar ">
+                PMIN
+              </div>
+              <div class="lokaal ">
+                s02
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                LOB
+              </div>
+              <div class="leraar ">
+                PMIN
+              </div>
+              <div class="lokaal ">
+                s02
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+
+        </div>
+
+        
+          
+        
+    
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">Tuesday</p>
+
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                SK
+              </div>
+              <div class="leraar ">
+                PHAS
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                NA
+              </div>
+              <div class="leraar ">
+                PNYN
+              </div>
+              <div class="lokaal ">
+                s08
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                GR
+              </div>
+              <div class="leraar ">
+                PBOK
+              </div>
+              <div class="lokaal ">
+                s08
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                -
+              </div>
+              <div class="leraar ">
+                
+              </div>
+              <div class="lokaal ">
+                
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                WB
+              </div>
+              <div class="leraar ">
+                PBNW
+              </div>
+              <div class="lokaal ">
+                s11
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                WB
+              </div>
+              <div class="leraar ">
+                PBNW
+              </div>
+              <div class="lokaal ">
+                s11
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                GS
+              </div>
+              <div class="leraar ">
+                PRHG
+              </div>
+              <div class="lokaal ">
+                s12
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                GS
+              </div>
+              <div class="leraar ">
+                PRHG
+              </div>
+              <div class="lokaal ">
+                s12
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                -
+              </div>
+              <div class="leraar ">
+                
+              </div>
+              <div class="lokaal ">
+                
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+
+        </div>
+
+        
+          
+        
+    
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">Wednesday</p>
+
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                IN
+              </div>
+              <div class="leraar ">
+                PREI
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                IN
+              </div>
+              <div class="leraar ">
+                PREI
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                NA
+              </div>
+              <div class="leraar ">
+                PNYN
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                EC
+              </div>
+              <div class="leraar ">
+                PVRE
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                NETL
+              </div>
+              <div class="leraar ">
+                PMIN
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                KCV
+              </div>
+              <div class="leraar ">
+                PVLK
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                KCV
+              </div>
+              <div class="leraar ">
+                PVLK
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                ENTL
+              </div>
+              <div class="leraar ">
+                PHEE
+              </div>
+              <div class="lokaal ">
+                s07
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                SK
+              </div>
+              <div class="leraar ">
+                PHAS
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+
+        </div>
+
+        
+          
+        
+    
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">Thursday</p>
+
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                GR
+              </div>
+              <div class="leraar ">
+                PBOK
+              </div>
+              <div class="lokaal ">
+                s06
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                NETL
+              </div>
+              <div class="leraar ">
+                PMIN
+              </div>
+              <div class="lokaal ">
+                s02
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                FA
+              </div>
+              <div class="leraar ">
+                PVIF
+              </div>
+              <div class="lokaal ">
+                s07
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                FA
+              </div>
+              <div class="leraar ">
+                PVIF
+              </div>
+              <div class="lokaal ">
+                s07
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                NA
+              </div>
+              <div class="leraar ">
+                PNYN
+              </div>
+              <div class="lokaal ">
+                s08
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                LO
+              </div>
+              <div class="leraar ">
+                PETL
+              </div>
+              <div class="lokaal ">
+                GY2
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                LO
+              </div>
+              <div class="leraar ">
+                PETL
+              </div>
+              <div class="lokaal ">
+                GY2
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                KUB
+              </div>
+              <div class="leraar ">
+                PVST
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                KUB
+              </div>
+              <div class="leraar ">
+                PVST
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+
+        </div>
+
+        
+          
+        
+    
+        <div class="divider"></div>
+        <div class="dag">
+            <p class="dag">Friday</p>
+
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                GR
+              </div>
+              <div class="leraar ">
+                PBOK
+              </div>
+              <div class="lokaal ">
+                s12
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                GR
+              </div>
+              <div class="leraar ">
+                PBOK
+              </div>
+              <div class="lokaal ">
+                s12
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                EC
+              </div>
+              <div class="leraar ">
+                PVRE
+              </div>
+              <div class="lokaal ">
+                s07
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                EC
+              </div>
+              <div class="leraar ">
+                PVRE
+              </div>
+              <div class="lokaal ">
+                s07
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                KU
+              </div>
+              <div class="leraar ">
+                PVST
+              </div>
+              <div class="lokaal ">
+                s09
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                LV
+              </div>
+              <div class="leraar ">
+                PHAF
+              </div>
+              <div class="lokaal ">
+                s01
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                ENTL
+              </div>
+              <div class="leraar ">
+                PHEE
+              </div>
+              <div class="lokaal ">
+                s04
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uure
+            
+            ">
+              <div class="les">
+                IN
+              </div>
+              <div class="leraar ">
+                PREI
+              </div>
+              <div class="lokaal ">
+                s10
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+            <div class="uuru
+            
+            ">
+              <div class="les">
+                -
+              </div>
+              <div class="leraar ">
+                
+              </div>
+              <div class="lokaal ">
+                
+              </div>
+              <div class="clear"></div>
+
+            
+            </div>
+          
+
+        </div>
+
+        
+          
+            <div id="weekend">
+              <span>Weekend</span>
+            </div>
+          
+        
+    
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="komend">
+      <h3>Coming homework</h3>
+      <ul class="belangrijk">
+        
+          <li class="huiswerkitem">Oh yeah, no homework!</li>
+        
+      </ul>
+    </div>
+  </div>
+</article>
+
+
+      </div>
+
+      <footer>
+
+      <!--
+        <ul id="breadcrumbs">
+          <li class="home">
+            <a class="home" href="#">Home</a>
+            <span class="divider"></span>
+          </li>
+          <li class="second">
+            <a class="second" href="#">Second level</a>
+            <span class="divider"></span>
+          </li>
+          <li class="thrid">
+            <a class="third" href="#">Third level</a>
+            <span class="divider"></span>
+          </li>
+          <li class="fourth">
+            <a class="fourth" href="#">Fourth level</a>
+            <span class="divider"></span>
+          </li>
+          <li class="current">
+            <span class="current">Current page</span>
+          </li>
+        </ul>
+      -->
+
+        <div id="center">
+
+          <div class="footercolumn" id="leftcolumn">
+
+            <img id="swan" src="/media/img/zwaan.png" alt="logo">
+
+          </div>
+
+          <div class="footercolumn" id="middlecolumn">
+            <h2 class="footerh">Sitemap</h2>
+            <ul class="sitemaplist">
+              <li><a href="">Home</a></li>
+              
+              
+                <li><a href="/antonio-you/">ANTONIO. you</a>
+                  
+                    <ul class="sitemaplist2">
+                    
+                        <li><a href="/antonio-you/cato-brutus/">Cato, BRUTUS.</a></li>
+                    
+                        <li><a href="/antonio-you/match-from-and/">match from And</a></li>
+                    
+                    </ul>
+                  
+                </li>
+              
+              
+              
+              
+              
+              
+              
+                <li><a href="/his-arms/">his arms.</a>
+                  
+                    <ul class="sitemaplist2">
+                    
+                        <li><a href="/his-arms/blest-that-had/">blest That had</a></li>
+                    
+                        <li><a href="/his-arms/viola-my-what/">VIOLA. My what</a></li>
+                    
+                        <li><a href="/his-arms/not-fox/">not fox.</a></li>
+                    
+                        <li><a href="/his-arms/bear-them-hence-from/">bear them hence From</a></li>
+                    
+                        <li><a href="/his-arms/mother-in-her-call/">mother in her call</a></li>
+                    
+                    </ul>
+                  
+                </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                <li><a href="/once-those/">once, those</a>
+                  
+                    <ul class="sitemaplist2">
+                    
+                        <li><a href="/once-those/magic-antony-on/">magic, Antony, on</a></li>
+                    
+                        <li><a href="/once-those/this-slave-upon-naked/">this slave Upon naked</a></li>
+                    
+                    </ul>
+                  
+                </li>
+              
+              
+              
+              
+              
+              
+              <li><a href="/news/">News</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+            <div class="clear"></div>
+          </div>
+
+          <div class="footercolumn" id="rightcolumn">
+            <h2 class="footerh"><a href="">Contact</a></h2>
+            <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
+            Linnaeushof 48<br>
+            1098 KM Amsterdam<br>
+            020-468 88 80</p>
+            <p><span class="bold">Locatie leerjaar 3, 4, 5 en 6:</span><br>
+            Simon Stevinstraat 48<br>
+            1097 CA Amsterdam<br>
+            020-462 14 50</p>
+          </div>
+
+           <div class="clear"></div>
+
+        </div>
+      </footer>
+
+  </body>
+</html>
+

@@ -4,9 +4,11 @@
 personalsettings.py
 freevle/media/letters/
 freevle/media/virtualcr/
+freevle/media/photos/
 
 # Database files
 *.sqlite
+*~
 
 # Packages
 *.egg

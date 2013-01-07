@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+from django.core.validators import RegexValidator
+
 # Create your models here.
 class UserProfile(models.Model):
     def update_filename(self, filename):
@@ -16,6 +18,23 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to=update_filename,
                                default='img/johndoe.png', blank=True)
 
+    secondary_email = models.EmailField()
+    phone_number = models.CharField(
+        max_length=64,
+        validators=[RegexValidator(regex=r'(\D*\d){10}', message='Please use'
+            ' at least 10 digits')]
+    )
+    twitter = models.CharField(
+        max_length=20,
+        validators=[RegexValidator(regex=r'@([A-Za-z0-9_]+)', message='That is'
+            ' not a valid twitter username (include the @).')]
+    )
+    facebook = models.CharField(
+        max_length=20,
+        validators=[RegexValidator(regex=r'^[A-Za-z\d.]{5,}$', message='That'
+            ' doesn\'t appear to be a valid Facebook username.')]
+    )
+
     def __unicode__(self):
         return '{}: <{}>'.format(self.designation, self.user.username)
 
@@ -28,7 +47,7 @@ class UserProfile(models.Model):
             display_name = self.user.username
         else:
             display_name = full_name
-        
+
         return display_name
 
 
