@@ -723,13 +723,22 @@ div.lokaal {
 }
 
 .double:hover {
-  width: 230px;
+  width: 252px;
   z-index: 2;
   left: -50%;
           box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
      -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
   background: #fff;
+  z-index: 2;
+  position: relative;
+}
+
+.double .uuru, .double .uure {
+  float: left;
+  padding-right: 6px;
+  border-left-width: 6px;
+  min-width: 46px;
 }
 
 .double .lokaal, .double .leraar, .double .les {
@@ -742,12 +751,6 @@ div.lokaal {
 
 .double:hover .summaryhour {
   display: none;
-}
-
-.double:hover div.les:nth-child(5) {
-  margin-left: 10px;
-  padding-left: 9px;
-  border-left: 1px solid #dadada;
 }
 
 #weekend {
