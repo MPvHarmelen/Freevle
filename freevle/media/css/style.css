@@ -1023,16 +1023,23 @@ img.fileicon {
 /*------------------------------course------------------------------*/
 
 header#courseheader {
-  width: 800px;
+  width: 900px;
+  padding: 0;
   margin: -21px -50px 3px;
   text-align: left;
-  padding: 34px 50px 20px;
   background: #444;
   background-size: 900px;
-  color: white;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-  font-weight: normal;
   position: relative;
+}
+
+header#courseheader h2 {
+  color: white;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  font-weight: normal;
+  padding: 1.4em 1em 1.2em;
+  z-index: 2;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 header#courseheader:after {
