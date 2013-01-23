@@ -716,12 +716,20 @@ div.lokaal {
   width: 24px;
 }
 
+.double {
+  transition:         box-shadow 120ms, background 120ms;
+  -moz-transition:    box-shadow 120ms, background 120ms;
+  -webkit-transition: left 200ms, box-shadow 200ms, background 200ms;
+}
+
 .double:hover {
   width: 230px;
   z-index: 2;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  left: -50%;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+     -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  background: #fff;
 }
 
 .double .lokaal, .double .leraar, .double .les {
