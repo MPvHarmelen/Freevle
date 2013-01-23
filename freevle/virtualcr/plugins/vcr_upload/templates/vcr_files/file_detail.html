@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load filename %}
+
+{% block content %}
+    <article>
+      <h2>File: {{ file.title }}</h2>
+      <p><strong>Real filename:</strong> {{ file.content|filename }}</p>
+      <p><a href="/media/{{ file.content }}">Download!</a></p>
+    </article>
+{% endblock %}
