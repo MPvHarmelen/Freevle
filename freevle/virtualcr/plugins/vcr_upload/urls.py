@@ -4,7 +4,7 @@ from freevle.virtualcr.plugins.vcr_upload.models import Assignment
 
 urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]*)/$',
-        DetailView.as_view(model=File, context_object_name='assignment'),
+        DetailView.as_view(model=Assignment, context_object_name='assignment'),
         name='virtualcr-upload-detail')
 )
 
