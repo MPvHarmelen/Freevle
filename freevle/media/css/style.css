@@ -463,10 +463,9 @@ h2 a:link, h2 a:visited{
 
 #inlogform h2 {
   margin: 30px 0 30px;
-  font-family: 'Cabin', sans-serif;
   text-align: center;
-  font-weight: normal;
   text-shadow: 1px 1px 1px #fff;
+  font-size: 3em;
 }
 
 div.item {
