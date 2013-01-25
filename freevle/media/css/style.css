@@ -1112,6 +1112,20 @@ input[type=file] {
 }
 
 
+/*------------------------------filedownload---------------------------*/
+#filedownload {
+  text-align: center;
+}
+
+#filedownload h2 {
+  text-align: center;
+}
+
+#filedownload img {
+  width: 250px;
+}
+
+
 /*------------------------------loginpage------------------------------*/
 #loginpage {
   text-align: center;
@@ -1169,12 +1183,13 @@ input.text:focus, #id_username:focus, #id_password:focus {
   padding: 9px 11px;
 }
 
-input[type=submit], a#question {
+input[type=submit], a#question, .button {
   padding: 8px 20px;
   cursor: pointer;
   background: #225ccc;
   font-size: 17px;
-  color: #fff;
+  color: #fff !important;
+  text-decoration: none;
   box-shadow:         0 1px 1px #000;
   -moz-box-shadow:    0 1px 1px #000;
   -webkit-box-shadow: 0 1px 1px #000;
@@ -1186,12 +1201,11 @@ input[type=submit], a#question {
   border: none;
 }
 
-input.button:hover, input[type=submit]:hover, a#question:hover, input.button:focus, input[type=submit]:focus, a#question:focus {
+.button:hover, input[type=submit]:hover, a#question:hover, .button:focus, input[type=submit]:focus, a#question:focus {
   background: #326cdc;
-
 }
 
-input.button:active, input[type=submit]:active, a#question:active {
+.button:active, input[type=submit]:active, a#question:active {
   box-shadow:         0 0 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow:    0 0 0 rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);

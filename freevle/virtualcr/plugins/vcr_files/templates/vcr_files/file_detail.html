@@ -3,8 +3,11 @@
 
 {% block content %}
     <article>
-      <h2>File: {{ file.title }}</h2>
-      <p><strong>Real filename:</strong> {{ file.content|filename }}</p>
-      <p><a href="/media/{{ file.content }}">Download!</a></p>
+      <div id="filedownload">
+        <h2>File: {{ file.title }}</h2>
+        <img src="/media/img/{{ file.type }}.png" alt="{{ file.type }}">
+        <p><strong>Filename:</strong> {{ file.content|filename }}</p>
+        <p><a href="/media/{{ file.content }}" class="button">Download</a></p>
+      </div>
     </article>
 {% endblock %}
