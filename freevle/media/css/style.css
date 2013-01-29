@@ -1282,9 +1282,10 @@ div.submit {
 #settingscont {
   float: left;
   border-left: 1px solid #ddd;
-  width: 661px;
-  padding: 24px 30px;
-  margin-bottom: -40px;
+  width: 711px;
+  padding: 14px 18px;
+  margin: 0 -50px -40px 0;
+  font-size: 0.9em;
 }
 
 img#profilepic {
@@ -1299,6 +1300,25 @@ ul.contactinfo {
   padding: 0;
   list-style: none;
   float: left;
+}
+
+.contactinfo#personal {
+  width: 100%;
+}
+
+ul.contactinfo input {
+  float: left;
+}
+
+div.error {
+  background: #d44;
+  color: #fff;
+  padding: 6px 13px;
+  margin: 2px 7px 10px;
+  position: relative;
+  float: left;
+  max-width: 249px;
+  text-align: center;
 }
 
 p.personalabel {
