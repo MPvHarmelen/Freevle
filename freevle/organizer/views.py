@@ -445,20 +445,19 @@ class StudentPrintView(OrganizerView):
     user = None
 
     def get_obj(self):
-
         if self.user is not None:
             return self.user
-        elif username is not None:
-            username = self.kwargs.get(self.username_url_kwarg, None)
+
+        username = self.kwargs.get(self.username_url_kwarg, None)
+        if username is not None:
             try:
-                user = User.objects.get(username=username,
+                return User.objects.get(username=username,
                                         groups__name='students')
             except User.DoesNotExist:
                 raise Http404("There is no student with this username.")
-        else:
-            raise ImproperlyConfigured("StudentView should be called with "
+
+        raise ImproperlyConfigured("StudentView must be called with "
                                        "a user or username")
-        return user
 
     ## Home Made
     def get_lesson_set(self, date, user):

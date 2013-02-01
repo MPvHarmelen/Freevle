@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+
+<form>
+<select name='myfield' onchange='this.form.submit()'>
+  <option selected>Milk</option>
+  <option>Coffee</option>
+  <option>Tea</option>
+</select>
+<noscript><input type="submit" value="Submit"></noscript>
+</form>
+
+
+
+action.widget.attrs["onchange"]="this.form.submit()"
+
+widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))
+
 {% block content %}
   <form method='get'>
   {% csrf_token %}
