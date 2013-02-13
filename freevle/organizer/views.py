@@ -23,6 +23,7 @@ class StrCourse(Course):
     topic = str()
 
 class DateMixin(object):
+    date = None
     year = None
     month = None
     day = None
@@ -119,21 +120,24 @@ class DateMixin(object):
         """
         Return the date for which this view should display data
         """
-        year = self.get_year()
-        month = self.get_month()
-        day = self.get_day()
+        if self.date is None:
+            year = self.get_year()
+            month = self.get_month()
+            day = self.get_day()
 
-        year_format = self.get_year_format()
-        month_format = self.get_month_format()
-        day_format = self.get_day_format()
+            year_format = self.get_year_format()
+            month_format = self.get_month_format()
+            day_format = self.get_day_format()
 
-        delim = '__'
+            delim = '__'
 
-        date_format = delim.join((year_format, month_format, day_format))
-        date_string = delim.join((year, month, day))
+            date_format = delim.join((year_format, month_format, day_format))
+            date_string = delim.join((year, month, day))
 
-        date = datetime.datetime.strptime(date_string, date_format).date()
-        date = self.check_allow_weekend(date)
+            date = datetime.datetime.strptime(date_string, date_format).date()
+            date = self.check_allow_weekend(date)
+        else:
+            date = self.date
 
         return date
 
@@ -390,7 +394,28 @@ class LessonListMixin(DateMixin):
 
         return lesson_list
 
-class OrganizerView(TemplateView, LessonListMixin):
+class OrganizerBaseView(TemplateView, LessonListMixin):
+    def get_period_range(self, lesson_lists):
+        return range(1, len(lesson_lists[0]))
+
+    def get_context_data(self, **kwargs):
+        """ Get the context for this view. """
+        date = kwargs.pop('date', None) or self.get_date()
+        obj = kwargs.pop('obj', None) or self.get_obj()
+        lesson_lists = self.get_lesson_lists(date, obj)
+        period_range = self.get_period_range(lesson_lists)
+
+        context = {
+            'date' : date,
+            'obj' : obj,
+            'lesson_lists': lesson_lists,
+            'period_range': period_range
+        }
+
+        context.update(kwargs)
+        return context
+
+class OrganizerView(OrganizerBaseView, ModificationMixin):
     announcements = None
 
     def get_announcements(self, date):
@@ -406,40 +431,28 @@ class OrganizerView(TemplateView, LessonListMixin):
     def get_legend(self):
         return HomeworkType.objects.all()
 
-    def get_period_range(self, lesson_lists):
-        return range(1, len(lesson_lists[0]))
-
     def get_context_data(self, **kwargs):
-        """ Get the context for this view. """
-        date = self.get_date()
-        obj = self.get_obj()
+        context = super(OrganizerView, self).get_context_data(**kwargs)
+
+        date = context['date']
         announcements = self.get_announcements(date)
-        lesson_lists = self.get_lesson_lists(date, obj)
         legend = self.get_legend()
-        period_range = self.get_period_range(lesson_lists)
-
-        context = {
-            'announcements': announcements,
-            'lesson_lists': lesson_lists,
+        context.update({
             'legend': legend,
-            'period_range': period_range,
-        }
+            'announcements': announcements
+        })
 
-        try:
-            get_coming_homework = self.get_coming_homework
-        except AttributeError:
-            def get_coming_homework(date, obj):
-                return None
-
-        coming_homework = get_coming_homework(date, obj)
-
-        if coming_homework is not None:
-            context['coming_homework'] = coming_homework
-
-        context.update(kwargs)
         return context
 
-class StudentPrintView(OrganizerView):
+class OrganizerPrintView(OrganizerBaseView):
+    def get_date(self):
+        date = super(OrganizerPrintView, self).get_date()
+        # For printing, always start on a Monday.
+        date -= datetime.timedelta(days=date.weekday())
+
+        return date
+
+class StudentBase(object):
     template_name = 'organizer/student_organizer.html'
     username_url_kwarg = 'username'
     user = None
@@ -459,12 +472,11 @@ class StudentPrintView(OrganizerView):
         raise ImproperlyConfigured("StudentView must be called with "
                                        "a user or username")
 
-    ## Home Made
+class StudentPrintView(StudentBase, OrganizerPrintView):
     def get_lesson_set(self, date, user):
         """
         Returns a list of lessons for the given user and date.
         """
-
         day_of_week = date.strftime('%a')
         lesson_list = []
         for course in user.takes_courses.all():
@@ -474,9 +486,10 @@ class StudentPrintView(OrganizerView):
                 end_date__gte=date
             )
             lesson_list.extend(lesson_subset)
+
         return lesson_list
 
-class StudentView(StudentPrintView, ModificationMixin, HomeworkMixin):
+class StudentView(StudentBase, OrganizerView, HomeworkMixin):
     def get_lesson_set(self, date, user):
         """
         Returns a list of lessons for the given user and date with homework
@@ -501,9 +514,15 @@ class StudentView(StudentPrintView, ModificationMixin, HomeworkMixin):
 
         return lesson_list
 
+    def get_context_data(self, **kwargs):
+        context = super(StudentView, self).get_context_data(**kwargs)
+        date = context['date']
+        obj = context['obj']
+        context['coming_homework'] = self.get_coming_homework(date, obj)
 
+        return context
 
-class TeacherPrintView(OrganizerView):
+class TeacherBase(object):
     template_name = 'organizer/teacher_organizer.html'
     username = None
     user = None
@@ -523,7 +542,8 @@ class TeacherPrintView(OrganizerView):
                                        "a user or username")
         return user
 
-    def get_lesson_set(self, date, user):
+class TeacherPrintView(TeacherBase, OrganizerPrintView):
+    def get_lesson_set(self, date, teacher):
         """
         Returns a list of lessons for the given user and date.
         """
@@ -538,7 +558,7 @@ class TeacherPrintView(OrganizerView):
             lesson_list.extend(lesson_subset)
         return lesson_list
 
-class TeacherView(TeacherPrintView, ModificationMixin):
+class TeacherView(TeacherBase, OrganizerView):
     def get_lesson_set(self, date, teacher):
         day_of_week = date.strftime('%a')
         lesson_list = []
@@ -572,7 +592,7 @@ class TeacherView(TeacherPrintView, ModificationMixin):
 
         return lesson_list2
 
-class ClassroomPrintView(OrganizerView):
+class ClassroomBase(object):
     template_name = 'organizer/classroom_organizer.html'
     classroom_url_kwarg = 'classroom'
     classroom = None
@@ -592,7 +612,7 @@ class ClassroomPrintView(OrganizerView):
                                        "a classroom or name.")
         return classroom
 
-    ## Home Made
+class ClassroomPrintView(ClassroomBase, OrganizerPrintView):
     def get_lesson_set(self, date, classroom):
         """
         Returns a list of lessons for the given classroom and date.
@@ -606,7 +626,7 @@ class ClassroomPrintView(OrganizerView):
         ))
         return lesson_list
 
-class ClassroomView(ClassroomPrintView, ModificationMixin):
+class ClassroomView(ClassroomBase, OrganizerView):
     def get_lesson_set(self, date, classroom):
         day_of_week = date.strftime('%a')
         lesson_list = list(classroom.lesson_set.filter(
@@ -629,7 +649,6 @@ class ClassroomView(ClassroomPrintView, ModificationMixin):
 
         return lesson_list2
 
-
 def organizer_view(request, **kwargs):
     slug = kwargs.pop('slug', None)
     if slug is not None:
@@ -647,6 +666,28 @@ def organizer_view(request, **kwargs):
             try:
                 classroom = Classroom.objects.get(name__iexact=slug)
                 return ClassroomView.as_view(classroom=classroom, **kwargs)(request)
+            except Classroom.DoesNotExist:
+                raise Http404("This slug isn't a username or classroom.")
+    else:
+        raise ImproperlyConfigured("organizer_view mast be called with a slug.")
+
+def organizer_print_view(request, **kwargs):
+    slug = kwargs.pop('slug', None)
+    if slug is not None:
+        try:
+            # __iexact makes for a case insensitive lookup
+            user = User.objects.get(username__iexact=slug)
+            group_names = [group.name for group in user.groups.all()]
+            if 'students' in group_names:
+                return StudentPrintView.as_view(user=user, **kwargs)(request)
+            elif 'teachers' in group_names:
+                return TeacherPrintView.as_view(user=user, **kwargs)(request)
+            else:
+                raise Http404("This user isn't a student or a teacher.")
+        except User.DoesNotExist:
+            try:
+                classroom = Classroom.objects.get(name__iexact=slug)
+                return ClassroomPrintView.as_view(classroom=classroom, **kwargs)(request)
             except Classroom.DoesNotExist:
                 raise Http404("This slug isn't a username or classroom.")
     else:

@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from freevle.organizer.views import organizer_view
+from freevle.organizer.views import organizer_view, organizer_print_view
 from freevle.organizer.homework_views import GetCourseView, UpdateHomeworkView
 
 urlpatterns = patterns('',
@@ -13,6 +13,6 @@ urlpatterns = patterns('',
         name='organizer'),
     url(r'^(?P<slug>[\d\w-]+)/(?P<day>\d{2})-(?P<month>\d{2})-(?P<year>\d{4})/$', organizer_view, {},
         name='organizer-date'),
-    url(r'^print/(?P<slug>[\d\w-]+)/$', organizer_view, {'template_name':'organizer/organizer_print.html'},
+    url(r'^print/(?P<slug>[\d\w-]+)/$', organizer_print_view, {'template_name':'organizer/organizer_print.html'},
         name='organizer-print'),
 )
