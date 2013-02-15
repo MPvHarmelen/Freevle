@@ -655,10 +655,9 @@ def organizer_view(request, **kwargs):
         try:
             # __iexact makes for a case insensitive lookup
             user = User.objects.get(username__iexact=slug)
-            group_names = [group.name for group in user.groups.all()]
-            if 'students' in group_names:
+            if user.groups.filter(name='students'):
                 return StudentView.as_view(user=user, **kwargs)(request)
-            elif 'teachers' in group_names:
+            elif user.groups.filter(name='teachers'):
                 return TeacherView.as_view(user=user, **kwargs)(request)
             else:
                 raise Http404("This user isn't a student or a teacher.")
@@ -677,10 +676,9 @@ def organizer_print_view(request, **kwargs):
         try:
             # __iexact makes for a case insensitive lookup
             user = User.objects.get(username__iexact=slug)
-            group_names = [group.name for group in user.groups.all()]
-            if 'students' in group_names:
+            if user.groups.filter(name='students'):
                 return StudentPrintView.as_view(user=user, **kwargs)(request)
-            elif 'teachers' in group_names:
+            elif user.groups.filter(name='teachers'):
                 return TeacherPrintView.as_view(user=user, **kwargs)(request)
             else:
                 raise Http404("This user isn't a student or a teacher.")
