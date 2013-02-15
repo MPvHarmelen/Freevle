@@ -42,7 +42,7 @@ class GetCourseView(FormView):
     succes_url = '/organizer/'
 
     def form_valid(self, form):
-        url = 'organzer-update-homework-course'
+        url = 'organzer-update-homework'
         kwargs = {'course_slug':form.data['course'].slug}
         return HttpResponseRedirect(reverse(url, kwargs=kwargs))
 
@@ -64,7 +64,7 @@ class UpdateHomeworkView(FormView):
                                    'or course slug')
 
     def get_context_data(self, **kwargs):
-        return super(HomeworkView, self).get_context_data(**kwargs)
+        return super(UpdateHomeworkView, self).get_context_data(**kwargs)
 
     def form_valid(self, form):
         # bla bla
