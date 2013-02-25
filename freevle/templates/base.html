@@ -85,11 +85,11 @@
       </header>
 
       <nav>
-        <div id="menutoggle">Menu</div>
+        <div id="menutoggle">{% trans 'Menu' %}</div>
         <ul id="menu">
 
           <li class="navmenu">
-            <a class="imagenav" id="homebtn" href="/">Home</a>
+            <a class="imagenav" id="homebtn" href="/">{% trans 'Home' %}</a>
           </li>
 
           {% for page in pages %}
@@ -218,14 +218,10 @@
 
           <div class="footercolumn" id="rightcolumn">
             <h2 class="footerh"><a href="">{% trans "Contact" %}</a></h2>
-            <p><span class="bold">Locatie leerjaar 1 en 2:</span><br>
-            Linnaeushof 48<br>
-            1098 KM Amsterdam<br>
+            <p><span class="bold">Locatie:</span><br>
+            Vrolikstraat 8<br>
+            1091 VG Amsterdam<br>
             020-468 88 80</p>
-            <p><span class="bold">Locatie leerjaar 3, 4, 5 en 6:</span><br>
-            Simon Stevinstraat 48<br>
-            1097 CA Amsterdam<br>
-            020-462 14 50</p>
           </div>
 
            <div class="clear"></div>
