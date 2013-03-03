@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from freevle.organizer.views import organizer_view, organizer_print_view
-from freevle.organizer.homework_views_again import get_course_view, update_homework_view
+from freevle.organizer.homework_views import get_course_view, update_homework_view
 
 urlpatterns = patterns('',
 #    url(r'^homework-create/$', HomeworkCreate.as_view(), {},

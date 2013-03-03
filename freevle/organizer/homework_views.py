@@ -13,61 +13,39 @@ from django.contrib.auth.models import User
 from freevle.organizer.models import *
 from freevle.organizer.views import *
 # The above is already there in organier.views
-
-from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.core.urlresolvers import reverse
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required
-from django.views.generic import CreateView, UpdateView, DeleteView, FormView
-from freevle.organizer.forms import HomeworkForm, HCourseForm
+from django.core.exceptions import PermissionDenied
 
-class HomeworkUpdate(UpdateView):
-    template_name = 'organizer/add_homework.html'
-    form_class = HomeworkForm
+@login_required
+def get_course_view(request):
+    if request.user.groups.filter(name='teachers'):
+        if request.method == 'POST':
+            url = 'organizer-update-homework'
+            warnings.warn('\n\t Is this safe?\n')
+            kwargs = {'slug':request.POST['course']}
+            return HttpResponseRedirect(reverse(url, kwargs=kwargs))
+        else:
+            courses = sorted(request.user.gives_courses.all(),
+                             key=lambda a: a.name)
+            return render(request,
+                          'organizer/course_form.html',
+                          {'courses':courses})
+    else:
+        raise PermissionDenied(_('You need to be a teacher to acces this page.'))
 
-class HomeworkCreate(CreateView):
-    model = Homework
-    course_slug = None
-
-class TeacherProtectionMixin(FormView):
-    permission = ''
-    @method_decorator(permission_required(permission))
-    def dispatch(self, *args, **kwargs):
-        return super(TeacherProtectionMixin, self).dispatch(*args, **kwargs)
-
-
-class GetCourseView(FormView):
-    template_name = 'organizer/course_form.html'
-    form_class = HCourseForm
-    succes_url = '/organizer/'
-
-    def form_valid(self, form):
-        url = 'organzer-update-homework'
-        kwargs = {'course_slug':form.data['course'].slug}
-        return HttpResponseRedirect(reverse(url, kwargs=kwargs))
-
-
-class UpdateHomeworkView(FormView):
-    template_name = 'organizer/homework_form.html'
-    form_class = HomeworkForm
-    succes_url = '/organizer/'
-    course = None
-    course_slug = None
-
-    def get_course(self):
-        '''Returns the course this view was called with.'''
-        if self.course is not None:
-            return self.course
-        elif self.course_slug is not None:
-            return Course.objects.get(slug=self.course_slug)
-        raise ImproperlyConfigured('HomeworkView must be called with a course'
-                                   'or course slug')
-
-    def get_context_data(self, **kwargs):
-        return super(UpdateHomeworkView, self).get_context_data(**kwargs)
-
-    def form_valid(self, form):
-        # bla bla
-
-        # The below just redirects to succes_url
-        return super(AddHomeworkView, self).form_valid(form)
+@login_required
+def update_homework_view(request, slug=None):
+    if slug is None:
+        raise ImproperlyConfigured('update_homework_view should be called with '
+                                   'a slug.')
+    # check if the user actually gives this course.
+    course = Course.objects.get(slug=slug)
+    if course in request.user.gives_courses.all():
+        return render(request,
+                      'organizer/homework_form.html')
+    else:
+        raise PermissionDenied(_('You need to give the course {} to acces this '
+                                 'page.'.format(course)))
