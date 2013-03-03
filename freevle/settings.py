@@ -67,6 +67,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 ROOT_URLCONF = 'freevle.urls'
 LOGIN_URL = '/user/login/'
+LOGIN_REDIRECT_URL = '/'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
