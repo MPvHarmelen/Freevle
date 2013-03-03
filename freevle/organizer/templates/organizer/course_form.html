@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block content %}
+ <h2>Course</h2>
   <form method='POST'>
   {% csrf_token %}
     <select name="course" onchange='this.form.submit()'>

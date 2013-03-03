@@ -1,24 +1,19 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-
-<form>
-<select name='myfield' onchange='this.form.submit()'>
-  <option selected>Milk</option>
-  <option>Coffee</option>
-  <option>Tea</option>
-</select>
-<noscript><input type="submit" value="Submit"></noscript>
-</form>
-
-
-
-action.widget.attrs["onchange"]="this.form.submit()"
-
-widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))
-
 {% block content %}
- <form method='post'>
+ <h2>Course</h2>
+   <form method='POST'>
+  {% csrf_token %}
+    <select name="course" onchange='this.form.submit()'>
+      {% for course in courses %}
+        <option value="{{ course.slug }}">{{ course.name }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+ <h2>Homework</h2>
+ <form method='POST'>
   {% csrf_token %}
     <ul id="makeplanner">
       <li class="lesson">

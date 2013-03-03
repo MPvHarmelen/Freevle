@@ -44,6 +44,8 @@ def update_homework_view(request, slug=None):
     # check if the user actually gives this course.
     course = Course.objects.get(slug=slug)
     if course in request.user.gives_courses.all():
+        # Build list of current homework
+
         return render(request,
                       'organizer/homework_form.html')
     else:
