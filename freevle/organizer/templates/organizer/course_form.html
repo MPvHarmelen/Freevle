@@ -4,9 +4,9 @@
 {% block content %}
   <form method='POST'>
   {% csrf_token %}
-    <select id="course">
+    <select name="course" onchange='this.form.submit()'>
       {% for course in courses %}
-        <option value="{{ course.id }}">{{ course.name }}</option>
+        <option value="{{ course.slug }}">{{ course.name }}</option>
       {% endfor %}
     </select>
   </form>

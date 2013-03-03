@@ -154,7 +154,7 @@ class Topic(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=32)
-#    slug = models.SlugField()
+    slug = models.SlugField()
     topic = models.ForeignKey(Topic)
     teacher = models.ForeignKey(
         User,
