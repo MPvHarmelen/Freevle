@@ -44,10 +44,40 @@ def update_homework_view(request, slug=None):
     # check if the user actually gives this course.
     course = Course.objects.get(slug=slug)
     if course in request.user.gives_courses.all():
-        # Build list of current homework
+        if request.method == 'POST':
+            # First save and validate all that shit.
+            pass
 
-        return render(request,
-                      'organizer/homework_form.html')
+            # Then check where to go.
+            course = request.POST.get('course')
+            if course is not None:
+                url = 'organizer-update-homework'
+                warnings.warn('\n\t Is this safe?\n')
+                kwargs = {'slug':request.POST['course']}
+                return HttpResponseRedirect(reverse(url, kwargs=kwargs))
+
+        else:
+            homework_list = []
+            # Build list of current homework
+            today = datetime.date.today()
+
+            for lesson in course.lesson_set.all():
+                homework_list.extend(lesson.homework_set.all())
+
+            homework_list.sort(key=lambda a: a.due_date)
+
+
+            # Template variables
+            homework_types = HomeworkType.objects.all()
+
+            courses = sorted(request.user.gives_courses.all(),
+                             key=lambda a: a.name)
+            return render(request,
+                          'organizer/homework_form.html',
+                          {'homework_list':homework_list,
+                           'homework_types':homework_types,
+                           'course':course,
+                           'courses':courses})
     else:
         raise PermissionDenied(_('You need to give the course {} to acces this '
                                  'page.'.format(course)))

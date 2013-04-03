@@ -20,7 +20,7 @@
     </div>
   {% endfor %}
   {% if is_paginated %}
-    <div class="pagination">   
+    <div class="pagination">
     {% for page in paginator.page_range %}
       {% if page > request.GET.page|add:"-5" and page < request.GET.page|add:"5" or page < 4 or page > paginator.num_pages|add:"-3" or not request.GET.page and page < 6 %}
         <a href="{{ request.path }}?page={{ page }}">{{ page }}</a>
@@ -28,7 +28,7 @@
         {% if page == request.GET.page|add:"-5" or page == request.GET.page|add:"5" or not request.GET.page and page == 6 %}...{% endif %}
       {% endif %}
     {% endfor %}
-    </div> 
+    </div>
   {% endif %}
 {% endblock %}
 

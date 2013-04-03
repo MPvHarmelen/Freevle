@@ -6,8 +6,8 @@
    <form method='POST'>
   {% csrf_token %}
     <select name="course" onchange='this.form.submit()'>
-      {% for course in courses %}
-        <option value="{{ course.slug }}">{{ course.name }}</option>
+      {% for listcourse in courses %}
+        <option value="{{ listcourse.slug }}" {% if listcourse == course %}selected{% endif %}>{{ listcourse.name }}</option>
       {% endfor %}
     </select>
   </form>
@@ -16,17 +16,20 @@
  <form method='POST'>
   {% csrf_token %}
     <ul id="makeplanner">
+      {% for homework in homework_list %}
       <li class="lesson">
-        <p class="weeknumber">39</p>
-        <p class="lessondate">Mon 24-09-2012 hour 1</p>
+        <p class="weeknumber">{{ homework.due_date|date:'W' }}</p>
+        <p class="lessondate">{{ homework.due_date|date:'D d-m-Y' }} hour {{ homework.lesson.period }}</p>
         <select class="homeworktype">
           <option value="none">Homeworktype:</option>
-          <option value="x">X</option>
+          {% for hwt in homework_types %}
+          <option value="{{ hwt.pk }}" {% if hwt == homework.homework_type %}selected{% endif %}>{{ hwt.name }}</option>
+          {% endfor %}
         </select>
         <input type="text" name="homework" class="homework" placeholder="Homework">
         <div class="clear"></div>
       </li>
-      <li>{{ form }}</li>
+      {% endfor %}
       <li class="lesson">
         <p class="weeknumber">39</p>
         <p class="lessondate">Tue 26-09-2012 hour 2</p>
