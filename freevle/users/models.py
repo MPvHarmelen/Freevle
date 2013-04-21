@@ -22,17 +22,20 @@ class UserProfile(models.Model):
     phone_number = models.CharField(
         max_length=64,
         validators=[RegexValidator(regex=r'(\D*\d){10}', message='Please use'
-            ' at least 10 digits')]
+            ' at least 10 digits')],
+        blank=True
     )
     twitter = models.CharField(
         max_length=20,
-        validators=[RegexValidator(regex=r'@([A-Za-z0-9_]+)', message='That is'
-            ' not a valid twitter username (include the @).')]
+        validators=[RegexValidator(regex=r'([A-Za-z0-9_]+)', message='That is'
+            ' not a valid twitter username (don\'t include the @).')],
+        blank=True
     )
     facebook = models.CharField(
         max_length=20,
         validators=[RegexValidator(regex=r'^[A-Za-z\d.]{5,}$', message='That'
-            ' doesn\'t appear to be a valid Facebook username.')]
+            ' doesn\'t appear to be a valid Facebook username.')],
+        blank=True
     )
 
     def __unicode__(self):
