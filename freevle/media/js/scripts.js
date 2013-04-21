@@ -176,7 +176,7 @@ $(document).ready(function(){
 
 //Live passwordchecker
   $('#confirm-password').keyup(function() {
-    if($('#new-password').val() != $('#confirm-password').val()) { 
+    if($('#new-password').val() != $('#confirm-password').val()) {
       if($('#checkifsame').is(":hidden")) {
         $('#checkifsame').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
         $('#triangleleft').animate({ left: '441px' }, {queue: false, duration: 'fast'}).fadeIn('fast');
@@ -196,6 +196,12 @@ $(document).ready(function(){
   }).focusout(function() {
     $('#checkifsame').animate({ left: '457px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
     $('#triangleleft').animate({ left: '449px' }, {queue: false, duration: 'fast'}).fadeOut('fast');
+  });
+
+  $('#coursepicker select').change(function(){
+    if ($(this).val() != '') {
+      $(this).parent().submit();
+    }
   });
 });
 
@@ -224,13 +230,8 @@ $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 83 && !focusstatus) {//S
     $('#search-box').focus();
   }
-
-
-  $('#coursepicker select').change(function(){
-    $(this).parent().submit();
-  });
-
 });
+
 
 document.createElement('header');
 document.createElement('footer');
