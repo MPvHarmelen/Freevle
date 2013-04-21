@@ -6,6 +6,7 @@
   <form method='POST'>
   {% csrf_token %}
     <select name="course" onchange='this.form.submit()'>
+        <option value="">{% trans "Choose:" %}</option>
       {% for course in courses %}
         <option value="{{ course.slug }}">{{ course.name }}</option>
       {% endfor %}
