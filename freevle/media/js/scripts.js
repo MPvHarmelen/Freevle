@@ -224,6 +224,12 @@ $(document.documentElement).keyup(function(e) {
   if (e.keyCode == 83 && !focusstatus) {//S
     $('#search-box').focus();
   }
+
+
+  $('#coursepicker select').change(function(){
+    $(this).parent().submit();
+  });
+
 });
 
 document.createElement('header');

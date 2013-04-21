@@ -3,9 +3,9 @@
 
 {% block content %}
  <h2>Course</h2>
-  <form method='POST'>
+  <form method="POST" id="coursepicker">
   {% csrf_token %}
-    <select name="course" onchange='this.form.submit()'>
+    <select name="course">
         <option value="">{% trans "Choose:" %}</option>
       {% for course in courses %}
         <option value="{{ course.slug }}">{{ course.name }}</option>
