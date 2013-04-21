@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^changepassword/$', changepassword),
     url(r'^virtualcrs/$', TemplateView.as_view(
                               template_name='users/virtualcr_list.html')),
-    url(r'^(personal/)?$', ProfileUpdateView.as_view()),
+    url(r'^(personal/)?$', ProfileUpdateView.as_view(
+                               success_url='/settings/personal/')),
 )
