@@ -27,7 +27,7 @@ class UserProfile(models.Model):
     )
     twitter = models.CharField(
         max_length=20,
-        validators=[RegexValidator(regex=r'([A-Za-z0-9_]+)', message='That is'
+        validators=[RegexValidator(regex=r'^([A-Za-z0-9_]+)$', message='That is'
             ' not a valid twitter username (don\'t include the @).')],
         blank=True
     )
