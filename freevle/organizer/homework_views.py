@@ -36,6 +36,10 @@ def get_course_view(request):
     else:
         raise PermissionDenied(_('You need to be a teacher to acces this page.'))
 
+def get_next_homework(course, date):
+    homework = None
+    return homework
+
 @login_required
 def update_homework_view(request, slug=None):
     if slug is None:
@@ -58,6 +62,8 @@ def update_homework_view(request, slug=None):
 
         else:
             homework_list = []
+
+
             # Build list of current homework
             today = datetime.date.today()
 
