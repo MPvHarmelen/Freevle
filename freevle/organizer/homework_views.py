@@ -81,3 +81,7 @@ def update_homework_view(request, slug=None):
     else:
         raise PermissionDenied(_('You need to give the course {} to acces this '
                                  'page.'.format(course)))
+@login_required
+def update_homework_extend(request):
+    pass
+
