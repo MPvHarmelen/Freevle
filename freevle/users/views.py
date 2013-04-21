@@ -51,4 +51,4 @@ def changepassword(request):
             user.set_password(request.POST['new-password'])
             user.save()
             data['success'] = True
-    return render_to_response('user/settings.html', data)
+    return render_to_response('users/password.html', data)

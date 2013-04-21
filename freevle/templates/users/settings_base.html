@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+  <h2>{% trans "Settings" %} - {% block title %}{% endblock %}</h2>
+
+  <ul id="settingsmenu">
+    <li><a class="settinglink" href="/settings/personal/">{% trans "Personal" %}</a></li>
+    <li><a class="settinglink" href="/settings/changepassword/">{% trans "Password" %}</a></li>
+    <li><a class="settinglink" href="/settings/virtualcrs/">{% trans "Courses menu" %}</a></li>
+  </ul>
+
+  <div id="settingscont">
+    {% block settings %}
+    {% endblock %}
+  </div>
+
+{% endblock %}

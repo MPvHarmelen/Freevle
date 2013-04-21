@@ -1,17 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'users/settings_base.html' %}
 {% load i18n %}
 
-{% block content %}
+{% block title %}{% trans "Personal info" %}{% endblock %}
 
-  <h2>{% trans "Settings" %} - {% trans "Personal info" %}</h2>
-
-  <ul id="settingsmenu">
-    <li><a class="settinglink" href="/settings/personal/">{% trans "Personal" %}</a></li>
-    <li><a class="settinglink" href="/settings/changepassword/">{% trans "Password" %}</a></li>
-    <li><a class="settinglink" href="/settings/coursesmenu/">{% trans "Courses menu" %}</a></li>
-  </ul>
-
-  <div id="settingscont">
+{% block settings %}
       <img id="profilepic" src="/media/{{ request.user.get_profile.avatar.url }}">
 
       <ul class="contactinfo">
@@ -89,6 +81,4 @@
 
     </div>
     <div class="clear"></div>
-  </div>
-
 {% endblock %}
