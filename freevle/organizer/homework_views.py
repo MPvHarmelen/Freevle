@@ -36,9 +36,21 @@ def get_course_view(request):
     else:
         raise PermissionDenied(_('You need to be a teacher to acces this page.'))
 
-def get_next_homework(course, date):
+
+def get_next_homework(course, last_date):
     homework = None
-    return homework
+    # (Distance to last_date, period)
+    key = lambda a: (abs(a.day_of_week - last_date.strftime('%w')), a.period)
+    lessons = sorted(course.lesson_set.all(), key=key)
+    if len(lessons) < 1:
+        raise ImproperlyConfigured('There are no lessons for {}'.format(course))
+    homeworks = sorted(lessons[0].homework_set.all())
+    if len(homeworks) == 1:
+        return homeworks[0]
+    elif len(homeworks) > 1:
+        pass
+    else:
+        pass
 
 @login_required
 def update_homework_view(request, slug=None):
