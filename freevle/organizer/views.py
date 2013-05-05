@@ -477,7 +477,7 @@ class StudentPrintView(StudentBase, OrganizerPrintView):
         """
         Returns a list of lessons for the given user and date.
         """
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
         lesson_list = []
         for course in user.takes_courses.all():
             lesson_subset = course.lesson_set.filter(
@@ -495,7 +495,7 @@ class StudentView(StudentBase, OrganizerView, HomeworkMixin):
         Returns a list of lessons for the given user and date with homework
         and modifications.
         """
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
         lesson_list = []
         for course in user.takes_courses.all():
             lesson_subset = list(course.lesson_set.filter(
@@ -547,7 +547,7 @@ class TeacherPrintView(TeacherBase, OrganizerPrintView):
         """
         Returns a list of lessons for the given user and date.
         """
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
         lesson_list = []
         for course in teacher.gives_courses.all():
             lesson_subset = course.lesson_set.filter(
@@ -560,7 +560,7 @@ class TeacherPrintView(TeacherBase, OrganizerPrintView):
 
 class TeacherView(TeacherBase, OrganizerView):
     def get_lesson_set(self, date, teacher):
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
         lesson_list = []
         for course in teacher.gives_courses.all():
             lesson_subset = list(course.lesson_set.filter(
@@ -618,7 +618,7 @@ class ClassroomPrintView(ClassroomBase, OrganizerPrintView):
         Returns a list of lessons for the given classroom and date.
         """
 
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
         lesson_list = list(classroom.lesson_set.filter(
             start_date__lte=date,
             end_date__gte=date,
@@ -628,7 +628,7 @@ class ClassroomPrintView(ClassroomBase, OrganizerPrintView):
 
 class ClassroomView(ClassroomBase, OrganizerView):
     def get_lesson_set(self, date, classroom):
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
         lesson_list = list(classroom.lesson_set.filter(
             start_date__lte=date,
             end_date__gte=date,

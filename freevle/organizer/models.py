@@ -10,24 +10,25 @@ from freevle.custom.validators import validate_hex
 # Create your models here.
 # Refactored with some (actually, lots of) help from sushibowl. Thanks :D
 
-# The case for the abbreviations are chosen
-# to match the %a format of strftime(), the order to match %w.
+# The numbers are chosen to match datetime.date.strftime(<date>,'%w')
 DAY_CHOICES = (
-    ('Sun', _('Sunday')),
-    ('Mon', _('Monday')),
-    ('Tue', _('Tuesday')),
-    ('Wed', _('Wednesday')),
-    ('Thu', _('Thursday')),
-    ('Fri', _('Friday')),
-    ('Sat', _('Saturday')),
+    (0, _('Sunday')),
+    (1, _('Monday')),
+    (2, _('Tuesday')),
+    (3, _('Wednesday')),
+    (4, _('Thursday')),
+    (5, _('Friday')),
+    (6, _('Saturday')),
 )
+
+DAY_DICT = dict(DAY_CHOICES)
 
 class PeriodMeta(models.Model):
     """Defines the length of periods and more"""
 
     start_date = models.DateField()
     end_date = models.DateField()
-    day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
+    day_of_week = models.IntegerField(choices=DAY_CHOICES)
 
     period_length = models.IntegerField()
     breaks_after_period = models.CommaSeparatedIntegerField(max_length=32)
@@ -36,7 +37,7 @@ class PeriodMeta(models.Model):
     min_periods = models.IntegerField()
 
     def __unicode__(self):
-        return '{} ({} - {})'.format(self.day_of_week, self.start_date,
+        return '{} ({} - {})'.format(DAY_DICT[self.day_of_week], self.start_date,
                                      self.end_date)
 
     def get_period_times(self, periods):
@@ -97,7 +98,7 @@ def get_periodmeta(date):
     queryset = PeriodMeta.objects.filter(
         start_date__lt = date,
         end_date__gt = date,
-        day_of_week = date.strftime('%a')
+        day_of_week = int(date.strftime('%w'))
     )
 
     if len(queryset) == 0:
@@ -180,14 +181,14 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course)
     classroom = models.ForeignKey(Classroom)
 
-    day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
+    day_of_week = models.IntegerField(choices=DAY_CHOICES)
     period = models.IntegerField()
 
     start_date = models.DateField()
     end_date = models.DateField()
 
     def __unicode__(self):
-        return '{} {} {}'.format(self.course.topic, self.day_of_week,
+        return '{} {} {}'.format(self.course.topic, DAY_DICT[self.day_of_week],
                                  self.period)
 
 class HomeworkType(models.Model):
