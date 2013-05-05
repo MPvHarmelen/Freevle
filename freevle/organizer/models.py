@@ -21,7 +21,15 @@ DAY_CHOICES = (
     (6, _('Saturday')),
 )
 
-DAY_DICT = dict(DAY_CHOICES)
+DAY_DICT = {
+    0 : 'Sunday',
+    1 : 'Monday',
+    2 : 'Tuesday',
+    3 : 'Wednesday',
+    4 : 'Thursday',
+    5 : 'Friday',
+    6 : 'Saturday',
+}
 
 class PeriodMeta(models.Model):
     """Defines the length of periods and more"""
@@ -199,6 +207,12 @@ class HomeworkType(models.Model):
                                               'than 10 will appear under '
                                               '`comming homework`'))
 
+    def __cmp__(self, other):
+        return cmp(self.weight, other.weight)
+
+    def __eq__(self, other):
+        return super(HomeworkType).__eq__(self, other)
+
     def __unicode__(self):
         return self.name
 
@@ -208,6 +222,12 @@ class Homework(models.Model):
 
     lesson = models.ForeignKey(Lesson)
     due_date = models.DateField()
+
+    def __cmp__(self, other):
+        return cmp(self.homework_type, other.homework_type)
+
+    def __eq__(self, other):
+        return super(Homework).__eq__(self, other)
 
     def __unicode__(self):
         return '{} {}'.format(self.lesson.course.topic, self.homework_type)
