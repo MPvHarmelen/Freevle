@@ -223,11 +223,18 @@ class Homework(models.Model):
     lesson = models.ForeignKey(Lesson)
     due_date = models.DateField()
 
-    def __cmp__(self, other):
-        return cmp(self.homework_type, other.homework_type)
-
     def __eq__(self, other):
-        return super(Homework).__eq__(self, other)
+        def extended_and(li):
+            if len(li) > 1:
+                return li.pop() and extended_and(li)
+            else:
+                return li[0]
+        attrs = ['homework_type', 'content', 'lesson', 'due_date']
+        try:
+            return extended_and(getattr(self, attr) == getattr(other, attr) for
+                                attr in attrs)
+        except AttributeError:
+            return False
 
     def __unicode__(self):
         return '{} {}'.format(self.lesson.course.topic, self.homework_type)
