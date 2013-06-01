@@ -75,7 +75,7 @@ a img {
   border: none;
 }
 
-/*------------------------------header------------------------------*/    
+/*------------------------------header------------------------------*/
 header {
   width: 900px;
   margin: auto;
@@ -183,7 +183,7 @@ a.submenu-item:link, a.submenu-item:visited {
 a.submenu-item:hover {
   background: #008;
   color: #eee;
-} 
+}
 
 a.submenu-item:active {
   padding: 11px 15px 9px;
@@ -410,8 +410,8 @@ h2 {
 h2 a:link, a:visited{
   text-decoration: none;
   color: #000;
-} 
-  
+}
+
 #inlogform h2 {
   text-align: center;
   text-shadow: 1px 1px 1px #fff;
@@ -782,21 +782,21 @@ div.note {
 }
 
 div.note:before, div.note:after {
-  z-index: -1; 
-  position: absolute; 
+  z-index: -1;
+  position: absolute;
   content: "";
   bottom: 15px;
   left: 10px;
-  width: 50%; 
+  width: 50%;
   top: 80%;
   max-width:300px;
-  background: rgba(0, 0, 0, 0.7); 
+  background: rgba(0, 0, 0, 0.7);
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
   -ms-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
-  -webkit-transform: rotate(-2deg);    
-  -moz-transform: rotate(-2deg);   
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
   -o-transform: rotate(-2deg);
 }
 
@@ -935,7 +935,7 @@ a.course {
 .oddcourse {
   list-style: none;
   background: #EEE;
-  
+
 }
 
 .evencourse {
@@ -1003,7 +1003,7 @@ header#courseheader:after {
   border-radius: 433px / 7px;
   content: "";
   position: absolute;
-  left: 15px; 
+  left: 15px;
   z-index: -1;
 }
 
@@ -1280,7 +1280,7 @@ input[disabled=disabled] {
 }
 
 input.settings-submit {
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 p.settings {
@@ -1335,7 +1335,7 @@ input#confirm-password {
   background-size: 17px 17px;
   background-repeat: no-repeat;
   padding-right: 30px;
-  width: 200px;  
+  width: 200px;
 }
 div#checkifsame {
   padding: 5px 8px 5px 17px;
@@ -1421,7 +1421,13 @@ p.weeknumber {
 
 p.lessondate {
   float: left;
-  width: 170px;
+  width: 135px;
+  margin: 8px 0 0 4px;
+}
+
+p.lessonday {
+  float: left;
+  width: 31px;
   margin: 8px 0;
 }
 
@@ -1442,6 +1448,14 @@ input.homework {
   padding: 4px;
   float: left;
   width: 459px;
+}
+
+input.duedate {
+  border: 1px solid #ccc;
+  margin: 8px 66px 8px 0;
+  padding: 4px;
+  float: left;
+  width: 63px;
 }
 
 /*------------------------------footer------------------------------*/
