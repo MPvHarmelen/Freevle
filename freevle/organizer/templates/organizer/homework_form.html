@@ -7,7 +7,9 @@
   {% csrf_token %}
     <select name="course" onchange='this.form.submit()'>
       {% for listcourse in courses %}
-        <option value="{{ listcourse.slug }}" {% if listcourse == course %}selected{% endif %}>{{ listcourse.name }}</option>
+        <option value="{{ listcourse.slug }}"
+          {% if listcourse == course %}selected{% endif %}>{{ listcourse.name }}
+        </option>
       {% endfor %}
     </select>
   </form>
@@ -19,14 +21,25 @@
       {% for homework in homework_list %}
       <li class="lesson">
         <p class="weeknumber">{{ homework.due_date|date:'W' }}</p>
-        <p class="lessondate">{{ homework.due_date|date:'D d-m-Y' }} hour {{ homework.lesson.period }}</p>
-        <select class="homeworktype" name="homeworktype">
-          <option value="none">Homeworktype:</option>
+        <p class="lessonday">{{ homework.due_date|date:'D' }}</p>
+        {% if homework.period %} {# eg: if this homework is attached to a lesson #}
+          <p class="lessondate">{{ homework.due_date|date:'d-m-Y' }} hour {{ homework.period }}</p>
+          <input type="hidden" name="due_date" value="{{ homework.due_date|date:'d-m-Y' }}">
+        {% else %}
+          <input type="text" name="due_date" class="duedate" placeholder="dd-mm-yyyy" value="{{ homework.due_date|date:'d-m-Y' }}">
+        {% endif %}
+        <select class="homeworktype" name="homework_type">
+          <option value="">Homeworktype:</option>
           {% for hwt in homework_types %}
           <option value="{{ hwt.pk }}" {% if hwt.pk == homework.homework_type.pk %}selected{% endif %}>{{ hwt.name }}</option>
           {% endfor %}
         </select>
         <input type="text" name="content" class="homework" placeholder="Homework" value="{{ homework.content }}">
+        {% if homework.saved == 'yes' %}<img src="/media/img/check.png" alt= "check">{% endif %}
+        {# The yes/no is needed because there shouldn't be a cros or tick when homework.saved == None #}
+        {% if homework.saved == 'no' %}<img src="/media/img/redcross.png" alt= "cross">{% endif %}
+        <input type="hidden" name="period" value="{{ homework.period }}">
+        <input type="hidden" name="id" value="{{ homework.id }}">
         <div class="clear"></div>
       </li>
       {% endfor %}
