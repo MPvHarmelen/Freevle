@@ -220,24 +220,26 @@ class Homework(models.Model):
     homework_type = models.ForeignKey(HomeworkType)
     content = models.CharField(max_length=255)
 
-    lesson = models.ForeignKey(Lesson)
+    course = models.ForeignKey(Course)
     due_date = models.DateField()
+    period = models.IntegerField(null=True, blank=True)
 
     def __eq__(self, other):
-        def extended_and(li):
-            if len(li) > 1:
-                return li.pop() and extended_and(li)
-            else:
-                return li[0]
-        attrs = ['homework_type', 'content', 'lesson', 'due_date']
-        try:
+        if type(self) == type(other):
+            def extended_and(li):
+                if len(li) > 1:
+                    return li.pop() and extended_and(li)
+                else:
+                    return li[0]
+            attrs = ['homework_type', 'content', 'course', 'due_date', 'period']
             return extended_and(getattr(self, attr) == getattr(other, attr) for
                                 attr in attrs)
-        except AttributeError:
+        else:
             return False
 
     def __unicode__(self):
-        return '{} {}'.format(self.lesson.course.topic, self.homework_type)
+        return '{} {} on {}'.format(self.course.topic, self.homework_type,
+                                    self.due_date.strftime('%d-%m-%Y'))
 
     class Meta:
         verbose_name_plural = 'homework'
