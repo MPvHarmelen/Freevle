@@ -94,6 +94,7 @@ def update_homework_view(request, slug=None, minimum_homework=10, date_format='%
             periods = request.POST.getlist('period')
             homework_list = []
             due_dateles_homework_list = []
+            there_are_errors = False
             for i, id in enumerate(ids):
                 if periods[i] == 'None':
                     periods[i] = None
@@ -112,7 +113,7 @@ def update_homework_view(request, slug=None, minimum_homework=10, date_format='%
 
                 homework.content = contents[i]
                 homework.period = periods[i]
-                homework.homework_type_id = id=hw_types[i]
+                homework.homework_type_id = hw_types[i]
 
                 errors = {}
                 try:
@@ -132,6 +133,7 @@ def update_homework_view(request, slug=None, minimum_homework=10, date_format='%
                     # This has to be verbal because the template language sucks.
                     homework.saved = 'yes'
                 else:
+                    there_are_errors = True
                     homework.saved = 'no'
 
                 homework.errors = errors
@@ -141,9 +143,12 @@ def update_homework_view(request, slug=None, minimum_homework=10, date_format='%
             homework_list.sort(key=lambda a: (a.due_date, a.period))
 
             # Then check where to go.
-            course_slug = request.POST.get('course') or course.slug
+            if there_are_errors:
+                course_slug = course.slug
+            else:
+                 course_slug = request.POST.get('course') or course.slug
             url = 'organizer-update-homework'
-            kwargs = {'slug':course_slug}
+            kwargs = {'slug' : course_slug}
             return HttpResponseRedirect(reverse(url, kwargs=kwargs))
 
         else:
