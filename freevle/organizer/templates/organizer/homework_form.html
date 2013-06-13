@@ -12,11 +12,8 @@
         </option>
       {% endfor %}
     </select>
-  </form>
 
  <h2>Homework</h2>
- <form method='POST'>
-  {% csrf_token %}
     <ul id="makeplanner">
       {% for homework in homework_list %}
       <li class="lesson">
