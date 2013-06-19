@@ -143,6 +143,7 @@ def get_periodmeta(date):
 
                 if len(periodmeta_set) == 0:
                     periodmeta = periodmeta_set[0]
+                    periodmeta = periodmeta_set[0]
                 else:
                     # Rule 4
                     raise ImproperlyConfigured(
@@ -155,15 +156,15 @@ def get_periodmeta(date):
     return periodmeta
 
 class Topic(models.Model):
-    name = models.CharField(max_length=32)
-    abbr = models.CharField(max_length=16)
+    name = models.CharField(max_length=32, unique=True)
+    abbr = models.CharField(max_length=4, unique=True)
 
     def __unicode__(self):
         return self.name
 
 class Course(models.Model):
-    name = models.CharField(max_length=32)
-    slug = models.SlugField()
+    name = models.CharField(max_length=32, unique=True)
+    slug = models.SlugField(unique=True)
     topic = models.ForeignKey(Topic)
     teacher = models.ForeignKey(
         User,
@@ -176,11 +177,14 @@ class Course(models.Model):
         limit_choices_to={'groups__name': 'students'}
     )
 
+    class Meta:
+        unique_together = ('name', 'teacher')
+
     def __unicode__(self):
         return '{} ({})'.format(self.topic, self.teacher.get_profile().designation)
 
 class Classroom(models.Model):
-    name = models.CharField(max_length=16)
+    name = models.CharField(max_length=16, unique=True)
 
     def __unicode__(self):
         return self.name
@@ -200,7 +204,7 @@ class Lesson(models.Model):
                                  self.period)
 
 class HomeworkType(models.Model):
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=32, unique=True)
     abbr = models.CharField(max_length=8)
     color = models.CharField(max_length=7, validators=[validate_hex])
     weight = models.IntegerField(help_text=_('Homework with a weight higher '
