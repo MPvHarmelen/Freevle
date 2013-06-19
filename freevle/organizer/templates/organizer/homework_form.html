@@ -17,6 +17,11 @@
     <ul id="makeplanner">
       {% for homework in homework_list %}
       <li class="lesson">
+        {% if homework.errors %}
+          {% for field, errors in homework.errors.items %}
+            {{ field }}:{% for e in errors %} {{ e }}{% endfor %}
+          {% endfor %}
+        {% endif %}
         <p class="weeknumber">{{ homework.due_date|date:'W' }}</p>
         <p class="lessonday">{{ homework.due_date|date:'D' }}</p>
         {% if homework.period %} {# eg: if this homework is attached to a lesson #}
