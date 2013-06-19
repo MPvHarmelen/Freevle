@@ -8,6 +8,7 @@ class TopicAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 class CourseAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
     list_display = ('topic','teacher')
 
 class ClassroomAdmin(admin.ModelAdmin):
