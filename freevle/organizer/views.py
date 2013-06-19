@@ -364,7 +364,8 @@ class LessonListMixin(DateMixin):
         iterated for the template. (No cancellation is checked)
         """
         empty_course = StrCourse(topic=self.empty_lesson_tekst)
-        empty_lesson = lambda: Lesson(course=empty_course)
+        # This is to make sure not all empty lessons are the samen instance
+        get_empty_lesson = lambda: Lesson(course=empty_course)
 
         unpadded_list = list(lesson_set)
         unpadded_list.sort(key=lambda a: a.period)
@@ -381,14 +382,14 @@ class LessonListMixin(DateMixin):
             if lesson.period != previous_period + 1:
                 difference = lesson.period - previous_period
                 # Two adjacent hours differ 1
-                lesson_list.extend((empty_lesson() for i in range(difference - 1)))
+                lesson_list.extend((get_empty_lesson() for i in range(difference - 1)))
 
             lesson_list.append(lesson)
 
         # Correct length
         length = len(lesson_list)
         if length < min_length:
-            lesson_list.extend(empty_lesson() for i in range(min_length - length))
+            lesson_list.extend(get_empty_lesson() for i in range(min_length - length))
 
         lesson_list = self.set_period_times(lesson_list, date)
 
