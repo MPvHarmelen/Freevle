@@ -30,11 +30,11 @@
         {% else %}
           <input type="text" name="due_date" class="duedate" placeholder="dd-mm-yyyy" value="{{ homework.due_date|date:'d-m-Y' }}">
         {% endif %}
-        {% for error in homework.errors.homework_type %}
-          <p class="homeworkerror">{{ error }}</p>
-        {% endfor %}
         <select class="homeworktype" name="homework_type">
           <option value="">Homeworktype:</option>
+          {% for hwt in homework_types %}
+            <option value="{{ hwt.pk }}" {% if hwt.pk == homework.homework_type.pk %}selected{% endif %}>{{ hwt.name }}</option>
+          {% endfor %}
         </select>
         <input type="text" name="content" class="homework" placeholder="Homework" value="{{ homework.content }}">
         <input type="hidden" name="period" value="{{ homework.period }}">
