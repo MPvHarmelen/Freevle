@@ -169,15 +169,15 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
 
         else:
             if homework_list is None:
-                # get_next_lessons only does dates AFTER `date`, so `date` must be
-                # yesterday to include today.
-                prev_date = datetime.date.today() - datetime.timedelta(days=1)
-                end_date = prev_date + datetime.timedelta(days=days_of_the_future)
-                homework = course.homework_set.filter(due_date__gt=prev_date,
+                # get_next_lessons only does dates AFTER `date`, so `date` must
+                # be yesterday to include today.
+                date = datetime.date.today() - datetime.timedelta(days=1)
+                end_date = date + datetime.timedelta(days=days_of_the_future)
+                homework = course.homework_set.filter(due_date__gt=date,
                                                       due_date__lte=end_date)
                 homework_list = list(homework)
-                while prev_date < end_date:
-                    date, lessons = get_next_lessons(course, prev_date)
+                while date < end_date:
+                    date, lessons = get_next_lessons(course, date)
                     if date is None:
                         # This means there are no lessons for this course
                         break
@@ -185,7 +185,6 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
                         if len(homework.filter(due_date=date, period=lesson.period)) == 0:
                             empty_homework = get_empty_homework(course, date, period=lesson.period)
                             homework_list.append(empty_homework)
-                    prev_date = date
                 homework_list.sort(key=lambda a: (a.due_date, a.period))
     else:
         raise PermissionDenied(_('You need to give the course {} to acces this '
@@ -201,6 +200,6 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
                    'course':course,
                    'courses':courses})
 
-def update_homework_extend():
+def update_homework_extend(request):
     pass
 
