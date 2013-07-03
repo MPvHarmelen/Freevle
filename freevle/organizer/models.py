@@ -216,7 +216,9 @@ class HomeworkType(models.Model):
         return cmp(self.weight, other.weight)
 
     def __eq__(self, other):
-        return super(HomeworkType).__eq__(self, other)
+        if type(self) == type(other):
+            return self.pk == other.pk
+        return False
 
     def __unicode__(self):
         return self.name
