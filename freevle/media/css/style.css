@@ -1447,7 +1447,7 @@ input.homework {
   margin: 8px 0 8px 8px;
   padding: 4px;
   float: left;
-  width: 459px;
+  width: 437px;
 }
 
 input.duedate {
@@ -1456,6 +1456,11 @@ input.duedate {
   padding: 4px;
   float: left;
   width: 63px;
+}
+
+img.addhomework {
+  margin: 11px 0 4px 2px;
+  width: 20px;
 }
 
 /*------------------------------footer------------------------------*/

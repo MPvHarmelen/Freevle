@@ -92,7 +92,6 @@ $(document).ready(function(){
   $(window).resize(centerInlogForm);
 
 //Menu backgrounds
-
   $('ul.dropdown').hover(function() {
       $(this).prev('a.menuitem').css('background-color', '#008').css('color', '#fff');
   }, function() {
@@ -202,6 +201,17 @@ $(document).ready(function(){
     if ($(this).val() != '') {
       $(this).parent().submit();
     }
+  });
+
+//Add homeworkline
+  $('#makeplanner').on('click','img.addhomework', function(){
+    var parent = $(this).parent();
+    var html = $('<div>').append($(parent).clone()).remove().html();
+    $(html).insertAfter(parent);
+    var newli = parent.next();
+    $(newli).children('select.homeworktype').val('');
+    $(newli).children('input.homework').val('');
+    $(newli).children().remove('img.homeworksaved');
   });
 });
 
