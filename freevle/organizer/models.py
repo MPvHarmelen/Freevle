@@ -181,7 +181,8 @@ class Course(models.Model):
         unique_together = ('name', 'teacher')
 
     def __unicode__(self):
-        return '{} ({})'.format(self.topic, self.teacher.get_profile().designation)
+        return '{} ({} {})'.format(self.name, self.topic,
+                                   self.teacher.get_profile().designation)
 
 class Classroom(models.Model):
     name = models.CharField(max_length=16, unique=True)
