@@ -87,12 +87,15 @@ def get_empty_homework(course, date, content='', period=None):
     )
 
 @login_required
-def update_homework_view(request, slug=None, days_of_the_future=90,
-                         date_format='%d-%m-%Y', date_format_view='dd-mm-yyyy',
+def update_homework_view(request, slug=None, days_of_the_future=60,
+                         date_format='%d-%m-%Y', human_date_format='dd-mm-yyyy',
                          homework_list=None):
     if slug is None:
         raise ImproperlyConfigured('update_homework_view should be called with '
                                    'a slug.')
+    # URL gives unicode, so...
+    days_of_the_future = int(days_of_the_future)
+
     # Check if the user actually gives this course.
     course = Course.objects.get(slug=slug)
     if course in request.user.gives_courses.all():
@@ -122,8 +125,8 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
                 else:
                     if homework.course != course:
                         # This means someone inserted an id in the html
-                        # and because they aren't allowed to edit other
-                        # homework than for this course:
+                        # and because they aren't allowed to edit homework
+                        # other than for this course:
                         raise PermissionDenied()
 
                 homework.content = contents[i]
@@ -134,7 +137,7 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
                 try:
                     homework.due_date = datetime.datetime.strptime(due_dates[i], date_format).date()
                 except ValueError as e:
-                    errors.update(due_date=_('Date not recognised, correct format: {}'.format(date_format_view)))
+                    errors.update(due_date=_('Date not recognised, correct format: {}'.format(human_date_format)))
                 if not (homework.content == '' and homework.homework_type_id == ''):
                     try:
                         homework.full_clean()
@@ -164,7 +167,7 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
             else:
                 course_slug = request.POST.get('course') or course.slug
                 url = 'organizer-update-homework'
-                kwargs = {'slug' : course_slug}
+                kwargs = {'slug': course_slug}
                 return HttpResponseRedirect(reverse(url, kwargs=kwargs))
 
         else:
@@ -176,15 +179,16 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
                 homework = course.homework_set.filter(due_date__gt=date,
                                                       due_date__lte=end_date)
                 homework_list = list(homework)
+                date, lessons = get_next_lessons(course, date)
+                if date is None:
+                    # This means there are no lessons for this course
+                    date = end_date
                 while date < end_date:
-                    date, lessons = get_next_lessons(course, date)
-                    if date is None:
-                        # This means there are no lessons for this course
-                        break
                     for lesson in lessons:
                         if len(homework.filter(due_date=date, period=lesson.period)) == 0:
                             empty_homework = get_empty_homework(course, date, period=lesson.period)
                             homework_list.append(empty_homework)
+                    date, lessons = get_next_lessons(course, date)
                 homework_list.sort(key=lambda a: (a.due_date, a.period))
     else:
         raise PermissionDenied(_('You need to give the course {} to acces this '
@@ -193,13 +197,14 @@ def update_homework_view(request, slug=None, days_of_the_future=90,
     # Template variables
     homework_types = HomeworkType.objects.all()
     courses = sorted(request.user.gives_courses.all(), key=lambda a: a.name)
+    url = 'organizer-update-homework-date'
+    kwargs = {'slug' : course.slug,
+              'days_of_the_future': days_of_the_future + 10}
+    more_url = reverse(url, kwargs=kwargs)
     return render(request,
                   'organizer/homework_form.html',
-                  {'homework_list':homework_list,
-                   'homework_types':homework_types,
-                   'course':course,
-                   'courses':courses})
-
-def update_homework_extend(request):
-    pass
-
+                  {'homework_list': homework_list,
+                   'homework_types': homework_types,
+                   'course': course,
+                   'courses': courses,
+                   'more_url': more_url})
