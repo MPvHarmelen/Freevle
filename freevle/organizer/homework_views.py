@@ -106,21 +106,23 @@ def update_homework_view(request, slug=None, days_of_the_future=60,
             contents = request.POST.getlist('content')
             due_dates = request.POST.getlist('due_date')
             periods = request.POST.getlist('period')
+            deletions = request.POST.getlist('delete')
             homework_list = []
             due_dateles_homework_list = []
             there_are_errors = False
             for i, id in enumerate(ids):
                 try:
-                    periods[i] = int(periods[i])
-                except ValueError:
-                    periods[i] = None
-                try:
                     id = int(id)
                 except ValueError:
                     id = None
+
                 try:
                     homework = Homework.objects.get(id=id)
                 except Homework.DoesNotExist:
+                    if deletions[i] == 'True':
+                        # This homework is going to be deleted anyway,
+                        # so why bother making it.
+                        continue
                     homework = Homework(course=course)
                 else:
                     if homework.course != course:
@@ -128,6 +130,14 @@ def update_homework_view(request, slug=None, days_of_the_future=60,
                         # and because they aren't allowed to edit homework
                         # other than for this course:
                         raise PermissionDenied()
+                    elif deletions[i] == 'True':
+                        homework.delete()
+                        continue
+
+                try:
+                    periods[i] = int(periods[i])
+                except ValueError:
+                    periods[i] = None
 
                 homework.content = contents[i]
                 homework.period = periods[i]

@@ -203,15 +203,27 @@ $(document).ready(function(){
     }
   });
 
-//Add homeworkline
+//Add homework line
   $('#makeplanner').on('click','img.addhomework', function(){
     var parent = $(this).parent();
     var html = $('<div>').append($(parent).clone()).remove().html();
-    $(html).insertAfter(parent);
+    $(html).insertAfter(parent).hide().slideDown();
     var newli = parent.next();
     $(newli).children('select.homeworktype').val('');
     $(newli).children('input.homework').val('');
     $(newli).children().remove('img.homeworksaved');
+  });
+
+//Delete homework line
+  $('#makeplanner').on('click','img.deletehomework', function(){
+    $(this).parent().children('div.hidehomework').fadeIn();
+    $(this).parent().children('input[name=delete]').val('True');
+  });
+
+//Undelete homework line
+  $('#makeplanner').on('click','.undeletehomework', function(){ //Make this selector more specifick!!
+    $(this).parent().children('div.hidehomework').fadeOut();
+    $(this).parent().children('input[name=delete]').val('False');
   });
 });
 

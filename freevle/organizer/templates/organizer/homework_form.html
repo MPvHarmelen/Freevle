@@ -17,6 +17,9 @@
     <ul id="makeplanner">
       {% for homework in homework_list %}
       <li class="lesson">
+        <div class="hidehomework undeletehomework"><p>
+          {% blocktrans %}This homework will be deleted{% endblocktrans %} (<a class="undeletehomework">{% trans "cancel" %}</a>)
+        </p></div>
         {% if homework.errors %}
           {% for field, errors in homework.errors.items %}
             {{ field }}:{% for e in errors %} {{ e }}{% endfor %}
@@ -39,6 +42,8 @@
         <input type="text" name="content" class="homework" placeholder="Homework" value="{{ homework.content }}">
         <input type="hidden" name="period" value="{{ homework.period }}">
         <input type="hidden" name="id" value="{{ homework.id }}">
+        <input type="hidden" name="delete" value="False">
+        <img src="/media/img/cross.png" class="deletehomework">
         <img src="/media/img/Orb plus.png" class="addhomework">
         {% if homework.saved == 'yes' %}<img src="/media/img/check.png" class="homeworksaved" alt="check">{% endif %}
         {# The yes/no is needed because there shouldn't be a cros or tick when homework.saved == None #}
@@ -49,6 +54,6 @@
       <li class="lesson"><p>{% blocktrans %}There are no lessons in this part of the future{% endblocktrans %}</p></li>
       {% endfor %}
      </ul>
-    <input type="submit" value="Submit" class="button"> {%trans "or" %} <a id="more_homework">{% trans "plan further ahead" %}</a>
+    <input type="submit" value="Submit" class="button"> {% trans "or" %} <a href="{{ more_url }}" id="more_homework">{% trans "plan further ahead" %}</a>
   </form>
 {% endblock %}

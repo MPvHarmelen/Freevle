@@ -1415,7 +1415,7 @@ li.lesson {
 
 p.weeknumber {
   float: left;
-  width: 30px;
+  width: 23px;
   margin: 8px 0;
 }
 
@@ -1447,7 +1447,7 @@ input.homework {
   margin: 8px 0 8px 8px;
   padding: 4px;
   float: left;
-  width: 437px;
+  width: 421px;
 }
 
 input.duedate {
@@ -1458,8 +1458,26 @@ input.duedate {
   width: 63px;
 }
 
+div.hidehomework {
+    display: none;
+    background-color: #bbb;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    opacity: 0.5;
+    width: 800px;
+    height: 42px;
+    position: absolute;
+}
+
+img.deletehomework {
+  float: left;
+  background-color: #FF0000;
+  margin: 11px 0 11px 3px;
+  width: 20px;
+}
+
 img.addhomework {
-  margin: 11px 0 4px 2px;
+  float: left;
+  margin: 11px 0 11px 2px;
   width: 20px;
 }
 
