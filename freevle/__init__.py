@@ -1,6 +1,6 @@
 from flask import Flask, session
 
-app = Flask('freevle')
+app = Flask(__name__)
 
 # Initialize database
 from flask.ext.sqlalchemy import SQLAlchemy
