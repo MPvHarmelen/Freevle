@@ -1,0 +1,11 @@
+app: cms
+name: Content Management System
+descr: The default Freevle content management system.
+author: Freevle
+version: 0.1
+
+required_apps:
+  - user
+
+required_packages:
+  
