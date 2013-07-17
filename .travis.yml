@@ -8,7 +8,6 @@ python:
   - "2.7"
   - "3.3"
 env:
-  - FLASK=dev
   - FLASK=0.10.1
 matrix:
   allow_failures:
