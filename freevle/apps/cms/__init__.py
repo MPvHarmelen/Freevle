@@ -1,5 +1,6 @@
 from flask import Blueprint
-mod = Blueprint(
+
+bp = Blueprint(
     'cms',
     __name__,
     template_folder='templates',

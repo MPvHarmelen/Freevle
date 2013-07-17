@@ -1,6 +1,6 @@
-app: virtualcr
-name: Virtual Classroom
-descr: Resource hubs for courses.
+app: news
+name: News
+descr: The default Freevle messaging system
 author: Freevle
 version: 0.1
 
