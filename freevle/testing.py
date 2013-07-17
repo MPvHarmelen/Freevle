@@ -24,7 +24,7 @@ class TestBase(unittest.TestCase):
 
 class TestSetup(TestBase):
     def test_setup(self):
-        assert self.app is not None
+        self.assertIsNotNone(self.app)
 
 def run():
     """Run all tests, from all apps."""
@@ -35,12 +35,13 @@ def run():
     # Find and import testing suites from blueprints.
     apps = os.listdir(freevle.app.config['APPS_DIRECTORY'])
     for app_name in apps:
-        app = importlib.import_module('freevle.apps.' + app_name)
-        # App imported, let's see if it has a testing suite.
+        # Try importing test cases from the app. If we can't, that's okay. :(
         try:
-            suite = app.tests.suite
-            suite.addTest(suite)
-        except AttributeError:
+            tests = importlib.import_module('freevle.apps.{}.tests'\
+                                          .format(app_name))
+            app_suite = tests.suite
+            suite.addTest(app_suite)
+        except ImportError:
             print("NOTICE: {} app has no test cases.".format(app_name))
 
     # And finish it all by running our tests.
