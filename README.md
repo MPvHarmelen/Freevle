@@ -1,4 +1,4 @@
-Freevle Software for Schools
+Freevle Software for Schools [![Build Status](https://travis-ci.org/Freevle/Freevle.png?branch=project-hiroshima)](https://travis-ci.org/Freevle/Freevle)
 =========================
 
 What is Freevle
@@ -39,6 +39,10 @@ might make it a bit of a pain to install it, for now. In the list below you can
 not only find what versions you need, but also where to find them, if they're
 not easy to find.
 
+Instead of manually installing all these, you can also just check out the
+`.travis.yml` file and follow the same steps as Travis would in its install
+process.
+
 * Python 3.3
 * Flask 0.10.1
 * Flask-SQLAlchemy 0.17
@@ -49,8 +53,23 @@ not easy to find.
 * SQLAlchemy 0.8
 * Babel 1.0dev
   (install from [bitbucket](https://bitbucket.org/babel3_developers/babel3), be
-  sure to follow [these instructions](http://babel.edgewall.org/wiki/SubversionCheckout))
+  sure to follow [these instructions](http://babel.edgewall.org/wiki/SubversionCheckout)
+  on how to import the locale data).
 
 ### Development
 
-TODO: rewrite
+After going through the long and tedious process of installing all the packages
+you can finally start working on Freevle!
+
+It's a fairly simple process: copy the `settings.cfg.sample` to your own
+personal `settings.cfg` file and change the settings to match your personal
+setup. You can then run Freevle and its testing suite in either of two ways:
+
+* Environment variable  
+  Define an environment variable called `FREEVLE_SETTINGS` with the path to
+  your `settings.cfg` file, then normally call `run.py` and `test.py`.
+* Command line argument  
+  Call the scripts with the path to your settings file as argument, so
+  somewhat like `python run.py ../settings.cfg` and the same for `test.py`.
+
+That's about it... for now.

@@ -1,10 +1,10 @@
-import os
+import sys, os
 import importlib
 import tempfile
 import unittest
 import freevle
 
-class TestBase(object):
+class TestBase(unittest.TestCase):
     def setUp(self):
         # Create a temporary database file (sqlite3).
         self.db_fd, self.db_path = tempfile.mkstemp()
@@ -22,11 +22,12 @@ class TestBase(object):
         os.close(self.db_fd)
         os.unlink(self.db_path)
 
-class TestSetup(TestBase, unittest.TestCase):
+class TestSetup(TestBase):
     def test_setup(self):
-        assert self.app is not None
+        self.assertIsNotNone(self.app)
 
-if __name__ == '__main__':
+def run():
+    """Run all tests, from all apps."""
     # We're going to be working with TestSuites here.
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestSetup))
@@ -34,13 +35,16 @@ if __name__ == '__main__':
     # Find and import testing suites from blueprints.
     apps = os.listdir(freevle.app.config['APPS_DIRECTORY'])
     for app_name in apps:
-        app = importlib.import_module('freevle.apps.' + app_name)
-        # App imported, let's see if it has a testing suite.
+        # Try importing test cases from the app. If we can't, that's okay. :(
         try:
-            suite = app.tests.suite
-            suite.addTest(suite)
-        except AttributeError:
+            tests = importlib.import_module('freevle.apps.{}.tests'\
+                                          .format(app_name))
+            app_suite = tests.suite
+            suite.addTest(app_suite)
+        except ImportError:
             print("NOTICE: {} app has no test cases.".format(app_name))
 
     # And finish it all by running our tests.
-    unittest.main()
+    res = unittest.TextTestRunner().run(suite)
+    if len(res.failures) > 0:
+        sys.exit(1)

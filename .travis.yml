@@ -8,7 +8,6 @@ python:
   - "2.7"
   - "3.3"
 env:
-  - FLASK=dev
   - FLASK=0.10.1
 matrix:
   allow_failures:
@@ -19,11 +18,11 @@ matrix:
 install:
   - pip install flask==$FLASK --use-mirrors
   - pip install git+git://github.com/mitsuhiko/flask-sqlalchemy.git
-  - pip install flask-babel --use-mirrors
+  - pip install flask-babelex --use-mirrors
   - pip install git+git://github.com/FSX/flask-seasurf.git
   - pip install sqlalchemy --use-mirrors
 
-  - hg clone ssh://hg@bitbucket.org/babel3_developers/babel3
+  - hg clone https://bitbucket.org/babel3_developers/babel3
   - cd babel3
   - mkdir babel/localedata
   - wget http://unicode.org/Public/cldr/1.7.2/core.zip
@@ -32,5 +31,7 @@ install:
   - python scripts/import_cldr.py common/
   - python setup.py install
   - cd ..
+
+  - "sed \"s:^APPS_DIRECTORY.*$:APPS_DIRECTORY = '$(pwd)\\/freevle\\/apps\\/':\" <settings.cfg.sample >settings.cfg"
 script:
-  - python tests.py
+  - python test.py ../settings.cfg
