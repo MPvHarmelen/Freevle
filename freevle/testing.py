@@ -1,4 +1,4 @@
-import os
+import sys, os
 import importlib
 import tempfile
 import unittest
@@ -45,4 +45,6 @@ def run():
             print("NOTICE: {} app has no test cases.".format(app_name))
 
     # And finish it all by running our tests.
-    unittest.TextTestRunner().run(suite)
+    res = unittest.TextTestRunner().run(suite)
+    if len(res.failures) > 0:
+        sys.exit(1)
