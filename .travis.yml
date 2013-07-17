@@ -32,6 +32,6 @@ install:
   - python setup.py install
   - cd ..
 
-  - "sed \"s:^APPS_DIRECTORY.*$:APPS_DIRECTORY = '$(pwd)\/freevle\/apps\/':\" <settings.cfg.sample >settings.cfg"
+  - "sed \"s:^APPS_DIRECTORY.*$:APPS_DIRECTORY = '$(pwd)\\/freevle\\/apps\\/':\" <settings.cfg.sample >settings.cfg"
 script:
   - python test.py ../settings.cfg
