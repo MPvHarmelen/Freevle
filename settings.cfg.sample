@@ -2,3 +2,7 @@ DEBUG = False
 SECRET_KEY = 'Replace this'
 
 APPS_DIRECTORY = '/absolute/path/to/freevle/apps/
+
+# Constants below are in the datetime %w format.
+ORGANIZER_WEEK_STARTS_ON = 1
+ORGANIZER_WEEK_ENDS_ON = 5
