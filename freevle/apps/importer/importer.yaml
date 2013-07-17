@@ -1,0 +1,10 @@
+app: importer
+name: Importer
+descr: The Freevle import utility, for (among others) organizer.
+author: Freevle
+version: 0.1
+
+required_apps:
+
+required_packages:
+

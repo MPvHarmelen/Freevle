@@ -7,4 +7,4 @@ bp = Blueprint(
     static_folder='static'
 )
 
-URL_PREFIX='organizer/'
+URL_PREFIX='/organizer'

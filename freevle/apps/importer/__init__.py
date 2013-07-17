@@ -1,10 +1,10 @@
 from flask import Blueprint
 
 bp = Blueprint(
-    'news',
+    'importer',
     __name__,
     template_folder='templates',
     static_folder='static'
 )
 
-URL_PREFIX='/news'
+URL_PREFIX='/importer'

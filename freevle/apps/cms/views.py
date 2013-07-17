@@ -1,5 +1,5 @@
 from . import bp
 
-@bp.route('')
+@bp.route('/')
 def home():
     """The homepage of the entire website."""
