@@ -1,6 +1,8 @@
 Freevle Software for Schools
 =========================
 
+[![Build Status](https://travis-ci.org/Freevle/Freevle.png?branch=project-hiroshima)](https://travis-ci.org/Freevle/Freevle)
+
 What is Freevle
 ------------
 
