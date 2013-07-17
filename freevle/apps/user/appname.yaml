@@ -1,0 +1,10 @@
+app: user
+name: User Authentication
+descr: The default Freevle user authentication.
+author: Freevle
+version: 0.1
+
+required_apps:
+
+required_packages:
+
