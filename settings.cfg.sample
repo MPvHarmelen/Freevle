@@ -1,0 +1,4 @@
+DEBUG = False
+SECRET_KEY = 'Replace this'
+
+APPS_DIRECTORY = '/absolute/path/to/freevle/apps/
