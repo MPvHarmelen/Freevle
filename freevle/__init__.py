@@ -25,4 +25,4 @@ for bp_name in blueprints:
     except ImportError:
         raise ImportError("{} app appears to be broken.".format(bp_name))
     except AttributeError:
-        raise ImportError("{} app doesn't have blueprint.".format(bp_name))
+        raise ImportError("{} app doesn't have a blueprint.".format(bp_name))
