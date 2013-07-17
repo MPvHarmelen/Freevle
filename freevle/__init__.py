@@ -1,4 +1,4 @@
-import os
+import sys, os
 import importlib
 
 from flask import Flask, session
@@ -9,7 +9,15 @@ from flask.ext.seasurf import SeaSurf
 app = Flask(__name__)
 # Load settings (defaults from file, others from wherever user wants)
 app.config.from_object('freevle.default_settings')
-app.config.from_envvar('FREEVLE_SETTINGS')
+if os.environ.get('FREEVLE_SETTINGS', None) is not None:
+    app.config.from_envvar('FREEVLE_SETTINGS')
+else:
+    try:
+        app.config.from_pyfile(sys.argv[1])
+    except IndexError:
+        raise EnvironmentError(("No environment variable set for configuration"
+                                " file, nor was an argument given with its"
+                                " location."))
 
 # Initialize Flask extensions
 db = SQLAlchemy(app)
