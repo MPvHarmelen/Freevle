@@ -31,51 +31,26 @@ While Freevle is modular and thus extensible, it has a few essential modules
 Installation
 ------------
 
-**WARNING:** outdated!
-
 ### Dependencies
 
-* Python 2.7
-* Django 1.3+
-* Requests
-* BeautifulSoup 4
+At this moment, the Hiroshima version of Freevle is only officially supporting
+Python 3.3, and thus needs a few experimental branches of some libraries. This
+might make it a bit of a pain to install it, for now. In the list below you can
+not only find what versions you need, but also where to find them, if they're
+not easy to find.
+
+* Python 3.3
+* Flask 0.10.1
+* Flask-SQLAlchemy 0.17
+  (install from [github](https://github.com/mitsuhiko/flask-sqlalchemy))
+* Flask-Babel 0.8.1
+* Flask-SeaSurf 0.1.19
+  (install from [github fork](https://github.com/FSX/flask-seasurf))
+* SQLAlchemy 0.8
+* Babel 1.0dev
+  (install from [bitbucket](https://bitbucket.org/babel3_developers/babel3), be
+  sure to follow [these instructions](http://babel.edgewall.org/wiki/SubversionCheckout))
 
 ### Development
 
-To install the Freevle software on a development server you pretty much just have
-to set up Python, Django and edit the `personalsettings.py.ORG` accordingly.
-You'll want to copy it and rename the copy to `personalsettings.py`. After that 
-you have to edit the following options:
-
-* `ADMINS`
-* `URL_ROOT`
-* `ROOT_DIR`
-
-Finally, run the following command in the terminal:
-
-    python manage.py syncdb
-
-This will ask you if you want to generate a ton of information, for testing
-purposes. The default option will be Yes. If you don't want to generate
-anything just type anything else than y and press enter.
-
-Now you can simply start up the server with this command:
-
-    python manage.py runserver
-
-Also, please read BRANCHINGMODEL.md for details on how to work with our branches,
-is quite important.
-
-### Production
-
-To set up Freevle for a production server (like for your school), you're going to
-have to edit all the settings in the `personalsettings.py` file. Change your
-database settings and set `DEBUG` and `STATIC` to `False`. Also mash some keys
-into the `SECRET_KEY` option. Now run the `syncdb` command.
-
-Now for the hard part. Seeing as Django's built-in development server (run from
-the `runserver` command) isn't very stable or fast, you'll want to run it with
-a *real* HTTP server, like [lighttpd](http://www.lighttpd.net/) or
-[Apache](http://httpd.apache.org/) or any other server that supports FastCGI. I
-recommend reading the Django docs on
-[this subject](https://docs.djangoproject.com/en/dev/howto/deployment/fastcgi/)
+TODO: rewrite
