@@ -7,4 +7,5 @@ bp = Blueprint(
     static_folder='static'
 )
 
-URL_PREFIX=''
+# TODO: Figure out if this should be '/', '' or None
+URL_PREFIX='/'

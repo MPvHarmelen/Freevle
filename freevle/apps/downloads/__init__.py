@@ -7,4 +7,4 @@ bp = Blueprint(
     static_folder='static'
 )
 
-URL_PREFIX='downloads/'
+URL_PREFIX='/downloads'

@@ -7,4 +7,4 @@ bp = Blueprint(
     static_folder='static'
 )
 
-URL_PREFIX='virtualcr/'
+URL_PREFIX='/virtualcr'
