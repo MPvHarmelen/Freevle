@@ -1,0 +1,10 @@
+app: galleries
+name: Galleries
+descr: The default Freevle photo utility.
+author: Freevle
+version: 0.1
+
+required_apps:
+
+required_packages:
+
