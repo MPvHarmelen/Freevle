@@ -20,4 +20,4 @@ csrf = SeaSurf(app)
 blueprints = os.listdir(app.config['APPS_DIRECTORY'])
 for bp_name in blueprints:
     bp = importlib.import_module('freevle.apps.' + bp_name)
-    app.register_blueprint(bp.mod, url_prefix=bp.URL_PREFIX)
+    app.register_blueprint(bp.bp, url_prefix=bp.URL_PREFIX)
