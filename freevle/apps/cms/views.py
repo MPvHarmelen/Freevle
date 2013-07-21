@@ -1,4 +1,5 @@
 from . import bp
+from .models import Page
 
 @bp.route('/')
 def home():
@@ -18,8 +19,10 @@ def page_edit(page_slug=None, parent_slug=None):
     """Create or edit a page."""
     if page_slug is None:
         # First or second routing, create a page.
+        ...
     else:
         # Third or fourth routing, edit a page.
+        ...
 
 @bp.route('/<page_slug>/delete')
 @bp.route('/<parent_slug>/<page_slug>/delete')

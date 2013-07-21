@@ -9,3 +9,5 @@ bp = Blueprint(
 
 # TODO: Figure out if this should be '/', '' or None
 URL_PREFIX='/'
+
+from . import views
