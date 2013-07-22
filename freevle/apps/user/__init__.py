@@ -8,3 +8,5 @@ bp = Blueprint(
 )
 
 URL_PREFIX='/user'
+
+from . import views

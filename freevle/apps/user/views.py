@@ -1,4 +1,5 @@
 from . import bp
+from .models import User, Group, Permission
 
 @bp.route('/login')
 def login():
@@ -18,7 +19,7 @@ def profile_view(designation):
 
 @bp.route('/group/<group_slug>')
 def grou_view(group_slug):
-    """Overview of a group’s members and permissions."""
+    """Overview of a group's members and permissions."""
 
 @bp.route('/settings/')
 @bp.route('/settings/<page>')
