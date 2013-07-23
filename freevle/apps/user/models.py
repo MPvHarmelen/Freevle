@@ -44,7 +44,7 @@ class User(db.Model):
         return self.first_name + ' ' + self.surname
 
     def __repr__(self):
-        return '({id}) {}'.format(self.id, self.get_full_name())
+        return '({}) {}'.format(self.id, self.get_full_name())
 
 group_permission = db.Table('group_permission',
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'),
@@ -65,11 +65,11 @@ class Group(db.Model):
     validate_slug = db.validates('slug')(validate_slug)
 
     def __repr__(self):
-        return '({id}) {}'.format(self.id, self.name)
+        return '({}) {}'.format(self.id, self.name)
 
 class Permission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True, nullable=False)
 
     def __repr__(self):
-        return '({id}) {}'.format(self.id, self.name)
+        return '({}) {}'.format(self.id, self.name)

@@ -46,4 +46,4 @@ class Page(db.Model):
             path = self.parent.slug + '/' + self.slug
         else:
             path = self.slug
-        return '({id}) {}'.format(self.id, path)
+        return '({}) {}'.format(self.id, path)
