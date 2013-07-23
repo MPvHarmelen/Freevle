@@ -7,13 +7,16 @@ from freevle.apps.cms.models import Page
 
 class UserTests(TestBase):
     def test_user(self):
+        # Nice user who knows what should go where
         u_in = User(
             username='u',
             designation='u',
             first_name='u',
             surname='u',
             #avatar=,
-            email='u@u.co'
+            email='u@u.co',
+            secondary_email='u@u.co',
+            phone_number='+0123456789'
         )
         db.session.add(u_in)
         db.session.commit()
@@ -24,7 +27,10 @@ class UserTests(TestBase):
         self.assertEquals(u.surname,'u')
         #self.assertEquals(u.avatar,,)
         self.assertEquals(u.email,'u@u.co')
+        self.assertEquals(u.secondary_email,'u@u.co')
+        self.assertEquals(u.phone_number,'+0123456789')
 
+        # Evil users who should be stopped
         self.assertRaises(ValueError, setattr, u, 'email', "Not an email address")
         self.assertRaises(ValueError, setattr, u, 'secondary_email', "Not an email address either")
         self.assertRaises(ValueError, setattr, u, 'phone_number', "Not a phone number")
