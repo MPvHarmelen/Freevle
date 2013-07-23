@@ -27,8 +27,14 @@ class User(db.Model):
     validate_designation = db.validates('designation')(validate_slug)
 
     @db.validates('email')
-    @db.validates('secondary_email')
     def validate_email(self, key, address):
+        split = address.split('@')
+        if len(split) == 2 and '.' in split[1]:
+            return address
+        raise ValueError("Invalid email address.")
+
+    @db.validates('secondary_email')
+    def validate_secondary_email(self, key, address):
         split = address.split('@')
         if len(split) == 2 and '.' in split[1]:
             return address
