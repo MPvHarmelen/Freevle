@@ -6,10 +6,6 @@ from .models import User, Group, Permission
 from freevle.apps.cms.models import Page
 
 class UserTests(TestBase):
-    def add_and_commit(object):
-        db.session.add(object)
-        db.session.commit()
-
     def test_user(self):
         u_in = User(
             username='u',
@@ -29,28 +25,10 @@ class UserTests(TestBase):
         #self.assertEquals(u.avatar,,)
         self.assertEquals(u.email,'u@u.co')
 
-        u_bad_email = u_bad_secondary_email = None
-        u_bad_phone = u_bad_designation = None
-        bad_li = [u_bad_email, u_bad_secondary_email, u_bad_phone,
-                  u_bad_designation]
-
-        for bad_u in bad_li:
-            bad_u = User(
-                username='u',
-                designation='u',
-                first_name='u',
-                surname='u',
-                #avatar=,
-                email='u@u.co'
-            )
-
-        u_bad_email.email = "Not an email address"
-        u_bad_secondary_email.secondary_email = "Not an email address either"
-        u_bad_phone.phone_number = "Not a phone number"
-        u_bad_designation.designation = "Not a slug"
-
-        for bad_u in bad_li:
-            assertRaises(ValueError, self.add_and_commit, bad_u)
+        self.assertRaises(ValueError, setattr, u, 'email', "Not an email address")
+        self.assertRaises(ValueError, setattr, u, 'secondary_email', "Not an email address either")
+        self.assertRaises(ValueError, setattr, u, 'phone_number', "Not a phone number")
+        self.assertRaises(ValueError, setattr, u, 'designation', "Not a slug")
 
     def test_login(self):
         ...
