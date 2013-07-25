@@ -25,7 +25,7 @@ def planner_edit(course_slug=None):
     """
 
 from . import models
-tables = [x for x in models if type(x) == type(models.db.Model)]
+tables = [x for x in dir(models) if type(x) == type(models.db.Model)]
 
 @bp.route('/admin/')
 def organizer_admin():

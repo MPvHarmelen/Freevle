@@ -8,3 +8,5 @@ bp = Blueprint(
 )
 
 URL_PREFIX='/organizer'
+
+from . import views
