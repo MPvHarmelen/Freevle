@@ -3,8 +3,6 @@ from freevle.testing import TestBase
 from freevle import db
 from .models import User, Group, Permission
 
-from freevle.apps.cms.models import Page
-
 class UserTests(TestBase):
     def test_user(self):
         # Nice user who knows what should go where
