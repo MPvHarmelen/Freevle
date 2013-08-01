@@ -21,6 +21,7 @@ class Page(db.Model):
     )
     groups = db.relationship('Group',
                              secondary=page_group,
+                             lazy='dynamic',
                              backref=db.backref('pages', lazy='dynamic'))
     content = db.Column(db.Text, nullable=False)
     last_edited = db.Column(db.DateTime, nullable=False)
