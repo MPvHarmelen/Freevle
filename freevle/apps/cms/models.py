@@ -1,3 +1,4 @@
+import datetime
 from freevle import db
 from freevle.utils.database import validate_slug
 from freevle.apps.user.models import Group
@@ -14,17 +15,19 @@ class Page(db.Model):
     parent_id = db.Column(db.Integer, db.ForeignKey('page.id'))
     parent = db.relationship('Page',
                              remote_side=[id],
-                             order_by='Page.id',
                              backref=db.backref('children',
                                                 order_by='Page.id',
                                                 lazy='dynamic')
     )
-    groups = db.relationship('Group',
+    groups = db.relationship(Group,
                              secondary=page_group,
+                             order_by=Group.id,
                              lazy='dynamic',
-                             backref=db.backref('pages', lazy='dynamic'))
+                             backref=db.backref('pages',
+                                                order_by='Page.id',
+                                                lazy='dynamic'))
     content = db.Column(db.Text, nullable=False)
-    last_edited = db.Column(db.DateTime, nullable=False)
+    last_edited = db.Column(db.DateTime, onupdate=datetime.datetime.now)
 
     __table_args__ = (
         db.UniqueConstraint('parent_id', 'slug'),
