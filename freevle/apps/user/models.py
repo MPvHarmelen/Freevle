@@ -88,6 +88,20 @@ class User(db.Model):
     def __repr__(self):
         return '({}) {} {}'.format(self.id, self.user_type.capitalize(), self.full_name)
 
+class Admin(User):
+    __tablename__ = 'admin'
+    __mapper_args__ = {'polymorphic_identity': 'admin'}
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+
+class Teacher(User):
+    __tablename__ = 'teacher'
+    __mapper_args__ = {'polymorphic_identity': 'teacher'}
+
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
+                            nullable=False)
+    validate_designation = db.validates('designation')(validate_slug)
+
 class Parent(User):
     __tablename__ = 'parent'
     __mapper_args__ = {'polymorphic_identity': 'parent'}
@@ -114,14 +128,5 @@ class Student(User):
                                                 lazy='dynamic')
     )
 
-    validate_designation = db.validates('designation')(validate_slug)
-
-class Teacher(User):
-    __tablename__ = 'teacher'
-    __mapper_args__ = {'polymorphic_identity': 'teacher'}
-
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
-                            nullable=False)
     validate_designation = db.validates('designation')(validate_slug)
 
