@@ -46,11 +46,16 @@ def run():
         # Try importing test cases from the app. If we can't, that's okay. :(
         try:
             tests = importlib.import_module('freevle.apps.{}.tests'\
-                                          .format(app_name))
+                                            .format(app_name))
             app_suite = tests.suite
             suite.addTest(app_suite)
-        except ImportError:
-            print("NOTICE: {} app has no test cases.".format(app_name))
+        except ImportError as e:
+            if len(e.args) and \
+               e.args[0] == "No module named 'freevle.apps.{}.tests'"\
+                            .format(app_name):
+                print("NOTICE: {} app has no test cases.".format(app_name))
+            else:
+                raise e
 
     # And finish it all by running our tests.
     res = unittest.TextTestRunner().run(suite)
