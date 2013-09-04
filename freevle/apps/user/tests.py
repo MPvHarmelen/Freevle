@@ -5,10 +5,10 @@ from sqlalchemy.exc import IntegrityError
 from .models import Permission, Group, User, Student, Teacher, Parent
 
 class UserTests(TestBase):
-    def create_user(self, user_name='u', first_name='u', surname='u', email='u@u.co',
+    def create_user(self, username='u', first_name='u', surname='u', email='u@u.co',
                     secondary_email='u@u.co', phone_number='+0123456789'):
         u = User(
-            user_name=user_name,
+            username=username,
             first_name=first_name,
             surname=surname,
             email=email,
@@ -23,7 +23,7 @@ class UserTests(TestBase):
         # Nice user who knows what should go where
         u_in = self.create_user()
         u = User.query.get(1)
-        self.assertEquals(u.user_name, u_in.user_name)
+        self.assertEquals(u.username, u_in.username)
         self.assertEquals(u.first_name, u_in.first_name)
         self.assertEquals(u.surname, u_in.surname)
         #self.assertEquals(u.avatar,,)
@@ -32,7 +32,7 @@ class UserTests(TestBase):
         self.assertEquals(u.phone_number, u_in.phone_number)
 
         # Evil users who should be stopped
-        self.assertRaises(IntegrityError, self.create_user, user_name=None)
+        self.assertRaises(IntegrityError, self.create_user, username=None)
         db.session.rollback()
         self.assertRaises(IntegrityError, self.create_user, first_name=None)
         db.session.rollback()
@@ -46,10 +46,10 @@ class UserTests(TestBase):
         db.session.delete(u)
         db.session.commit()
 
-    def create_parent(self, user_name='p', first_name='p', surname='p', email='p@p.co',
+    def create_parent(self, username='p', first_name='p', surname='p', email='p@p.co',
                     secondary_email='p@p.co', phone_number='+0123456789'):
         p = Parent(
-            user_name=user_name,
+            username=username,
             first_name=first_name,
             surname=surname,
             email=email,
@@ -64,7 +64,7 @@ class UserTests(TestBase):
         # Nice parent who knows what should go where
         p_in = self.create_parent()
         p = Parent.query.get(1)
-        self.assertEquals(p.user_name, p_in.user_name)
+        self.assertEquals(p.username, p_in.username)
         self.assertEquals(p.first_name, p_in.first_name)
         self.assertEquals(p.surname, p_in.surname)
         #self.assertEquals(p.avatar,,)
@@ -73,7 +73,7 @@ class UserTests(TestBase):
         self.assertEquals(p.phone_number, p_in.phone_number)
 
         # Evil parents who should be stopped
-        self.assertRaises(IntegrityError, self.create_parent, user_name=None)
+        self.assertRaises(IntegrityError, self.create_parent, username=None)
         db.session.rollback()
         self.assertRaises(IntegrityError, self.create_parent, first_name=None)
         db.session.rollback()
@@ -87,12 +87,12 @@ class UserTests(TestBase):
         db.session.delete(p)
         db.session.commit()
 
-    def create_student(self, user_name='u', first_name='u', surname='u',
+    def create_student(self, username='u', first_name='u', surname='u',
                        email='u@u.co', secondary_email='u@u.co',
                        phone_number='+0123456789', designation='u', grade=1,
                        parent=None):
         s = Student(
-            user_name=user_name,
+            username=username,
             first_name=first_name,
             surname=surname,
             email=email,
@@ -108,9 +108,9 @@ class UserTests(TestBase):
 
     def test_student(self):
         # Nice student who knows what should go where
-        parent = self.create_parent(user_name='parent')
+        parent = self.create_parent(username='parent')
         s_in = self.create_student(parent=parent)
-        s2 = self.create_student(parent=parent, user_name='s2', designation='s2')
+        s2 = self.create_student(parent=parent, username='s2', designation='s2')
         s = Student.query.get(2)
         self.assertEquals(s.first_name, s_in.first_name)
         self.assertEquals(s.surname, s_in.surname)
@@ -124,7 +124,7 @@ class UserTests(TestBase):
         self.assertEquals(parent.children.all(), [s_in, s2])
 
         # Evil students who should be stopped
-        self.assertRaises(IntegrityError, self.create_student, user_name=None)
+        self.assertRaises(IntegrityError, self.create_student, username=None)
         db.session.rollback()
         self.assertRaises(IntegrityError, self.create_student, first_name=None)
         db.session.rollback()
@@ -139,11 +139,11 @@ class UserTests(TestBase):
         db.session.delete(s)
         db.session.commit()
 
-    def create_teacher(self, user_name='u', first_name='u', surname='u',
+    def create_teacher(self, username='u', first_name='u', surname='u',
                        email='u@u.co', secondary_email='u@u.co',
                        phone_number='+0123456789', designation='u'):
         t = Teacher(
-            user_name=user_name,
+            username=username,
             first_name=first_name,
             surname=surname,
             email=email,
@@ -168,7 +168,7 @@ class UserTests(TestBase):
         self.assertEquals(t.designation, t_in.designation)
 
         # Evil teachers who should be stopped
-        self.assertRaises(IntegrityError, self.create_teacher, user_name=None)
+        self.assertRaises(IntegrityError, self.create_teacher, username=None)
         db.session.rollback()
         self.assertRaises(IntegrityError, self.create_teacher, first_name=None)
         db.session.rollback()
