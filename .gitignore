@@ -1,6 +1,6 @@
 *.py[cod]
 settings.cfg
-
+*.sublime*
 # C extensions
 *.so
 
