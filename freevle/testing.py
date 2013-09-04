@@ -34,26 +34,28 @@ class TestSetup(TestBase):
     def test_setup(self):
         self.assertIsNotNone(self.app)
 
-def run():
-    """Run all tests, from all apps."""
+def run(blueprints=None):
+    """Run all tests, from all blueprints."""
     # We're going to be working with TestSuites here.
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestSetup))
 
     # Find and import testing suites from blueprints.
-    apps = os.listdir(freevle.app.config['APPS_DIRECTORY'])
-    for app_name in apps:
-        # Try importing test cases from the app. If we can't, that's okay. :(
+    if blueprints is None:
+        blueprints = os.listdir(freevle.app.config['BLUEPRINTS_DIRECTORY'])
+
+    for bp_name in blueprints:
+        # Try importing test cases from the blueprint. If we can't, that's okay. :(
         try:
-            tests = importlib.import_module('freevle.apps.{}.tests'\
-                                            .format(app_name))
-            app_suite = tests.suite
-            suite.addTest(app_suite)
+            tests = importlib.import_module('freevle.blueprints.{}.tests'\
+                                            .format(bp_name))
+            bp_suite = tests.suite
+            suite.addTest(bp_suite)
         except ImportError as e:
             if len(e.args) and \
-               e.args[0] == "No module named 'freevle.apps.{}.tests'"\
-                            .format(app_name):
-                print("NOTICE: {} app has no test cases.".format(app_name))
+               e.args[0] == "No module named 'freevle.blueprints.{}.tests'"\
+                            .format(bp_name):
+                print("NOTICE: {} blueprint has no test cases.".format(bp_name))
             else:
                 raise e
 

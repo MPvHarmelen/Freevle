@@ -5,7 +5,7 @@ from freevle.utils.database import validate_slug
 from .database import CommaSeperatedInteger, validate_day_of_week
 from .database import validate_start_date, validate_end_date
 
-from freevle.apps.user.models import User
+from ..user.models import User
 
 # days of week are defined according to datetime %w and  format.
 DAY_DICT = {

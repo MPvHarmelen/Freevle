@@ -1,0 +1,55 @@
++<name> reflects attribute names in the code, for instance:
+
+Course.students results in a list of students
+User.takes_courses results in a list of courses
+-
+Configuration constant:
+minimum_amount_of_periods
+
+-
+Validate hex length also three?
+-
+Errors for user interface as constants (for language stuff?)
+
+# Organizer usecases
+- huiswerk toevoegen
+- rooster opvragen (van docent, student en lokaal)
+- Afwezige docent opgeven
+- Uitgeroosterd lokaal ''
+- les aanpassen / zoeken
+- lestijden aanpassen
+- overige roosteronderdelen aanpassen
+
+# Hoe werkt rooster bouwen? (Waar plaatsen?!)
+- voor gebruiker
+
+# Make a manual
+- describe usecases/functionality
+- describe user interface
+
+ -- Done --
+User heeft nog een leerjaar nodig
+-
+teacher cancellation time (denk aan + )
+classroom ''
+Lesson Modification
+Homework Category
+-
+Make user types:
+- Parent
+- Teacher
+- Student
+- Admin
+
+TimeSlotDuration
+- start_date
+- end_date
+- start_time
+- end_time
+- time slot
+
+!! Time slot !!
+(- id)
+- day_of_week
+- period
+helper: get_duration(date) returns (start_time, end_time)

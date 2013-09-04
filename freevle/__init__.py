@@ -1,10 +1,15 @@
 import sys, os
 import importlib
 
-from flask import Flask, session
+from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.babelex import Babel
+from flask.ext.babelex import Babel, NullTranslations
 from flask.ext.seasurf import SeaSurf
+
+if not hasattr(NullTranslations, 'ugettext'):
+    NullTranslations.ugettext = NullTranslations.gettext
+if not hasattr(NullTranslations, 'ungettext'):
+    NullTranslations.ungettext = NullTranslations.ngettext
 
 app = Flask(__name__)
 # Load settings (defaults from file, others from wherever user wants)
@@ -25,12 +30,12 @@ babel = Babel(app)
 csrf = SeaSurf(app)
 
 # Find and import blueprints.
-blueprints = os.listdir(app.config['APPS_DIRECTORY'])
+blueprints = os.listdir(app.config['BLUEPRINTS_DIRECTORY'])
 for bp_name in blueprints:
     try:
-        bp = importlib.import_module('freevle.apps.' + bp_name)
+        bp = importlib.import_module('freevle.blueprints.' + bp_name)
         app.register_blueprint(bp.bp, url_prefix=bp.URL_PREFIX)
     except ImportError:
-        raise ImportError("{} app appears to be broken.".format(bp_name))
+        raise ImportError("{} blueprint appears to be broken.".format(bp_name))
     except AttributeError:
-        raise ImportError("{} app doesn't have a blueprint.".format(bp_name))
+        raise ImportError("{} blueprint doesn't have a blueprint.".format(bp_name))
