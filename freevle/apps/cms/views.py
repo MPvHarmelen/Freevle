@@ -1,14 +1,19 @@
 from . import bp
 from .models import Page
+from flask import g, render_template
 
 @bp.route('/')
 def home():
     """Show the homepage of the entire website."""
+    return render_template('cms/index.html')
 
 @bp.route('/<page_slug>')
 @bp.route('/<parent_slug>/<page_slug>')
 def page_view(page_slug, parent_slug=None):
     """Show a page from the database."""
+    page = Page.query.filter(page_slug=page_slug, parent_slug=parent_slug).first_or_404()
+    return render_template('cms/page_view.html', page=page)
+
 
 # Admin
 @bp.route('/create')

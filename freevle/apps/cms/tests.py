@@ -6,7 +6,7 @@ from datetime import datetime
 class CMSTests(TestBase):
     def test_index(self):
         rv = self.app.get('/')
-        self.assertEquals(rv.status, 200)
+        self.assertEquals(rv.status, '200 OK')
 
     def create_page(self, title, slug, content, parent=None, parent_id=None):
         page = Page(
