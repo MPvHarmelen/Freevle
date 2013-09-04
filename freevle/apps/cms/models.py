@@ -1,7 +1,8 @@
 import datetime
 from freevle import db
 from freevle.utils.database import validate_slug
-from freevle.apps.user.models import Group
+from ..user.models import Group
+from .constants import *
 
 page_group = db.Table('page_group',
     db.Column('page_id', db.Integer, db.ForeignKey('page.id')),
@@ -10,8 +11,8 @@ page_group = db.Table('page_group',
 
 class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(32), nullable=False)
-    slug = db.Column(db.String(32), nullable=False)
+    title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
+    slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
     parent_id = db.Column(db.Integer, db.ForeignKey('page.id'))
     parent = db.relationship('Page',
                              remote_side=[id],

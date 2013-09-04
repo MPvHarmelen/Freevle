@@ -1,11 +1,8 @@
+import re
 from freevle import db
 from sqlalchemy.ext.hybrid import hybrid_property
 from freevle.utils.database import validate_slug
-import re
-
-
-DESIGNATION_LENGTH = 32
-USER_TYPE_LENGTH = 10
+from .constants import *
 
 group_permission = db.Table('group_permission',
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'),
@@ -16,15 +13,15 @@ group_permission = db.Table('group_permission',
 
 class Permission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32), unique=True, nullable=False)
+    name = db.Column(db.String(PERMISSION_NAME_LENGTH), unique=True, nullable=False)
 
     def __repr__(self):
         return '({}) Permission {}'.format(self.id, self.name)
 
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32), nullable=False)
-    slug = db.Column(db.String(32), unique=True, nullable=False)
+    name = db.Column(db.String(GROUP_NAME_LENGTH), nullable=False)
+    slug = db.Column(db.String(GROUP_SLUG_LENGTH), unique=True, nullable=False)
     permissions = db.relationship(Permission,
                                   secondary=group_permission,
                                   lazy='dynamic',
@@ -43,14 +40,16 @@ user_group = db.Table('user_group',
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_type = db.Column('type', db.String(USER_TYPE_LENGTH))
-    user_name = db.Column(db.String(32), unique=True, nullable=False)
-    first_name = db.Column(db.String(32), nullable=False)
-    surname = db.Column(db.String(32), nullable=False)
+    username = db.Column(db.String(USERNAME_LENGTH), unique=True, nullable=False)
+    # TODO: Encryption
+    password = db.Column(db.String(PASSWORD_LENGTH))
+    first_name = db.Column(db.String(FIRST_NAME_LENGTH), nullable=False)
+    surname = db.Column(db.String(SURNAME_LENGTH), nullable=False)
     # TODO: Think of a way to save an avatar.
     # avatar =
-    email = db.Column(db.String(255), nullable=False)
-    secondary_email = db.Column(db.String(255))
-    phone_number = db.Column(db.String(32))
+    email = db.Column(db.String(EMAIL_LENGTH), nullable=False)
+    secondary_email = db.Column(db.String(EMAIL_LENGTH))
+    phone_number = db.Column(db.String(PHONE_NUMBER_LENGTH))
     groups = db.relationship(Group,
                              secondary=user_group,
                              lazy='dynamic',
