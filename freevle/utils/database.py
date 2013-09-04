@@ -6,5 +6,5 @@ def validate_slug(self, key, slug):
     if re.match("^[\w\d_-]*$", slug):
         return slug.lower()
     else:
-        raise ValueError("A slug may only contain alphanumeric characters"
+        raise ValueError("A slug must only contain alphanumeric characters"
                          ", - (dash) and _ (underscore).")
