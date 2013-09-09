@@ -1,8 +1,10 @@
 import unittest
-from freevle.testing import TestBase
-from freevle import db
-from .models import Page
 from datetime import datetime
+from freevle import db, app
+from freevle.testing import TestBase
+from sqlalchemy.exc import IntegrityError
+from .models import Page
+
 class CMSTests(TestBase):
     def test_index(self):
         rv = self.app.get('/')
@@ -12,10 +14,12 @@ class CMSTests(TestBase):
         page = Page(
             title=title,
             slug=slug,
-            parent=parent,
-            parent_id=parent_id,
             content=content,
         )
+        if parent is not None:
+            page.parent = parent
+        elif parent_id is not None:
+            page.parent_id = parent_id
         db.session.add(page)
         db.session.commit()
         return page
@@ -28,6 +32,8 @@ class CMSTests(TestBase):
         self.assertEquals(p_got.slug, 'test')
         self.assertEquals(p_got.parent, None)
         self.assertEquals(p_got.content,'This is content.')
+        with app.app_context():
+            self.assertEquals(p_got.get_url(), 'http://' + app.config['SERVER_NAME'] + '/test')
 
         self.create_page('TeSt2', 'test2', 'This is more content.', parent=p_got)
         child_got = Page.query.filter(Page.parent == p_got).first()
@@ -36,14 +42,24 @@ class CMSTests(TestBase):
         self.assertEquals(child_got.content, 'This is more content.')
         self.assertEquals(child_got.parent_id, 1)
         self.assertEquals(child_got.parent, p_got)
+        with app.app_context():
+            self.assertEquals(child_got.get_url(), 'http://' + app.config['SERVER_NAME'] + '/test/test2')
 
         # Create illegal pages
         # Incorrect slug
         self.assertRaises(ValueError, self.create_page, 'title',
                           "This isn't a slug", 'Content.')
+
         # Child as parent
         self.assertRaises(ValueError, self.create_page, 'title',
                           'slug', 'Content.', child_got)
+        db.session.rollback()
+
+        # Duplicate (parent, slug) combination
+        self.assertRaises(IntegrityError, self.create_page, p_got.title,
+                          p_got.slug, p_got.content)
+        db.session.rollback()
+
 
     def test_order(self):
         parent = self.create_page('parent', 'parent', 'Content.')
