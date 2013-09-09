@@ -1,6 +1,6 @@
 DEBUG = False
 SECRET_KEY = 'Replace this'
-
+SERVER_NAME = 'Replace this too'
 # SQLALCHEMY_DATABASE_URI = 'dialect+driver://username:password@host:port/database_name'
 SQLALCHEMY_DATABASE_URI = 'sqlite:////absolute/path/to/dabatase.db'
 

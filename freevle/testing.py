@@ -34,7 +34,7 @@ class TestSetup(TestBase):
     def test_setup(self):
         self.assertIsNotNone(self.app)
 
-def run(blueprints=None):
+def run(blueprints=None, exclude=[]):
     """Run all tests, from all blueprints."""
     # We're going to be working with TestSuites here.
     suite = unittest.TestSuite()
@@ -44,7 +44,7 @@ def run(blueprints=None):
     if blueprints is None:
         blueprints = os.listdir(freevle.app.config['BLUEPRINTS_DIRECTORY'])
 
-    for bp_name in blueprints:
+    for bp_name in [bp for bp in blueprints if not bp in exclude]:
         # Try importing test cases from the blueprint. If we can't, that's okay. :(
         try:
             tests = importlib.import_module('freevle.blueprints.{}.tests'\
