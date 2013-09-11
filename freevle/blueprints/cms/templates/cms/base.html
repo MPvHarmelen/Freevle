@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <body>
+    <ul>
+      <li><a href="/">index</a></li>
+      {% for parent in parents %}
+        <li><a href="{{ parent.get_url() }}">{{ parent.title }}</a></li>
+          {% if parent.children.all() %}
+            <ul>
+            {% for child in parent.children %}
+              <li><a href="{{ child.get_url() }}">{{ child.title }}</a></li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+      {% else %}
+        <li>No other pages</li>
+      {% endfor %}
+    </ul>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

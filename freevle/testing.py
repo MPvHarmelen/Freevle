@@ -17,7 +17,8 @@ class TestBase(unittest.TestCase):
 
         # Set up a testing Flask app.
         freevle.app.config['TESTING'] = True
-        self.app = freevle.app.test_client()
+        self.app = freevle.app
+        self.client = self.app.test_client()
 
         # And finally create the database.
         freevle.db.create_all()
@@ -32,7 +33,7 @@ class TestBase(unittest.TestCase):
 
 class TestSetup(TestBase):
     def test_setup(self):
-        self.assertIsNotNone(self.app)
+        self.assertIsNotNone(self.client)
 
 def run(blueprints=None, exclude=[]):
     """Run all tests, from all blueprints."""

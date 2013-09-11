@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from freevle import db
 from freevle.utils.database import validate_slug
 from freevle.utils.decorators import permalink
@@ -30,7 +30,8 @@ class Page(db.Model):
                                                 order_by='Page.id',
                                                 lazy='dynamic'))
     content = db.Column(db.Text, nullable=False)
-    last_edited = db.Column(db.DateTime, onupdate=datetime.datetime.now)
+    created = db.Column(db.DateTime, default=datetime.now)
+    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     __table_args__ = (
         db.UniqueConstraint('parent_id', 'slug'),
