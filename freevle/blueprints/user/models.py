@@ -84,44 +84,50 @@ class User(db.Model):
             return number
         raise ValueError("Invalid telephone number.")
 
+    @staticmethod
+    def authenticate(username, password):
+        ...
+
     def __repr__(self):
         return '({}) {} {}'.format(self.id, self.user_type.capitalize(), self.full_name)
 
-class Admin(User):
-    __tablename__ = 'admin'
-    __mapper_args__ = {'polymorphic_identity': 'admin'}
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-
-class Teacher(User):
-    __tablename__ = 'teacher'
-    __mapper_args__ = {'polymorphic_identity': 'teacher'}
-
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
-                            nullable=False)
-    validate_designation = db.validates('designation')(validate_slug)
-
 class Parent(User):
-    __tablename__ = 'parent'
     __mapper_args__ = {'polymorphic_identity': 'parent'}
 
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
+class Teacher(Parent):
+    __mapper_args__ = {'polymorphic_identity': 'teacher'}
+
+    id = db.Column(db.Integer, db.ForeignKey('parent.id'), primary_key=True)
+    designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
+                            nullable=False)
+    validate_designation = db.validates('designation')(validate_slug)
+
+class Admin(User):
+    __mapper_args__ = {'polymorphic_identity': 'admin'}
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+
+parent_student = db.Table('parent_student',
+    db.Column('parent_id', db.Integer, db.ForeignKey('parent.id')),
+    db.Column('student.id', db.Integer, db.ForeignKey('student.id'))
+)
+
 class Student(User):
-    __tablename__ = 'student'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
     __mapper_args__ = {
         'polymorphic_identity': 'student',
-        'inherit_condition': User.id==id
+        'inherit_condition': User.id == id
     }
 
     designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
                             nullable=False)
-    grade = db.Column(db.Integer, nullable=False)
-    parent_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    parent = db.relationship(Parent,
-                             foreign_keys=[parent_id],
+    year = db.Column(db.Integer, nullable=False)
+    parents = db.relationship(Parent,
+                             secondary=parent_student,
+                             order_by=Parent.id,
+                             lazy='dynamic',
                              backref=db.backref('children',
                                                 order_by=Parent.full_name,
                                                 lazy='dynamic')
