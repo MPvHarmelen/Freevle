@@ -9,25 +9,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
     <link rel="shortcut icon" href="/static/favicon.png">
-    <link rel="stylesheet" href="/static/style.css">
 
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/scripts.js"></script>
+    <link rel="stylesheet" href="/static/fonts.css">
+    <link rel="stylesheet" href="/static/base.css">
+
+    <script src="/static/jquery.js"></script>
+    <script src="/static/scripts.js"></script>
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body {% block bodyclass %}{% endblock %}>
+
+    <form id="login" method="POST" action="/login">
+      <div class="close">&times;</div>
+      <h2>Login</h2>
+      <input type="text" placeholder="Gebruikersnaam">
+      <input type="password" placeholder="Wachtwoord">
+      <input type="submit" class="button" value="Login">
+    </form>
 
     <header>
-      {% if not index %}
-        <h1>
-          <a href="/">Cygnus Gymnasium</a>
-        </h1>
-      {% endif %}
+      <a href="#menu" id="menuopener">&emsp;</a>
+      <h1>
+        <a href="/">C<span>ygnus <span id="obsolete">gymnasium</span></span></a>
+      </h1>
       <nav>
         <ul>
+          <li id="menutitle">
+            Menu
+          </li>
+          <li>
+            <a href="/" id="currentpage">Home</a>
+          </li>
           <li>
             <a href="/over">Over</a>
           </li>
@@ -37,9 +52,17 @@
           <li>
             <a href="/contact">Contact</a>
           </li>
+          <li id="loginlink">
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
-      <a href="/login" class="button" id="login">Login</a>
+      <a href="#search" id="searchopener">&emsp;</a>
+      <div class="button">Login</div>
+      <form method="POST" action="/zoek">
+        <h2 id="searchtitle">Zoeken</h2>
+        <input type="search" placeholder="Zoek...">
+      </form>
     </header>
 
     <div id="content">
@@ -48,6 +71,7 @@
     </div>
 
     <footer>
+      <p>&copy; Cygnus Gymnasium</p>
     </footer>
 
   </body>

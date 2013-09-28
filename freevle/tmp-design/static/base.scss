@@ -1,0 +1,483 @@
+/*VARS*/
+$bodyfont: 'Source Sans Pro', sans-serif;
+$headfont: 'Source Sans Pro', sans-serif;
+$buttonfont: 'Montserrat', sans-serif;
+$navfont: 'Montserrat', sans-serif;
+
+$maincolor: #013D7D;
+
+
+/*MIXINS*/
+@mixin border-radius($radius) {
+          border-radius: $radius;
+      -ms-border-radius: $radius;
+     -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin prefixify($style, $content) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+
+/*HTML, BODY, :selection*/
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $bodyfont;
+  background: #f5f5f5;
+}
+
+::selection {
+  background: $maincolor;
+  color: #fff;
+}
+::-moz-selection {
+  background: $maincolor;
+  color: #fff;
+}
+
+
+/*BASIC ELEMENTS*/
+h1 {
+  font-family: 'Aldus', serif;
+  font-weight: 400;
+  text-align: center;
+  color: white;
+  font-size: 3.4em;
+
+  span {
+    font-size: 1.2em;
+  }
+}
+
+h2,
+h3 {
+  font-family: $headfont;
+}
+h2 {
+  font-weight: 300;
+  font-size: 2.2em;
+}
+
+
+a {
+  color: $maincolor;
+  text-decoration: none;
+
+  &:visited {
+    color: darken($maincolor, 10%);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+.button {
+  display: inline-block;
+  border: solid 2px $maincolor;
+  color: $maincolor;
+  padding: 0.6em 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  @include border-radius(4px);
+
+  &:hover {
+    text-decoration: none;
+    background: transparentize($maincolor, 0.1);
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  &:active {
+    padding: 0.7em 0.8em 0.5em;
+    @include prefixify(box-shadow, inset 0 1px 1px rgba(0, 0, 0, 0.3));
+  }
+}
+
+input {
+  display: inline-block;
+  border: solid 2px $maincolor;
+  color: #111;
+  padding: 0.6em 0.8em;
+  font-size: 1em;
+  text-decoration: none;
+  background: none;
+  font-family: $navfont;
+
+  @include border-radius(4px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 1);
+  }
+}
+
+
+/*LOGIN-FORM*/
+form#login {
+  top: 5%;
+  left: 50%;
+  margin-left: -8em;
+  width: 12em;
+  padding: 0.5em 2em 2em;
+  text-align: center;
+  position: absolute;
+  z-index: 5;
+  background: #fafafa;
+  display: none;
+
+  &.dialog {
+    top: 15%;
+    display: block;
+  }
+
+  .close {
+    padding: 0.2em 0.6em;
+    font-size: 1.8em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
+
+  input {
+    width: 10em;
+    margin: 0.3em 0;
+
+    &[type=submit] {
+      width: 12em;
+    }
+  }
+}
+
+
+/*HEADER, NAV*/
+header {
+  background: $maincolor;
+  z-index: 2;
+  width: 100%;
+  font-size: 1.2em;
+  height: 3.3em;
+  font-family: $navfont;
+  position: relative;
+  text-transform: uppercase;
+
+  h1 {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.5em;
+    margin: 0.55em 0 0;
+
+    a:link, a:visited {
+      color: white;
+      text-decoration: none;
+
+      span {
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  a#menuopener, a#searchopener {
+    z-index: 3;
+    background: $maincolor;
+
+    &:link, &:hover, &:visited {
+      padding: 1.02em;
+      display: block;
+      position: absolute;
+      text-decoration: none;
+    }
+  }
+
+  a#menuopener {
+    border-right: 1px solid darken($maincolor, 5%);
+    background-image: url(/static/sprite.png);
+    background-size: 200%;
+    background-position: 0 96%;
+  }
+
+  a#searchopener {
+    background-image: url(/static/sprite.png);
+    background-size: 200%;
+    background-position: 100% 96%;
+    border-left: 1px solid darken($maincolor, 5%);
+    right: 0;
+    top: 0;
+  }
+
+  ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        &:hover {
+          text-decoration: none;
+        }
+        &#currentpage {
+          font-weight: bold;
+        }
+      }
+
+      &#menutitle {
+        border-bottom: 1px solid darken($maincolor, 5%);
+        font-style: italic;
+        font-family: $headfont;
+        font-size: 1.5em;
+        font-weight: 300;
+        padding: 0.45em 0.4em;
+        color: white;
+      }
+    }
+  }
+
+  form {
+    h2#searchtitle {
+      border-bottom: 1px solid darken($maincolor, 5%);
+      font-style: italic;
+      font-family: $headfont;
+      font-size: 1.5em;
+      font-weight: 300;
+      padding: 0.5em 0.4em;
+      color: white;
+      position: absolute;
+      top: -2.25em;
+      background: $maincolor;
+      z-index: 3;
+      margin: 0;
+      width: 100%;
+      left: 0;
+      display: none;
+    }
+  }
+}
+
+
+/*FOOTER*/
+footer {
+  width: 1000px;
+  background: #eee;
+  color: #555;
+  margin: 2em auto;
+  padding: 1px;
+
+  p {
+    text-align: center;
+  }
+}
+
+
+/*MEDIA-QUERIES*/
+@media screen and (max-width: 410px) {
+  header {
+    h1 {
+      span#obsolete {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  header {
+    position: absolute;
+
+    ul {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      z-index: 3;
+      background: $maincolor;
+
+      &.opened {
+        left: 0;
+      }
+
+      li {
+        overflow: hidden;
+
+        a:link, a:visited, a#loginlink {
+          color: white;
+          padding: 0.8em 0.6em;
+          display: block;
+          border: 0;
+          font-weight: 400;
+          border-bottom: 1px solid darken($maincolor, 2%);
+        }
+      }
+    }
+
+    #menuopener.opened {
+      right: 0;
+      z-index: 4;
+      background-position: 0 0;
+      border-left: 1px solid darken($maincolor, 5%);
+      border-right: 0;
+    }
+
+
+    form {
+      position: absolute;
+      top: 3.3em;
+      right: 100%;
+      width: 100%;
+      z-index: 3;
+      background: $maincolor;
+
+      &.opened {
+        right: 0;
+
+        h2#searchtitle {
+          display: block;
+        }
+      }
+    }
+
+    input[type=search] {
+      border: 0;
+      width: 100%;
+      margin: 0;
+      @include border-radius(0);
+
+      &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      &::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      &:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    #searchopener.opened {
+      z-index: 4;
+      background-position: 0 0;
+      border-right: 1px solid darken($maincolor, 5%);
+      border-left: 0;
+    }
+
+    div.button {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  header {
+    width: 1000px;
+    height: 4.1em;
+    margin: auto;
+    background: #fafafa;
+    font-size: 1em;
+
+    #menuopener, #searchopener {
+      display: none !important;
+    }
+
+    ul {
+      float: left;
+      li {
+        float: left;
+
+        a {
+          display: block;
+          padding: 1.4em;
+
+          &:link, &:visited {
+            color: #555;
+          }
+          &:hover {
+            color: #333;
+          }
+        }
+
+        &#loginlink {
+          display: none;
+        }
+
+        &#menutitle {
+          display: none;
+        }
+      }
+    }
+
+    div.button {
+      margin: 0.7em;
+      float: right;
+
+      &.dialog {
+        &:hover {
+          background: none;
+          text-shadow: none;
+          color: $maincolor;
+          cursor: default;
+        }
+
+        &:active {
+          @include prefixify(box-shadow, none);
+          padding: 0.6em 0.8em;
+        }
+
+        &:before {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          content: "";
+          background: rgba(0, 0, 0, 0.5);
+          display: block;
+          cursor: default;
+        }
+      }
+    }
+
+    form {
+      float: right;
+
+      input[type=search] {
+        padding-left: 2.4em;
+        background-image: url(/static/sprite.png);
+        background-size: 116px;
+        background-repeat: no-repeat;
+        background-position: -68px -11px;
+        width: 0;
+        padding-right: 0;
+        margin: 0.7em 0;
+
+        &.opened {
+          width: 16em;
+          padding-right: 0.8em;
+        }
+      }
+    }
+  }
+
+  .home header h1 {
+    display: none;
+  }
+}

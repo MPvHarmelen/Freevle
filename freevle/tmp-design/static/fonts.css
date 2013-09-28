@@ -12,6 +12,8 @@
   src: local('Montserrat-Bold'), url(/static/fonts/IQHow_FEYlDC4Gzy_m8fcgFhaRv2pGgT5Kf0An0s4MM.woff) format('woff');
 }
 
+
+
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: normal;
@@ -52,4 +54,14 @@
   font-style: italic;
   font-weight: 700;
   src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldIt'), url(/static/fonts/fpTVHK8qsXbIeTHTrnQH6Nog-We9VNve39Jr4Vs_aDc.woff) format('woff');
+}
+
+
+
+@font-face {
+  font-family: 'Aldus';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Aldus'), url(/static/fonts/aldus.woff) format('woff');
+  src: local('Aldus'), url(/static/fonts/aldus.ttf) format('ttf');
 }
