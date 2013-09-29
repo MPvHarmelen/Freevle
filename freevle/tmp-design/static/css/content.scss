@@ -8,6 +8,13 @@ $promotecolor: #FBA929;
      -moz-transition: $property $duration ease-in-out;
   -webkit-transition: $property $duration ease-in-out;
 }
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
 
 /*INDEX: COVER*/
 div#cover {
@@ -143,6 +150,7 @@ ul#threeheadlines {
 
   div#content {
     width: $pagewidth;
+    @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
   }
 
 

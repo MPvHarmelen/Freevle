@@ -558,6 +558,7 @@ footer {
     font-size: 0.9em;
     left: 50%;
     height: 3.8em;
+    @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
 
     h1 {
       width: 230px;
@@ -662,5 +663,6 @@ footer {
   footer {
     width: $pagewidth;
     margin: 2em auto;
+    @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
   }
 }

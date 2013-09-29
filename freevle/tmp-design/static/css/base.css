@@ -408,7 +408,12 @@ footer {
     background: rgba(250, 250, 250, 0.6);
     font-size: 0.9em;
     left: 50%;
-    height: 3.8em; }
+    height: 3.8em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
     header h1 {
       width: 230px;
       margin: 0;
@@ -486,4 +491,9 @@ footer {
 
   footer {
     width: 1000px;
-    margin: 2em auto; } }
+    margin: 2em auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); } }

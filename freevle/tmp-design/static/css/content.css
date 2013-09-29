@@ -96,7 +96,12 @@ ul#threeheadlines {
       padding: 8em 2em 17em; }
 
   div#content {
-    width: 1000px; }
+    width: 1000px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
 
   /*INDEX*/
   div#leftcolumn {
