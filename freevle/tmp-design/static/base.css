@@ -7,7 +7,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 66px 0 0;
   font-family: "Source Sans Pro", sans-serif;
   background: #f5f5f5; }
 
@@ -126,7 +126,8 @@ header {
   font-size: 1.2em;
   height: 3.3em;
   font-family: "Montserrat", sans-serif;
-  position: relative;
+  position: fixed;
+  top: 0;
   text-transform: uppercase; }
   header h1 {
     display: inline-block;
@@ -194,10 +195,8 @@ header {
 
 /*FOOTER*/
 footer {
-  width: 1000px;
   background: #eee;
   color: #555;
-  margin: 2em auto;
   padding: 1px; }
   footer p {
     text-align: center; }
@@ -269,9 +268,10 @@ footer {
   header {
     width: 1000px;
     height: 4.1em;
-    margin: auto;
+    margin-left: -500px;
     background: #fafafa;
-    font-size: 1em; }
+    font-size: 1em;
+    left: 50%; }
     header #menuopener, header #searchopener {
       display: none !important; }
     header ul {
@@ -330,4 +330,8 @@ footer {
           padding-right: 0.8em; }
 
   .home header h1 {
-    display: none; } }
+    display: none; }
+
+  footer {
+    width: 1000px;
+    margin: 2em auto; } }

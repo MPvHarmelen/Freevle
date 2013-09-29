@@ -4,6 +4,8 @@ $headfont: 'Source Sans Pro', sans-serif;
 $buttonfont: 'Montserrat', sans-serif;
 $navfont: 'Montserrat', sans-serif;
 
+$pagewidth: 1000px;
+
 $maincolor: #013D7D;
 
 
@@ -32,7 +34,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 66px 0 0;
   font-family: $bodyfont;
   background: #f5f5f5;
 }
@@ -178,7 +180,8 @@ header {
   font-size: 1.2em;
   height: 3.3em;
   font-family: $navfont;
-  position: relative;
+  position: fixed;
+  top: 0;
   text-transform: uppercase;
 
   h1 {
@@ -277,10 +280,8 @@ header {
 
 /*FOOTER*/
 footer {
-  width: 1000px;
   background: #eee;
   color: #555;
-  margin: 2em auto;
   padding: 1px;
 
   p {
@@ -300,7 +301,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: $pagewidth) {
   header {
     position: absolute;
 
@@ -386,13 +387,14 @@ footer {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: $pagewidth) {
   header {
-    width: 1000px;
+    width: $pagewidth;
     height: 4.1em;
-    margin: auto;
+    margin-left: -$pagewidth/2;
     background: #fafafa;
     font-size: 1em;
+    left: 50%;
 
     #menuopener, #searchopener {
       display: none !important;
@@ -479,5 +481,10 @@ footer {
 
   .home header h1 {
     display: none;
+  }
+
+  footer {
+    width: $pagewidth;
+    margin: 2em auto;
   }
 }
