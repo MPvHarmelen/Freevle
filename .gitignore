@@ -1,6 +1,7 @@
 *.py[cod]
 settings.cfg
 *.sublime*
+.sass-cache
 # C extensions
 *.so
 
