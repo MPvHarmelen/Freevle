@@ -577,14 +577,14 @@ footer {
     width: $pagewidth;
     height: 4.1em;
     margin-left: -$pagewidth/2;
-    background: transparentize(#fafafa, 0.4);
+    background: transparentize(#fafafa, 0.1);
     font-size: 0.9em;
     left: 50%;
     height: 3.8em;
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
 
     h1 {
-      width: 230px;
+      width: 250px;
       margin: 0;
       padding: 0.6em 0;
       overflow: hidden;
@@ -596,7 +596,7 @@ footer {
       }
 
       a:link, a:visited {
-        padding: 0.6em 1em;
+        padding: 0.6em 0.8em;
         color: $maincolor;
       }
     }
@@ -671,15 +671,19 @@ footer {
     }
   }
 
-  .home header h1 {
-    width: 0;
-    white-space: nowrap;
-    border-width: 0;
-    @include transition(width, 200ms);
+  .home header {
+    background: transparentize(#fafafa, 0.4);
 
-    &.yepshow {
-      width: 250px;
-      border-width: 1px;
+    h1 {
+      width: 0;
+      white-space: nowrap;
+      border-width: 0;
+      @include transition(width, 200ms);
+
+      &.yepshow {
+        width: 250px;
+        border-width: 1px;
+      }
     }
   }
 

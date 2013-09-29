@@ -16,7 +16,7 @@ div#cover {
 
 /*MAIN CONTENT*/
 div#content {
-  margin: 0 auto;
+  margin: 2em auto;
   background: #fafafa;
   border-bottom: solid 8px #013d7d;
   border-top: solid 8px #013d7d; }

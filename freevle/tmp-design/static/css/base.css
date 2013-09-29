@@ -421,7 +421,7 @@ footer {
     width: 1000px;
     height: 4.1em;
     margin-left: -500px;
-    background: rgba(250, 250, 250, 0.6);
+    background: rgba(250, 250, 250, 0.9);
     font-size: 0.9em;
     left: 50%;
     height: 3.8em;
@@ -431,7 +431,7 @@ footer {
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
     header h1 {
-      width: 230px;
+      width: 250px;
       margin: 0;
       padding: 0.6em 0;
       overflow: hidden;
@@ -440,7 +440,7 @@ footer {
       header h1 a > span {
         font-size: 0.8em; }
       header h1 a:link, header h1 a:visited {
-        padding: 0.6em 1em;
+        padding: 0.6em 0.8em;
         color: #013d7d; }
     header #menuopener, header #searchopener {
       display: none !important; }
@@ -492,18 +492,20 @@ footer {
           width: 16em;
           padding-right: 0.8em; }
 
-  .home header h1 {
-    width: 0;
-    white-space: nowrap;
-    border-width: 0;
-    transition: width 200ms ease-in-out;
-    -o-transition: width 200ms ease-in-out;
-    -ms-transition: width 200ms ease-in-out;
-    -moz-transition: width 200ms ease-in-out;
-    -webkit-transition: width 200ms ease-in-out; }
-    .home header h1.yepshow {
-      width: 250px;
-      border-width: 1px; }
+  .home header {
+    background: rgba(250, 250, 250, 0.6); }
+    .home header h1 {
+      width: 0;
+      white-space: nowrap;
+      border-width: 0;
+      transition: width 200ms ease-in-out;
+      -o-transition: width 200ms ease-in-out;
+      -ms-transition: width 200ms ease-in-out;
+      -moz-transition: width 200ms ease-in-out;
+      -webkit-transition: width 200ms ease-in-out; }
+      .home header h1.yepshow {
+        width: 250px;
+        border-width: 1px; }
 
   footer {
     width: 1000px;
