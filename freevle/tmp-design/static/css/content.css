@@ -15,6 +15,17 @@ div#content {
   background: #fafafa;
   overflow: hidden; }
 
+/*INDEX: RELEVANT*/
+ul#quicknav {
+  padding: 0;
+  margin: 0; }
+  ul#quicknav ul {
+    padding: 0 0 0 1.1em;
+    color: white;
+    font-weight: normal;
+    font-size: 0.9em;
+    margin: 0.4em 0 0; }
+
 @media screen and (min-width: 1000px) {
   div#cover {
     background-image: url(/static/cover.png);
