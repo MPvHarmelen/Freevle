@@ -32,12 +32,13 @@ h1 {
 
 h2,
 h3 {
-  font-family: "Source Sans Pro", sans-serif; }
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 1em 30px 0.5em; }
 
 h2 {
+  margin: 1em 30px 0.7em;
   font-weight: 300;
-  font-size: 2.1em;
-  margin: 0.5em 20px; }
+  font-size: 2.1em; }
 
 a {
   color: #013d7d;
