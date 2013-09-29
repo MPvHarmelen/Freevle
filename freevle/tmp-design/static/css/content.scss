@@ -136,6 +136,20 @@ ul#threeheadlines {
 }
 
 
+/*LOGIN-PAGE*/
+a#backtoindex {
+  display: block;
+  top: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 7;
+  color: transparentize(white, 0.3);
+  padding: 1em 0;
+  font-weight: bold;
+}
+
+
 @media screen and (min-width: $pagewidth) {
   div#cover {
     background-image: url(/static/cover.png);

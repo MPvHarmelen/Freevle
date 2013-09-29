@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      $('input:first').focus();
+    });
+  </script>
+{% endblock %}
+
+{% block bodyclass %}
+  class="login"
+{% endblock %}
+
+{% block page %}
+  <a id="backtoindex" href="/">
+    Terug naar home
+  </a>
+{% endblock %}

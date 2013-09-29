@@ -188,7 +188,7 @@ input {
 
 
 /*LOGIN-FORM*/
-div#login {
+div#login, div#lost {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -200,6 +200,7 @@ div#login {
   background: $logincolor;
   text-align: center;
   display: table;
+  overflow-y: auto;
   @include prefixify(transform, scale(0));
           transition:         transform 200ms ease-in-out;
        -o-transition:      -o-transform 200ms ease-in-out;
@@ -207,12 +208,12 @@ div#login {
      -moz-transition:    -moz-transform 200ms ease-in-out;
   -webkit-transition: -webkit-transform 200ms ease-in-out;
 
-  &.dialog {
+  &.dialog, &#lost {
     @include prefixify(transform, scale(1));
   }
 
   form {
-    padding: 0.5em 2em 2em;
+    padding: 2em 0;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
@@ -301,6 +302,26 @@ div#login {
       &:hover {
         color: white;
       }
+    }
+  }
+}
+
+.login #login {
+  @include prefixify(transform, scale(1));
+
+  .close {
+    display: none;
+  }
+}
+
+
+div#lost {
+  form {
+    input {
+      width: 14em;
+    }
+    input[type=submit] {
+      width: 16em;
     }
   }
 }

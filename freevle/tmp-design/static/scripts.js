@@ -2,11 +2,27 @@ var focusstatus = false;
 
 $(document).ready(function() {
 
-  function disablr() {
+  function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+
+  function disablrLogin() {
     var lengthUname = $('#login input[type=text]').val().length;
     var lengthPwd = $('#login input[type=password]').val().length;
     if(lengthUname > 0 && lengthPwd > 0) {
       $('#login input[type=submit]').removeAttr('disabled');
+    } else {
+      $('#login input[type=submit]').attr('disabled', 'disabled');
+    }
+  }
+
+  function disablrLost() {
+    var emailVal = $('#lost input[type=email]').val();
+    if(emailVal.length > 0 && isEmail(emailVal)) {
+      $('#lost input[type=submit]').removeAttr('disabled');
+    } else {
+      $('#lost input[type=submit]').attr('disabled', 'disabled');
     }
   }
 
@@ -56,11 +72,12 @@ $(document).ready(function() {
     });
   }
 
-  $('#login input').focusout(function() {
-    disablr();
-  });
   $('#login input').keyup(function() {
-    disablr();
+    disablrLogin();
+  });
+
+  $('#lost input').keyup(function() {
+    disablrLost();
   });
 
   $(document.documentElement).keyup(function(e) {

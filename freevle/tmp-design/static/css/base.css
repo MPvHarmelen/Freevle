@@ -130,7 +130,7 @@ input {
       background-color: #fba929; }
 
 /*LOGIN-FORM*/
-div#login {
+div#login, div#lost {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -142,6 +142,7 @@ div#login {
   background: #6e0080;
   text-align: center;
   display: table;
+  overflow-y: auto;
   transform: scale(0);
   -o-transform: scale(0);
   -ms-transform: scale(0);
@@ -152,18 +153,18 @@ div#login {
   -ms-transition: -ms-transform 200ms ease-in-out;
   -moz-transition: -moz-transform 200ms ease-in-out;
   -webkit-transition: -webkit-transform 200ms ease-in-out; }
-  div#login.dialog {
+  div#login.dialog, div#login#lost, div#lost.dialog, div#lost#lost {
     transform: scale(1);
     -o-transform: scale(1);
     -ms-transform: scale(1);
     -moz-transform: scale(1);
     -webkit-transform: scale(1); }
-  div#login form {
-    padding: 0.5em 2em 2em;
+  div#login form, div#lost form {
+    padding: 2em 0;
     text-align: center;
     vertical-align: middle;
     display: table-cell; }
-    div#login form .close {
+    div#login form .close, div#lost form .close {
       padding: 0.2em 0.6em;
       font-size: 3em;
       position: absolute;
@@ -171,55 +172,69 @@ div#login {
       top: 0;
       cursor: pointer;
       color: rgba(255, 255, 255, 0.7); }
-      div#login form .close:hover {
+      div#login form .close:hover, div#lost form .close:hover {
         color: white; }
-    div#login form h2 {
+    div#login form h2, div#lost form h2 {
       color: white;
       font-weight: bold; }
-    div#login form input {
+    div#login form input, div#lost form input {
       width: 10em;
       margin: 0.8em auto;
       display: block;
       border-color: rgba(255, 255, 255, 0.7);
       color: white; }
-      div#login form input::-webkit-input-placeholder {
+      div#login form input::-webkit-input-placeholder, div#lost form input::-webkit-input-placeholder {
         color: rgba(255, 255, 255, 0.7); }
-      div#login form input::-moz-placeholder {
+      div#login form input::-moz-placeholder, div#lost form input::-moz-placeholder {
         color: rgba(255, 255, 255, 0.7); }
-      div#login form input:-ms-input-placeholder {
+      div#login form input:-ms-input-placeholder, div#lost form input:-ms-input-placeholder {
         color: rgba(255, 255, 255, 0.7); }
-      div#login form input:focus {
+      div#login form input:focus, div#lost form input:focus {
         color: #6e0080; }
-        div#login form input:focus::-webkit-input-placeholder {
+        div#login form input:focus::-webkit-input-placeholder, div#lost form input:focus::-webkit-input-placeholder {
           color: rgba(0, 0, 0, 0.4); }
-        div#login form input:focus::-moz-placeholder {
+        div#login form input:focus::-moz-placeholder, div#lost form input:focus::-moz-placeholder {
           color: rgba(0, 0, 0, 0.4); }
-        div#login form input:focus:-ms-input-placeholder {
+        div#login form input:focus:-ms-input-placeholder, div#lost form input:focus:-ms-input-placeholder {
           color: rgba(0, 0, 0, 0.4); }
-      div#login form input[type=submit] {
+      div#login form input[type=submit], div#lost form input[type=submit] {
         width: 12em;
         margin-bottom: 1.5em; }
-        div#login form input[type=submit]:hover {
+        div#login form input[type=submit]:hover, div#lost form input[type=submit]:hover {
           background: #6e0080;
           color: white; }
-        div#login form input[type=submit]:disabled {
+        div#login form input[type=submit]:disabled, div#lost form input[type=submit]:disabled {
           color: rgba(255, 255, 255, 0.3);
           border-color: rgba(255, 255, 255, 0.3); }
-          div#login form input[type=submit]:disabled:hover {
+          div#login form input[type=submit]:disabled:hover, div#lost form input[type=submit]:disabled:hover {
             background: none;
             text-shadow: none;
             cursor: not-allowed; }
-          div#login form input[type=submit]:disabled:active {
+          div#login form input[type=submit]:disabled:active, div#lost form input[type=submit]:disabled:active {
             padding: 0.6em 0.8em;
             box-shadow: none;
             -o-box-shadow: none;
             -ms-box-shadow: none;
             -moz-box-shadow: none;
             -webkit-box-shadow: none; }
-    div#login form a:link, div#login form a:visited {
+    div#login form a:link, div#login form a:visited, div#lost form a:link, div#lost form a:visited {
       color: rgba(255, 255, 255, 0.5); }
-      div#login form a:link:hover, div#login form a:visited:hover {
+      div#login form a:link:hover, div#login form a:visited:hover, div#lost form a:link:hover, div#lost form a:visited:hover {
         color: white; }
+
+.login #login {
+  transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1); }
+  .login #login .close {
+    display: none; }
+
+div#lost form input {
+  width: 14em; }
+div#lost form input[type=submit] {
+  width: 16em; }
 
 /*HEADER, NAV*/
 header {

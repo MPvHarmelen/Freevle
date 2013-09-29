@@ -87,6 +87,18 @@ ul#threeheadlines {
       font-style: italic;
       color: #555; }
 
+/*LOGIN-PAGE*/
+a#backtoindex {
+  display: block;
+  top: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 7;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 1em 0;
+  font-weight: bold; }
+
 @media screen and (min-width: 1000px) {
   div#cover {
     background-image: url(/static/cover.png);

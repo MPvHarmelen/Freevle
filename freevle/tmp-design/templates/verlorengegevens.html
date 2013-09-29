@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      $('input[type=email]').focus();
+    });
+  </script>
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <a id="backtoindex" href="/">
+    Terug naar home
+  </a>
+  <div id="lost">
+    <form method="POST" action="/login">
+      <h2>Verloren gegevens</h2>
+      <input type="email" placeholder="Email">
+      <input type="submit" class="button" value="Vraag gegevens op" disabled>
+      <a href="/login">Inloggen?</a>
+    </form>
+  </div>
+{% endblock %}
