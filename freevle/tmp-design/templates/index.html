@@ -7,11 +7,32 @@
   class="home"
 {% endblock %}
 
-{% block content %}
+{% block page %}
   <div id="cover">
     <div id="darken">
       <h1>C<span>ygnus gymnasium</span></h1>
       <a class="button">Zit je in groep acht?</a>
+    </div>
+  </div>
+  <div id="content">
+    <div id="rightcolumn">
+      <nav>
+        <ul id="quicknav">
+          <li class="relevant education">
+            <a href="/over">Onderwijs</a>
+          </li>
+          <li class="relevant school">
+            <a href="/over">De School</a>
+          </li>
+          <li class="relevant activities">
+            <a href="/over">Acitiveiten</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="leftcolumn">
+      <h2>Recent</h2>
     </div>
   </div>
 {% endblock %}
