@@ -84,7 +84,7 @@ ul#threeheadlines {
 @media screen and (min-width: 1000px) {
   div#cover {
     background-image: url(/static/cover.png);
-    margin-top: -4.1em;
+    margin-top: -3.8em;
     margin-bottom: -11em; }
     div#cover #darken {
       padding: 8em 2em 17em; }
