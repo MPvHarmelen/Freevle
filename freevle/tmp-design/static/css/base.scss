@@ -160,19 +160,29 @@ input {
   background-repeat: no-repeat;
   font-size: 1.2em;
   font-weight: bold;
+  @include transition(background, 200ms);
 
   a:link, a:visited {
     color: white;
   }
 
   &.education {
-    background-color: $educationcolor;
+    background-color: transparentize($educationcolor, 0.3);
+    &:hover {
+      background-color: $educationcolor;
+    }
   }
   &.school {
-    background-color: $schoolcolor;
+    background-color: transparentize($schoolcolor, 0.2);
+    &:hover {
+      background-color: $schoolcolor;
+    }
   }
   &.activities {
-    background-color: $activitiescolor;
+    background-color: transparentize($activitiescolor, 0.3);
+    &:hover {
+      background-color: $activitiescolor;
+    }
   }
 }
 

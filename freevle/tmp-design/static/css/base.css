@@ -108,15 +108,26 @@ input {
   background-position: -116px -61px;
   background-repeat: no-repeat;
   font-size: 1.2em;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: background 200ms ease-in-out;
+  -o-transition: background 200ms ease-in-out;
+  -ms-transition: background 200ms ease-in-out;
+  -moz-transition: background 200ms ease-in-out;
+  -webkit-transition: background 200ms ease-in-out; }
   .relevant a:link, .relevant a:visited {
     color: white; }
   .relevant.education {
-    background-color: #d11605; }
+    background-color: rgba(209, 22, 5, 0.7); }
+    .relevant.education:hover {
+      background-color: #d11605; }
   .relevant.school {
-    background-color: #013d7d; }
+    background-color: rgba(1, 61, 125, 0.8); }
+    .relevant.school:hover {
+      background-color: #013d7d; }
   .relevant.activities {
-    background-color: #fba929; }
+    background-color: rgba(251, 169, 41, 0.7); }
+    .relevant.activities:hover {
+      background-color: #fba929; }
 
 /*LOGIN-FORM*/
 div#login {
