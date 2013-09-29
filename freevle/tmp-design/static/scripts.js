@@ -1,3 +1,5 @@
+var focusstatus = false;
+
 $(document).ready(function() {
 
   function disablr() {
@@ -8,12 +10,26 @@ $(document).ready(function() {
     }
   }
 
-  function loginForm() {
-    $('div#login').toggleClass('dialog');
+  function isLoginForm() {
     if($('div#login').css('-webkit-transform') == 'matrix(0, 0, 0, 0, 0, 0)') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function toggleLoginForm() {
+    $('div#login').toggleClass('dialog');
+    if(!isLoginForm()) {
       $('div#login input:first').focus();
     }
   }
+
+  $('input').focusin(function() {
+    focusstatus = true;
+  }).focusout(function() {
+    focusstatus = false;
+  });
 
   $('#menuopener').click(function() {
     $(this).toggleClass('opened');
@@ -36,7 +52,7 @@ $(document).ready(function() {
   if($(window).width() > 1000) {
     $('header .button, div#login .close').click(function(e) {
       e.preventDefault();
-      loginForm();
+      toggleLoginForm();
     });
   }
 
@@ -45,5 +61,24 @@ $(document).ready(function() {
   });
   $('#login input').keyup(function() {
     disablr();
+  });
+
+  $(document.documentElement).keyup(function(e) {
+    if(e.keyCode == 27) {//Esc
+      $('input').blur();
+      if(isLoginForm()) {
+        toggleLoginForm();
+      }
+    }
+
+    if(e.keyCode == 76 && !focusstatus) {//L
+      if(!isLoginForm()) {
+        toggleLoginForm();
+      }
+    }
+
+    if(e.keyCode == 83 && !focusstatus || e.keyCode == 191 && !focusstatus) {//S
+      $('input[type=search]').focus();
+    }
   });
 });
