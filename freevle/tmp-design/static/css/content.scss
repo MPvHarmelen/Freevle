@@ -13,6 +13,16 @@ div#cover {
   }
 }
 
+
+/*MAIN CONTENT*/
+div#content {
+  width: $pagewidth;
+  margin: 0 auto;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+
 @media screen and (min-width: $pagewidth) {
   div#cover {
     background-image: url(/static/cover.png);
@@ -22,5 +32,18 @@ div#cover {
     #darken {
       padding: 8em 2em 10em;
     }
+  }
+
+
+  /*INDEX: COLUMNS*/
+  div#leftcolumn {
+    width: 700px;
+    float: left;
+  }
+
+  div#rightcolumn {
+    width: 299px;
+    border-left: 1px solid #eee;
+    float: right;
   }
 }

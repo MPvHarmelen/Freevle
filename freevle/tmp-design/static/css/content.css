@@ -8,10 +8,27 @@ div#cover {
     padding: 2em 2em 2em;
     background: rgba(0, 0, 0, 0.2); }
 
+/*MAIN CONTENT*/
+div#content {
+  width: 1000px;
+  margin: 0 auto;
+  background: #fafafa;
+  overflow: hidden; }
+
 @media screen and (min-width: 1000px) {
   div#cover {
     background-image: url(/static/cover.png);
     margin-top: -4.1em;
     margin-bottom: -4em; }
     div#cover #darken {
-      padding: 8em 2em 10em; } }
+      padding: 8em 2em 10em; }
+
+  /*INDEX: COLUMNS*/
+  div#leftcolumn {
+    width: 700px;
+    float: left; }
+
+  div#rightcolumn {
+    width: 299px;
+    border-left: 1px solid #eeeeee;
+    float: right; } }
