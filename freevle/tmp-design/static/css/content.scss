@@ -21,6 +21,10 @@ div#cover {
     background: rgba(0, 0, 0, 0.2);
   }
 
+  h1 {
+    text-shadow: 0 2px 2px transparentize(black, 0.7);
+  }
+
   .button {
     background: $promotecolor;
     color: white;

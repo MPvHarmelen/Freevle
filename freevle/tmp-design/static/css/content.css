@@ -7,6 +7,8 @@ div#cover {
   div#cover #darken {
     padding: 2em 2em 2em;
     background: rgba(0, 0, 0, 0.2); }
+  div#cover h1 {
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
   div#cover .button {
     background: #fba929;
     color: white;
