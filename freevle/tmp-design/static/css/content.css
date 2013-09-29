@@ -107,11 +107,23 @@ ul#threeheadlines {
     width: 400px;
     height: 300px;
     float: left; }
+    div#largeactivity a {
+      transition: opacity 200ms ease-in-out;
+      -o-transition: opacity 200ms ease-in-out;
+      -ms-transition: opacity 200ms ease-in-out;
+      -moz-transition: opacity 200ms ease-in-out;
+      -webkit-transition: opacity 200ms ease-in-out; }
 
   div#smallactivity {
     width: 300px;
     height: 175px;
     float: left; }
+    div#smallactivity a {
+      transition: opacity 200ms ease-in-out;
+      -o-transition: opacity 200ms ease-in-out;
+      -ms-transition: opacity 200ms ease-in-out;
+      -moz-transition: opacity 200ms ease-in-out;
+      -webkit-transition: opacity 200ms ease-in-out; }
 
   ul#threeheadlines {
     width: 300px;

@@ -161,7 +161,12 @@ header {
         font-size: 0.9em; }
   header a#menuopener, header a#searchopener {
     z-index: 3;
-    background: #013d7d; }
+    background: #013d7d;
+    transition: background-position 200ms ease-in-out;
+    -o-transition: background-position 200ms ease-in-out;
+    -ms-transition: background-position 200ms ease-in-out;
+    -moz-transition: background-position 200ms ease-in-out;
+    -webkit-transition: background-position 200ms ease-in-out; }
     header a#menuopener:link, header a#menuopener:hover, header a#menuopener:visited, header a#searchopener:link, header a#searchopener:hover, header a#searchopener:visited {
       padding: 1.02em;
       display: block;
@@ -231,10 +236,15 @@ footer {
     header ul {
       position: absolute;
       top: 0;
-      left: 100%;
+      left: -100%;
       width: 100%;
       z-index: 3;
-      background: #013d7d; }
+      background: #013d7d;
+      transition: left 200ms ease-in-out;
+      -o-transition: left 200ms ease-in-out;
+      -ms-transition: left 200ms ease-in-out;
+      -moz-transition: left 200ms ease-in-out;
+      -webkit-transition: left 200ms ease-in-out; }
       header ul.opened {
         left: 0; }
       header ul li {
@@ -255,10 +265,15 @@ footer {
     header form {
       position: absolute;
       top: 3.3em;
-      right: 100%;
+      right: -100%;
       width: 100%;
       z-index: 3;
-      background: #013d7d; }
+      background: #013d7d;
+      transition: right 200ms ease-in-out;
+      -o-transition: right 200ms ease-in-out;
+      -ms-transition: right 200ms ease-in-out;
+      -moz-transition: right 200ms ease-in-out;
+      -webkit-transition: right 200ms ease-in-out; }
       header form.opened {
         right: 0; }
         header form.opened h2#searchtitle {
@@ -347,7 +362,12 @@ footer {
         background-position: -68px -11px;
         width: 0;
         padding-right: 0;
-        margin: 0.7em 0; }
+        margin: 0.7em 0;
+        transition: width 200ms ease-in-out;
+        -o-transition: width 200ms ease-in-out;
+        -ms-transition: width 200ms ease-in-out;
+        -moz-transition: width 200ms ease-in-out;
+        -webkit-transition: width 200ms ease-in-out; }
         header form input[type=search].opened {
           width: 16em;
           padding-right: 0.8em; }

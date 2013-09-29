@@ -1,5 +1,12 @@
 $pagewidth: 1000px;
 $recentcolor: #43B83D;
+@mixin transition($property, $duration: 300ms, $secproperty: "", $secduration: "") {
+          transition: $property $duration ease-in-out;
+       -o-transition: $property $duration ease-in-out;
+      -ms-transition: $property $duration ease-in-out;
+     -moz-transition: $property $duration ease-in-out;
+  -webkit-transition: $property $duration ease-in-out;
+}
 
 /*INDEX: COVER*/
 div#cover {
@@ -147,11 +154,19 @@ ul#threeheadlines {
     width: 400px;
     height: 300px;
     float: left;
+
+    a {
+      @include transition(opacity, 200ms);
+    }
   }
   div#smallactivity {
     width: 300px;
     height: 175px;
     float: left;
+
+    a {
+      @include transition(opacity, 200ms);
+    }
   }
 
   ul#threeheadlines {

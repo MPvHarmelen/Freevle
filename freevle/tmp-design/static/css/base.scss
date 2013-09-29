@@ -28,6 +28,14 @@ $activitiescolor: #FBA929;
   -webkit-#{$style}: $content;
 }
 
+@mixin transition($property, $duration: 300ms, $secproperty: "", $secduration: "") {
+          transition: $property $duration ease-in-out;
+       -o-transition: $property $duration ease-in-out;
+      -ms-transition: $property $duration ease-in-out;
+     -moz-transition: $property $duration ease-in-out;
+  -webkit-transition: $property $duration ease-in-out;
+}
+
 
 /*HTML, BODY, :selection*/
 html {
@@ -233,6 +241,7 @@ header {
   a#menuopener, a#searchopener {
     z-index: 3;
     background: $maincolor;
+    @include transition(background-position, 200ms);
 
     &:link, &:hover, &:visited {
       padding: 1.02em;
@@ -338,10 +347,11 @@ footer {
     ul {
       position: absolute;
       top: 0;
-      left: 100%;
+      left: -100%;
       width: 100%;
       z-index: 3;
       background: $maincolor;
+      @include transition(left, 200ms);
 
       &.opened {
         left: 0;
@@ -373,10 +383,11 @@ footer {
     form {
       position: absolute;
       top: 3.3em;
-      right: 100%;
+      right: -100%;
       width: 100%;
       z-index: 3;
       background: $maincolor;
+      @include transition(right, 200ms);
 
       &.opened {
         right: 0;
@@ -504,6 +515,7 @@ footer {
         width: 0;
         padding-right: 0;
         margin: 0.7em 0;
+        @include transition(width, 200ms);
 
         &.opened {
           width: 16em;
