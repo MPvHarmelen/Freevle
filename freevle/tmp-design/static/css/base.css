@@ -404,12 +404,12 @@ footer {
       padding: 0.6em 0;
       overflow: hidden;
       float: left;
-      border-right: 1px solid rgba(238, 238, 238, 0.3); }
+      border-right: 1px solid rgba(238, 238, 238, 0.2); }
       header h1 a > span {
         font-size: 0.8em; }
       header h1 a:link, header h1 a:visited {
         padding: 0.6em 1em;
-        color: #333; }
+        color: #013d7d; }
     header #menuopener, header #searchopener {
       display: none !important; }
     header ul {
@@ -420,17 +420,22 @@ footer {
           display: block;
           padding: 1.3em; }
           header ul li a:link, header ul li a:visited {
-            color: #555; }
+            color: #000;
+            opacity: 0.5; }
           header ul li a:hover {
-            color: #333; }
+            color: #333;
+            opacity: 1; }
         header ul li#menutitle {
           display: none; }
     header div.button {
       margin: 0.6em;
       float: right;
-      border-color: rgba(0, 0, 0, 0); }
+      border-color: rgba(0, 0, 0, 0);
+      opacity: 0.5;
+      color: #000; }
       header div.button:hover, header div.button:active {
-        border-color: #013d7d; }
+        border-color: #013d7d;
+        opacity: 1; }
     header form {
       float: right; }
       header form input[type=search] {

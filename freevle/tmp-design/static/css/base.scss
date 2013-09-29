@@ -555,7 +555,7 @@ footer {
       padding: 0.6em 0;
       overflow: hidden;
       float: left;
-      border-right: 1px solid transparentize(#eee, 0.7);
+      border-right: 1px solid transparentize(#eee, 0.8);
 
       a > span {
         font-size: 0.8em;
@@ -563,7 +563,7 @@ footer {
 
       a:link, a:visited {
         padding: 0.6em 1em;
-        color: #333;
+        color: $maincolor;
       }
     }
 
@@ -581,10 +581,12 @@ footer {
           padding: 1.3em;
 
           &:link, &:visited {
-            color: #555;
+            color: #000;
+            opacity: 0.5;
           }
           &:hover {
             color: #333;
+            opacity: 1;
           }
         }
 
@@ -598,9 +600,12 @@ footer {
       margin: 0.6em;
       float: right;
       border-color: rgba(0,0,0,0);
+      opacity: 0.5;
+      color: #000;
 
       &:hover, &:active {
         border-color: $maincolor;
+        opacity: 1;
       }
     }
 
