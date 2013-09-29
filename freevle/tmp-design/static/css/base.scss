@@ -51,11 +51,11 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: 'Aldus', serif;
+  font-family: 'Aldus', sans-serif;
   font-weight: 400;
   text-align: center;
   color: white;
-  font-size: 3.4em;
+  font-size: 2.0em;
 
   span {
     font-size: 1.2em;
@@ -388,6 +388,10 @@ footer {
 }
 
 @media screen and (min-width: $pagewidth) {
+  h1 {
+    font-size: 3.4em;
+  }
+
   header {
     width: $pagewidth;
     height: 4.1em;

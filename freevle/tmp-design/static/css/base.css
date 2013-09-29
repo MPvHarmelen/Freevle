@@ -21,11 +21,11 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: "Aldus", serif;
+  font-family: "Aldus", sans-serif;
   font-weight: 400;
   text-align: center;
   color: white;
-  font-size: 3.4em; }
+  font-size: 2.0em; }
   h1 span {
     font-size: 1.2em; }
 
@@ -265,6 +265,9 @@ footer {
     header div.button {
       display: none; } }
 @media screen and (min-width: 1000px) {
+  h1 {
+    font-size: 3.4em; }
+
   header {
     width: 1000px;
     height: 4.1em;
