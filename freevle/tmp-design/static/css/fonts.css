@@ -62,6 +62,6 @@
   font-family: 'Aldus';
   font-style: normal;
   font-weight: 400;
-  src: local('Aldus'), url(/static/fonts/aldus.woff) format('woff');
-  src: local('Aldus'), url(/static/fonts/aldus.ttf) format('ttf');
+  src: local('Aldus'), url(/static/fonts/aldus.woff) format('woff'),
+       local('Aldus'), url(/static/fonts/aldus.ttf) format('ttf');
 }
