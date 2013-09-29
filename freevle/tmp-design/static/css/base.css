@@ -27,7 +27,7 @@ h1 {
   text-align: center;
   color: white;
   font-size: 2.0em; }
-  h1 span {
+  h1 > span {
     font-size: 1.2em; }
 
 h2,
@@ -158,7 +158,7 @@ header {
     header h1 a:link, header h1 a:visited {
       color: white;
       text-decoration: none; }
-      header h1 a:link span, header h1 a:visited span {
+      header h1 a:link > span, header h1 a:visited > span {
         font-size: 0.9em; }
   header a#menuopener, header a#searchopener {
     z-index: 3;
@@ -304,13 +304,28 @@ footer {
   h1 {
     font-size: 3.4em; }
 
+  .mobileonly {
+    display: none; }
+
   header {
     width: 1000px;
     height: 4.1em;
     margin-left: -500px;
     background: #fafafa;
-    font-size: 1em;
+    font-size: 0.9em;
     left: 50%; }
+    header h1 {
+      width: 230px;
+      margin: 0;
+      padding: 0.6em 0;
+      overflow: hidden;
+      float: left;
+      border-right: 1px solid #eeeeee; }
+      header h1 a > span {
+        font-size: 0.8em; }
+      header h1 a:link, header h1 a:visited {
+        padding: 0.6em 1em;
+        color: #333; }
     header #menuopener, header #searchopener {
       display: none !important; }
     header ul {
@@ -319,13 +334,11 @@ footer {
         float: left; }
         header ul li a {
           display: block;
-          padding: 1.4em; }
+          padding: 1.3em; }
           header ul li a:link, header ul li a:visited {
             color: #555; }
           header ul li a:hover {
             color: #333; }
-        header ul li#loginlink {
-          display: none; }
         header ul li#menutitle {
           display: none; }
     header div.button {
@@ -374,7 +387,17 @@ footer {
           padding-right: 0.8em; }
 
   .home header h1 {
-    display: none; }
+    width: 0;
+    white-space: nowrap;
+    border-width: 0;
+    transition: width 200ms ease-in-out;
+    -o-transition: width 200ms ease-in-out;
+    -ms-transition: width 200ms ease-in-out;
+    -moz-transition: width 200ms ease-in-out;
+    -webkit-transition: width 200ms ease-in-out; }
+    .home header h1.yepshow {
+      width: 250px;
+      border-width: 1px; }
 
   footer {
     width: 1000px;

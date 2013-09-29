@@ -13,11 +13,12 @@
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/base.css">
     <link rel="stylesheet" href="/static/css/content.css">
-    {% block head %}
-    {% endblock %}
 
     <script src="/static/jquery.js"></script>
     <script src="/static/scripts.js"></script>
+
+    {% block head %}
+    {% endblock %}
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -44,7 +45,7 @@
             Menu
           </li>
           <li>
-            <a href="/" id="currentpage">Home</a>
+            <a href="/" id="currentpage" class="mobileonly">Home</a>
           </li>
           <li>
             <a href="/over">Over</a>
@@ -55,7 +56,7 @@
           <li>
             <a href="/contact">Contact</a>
           </li>
-          <li id="loginlink">
+          <li class="mobileonly">
             <a href="/login">Login</a>
           </li>
         </ul>

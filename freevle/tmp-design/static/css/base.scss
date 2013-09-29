@@ -69,7 +69,7 @@ h1 {
   color: white;
   font-size: 2.0em;
 
-  span {
+  &>span {
     font-size: 1.2em;
   }
 }
@@ -233,7 +233,7 @@ header {
       color: white;
       text-decoration: none;
 
-      span {
+      &>span {
         font-size: 0.9em;
       }
     }
@@ -434,13 +434,35 @@ footer {
     font-size: 3.4em;
   }
 
+  .mobileonly {
+    display: none;
+  }
+
   header {
     width: $pagewidth;
     height: 4.1em;
     margin-left: -$pagewidth/2;
     background: #fafafa;
-    font-size: 1em;
+    font-size: 0.9em;
     left: 50%;
+
+    h1 {
+      width: 230px;
+      margin: 0;
+      padding: 0.6em 0;
+      overflow: hidden;
+      float: left;
+      border-right: 1px solid #eee;
+
+      a > span {
+        font-size: 0.8em;
+      }
+
+      a:link, a:visited {
+        padding: 0.6em 1em;
+        color: #333;
+      }
+    }
 
     #menuopener, #searchopener {
       display: none !important;
@@ -453,7 +475,7 @@ footer {
 
         a {
           display: block;
-          padding: 1.4em;
+          padding: 1.3em;
 
           &:link, &:visited {
             color: #555;
@@ -461,10 +483,6 @@ footer {
           &:hover {
             color: #333;
           }
-        }
-
-        &#loginlink {
-          display: none;
         }
 
         &#menutitle {
@@ -527,7 +545,15 @@ footer {
   }
 
   .home header h1 {
-    display: none;
+    width: 0;
+    white-space: nowrap;
+    border-width: 0;
+    @include transition(width, 200ms);
+
+    &.yepshow {
+      width: 250px;
+      border-width: 1px;
+    }
   }
 
   footer {
