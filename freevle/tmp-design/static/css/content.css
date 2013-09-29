@@ -77,8 +77,6 @@ ul#threeheadlines {
     display: block;
     font-size: 1.1em;
     padding: 0.5em 1em; }
-    ul#threeheadlines li a {
-      font-weight: bold; }
     ul#threeheadlines li time {
       font-style: italic;
       color: #555; }
