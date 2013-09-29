@@ -1,4 +1,5 @@
 $pagewidth: 1000px;
+$recentcolor: #43B83D;
 
 /*INDEX: COVER*/
 div#cover {
@@ -16,7 +17,6 @@ div#cover {
 
 /*MAIN CONTENT*/
 div#content {
-  width: $pagewidth;
   margin: 0 auto;
   background: #fafafa;
   overflow: hidden;
@@ -38,6 +38,83 @@ ul#quicknav {
 }
 
 
+/*INDEX: RECENT*/
+div#largeactivity, div#smallactivity {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+
+  .bg {
+    position: absolute; 
+    top: -50%; 
+    left: -50%; 
+    width: 200%; 
+    height: 200%;
+    z-index: 1;
+
+    img {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0; 
+      margin: auto; 
+      min-width: 50%;
+      min-height: 50%;
+    }
+  }
+
+  a.overlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $recentcolor;
+    display: table;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+
+    h3 {
+      color: white;
+      vertical-align: middle;
+      display: table-cell;
+      font-size: 2em;
+    }
+
+    &:hover {
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+}
+
+ul#threeheadlines {
+  padding: 0;
+  margin: 0.5em 0;
+
+  li {
+    list-style: none;
+    display: block;
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+
+    a {
+      font-weight: bold;
+    }
+
+    time {
+      font-style: italic;
+      color: #555;
+    }
+  }
+}
+
+
 @media screen and (min-width: $pagewidth) {
   div#cover {
     background-image: url(/static/cover.png);
@@ -50,7 +127,12 @@ ul#quicknav {
   }
 
 
-  /*INDEX: COLUMNS*/
+  div#content {
+    width: $pagewidth;
+  }
+
+
+  /*INDEX*/
   div#leftcolumn {
     width: 700px;
     float: left;
@@ -60,5 +142,30 @@ ul#quicknav {
     width: 299px;
     border-left: 1px solid #eee;
     float: right;
+  }
+
+  div#largeactivity {
+    width: 400px;
+    height: 300px;
+    float: left;
+  }
+  div#smallactivity {
+    width: 300px;
+    height: 175px;
+    float: left;
+  }
+
+  ul#threeheadlines {
+    width: 300px;
+    float: left;
+    margin: 0;
+
+    li a {
+      max-width: 210px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: inline-block;
+    }
   }
 }
