@@ -156,7 +156,7 @@ input {
   padding: 1em 1em 1em 2.8em;
   background-image: url(/static/sprite.png);
   background-size: 174px;
-  background-position: -116px 0;
+  background-position: -116px -61px;
   background-repeat: no-repeat;
   font-size: 1.2em;
   font-weight: bold;
@@ -341,13 +341,13 @@ header {
     border-right: 1px solid darken($maincolor, 5%);
     background-image: url(/static/sprite.png);
     background-size: 300%;
-    background-position: 0 -119px;
+    background-position: 0 -180px;
   }
 
   a#searchopener {
     background-image: url(/static/sprite.png);
     background-size: 300%;
-    background-position: -58px -119px;
+    background-position: -58px -180px;
     border-left: 1px solid darken($maincolor, 5%);
     right: 0;
     top: 0;
@@ -458,7 +458,7 @@ footer {
     #menuopener.opened {
       right: 0;
       z-index: 5;
-      background-position: 0 -59px;
+      background-position: 0 -120px;
       border-left: 1px solid darken($maincolor, 5%);
       border-right: 0;
     }
@@ -501,7 +501,7 @@ footer {
 
     #searchopener.opened {
       z-index: 5;
-      background-position: 0 -59px;
+      background-position: 0 -120px;
       border-right: 1px solid darken($maincolor, 5%);
       border-left: 0;
     }
@@ -617,7 +617,7 @@ footer {
         background-image: url(/static/sprite.png);
         background-size: 174px;
         background-repeat: no-repeat;
-        background-position: -69px -74px;
+        background-position: -11px -13px;
         width: 0;
         padding-right: 0;
         margin: 0.6em 0;
@@ -626,6 +626,7 @@ footer {
 
         &:hover, &:focus {
           border-color: $maincolor;
+          background-position: -69px -135px;
         }
 
         &.opened {

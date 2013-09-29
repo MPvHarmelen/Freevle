@@ -105,7 +105,7 @@ input {
   padding: 1em 1em 1em 2.8em;
   background-image: url(/static/sprite.png);
   background-size: 174px;
-  background-position: -116px 0;
+  background-position: -116px -61px;
   background-repeat: no-repeat;
   font-size: 1.2em;
   font-weight: bold; }
@@ -248,11 +248,11 @@ header {
     border-right: 1px solid #013164;
     background-image: url(/static/sprite.png);
     background-size: 300%;
-    background-position: 0 -119px; }
+    background-position: 0 -180px; }
   header a#searchopener {
     background-image: url(/static/sprite.png);
     background-size: 300%;
-    background-position: -58px -119px;
+    background-position: -58px -180px;
     border-left: 1px solid #013164;
     right: 0;
     top: 0; }
@@ -329,7 +329,7 @@ footer {
   header #menuopener.opened {
     right: 0;
     z-index: 5;
-    background-position: 0 -59px;
+    background-position: 0 -120px;
     border-left: 1px solid #013164;
     border-right: 0; }
   header form {
@@ -364,7 +364,7 @@ footer {
       color: rgba(255, 255, 255, 0.7); }
   header #searchopener.opened {
     z-index: 5;
-    background-position: 0 -59px;
+    background-position: 0 -120px;
     border-right: 1px solid #013164;
     border-left: 0; }
   header div.button {
@@ -443,7 +443,7 @@ footer {
         background-image: url(/static/sprite.png);
         background-size: 174px;
         background-repeat: no-repeat;
-        background-position: -69px -74px;
+        background-position: -11px -13px;
         width: 0;
         padding-right: 0;
         margin: 0.6em 0;
@@ -454,7 +454,8 @@ footer {
         -webkit-transition: width 200ms ease-in-out;
         border-color: rgba(0, 0, 0, 0); }
         header form input[type=search]:hover, header form input[type=search]:focus {
-          border-color: #013d7d; }
+          border-color: #013d7d;
+          background-position: -69px -135px; }
         header form input[type=search].opened {
           width: 16em;
           padding-right: 0.8em; }
