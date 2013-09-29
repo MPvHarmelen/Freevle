@@ -1,15 +1,14 @@
 $pagewidth: 1000px;
 
+/*INDEX: COVER*/
 div#cover {
-  margin-top: -4.1em;
   text-align: center;
   width: 100%;
   background: url(/static/coversmall.png) center;
   background-size: cover;
-  margin-bottom: -4em;
 
   #darken {
-    padding: 4em 2em 2em;
+    padding: 2em 2em 2em;
     background: rgba(0, 0, 0, 0.2);
   }
 }
@@ -17,6 +16,8 @@ div#cover {
 @media screen and (min-width: $pagewidth) {
   div#cover {
     background-image: url(/static/cover.png);
+    margin-top: -4.1em;
+    margin-bottom: -4em;
 
     #darken {
       padding: 8em 2em 10em;
