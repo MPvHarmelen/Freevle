@@ -1,4 +1,20 @@
 $(document).ready(function() {
+
+  function disablr() {
+    var lengthUname = $('#login input[type=text]').val().length;
+    var lengthPwd = $('#login input[type=password]').val().length;
+    if(lengthUname > 0 && lengthPwd > 0) {
+      $('#login input[type=submit]').removeAttr('disabled');
+    }
+  }
+
+  function loginForm() {
+    $('div#login').toggleClass('dialog');
+    if($('div#login').css('-webkit-transform') == 'matrix(0, 0, 0, 0, 0, 0)') {
+      $('div#login input:first').focus();
+    }
+  }
+
   $('#menuopener').click(function() {
     $(this).toggleClass('opened');
     $('header ul').toggleClass('opened');
@@ -18,10 +34,16 @@ $(document).ready(function() {
   });
 
   if($(window).width() > 1000) {
-    $('header .button, form#login .close').click(function(e) {
+    $('header .button, div#login .close').click(function(e) {
       e.preventDefault();
-      $('header .button').toggleClass('dialog');
-      $('form#login').toggleClass('dialog');
+      loginForm();
     });
   }
+
+  $('#login input').focusout(function() {
+    disablr();
+  });
+  $('#login input').keyup(function() {
+    disablr();
+  });
 });

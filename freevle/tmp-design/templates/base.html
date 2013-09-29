@@ -26,13 +26,16 @@
   </head>
   <body {% block bodyclass %}{% endblock %}>
 
-    <form id="login" method="POST" action="/login">
-      <div class="close">&times;</div>
-      <h2>Login</h2>
-      <input type="text" placeholder="Gebruikersnaam">
-      <input type="password" placeholder="Wachtwoord">
-      <input type="submit" class="button" value="Login">
-    </form>
+    <div id="login">
+      <form method="POST" action="/login">
+        <div class="close">&times;</div>
+        <h2>Login</h2>
+        <input type="text" placeholder="Gebruikersnaam">
+        <input type="password" placeholder="Wachtwoord">
+        <input type="submit" class="button" value="Login" disabled>
+        <a href="/verlorengegevens">Gegevens vergeten?</a>
+      </form>
+    </div>
 
     <header>
       <a href="#menu" id="menuopener">&emsp;</a>
