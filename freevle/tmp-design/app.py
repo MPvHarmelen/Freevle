@@ -3,8 +3,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    title = 'Home'
+    title = 'Cygnus Gymnasium'
     return render_template('index.html', title=title, index=True)
+
+@app.route('/<name>')
+def page(name):
+    title = name.capitalize() + ' | Cygnus Gymnasium'
+    page = name + '.html'
+    return render_template(page, title=title, index=True)
 
 if __name__ == '__main__':
     app.debug = True
