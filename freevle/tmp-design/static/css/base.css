@@ -91,6 +91,25 @@ input {
     outline: none;
     background: white; }
 
+.relevant {
+  display: block;
+  list-style: none;
+  padding: 1em 1em 1em 2.8em;
+  background-image: url(/static/sprite.png);
+  background-size: 174px;
+  background-position: -116px 0;
+  background-repeat: no-repeat;
+  font-size: 1.2em;
+  font-weight: bold; }
+  .relevant a:link, .relevant a:visited {
+    color: white; }
+  .relevant.education {
+    background-color: #d11605; }
+  .relevant.school {
+    background-color: #013d7d; }
+  .relevant.activities {
+    background-color: #fba929; }
+
 /*LOGIN-FORM*/
 form#login {
   top: 5%;
@@ -151,12 +170,12 @@ header {
   header a#menuopener {
     border-right: 1px solid #013164;
     background-image: url(/static/sprite.png);
-    background-size: 200%;
+    background-size: 300%;
     background-position: 0 96%; }
   header a#searchopener {
     background-image: url(/static/sprite.png);
-    background-size: 200%;
-    background-position: 100% 96%;
+    background-size: 300%;
+    background-position: 50% 96%;
     border-left: 1px solid #013164;
     right: 0;
     top: 0; }
@@ -323,7 +342,7 @@ footer {
       header form input[type=search] {
         padding-left: 2.4em;
         background-image: url(/static/sprite.png);
-        background-size: 116px;
+        background-size: 174px;
         background-repeat: no-repeat;
         background-position: -68px -11px;
         width: 0;

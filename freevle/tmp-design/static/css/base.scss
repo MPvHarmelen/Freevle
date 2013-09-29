@@ -7,6 +7,9 @@ $navfont: 'Montserrat', sans-serif;
 $pagewidth: 1000px;
 
 $maincolor: #013D7D;
+$educationcolor: #D11605;
+$schoolcolor: #013D7D;
+$activitiescolor: #FBA929;
 
 
 /*MIXINS*/
@@ -134,6 +137,32 @@ input {
   }
 }
 
+.relevant {
+  display: block;
+  list-style: none;
+  padding: 1em 1em 1em 2.8em;
+  background-image: url(/static/sprite.png);
+  background-size: 174px;
+  background-position: -116px 0;
+  background-repeat: no-repeat;
+  font-size: 1.2em;
+  font-weight: bold;
+
+  a:link, a:visited {
+    color: white;
+  }
+
+  &.education {
+    background-color: $educationcolor;
+  }
+  &.school {
+    background-color: $schoolcolor;
+  }
+  &.activities {
+    background-color: $activitiescolor;
+  }
+}
+
 
 /*LOGIN-FORM*/
 form#login {
@@ -216,14 +245,14 @@ header {
   a#menuopener {
     border-right: 1px solid darken($maincolor, 5%);
     background-image: url(/static/sprite.png);
-    background-size: 200%;
+    background-size: 300%;
     background-position: 0 96%;
   }
 
   a#searchopener {
     background-image: url(/static/sprite.png);
-    background-size: 200%;
-    background-position: 100% 96%;
+    background-size: 300%;
+    background-position: 50% 96%;
     border-left: 1px solid darken($maincolor, 5%);
     right: 0;
     top: 0;
@@ -469,7 +498,7 @@ footer {
       input[type=search] {
         padding-left: 2.4em;
         background-image: url(/static/sprite.png);
-        background-size: 116px;
+        background-size: 174px;
         background-repeat: no-repeat;
         background-position: -68px -11px;
         width: 0;
