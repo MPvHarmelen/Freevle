@@ -48,7 +48,7 @@ div#cover {
 
 /*MAIN CONTENT*/
 div#content {
-  margin: 2em auto;
+  margin: 0 auto;
   background: #fafafa;
   border-bottom: solid 8px $maincolor;
   border-top: solid 8px $maincolor;
@@ -279,6 +279,7 @@ a#backtoindex {
 
   div#content {
     width: $pagewidth;
+    margin: 2em auto;
     position: relative;
     z-index: 2;
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
