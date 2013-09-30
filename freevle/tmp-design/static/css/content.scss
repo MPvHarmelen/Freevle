@@ -332,20 +332,20 @@ a#backtoindex {
   }
 
 
-/*SUBJECT-OVERVIEW*/
-nav#subjectoverview {
-  > ul {
-    height: 100%;
-    overflow: hidden;
+  /*SUBJECT-OVERVIEW*/
+  nav#subjectoverview {
+    > ul {
+      height: 100%;
+      overflow: hidden;
 
-    > li {
-      width: 25%;
-      @include prefixify(box-sizing, border-box);
-      float: left;
-      height: 200px;
+      > li {
+        width: 25%;
+        @include prefixify(box-sizing, border-box);
+        float: left;
+        height: 200px;
+      }
     }
   }
-}
 
 
   /*INDEX*/
