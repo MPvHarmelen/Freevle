@@ -22,10 +22,16 @@ div#content {
   border-top: solid 8px #013d7d; }
   div#content.education {
     border-color: rgba(209, 22, 5, 0.7); }
+    div#content.education nav ul {
+      background: rgba(209, 22, 5, 0.7); }
   div#content.school {
     border-color: rgba(1, 61, 125, 0.8); }
+    div#content.school nav ul {
+      background: rgba(1, 61, 125, 0.7); }
   div#content.activities {
     border-color: rgba(251, 169, 41, 0.7); }
+    div#content.activities nav ul {
+      background: rgba(251, 169, 41, 0.7); }
   div#content p {
     margin: 0.5em 30px 1.5em;
     text-align: justify;
@@ -151,11 +157,11 @@ a#backtoindex {
   nav#jumpto {
     display: block;
     position: fixed;
-    margin-left: -130px; }
+    margin-left: -130px;
+    margin-top: 2em; }
     nav#jumpto ul {
       z-index: 1;
       list-style: none;
-      background: #eee;
       padding: 0;
       margin: 0;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -166,14 +172,15 @@ a#backtoindex {
       nav#jumpto ul li#title {
         padding: 0.5em;
         font-style: italic;
-        color: #555; }
-      nav#jumpto ul li a {
+        color: #eee; }
+      nav#jumpto ul li a:link, nav#jumpto ul li a:visited {
         max-width: 114px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
         padding: 0.5em;
-        display: block; }
+        display: block;
+        color: white; }
 
   /*INDEX*/
   div#leftcolumn {

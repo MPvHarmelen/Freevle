@@ -55,12 +55,21 @@ div#content {
 
   &.education {
     border-color: transparentize($educationcolor, 0.3);
+    nav ul {
+      background: transparentize($educationcolor, 0.3);
+    }
   }
   &.school {
     border-color: transparentize($schoolcolor, 0.2);
+    nav ul {
+      background: transparentize($schoolcolor, 0.3);
+    }
   }
   &.activities {
     border-color: transparentize($activitiescolor, 0.3);
+    nav ul {
+      background: transparentize($activitiescolor, 0.3);
+    }
   }
 
   p {
@@ -225,11 +234,11 @@ a#backtoindex {
     display: block;
     position: fixed;
     margin-left: -130px;
+    margin-top: 2em;
 
     ul {
       z-index: 1;
       list-style: none;
-      background: #eee;
       padding: 0;
       margin: 0;
       @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
@@ -238,16 +247,17 @@ a#backtoindex {
         &#title {
           padding: 0.5em;
           font-style: italic;
-          color: #555;
+          color: #eee;
         }
 
-        a {
+        a:link, a:visited {
           max-width: 114px;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
           padding: 0.5em;
           display: block;
+          color: white;
         }
       }
     }

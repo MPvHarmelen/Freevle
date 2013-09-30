@@ -1,6 +1,9 @@
 var focusstatus = false;
 
 $(document).ready(function() {
+  function scrollTo(place) {
+    $('html, body').animate({ scrollTop: place }, 200);
+  }
 
   function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -47,12 +50,14 @@ $(document).ready(function() {
     focusstatus = false;
   });
 
-  $('#menuopener').click(function() {
+  $('#menuopener').click(function(e) {
+    e.preventDefault();
     $(this).toggleClass('opened');
     $('header ul').toggleClass('opened');
   });
 
-  $('#searchopener').click(function() {
+  $('#searchopener').click(function(e) {
+    e.preventDefault();
     $(this).toggleClass('opened');
     $('header form').toggleClass('opened');
   });
@@ -79,6 +84,17 @@ $(document).ready(function() {
   $('#lost input').keyup(function() {
     disablrLost();
   });
+
+  $('#jumpto a').click(function() {
+    var headerId = $(this).attr('href');
+    var offsetHeading = $(headerId).offset().top - 70;
+    scrollTo(offsetHeading);
+  });
+
+  if(window.location.hash) {
+    var offsetHeader = $(window.location.hash).offset().top - 70;
+    scrollTo(offsetHeading);
+  }
 
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
