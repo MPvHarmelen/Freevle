@@ -1,15 +1,15 @@
 /*INDEX: COVER*/
-div#cover {
+div#indexcover {
   text-align: center;
   width: 100%;
   background: url(/static/coversmall.png) center;
   background-size: cover; }
-  div#cover #darken {
+  div#indexcover #darken {
     padding: 2em 2em 2em;
     background: rgba(0, 0, 0, 0.2); }
-  div#cover h1 {
+  div#indexcover h1 {
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
-  div#cover .button {
+  div#indexcover .button {
     background: #fba929;
     color: white;
     border-color: #fb9f10; }
@@ -44,6 +44,13 @@ div#content {
 nav#jumpto {
   display: none; }
 
+/*PAGECOVER*/
+div#pagecover {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  overflow: hidden; }
+
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
@@ -76,22 +83,6 @@ div#largeactivity, div#smallactivity {
   height: 250px;
   overflow: hidden;
   position: relative; }
-  div#largeactivity .bg, div#smallactivity .bg {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    z-index: 1; }
-    div#largeactivity .bg img, div#smallactivity .bg img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      min-width: 50%;
-      min-height: 50%; }
   div#largeactivity a.overlay, div#smallactivity a.overlay {
     z-index: 2;
     position: absolute;
@@ -174,11 +165,11 @@ a#backtoindex {
   font-weight: bold; }
 
 @media (min-width: 1000px) {
-  div#cover {
+  div#indexcover {
     background-image: url(/static/cover.png);
     margin-top: -3.8em;
     margin-bottom: -11em; }
-    div#cover #darken {
+    div#indexcover #darken {
       padding: 8em 2em 17em; }
 
   div#content {
@@ -200,9 +191,10 @@ a#backtoindex {
     position: fixed;
     margin-left: -105px;
     margin-top: 2em;
-    font-size: 0.8em; }
+    font-size: 0.8em;
+    z-index: 2; }
     nav#jumpto ul {
-      z-index: 1;
+      position: relative;
       list-style: none;
       padding: 0;
       margin: 0;
