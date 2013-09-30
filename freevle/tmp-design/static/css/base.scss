@@ -111,8 +111,6 @@ a {
   text-transform: uppercase;
   text-decoration: none;
 
-  @include border-radius(4px);
-
   &:hover {
     color: white;
     cursor: pointer;
@@ -137,8 +135,6 @@ input {
   text-decoration: none;
   background: none;
   font-family: $navfont;
-
-  @include border-radius(4px);
 
   &:hover {
     background: transparentize(white, 0.5);
@@ -548,7 +544,6 @@ footer {
       border: 0;
       width: 100%;
       margin: 0;
-      @include border-radius(0);
 
       &::-webkit-input-placeholder {
         color: transparentize(white, 0.3);
