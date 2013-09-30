@@ -283,6 +283,10 @@ a#backtoindex {
     position: relative;
     z-index: 2;
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
+
+    p {
+      margin: 0.5em 50px 1.5em;
+    }
   }
 
 
@@ -290,8 +294,9 @@ a#backtoindex {
   nav#jumpto {
     display: block;
     position: fixed;
-    margin-left: -130px;
+    margin-left: -105px;
     margin-top: 2em;
+    font-size: 0.8em;
 
     ul {
       z-index: 1;
@@ -302,7 +307,7 @@ a#backtoindex {
 
       li {
         &#title {
-          padding: 0.5em;
+          padding: 0.7em 0.9em;
           font-style: italic;
           color: #eee;
         }
@@ -312,7 +317,7 @@ a#backtoindex {
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
-          padding: 0.5em;
+          padding: 0.7em 0.9em;
           display: block;
           color: white;
         }

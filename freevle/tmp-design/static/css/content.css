@@ -188,13 +188,16 @@ a#backtoindex {
     -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
+    div#content p {
+      margin: 0.5em 50px 1.5em; }
 
   /*INPAGE NAV*/
   nav#jumpto {
     display: block;
     position: fixed;
-    margin-left: -130px;
-    margin-top: 2em; }
+    margin-left: -105px;
+    margin-top: 2em;
+    font-size: 0.8em; }
     nav#jumpto ul {
       z-index: 1;
       list-style: none;
@@ -206,7 +209,7 @@ a#backtoindex {
       -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
       nav#jumpto ul li#title {
-        padding: 0.5em;
+        padding: 0.7em 0.9em;
         font-style: italic;
         color: #eee; }
       nav#jumpto ul li a:link, nav#jumpto ul li a:visited {
@@ -214,7 +217,7 @@ a#backtoindex {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        padding: 0.5em;
+        padding: 0.7em 0.9em;
         display: block;
         color: white; }
 
