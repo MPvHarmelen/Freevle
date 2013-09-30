@@ -350,17 +350,17 @@ a#backtoindex {
 
   /*INDEX*/
   div#leftcolumn {
-    width: 700px;
+    width: 70%;
     float: left;
   }
 
   div#rightcolumn {
-    width: 300px;
+    width: 30%;
     float: right;
   }
 
   div#largeactivity {
-    width: 400px;
+    width: 4/7*100%;
     height: 300px;
     float: left;
 
@@ -369,7 +369,7 @@ a#backtoindex {
     }
   }
   div#smallactivity {
-    width: 300px;
+    width: 3.0001/7*100%;
     height: 175px;
     float: left;
 
@@ -379,16 +379,23 @@ a#backtoindex {
   }
 
   ul#threeheadlines {
-    width: 300px;
+    width: 3.0001/7*100%;
     float: left;
     margin: 0;
 
-    li a {
-      max-width: 210px;
+    li {
+      overflow: hidden;
+    }
+    a {
+      max-width: 183px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      display: inline-block;
+      float: left;
+    }
+    time {
+      float: left;
+      padding-left: 0.5em;
     }
   }
 }
@@ -396,5 +403,11 @@ a#backtoindex {
 @media (min-width: 1440px) {
   div#content {
     width: $pagewidth;
+  }
+
+  ul#threeheadlines {
+    li a {
+      max-width: 210px;
+    }
   }
 }

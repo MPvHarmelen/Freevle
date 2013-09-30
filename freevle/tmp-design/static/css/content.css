@@ -240,15 +240,15 @@ a#backtoindex {
 
   /*INDEX*/
   div#leftcolumn {
-    width: 700px;
+    width: 70%;
     float: left; }
 
   div#rightcolumn {
-    width: 300px;
+    width: 30%;
     float: right; }
 
   div#largeactivity {
-    width: 400px;
+    width: 57.14286%;
     height: 300px;
     float: left; }
     div#largeactivity a {
@@ -259,7 +259,7 @@ a#backtoindex {
       -webkit-transition: opacity 200ms ease-in-out; }
 
   div#smallactivity {
-    width: 300px;
+    width: 42.85857%;
     height: 175px;
     float: left; }
     div#smallactivity a {
@@ -270,15 +270,23 @@ a#backtoindex {
       -webkit-transition: opacity 200ms ease-in-out; }
 
   ul#threeheadlines {
-    width: 300px;
+    width: 42.85857%;
     float: left;
     margin: 0; }
-    ul#threeheadlines li a {
-      max-width: 210px;
+    ul#threeheadlines li {
+      overflow: hidden; }
+    ul#threeheadlines a {
+      max-width: 183px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      display: inline-block; } }
+      float: left; }
+    ul#threeheadlines time {
+      float: left;
+      padding-left: 0.5em; } }
 @media (min-width: 1440px) {
   div#content {
-    width: 1000px; } }
+    width: 1000px; }
+
+  ul#threeheadlines li a {
+    max-width: 210px; } }
