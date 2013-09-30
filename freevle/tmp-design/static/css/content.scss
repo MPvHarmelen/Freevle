@@ -343,7 +343,7 @@ a#backtoindex {
         width: 25%;
         @include prefixify(box-sizing, border-box);
         float: left;
-        height: 200px;
+        min-height: 220px;
       }
     }
   }
