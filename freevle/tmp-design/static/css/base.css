@@ -126,9 +126,9 @@ input {
     .relevant.school:hover {
       background-color: #013d7d; }
   .relevant.activities {
-    background-color: rgba(251, 169, 41, 0.7); }
+    background-color: rgba(20, 202, 157, 0.7); }
     .relevant.activities:hover {
-      background-color: #fba929; }
+      background-color: #14ca9d; }
 
 /*LOGIN-FORM*/
 div#login, div#lost {

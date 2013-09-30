@@ -29,9 +29,9 @@ div#content {
     div#content.school nav ul {
       background: rgba(1, 61, 125, 0.7); }
   div#content.activities {
-    border-color: rgba(251, 169, 41, 0.7); }
+    border-color: rgba(20, 202, 157, 0.7); }
     div#content.activities nav ul {
-      background: rgba(251, 169, 41, 0.7); }
+      background: rgba(20, 202, 157, 0.7); }
   div#content p {
     margin: 0.5em 30px 1.5em;
     text-align: justify;
@@ -154,9 +154,9 @@ nav#subjectoverview {
         nav#subjectoverview > ul > li.school:hover {
           background-color: #013d7d; }
       nav#subjectoverview > ul > li.activities {
-        background-color: rgba(251, 169, 41, 0.7); }
+        background-color: rgba(20, 202, 157, 0.7); }
         nav#subjectoverview > ul > li.activities:hover {
-          background-color: #fba929; }
+          background-color: #14ca9d; }
 
 /*LOGIN-PAGE*/
 a#backtoindex {
