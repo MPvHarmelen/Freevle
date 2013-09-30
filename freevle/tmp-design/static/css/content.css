@@ -58,6 +58,23 @@ div#pagecover {
   width: 100%;
   overflow: hidden; }
 
+/*NEWS*/
+article.newsmessage {
+  padding: 2em 0 2em;
+  border-bottom: 1px solid #dddddd; }
+  article.newsmessage:first-of-type {
+    padding-top: 0.1em; }
+  article.newsmessage h3 {
+    font-size: 1.7em; }
+  article.newsmessage p.meta {
+    color: #666; }
+
+div.newscover {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  margin-top: -2em; }
+
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
@@ -222,6 +239,10 @@ a#backtoindex {
         padding: 0.7em 0.9em;
         display: block;
         color: white; }
+
+  /*NEWS*/
+  div.newscover {
+    height: 300px; }
 
   /*SUBJECT-OVERVIEW*/
   nav#subjectoverview > ul {

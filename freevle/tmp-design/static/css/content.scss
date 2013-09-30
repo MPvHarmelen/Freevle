@@ -111,6 +111,32 @@ div#pagecover {
 }
 
 
+/*NEWS*/
+article.newsmessage {
+  padding: 2em 0 2em;
+  border-bottom: 1px solid #ddd;
+
+  &:first-of-type {
+    padding-top: 0.1em;
+  }
+
+  h3 {
+    font-size: 1.7em;
+  }
+
+  p.meta {
+    color: #666;
+  }
+}
+
+div.newscover {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  margin-top: -2em;
+}
+
+
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
@@ -330,6 +356,12 @@ a#backtoindex {
         }
       }
     }
+  }
+
+
+  /*NEWS*/
+  div.newscover {
+    height: 300px;
   }
 
 
