@@ -22,7 +22,7 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: 'Aldus', serif;
+  font-family: "Aldus", serif;
   font-weight: 400;
   text-align: center;
   color: white;
@@ -129,6 +129,27 @@ input {
     background-color: rgba(20, 202, 157, 0.7); }
     .relevant.activities:hover {
       background-color: #14ca9d; }
+
+/*IE-WARNING*/
+div#iewarning {
+  position: absolute;
+  margin-bottom: 10em;
+  top: 0;
+  z-index: 10;
+  background: #333333; }
+  div#iewarning p {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    padding: 1em;
+    text-align: center; }
+    div#iewarning p a:link, div#iewarning p a:visited {
+      color: white;
+      text-decoration: underline; }
+    div#iewarning p.ignorewarning {
+      font-style: italic;
+      text-decoration: underline;
+      cursor: pointer; }
 
 /*LOGIN-FORM*/
 div#login, div#lost {

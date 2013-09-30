@@ -189,6 +189,35 @@ input {
 }
 
 
+/*IE-WARNING*/
+div#iewarning {
+  position: absolute;
+  margin-bottom: 10em;
+  top: 0;
+  z-index: 10;
+  background: #333333;
+
+  p {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    padding: 1em;
+    text-align: center;
+
+    a:link, a:visited {
+      color: white;
+      text-decoration: underline;
+    }
+
+    &.ignorewarning {
+      font-style: italic;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+
 /*LOGIN-FORM*/
 div#login, div#lost {
   position: fixed;

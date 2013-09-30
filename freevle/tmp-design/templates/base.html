@@ -20,11 +20,16 @@
     {% block head %}
     {% endblock %}
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
   <body {% block bodyclass %}{% endblock %}>
+
+    <!--[if lt IE 9]>
+      <script src="/static/ie.js"></script>
+      <div id="iewarning">
+        <p>Het lijkt erop dat u Internet Explorer 8 (of ouder) gebruikt. Deze site werkt slechter in deze browser, net zoals vele andere sites. Wij adviseren u uw browser te updaten op bijvoorbeeld <a href="http://browsehappy.com/?locale=nl">Browsehappy.com</a>.</p>
+        <p class="ignorewarning" onclick="closeWarning()">Sluit deze melding</p>
+      </div>
+    <![endif]-->
 
     <div id="login">
       <form method="POST" action="/login">
