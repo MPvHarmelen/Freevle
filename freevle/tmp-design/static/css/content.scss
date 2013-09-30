@@ -1,4 +1,5 @@
 $pagewidth: 1000px;
+$smallpagewidth: 900px;
 
 $maincolor: #013D7D;
 $recentcolor: #43B83D;
@@ -270,7 +271,7 @@ a#backtoindex {
 }
 
 
-@media screen and (min-width: $pagewidth) {
+@media (min-width: $pagewidth) {
   div#cover {
     background-image: url(/static/cover.png);
     margin-top: -3.8em;
@@ -283,7 +284,7 @@ a#backtoindex {
 
 
   div#content {
-    width: $pagewidth;
+    width: $smallpagewidth;
     margin: 2em auto;
     position: relative;
     z-index: 2;
@@ -338,7 +339,8 @@ nav#subjectoverview {
     overflow: hidden;
 
     > li {
-      width: $pagewidth / 4 - 60;
+      width: 25%;
+      @include prefixify(box-sizing, border-box);
       float: left;
       height: 200px;
     }
@@ -388,5 +390,11 @@ nav#subjectoverview {
       overflow: hidden;
       display: inline-block;
     }
+  }
+}
+
+@media (min-width: 1440px) {
+  div#content {
+    width: $pagewidth;
   }
 }

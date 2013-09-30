@@ -5,6 +5,7 @@ $buttonfont: 'Montserrat', sans-serif;
 $navfont: 'Montserrat', sans-serif;
 
 $pagewidth: 1000px;
+$smallpagewidth: 900px;
 
 $maincolor: #013D7D;
 $educationcolor: #D11605;
@@ -474,7 +475,7 @@ footer {
 
 
 /*MEDIA-QUERIES*/
-@media screen and (max-width: 410px) {
+@media (max-width: 410px) {
   header {
     h1 {
       span#obsolete {
@@ -484,7 +485,7 @@ footer {
   }
 }
 
-@media screen and (max-width: $pagewidth) {
+@media (max-width: $pagewidth) {
   header {
     ul {
       position: absolute;
@@ -588,7 +589,7 @@ footer {
 
 }
 
-@media screen and (min-width: $pagewidth) {
+@media (min-width: $pagewidth) {
   h1 {
     font-size: 3.4em;
   }
@@ -606,9 +607,9 @@ footer {
   }
 
   header {
-    width: $pagewidth;
     height: 4.1em;
-    margin-left: -$pagewidth/2;
+    width: $smallpagewidth;
+    margin-left: -$smallpagewidth/2;
     background: transparentize(#fafafa, 0.1);
     font-size: 0.9em;
     left: 50%;
@@ -720,8 +721,19 @@ footer {
   }
 
   footer {
-    width: $pagewidth;
+    width: $smallpagewidth;
     margin: 2em auto;
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
+  }
+}
+
+@media (min-width: 1440px) {
+  header {
+    width: $pagewidth;
+    margin-left: -$pagewidth/2;
+  }
+
+  footer {
+    width: $pagewidth;
   }
 }

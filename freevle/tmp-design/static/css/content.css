@@ -173,7 +173,7 @@ a#backtoindex {
   padding: 1em 0;
   font-weight: bold; }
 
-@media screen and (min-width: 1000px) {
+@media (min-width: 1000px) {
   div#cover {
     background-image: url(/static/cover.png);
     margin-top: -3.8em;
@@ -182,7 +182,7 @@ a#backtoindex {
       padding: 8em 2em 17em; }
 
   div#content {
-    width: 1000px;
+    width: 900px;
     margin: 2em auto;
     position: relative;
     z-index: 2;
@@ -229,7 +229,12 @@ a#backtoindex {
     height: 100%;
     overflow: hidden; }
     nav#subjectoverview > ul > li {
-      width: 190px;
+      width: 25%;
+      box-sizing: border-box;
+      -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
       float: left;
       height: 200px; }
 
@@ -274,3 +279,6 @@ a#backtoindex {
       text-overflow: ellipsis;
       overflow: hidden;
       display: inline-block; } }
+@media (min-width: 1440px) {
+  div#content {
+    width: 1000px; } }
