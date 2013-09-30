@@ -36,6 +36,13 @@ div#content {
     margin: 0.5em 30px 1.5em;
     text-align: justify;
     line-height: 1.6em; }
+  div#content img {
+    max-width: 100%;
+    margin: auto;
+    display: block; }
+  div#content p.caption {
+    text-align: center;
+    font-style: italic; }
 
 .home div#content {
   overflow: hidden; }

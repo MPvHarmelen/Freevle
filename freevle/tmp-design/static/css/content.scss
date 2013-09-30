@@ -78,6 +78,17 @@ div#content {
     text-align: justify;
     line-height: 1.6em;
   }
+
+  img {
+    max-width: 100%;
+    margin: auto;
+    display: block;
+  }
+
+  p.caption {
+    text-align: center;
+    font-style: italic;
+  }
 }
 
 .home div#content {
