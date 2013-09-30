@@ -40,9 +40,12 @@ div#content {
     max-width: 100%;
     margin: auto;
     display: block; }
+  div#content section.containsimg {
+    padding-bottom: 1em; }
   div#content p.caption {
     text-align: center;
-    font-style: italic; }
+    font-style: italic;
+    margin-bottom: 0.5em; }
 
 .home div#content {
   overflow: hidden; }

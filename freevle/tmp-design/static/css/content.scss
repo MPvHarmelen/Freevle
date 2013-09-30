@@ -85,9 +85,14 @@ div#content {
     display: block;
   }
 
+  section.containsimg {
+    padding-bottom: 1em;
+  }
+
   p.caption {
     text-align: center;
     font-style: italic;
+    margin-bottom: 0.5em;
   }
 }
 
