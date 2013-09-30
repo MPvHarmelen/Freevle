@@ -123,6 +123,41 @@ ul#threeheadlines {
       font-style: italic;
       color: #555; }
 
+/*SUBJECT-OVERVIEW*/
+nav#subjectoverview {
+  font-size: 1.1em; }
+  nav#subjectoverview > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none; }
+    nav#subjectoverview > ul > li {
+      display: block;
+      padding: 1em 30px;
+      color: white; }
+      nav#subjectoverview > ul > li h3 {
+        margin: 0.5em 0; }
+      nav#subjectoverview > ul > li ul {
+        padding: 0 0 0 1.6em;
+        list-style: disc; }
+      nav#subjectoverview > ul > li a:link, nav#subjectoverview > ul > li a:visited {
+        color: white; }
+      nav#subjectoverview > ul > li.promotion {
+        background-color: rgba(251, 169, 41, 0.7); }
+        nav#subjectoverview > ul > li.promotion:hover {
+          background-color: #fba929; }
+      nav#subjectoverview > ul > li.education {
+        background-color: rgba(209, 22, 5, 0.7); }
+        nav#subjectoverview > ul > li.education:hover {
+          background-color: #d11605; }
+      nav#subjectoverview > ul > li.school {
+        background-color: rgba(1, 61, 125, 0.8); }
+        nav#subjectoverview > ul > li.school:hover {
+          background-color: #013d7d; }
+      nav#subjectoverview > ul > li.activities {
+        background-color: rgba(251, 169, 41, 0.7); }
+        nav#subjectoverview > ul > li.activities:hover {
+          background-color: #fba929; }
+
 /*LOGIN-PAGE*/
 a#backtoindex {
   display: block;
@@ -181,6 +216,15 @@ a#backtoindex {
         padding: 0.5em;
         display: block;
         color: white; }
+
+  /*SUBJECT-OVERVIEW*/
+  nav#subjectoverview > ul {
+    height: 100%;
+    overflow: hidden; }
+    nav#subjectoverview > ul > li {
+      width: 190px;
+      float: left;
+      height: 200px; }
 
   /*INDEX*/
   div#leftcolumn {
