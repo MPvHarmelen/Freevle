@@ -95,7 +95,7 @@ input {
 .relevant {
   display: block;
   list-style: none;
-  padding: 1em 1em 1em 2.8em;
+  padding: 0.9em 1em 0.9em 2.8em;
   background-image: url(/static/sprite.png);
   background-size: 174px;
   background-position: -116px -61px;
