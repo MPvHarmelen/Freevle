@@ -489,7 +489,8 @@ footer {
       opacity: 0.5;
       color: #000; }
       header div.button:hover, header div.button:active {
-        border-color: #013d7d;
+        border-color: #6e0080;
+        background: rgba(110, 0, 128, 0.9);
         opacity: 1; }
     header form {
       float: right; }

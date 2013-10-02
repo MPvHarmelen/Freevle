@@ -683,7 +683,8 @@ footer {
       color: #000;
 
       &:hover, &:active {
-        border-color: $maincolor;
+        border-color: $logincolor;
+        background: transparentize($logincolor, 0.1);
         opacity: 1;
       }
     }
