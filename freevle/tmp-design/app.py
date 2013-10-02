@@ -6,7 +6,7 @@ def index():
     title = 'Cygnus Gymnasium'
     return render_template('index.html', title=title)
 
-@app.route('/<name>')
+@app.route('/<name>/')
 def page(name):
     title = name.capitalize() + ' | Cygnus Gymnasium'
     page = name + '.html'
@@ -25,10 +25,6 @@ def login():
 @app.route('/login/', methods=['GET'])
 def showlogin():
     return render_template('login.html')
-
-@app.route('/dashboard/')
-def dashboard():
-    return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.debug = True
