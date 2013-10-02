@@ -21,6 +21,10 @@ def aboutpage(a,b):
 def newsmessage(a,b,c):
     return render_template('nieuwsbericht.html')
 
+@app.route('/fotos/<a>/<b>/')
+def photoalbum(a,b):
+    return render_template('fotoalbum.html')
+
 @app.route('/login/', methods=['POST'])
 def login():
     title = 'Schoolklimaat | Cygnus Gymnasium'

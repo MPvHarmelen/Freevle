@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+  <script type="text/javascript" src="/static/js/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="recent">
+    <h2>Parijs</h2>
+    <p class="meta">
+      <time>27/09/2013</time> - Door: <strong>Jan Modaal</strong>
+    </p>
+    <p>Boots cat-eyes catnipsum arabian felix arabian cheshire. Soft kitty chase kittens hanging from the screens lucky precious soft kitty fat cat. Mreoaw pussy cat, pussy cat long thin tail rawwww hair ball catnip. A cat may look at a king hiss i frightened a little mouse soft kitty pussy cat, pussy cat alley cat fluffy claws. Kittens tumbling down the stairs kittens climbing up my jeans javanese catnipsum.</p>
+    <div id="gallery">
+      <a class="fancybox" rel="group" href="/static/img/cover.png">
+        <div class="coverbg">
+          <img src="/static/img/cover.png" alt="Naam foto">
+        </div>
+      </a>
+      <a class="fancybox" rel="group" href="/static/img/coversmall.png">
+        <div class="coverbg">
+          <img src="/static/img/coversmall.png" alt="Naam foto">
+        </div>
+      </a>
+      <a class="fancybox" rel="group" href="/static/img/sprite.png">
+        <div class="coverbg">
+          <img src="/static/img/sprite.png" alt="Naam foto">
+        </div>
+      </a>
+    </div>
+  </div>
+{% endblock %}

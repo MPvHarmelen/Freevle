@@ -74,6 +74,10 @@ div#content {
     }
   }
 
+  &.recent {
+    border-color: transparentize($recentcolor, 0.3);
+  }
+
   &.protected {
     border-color: transparentize($logincolor, 0.3);
   }
@@ -148,6 +152,28 @@ div.newscover {
   overflow: hidden;
   height: 150px;
   margin-top: -2em;
+}
+
+
+/*PHOTOALBUM*/
+div#gallery {
+  overflow: hidden;
+  padding: 0 20px 20px;
+}
+
+a.fancybox {
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 48%;
+  height: 120px;
+  margin: 1%;
+  opacity: 0.8;
+  @include transition(opacity, 200ms);
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 
@@ -490,6 +516,20 @@ form#settings {
   /*NEWS*/
   div.newscover {
     height: 200px;
+  }
+
+
+  /*PHOTOALBUM*/
+  div#gallery {
+    padding: 0 40px 40px;
+  }
+
+  a.fancybox {
+    overflow: hidden;
+    float: left;
+    width: 23%;
+    height: 200px;
+    margin: 1%;
   }
 
 
