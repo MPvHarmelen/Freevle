@@ -20,15 +20,6 @@ $(document).ready(function() {
     }
   }
 
-  function disablrLost() {
-    var emailVal = $('#lost input[type=email]').val();
-    if(emailVal.length > 0 && isEmail(emailVal)) {
-      $('#lost input[type=submit]').removeAttr('disabled');
-    } else {
-      $('#lost input[type=submit]').attr('disabled', 'disabled');
-    }
-  }
-
   function isLoginForm() {
     if($('div#login').css('-webkit-transform') == 'matrix(0, 0, 0, 0, 0, 0)') {
       return false;

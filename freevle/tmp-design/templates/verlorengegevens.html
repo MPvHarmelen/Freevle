@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
-  <script>
-    $(document).ready(function() {
-      disablrLost();
-
-      $('#lost input').keyup(function() {
-        disablrLost();
-      });
-
-      $('input[type=email]').focus();
-    });
-  </script>
+  <script src="/static/js/lost.js"></script>
 {% endblock %}
 
 {% block bodyclass %}
