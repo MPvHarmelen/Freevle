@@ -2,7 +2,7 @@
 div#indexcover {
   text-align: center;
   width: 100%;
-  background: url(/static/coversmall.png) center;
+  background: url(/static/img/coversmall.png) center;
   background-size: cover; }
   div#indexcover #darken {
     padding: 2em 2em 2em;
@@ -296,7 +296,7 @@ form#settings {
 
 @media (min-width: 1000px) {
   div#indexcover {
-    background-image: url(/static/cover.png);
+    background-image: url(/static/img/cover.png);
     margin-top: -3.8em;
     margin-bottom: -11em; }
     div#indexcover #darken {
