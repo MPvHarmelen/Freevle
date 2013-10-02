@@ -32,6 +32,10 @@ class Group(db.Model):
     def __repr__(self):
         return '({}) Group {}'.format(self.id, self.name)
 
+# for group in POLYMORPHIC_IDENTITIES:
+#     db.session.add(Group(name=group, slug=group))
+# db.session.commit()
+
 user_group = db.Table('user_group',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'), nullable=False)
@@ -56,8 +60,8 @@ class User(db.Model):
                              backref=db.backref('users', lazy='dynamic'))
 
     __mapper_args__ = {
-        'polymorphic_identity': 'user',
-        'polymorphic_on': user_type
+        'polymorphic_on': user_type,
+        'polymorphic_identity': __name__.lower()
     }
 
     @hybrid_property
@@ -88,16 +92,21 @@ class User(db.Model):
     def authenticate(username, password):
         ...
 
+    def has_permission(self, permission_name):
+        perms = session.query(Permission.name).union(
+            group.permissions for group in self.groups.all()
+        )
+        return permission_name in perms.all()
+
     def __repr__(self):
         return '({}) {} {}'.format(self.id, self.user_type.capitalize(), self.full_name)
 
 class Parent(User):
-    __mapper_args__ = {'polymorphic_identity': 'parent'}
-
+    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
 class Teacher(Parent):
-    __mapper_args__ = {'polymorphic_identity': 'teacher'}
+    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
 
     id = db.Column(db.Integer, db.ForeignKey('parent.id'), primary_key=True)
     designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
@@ -105,7 +114,8 @@ class Teacher(Parent):
     validate_designation = db.validates('designation')(validate_slug)
 
 class Admin(User):
-    __mapper_args__ = {'polymorphic_identity': 'admin'}
+    '''Has all permissions.'''
+    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
 parent_student = db.Table('parent_student',
@@ -117,7 +127,7 @@ class Student(User):
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'student',
+        'polymorphic_identity': __name__.lower(),
         'inherit_condition': User.id == id
     }
 
