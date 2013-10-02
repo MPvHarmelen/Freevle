@@ -17,6 +17,10 @@ def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
     return render_template('schoolklimaat.html', title=title)
 
+@app.route('/nieuws/<a>/<b>/<c>/')
+def newsmessage(a,b,c):
+    return render_template('nieuwsbericht.html')
+
 @app.route('/login/', methods=['POST'])
 def login():
     title = 'Schoolklimaat | Cygnus Gymnasium'
