@@ -34,6 +34,10 @@ def login():
 def showlogin():
     return render_template('login.html')
 
+@app.route('/zoek/autocompletion/', methods=['POST'])
+def results():
+    return render_template('autocompletion.html')
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')

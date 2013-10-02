@@ -87,6 +87,21 @@ $(document).ready(function() {
     focusstatus = false;
   });
 
+
+  $('input[name=search]').keyup(function() {
+    var svalue = $(this).val();
+
+    $.ajax({
+      type: "POST",
+      url: "/zoek/autocompletion/",
+      data: { value: svalue }
+    })
+      .done(function(back) {
+        $('datalist#search').html(back);
+      });
+  });
+
+
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
       $('input').blur();

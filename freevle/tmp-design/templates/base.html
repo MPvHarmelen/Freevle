@@ -71,9 +71,11 @@
       </nav>
       <a href="#search" id="searchopener">&emsp;</a>
       <div class="button">Login</div>
-      <form method="POST" action="/zoek">
+      <form method="POST" action="/zoek/">
         <h2 id="searchtitle">Zoeken</h2>
-        <input type="search" placeholder="Zoek...">
+        <input type="search" name="search" list="search" placeholder="Zoek...">
+        <datalist id="search">
+        </datalist>
       </form>
     </header>
 
