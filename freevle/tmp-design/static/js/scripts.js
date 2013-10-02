@@ -5,11 +5,6 @@ $(document).ready(function() {
     $('html, body').animate({ scrollTop: place }, 200);
   }
 
-  function isEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-  }
-
   function disablrLogin() {
     var lengthUname = $('#login input[type=text]').val().length;
     var lengthPwd = $('#login input[type=password]').val().length;
