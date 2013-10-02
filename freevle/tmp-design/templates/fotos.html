@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="recent">
+    <h2>Foto's</h2>
+
+    <article class="photoalbum">
+      <div class="coverbg">
+        <img src="http://placekitten.com/1100/300">
+      </div>
+      <a class="overlay" href="/fotos/2013/parijs/">
+        <h3><time>2013</time>&emsp;Parijs</h3>
+      </a>
+    </article>
+
+    <article class="photoalbum">
+      <div class="coverbg">
+        <img src="http://placekitten.com/1100/300">
+      </div>
+      <a class="overlay" href="/fotos/2013/jihlava/">
+        <h3><time>2013</time>&emsp;Jihlava</h3>
+      </a>
+    </article>
+
+  </div>
+{% endblock %}

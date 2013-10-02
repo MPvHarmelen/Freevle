@@ -84,6 +84,47 @@ div.newscover {
   height: 150px;
   margin-top: -2em; }
 
+/*PHOTOS*/
+article.photoalbum {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden; }
+  article.photoalbum a.overlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #43b83d;
+    display: table;
+    height: 100%;
+    width: 40%;
+    padding: 0 3em;
+    overflow: hidden;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    transition: width 200ms ease-in-out;
+    -o-transition: width 200ms ease-in-out;
+    -ms-transition: width 200ms ease-in-out;
+    -moz-transition: width 200ms ease-in-out;
+    -webkit-transition: width 200ms ease-in-out;
+    opacity: 0.8; }
+    article.photoalbum a.overlay h3 {
+      color: white;
+      vertical-align: middle;
+      display: table-cell;
+      font-size: 2em; }
+      article.photoalbum a.overlay h3 time {
+        font-weight: 300; }
+  article.photoalbum:hover a {
+    text-decoration: none;
+    width: 100%; }
+
 /*PHOTOALBUM*/
 div#gallery {
   overflow: hidden;

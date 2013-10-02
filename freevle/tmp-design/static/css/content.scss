@@ -155,6 +155,49 @@ div.newscover {
 }
 
 
+/*PHOTOS*/
+article.photoalbum {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+
+  a.overlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $recentcolor;
+    display: table;
+    height: 100%;
+    width: 40%;
+    padding: 0 3em;
+    overflow: hidden;
+    @include prefixify(box-sizing, border-box);
+    @include transition(width, 200ms);
+    opacity: 0.8;
+
+    h3 {
+      color: white;
+      vertical-align: middle;
+      display: table-cell;
+      font-size: 2em;
+
+      time {
+        font-weight: 300;
+      }
+    }
+  }
+
+  &:hover a {
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+
 /*PHOTOALBUM*/
 div#gallery {
   overflow: hidden;
