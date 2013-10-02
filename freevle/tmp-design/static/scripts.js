@@ -44,11 +44,7 @@ $(document).ready(function() {
     }
   }
 
-  $('input').focusin(function() {
-    focusstatus = true;
-  }).focusout(function() {
-    focusstatus = false;
-  });
+
 
   $('#menuopener').click(function(e) {
     e.preventDefault();
@@ -62,6 +58,7 @@ $(document).ready(function() {
     $('header form').toggleClass('opened');
   });
 
+
   $('input[type=search]').focusin(function() {
     $(this).addClass('opened');
   }).focusout(function() {
@@ -70,6 +67,7 @@ $(document).ready(function() {
     }
   });
 
+
   if($(window).width() > 1000) {
     $('header .button, div#login .close').click(function(e) {
       e.preventDefault();
@@ -77,13 +75,13 @@ $(document).ready(function() {
     });
   }
 
+
+  disablrLogin();
+
   $('#login input').keyup(function() {
     disablrLogin();
   });
 
-  $('#lost input').keyup(function() {
-    disablrLost();
-  });
 
   $('#jumpto a').click(function() {
     var headerId = $(this).attr('href');
@@ -95,6 +93,13 @@ $(document).ready(function() {
     var offsetHeader = $(window.location.hash).offset().top - 70;
     scrollTo(offsetHeading);
   }
+
+
+  $('input').focusin(function() {
+    focusstatus = true;
+  }).focusout(function() {
+    focusstatus = false;
+  });
 
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
