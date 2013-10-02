@@ -506,7 +506,7 @@ footer {
   }
 }
 
-@media (max-width: $pagewidth) {
+@media (max-width: $pagewidth - 1) {
   div#indexcover {
     h1 {
       display: none;
