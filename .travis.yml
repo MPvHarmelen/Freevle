@@ -21,6 +21,7 @@ install:
   - pip install flask-babelex --use-mirrors
   - pip install git+git://github.com/FSX/flask-seasurf.git
   - pip install sqlalchemy --use-mirrors
+  - pip install markdown --user-mirrors
 
   - hg clone https://bitbucket.org/babel3_developers/babel3
   - cd babel3
