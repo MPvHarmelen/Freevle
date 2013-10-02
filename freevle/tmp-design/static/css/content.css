@@ -32,6 +32,10 @@ div#content {
     border-color: rgba(20, 202, 157, 0.7); }
     div#content.activities nav ul {
       background: rgba(20, 202, 157, 0.7); }
+  div#content.protected {
+    border-color: rgba(110, 0, 128, 0.7); }
+  div#content.protected.teachers {
+    border-color: #6e0080; }
   div#content p {
     margin: 0.5em 30px 1.5em;
     text-align: justify;
@@ -64,7 +68,7 @@ div#pagecover {
 /*NEWS*/
 article.newsmessage {
   padding: 2em 0 2em;
-  border-bottom: 1px solid #dddddd; }
+  border-bottom: 1px solid #ddd; }
   article.newsmessage:first-of-type {
     padding-top: 0.1em; }
   article.newsmessage h3 {
@@ -81,7 +85,7 @@ div.newscover {
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
-  border-top: 1px solid #eeeeee; }
+  border-top: 1px solid #eee; }
   nav#readfurther h2 {
     font-size: 1.5em;
     font-style: italic;
@@ -178,6 +182,14 @@ nav#subjectoverview {
         background-color: rgba(20, 202, 157, 0.7); }
         nav#subjectoverview > ul > li.activities:hover {
           background-color: #14ca9d; }
+      nav#subjectoverview > ul > li.protected {
+        background-color: rgba(110, 0, 128, 0.7); }
+        nav#subjectoverview > ul > li.protected:hover {
+          background-color: #6e0080; }
+      nav#subjectoverview > ul > li.protected.teachers {
+        background-color: rgba(88, 0, 103, 0.7); }
+        nav#subjectoverview > ul > li.protected.teachers:hover {
+          background-color: #580067; }
 
 /*LOGIN-PAGE*/
 a#backtoindex {

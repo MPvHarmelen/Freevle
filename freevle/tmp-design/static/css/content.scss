@@ -7,6 +7,7 @@ $educationcolor: #D11605;
 $schoolcolor: #013D7D;
 $activitiescolor: #14CA9D;
 $promotecolor: #FBA929;
+$logincolor: #6E0080;
 
 @mixin transition($property, $duration: 300ms, $secproperty: "", $secduration: "") {
           transition: $property $duration ease-in-out;
@@ -71,6 +72,14 @@ div#content {
     nav ul {
       background: transparentize($activitiescolor, 0.3);
     }
+  }
+
+  &.protected {
+    border-color: transparentize($logincolor, 0.3);
+  }
+
+  &.protected.teachers {
+    border-color: $logincolor;
   }
 
   p {
@@ -281,6 +290,19 @@ nav#subjectoverview {
         background-color: transparentize($activitiescolor, 0.3);
         &:hover {
           background-color: $activitiescolor;
+        }
+      }
+      &.protected {
+        background-color: transparentize($logincolor, 0.3);
+        &:hover {
+          background-color: $logincolor;
+        }
+      }
+
+      &.protected.teachers {
+        background-color: transparentize(darken($logincolor, 5%), 0.3);
+        &:hover {
+          background-color: darken($logincolor, 5%);
         }
       }
     }
