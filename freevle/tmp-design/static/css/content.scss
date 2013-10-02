@@ -240,6 +240,33 @@ ul#threeheadlines {
   }
 }
 
+div#recentlinks {
+  clear: both;
+  overflow: hidden;
+
+  a {
+    display: block;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3em;
+    background: transparentize($recentcolor, 0.3);
+    padding: 1em;
+    @include transition(background, 200ms);
+
+    &:hover {
+      text-decoration: none;
+      background: $recentcolor;
+    }
+  }
+}
+
+div#comingup {
+  clear: both;
+  overflow: hidden;
+  background: #f5f5f5;
+  border-top: 1px solid #eee;
+}
+
 
 /*SUBJECT-OVERVIEW*/
 nav#subjectoverview {
@@ -457,6 +484,12 @@ a#backtoindex {
       float: left;
       padding-left: 0.5em;
     }
+  }
+
+  div#recentlinks a {
+    width: 44%;
+    padding: 3%;
+      float: left;
   }
 }
 
