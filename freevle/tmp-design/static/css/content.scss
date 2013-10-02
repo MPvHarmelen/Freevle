@@ -176,8 +176,8 @@ article.photoalbum {
     padding: 0 3em;
     overflow: hidden;
     @include prefixify(box-sizing, border-box);
-    @include transition(width, 200ms);
-    opacity: 0.8;
+    @include transition(all, 200ms);
+    opacity: 0.7;
 
     h3 {
       color: white;
@@ -194,6 +194,7 @@ article.photoalbum {
   &:hover a {
     text-decoration: none;
     width: 100%;
+    opacity: 0.9;
   }
 }
 
