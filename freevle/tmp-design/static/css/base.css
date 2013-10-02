@@ -22,7 +22,7 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: "Aldus", serif;
+  font-family: 'Aldus', serif;
   font-weight: 400;
   text-align: center;
   color: white;
@@ -360,6 +360,11 @@ footer {
   header h1 span#obsolete {
     display: none; } }
 @media (max-width: 1000px) {
+  div#indexcover h1 {
+    display: none; }
+  div#indexcover div#darken {
+    padding: 5em 2em; }
+
   header ul {
     position: absolute;
     top: 0;
@@ -421,21 +426,7 @@ footer {
     border-right: 1px solid #013164;
     border-left: 0; }
   header div.button {
-    display: none; }
-
-  .home header h1 {
-    display: none; }
-    .home header h1 a {
-      opacity: 0;
-      transition: opacity 200ms ease-in-out;
-      -o-transition: opacity 200ms ease-in-out;
-      -ms-transition: opacity 200ms ease-in-out;
-      -moz-transition: opacity 200ms ease-in-out;
-      -webkit-transition: opacity 200ms ease-in-out; }
-    .home header h1.yepshow {
-      display: block; }
-      .home header h1.yepshow a {
-        opacity: 1; } }
+    display: none; } }
 @media (min-width: 1000px) {
   h1 {
     font-size: 3.4em; }

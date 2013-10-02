@@ -507,6 +507,16 @@ footer {
 }
 
 @media (max-width: $pagewidth) {
+  div#indexcover {
+    h1 {
+      display: none;
+    }
+
+    div#darken {
+      padding: 5em 2em;
+    }
+  }
+
   header {
     ul {
       position: absolute;
@@ -589,25 +599,6 @@ footer {
       display: none;
     }
   }
-
-
-  .home header h1 {
-    display: none;
-
-    a {
-      opacity: 0;
-      @include transition(opacity, 200ms);
-    }
-
-    &.yepshow {
-      display: block;
-
-      a {
-        opacity: 1;
-      }
-    }
-  }
-
 }
 
 @media (min-width: $pagewidth) {
