@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request, redirect
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,6 +16,19 @@ def page(name):
 def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
     return render_template('schoolklimaat.html', title=title)
+
+@app.route('/login/', methods=['POST'])
+def login():
+    title = 'Schoolklimaat | Cygnus Gymnasium'
+    return redirect(url_for('dashboard'))
+
+@app.route('/login/', methods=['GET'])
+def showlogin():
+    return render_template('login.html')
+
+@app.route('/dashboard/')
+def dashboard():
+    return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.debug = True
