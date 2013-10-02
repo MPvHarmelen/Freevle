@@ -55,6 +55,7 @@ process.
   (install from [bitbucket](https://bitbucket.org/babel3_developers/babel3), be
   sure to follow [these instructions](http://babel.edgewall.org/wiki/SubversionCheckout)
   on how to import the locale data).
+* Markdown
 
 ### Development
 
@@ -65,10 +66,10 @@ It's a fairly simple process: copy the `settings.cfg.sample` to your own
 personal `settings.cfg` file and change the settings to match your personal
 setup. You can then run Freevle and its testing suite in either of two ways:
 
-* Environment variable  
+* Environment variable
   Define an environment variable called `FREEVLE_SETTINGS` with the path to
   your `settings.cfg` file, then normally call `run.py` and `test.py`.
-* Command line argument  
+* Command line argument
   Call the scripts with the path to your settings file as argument, so
   somewhat like `python run.py ../settings.cfg` and the same for `test.py`.
 

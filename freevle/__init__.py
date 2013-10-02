@@ -6,6 +6,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.babelex import Babel, NullTranslations
 from flask.ext.seasurf import SeaSurf
 
+# Python 3 compatibility
 if not hasattr(NullTranslations, 'ugettext'):
     NullTranslations.ugettext = NullTranslations.gettext
 if not hasattr(NullTranslations, 'ungettext'):

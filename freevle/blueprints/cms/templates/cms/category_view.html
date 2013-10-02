@@ -1,0 +1,15 @@
+{% extends 'cms/base.html' %}
+
+{% block content %}
+      <div class="item">
+        <h2>{{ category.title }}</h2>
+        {% if category.children %}
+          <ul>
+          {% for child in category.children %}
+            <li><a href="{{ child.get_url() }}">{{ child.title }}</a></li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+        <p>{{ category.content }}</p>
+      </div>
+{% endblock %}

@@ -32,6 +32,10 @@ class Group(db.Model):
     def __repr__(self):
         return '({}) Group {}'.format(self.id, self.name)
 
+# for group in POLYMORPHIC_IDENTITIES:
+#     db.session.add(Group(name=group, slug=group))
+# db.session.commit()
+
 user_group = db.Table('user_group',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'), nullable=False)
@@ -56,8 +60,8 @@ class User(db.Model):
                              backref=db.backref('users', lazy='dynamic'))
 
     __mapper_args__ = {
-        'polymorphic_identity': 'user',
-        'polymorphic_on': user_type
+        'polymorphic_on': user_type,
+        'polymorphic_identity': __name__.lower()
     }
 
     @hybrid_property
@@ -84,44 +88,56 @@ class User(db.Model):
             return number
         raise ValueError("Invalid telephone number.")
 
+    @staticmethod
+    def authenticate(username, password):
+        ...
+
+    def has_permission(self, permission_name):
+        perms = session.query(Permission.name).union(
+            group.permissions for group in self.groups.all()
+        )
+        return permission_name in perms.all()
+
     def __repr__(self):
         return '({}) {} {}'.format(self.id, self.user_type.capitalize(), self.full_name)
 
-class Admin(User):
-    __tablename__ = 'admin'
-    __mapper_args__ = {'polymorphic_identity': 'admin'}
+class Parent(User):
+    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
-class Teacher(User):
-    __tablename__ = 'teacher'
-    __mapper_args__ = {'polymorphic_identity': 'teacher'}
+class Teacher(Parent):
+    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
 
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey('parent.id'), primary_key=True)
     designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
                             nullable=False)
     validate_designation = db.validates('designation')(validate_slug)
 
-class Parent(User):
-    __tablename__ = 'parent'
-    __mapper_args__ = {'polymorphic_identity': 'parent'}
-
+class Admin(User):
+    '''Has all permissions.'''
+    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
+parent_student = db.Table('parent_student',
+    db.Column('parent_id', db.Integer, db.ForeignKey('parent.id')),
+    db.Column('student.id', db.Integer, db.ForeignKey('student.id'))
+)
+
 class Student(User):
-    __tablename__ = 'student'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'student',
-        'inherit_condition': User.id==id
+        'polymorphic_identity': __name__.lower(),
+        'inherit_condition': User.id == id
     }
 
     designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
                             nullable=False)
-    grade = db.Column(db.Integer, nullable=False)
-    parent_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    parent = db.relationship(Parent,
-                             foreign_keys=[parent_id],
+    year = db.Column(db.Integer, nullable=False)
+    parents = db.relationship(Parent,
+                             secondary=parent_student,
+                             order_by=Parent.id,
+                             lazy='dynamic',
                              backref=db.backref('children',
                                                 order_by=Parent.full_name,
                                                 lazy='dynamic')

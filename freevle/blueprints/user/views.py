@@ -1,11 +1,23 @@
 from . import bp
 from .models import User, Group, Permission
+from flask import session, request
+from flask import render_template, redirect
+
+@bp.route('/login', methods=['POST'])
+def login_post():
+    """
+    Log a user in and optionally redirects them back to where they were.
+    """
+
 
 @bp.route('/login')
 def login():
     """
-    Log a user in and optionally redirects them back to wherethey were.
+    Log a user in and optionally redirects them back to where they were.
     """
+    if session.get('user', False):
+        return
+    return render_template
 
 @bp.route('/logout')
 def logout():
