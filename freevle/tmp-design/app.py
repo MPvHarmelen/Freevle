@@ -38,6 +38,14 @@ def showlogin():
 def results():
     return render_template('autocompletion.html')
 
+@app.route('/getrooster/<ref>/<idn>/')
+def getrooster(ref,idn):
+    import urllib2
+    response = urllib2.urlopen('http://www.cygnusgymnasium.nl/ftp_cg/roosters/infoweb/index.php?ref='+ref+'&id='+idn)
+    html = response.read()
+    return html
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')

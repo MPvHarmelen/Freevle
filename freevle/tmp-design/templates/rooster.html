@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      $('div#content').load('/getrooster/2/99363/ #rooster');
+    });
+  </script>
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <div id="content">
+  </div>
+{% endblock %}
