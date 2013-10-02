@@ -351,6 +351,80 @@ a#backtoindex {
 }
 
 
+/*SETTINGS-PAGE*/
+form#settings {
+  padding: 0 30px;
+
+  input {
+    display: block;
+    margin: 1em 0;
+    border-color: transparentize($logincolor, 0.5);
+    width: 18em;
+    max-width: 100%;
+    @include prefixify(box-sizing, border-box);
+
+    &:hover {
+      border-color: transparentize($logincolor, 0.3);
+    }
+    &:focus {
+      border-color: $logincolor;
+    }
+
+    &[name=secndpass] {
+      float: left;
+      margin-top: 0;
+    }
+
+    &[type=submit] {
+      color: white;
+      background: transparentize($logincolor, 0.3);
+      margin-bottom: 2em;
+      clear: both;
+
+      &:hover, &:focus {
+        background: transparentize($logincolor, 0.4);
+      }
+
+      &[disabled] {
+        background: transparentize($logincolor, 0.7);
+        border-color: transparent;
+
+        &:hover {
+          @include prefixify(box-shadow, none);
+          text-shadow: none;
+          cursor: default;
+        }
+        &:active {
+          @include prefixify(box-shadow, none);
+          padding: 0.6em 0.8em;
+        }
+      }
+    }
+  }
+
+  p#samechecker {
+    overflow: hidden;
+    float: left;
+    padding: 0.6em 0;
+    height: auto;
+    opacity: 1;
+    margin: 0 1em;
+    text-align: center;
+    @include transition(all, 200ms);
+
+    &:empty {
+      padding: 0;
+      height: 0;
+      opacity: 0.2;
+    }
+
+    &.okay {
+      color: #aaa;
+    }
+  }
+}
+
+
 @media (min-width: $pagewidth) {
   div#indexcover {
     background-image: url(/static/cover.png);
@@ -490,6 +564,10 @@ a#backtoindex {
     width: 44%;
     padding: 3%;
       float: left;
+  }
+
+  form#settings {
+    padding: 0 50px;
   }
 }
 

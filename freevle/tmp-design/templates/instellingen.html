@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 
 {% block head %}
-  <script src="settings.js"></script>
+  <script src="/static/settings.js"></script>
 {% endblock %}
 
 {% block bodyclass %}
 {% endblock %}
 
 {% block page %}
-  <div id="content">
+  <div id="content" class="protected">
     <h2>Instellingen</h2>
-    <form action="/settings/">
-      <p>Je bent ingelogd als <strong>Jan Modaal</strong>.</p>
-      <input type="password" name="firstpass" placeholder="Wachtwoord">
-      <input type="password" name="secndpass" placeholder="Herhaal wachtwoord">
+    <p>Je bent ingelogd als <strong>Jan Modaal</strong>.</p>
+
+    <form action="/instellingen/" method="POST" id="settings">
+      <input type="password" name="firstpass" placeholder="Nieuw wachtwoord">
+      <input type="password" name="secndpass" placeholder="Herhaal nieuw wachtwoord">
       <p id="samechecker"></p>
-      <input type="submit" value="Verander wachtwoord" name="changepass" disabled>
+      <input type="submit" value="Verander wachtwoord" name="changepass" class="button">
     </form>
   </div>
 {% endblock %}
