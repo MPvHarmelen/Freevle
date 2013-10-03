@@ -1,4 +1,6 @@
+import requests
 from flask import Flask, url_for, render_template, request, redirect
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -6,7 +8,7 @@ def index():
     title = 'Cygnus Gymnasium'
     return render_template('index.html', title=title)
 
-@app.route('/<name>/')
+@app.route('/<name>/', methods=['POST','GET'])
 def page(name):
     title = name.capitalize() + ' | Cygnus Gymnasium'
     page = name + '.html'
@@ -38,13 +40,18 @@ def showlogin():
 def results():
     return render_template('autocompletion.html')
 
-@app.route('/getrooster/<ref>/<idn>/')
-def getrooster(ref,idn):
-    import urllib2
-    response = urllib2.urlopen('http://www.cygnusgymnasium.nl/ftp_cg/roosters/infoweb/index.php?ref='+ref+'&id='+idn)
-    html = response.read()
+
+@app.route('/getrooster/<ref>/<id_user>/')
+def getrooster(ref,id_user):
+    rooster_url = 'http://www.cygnusgymnasium.nl/ftp_cg/roosters/infoweb/index.php?ref={0}&id={1}'.format(ref, id_user)
+    response = requests.get(rooster_url)
+    html = response.text
     return html
 
+@app.route('/rooster/<ref>/<id_user>/')
+def rooster(ref,id_user):
+    roostername = 'Floris Jansen'
+    return render_template('rooster.html', ref=ref, id_user=id_user, roostername=roostername)
 
 if __name__ == '__main__':
     app.debug = True

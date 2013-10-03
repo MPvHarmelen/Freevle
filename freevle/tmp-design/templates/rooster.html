@@ -3,9 +3,22 @@
 {% block head %}
   <script>
     $(document).ready(function() {
-      $('div#content').load('/getrooster/2/99363/ #rooster');
+      $('div#rooster').load('/getrooster/{{ref}}/{{id_user}}/ .roosterdeel');
+      $('p#changes').load('/getrooster/{{ref}}/{{id_user}}/ pre');
+      $('div#searchname input').keyup(function() {
+        var svalue = $(this).val();
+        $.ajax({
+          type: "POST",
+          url: "/roosterresults/",
+          data: { value: svalue }
+        })
+          .done(function(back) {
+            $('ul#acsname').html(back);
+          });
+      });
     });
   </script>
+  <link rel="stylesheet" href="/static/css/rooster.css">
 {% endblock %}
 
 {% block bodyclass %}
@@ -13,5 +26,15 @@
 
 {% block page %}
   <div id="content">
+    <h2>Rooster</h2>
+
+    <div id="searchname">
+      <input type="text" placeholder="Vind een naam...">
+    </div>
+    <ul id="acsname"></ul>
+
+    <p>Het rooster van <strong>{{ roostername }}</strong>.</p>
+    <p id="changes"></p>
+    <div id="rooster"></div>
   </div>
 {% endblock %}
