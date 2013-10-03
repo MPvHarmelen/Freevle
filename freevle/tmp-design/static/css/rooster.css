@@ -43,9 +43,9 @@ ul#acsname {
     ul#acsname a span {
       color: #777; }
 
-ul#acsname {
-  padding: 0;
-  margin: 0; }
+p#changes {
+  overflow: hidden;
+  word-wrap: break-word; }
 
 td.vervallen {
   background: #ffb3b3; }

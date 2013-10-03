@@ -67,9 +67,9 @@ ul#acsname {
   }
 }
 
-ul#acsname {
-  padding: 0;
-  margin: 0;
+p#changes {
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 td.vervallen {
