@@ -384,7 +384,7 @@ div#lost {
 
 
 /*HEADER, NAV*/
-header {
+header#main {
   background: $maincolor;
   z-index: 3;
   width: 100%;
@@ -504,7 +504,7 @@ footer {
 
 /*MEDIA-QUERIES*/
 @media (max-width: 410px) {
-  header {
+  header#main {
     h1 {
       span#obsolete {
         display: none;
@@ -524,7 +524,7 @@ footer {
     }
   }
 
-  header {
+  header#main {
     ul {
       position: absolute;
       top: 0;
@@ -625,7 +625,7 @@ footer {
     display: none;
   }
 
-  header {
+  header#main {
     height: 4.1em;
     width: $smallpagewidth;
     margin-left: -$smallpagewidth/2;
@@ -724,7 +724,7 @@ footer {
     }
   }
 
-  .home header {
+  .home header#main {
     background: transparentize(#fafafa, 0.4);
 
     h1 {
@@ -748,7 +748,7 @@ footer {
 }
 
 @media (min-width: 1440px) {
-  header {
+  header#main {
     width: $pagewidth;
     margin-left: -$pagewidth/2;
   }
