@@ -1,0 +1,217 @@
+$pagewidth: 1000px;
+@mixin transition($property, $duration: 200ms) {
+          transition: $property $duration ease-in-out;
+       -o-transition: $property $duration ease-in-out;
+      -ms-transition: $property $duration ease-in-out;
+     -moz-transition: $property $duration ease-in-out;
+  -webkit-transition: $property $duration ease-in-out;
+}
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+
+@-webkit-keyframes wiggle {
+  from {
+    top: 30px;
+  }
+
+  to {
+    top: 40px;
+  }
+}
+
+@-moz-keyframes wiggle {
+  from {
+    top: 30px;
+  }
+
+  to {
+    top: 40px;
+  }
+}
+
+@-ms-keyframes wiggle {
+  from {
+    top: 30px;
+  }
+
+  to {
+    top: 40px;
+  }
+}
+
+@-o-keyframes wiggle {
+  from {
+    top: 30px;
+  }
+
+  to {
+    top: 40px;
+  }
+}
+
+@keyframes wiggle {
+  from {
+    top: 30px;
+  }
+
+  to {
+    top: 40px;
+  }
+}
+
+
+
+.partext, #parbegin .center div, #parend .center {
+  background: #fafafa;
+  overflow: hidden;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin: 1em 30px 1em;
+    text-align: justify;
+    line-height: 1.6em;
+  }
+}
+
+#pointdown {
+  display: none;
+}
+
+.parimage {
+  height: 120px;
+  text-align: center;
+  overflow: hidden;
+  display: table;
+  width: 100%;
+  background-size: cover;
+
+  h3 {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+    font-size: 2.2em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+}
+
+#parend{
+  text-align: center;
+
+  .center {
+    padding-bottom: 2em;
+
+    h3 {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+@media (min-width: $pagewidth) {
+  #parbegin {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: table;
+    background-size: cover;
+    background-attachment: fixed;
+
+    .center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 100%;
+
+      div {
+        margin: 0 auto;
+        width: 400px;
+        padding: 0 0 0.7em;
+      }
+    }
+
+    #pointdown {
+      display: block;
+      background: white;
+      position: absolute;
+      height: 100px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      color: #888;
+
+      div {
+        text-align: center;
+        font-size: 1.5em;
+        position: absolute;
+        width: 100%;
+        @include prefixify(animation-name, wiggle);
+        @include prefixify(animation-duration, 2s);
+        @include prefixify(animation-iteration-count, infinite);
+        @include prefixify(animation-direction, alternate);
+        @include prefixify(animation-timing-function, ease-in-out);
+        @include transition(opacity);
+      }
+
+      p {
+        text-align: center;
+        font-size: 1.3em;
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        margin: 0;
+        @include transition(opacity);
+        opacity: 0;
+      }
+
+      &:hover {
+        :nth-child(1) {
+          opacity: 0;
+        }
+        :nth-child(2) {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .parimage {
+    height: 500px;
+    @include prefixify(box-shadow, inset 0 0 10px 1px rgba(0, 0, 0, 0.3));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #555;
+
+    h3 {
+      font-size: 4em;
+    }
+  }
+
+  .partext {
+    padding: 2em 0;
+
+    p {
+      width: $pagewidth;
+      margin: 2em auto;
+    }
+  }
+
+  #parend {
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 10em;
+
+    .center {
+      margin: 0 auto;
+      width: 400px;
+      padding: 1em 0 2em;
+    }
+  }
+}

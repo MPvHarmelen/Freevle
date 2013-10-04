@@ -1,0 +1,175 @@
+@-webkit-keyframes wiggle {
+  from {
+    top: 30px; }
+
+  to {
+    top: 40px; } }
+
+@-moz-keyframes wiggle {
+  from {
+    top: 30px; }
+
+  to {
+    top: 40px; } }
+
+@-ms-keyframes wiggle {
+  from {
+    top: 30px; }
+
+  to {
+    top: 40px; } }
+
+@-o-keyframes wiggle {
+  from {
+    top: 30px; }
+
+  to {
+    top: 40px; } }
+
+@keyframes wiggle {
+  from {
+    top: 30px; }
+
+  to {
+    top: 40px; } }
+
+.partext, #parbegin .center div, #parend .center {
+  background: #fafafa;
+  overflow: hidden; }
+  .partext h2, #parbegin .center div h2, #parend .center h2 {
+    text-align: center; }
+  .partext p, #parbegin .center div p, #parend .center p {
+    margin: 1em 30px 1em;
+    text-align: justify;
+    line-height: 1.6em; }
+
+#pointdown {
+  display: none; }
+
+.parimage {
+  height: 120px;
+  text-align: center;
+  overflow: hidden;
+  display: table;
+  width: 100%;
+  background-size: cover; }
+  .parimage h3 {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+    font-size: 2.2em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
+
+#parend {
+  text-align: center; }
+  #parend .center {
+    padding-bottom: 2em; }
+    #parend .center h3 {
+      margin-bottom: 1em; }
+
+@media (min-width: 1000px) {
+  #parbegin {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: table;
+    background-size: cover;
+    background-attachment: fixed; }
+    #parbegin .center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 100%; }
+      #parbegin .center div {
+        margin: 0 auto;
+        width: 400px;
+        padding: 0 0 0.7em; }
+    #parbegin #pointdown {
+      display: block;
+      background: white;
+      position: absolute;
+      height: 100px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      color: #888; }
+      #parbegin #pointdown div {
+        text-align: center;
+        font-size: 1.5em;
+        position: absolute;
+        width: 100%;
+        animation-name: wiggle;
+        -o-animation-name: wiggle;
+        -ms-animation-name: wiggle;
+        -moz-animation-name: wiggle;
+        -webkit-animation-name: wiggle;
+        animation-duration: 2s;
+        -o-animation-duration: 2s;
+        -ms-animation-duration: 2s;
+        -moz-animation-duration: 2s;
+        -webkit-animation-duration: 2s;
+        animation-iteration-count: infinite;
+        -o-animation-iteration-count: infinite;
+        -ms-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-iteration-count: infinite;
+        animation-direction: alternate;
+        -o-animation-direction: alternate;
+        -ms-animation-direction: alternate;
+        -moz-animation-direction: alternate;
+        -webkit-animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+        -o-animation-timing-function: ease-in-out;
+        -ms-animation-timing-function: ease-in-out;
+        -moz-animation-timing-function: ease-in-out;
+        -webkit-animation-timing-function: ease-in-out;
+        transition: opacity 200ms ease-in-out;
+        -o-transition: opacity 200ms ease-in-out;
+        -ms-transition: opacity 200ms ease-in-out;
+        -moz-transition: opacity 200ms ease-in-out;
+        -webkit-transition: opacity 200ms ease-in-out; }
+      #parbegin #pointdown p {
+        text-align: center;
+        font-size: 1.3em;
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        margin: 0;
+        transition: opacity 200ms ease-in-out;
+        -o-transition: opacity 200ms ease-in-out;
+        -ms-transition: opacity 200ms ease-in-out;
+        -moz-transition: opacity 200ms ease-in-out;
+        -webkit-transition: opacity 200ms ease-in-out;
+        opacity: 0; }
+      #parbegin #pointdown:hover :nth-child(1) {
+        opacity: 0; }
+      #parbegin #pointdown:hover :nth-child(2) {
+        opacity: 1; }
+
+  .parimage {
+    height: 500px;
+    box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    -ms-box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #555; }
+    .parimage h3 {
+      font-size: 4em; }
+
+  .partext {
+    padding: 2em 0; }
+    .partext p {
+      width: 1000px;
+      margin: 2em auto; }
+
+  #parend {
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 10em; }
+    #parend .center {
+      margin: 0 auto;
+      width: 400px;
+      padding: 1em 0 2em; } }
