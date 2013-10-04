@@ -31,7 +31,7 @@ $logincolor: #6E0080;
   -webkit-#{$style}: $content;
 }
 
-@mixin transition($property, $duration: 300ms, $secproperty: "", $secduration: "") {
+@mixin transition($property, $duration: 200ms) {
           transition: $property $duration ease-in-out;
        -o-transition: $property $duration ease-in-out;
       -ms-transition: $property $duration ease-in-out;
@@ -160,7 +160,7 @@ input {
   background-repeat: no-repeat;
   font-size: 1.2em;
   font-weight: bold;
-  @include transition(background, 200ms);
+  @include transition(background);
 
   a:link, a:visited {
     color: white;
@@ -414,7 +414,7 @@ header#main {
   a#menuopener, a#searchopener {
     z-index: 4;
     background: $maincolor;
-    @include transition(background-position, 200ms);
+    @include transition(background-position);
 
     &:link, &:hover, &:visited {
       padding: 1.02em;
@@ -532,7 +532,7 @@ footer {
       width: 100%;
       z-index: 4;
       background: $maincolor;
-      @include transition(left, 200ms);
+      @include transition(left);
 
       &.opened {
         left: 0;
@@ -568,7 +568,7 @@ footer {
       width: 100%;
       z-index: 4;
       background: $maincolor;
-      @include transition(right, 200ms);
+      @include transition(right);
 
       &.opened {
         right: 0;
@@ -708,7 +708,7 @@ footer {
         width: 0;
         padding-right: 0;
         margin: 0.6em 0;
-        @include transition(width, 200ms);
+        @include transition(width);
         border-color: rgba(0,0,0,0);
 
         &:hover, &:focus {
@@ -731,7 +731,7 @@ footer {
       width: 0;
       white-space: nowrap;
       border-width: 0;
-      @include transition(width, 200ms);
+      @include transition(width);
 
       &.yepshow {
         width: 250px;
