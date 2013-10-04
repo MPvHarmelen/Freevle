@@ -9,7 +9,7 @@ $activitiescolor: #14CA9D;
 $promotecolor: #FBA929;
 $logincolor: #6E0080;
 
-@mixin transition($property, $duration: 300ms, $secproperty: "", $secduration: "") {
+@mixin transition($property, $duration: 200ms) {
           transition: $property $duration ease-in-out;
        -o-transition: $property $duration ease-in-out;
       -ms-transition: $property $duration ease-in-out;
@@ -202,7 +202,7 @@ article.photoalbum {
     padding: 0 3em;
     overflow: hidden;
     @include prefixify(box-sizing, border-box);
-    @include transition(all, 200ms);
+    @include transition(all);
     opacity: 0.7;
 
     h3 {
@@ -239,7 +239,7 @@ a.fancybox {
   height: 120px;
   margin: 1%;
   opacity: 0.8;
-  @include transition(opacity, 200ms);
+  @include transition(opacity);
 
   &:hover {
     opacity: 1;
@@ -348,7 +348,7 @@ div#recentlinks {
     font-size: 1.3em;
     background: transparentize($recentcolor, 0.3);
     padding: 1em;
-    @include transition(background, 200ms);
+    @include transition(background);
 
     &:hover {
       text-decoration: none;
@@ -507,7 +507,7 @@ form#settings {
     opacity: 1;
     margin: 0 1em;
     text-align: center;
-    @include transition(all, 200ms);
+    @include transition(all);
 
     &:empty {
       padding: 0;
@@ -635,7 +635,7 @@ form#settings {
     float: left;
 
     a {
-      @include transition(opacity, 200ms);
+      @include transition(opacity);
     }
   }
   div#smallactivity {
@@ -644,7 +644,7 @@ form#settings {
     float: left;
 
     a {
-      @include transition(opacity, 200ms);
+      @include transition(opacity);
     }
   }
 
