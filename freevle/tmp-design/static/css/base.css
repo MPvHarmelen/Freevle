@@ -272,7 +272,7 @@ div#lost form input[type=submit] {
   width: 16em; }
 
 /*HEADER, NAV*/
-header {
+header#main {
   background: #013d7d;
   z-index: 3;
   width: 100%;
@@ -282,17 +282,17 @@ header {
   position: fixed;
   top: 0;
   text-transform: uppercase; }
-  header h1 {
+  header#main h1 {
     display: inline-block;
     width: 100%;
     font-size: 1.5em;
     margin: 0.55em 0 0; }
-    header h1 a:link, header h1 a:visited {
+    header#main h1 a:link, header#main h1 a:visited {
       color: white;
       text-decoration: none; }
-      header h1 a:link > span, header h1 a:visited > span {
+      header#main h1 a:link > span, header#main h1 a:visited > span {
         font-size: 0.9em; }
-  header a#menuopener, header a#searchopener {
+  header#main a#menuopener, header#main a#searchopener {
     z-index: 4;
     background: #013d7d;
     transition: background-position 200ms ease-in-out;
@@ -300,33 +300,33 @@ header {
     -ms-transition: background-position 200ms ease-in-out;
     -moz-transition: background-position 200ms ease-in-out;
     -webkit-transition: background-position 200ms ease-in-out; }
-    header a#menuopener:link, header a#menuopener:hover, header a#menuopener:visited, header a#searchopener:link, header a#searchopener:hover, header a#searchopener:visited {
+    header#main a#menuopener:link, header#main a#menuopener:hover, header#main a#menuopener:visited, header#main a#searchopener:link, header#main a#searchopener:hover, header#main a#searchopener:visited {
       padding: 1.02em;
       display: block;
       position: absolute;
       text-decoration: none; }
-  header a#menuopener {
+  header#main a#menuopener {
     border-right: 1px solid #013164;
     background-image: url(/static/img/sprite.png);
     background-size: 300%;
     background-position: 0 -180px; }
-  header a#searchopener {
+  header#main a#searchopener {
     background-image: url(/static/img/sprite.png);
     background-size: 300%;
     background-position: -58px -180px;
     border-left: 1px solid #013164;
     right: 0;
     top: 0; }
-  header ul {
+  header#main ul {
     display: inline-block;
     list-style: none;
     margin: 0;
     padding: 0; }
-    header ul li a:hover {
+    header#main ul li a:hover {
       text-decoration: none; }
-    header ul li a#currentpage {
+    header#main ul li a#currentpage {
       font-weight: bold; }
-    header ul li#menutitle {
+    header#main ul li#menutitle {
       border-bottom: 1px solid #013164;
       font-style: italic;
       font-family: "Source Sans Pro", sans-serif;
@@ -334,7 +334,7 @@ header {
       font-weight: 300;
       padding: 0.45em 0.4em;
       color: white; }
-  header form h2#searchtitle {
+  header#main form h2#searchtitle {
     border-bottom: 1px solid #013164;
     font-style: italic;
     font-family: "Source Sans Pro", sans-serif;
@@ -361,7 +361,7 @@ footer {
 
 /*MEDIA-QUERIES*/
 @media (max-width: 410px) {
-  header h1 span#obsolete {
+  header#main h1 span#obsolete {
     display: none; } }
 @media (max-width: 999px) {
   div#indexcover h1 {
@@ -369,7 +369,7 @@ footer {
   div#indexcover div#darken {
     padding: 5em 2em; }
 
-  header ul {
+  header#main ul {
     position: absolute;
     top: 0;
     left: -100%;
@@ -381,24 +381,24 @@ footer {
     -ms-transition: left 200ms ease-in-out;
     -moz-transition: left 200ms ease-in-out;
     -webkit-transition: left 200ms ease-in-out; }
-    header ul.opened {
+    header#main ul.opened {
       left: 0; }
-    header ul li {
+    header#main ul li {
       overflow: hidden; }
-      header ul li a:link, header ul li a:visited, header ul li a#loginlink {
+      header#main ul li a:link, header#main ul li a:visited, header#main ul li a#loginlink {
         color: white;
         padding: 0.8em 0.6em;
         display: block;
         border: 0;
         font-weight: 400;
         border-bottom: 1px solid #013873; }
-  header #menuopener.opened {
+  header#main #menuopener.opened {
     right: 0;
     z-index: 5;
     background-position: 0 -120px;
     border-left: 1px solid #013164;
     border-right: 0; }
-  header form {
+  header#main form {
     position: absolute;
     top: 3.3em;
     right: -100%;
@@ -410,26 +410,26 @@ footer {
     -ms-transition: right 200ms ease-in-out;
     -moz-transition: right 200ms ease-in-out;
     -webkit-transition: right 200ms ease-in-out; }
-    header form.opened {
+    header#main form.opened {
       right: 0; }
-      header form.opened h2#searchtitle {
+      header#main form.opened h2#searchtitle {
         display: block; }
-  header input[type=search] {
+  header#main input[type=search] {
     border: 0;
     width: 100%;
     margin: 0; }
-    header input[type=search]::-webkit-input-placeholder {
+    header#main input[type=search]::-webkit-input-placeholder {
       color: rgba(255, 255, 255, 0.7); }
-    header input[type=search]::-moz-placeholder {
+    header#main input[type=search]::-moz-placeholder {
       color: rgba(255, 255, 255, 0.7); }
-    header input[type=search]:-ms-input-placeholder {
+    header#main input[type=search]:-ms-input-placeholder {
       color: rgba(255, 255, 255, 0.7); }
-  header #searchopener.opened {
+  header#main #searchopener.opened {
     z-index: 5;
     background-position: 0 -120px;
     border-right: 1px solid #013164;
     border-left: 0; }
-  header div.button {
+  header#main div.button {
     display: none; } }
 @media (min-width: 1000px) {
   h1 {
@@ -444,7 +444,7 @@ footer {
   .mobileonly {
     display: none; }
 
-  header {
+  header#main {
     height: 4.1em;
     width: 900px;
     margin-left: -450px;
@@ -457,48 +457,48 @@ footer {
     -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
-    header h1 {
+    header#main h1 {
       width: 250px;
       margin: 0;
       padding: 0.6em 0;
       overflow: hidden;
       float: left;
       border-right: 1px solid rgba(238, 238, 238, 0.2); }
-      header h1 a > span {
+      header#main h1 a > span {
         font-size: 0.8em; }
-      header h1 a:link, header h1 a:visited {
+      header#main h1 a:link, header#main h1 a:visited {
         padding: 0.6em 0.8em;
         color: #013d7d; }
-    header #menuopener, header #searchopener {
+    header#main #menuopener, header#main #searchopener {
       display: none !important; }
-    header ul {
+    header#main ul {
       float: left; }
-      header ul li {
+      header#main ul li {
         float: left; }
-        header ul li a {
+        header#main ul li a {
           display: block;
           padding: 1.3em; }
-          header ul li a:link, header ul li a:visited {
+          header#main ul li a:link, header#main ul li a:visited {
             color: #000;
             opacity: 0.5; }
-          header ul li a:hover {
+          header#main ul li a:hover {
             color: #333;
             opacity: 1; }
-        header ul li#menutitle {
+        header#main ul li#menutitle {
           display: none; }
-    header div.button {
+    header#main div.button {
       margin: 0.6em;
       float: right;
       border-color: rgba(0, 0, 0, 0);
       opacity: 0.5;
       color: #000; }
-      header div.button:hover, header div.button:active {
+      header#main div.button:hover, header#main div.button:active {
         border-color: #6e0080;
         background: rgba(110, 0, 128, 0.9);
         opacity: 1; }
-    header form {
+    header#main form {
       float: right; }
-      header form input[type=search] {
+      header#main form input[type=search] {
         padding-left: 2.4em;
         background-image: url(/static/img/sprite.png);
         background-size: 174px;
@@ -513,16 +513,16 @@ footer {
         -moz-transition: width 200ms ease-in-out;
         -webkit-transition: width 200ms ease-in-out;
         border-color: rgba(0, 0, 0, 0); }
-        header form input[type=search]:hover, header form input[type=search]:focus {
+        header#main form input[type=search]:hover, header#main form input[type=search]:focus {
           border-color: #013d7d;
           background-position: -69px -135px; }
-        header form input[type=search].opened {
+        header#main form input[type=search].opened {
           width: 16em;
           padding-right: 0.8em; }
 
-  .home header {
+  .home header#main {
     background: rgba(250, 250, 250, 0.6); }
-    .home header h1 {
+    .home header#main h1 {
       width: 0;
       white-space: nowrap;
       border-width: 0;
@@ -531,7 +531,7 @@ footer {
       -ms-transition: width 200ms ease-in-out;
       -moz-transition: width 200ms ease-in-out;
       -webkit-transition: width 200ms ease-in-out; }
-      .home header h1.yepshow {
+      .home header#main h1.yepshow {
         width: 250px;
         border-width: 1px; }
 
@@ -544,7 +544,7 @@ footer {
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); } }
 @media (min-width: 1440px) {
-  header {
+  header#main {
     width: 1000px;
     margin-left: -500px; }
 
