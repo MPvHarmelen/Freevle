@@ -238,10 +238,15 @@ nav#readfurther {
 ul#quicknav {
   padding: 0;
   margin: 0;
+  overflow: hidden;
 
   h3 {
     margin: 0;
     color: white;
+  }
+
+  .recent h3 {
+    margin: 0 0 0.6em;
   }
 
   ul {
@@ -496,16 +501,6 @@ form#settings {
 
 
 @media (min-width: $pagewidth) {
-  div#indexcover {
-    background-image: url(/static/img/cover.png);
-    margin-top: -3.8em;
-    margin-bottom: -11em;
-
-    #darken {
-      padding: 8em 2em 17em;
-    }
-  }
-
 
   div#content {
     width: $smallpagewidth;
@@ -594,15 +589,23 @@ form#settings {
 
 
   /*INDEX*/
-  div#leftcolumn {
-    width: 70%;
-    float: left;
+  div#indexcover {
+    background-image: url(/static/img/cover.png);
+    margin-top: -3.8em;
+    margin-bottom: -12em;
+
+    #darken {
+      padding: 8em 2em 18em;
+    }
   }
 
-  div#rightcolumn {
-    width: 30%;
-    float: right;
+  ul#quicknav > li {
+    float: left;
+    width: 25%;
+    height: 152px;
+    @include prefixify(box-sizing, border-box);
   }
+
 
   div#largeactivity {
     width: 4/7*100%;
@@ -658,6 +661,18 @@ form#settings {
 @media (min-width: 1440px) {
   div#content {
     width: $pagewidth;
+  }
+
+  div#indexcover {
+    margin-bottom: -11em;
+
+    #darken {
+      padding: 8em 2em 17em;
+    }
+  }
+
+  ul#quicknav > li {
+    height: 136px;
   }
 
   ul#threeheadlines {

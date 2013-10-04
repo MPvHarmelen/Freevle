@@ -8,6 +8,7 @@ $pagewidth: 1000px;
 $smallpagewidth: 900px;
 
 $maincolor: #013D7D;
+$recentcolor: #43B83D;
 $educationcolor: #D11605;
 $schoolcolor: #013D7D;
 $activitiescolor: #14CA9D;
@@ -181,6 +182,12 @@ input {
     background-color: transparentize($activitiescolor, 0.3);
     &:hover {
       background-color: $activitiescolor;
+    }
+  }
+  &.recent {
+    background-color: transparentize($recentcolor, 0.3);
+    &:hover {
+      background-color: $recentcolor;
     }
   }
 }
