@@ -154,6 +154,32 @@ div.newscover {
   margin-top: -2em;
 }
 
+nav#pagination {
+  padding: 1em;
+  text-align: center;
+
+  a {
+    color: white;
+    display: inline-block;
+    padding: 0.7em 0.9em;
+    margin: 0.1em;
+    background: transparentize($recentcolor, 0.3);
+
+    &:hover {
+      text-decoration: none;
+      background: $recentcolor;
+    }
+
+    &.current, &.dots {
+      background: transparentize($recentcolor, 0.3);
+    }
+
+    &.current, &.current:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 
 /*PHOTOS*/
 article.photoalbum {

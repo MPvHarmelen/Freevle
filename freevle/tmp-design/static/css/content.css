@@ -84,6 +84,23 @@ div.newscover {
   height: 150px;
   margin-top: -2em; }
 
+nav#pagination {
+  padding: 1em;
+  text-align: center; }
+  nav#pagination a {
+    color: white;
+    display: inline-block;
+    padding: 0.7em 0.9em;
+    margin: 0.1em;
+    background: rgba(67, 184, 61, 0.7); }
+    nav#pagination a:hover {
+      text-decoration: none;
+      background: #43b83d; }
+    nav#pagination a.current, nav#pagination a.dots {
+      background: rgba(67, 184, 61, 0.7); }
+    nav#pagination a.current, nav#pagination a.current:hover {
+      text-decoration: underline; }
+
 /*PHOTOS*/
 article.photoalbum {
   position: relative;
