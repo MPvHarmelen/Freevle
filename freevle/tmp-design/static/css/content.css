@@ -511,9 +511,9 @@ form#settings {
 
   div#recent {
     width: 50%;
-    float: left; }
+    float: left;
+    border-right: 1px solid #eeeeee; }
     div#recent h2 {
-      border-right: 1px solid #eeeeee;
       margin: 0;
       padding: 0.5em 20px; }
 
@@ -532,16 +532,14 @@ form#settings {
         -moz-transition: height 200ms ease-in-out;
         -webkit-transition: height 200ms ease-in-out; }
 
-  ul#headlines {
-    border-right: 1px solid #eeeeee; }
-    ul#headlines li {
-      overflow: hidden;
-      font-size: 1.2em; }
-    ul#headlines a {
-      max-width: 87%;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden; }
+  ul#headlines li {
+    overflow: hidden;
+    font-size: 1.2em; }
+  ul#headlines a {
+    max-width: 87%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; }
 
   div#comingup {
     border-top: none;

@@ -699,9 +699,9 @@ form#settings {
   div#recent {
     width: 50%;
     float: left;
+    border-right: 1px solid #eee;
 
     h2 {
-      border-right: 1px solid #eee;
       margin: 0;
       padding: 0.5em 20px;
     }
@@ -720,8 +720,6 @@ form#settings {
   }
 
   ul#headlines {
-    border-right: 1px solid #eee;
-
     li {
       overflow: hidden;
       font-size: 1.2em;
