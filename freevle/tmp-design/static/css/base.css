@@ -576,7 +576,7 @@ footer {
 
   /*BREADCRUMBS*/
   nav#breadcrumbs {
-    width: 964px;
+    width: 864px;
     margin: 1em auto; }
 
   footer {
@@ -591,6 +591,10 @@ footer {
   header#main {
     width: 1000px;
     margin-left: -500px; }
+
+  nav#breadcrumbs {
+    width: 964px;
+    margin: 1em auto; }
 
   footer {
     width: 1000px; } }

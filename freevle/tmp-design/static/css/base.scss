@@ -788,7 +788,7 @@ footer {
 
   /*BREADCRUMBS*/
   nav#breadcrumbs {
-    width: $pagewidth - 36px;
+    width: $smallpagewidth - 36px;
     margin: 1em auto;
   }
 
@@ -803,6 +803,11 @@ footer {
   header#main {
     width: $pagewidth;
     margin-left: -$pagewidth/2;
+  }
+
+  nav#breadcrumbs {
+    width: $pagewidth - 36px;
+    margin: 1em auto;
   }
 
   footer {
