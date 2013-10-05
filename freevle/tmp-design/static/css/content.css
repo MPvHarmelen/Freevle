@@ -97,6 +97,11 @@ div.newscover {
   height: 150px;
   margin-top: -2em; }
 
+form#archivepicker {
+  margin: 0.5em 30px; }
+  form#archivepicker .button {
+    padding: 0.65em 0.9em; }
+
 nav#pagination {
   padding: 1em;
   text-align: center; }
@@ -497,6 +502,9 @@ form#settings {
   /*NEWS*/
   div.newscover {
     height: 200px; }
+
+  form#archivepicker {
+    margin: 0.5em 50px; }
 
   /*PHOTOALBUM*/
   div#gallery {

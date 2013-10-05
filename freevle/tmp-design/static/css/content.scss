@@ -169,11 +169,20 @@ article.newsmessage {
   border-bottom: 1px solid #ddd;
 
 }
+
 div.newscover {
   position: relative;
   overflow: hidden;
   height: 150px;
   margin-top: -2em;
+}
+
+form#archivepicker {
+  margin: 0.5em 30px;
+
+  .button {
+    padding: 0.65em 0.9em;
+  }
 }
 
 nav#pagination {
@@ -701,6 +710,10 @@ form#settings {
   /*NEWS*/
   div.newscover {
     height: 200px;
+  }
+
+  form#archivepicker {
+    margin: 0.5em 50px;
   }
 
 

@@ -8,11 +8,13 @@ def index():
     title = 'Cygnus Gymnasium'
     return render_template('index.html', title=title)
 
+
 @app.route('/<name>/', methods=['POST','GET'])
 def page(name):
     title = name.capitalize() + ' | Cygnus Gymnasium'
     page = name + '.html'
     return render_template(page, title=title)
+
 
 @app.route('/dashboard/')
 def dashboard():
@@ -20,27 +22,41 @@ def dashboard():
     page = 'dashboard.html'
     return render_template(page, title=title)
 
+
 @app.route('/over/<a>/<b>')
 def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
     return render_template('schoolklimaat.html', title=title)
 
+
+@app.route('/nieuws/archief/')
+def newsarchive():
+    return render_template('nieuwsarchief.html')
+
 @app.route('/nieuws/<a>/<b>/<c>/')
 def newsmessage(a,b,c):
     return render_template('nieuwsbericht.html')
+
 
 @app.route('/fotos/<a>/<b>/')
 def photoalbum(a,b):
     return render_template('fotoalbum.html')
 
+@app.route('/fotos/archief/')
+def photosarchive():
+    return render_template('fotosarchief.html')
+
+
 @app.route('/login/', methods=['POST'])
 def login():
-    title = 'Schoolklimaat | Cygnus Gymnasium'
+    title = 'Login | Cygnus Gymnasium'
     return redirect(url_for('dashboard'))
+
 
 @app.route('/login/', methods=['GET'])
 def showlogin():
     return render_template('login.html')
+
 
 @app.route('/zoek/autocompletion/', methods=['POST'])
 def results():
