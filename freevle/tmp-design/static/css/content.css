@@ -55,7 +55,8 @@ div#content {
 
 .home div#content {
   overflow: hidden;
-  border-top: none; }
+  border-top: none;
+  padding-bottom: 0; }
 
 /*INPAGE NAV*/
 nav#jumpto {
