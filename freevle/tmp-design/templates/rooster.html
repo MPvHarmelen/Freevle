@@ -4,6 +4,9 @@
   <script>
     $(document).ready(function() {
       $('div#rooster').load('/getrooster/{{ref}}/{{id_user}}/ .roosterdeel');
+      $('p#owner').load('/getrooster/{{ref}}/{{id_user}}/ h2', function() {
+        $(this).text($(this).text().replace(/(<([^>]+)>)/ig,""))
+      });
       $('p#changes').load('/getrooster/{{ref}}/{{id_user}}/ pre');
       $('div#searchname input').keyup(function() {
         var svalue = $(this).val();
@@ -33,7 +36,7 @@
     </div>
     <ul id="acsname"></ul>
 
-    <p>Het rooster van <strong>{{ roostername }}</strong>.</p>
+    <p id="owner"></p>
     <p id="changes"></p>
     <div id="rooster"></div>
   </div>

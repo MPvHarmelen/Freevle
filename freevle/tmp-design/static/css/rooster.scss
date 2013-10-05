@@ -67,8 +67,15 @@ ul#acsname {
   }
 }
 
+div#content p#owner {
+  margin: 2em 30px 1em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 p#changes {
   overflow: hidden;
+  margin: 1em 30px 1em;
   word-wrap: break-word;
 }
 
@@ -92,5 +99,11 @@ td.wijziging {
   }
   ul#acsname {
     margin: -1em 50px 1em;
+  }
+  div#content p#owner {
+    margin: 2em 50px 1em;
+  }
+  div#content p#changes {
+    margin: 1em 50px 1em;
   }
 }

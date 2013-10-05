@@ -43,8 +43,14 @@ ul#acsname {
     ul#acsname a span {
       color: #777; }
 
+div#content p#owner {
+  margin: 2em 30px 1em;
+  font-weight: bold;
+  font-size: 1.2em; }
+
 p#changes {
   overflow: hidden;
+  margin: 1em 30px 1em;
   word-wrap: break-word; }
 
 td.vervallen {
@@ -61,4 +67,10 @@ td.wijziging {
     padding: 1em 50px; }
 
   ul#acsname {
-    margin: -1em 50px 1em; } }
+    margin: -1em 50px 1em; }
+
+  div#content p#owner {
+    margin: 2em 50px 1em; }
+
+  div#content p#changes {
+    margin: 1em 50px 1em; } }
