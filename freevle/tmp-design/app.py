@@ -14,6 +14,12 @@ def page(name):
     page = name + '.html'
     return render_template(page, title=title)
 
+@app.route('/dashboard/')
+def dashboard():
+    title = 'Dashboard | Cygnus Gymnasium'
+    page = 'dashboard.html'
+    return render_template(page, title=title)
+
 @app.route('/over/<a>/<b>')
 def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
