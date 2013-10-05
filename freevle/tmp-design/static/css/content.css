@@ -454,6 +454,20 @@ form#settings {
     form#settings p#samechecker.okay {
       color: #aaa; }
 
+/*SITEMAP*/
+ul.sitemap {
+  margin: 0 30px 1em;
+  font-style: italic; }
+  ul.sitemap.protected {
+    padding: 0 0 1.5em 3em;
+    border-left: 8px solid rgba(110, 0, 128, 0.6); }
+  ul.sitemap li {
+    padding: 0.2em 0; }
+  ul.sitemap h3 {
+    margin: 1em 0 0; }
+  ul.sitemap a {
+    font-style: normal; }
+
 @media (min-width: 1000px) {
   div#content {
     width: 900px;
@@ -595,7 +609,11 @@ form#settings {
     float: left; }
 
   form#settings {
-    padding: 0 50px; } }
+    padding: 0 50px; }
+
+  ul.sitemap {
+    margin: 0 50px 2em;
+    padding: 0 0 0 1.2em; } }
 @media (max-width: 1120px) {
   /*INPAGE NAV*/
   nav#jumpto {

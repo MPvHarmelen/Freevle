@@ -655,6 +655,30 @@ form#settings {
 }
 
 
+/*SITEMAP*/
+ul.sitemap {
+  margin: 0 30px 1em;
+  font-style: italic;
+
+  &.protected {
+    padding: 0 0 1.5em 3em;
+    border-left: 8px solid transparentize($logincolor, 0.4);
+  }
+
+  li {
+    padding: 0.2em 0;
+  }
+
+  h3 {
+    margin: 1em 0 0;
+  }
+
+  a {
+    font-style: normal;
+  }
+}
+
+
 @media (min-width: $pagewidth) {
 
   div#content {
@@ -823,6 +847,11 @@ form#settings {
 
   form#settings {
     padding: 0 50px;
+  }
+
+  ul.sitemap {
+    margin: 0 50px 2em;
+    padding: 0 0 0 1.2em;
   }
 }
 
