@@ -826,6 +826,22 @@ form#settings {
   }
 }
 
+@media (max-width: 1120px) {
+  /*INPAGE NAV*/
+  nav#jumpto {
+    margin-left: -40px;
+
+    a:link, a:visited {
+      max-width: 50px !important;
+      @include transition(max-width);
+    }
+
+    &:hover a:link, &:hover a:visited {
+      max-width: 114px !important;
+    }
+  }
+}
+
 @media (min-width: 1440px) {
   div#content {
     width: $pagewidth;

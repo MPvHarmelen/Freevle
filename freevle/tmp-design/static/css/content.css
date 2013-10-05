@@ -596,6 +596,19 @@ form#settings {
 
   form#settings {
     padding: 0 50px; } }
+@media (max-width: 1120px) {
+  /*INPAGE NAV*/
+  nav#jumpto {
+    margin-left: -40px; }
+    nav#jumpto a:link, nav#jumpto a:visited {
+      max-width: 50px !important;
+      transition: max-width 200ms ease-in-out;
+      -o-transition: max-width 200ms ease-in-out;
+      -ms-transition: max-width 200ms ease-in-out;
+      -moz-transition: max-width 200ms ease-in-out;
+      -webkit-transition: max-width 200ms ease-in-out; }
+    nav#jumpto:hover a:link, nav#jumpto:hover a:visited {
+      max-width: 114px !important; } }
 @media (min-width: 1440px) {
   div#content {
     width: 1000px; }
