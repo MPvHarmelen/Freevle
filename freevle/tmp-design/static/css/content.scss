@@ -338,13 +338,13 @@ div#largeactivity {
 
 ul#headlines {
   margin: 0;
-  padding: 0.5em 0;
+  padding: 0;
 
   li {
     list-style: none;
     display: block;
     font-size: 1.1em;
-    padding: 0.5em 1em;
+    padding: 16px 1em 15px;
 
     &:nth-child(1) a {
       color: #000;
@@ -414,7 +414,7 @@ div#comingup {
   }
 
   time {
-    padding: 1em 20px;
+    padding: 21px 23px 22px;
     width: 60px;
     float: left;
     border-right: 1px solid #f0f0f0;
@@ -735,7 +735,7 @@ form#settings {
 
   div#comingup {
     border-top: none;
-    height: 528px;
+    height: 570px;
 
     li {
       font-size: 1.2em;
