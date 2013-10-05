@@ -495,7 +495,8 @@ footer {
       header#main div.button:hover, header#main div.button:active {
         border-color: #6e0080;
         background: rgba(110, 0, 128, 0.9);
-        opacity: 1; }
+        opacity: 1;
+        color: white; }
     header#main form {
       float: right; }
       header#main form input[type=search] {
