@@ -286,7 +286,7 @@ ul#quicknav {
   margin: 0.5em 20px;
 }
 
-div#largeactivity, div#smallactivity {
+div#largeactivity {
   width: 100%;
   height: 250px;
   overflow: hidden;
@@ -320,9 +320,9 @@ div#largeactivity, div#smallactivity {
   }
 }
 
-ul#threeheadlines {
-  padding: 0;
-  margin: 0.5em 0;
+ul#headlines {
+  margin: 0;
+  padding: 0.5em 0;
 
   li {
     list-style: none;
@@ -330,39 +330,76 @@ ul#threeheadlines {
     font-size: 1.1em;
     padding: 0.5em 1em;
 
+    &:nth-child(1) a {
+      color: #000;
+    }
+    &:nth-child(2) a {
+      color: #444;
+    }
+    &:nth-child(3) a {
+      color: #666;
+    }
+    &:nth-child(4) a {
+      color: #888;
+    }
+    &:nth-child(5) a {
+      color: #aaa;
+    }
+
     time {
       font-style: italic;
       color: #555;
-    }
-  }
-}
-
-div#recentlinks {
-  clear: both;
-  overflow: hidden;
-
-  a {
-    display: block;
-    color: white;
-    font-weight: bold;
-    font-size: 1.3em;
-    background: transparentize($recentcolor, 0.3);
-    padding: 1em;
-    @include transition(background);
-
-    &:hover {
-      text-decoration: none;
-      background: $recentcolor;
+      width: 44px;
+      display: inline-block;
     }
   }
 }
 
 div#comingup {
-  clear: both;
   overflow: hidden;
-  background: #f5f5f5;
   border-top: 1px solid #eee;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5em 0 0;
+  }
+
+  li {
+    overflow: hidden;
+    clear: both;
+    border-top: 1px solid #eee;
+    color: #555;
+
+    p {
+      float: left;
+      display: block;
+      padding: 0.9em;
+      font-weight: 300;
+      font-size: 1.5em;
+      margin: 0;
+    }
+  }
+
+  time {
+    padding: 1em 20px;
+    width: 60px;
+    float: left;
+    background: #f5f5f5;
+    border-right: 1px solid #eee;
+    font-size: 0.9em;
+    text-align: center;
+    color: #555;
+
+    span.day {
+      font-size: 2em;
+      display: block;
+      color: #777;
+      font-weight: bold;
+    }
+  }
 }
+
 
 
 /*SUBJECT-OVERVIEW*/
@@ -629,45 +666,52 @@ form#settings {
   }
 
 
+  div#recent {
+    width: 50%;
+    float: left;
+
+    h2 {
+      border-right: 1px solid #eee;
+      margin: 0;
+      padding: 0.5em 20px;
+    }
+  }
+
   div#largeactivity {
-    width: 4/7*100%;
-    height: 300px;
-    float: left;
-
-    a {
-      @include transition(opacity);
-    }
-  }
-  div#smallactivity {
-    width: 3.0001/7*100%;
-    height: 175px;
-    float: left;
+    height: 220px;
 
     a {
       @include transition(opacity);
     }
   }
 
-  ul#threeheadlines {
-    width: 3.0001/7*100%;
-    float: left;
-    margin: 0;
+  ul#headlines {
+    border-right: 1px solid #eee;
 
     li {
       overflow: hidden;
+      font-size: 1.2em;
     }
     a {
-      max-width: 183px;
+      max-width: 87%;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      float: left;
-    }
-    time {
-      float: left;
-      padding-left: 0.5em;
     }
   }
+
+  div#comingup {
+    border-top: none;
+
+    li {
+      font-size: 1.2em;
+      border-bottom: 1px solid #eee;
+      &:not(:nth-child(1)) {
+        border-top: none;
+      }
+    }
+  }
+
 
   div#recentlinks a {
     width: 44%;
@@ -695,11 +739,5 @@ form#settings {
 
   ul#quicknav > li {
     height: 136px;
-  }
-
-  ul#threeheadlines {
-    li a {
-      max-width: 210px;
-    }
   }
 }

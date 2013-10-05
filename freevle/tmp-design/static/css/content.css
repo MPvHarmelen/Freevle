@@ -192,12 +192,12 @@ ul#quicknav {
 .home h2 {
   margin: 0.5em 20px; }
 
-div#largeactivity, div#smallactivity {
+div#largeactivity {
   width: 100%;
   height: 250px;
   overflow: hidden;
   position: relative; }
-  div#largeactivity a.overlay, div#smallactivity a.overlay {
+  div#largeactivity a.overlay {
     z-index: 2;
     position: absolute;
     top: 0;
@@ -210,51 +210,72 @@ div#largeactivity, div#smallactivity {
     height: 100%;
     width: 100%;
     opacity: 0; }
-    div#largeactivity a.overlay h3, div#smallactivity a.overlay h3 {
+    div#largeactivity a.overlay h3 {
       color: white;
       vertical-align: middle;
       display: table-cell;
       font-size: 2em; }
-    div#largeactivity a.overlay:hover, div#smallactivity a.overlay:hover {
+    div#largeactivity a.overlay:hover {
       text-decoration: none;
       opacity: 1; }
 
-ul#threeheadlines {
-  padding: 0;
-  margin: 0.5em 0; }
-  ul#threeheadlines li {
+ul#headlines {
+  margin: 0;
+  padding: 0.5em 0; }
+  ul#headlines li {
     list-style: none;
     display: block;
     font-size: 1.1em;
     padding: 0.5em 1em; }
-    ul#threeheadlines li time {
+    ul#headlines li:nth-child(1) a {
+      color: #000; }
+    ul#headlines li:nth-child(2) a {
+      color: #444; }
+    ul#headlines li:nth-child(3) a {
+      color: #666; }
+    ul#headlines li:nth-child(4) a {
+      color: #888; }
+    ul#headlines li:nth-child(5) a {
+      color: #aaa; }
+    ul#headlines li time {
       font-style: italic;
-      color: #555; }
-
-div#recentlinks {
-  clear: both;
-  overflow: hidden; }
-  div#recentlinks a {
-    display: block;
-    color: white;
-    font-weight: bold;
-    font-size: 1.3em;
-    background: rgba(67, 184, 61, 0.7);
-    padding: 1em;
-    transition: background 200ms ease-in-out;
-    -o-transition: background 200ms ease-in-out;
-    -ms-transition: background 200ms ease-in-out;
-    -moz-transition: background 200ms ease-in-out;
-    -webkit-transition: background 200ms ease-in-out; }
-    div#recentlinks a:hover {
-      text-decoration: none;
-      background: #43b83d; }
+      color: #555;
+      width: 44px;
+      display: inline-block; }
 
 div#comingup {
-  clear: both;
   overflow: hidden;
-  background: #f5f5f5;
   border-top: 1px solid #eeeeee; }
+  div#comingup ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5em 0 0; }
+  div#comingup li {
+    overflow: hidden;
+    clear: both;
+    border-top: 1px solid #eeeeee;
+    color: #555; }
+    div#comingup li p {
+      float: left;
+      display: block;
+      padding: 0.9em;
+      font-weight: 300;
+      font-size: 1.5em;
+      margin: 0; }
+  div#comingup time {
+    padding: 1em 20px;
+    width: 60px;
+    float: left;
+    background: #f5f5f5;
+    border-right: 1px solid #eeeeee;
+    font-size: 0.9em;
+    text-align: center;
+    color: #555; }
+    div#comingup time span.day {
+      font-size: 2em;
+      display: block;
+      color: #777;
+      font-weight: bold; }
 
 /*SUBJECT-OVERVIEW*/
 nav#subjectoverview {
@@ -469,10 +490,16 @@ form#settings {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box; }
 
-  div#largeactivity {
-    width: 57.14286%;
-    height: 300px;
+  div#recent {
+    width: 50%;
     float: left; }
+    div#recent h2 {
+      border-right: 1px solid #eeeeee;
+      margin: 0;
+      padding: 0.5em 20px; }
+
+  div#largeactivity {
+    height: 220px; }
     div#largeactivity a {
       transition: opacity 200ms ease-in-out;
       -o-transition: opacity 200ms ease-in-out;
@@ -480,32 +507,24 @@ form#settings {
       -moz-transition: opacity 200ms ease-in-out;
       -webkit-transition: opacity 200ms ease-in-out; }
 
-  div#smallactivity {
-    width: 42.85857%;
-    height: 175px;
-    float: left; }
-    div#smallactivity a {
-      transition: opacity 200ms ease-in-out;
-      -o-transition: opacity 200ms ease-in-out;
-      -ms-transition: opacity 200ms ease-in-out;
-      -moz-transition: opacity 200ms ease-in-out;
-      -webkit-transition: opacity 200ms ease-in-out; }
-
-  ul#threeheadlines {
-    width: 42.85857%;
-    float: left;
-    margin: 0; }
-    ul#threeheadlines li {
-      overflow: hidden; }
-    ul#threeheadlines a {
-      max-width: 183px;
+  ul#headlines {
+    border-right: 1px solid #eeeeee; }
+    ul#headlines li {
+      overflow: hidden;
+      font-size: 1.2em; }
+    ul#headlines a {
+      max-width: 87%;
       white-space: nowrap;
       text-overflow: ellipsis;
-      overflow: hidden;
-      float: left; }
-    ul#threeheadlines time {
-      float: left;
-      padding-left: 0.5em; }
+      overflow: hidden; }
+
+  div#comingup {
+    border-top: none; }
+    div#comingup li {
+      font-size: 1.2em;
+      border-bottom: 1px solid #eeeeee; }
+      div#comingup li:not(:nth-child(1)) {
+        border-top: none; }
 
   div#recentlinks a {
     width: 44%;
@@ -524,7 +543,4 @@ form#settings {
       padding: 8em 2em 17em; }
 
   ul#quicknav > li {
-    height: 136px; }
-
-  ul#threeheadlines li a {
-    max-width: 210px; } }
+    height: 136px; } }
