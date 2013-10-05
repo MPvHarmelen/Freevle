@@ -323,12 +323,13 @@ div#largeactivity {
 
     h3 {
       font-size: 2em;
+      margin: 0.5em 50px;
     }
 
     p {
       overflow: hidden;
       height: 0;
-      margin-bottom: 0.5em;
+      margin: -0.8em 50px 0.5em;
       text-align: center;
     }
 
@@ -449,7 +450,7 @@ div#comingup {
     p {
       float: left;
       display: block;
-      padding: 0.9em;
+      padding: 1.08em 0.9em;
       font-weight: 300;
       font-size: 1.5em;
       margin: 0;
