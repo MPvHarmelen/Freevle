@@ -196,7 +196,7 @@ ul#quicknav {
 
 div#largeactivity {
   width: 100%;
-  height: 250px;
+  height: 220px;
   overflow: hidden;
   position: relative; }
   div#largeactivity a.overlay {
@@ -206,20 +206,27 @@ div#largeactivity {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #43b83d;
+    background: rgba(0, 0, 0, 0.2);
     display: table;
     text-align: center;
     height: 100%;
     width: 100%;
-    opacity: 0; }
-    div#largeactivity a.overlay h3 {
-      color: white;
+    color: white; }
+    div#largeactivity a.overlay div {
       vertical-align: middle;
-      display: table-cell;
+      display: table-cell; }
+    div#largeactivity a.overlay h3 {
       font-size: 2em; }
+    div#largeactivity a.overlay p {
+      overflow: hidden;
+      height: 0;
+      margin-bottom: 0.5em;
+      text-align: center; }
     div#largeactivity a.overlay:hover {
       text-decoration: none;
-      opacity: 1; }
+      background: rgba(67, 184, 61, 0.9); }
+      div#largeactivity a.overlay:hover p {
+        height: 3em; }
 
 ul#headlines {
   margin: 0;
@@ -503,11 +510,17 @@ form#settings {
   div#largeactivity {
     height: 220px; }
     div#largeactivity a {
-      transition: opacity 200ms ease-in-out;
-      -o-transition: opacity 200ms ease-in-out;
-      -ms-transition: opacity 200ms ease-in-out;
-      -moz-transition: opacity 200ms ease-in-out;
-      -webkit-transition: opacity 200ms ease-in-out; }
+      transition: background 200ms ease-in-out;
+      -o-transition: background 200ms ease-in-out;
+      -ms-transition: background 200ms ease-in-out;
+      -moz-transition: background 200ms ease-in-out;
+      -webkit-transition: background 200ms ease-in-out; }
+      div#largeactivity a p {
+        transition: height 200ms ease-in-out;
+        -o-transition: height 200ms ease-in-out;
+        -ms-transition: height 200ms ease-in-out;
+        -moz-transition: height 200ms ease-in-out;
+        -webkit-transition: height 200ms ease-in-out; }
 
   ul#headlines {
     border-right: 1px solid #eeeeee; }
