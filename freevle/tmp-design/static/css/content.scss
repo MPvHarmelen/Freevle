@@ -55,6 +55,10 @@ div#content {
   padding-bottom: 1px;
   border-top: solid 8px $maincolor;
 
+  nav#jumpto ul {
+    background: transparentize($schoolcolor, 0.3);
+  }
+
   &.education {
     border-color: transparentize($educationcolor, 0.3);
     nav ul {
@@ -98,8 +102,17 @@ div#content {
     display: block;
   }
 
+  section:not(:nth-of-type(1)) {
+    border-top: 1px solid #eee;
+  }
+
   section.containsimg {
     padding-bottom: 1em;
+    border: none;
+
+    &+ section {
+      border: none;
+    }
   }
 
   p.caption {

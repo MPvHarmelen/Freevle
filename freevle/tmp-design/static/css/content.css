@@ -20,6 +20,8 @@ div#content {
   background: #fafafa;
   padding-bottom: 1px;
   border-top: solid 8px #013d7d; }
+  div#content nav#jumpto ul {
+    background: rgba(1, 61, 125, 0.7); }
   div#content.education {
     border-color: rgba(209, 22, 5, 0.7); }
     div#content.education nav ul {
@@ -46,8 +48,13 @@ div#content {
     max-width: 100%;
     margin: auto;
     display: block; }
+  div#content section:not(:nth-of-type(1)) {
+    border-top: 1px solid #eeeeee; }
   div#content section.containsimg {
-    padding-bottom: 1em; }
+    padding-bottom: 1em;
+    border: none; }
+    div#content section.containsimg + section {
+      border: none; }
   div#content p.caption {
     text-align: center;
     font-style: italic;
