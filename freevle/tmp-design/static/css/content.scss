@@ -378,14 +378,6 @@ ul#headlines {
         color: #999;
       }
     }
-    &:nth-child(5) {
-      a {
-        color: #aaa;
-      }
-      time {
-        color: #bbb;
-      }
-    }
 
     time {
       font-style: italic;
@@ -411,21 +403,40 @@ div#comingup {
     overflow: hidden;
     clear: both;
     border-top: 1px solid #f0f0f0;
-    color: #555;
+    color: #999;
 
     &:nth-child(1) {
-      background: transparentize(black, 0.95);
-      border-color: #e2e2e2;
+      background: transparentize(black, 0.94);
+      border-color: #e0e0e0;
       time {
-        border-color: #e2e2e2;
+        border-color: #e0e0e0;
       }
+      span.day {
+        color: #777;
+      }
+      color: #555;
     }
     &:nth-child(2) {
-      background: transparentize(black, 0.975);
+      background: transparentize(black, 0.96);
+      border-color: #e5e5e5;
+      time {
+        border-color: #e5e5e5;
+      }
+      span.day {
+        color: #888;
+      }
+      color: #777;
+    }
+    &:nth-child(3) {
+      background: transparentize(black, 0.98);
       border-color: #e9e9e9;
       time {
         border-color: #e9e9e9;
       }
+      span.day {
+        color: #9c9c9c;
+      }
+      color: #8c8c8c;
     }
 
     p {
@@ -445,12 +456,11 @@ div#comingup {
     border-right: 1px solid #f0f0f0;
     font-size: 0.9em;
     text-align: center;
-    color: #555;
 
     span.day {
+      color: #aaa;
       font-size: 2em;
       display: block;
-      color: #777;
       font-weight: bold;
     }
   }
@@ -760,7 +770,6 @@ form#settings {
 
   div#comingup {
     border-top: none;
-    height: 570px;
 
     li {
       font-size: 1.2em;

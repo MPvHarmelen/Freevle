@@ -253,10 +253,6 @@ ul#headlines {
       color: #888; }
     ul#headlines li:nth-child(4) time {
       color: #999; }
-    ul#headlines li:nth-child(5) a {
-      color: #aaa; }
-    ul#headlines li:nth-child(5) time {
-      color: #bbb; }
     ul#headlines li time {
       font-style: italic;
       color: #555;
@@ -275,17 +271,31 @@ div#comingup {
     overflow: hidden;
     clear: both;
     border-top: 1px solid #f0f0f0;
-    color: #555; }
+    color: #999; }
     div#comingup li:nth-child(1) {
-      background: rgba(0, 0, 0, 0.05);
-      border-color: #e2e2e2; }
+      background: rgba(0, 0, 0, 0.06);
+      border-color: #e0e0e0;
+      color: #555; }
       div#comingup li:nth-child(1) time {
-        border-color: #e2e2e2; }
+        border-color: #e0e0e0; }
+      div#comingup li:nth-child(1) span.day {
+        color: #777; }
     div#comingup li:nth-child(2) {
-      background: rgba(0, 0, 0, 0.025);
-      border-color: #e9e9e9; }
+      background: rgba(0, 0, 0, 0.04);
+      border-color: #e5e5e5;
+      color: #777; }
       div#comingup li:nth-child(2) time {
+        border-color: #e5e5e5; }
+      div#comingup li:nth-child(2) span.day {
+        color: #888; }
+    div#comingup li:nth-child(3) {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: #e9e9e9;
+      color: #8c8c8c; }
+      div#comingup li:nth-child(3) time {
         border-color: #e9e9e9; }
+      div#comingup li:nth-child(3) span.day {
+        color: #9c9c9c; }
     div#comingup li p {
       float: left;
       display: block;
@@ -299,12 +309,11 @@ div#comingup {
     float: left;
     border-right: 1px solid #f0f0f0;
     font-size: 0.9em;
-    text-align: center;
-    color: #555; }
+    text-align: center; }
     div#comingup time span.day {
+      color: #aaa;
       font-size: 2em;
       display: block;
-      color: #777;
       font-weight: bold; }
 
 /*SUBJECT-OVERVIEW*/
@@ -553,8 +562,7 @@ form#settings {
     overflow: hidden; }
 
   div#comingup {
-    border-top: none;
-    height: 570px; }
+    border-top: none; }
     div#comingup li {
       font-size: 1.2em;
       border-bottom: 1px solid #eeeeee; }
