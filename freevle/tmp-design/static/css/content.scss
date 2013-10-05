@@ -52,7 +52,7 @@ div#indexcover {
 div#content {
   margin: 0 auto;
   background: #fafafa;
-  border-bottom: solid 8px $maincolor;
+  padding-bottom: 1px;
   border-top: solid 8px $maincolor;
 
   &.education {
@@ -111,6 +111,7 @@ div#content {
 
 .home div#content {
   overflow: hidden;
+  border-top: none;
 }
 
 
@@ -251,6 +252,7 @@ a.fancybox {
 nav#readfurther {
   background: #f5f5f5;
   border-top: 1px solid #eee;
+  margin-bottom: -1px;
 
   h2 {
     font-size: 1.5em;
@@ -651,7 +653,7 @@ form#settings {
   div#indexcover {
     background-image: url(/static/img/cover.png);
     margin-top: -3.8em;
-    margin-bottom: -12em;
+    margin-bottom: -11.5em;
 
     #darken {
       padding: 8em 2em 18em;
@@ -730,7 +732,7 @@ form#settings {
   }
 
   div#indexcover {
-    margin-bottom: -11em;
+    margin-bottom: -10.5em;
 
     #darken {
       padding: 8em 2em 17em;

@@ -18,7 +18,7 @@ div#indexcover {
 div#content {
   margin: 0 auto;
   background: #fafafa;
-  border-bottom: solid 8px #013d7d;
+  padding-bottom: 1px;
   border-top: solid 8px #013d7d; }
   div#content.education {
     border-color: rgba(209, 22, 5, 0.7); }
@@ -54,7 +54,8 @@ div#content {
     margin-bottom: 0.5em; }
 
 .home div#content {
-  overflow: hidden; }
+  overflow: hidden;
+  border-top: none; }
 
 /*INPAGE NAV*/
 nav#jumpto {
@@ -167,7 +168,8 @@ a.fancybox {
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
-  border-top: 1px solid #eeeeee; }
+  border-top: 1px solid #eeeeee;
+  margin-bottom: -1px; }
   nav#readfurther h2 {
     font-size: 1.5em;
     font-style: italic;
@@ -476,7 +478,7 @@ form#settings {
   div#indexcover {
     background-image: url(/static/img/cover.png);
     margin-top: -3.8em;
-    margin-bottom: -12em; }
+    margin-bottom: -11.5em; }
     div#indexcover #darken {
       padding: 8em 2em 18em; }
 
@@ -538,7 +540,7 @@ form#settings {
     width: 1000px; }
 
   div#indexcover {
-    margin-bottom: -11em; }
+    margin-bottom: -10.5em; }
     div#indexcover #darken {
       padding: 8em 2em 17em; }
 
