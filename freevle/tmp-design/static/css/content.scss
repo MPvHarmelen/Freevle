@@ -629,7 +629,7 @@ form#settings {
 
   div#content {
     width: $smallpagewidth;
-    margin: 2em auto;
+    margin: 1.5em auto;
     position: relative;
     z-index: 2;
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));

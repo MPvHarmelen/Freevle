@@ -351,6 +351,16 @@ header#main {
     left: 0;
     display: none; }
 
+/*BREADCRUMBS*/
+nav#breadcrumbs {
+  color: #555;
+  margin: 1em; }
+  nav#breadcrumbs a {
+    color: #777; }
+
+.home nav#breadcrumbs {
+  display: none; }
+
 /*FOOTER*/
 footer {
   background: #eee;
@@ -535,6 +545,11 @@ footer {
       .home header#main h1.yepshow {
         width: 242px;
         border-width: 1px; }
+
+  /*BREADCRUMBS*/
+  nav#breadcrumbs {
+    width: 964px;
+    margin: 1em auto; }
 
   footer {
     width: 900px;

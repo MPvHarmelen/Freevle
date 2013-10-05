@@ -490,6 +490,20 @@ header#main {
 }
 
 
+/*BREADCRUMBS*/
+nav#breadcrumbs {
+  color: #555;
+  margin: 1em;
+  a {
+    color: #777;
+  }
+}
+
+.home nav#breadcrumbs {
+  display: none;
+}
+
+
 /*FOOTER*/
 footer {
   background: #eee;
@@ -739,6 +753,12 @@ footer {
         border-width: 1px;
       }
     }
+  }
+
+  /*BREADCRUMBS*/
+  nav#breadcrumbs {
+    width: $pagewidth - 36px;
+    margin: 1em auto;
   }
 
   footer {
