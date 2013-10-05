@@ -239,14 +239,24 @@ ul#headlines {
     padding: 16px 1em 15px; }
     ul#headlines li:nth-child(1) a {
       color: #000; }
+    ul#headlines li:nth-child(1) time {
+      color: #444; }
     ul#headlines li:nth-child(2) a {
       color: #444; }
+    ul#headlines li:nth-child(2) time {
+      color: #666; }
     ul#headlines li:nth-child(3) a {
       color: #666; }
+    ul#headlines li:nth-child(3) time {
+      color: #777; }
     ul#headlines li:nth-child(4) a {
       color: #888; }
+    ul#headlines li:nth-child(4) time {
+      color: #999; }
     ul#headlines li:nth-child(5) a {
       color: #aaa; }
+    ul#headlines li:nth-child(5) time {
+      color: #bbb; }
     ul#headlines li time {
       font-style: italic;
       color: #555;

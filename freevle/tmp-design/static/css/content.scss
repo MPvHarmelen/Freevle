@@ -346,20 +346,45 @@ ul#headlines {
     font-size: 1.1em;
     padding: 16px 1em 15px;
 
-    &:nth-child(1) a {
-      color: #000;
+    &:nth-child(1) {
+      a {
+        color: #000;
+      }
+      time {
+        color: #444;
+      }
     }
-    &:nth-child(2) a {
-      color: #444;
+    &:nth-child(2) {
+      a {
+        color: #444;
+      }
+      time {
+        color: #666;
+      }
     }
-    &:nth-child(3) a {
-      color: #666;
+    &:nth-child(3) {
+      a {
+        color: #666;
+      }
+      time {
+        color: #777;
+      }
     }
-    &:nth-child(4) a {
-      color: #888;
+    &:nth-child(4) {
+      a {
+        color: #888;
+      }
+      time {
+        color: #999;
+      }
     }
-    &:nth-child(5) a {
-      color: #aaa;
+    &:nth-child(5) {
+      a {
+        color: #aaa;
+      }
+      time {
+        color: #bbb;
+      }
     }
 
     time {
