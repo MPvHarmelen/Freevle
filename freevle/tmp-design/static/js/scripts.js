@@ -76,7 +76,7 @@ $(document).ready(function() {
   });
 
   if(window.location.hash) {
-    var offsetHeader = $(window.location.hash).offset().top - 70;
+    var offsetHeading = $(window.location.hash).offset().top - 70;
     scrollTo(offsetHeading);
   }
 

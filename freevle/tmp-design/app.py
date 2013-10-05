@@ -23,7 +23,7 @@ def dashboard():
     return render_template(page, title=title)
 
 
-@app.route('/over/<a>/<b>')
+@app.route('/over/<a>/<b>/')
 def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
     return render_template('schoolklimaat.html', title=title)
