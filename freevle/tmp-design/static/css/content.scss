@@ -765,7 +765,6 @@ ul.sitemap {
         width: 25%;
         @include prefixify(box-sizing, border-box);
         float: left;
-        min-height: 220px;
       }
     }
   }

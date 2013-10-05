@@ -102,6 +102,16 @@ $(document).ready(function() {
   });
 
 
+  if($('#subjectoverview')) {
+    var minHeightLi = 0;
+    $('#subjectoverview > ul > li').each(function() {
+      if($(this).height() > minHeightLi) {
+        minHeightLi = $(this).outerHeight();
+      }
+    }).css('min-height', minHeightLi);
+  }
+
+
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
       $('input').blur();

@@ -542,8 +542,7 @@ ul.sitemap {
       -ms-box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
-      float: left;
-      min-height: 220px; }
+      float: left; }
 
   /*INDEX*/
   div#indexcover {
