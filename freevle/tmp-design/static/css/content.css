@@ -71,14 +71,18 @@ div#pagecover {
 
 /*NEWS*/
 article.newsmessage {
-  padding: 2em 0 2em;
-  border-bottom: 1px solid #dddddd; }
+  padding: 2em 0 2em; }
   article.newsmessage:first-of-type {
     padding-top: 0.1em; }
   article.newsmessage h3 {
     font-size: 1.7em; }
+    article.newsmessage h3 a {
+      color: #333; }
   article.newsmessage p.meta {
     color: #666; }
+
+.news article.newsmessage {
+  border-bottom: 1px solid #dddddd; }
 
 div.newscover {
   position: relative;

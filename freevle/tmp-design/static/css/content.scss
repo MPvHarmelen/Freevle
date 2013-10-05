@@ -134,7 +134,6 @@ div#pagecover {
 /*NEWS*/
 article.newsmessage {
   padding: 2em 0 2em;
-  border-bottom: 1px solid #ddd;
 
   &:first-of-type {
     padding-top: 0.1em;
@@ -142,6 +141,10 @@ article.newsmessage {
 
   h3 {
     font-size: 1.7em;
+
+    a {
+      color: #333;
+    }
   }
 
   p.meta {
@@ -149,6 +152,10 @@ article.newsmessage {
   }
 }
 
+.news article.newsmessage {
+  border-bottom: 1px solid #ddd;
+
+}
 div.newscover {
   position: relative;
   overflow: hidden;
