@@ -622,7 +622,7 @@ footer {
   }
 
   .mobileonly {
-    display: none;
+    display: none !important;
   }
 
   header#main {
@@ -734,7 +734,7 @@ footer {
       @include transition(width);
 
       &.yepshow {
-        width: 250px;
+        width: 242px;
         border-width: 1px;
       }
     }

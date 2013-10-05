@@ -442,7 +442,7 @@ footer {
     margin: 1em 50px 0.5em; }
 
   .mobileonly {
-    display: none; }
+    display: none !important; }
 
   header#main {
     height: 4.1em;
@@ -532,7 +532,7 @@ footer {
       -moz-transition: width 200ms ease-in-out;
       -webkit-transition: width 200ms ease-in-out; }
       .home header#main h1.yepshow {
-        width: 250px;
+        width: 242px;
         border-width: 1px; }
 
   footer {
