@@ -49,23 +49,31 @@
       </h1>
       <nav>
         <ul>
-          <li id="menutitle">
+          <li id="menutitle" class="mobileonly">
             Menu
           </li>
           <li>
             <a href="/" id="currentpage" class="mobileonly">Home</a>
           </li>
           <li>
-            <a href="/over">Over</a>
+            <a href="/over/">Over</a>
           </li>
           <li>
-            <a href="/recent">Recent</a>
+            <div>Recent</div>
+            <ul class="dropdown">
+              <li>
+                <a href="/nieuws/"><span class="mobileonly">&#8618;&ensp;</span>Nieuws</a>
+              </li>
+              <li>
+                <a href="/fotos/"><span class="mobileonly">&#8618;&ensp;</span>Foto's</a>
+              </li>
+            </ul>
           </li>
           <li>
-            <a href="/contact">Contact</a>
+            <a href="/contact/">Contact</a>
           </li>
           <li class="mobileonly">
-            <a href="/login">Login</a>
+            <a href="/login/">Login</a>
           </li>
         </ul>
       </nav>

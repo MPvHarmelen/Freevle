@@ -395,13 +395,17 @@ footer {
       left: 0; }
     header#main ul li {
       overflow: hidden; }
-      header#main ul li a:link, header#main ul li a:visited, header#main ul li a#loginlink {
+      header#main ul li a:link, header#main ul li a:visited, header#main ul li a#loginlink, header#main ul li div {
         color: white;
         padding: 0.8em 0.6em;
         display: block;
         border: 0;
         font-weight: 400;
         border-bottom: 1px solid #013873; }
+      header#main ul li div {
+        color: rgba(255, 255, 255, 0.7); }
+    header#main ul ul.dropdown {
+      position: relative; }
   header#main #menuopener.opened {
     right: 0;
     z-index: 5;
@@ -485,17 +489,34 @@ footer {
       float: left; }
       header#main ul li {
         float: left; }
-        header#main ul li a {
+        header#main ul li a, header#main ul li div {
           display: block;
+          opacity: 0.5;
           padding: 1.3em; }
-          header#main ul li a:link, header#main ul li a:visited {
-            color: #000;
-            opacity: 0.5; }
-          header#main ul li a:hover {
+          header#main ul li a:link, header#main ul li a:visited, header#main ul li div:link, header#main ul li div:visited {
+            color: #000; }
+          header#main ul li a:hover, header#main ul li div:hover {
             color: #333;
-            opacity: 1; }
-        header#main ul li#menutitle {
-          display: none; }
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.5); }
+        header#main ul li div {
+          cursor: default; }
+        header#main ul li ul.dropdown {
+          margin-top: 1px;
+          overflow: hidden;
+          height: 0;
+          transition: height 200ms ease-in-out;
+          -o-transition: height 200ms ease-in-out;
+          -ms-transition: height 200ms ease-in-out;
+          -moz-transition: height 200ms ease-in-out;
+          -webkit-transition: height 200ms ease-in-out; }
+          header#main ul li ul.dropdown li {
+            float: none;
+            background: rgba(255, 255, 255, 0.8); }
+            header#main ul li ul.dropdown li:nth-child(1) {
+              border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        header#main ul li:hover ul.dropdown {
+          height: 7.6em; }
     header#main div.button {
       margin: 0.6em;
       float: right;
@@ -532,7 +553,14 @@ footer {
           padding-right: 0.8em; }
 
   .home header#main {
-    background: rgba(250, 250, 250, 0.6); }
+    background: rgba(250, 250, 250, 0.6);
+    transition: background 200ms ease-in-out;
+    -o-transition: background 200ms ease-in-out;
+    -ms-transition: background 200ms ease-in-out;
+    -moz-transition: background 200ms ease-in-out;
+    -webkit-transition: background 200ms ease-in-out; }
+    .home header#main:hover {
+      background: rgba(250, 250, 250, 0.8); }
     .home header#main h1 {
       width: 0;
       white-space: nowrap;

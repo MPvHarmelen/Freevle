@@ -555,7 +555,7 @@ footer {
       li {
         overflow: hidden;
 
-        a:link, a:visited, a#loginlink {
+        a:link, a:visited, a#loginlink, div {
           color: white;
           padding: 0.8em 0.6em;
           display: block;
@@ -563,6 +563,13 @@ footer {
           font-weight: 400;
           border-bottom: 1px solid darken($maincolor, 2%);
         }
+        div {
+          color: transparentize(white, 0.3);
+        }
+      }
+
+      ul.dropdown {
+        position: relative;
       }
     }
 
@@ -676,22 +683,41 @@ footer {
       li {
         float: left;
 
-        a {
+        a, div {
           display: block;
+          opacity: 0.5;
           padding: 1.3em;
 
           &:link, &:visited {
             color: #000;
-            opacity: 0.5;
           }
           &:hover {
             color: #333;
             opacity: 1;
+            background: transparentize(white, 0.5);
           }
         }
 
-        &#menutitle {
-          display: none;
+        div {
+          cursor: default;
+        }
+
+        ul.dropdown {
+          margin-top: 1px;
+          overflow: hidden;
+          height: 0;
+          @include transition(height);
+
+          li {
+            float: none;
+            background: transparentize(white, 0.2);
+            &:nth-child(1) {
+              border-bottom: 1px solid transparentize(black, 0.95);
+            }
+          }
+        }
+        &:hover ul.dropdown {
+          height: 7.6em;
         }
       }
     }
@@ -741,6 +767,11 @@ footer {
 
   .home header#main {
     background: transparentize(#fafafa, 0.4);
+    @include transition(background);
+
+    &:hover {
+      background: transparentize(#fafafa, 0.2);
+    }
 
     h1 {
       width: 0;
