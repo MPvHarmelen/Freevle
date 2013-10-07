@@ -33,7 +33,7 @@ def category_view(category_slug):
 @bp.route('/<category_slug>/<subcategory_slug>/<page_slug>')
 def page_view(category_slug, subcategory_slug, page_slug):
     """Show a page from the database."""
-    # # TODO: find out if this could be put into one query.
+    # TODO: find out if this could be put into one query.
     cat = Category.query.filter(Category.slug == category_slug).first_or_404()
     sub = Subcategory.query.filter(Subcategory.category == cat)\
           .filter(Subcategory.slug == subcategory_slug).first_or_404()
@@ -47,12 +47,10 @@ def page_view(category_slug, subcategory_slug, page_slug):
 
 # Admin
 # This should change a lot because Floris and Pim want an admin site
-@bp.route('/admin/')
 def admin_index():
     """Site wide admin homepage."""
     ...
 
-@bp.route('/admin/cms/')
 def admin():
     """Specific admin index for cms blueprint."""
     ...
