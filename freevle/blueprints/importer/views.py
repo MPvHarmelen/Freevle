@@ -9,7 +9,7 @@ def importer_initiate(importer_slug):
     """
     Initiate an importer.
 
-    This is done as defined in the importer’s description file.
+    This is done as defined in the importer's description file.
 
     """
 
