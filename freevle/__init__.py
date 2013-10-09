@@ -12,7 +12,7 @@ if not hasattr(NullTranslations, 'ugettext'):
 if not hasattr(NullTranslations, 'ungettext'):
     NullTranslations.ungettext = NullTranslations.ngettext
 
-app = Flask(__name__)
+app = Flask('freevle')
 # Load settings (defaults from file, others from wherever user wants)
 app.config.from_object('freevle.default_settings')
 if os.environ.get('FREEVLE_SETTINGS', None) is not None:
