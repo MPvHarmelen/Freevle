@@ -1,0 +1,76 @@
+table {
+  border-spacing: 0; }
+
+table.roosterdeel > tbody > tr:nth-child(1) {
+  background: #eee; }
+
+th.top {
+  padding: 0.5em; }
+
+th.left {
+  background: #eee;
+  padding: 0.5em; }
+
+tr.even > td, tr.oneven > td {
+  border: 1px solid #eeeeee;
+  padding: 0 0.5em; }
+
+table.roosterdeel {
+  width: 100%; }
+
+div#searchname {
+  padding: 1em 30px; }
+  div#searchname input {
+    width: 100%;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; }
+
+ul#acsname {
+  margin: -1em 30px 1em;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #eeeeee; }
+  ul#acsname:empty {
+    border: none; }
+  ul#acsname a {
+    display: block;
+    padding: 0.6em; }
+    ul#acsname a:hover {
+      background: #fff; }
+    ul#acsname a span {
+      color: #777; }
+
+div#content p#owner {
+  margin: 2em 30px 1em;
+  font-weight: bold;
+  font-size: 1.2em; }
+
+p#changes {
+  overflow: hidden;
+  margin: 1em 30px 1em;
+  word-wrap: break-word; }
+
+td.vervallen {
+  background: #ffb3b3; }
+
+td.wijziging {
+  background: #ffff66; }
+
+@media (max-width: 999px) {
+  div#rooster {
+    overflow-x: scroll; } }
+@media (min-width: 1000px) {
+  div#searchname {
+    padding: 1em 50px; }
+
+  ul#acsname {
+    margin: -1em 50px 1em; }
+
+  div#content p#owner {
+    margin: 2em 50px 1em; }
+
+  div#content p#changes {
+    margin: 1em 50px 1em; } }

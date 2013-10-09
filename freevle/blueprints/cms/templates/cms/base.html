@@ -1,22 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <body>
-    <ul>
-      <li><a href="/">index</a></li>
-      {% for parent in parents %}
-        <li><a href="{{ parent.get_url() }}">{{ parent.title }}</a></li>
-          {% if parent.children.all() %}
-            <ul>
-            {% for child in parent.children %}
-              <li><a href="{{ child.get_url() }}">{{ child.title }}</a></li>
-            {% endfor %}
-            </ul>
-          {% endif %}
-      {% else %}
-        <li>No other pages</li>
-      {% endfor %}
-    </ul>
-    {% block content %}
+  <head>
+    <meta charset="utf-8">
+
+    <title>{{ title }}</title>
+    <meta name="description" content="Proof-of-concept-site voor het Cygnus Gymnasium.">
+    <meta name="author" content="Martin van Harmelen, Pim ten Thije, Floris Jansen">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <link rel="shortcut icon" href="/static/favicon.png">
+
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/content.css">
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/scripts.js"></script>
+
+    {% block head %}
     {% endblock %}
+
+  </head>
+  <body {% block bodyclass %}{% endblock %}>
+
+    <!--[if lt IE 9]>
+      <script src="/static/ie.js"></script>
+      <div id="iewarning">
+        <p>Het lijkt erop dat u Internet Explorer 8 (of ouder) gebruikt. Deze site werkt slechter in deze browser, net zoals vele andere sites. Wij adviseren u uw browser te updaten op bijvoorbeeld <a href="http://browsehappy.com/?locale=nl">Browsehappy.com</a>.</p>
+        <p class="ignorewarning" onclick="closeWarning()">Sluit deze melding</p>
+      </div>
+    <![endif]-->
+
+    <div id="login">
+      <form method="POST" action="/login/">
+        <div class="close">&times;</div>
+        <h2>Login</h2>
+        <input type="text" placeholder="Gebruikersnaam">
+        <input type="password" placeholder="Wachtwoord">
+        <input type="submit" class="button" value="Login">
+        <a href="/verlorengegevens">Gegevens vergeten?</a>
+      </form>
+    </div>
+
+    <header id="main">
+      <a href="#menu" id="menuopener">&emsp;</a>
+      <h1>
+        <a href="/">C<span>ygnus <span id="obsolete">gymnasium</span></span></a>
+      </h1>
+      <nav>
+        <ul>
+          <li id="menutitle" class="mobileonly">
+            Menu
+          </li>
+          <li>
+            <a href="/" id="currentpage" class="mobileonly">Home</a>
+          </li>
+          <li>
+            <a href="/over/">Over</a>
+          </li>
+          <li>
+            <div>Recent</div>
+            <ul class="dropdown">
+              <li>
+                <a href="/nieuws/"><span class="mobileonly">&#8618;&ensp;</span>Nieuws</a>
+              </li>
+              <li>
+                <a href="/fotos/"><span class="mobileonly">&#8618;&ensp;</span>Foto's</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/contact/">Contact</a>
+          </li>
+          <li class="mobileonly">
+            <a href="/login/">Login</a>
+          </li>
+        </ul>
+      </nav>
+      <a href="#search" id="searchopener">&emsp;</a>
+      <div class="button">Login</div>
+      <form method="POST" action="/zoek/">
+        <h2 id="searchtitle">Zoeken</h2>
+        <input type="search" name="search" list="search" placeholder="Zoek...">
+        <datalist id="search">
+        </datalist>
+      </form>
+    </header>
+
+    <nav id="breadcrumbs">
+      <a href="/">Home</a>
+      &ensp;/&ensp;
+      <a href="/over/">Over</a>
+      &ensp;/&ensp;
+      Waarom gymnasium?
+    </nav>
+
+    <div id="page">
+      {% block page %}
+      {% endblock %}
+    </div>
+
+    <footer>
+      <p>&copy; Cygnus Gymnasium</p>
+      <p><a href="/sitemap/">Sitemap</a></p>
+    </footer>
+
   </body>
 </html>

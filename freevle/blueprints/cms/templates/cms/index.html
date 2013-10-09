@@ -1,70 +1,141 @@
-{% extends 'cms/base.html' %}
+{% extends "cms/base.html" %}
 
-{% block content %}
+{% block head %}
+  <script src="/static/js/index.js"></script>
+{% endblock %}
 
-    <article>
-      <div class="item">
-        <h2>{% trans %}Welcome{% endtrans %}</h2>
-        <p>In september 2005 is het Cygnus Gymnasium van start gegaan. Inmiddels heeft dus de eerste lichting examen gedaan (met prachtig resultaat!). Het is een jonge school voor leerlingen die goed kunnen leren en die nieuwsgierig zijn. Het is een kleine en gezellige school waar leerlingen zichzelf kunnen zijn en waar hard gewerkt wordt. Een school voor leerlingen die goed om zich heen willen kijken in de wereld en in de wetenschap.</p>
-<p>De school staat in Oost/Watergraafsmeer. Informatie over de definitieve huisvesting</p>
-      </div>
-    </article>
+{% block bodyclass %}
+  class="home"
+{% endblock %}
 
-    <div class="photos">
+{% block page %}
+  <div id="indexcover">
+    <div id="darken">
+      <h1>C<span>ygnus gymnasium</span></h1>
+      <a href="/groep8/" class="button">Zit je in groep acht?</a>
+    </div>
+  </div>
+  <div id="content">
+    <nav>
+      <ul id="quicknav">
+        <li class="relevant education">
+          <h3>Onderwijs</h3>
+          <ul>
+            <li>
+              <a href="/over/onderwijs/waaromgymnasium">Waarom gymnasium?</a>
+            </li>
+            <li>
+              <a href="/over/onderwijs/lesprogramma">Lesprogramma</a>
+            </li>
+            <li>
+              <a href="/over/onderwijs/resultaten">Resultaten</a>
+            </li>
+          </ul>
+        </li>
+        <li class="relevant school">
+          <h3>De School</h3>
+          <ul>
+            <li>
+              <a href="/over/deschool/geschiedenis">Geschiedenis</a>
+            </li>
+            <li>
+              <a href="/over/deschool/schoolklimaat">Schoolklimaat</a>
+            </li>
+            <li>
+              <a href="/over/deschool/gebouw">Gebouw</a>
+            </li>
 
-      <h2>{% trans %}Photos{% endtrans %}</h2>
-      <div id="slider">
-        <div id="slides">
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-10.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-11.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-13.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-14.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-15.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-17.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-19.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-21.JPG">
-          </a>
-          <a href="/photos/" class="slide">
-            <img src="http://www.cygnusgymnasium.nl/afbeeldingen/images/110906start1/110906eerste-22.JPG">
-          </a>
-          <div class="clear"></div>
+          </ul>
+        </li>
+        <li class="relevant activities">
+          <h3>Acitiveiten</h3>
+          <ul>
+            <li>
+              <a href="/over/activiteiten/gebouw">Schoolreizen</a>
+            </li>
+            <li>
+              <a href="/over/activiteiten/aristeia">Aristeia</a>
+            </li>
+          </ul>
+        </li>
+        <li class="relevant recent">
+          <h3>Recent</h3>
+          <ul>
+            <li>
+              <a href="/fotos/">Foto's</a>
+            </li>
+            <li>
+              <a href="/nieuws/">Nieuws</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="recent">
+      <h2>Recent</h2>
+
+      <div id="largeactivity">
+        <div class="coverbg">
+          <img src="http://placekitten.com/500/400" alt="Jihlava">
         </div>
-
-        <ul id="sliderul">
-          <li class="slidernav"><a class="li" href="#"></a></li>
-          <li class="slidernav"><a class="li" href="#"></a></li>
-          <li class="slidernav"><a class="li" href="#"></a></li>
-        </ul>
+        <a class="overlay" href="/fotos/2013/jihlava">
+          <div>
+            <h3>Jihlava</h3>
+            <p>De derde en vierde klas zijn dit jaar weer op uitwisseling geweest naar onze zusterschool in Jihlava, Tsjechië.</p>
+          </div>
+        </a>
       </div>
+
+      <ul id="headlines">
+        <li>
+          <time class="date">27/9</time>&emsp;<a href="/nieuws/2013/09/openening-schip">Opening Schip</a>
+        </li>
+        <li>
+          <time class="date">30/12</time>&emsp;<a href="/nieuws/2013/08/start-schooljaar">Over het oude gebouw Het Schip</a>
+        </li>
+        <li>
+          <time class="date">10/8</time>&emsp;<a href="/nieuws/2013/08/start-schooljaar">Start schooljaar</a>
+        </li>
+        <li>
+          <time class="date">12/6</time>&emsp;<a href="/nieuws/2013/08/start-schooljaar">Eind schooljaar</a>
+        </li>
+      </ul>
 
     </div>
 
-    <p class="clear"></p>
-
-    <article>
-      <div class="item">
-        <h2>Lorem</h2>
-        <p class="date"><span class="bold">Geplaatst op:</span> 22/22/2222&emsp;&emsp;<span class="bold">Door:</span> Naam van Namen</p>
-        <p>Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
-        <p>Ipsum dolor sit amet, consectetur <a href="">adipiscing</a> elit. Nam imperdiet fermentum quam at vehicula. Etiam scelerisque laoreet turpis, in cursus erat interdum a. Curabitur eget nisi sed eros aliquet tincidunt nec lacinia lorem. Nullam at urna ac nibh rhoncus suscipit.</p>
-        <a class="leesmeer" href="">Lees meer...</a>
-        <p class="clear"></p>
-      </div>
-    </article>
-
+    <div id="comingup">
+      <h2>Binnenkort</h2>
+      <ul>
+        <li>
+          <time>
+            <span class="day">12</span>
+            12/2013
+          </time>
+          <p>Kerstgala</p>
+        </li>
+        <li>
+          <time>
+            <span class="day">31</span>
+            1/2014
+          </time>
+          <p>Open dag</p>
+        </li>
+        <li>
+          <time>
+            <span class="day">18</span>
+            2/2014
+          </time>
+          <p>Open dag</p>
+        </li>
+        <li>
+          <time>
+            <span class="day">10</span>
+            3/2014
+          </time>
+          <p>Aristeia</p>
+        </li>
+      </ul>
+    </div>
+  </div>
 {% endblock %}
