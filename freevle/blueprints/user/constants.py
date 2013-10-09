@@ -18,3 +18,6 @@ PHONE_NUMBER_LENGTH = 32
 
 # Student / Teacher constants
 DESIGNATION_LENGTH = 32
+
+# Url constants
+LOGIN_URL = '/login'

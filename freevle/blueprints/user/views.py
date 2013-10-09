@@ -1,29 +1,48 @@
 from . import bp
 from .models import User, Group, Permission
 from flask import session, request
-from flask import render_template, redirect
+from flask import render_template, redirect, session, url_for
+from .constants import *
 
-@bp.route('/login', methods=['POST'])
-def login_post():
+@bp.route(LOGIN_URL)
+def login(next=LOGIN_URL):
     """
     Log a user in and optionally redirects them back to where they were.
     """
+    return render_template('user/login.html', next=next)
 
-
-@bp.route('/login')
-def login():
+@bp.route(LOGIN_URL, methods=['POST'])
+def login_post(username=None, password=None, next=LOGIN_URL):
     """
     Log a user in and optionally redirects them back to where they were.
     """
-    if session.get('user', False):
-        return
-    return render_template
+    if session.get('user', None) is None:
+        # The user isn't logged in
+        if username and password:
+            user = User.authenticate(username, password)
+            if user is not None:
+                # authentication worked
+                session.user = user
+            else:
+                # authentication failed
+                return render_template('user/login.html', next=next, failed=True)
+        else:
+            # Username and/or password were not given
+            return render_template('user/login.html', next=next,
+                                   no_username=not username,
+                                   no_password=not password)
+    # The user is logged in
+    return redirect(next)
 
 @bp.route('/logout')
-def logout():
+def logout(next=None):
     """
     Log a user out and optionally redirects them back to where they were.
     """
+    session.user=None
+    if next is not None:
+        return redirect(next)
+    return render_template('user/logout.html')
 
 @bp.route('/<designation>')
 def profile_view(designation):
