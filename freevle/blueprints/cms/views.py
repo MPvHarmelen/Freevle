@@ -2,6 +2,7 @@ from . import bp
 from .models import Category, Subcategory, Page, PageSection
 from flask import render_template, Markup, request
 from markdown import Markdown
+from ..admin import bp as admin
 
 markdown = Markdown(output_format='html5', safe_mode='escape').convert
 
@@ -18,10 +19,22 @@ def inject_breadcrumbs():
     #request.url
     return dict()
 
+@bp.route(bp.static_url_path + '/')
+@bp.route(bp.static_url_path + '/<path:path>/')
+@bp.route(bp.static_url_path + '/<path:path>/<filename>')
+@bp.route(bp.static_url_path + '/<path:path>/<filename>.<extension>')
+def serve_static(path='', filename='', extension=''):
+    file_path = path
+    if filename:
+        file_path += '/' + filename
+    if extension:
+        file_path += '.' + extension
+    return bp.send_static_file(file_path)
+
+
 @bp.route('/')
 def home():
     """Show the homepage of the entire website."""
-    # TODO: make this work for: Page.parent == None
     return render_template('cms/index.html')
 
 @bp.route('/<category_slug>/')
@@ -47,23 +60,18 @@ def page_view(category_slug, subcategory_slug, page_slug):
 
 # Admin
 # This should change a lot because Floris and Pim want an admin site
-def admin_index():
-    """Site wide admin homepage."""
-    ...
-
-def admin():
+@admin.route('/cms/')
+def cms_admin():
     """Specific admin index for cms blueprint."""
-    ...
+    return render_template('cms/admin.html')
 
 
-# @bp.route('/create')
-# @bp.route('/<parent_slug>/create')
-# @bp.route('/<page_slug>/edit')
-# @bp.route('/<parent_slug>/<page_slug>/edit')
-def page_edit(page_slug=None, parent_slug=None):
+@admin.route('/cms/category/create')
+@admin.route('/cms/<category_slug>/edit')
+def page_edit(category_slug=None):
     """Create or edit a page."""
     if page_slug is None:
-        # First or second routing, create a page.
+        # First routing, create a category.
         ...
     else:
 
