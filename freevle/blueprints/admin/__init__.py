@@ -9,4 +9,4 @@ bp = Blueprint(
 
 URL_PREFIX='/admin'
 
-from . import routings
+from . import views
