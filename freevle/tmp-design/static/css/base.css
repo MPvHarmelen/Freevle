@@ -358,7 +358,7 @@ nav#breadcrumbs {
   nav#breadcrumbs a {
     color: #777; }
 
-.home nav#breadcrumbs {
+.home nav#breadcrumbs, .parallax nav#breadcrumbs {
   display: none; }
 
 /*FOOTER*/
