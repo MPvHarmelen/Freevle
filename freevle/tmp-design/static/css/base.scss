@@ -52,6 +52,10 @@ body {
   font-family: $bodyfont;
   background: #f5f5f5;
   overflow-x: hidden;
+
+  &.opened {
+    overflow-y: hidden;
+  }
 }
 
 ::selection {
@@ -536,13 +540,14 @@ footer {
   }
 
   header#main {
-    ul {
+    nav > ul {
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       z-index: 4;
       background: $maincolor;
+      overflow-y: auto;
       @include transition(left);
 
       &.opened {

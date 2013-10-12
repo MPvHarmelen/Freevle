@@ -31,11 +31,13 @@ $(document).ready(function() {
   }
 
 
-
   $('#menuopener').click(function(e) {
     e.preventDefault();
     $(this).toggleClass('opened');
-    $('header ul').toggleClass('opened');
+    if($(window).width() < 1000) {
+      $('body').height($(window).height() - 61).toggleClass('opened');
+      $('header nav > ul').toggleClass('opened').height($(window).height());
+    }
   });
 
   $('#searchopener').click(function(e) {
@@ -112,6 +114,13 @@ $(document).ready(function() {
   }
 
 
+  $(window).resize(function() {
+    if($(window).width() < 1000) {
+      $('header nav > ul').height($(window).height());
+    }
+  });
+
+
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
       $('input').blur();
@@ -128,6 +137,25 @@ $(document).ready(function() {
 
     if(e.keyCode == 83 && !focusstatus || e.keyCode == 191 && !focusstatus) {//S
       $('input[type=search]').focus();
+    }
+  });
+
+
+  var touchX = 0;
+  var touchY = 0
+
+  document.addEventListener('touchstart', function(e) {
+    var touch = e.touches[0];
+    touchX = touch.pageX;
+    touchY = touch.pageY;
+  });
+
+  document.addEventListener('touchend', function(e) {
+    var touch = e.changedTouches[0];
+    deltaTouchX = touch.pageX - touchX;
+    deltaTouchY = Math.abs(touch.pageY - touchY);
+    if(deltaTouchX > 100 && deltaTouchY < 200) {
+      $('#menuopener').click();
     }
   });
 });
