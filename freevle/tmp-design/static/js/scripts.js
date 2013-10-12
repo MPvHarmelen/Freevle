@@ -1,6 +1,8 @@
 var focusstatus = false;
 
 $(document).ready(function() {
+
+  /*FUNCTIONS*/
   function scrollTo(place) {
     $('html, body').animate({ scrollTop: place }, 200);
   }
@@ -31,6 +33,7 @@ $(document).ready(function() {
   }
 
 
+  /*MOBILE MENU AND SEARCH OPENERS*/
   $('#menuopener').click(function(e) {
     e.preventDefault();
     $(this).toggleClass('opened');
@@ -47,6 +50,7 @@ $(document).ready(function() {
   });
 
 
+  /*OPEN AND CLOSE SEARCH-INPUT*/
   $('input[type=search]').focusin(function() {
     $(this).addClass('opened');
   }).focusout(function() {
@@ -56,6 +60,7 @@ $(document).ready(function() {
   });
 
 
+  /*LOGINFORM SHOWING*/
   if($(window).width() > 1000) {
     $('header .button, div#login .close').click(function(e) {
       e.preventDefault();
@@ -64,6 +69,7 @@ $(document).ready(function() {
   }
 
 
+  /*LOGIN-FORM CHECK EXECUTION*/
   disablrLogin();
 
   $('#login input').keyup(function() {
@@ -71,6 +77,7 @@ $(document).ready(function() {
   });
 
 
+  /*INPAGE NAVIGATION*/
   $('#jumpto a').click(function() {
     var headerId = $(this).attr('href');
     var offsetHeading = $(headerId).offset().top - 70;
@@ -83,6 +90,7 @@ $(document).ready(function() {
   }
 
 
+  /*FOCUSSTATUS*/
   $('input').focusin(function() {
     focusstatus = true;
   }).focusout(function() {
@@ -90,6 +98,7 @@ $(document).ready(function() {
   });
 
 
+  /*AUTOCOMPLETION*/
   $('input[name=search]').keyup(function() {
     var svalue = $(this).val();
 
@@ -104,6 +113,7 @@ $(document).ready(function() {
   });
 
 
+  /*GIVE ITEMS ON OVERVIEW PAGE SAME HEIGHT*/
   if($('#subjectoverview')) {
     var minHeightLi = 0;
     $('#subjectoverview > ul > li').each(function() {
@@ -114,6 +124,7 @@ $(document).ready(function() {
   }
 
 
+  /*MOBILE MENU RESIZE*/
   $(window).resize(function() {
     if($(window).width() < 1000) {
       $('header nav > ul').height($(window).height());
@@ -121,6 +132,7 @@ $(document).ready(function() {
   });
 
 
+  /*KEYBOARD NAVIGATION*/
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
       $('input').blur();
@@ -135,12 +147,13 @@ $(document).ready(function() {
       }
     }
 
-    if(e.keyCode == 83 && !focusstatus || e.keyCode == 191 && !focusstatus) {//S
+    if(e.keyCode == 83 && !focusstatus || e.keyCode == 191 && !focusstatus) {//S and /
       $('input[type=search]').focus();
     }
   });
 
 
+  /*TOUCHEVENTS FOR MENU-SWIPE*/
   var touchX = 0;
   var touchY = 0
 
