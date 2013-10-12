@@ -75,6 +75,13 @@ def rooster(ref,id_user):
     roostername = 'Floris Jansen'
     return render_template('rooster.html', ref=ref, id_user=id_user, roostername=roostername)
 
+
+@app.route('/admin/')
+def admindashboard():
+    title = 'Admin | Cygnus Gymnasium'
+    return render_template('admindashboard.html', title=title)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')

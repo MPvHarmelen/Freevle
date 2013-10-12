@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>{{ title }}</title>
+    <meta name="description" content="Proof-of-concept-site voor het Cygnus Gymnasium.">
+    <meta name="author" content="Martin van Harmelen, Pim ten Thije, Floris Jansen">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <link rel="shortcut icon" href="/static/favicon.png">
+
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/adminbase.css">
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/admin.js"></script>
+
+    {% block head %}
+    {% endblock %}
+
+  </head>
+  <body {% block bodyclass %}{% endblock %}>
+
+    <!--[if lt IE 9]>
+      <script src="/static/ie.js"></script>
+      <div id="iewarning">
+        <p>Het lijkt erop dat u Internet Explorer 8 (of ouder) gebruikt. Deze site werkt slechter in deze browser, net zoals vele andere sites. Wij adviseren u uw browser te updaten op bijvoorbeeld <a href="http://browsehappy.com/?locale=nl">Browsehappy.com</a>.</p>
+        <p class="ignorewarning" onclick="closeWarning()">Sluit deze melding</p>
+      </div>
+    <![endif]-->
+
+    <header id="main">
+      <div id="menuopener" class="mobileonly"></div>
+      <h1>
+        <a href="/admin/">Admin</a>&ensp;<a href="/">Cygnus <span id="obsolete">gymnasium</span></a>
+      </h1>
+      <a href="/admin/logout/" id="logout" class="button">Log uit</a>
+    </header>
+
+    <nav id="sidebar">
+      <ul>
+        <li>
+          <a href="/admin/" id="dashboardlink">Dashboard</a>
+        </li>
+        <li>
+          <a href="/admin/pages/" id="pageslink">Pagina's</a>
+        </li>
+        <li>
+          <a href="/admin/news/" id="newslink">Nieuws</a>
+        </li>
+        <li>
+          <a href="/admin/soon/" id="soonlink">Binnenkort</a>
+        </li>
+        <li>
+          <a href="/admin/photos/" id="photoslink">Foto's</a>
+        </li>
+        <li>
+          <a href="/admin/users/" id="userslink">Gebruikers</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="page">
+      {% block page %}
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
