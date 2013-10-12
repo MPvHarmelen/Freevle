@@ -168,7 +168,13 @@ $(document).ready(function() {
     deltaTouchX = touch.pageX - touchX;
     deltaTouchY = Math.abs(touch.pageY - touchY);
     if(deltaTouchX > 100 && deltaTouchY < 200) {
-      $('#menuopener').click();
+      if(!$('#menuopener').hasClass('opened')) {
+        $('#menuopener').click();
+      }
+    } else if(deltaTouchX < -100 && deltaTouchY < 200) {
+      if($('#menuopener').hasClass('opened')) {
+        $('#menuopener').click();
+      }
     }
   });
 });
