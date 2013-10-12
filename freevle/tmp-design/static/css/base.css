@@ -97,7 +97,6 @@ input, select {
   list-style: none;
   padding: 0.9em 1em 0.9em 2.8em;
   background-image: url(/static/img/sprite.png);
-  background-size: 174px;
   background-position: -116px -61px;
   background-repeat: no-repeat;
   font-size: 1.2em;
@@ -308,11 +307,9 @@ header#main {
   header#main a#menuopener {
     border-right: 1px solid #013164;
     background-image: url(/static/img/sprite.png);
-    background-size: 300%;
     background-position: 0 -180px; }
   header#main a#searchopener {
     background-image: url(/static/img/sprite.png);
-    background-size: 300%;
     background-position: -58px -180px;
     border-left: 1px solid #013164;
     right: 0;
@@ -533,7 +530,6 @@ footer {
       header#main form input[type=search] {
         padding-left: 2.4em;
         background-image: url(/static/img/sprite.png);
-        background-size: 174px;
         background-repeat: no-repeat;
         background-position: -11px -13px;
         width: 0;
@@ -598,3 +594,6 @@ footer {
 
   footer {
     width: 1000px; } }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .relevant, header#main a#menuopener, header#main a#searchopener, header#main form input[type=search] {
+    background-image: url(/static/img/sprite@2x.png); } }
