@@ -279,6 +279,15 @@ div#page {
     position: fixed;
     width: 100%;
     top: 0; }
+    header#main a#logout {
+      transition: right 200ms ease-in-out;
+      -o-transition: right 200ms ease-in-out;
+      -ms-transition: right 200ms ease-in-out;
+      -moz-transition: right 200ms ease-in-out;
+      -webkit-transition: right 200ms ease-in-out; }
+
+  body.opened header#main a#logout {
+    right: 9.25em; }
 
   nav#sidebar {
     position: fixed; }

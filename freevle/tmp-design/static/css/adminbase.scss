@@ -359,6 +359,15 @@ div#page {
     position: fixed;
     width: 100%;
     top: 0;
+
+    a#logout {
+      @include transition(right);
+    }
+  }
+  body.opened header#main {
+    a#logout {
+      right: 9.25em;
+    }
   }
 
   nav#sidebar {
