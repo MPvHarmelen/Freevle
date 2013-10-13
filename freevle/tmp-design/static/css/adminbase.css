@@ -160,7 +160,7 @@ a#logout {
 /*NAVIGATION*/
 nav#sidebar {
   z-index: 2;
-  min-height: 24em;
+  min-height: 27.9em;
   height: 100%;
   position: absolute;
   left: 0;
@@ -275,8 +275,16 @@ div#page {
         nav#sidebar ul li a:hover {
           border-color: #e5e5e5; } }
 @media (min-height: 28em) {
+  header#main {
+    position: fixed;
+    width: 100%;
+    top: 0; }
+
   nav#sidebar {
-    position: fixed; } }
+    position: fixed; }
+
+  div#page {
+    margin-top: 5.55em; } }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   nav#sidebar ul li a {
     background-image: url(/static/img/adminsprite@2x.png); } }

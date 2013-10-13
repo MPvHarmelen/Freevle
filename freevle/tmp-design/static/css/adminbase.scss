@@ -222,7 +222,7 @@ a#logout {
 /*NAVIGATION*/
 nav#sidebar {
   z-index: 2;
-  min-height: 6 * 4em;
+  min-height: 6 * 4.65em;
   height: 100%;
   position: absolute;
   left: 0;
@@ -355,8 +355,18 @@ div#page {
 
 
 @media (min-height: 7 * 4em) {
+  header#main {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+
   nav#sidebar {
     position: fixed;
+  }
+
+  div#page {
+    margin-top: 5.55em;
   }
 }
 
