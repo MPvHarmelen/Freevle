@@ -1,0 +1,52 @@
+
+
+ol.edited {
+  list-style: none;
+  padding: 0 20px;
+
+  li {
+    margin: 0.5em 0;
+
+    time {
+      display: inline-block;
+      margin-right: 0.5em;
+      min-width: 40px;
+      font-style: italic;
+      color: #999;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:nth-child(1) {
+      a {
+        color: #000;
+      }
+    }
+    &:nth-child(2) {
+      a {
+        color: #222;
+      }
+    }
+    &:nth-child(3) {
+      a {
+        color: #444;
+      }
+    }
+    &:nth-child(4) {
+      a {
+        color: #555;
+      }
+    }
+    &:nth-child(5) {
+      a {
+        color: #666;
+      }
+    }
+  }
+}
