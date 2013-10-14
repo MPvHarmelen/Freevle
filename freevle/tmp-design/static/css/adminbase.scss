@@ -7,6 +7,8 @@ $navfont: 'Montserrat', sans-serif;
 $pagewidth: 700px;
 
 $maincolor: #013D7D;
+$bgcolor: lighten(desaturate($maincolor, 40%), 10%);
+$textcolor: white;
 
 /*MIXINS*/
 @mixin border-radius($radius) {
@@ -43,7 +45,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: $bodyfont;
-  background: #f5f5f5;
+  background: transparentize($bgcolor, 0.9);
   overflow-x: hidden;
   @include transition(padding);
 }
@@ -63,10 +65,10 @@ h1,
 h2,
 h3 {
   font-family: $headfont;
+  font-weight: 300;
 }
 
 h2 {
-  font-weight: 300;
   font-size: 2em;
 }
 
@@ -153,14 +155,14 @@ div#iewarning {
 
 /*HEADER*/
 header#main {
-  background: $maincolor;
+  background: $bgcolor;
   color: transparentize(white, 0.3);
   position: relative;
   z-index: 3;
   padding: 0.1em;
 
   #menuopener {
-    background-color: $maincolor;
+    background-color: $bgcolor;
     background-image: url(/static/img/sprite.png);
     background-repeat: no-repeat;
     background-position: 8.7em -180px;
@@ -170,7 +172,7 @@ header#main {
     opacity: 0.7;
     color: white;
     margin: -0.1em 1em -0.1em -8.6em;
-    border-right: 1px solid darken($maincolor, 3%);
+    border-right: 1px solid darken($bgcolor, 3%);
     padding: 1.4em 4.1em 1.6em 1.5em;
     width: 6.95em;
     height: 0.9em;
@@ -227,9 +229,9 @@ nav#sidebar {
   position: absolute;
   left: 0;
   top: 0;
-  border-top: 3.9em solid $maincolor;
-  background: #eee;
-  border-right: 1px solid #e5e5e5;
+  border-top: 3.9em solid $bgcolor;
+  background: $bgcolor;
+  border-right: 1px solid transparentize(black, 0.9);
   width: 0;
   overflow: hidden;
   @include prefixify(box-sizing, border-box);
@@ -258,10 +260,10 @@ nav#sidebar {
         padding: 1.5em 1.5em 1.5em 5.5em;
         font-family: $navfont;
         text-decoration: none;
-        color: #555;
+        color: $textcolor;
         min-width: 12.5em;
-        border-bottom: 1px solid #e5e5e5;
-        background-color: #eee;
+        border-bottom: 1px solid transparentize(black, 0.9);
+        background-color: $bgcolor;
         background-image: url(/static/img/adminsprite.png);
         background-repeat: no-repeat;
         @include prefixify(box-sizing, border-box);
@@ -341,12 +343,12 @@ div#page {
       }
 
       a {
-        border-right: 1px solid #e5e5e5;
-        border-top: 1px solid #eee;
+        border-right: 1px solid transparentize(black, 0.9);
+        border-top: 1px solid transparentize(black, 1);
         @include transition(border-color);
 
         &:hover {
-          border-color: #e5e5e5;
+          border-color: transparentize(black, 0.9);
         }
       }
     }

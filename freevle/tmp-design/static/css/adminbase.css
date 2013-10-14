@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Source Sans Pro", sans-serif;
-  background: #f5f5f5;
+  background: rgba(37, 87, 140, 0.1);
   overflow-x: hidden;
   transition: padding 200ms ease-in-out;
   -o-transition: padding 200ms ease-in-out;
@@ -29,10 +29,10 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Source Sans Pro", sans-serif; }
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300; }
 
 h2 {
-  font-weight: 300;
   font-size: 2em; }
 
 .button {
@@ -105,13 +105,13 @@ div#iewarning {
 
 /*HEADER*/
 header#main {
-  background: #013d7d;
+  background: #25578c;
   color: rgba(255, 255, 255, 0.7);
   position: relative;
   z-index: 3;
   padding: 0.1em; }
   header#main #menuopener {
-    background-color: #013d7d;
+    background-color: #25578c;
     background-image: url(/static/img/sprite.png);
     background-repeat: no-repeat;
     background-position: 8.7em -180px;
@@ -121,7 +121,7 @@ header#main {
     opacity: 0.7;
     color: white;
     margin: -0.1em 1em -0.1em -8.6em;
-    border-right: 1px solid #01366e;
+    border-right: 1px solid #224f80;
     padding: 1.4em 4.1em 1.6em 1.5em;
     width: 6.95em;
     height: 0.9em;
@@ -165,9 +165,9 @@ nav#sidebar {
   position: absolute;
   left: 0;
   top: 0;
-  border-top: 3.9em solid #013d7d;
-  background: #eee;
-  border-right: 1px solid #e5e5e5;
+  border-top: 3.9em solid #25578c;
+  background: #25578c;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   width: 0;
   overflow: hidden;
   box-sizing: border-box;
@@ -201,10 +201,10 @@ nav#sidebar {
         padding: 1.5em 1.5em 1.5em 5.5em;
         font-family: "Montserrat", sans-serif;
         text-decoration: none;
-        color: #555;
+        color: white;
         min-width: 12.5em;
-        border-bottom: 1px solid #e5e5e5;
-        background-color: #eee;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #25578c;
         background-image: url(/static/img/adminsprite.png);
         background-repeat: no-repeat;
         box-sizing: border-box;
@@ -265,15 +265,15 @@ div#page {
       nav#sidebar ul li:hover {
         width: 12.5em; }
       nav#sidebar ul li a {
-        border-right: 1px solid #e5e5e5;
-        border-top: 1px solid #eeeeee;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0);
         transition: border-color 200ms ease-in-out;
         -o-transition: border-color 200ms ease-in-out;
         -ms-transition: border-color 200ms ease-in-out;
         -moz-transition: border-color 200ms ease-in-out;
         -webkit-transition: border-color 200ms ease-in-out; }
         nav#sidebar ul li a:hover {
-          border-color: #e5e5e5; } }
+          border-color: rgba(0, 0, 0, 0.1); } }
 @media (min-height: 28em) {
   header#main {
     position: fixed;
