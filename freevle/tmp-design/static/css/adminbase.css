@@ -327,7 +327,7 @@ section.card {
     margin-top: 3.9em; } }
 @media (min-height: 28em) and (min-width: 700px) {
   a#logout {
-    margin: 0.8em 4.8em 0 0;
+    margin: 0.7em 4.8em 0 0;
     transition: margin 200ms ease-in-out;
     -o-transition: margin 200ms ease-in-out;
     -ms-transition: margin 200ms ease-in-out;
@@ -335,7 +335,7 @@ section.card {
     -webkit-transition: margin 200ms ease-in-out; }
 
   .opened a#logout {
-    margin: 0.8em 13.3em 0 0; } }
+    margin: 0.7em 13.3em 0 0; } }
 @media (min-width: 1000px) {
   section.card.fifty {
     width: 46%;
