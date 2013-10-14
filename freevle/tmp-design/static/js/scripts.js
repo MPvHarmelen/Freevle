@@ -32,6 +32,21 @@ $(document).ready(function() {
     }
   }
 
+  function sameHeight() {
+    if($('#subjectoverview')) {
+      if($(window).width() > 1000) {
+        var minHeightLi = 0;
+        $('#subjectoverview > ul > li').each(function() {
+          if($(this).height() > minHeightLi) {
+            minHeightLi = $(this).outerHeight();
+          }
+        }).css('min-height', minHeightLi);
+      } else {
+        $('#subjectoverview > ul > li').css('min-height', 0)
+      }
+    }
+  }
+
 
   /*MOBILE MENU AND SEARCH OPENERS*/
   $('#menuopener').click(function(e) {
@@ -61,12 +76,12 @@ $(document).ready(function() {
 
 
   /*LOGINFORM SHOWING*/
-  if($(window).width() > 1000) {
-    $('header .button, div#login .close').click(function(e) {
+  $('header .button, div#login .close').click(function(e) {
+    if($(window).width() > 1000) {
       e.preventDefault();
       toggleLoginForm();
-    });
-  }
+    }
+  });
 
 
   /*LOGIN-FORM CHECK EXECUTION*/
@@ -114,18 +129,12 @@ $(document).ready(function() {
 
 
   /*GIVE ITEMS ON OVERVIEW PAGE SAME HEIGHT*/
-  if($('#subjectoverview')) {
-    var minHeightLi = 0;
-    $('#subjectoverview > ul > li').each(function() {
-      if($(this).height() > minHeightLi) {
-        minHeightLi = $(this).outerHeight();
-      }
-    }).css('min-height', minHeightLi);
-  }
-
+  sameHeight();
 
   /*MOBILE MENU RESIZE*/
   $(window).resize(function() {
+    sameHeight();
+
     if($(window).width() < 1000) {
       $('header nav > ul').height($(window).height());
     }
