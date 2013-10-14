@@ -295,7 +295,25 @@ nav#sidebar {
 
 /*PAGE*/
 div#page {
-  padding: 0 2em;
+  overflow: hidden;
+
+  h2 {
+    margin: 0.8em 5% 0.5em;
+  }
+}
+
+
+section.card {
+  background: #fafafa;
+  border: 1px solid transparentize(black, 0.90);
+  border-bottom-width: 3px;
+  margin: 0.5em 5%;
+  @include prefixify(box-sizing, border-box);
+
+  h3 {
+    font-size: 1.5em;
+    margin: 0.8em 20px;
+  }
 }
 
 
@@ -353,6 +371,15 @@ div#page {
       }
     }
   }
+
+
+  div#page h2 {
+    margin: 1em 3% 0.5em;
+  }
+
+  section.card {
+    margin: 0 3% 1em;
+  }
 }
 
 
@@ -368,7 +395,16 @@ div#page {
   }
 
   div#page {
-    margin-top: 5.55em;
+    margin-top: 3.9em;
+  }
+}
+
+
+@media (min-width: 1000px) {
+  section.card.fifty {
+    width: 46%;
+    display: inline-block;
+    margin: 0 -1% 1em 3%;
   }
 }
 
