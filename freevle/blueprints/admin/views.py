@@ -1,7 +1,7 @@
 from importlib import import_module
 from os import listdir
 from freevle import app
-from . import bp
+from . import bp, URL_PREFIX
 from flask import url_for
 
 # admin_views = {}
@@ -32,3 +32,12 @@ def index():
     """Site wide admin homepage."""
     blueprints = ((name, url_for(name + '.admin')) for name, views in sorted(admin_views.items()))
     return render_template('admin/index.html', blueprints=blueprints)
+
+bp.index_views = {'Home': index}
+
+@bp.context_processor
+def inject_admin_map():
+    for x in dir(bp.index_views['Home']):
+        print(x)
+    return dict(admin_map=bp.index_views.items())
+
