@@ -32,6 +32,6 @@ install:
   - python setup.py install
   - cd ..
 
-  - "sed \"s:^BLEUPRINTS_DIRECTORY.*$:BLEUPRINTS_DIRECTORY = '$(pwd)\\/freevle\\/apps\\/':\" <settings.cfg.sample >settings.cfg"
+  - "sed \"s:^BLEUPRINTS_DIRECTORY.*$:BLEUPRINTS_DIRECTORY = '$(pwd)\\/freevle\\/blueprints\\/':\" <settings.cfg.sample >settings.cfg"
 script:
   - python test.py ../settings.cfg
