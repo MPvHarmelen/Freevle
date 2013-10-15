@@ -38,6 +38,7 @@ class Subcategory(db.Model):
     title = db.Column(db.String(SUBCATEGORY_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(SUBCATEGORY_SLUG_LENGTH), nullable=False)
     color = db.Column(db.String(7), nullable=False)
+    featured = db.Column(db.Boolean, nullable=False, default=False)
     user_type_view = db.Column(db.String(USER_TYPE_LENGTH))
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
@@ -101,7 +102,6 @@ class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
-    # featured_picture = TODO!!
     subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
     created = db.Column(db.DateTime, default=datetime.now)
     last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
@@ -193,8 +193,17 @@ class TextSection(PageSection):
 class ImageSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'image'}
     id = db.Column(db.Integer, db.ForeignKey('page_section.id'), primary_key=True)
+    featured = db.Column(db.Boolean, nullable=False, default=False)
     image_path = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
+
+    @db.validates('featured')
+    def validate_featured(self, key, value):
+        if value:
+            self.order = -1
+        return value
 
     @db.validates('image_path')
     def validate_image_path(self, key, value):
+        # Clean path
+        # Validate this thing is a picture
         return value
