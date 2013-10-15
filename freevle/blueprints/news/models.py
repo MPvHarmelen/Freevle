@@ -1,4 +1,5 @@
 from freevle import db
+from .constants import *
 
 class NewsItem(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
