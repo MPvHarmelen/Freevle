@@ -7,8 +7,11 @@ from freevle.utils.decorators import permalink
 
 from flask import Markup
 from sqlalchemy.ext.hybrid import hybrid_property
+
 from ..user.constants import POLYMORPHIC_IDENTITIES, USER_TYPE_LENGTH
 from ..user.models import Admin
+
+from ..news.models import NewsItem
 
 from .constants import *
 
@@ -198,3 +201,10 @@ class ImageSection(PageSection):
     @db.validates('image_path')
     def validate_image_path(self, key, value):
         return value
+
+class Link(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    page_id = 
+    subcategory_id = 
+    category_id = 
+    news_item_id = 

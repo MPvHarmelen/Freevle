@@ -1,6 +1,7 @@
 from freevle import db
 
 class NewsItem(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
 	...
 
 class Event(db.Model):
