@@ -11,6 +11,8 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   background: #f5f5f5;
   overflow-x: hidden; }
+  body.opened {
+    overflow-y: hidden; }
 
 ::selection {
   background: #013d7d;
@@ -97,7 +99,6 @@ input, select {
   list-style: none;
   padding: 0.9em 1em 0.9em 2.8em;
   background-image: url(/static/img/sprite.png);
-  background-size: 174px;
   background-position: -116px -61px;
   background-repeat: no-repeat;
   font-size: 1.2em;
@@ -308,11 +309,9 @@ header#main {
   header#main a#menuopener {
     border-right: 1px solid #013164;
     background-image: url(/static/img/sprite.png);
-    background-size: 300%;
     background-position: 0 -180px; }
   header#main a#searchopener {
     background-image: url(/static/img/sprite.png);
-    background-size: 300%;
     background-position: -58px -180px;
     border-left: 1px solid #013164;
     right: 0;
@@ -358,7 +357,7 @@ nav#breadcrumbs {
   nav#breadcrumbs a {
     color: #777; }
 
-.home nav#breadcrumbs {
+.home nav#breadcrumbs, .parallax nav#breadcrumbs {
   display: none; }
 
 /*FOOTER*/
@@ -379,32 +378,33 @@ footer {
   div#indexcover div#darken {
     padding: 5em 2em; }
 
-  header#main ul {
+  header#main nav > ul {
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     z-index: 4;
     background: #013d7d;
+    overflow-y: auto;
     transition: left 200ms ease-in-out;
     -o-transition: left 200ms ease-in-out;
     -ms-transition: left 200ms ease-in-out;
     -moz-transition: left 200ms ease-in-out;
     -webkit-transition: left 200ms ease-in-out; }
-    header#main ul.opened {
+    header#main nav > ul.opened {
       left: 0; }
-    header#main ul li {
+    header#main nav > ul li {
       overflow: hidden; }
-      header#main ul li a:link, header#main ul li a:visited, header#main ul li a#loginlink, header#main ul li div {
+      header#main nav > ul li a:link, header#main nav > ul li a:visited, header#main nav > ul li a#loginlink, header#main nav > ul li div {
         color: white;
         padding: 0.8em 0.6em;
         display: block;
         border: 0;
         font-weight: 400;
         border-bottom: 1px solid #013873; }
-      header#main ul li div {
+      header#main nav > ul li div {
         color: rgba(255, 255, 255, 0.7); }
-    header#main ul ul.dropdown {
+    header#main nav > ul ul.dropdown {
       position: relative; }
   header#main #menuopener.opened {
     right: 0;
@@ -533,7 +533,6 @@ footer {
       header#main form input[type=search] {
         padding-left: 2.4em;
         background-image: url(/static/img/sprite.png);
-        background-size: 174px;
         background-repeat: no-repeat;
         background-position: -11px -13px;
         width: 0;
@@ -598,3 +597,6 @@ footer {
 
   footer {
     width: 1000px; } }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .relevant, header#main a#menuopener, header#main a#searchopener, header#main form input[type=search] {
+    background-image: url(/static/img/sprite@2x.png); } }

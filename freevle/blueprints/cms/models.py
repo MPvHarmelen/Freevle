@@ -7,8 +7,12 @@ from freevle.utils.decorators import permalink
 
 from flask import Markup
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm.properties import RelationshipProperty
+
 from ..user.constants import POLYMORPHIC_IDENTITIES, USER_TYPE_LENGTH
 from ..user.models import Admin
+
+from ..news.models import NewsItem
 
 from .constants import *
 
@@ -207,3 +211,30 @@ class ImageSection(PageSection):
         # Clean path
         # Validate this thing is a picture
         return value
+
+class Link(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    linked_models = [Page, Subcategory, Category, NewsItem]
+    for cls in linked_models:
+        foreignkey_code = "{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
+                          .format(name=cls.__name__.lower())
+        relationship_code = """
+{low_name} = db.relationship(
+    {name},
+    backref=db.backref(
+        'links',
+        order_by={name}.id,
+        lazy='dynamic'
+    )
+)
+        """.format(low_name=cls.__name__.lower(), name=cls.__name__)
+        exec(foreignkey_code)
+        exec(relationship_code)
+
+    def __init__(self, **kwargs):
+        if len(k.items()) > 1:
+            raise KeyError('Only one link allowed.')
+        for k,v in kwargs:
+            if isinstance(getattr(self, k), RelationshipProperty)\
+               or isinstance(getattr(self, k), db.Column):
+               setattr(self, k, v)

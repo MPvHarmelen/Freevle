@@ -1,0 +1,450 @@
+/*VARS*/
+$bodyfont: 'Source Sans Pro', sans-serif;
+$headfont: 'Source Sans Pro', sans-serif;
+$buttonfont: 'Montserrat', sans-serif;
+$navfont: 'Montserrat', sans-serif;
+
+$pagewidth: 700px;
+
+$maincolor: #013D7D;
+$bgcolor: lighten(desaturate($maincolor, 40%), 10%);
+$textcolor: white;
+
+/*MIXINS*/
+@mixin border-radius($radius) {
+          border-radius: $radius;
+      -ms-border-radius: $radius;
+     -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+@mixin transition($property, $duration, $function...) {
+          transition: $property $duration $function;
+       -o-transition: $property $duration $function;
+      -ms-transition: $property $duration $function;
+     -moz-transition: $property $duration $function;
+  -webkit-transition: $property $duration $function;
+}
+
+
+/*HTML, BODY, :selection*/
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $bodyfont;
+  background: transparentize($bgcolor, 0.9);
+  position: relative;
+  overflow-x: hidden;
+  @include transition(padding, 200ms, ease-in);
+}
+
+::selection {
+  background: $maincolor;
+  color: #fff;
+}
+::-moz-selection {
+  background: $maincolor;
+  color: #fff;
+}
+
+
+/*BASIC ELEMENTS*/
+h1,
+h2,
+h3 {
+  font-family: $headfont;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+.button {
+  display: inline-block;
+  border: solid 2px $maincolor;
+  color: $maincolor;
+  padding: 0.6em 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    background: transparentize($maincolor, 0.1);
+    text-shadow: 0 1px 1px transparentize(black, 0.8);
+    @include prefixify(box-shadow, 0 2px 1px transparentize(black, 0.7));
+  }
+
+  &:active {
+    padding: 0.7em 0.8em 0.5em;
+    @include prefixify(box-shadow, inset 0 1px 1px 1px transparentize(black, 0.8));
+  }
+}
+
+input, select {
+  display: inline-block;
+  border: solid 2px $maincolor;
+  color: #111;
+  padding: 0.6em 0.8em;
+  font-size: 1em;
+  text-decoration: none;
+  background: none;
+  font-family: $navfont;
+
+  &:hover {
+    background: transparentize(white, 0.5);
+    border-color: $maincolor;
+  }
+
+  &:focus {
+    outline: none;
+    background: white;
+    border-color: $maincolor;
+  }
+}
+
+
+/*IE-WARNING*/
+div#iewarning {
+  position: absolute;
+  margin-bottom: 10em;
+  top: 0;
+  z-index: 10;
+  background: #333333;
+
+  p {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    padding: 1em;
+    text-align: center;
+
+    a:link, a:visited {
+      color: white;
+      text-decoration: underline;
+    }
+
+    &.ignorewarning {
+      font-style: italic;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.obsolete {
+  display: none;
+}
+
+
+/*HEADER*/
+header#main {
+  background: $bgcolor;
+  color: transparentize(white, 0.3);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding-left: 4em;
+  max-width: 100%;
+  @include prefixify(box-sizing, border-box);
+}
+
+h1 {
+  margin: 0.6em;
+  font-size: 1.5em;
+  font-weight: 900;
+  float: left;
+
+  a {
+    color: transparentize(white, 0.3);
+    text-decoration: none;
+
+    &:nth-child(2) {
+      font-weight: 300;
+    }
+
+    &:hover, &:active {
+      color: white;
+    }
+  }
+}
+
+a#logout {
+  color: transparentize(white, 0.3);
+  margin: 0.7em 0.8em 0 0.8em;
+  float: right;
+  border-width: 0;
+
+  &:hover, &:active {
+    color: white;
+  }
+}
+
+
+/*NAVIGATION*/
+nav#sidebar {
+  z-index: 3;
+  min-height: 6 * 4.65em;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  background: $bgcolor;
+  border-right: 1px solid transparentize(black, 0.9);
+  @include prefixify(box-sizing, border-box);
+  @include transition(width, 200ms, ease-in-out);
+
+  #menuopener {
+    background-color: $bgcolor;
+    background-image: url(/static/img/sprite.png);
+    background-repeat: no-repeat;
+    background-position: 8.7em -182px;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    opacity: 0.7;
+    color: white;
+    margin: 0 0 0 -8.6em;
+    border-bottom: 1px solid darken($bgcolor, 3%);
+    padding: 1.3em 4.1em 1.6em 1.4em;
+    width: 6.95em;
+    height: 0.7em;
+    @include transition(background-position, 200ms, ease-in-out, margin-left 200ms ease-in-out);
+
+    &:hover {
+      opacity: 1;
+      color: transparentize(white, 0.3);
+    }
+
+    &.opened {
+      background-position: 8.7em -120px;
+      margin-left: 0;
+    }
+  }
+
+  &.opened {
+    width: 12.5em;
+    @include prefixify(box-shadow, 0 0 10px transparentize(black, 0.9));
+
+    ul {
+      width: 12.5em;
+    }
+
+    ul li {
+      width: 12.5em;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 0;
+    overflow: hidden;
+    @include transition(width, 200ms, ease-in-out);
+
+    li {
+      height: 4em;
+
+      a {
+        display: block;
+        height: 4em;
+        padding: 1.5em 1.5em 1.5em 5.5em;
+        font-family: $navfont;
+        text-decoration: none;
+        color: $textcolor;
+        min-width: 12.5em;
+        border-bottom: 1px solid transparentize(black, 0.9);
+        background-color: $bgcolor;
+        background-image: url(/static/img/adminsprite.png);
+        background-repeat: no-repeat;
+        @include prefixify(box-sizing, border-box);
+
+        &#pageslink {
+          background-position: 0 -64px;
+        }
+
+        &#newslink {
+          background-position: 0 -128px;
+        }
+
+        &#soonlink {
+          background-position: 0 -192px;
+        }
+
+        &#photoslink {
+          background-position: 0 -256px;
+        }
+
+        &#userslink {
+          background-position: 0 -320px;
+        }
+      }
+    }
+  }
+}
+
+
+/*PAGE*/
+div#page {
+  overflow: hidden;
+
+  h2 {
+    margin: 0.8em 5% 0.5em;
+  }
+}
+
+
+section.card {
+  background: #fafafa;
+  border: 1px solid transparentize(black, 0.90);
+  border-bottom-width: 3px;
+  margin: 0.5em 5%;
+  @include prefixify(box-sizing, border-box);
+
+  h3 {
+    font-size: 1.5em;
+    margin: 0.8em 20px;
+  }
+}
+
+
+@media (min-width: $pagewidth) {
+  body {
+    padding: 0 0 0 4em;
+
+    &.opened {
+      padding-left: 12.5em;
+    }
+  }
+
+  .mobileonly {
+    display: none;
+  }
+
+  .obsolete {
+    display: inline-block;
+  }
+
+  header#main {
+    padding: 0;
+  }
+
+  nav#sidebar {
+    width: 4em;
+    overflow: visible;
+
+    &.opened {
+      @include prefixify(box-shadow, none);
+    }
+
+    ul {
+      width: 4em;
+      overflow: visible;
+
+      li {
+        overflow-x: hidden;
+        overflow-y: visible;
+        width: 4em;
+        @include transition(width, 200ms, ease-in-out);
+
+        &:hover {
+          width: 12.5em;
+        }
+
+        a {
+          border-right: 1px solid transparentize(black, 0.9);
+          @include transition(opacity, 200ms, ease-in-out);
+          opacity: 0.7;
+
+          &:hover {
+            border-color: transparentize(black, 0.9);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+
+  div#page h2 {
+    margin: 1em 3% 0.5em;
+  }
+
+  section.card {
+    margin: 0 3% 1em;
+  }
+}
+
+
+@media (min-height: 7 * 4em) {
+  header#main {
+    position: fixed;
+    width: 100%;
+    top: 0;
+
+    a#logout {
+      @include transition(right);
+    }
+  }
+  body.opened header#main {
+    a#logout {
+      right: 9.25em;
+    }
+  }
+
+  nav#sidebar {
+    position: fixed;
+  }
+
+  div#page {
+    margin-top: 3.9em;
+  }
+}
+
+
+@media (min-height: 7 * 4em) and (min-width: $pagewidth) {
+  a#logout {
+    margin: 0.7em 4.8em 0 0;
+    @include transition(margin, 200ms, ease-in-out)
+  }
+  .opened {
+    a#logout {
+      margin: 0.7em 13.3em 0 0;
+    }
+  }
+}
+
+
+@media (min-width: 1000px) {
+  section.card.fifty {
+    width: 46%;
+    display: inline-block;
+    margin: 0 -1% 1em 3%;
+  }
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  nav#sidebar ul li a {
+    background-image: url(/static/img/adminsprite@2x.png);
+  }
+}
