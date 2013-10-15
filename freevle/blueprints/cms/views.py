@@ -4,20 +4,24 @@ from flask import render_template, Markup, request
 from markdown import Markdown
 from ..admin import bp as admin
 
+from freevle import app
+
 markdown = Markdown(output_format='html5', safe_mode='escape').convert
 
-@bp.context_processor
+@bp.app_context_processor
 def inject_sitemap():
     """Inject categories into context."""
     categories = Category.query.all()
     # TODO: where does 'contact' get in?
-    return dict(categories=categories)
+    key = lambda a: repr(a)
+    rules = sorted(app.url_map.iter_rules(), key=key)
+    return dict(categories=categories, url_map=rules)
 
-@bp.context_processor
+@bp.app_context_processor
 def inject_breadcrumbs():
     """Inject breadcrumbs extracted from url into context."""
-    #request.url
-    return dict()
+    breadcrumbs = request.url.split('/')[1:]
+    return dict(breadcrumbs=breadcrumbs)
 
 @bp.route(bp.static_url_path + '/')
 @bp.route(bp.static_url_path + '/<path:path>/')
@@ -61,21 +65,25 @@ def page_view(category_slug, subcategory_slug, page_slug):
 # Admin
 # This should change a lot because Floris and Pim want an admin site
 @admin.route('/cms/')
-def cms_admin():
+def cms_admin_index():
     """Specific admin index for cms blueprint."""
     return render_template('cms/admin.html')
 
+admin.index_views['cms'] = cms_admin_index
 
 @admin.route('/cms/category/create')
-@admin.route('/cms/<category_slug>/edit')
-def page_edit(category_slug=None):
+@admin.route('/cms/category/<category_slug>/edit')
+def category_edit(category_slug=None):
     """Create or edit a page."""
-    if page_slug is None:
+    if category_slug is None:
         # First routing, create a category.
         ...
     else:
 
         ...
+
+# admin.add_url_rule('/cms/category/create', 'category_edit', category_edit)
+# admin.add_url_rule('/cms/category/<category_slug>/edit', 'category_edit', category_edit)
 
 # @bp.route('/<page_slug>/delete')
 # @bp.route('/<parent_slug>/<page_slug>/delete')
