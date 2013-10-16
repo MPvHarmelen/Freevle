@@ -76,6 +76,7 @@ h2 {
 .button {
   display: inline-block;
   border: solid 2px $maincolor;
+  background: none;
   color: $maincolor;
   padding: 0.6em 0.8em;
   font-weight: bold;
@@ -402,7 +403,7 @@ section.card {
     top: 0;
 
     a#logout {
-      @include transition(right);
+      @include transition(right, 200ms, ease-in-out);
     }
   }
   body.opened header#main {
