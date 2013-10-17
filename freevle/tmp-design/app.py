@@ -86,6 +86,11 @@ def adminpages():
     title = 'Pagina\'s | Admin | Cygnus Gymnasium'
     return render_template('adminpages.html', title=title)
 
+@app.route('/admin/pages/editor/')
+def admineditor():
+    title = 'Gebouw | Pagina\'s | Admin | Cygnus Gymnasium'
+    return render_template('adminpages-editor.html', title=title)
+
 
 if __name__ == '__main__':
     app.debug = True

@@ -1,0 +1,36 @@
+{% extends "adminbase.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/admineditor.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Pagina-editor</h2>
+
+  <section class="card">
+    <form method="POST" action="#">
+      <input type="text" id="pagetitle" name="pagetitle" placeholder="Titel" value="Gebouw">
+      <button name="publish" type="submit" class="button save">Publiceren</button>
+
+      <section>
+        <textarea placeholder="Inhoud..." name="#">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac viverra neque. Nulla quis erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.
+        </textarea>
+      </section>
+
+      <section>
+        <input type="text" id="subtitle" name="#" placeholder="Kopje">
+        <textarea placeholder="Inhoud..." name="#"></textarea>
+      </section>
+
+      <section id="newsection">
+        <div id="newtext">+ Nieuw tekst-deel</div>
+        <div id="newimage">+ Nieuwe afbeelding</div>
+      </section>
+
+    </form>
+  </section>
+{% endblock %}
