@@ -50,8 +50,9 @@ h2 {
     color: white;
     cursor: pointer;
     text-decoration: none;
-    background: rgba(1, 61, 125, 0.9);
+    background-color: rgba(1, 61, 125, 0.9);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    outline: none;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
     -o-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
     -ms-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
@@ -59,6 +60,7 @@ h2 {
     -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3); }
   .button:active {
     padding: 0.7em 0.8em 0.5em;
+    outline: none;
     box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.2);
     -o-box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.2);
     -ms-box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -70,18 +72,22 @@ h2 {
   border-color: #ed6969 !important;
   background-image: url(/static/img/adminsprite-actions.png);
   background-size: 50px;
-  background-position: center -58px; }
+  background-position: -8px -58px;
+  color: white;
+  background-repeat: no-repeat; }
   .delete:hover {
-    background: #ed6969; }
+    background-color: #ed6969; }
 
 .move {
   background-color: lightblue;
   border-color: #99cfe0 !important;
   background-image: url(/static/img/adminsprite-actions.png);
   background-size: 50px;
-  background-position: center -8px; }
+  background-position: -8px -8px;
+  background-repeat: no-repeat;
+  color: white; }
   .move:hover {
-    background: #99cfe0; }
+    background-color: #99cfe0; }
 
 input, select {
   display: inline-block;

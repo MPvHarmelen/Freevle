@@ -10,7 +10,12 @@ div#massactions {
     color: #555;
     font-weight: bold; }
   div#massactions .button {
-    float: left; }
+    float: left;
+    padding-left: 2.5em; }
+    div#massactions .button.delete {
+      background-position: -8px -59px !important; }
+    div#massactions .button.move {
+      background-position: -8px -9px !important; }
 
 section.thirty li.selected {
   font-weight: bold; }
@@ -62,6 +67,8 @@ ul.pages {
         z-index: 2;
         position: relative;
         min-width: 6em; }
+        ul.pages li div.actions .buttoncont {
+          position: relative; }
         ul.pages li div.actions a {
           float: left;
           display: block;
@@ -81,12 +88,14 @@ ul.pages {
           position: absolute;
           color: white;
           background: rgba(0, 0, 0, 0.7);
-          padding: 0.5em 0.7em;
-          display: none; }
+          padding: 0.5em 0.7em 0.55em;
+          display: none;
+          top: 0.5em;
+          left: -6.7em; }
           ul.pages li div.actions .tooltip:before {
             display: block;
             position: absolute;
-            right: -1.35em;
+            right: -1.4em;
             content: "";
             width: 0;
             height: 0;

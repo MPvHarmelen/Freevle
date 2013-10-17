@@ -33,6 +33,15 @@ div#massactions {
 
   .button {
     float: left;
+    padding-left: 2.5em;
+
+    &.delete {
+      background-position: -8px -59px !important;
+    }
+
+    &.move {
+      background-position: -8px -9px !important;
+    }
   }
 }
 
@@ -105,6 +114,10 @@ ul.pages {
         position: relative;
         min-width: 6em;
 
+        .buttoncont {
+          position: relative;
+        }
+
         a {
           float: left;
           display: block;
@@ -124,13 +137,15 @@ ul.pages {
           position: absolute;
           color: white;
           background: transparentize(black, 0.3);
-          padding: 0.5em 0.7em;
+          padding: 0.5em 0.7em 0.55em;
           display: none;
+          top: 0.5em;
+          left: -6.7em;
 
           &:before {
             display: block;
             position: absolute;
-            right: -1.35em;
+            right: -1.4em;
             content: "";
             width: 0;
             height: 0;

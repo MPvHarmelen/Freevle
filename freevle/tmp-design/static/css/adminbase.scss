@@ -88,13 +88,15 @@ h2 {
     color: white;
     cursor: pointer;
     text-decoration: none;
-    background: transparentize($maincolor, 0.1);
+    background-color: transparentize($maincolor, 0.1);
     text-shadow: 0 1px 1px transparentize(black, 0.8);
+    outline: none;
     @include prefixify(box-shadow, 0 2px 1px transparentize(black, 0.7));
   }
 
   &:active {
     padding: 0.7em 0.8em 0.5em;
+    outline: none;
     @include prefixify(box-shadow, inset 0 1px 1px 1px transparentize(black, 0.8));
   }
 }
@@ -104,10 +106,12 @@ h2 {
   border-color: darken(lightcoral, 5%) !important;
   background-image: url(/static/img/adminsprite-actions.png);
   background-size: 50px;
-  background-position: center -58px;
+  background-position: -8px -58px;
+  color: white;
+  background-repeat: no-repeat;
 
   &:hover {
-    background: darken(lightcoral, 5%);
+    background-color: darken(lightcoral, 5%);
   }
 }
 
@@ -116,10 +120,12 @@ h2 {
   border-color: darken(lightblue, 5%) !important;
   background-image: url(/static/img/adminsprite-actions.png);
   background-size: 50px;
-  background-position: center -8px;
+  background-position: -8px -8px;
+  background-repeat: no-repeat;
+  color: white;
 
   &:hover {
-    background: darken(lightblue, 5%);
+    background-color: darken(lightblue, 5%);
   }
 }
 
