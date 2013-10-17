@@ -81,6 +81,11 @@ def admindashboard():
     title = 'Admin | Cygnus Gymnasium'
     return render_template('admindashboard.html', title=title)
 
+@app.route('/admin/pages/')
+def adminpages():
+    title = 'Pagina\'s | Admin | Cygnus Gymnasium'
+    return render_template('adminpages.html', title=title)
+
 
 if __name__ == '__main__':
     app.debug = True
