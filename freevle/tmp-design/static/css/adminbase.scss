@@ -99,6 +99,30 @@ h2 {
   }
 }
 
+.delete {
+  background-color: lightcoral;
+  border-color: darken(lightcoral, 5%) !important;
+  background-image: url(/static/img/adminsprite-actions.png);
+  background-size: 50px;
+  background-position: center -58px;
+
+  &:hover {
+    background: darken(lightcoral, 5%);
+  }
+}
+
+.move {
+  background-color: lightblue;
+  border-color: darken(lightblue, 5%) !important;
+  background-image: url(/static/img/adminsprite-actions.png);
+  background-size: 50px;
+  background-position: center -8px;
+
+  &:hover {
+    background: darken(lightblue, 5%);
+  }
+}
+
 input, select {
   display: inline-block;
   border: solid 2px $maincolor;

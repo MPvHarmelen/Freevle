@@ -65,6 +65,24 @@ h2 {
     -moz-box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.2); }
 
+.delete {
+  background-color: lightcoral;
+  border-color: #ed6969 !important;
+  background-image: url(/static/img/adminsprite-actions.png);
+  background-size: 50px;
+  background-position: center -58px; }
+  .delete:hover {
+    background: #ed6969; }
+
+.move {
+  background-color: lightblue;
+  border-color: #99cfe0 !important;
+  background-image: url(/static/img/adminsprite-actions.png);
+  background-size: 50px;
+  background-position: center -8px; }
+  .move:hover {
+    background: #99cfe0; }
+
 input, select {
   display: inline-block;
   border: solid 2px #013d7d;
