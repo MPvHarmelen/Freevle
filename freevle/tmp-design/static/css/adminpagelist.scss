@@ -19,19 +19,30 @@ $maincolor: #013D7D;
 
 div#massactions {
   overflow: hidden;
-  padding: 1em 1em 0 0;
+  padding: 1em 1em 0.5em 0;
   background: #f5f5f5;
   border-bottom: 1px solid #eee;
 
-  div#indicationarrow {
+  p {
     float: left;
-    font-size: 1.6em;
-    padding: 0.4em 0.2em 0 0.6em;
+    padding: 0.6em 0.4em 0 1.25em;
+    margin: 0;
     color: #555;
+    font-weight: bold;
   }
 
   .button {
     float: left;
+  }
+}
+
+
+section.thirty {
+  li.selected {
+    font-weight: bold;
+  }
+  p {
+    margin: 0.8em 20px;
   }
 }
 
@@ -42,7 +53,7 @@ ul.pages {
   padding: 0;
 
   li {
-    border-top: 1px solid #eee;
+    border-top: 1px solid rgba(0,0,0,0.05);
     position: relative;
     overflow: hidden;
 
@@ -50,9 +61,13 @@ ul.pages {
       border: none;
     }
 
+    &.selected {
+      background: transparentize($maincolor, 0.9);
+    }
+
     div {
       float: left;
-      border-left: 1px solid #eaeaea;
+      border-left: 1px solid rgba(0,0,0,0.05);
       &:nth-child(1) {
         border: none;
       }
@@ -65,15 +80,22 @@ ul.pages {
 
       &.pagename {
         position: absolute;
-        left: 3.25em;
+        left: 2.95em;
         right: 0;
         z-index: 1;
+        font-size: 1.1em;
 
         a {
-          padding: 1em;
+          padding: 0.9em;
           display: block;
+          color: #555;
+          text-decoration: none;
           width: 100%;
           @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+          }
         }
       }
 
@@ -81,8 +103,7 @@ ul.pages {
         float: right;
         z-index: 2;
         position: relative;
-        padding-right: 0.65em;
-        min-width: 7em;
+        min-width: 6em;
 
         a {
           float: left;
@@ -120,5 +141,19 @@ ul.pages {
         }
       }
     }
+  }
+}
+
+@media (min-width: 1000px) {
+  section.seventy {
+    float: left;
+    margin: 0 -1% 1em 3%;
+    width: 66%;
+  }
+
+  section.thirty {
+    float: left;
+    margin: 0 -1% 1em 3%;
+    width: 26%;
   }
 }
