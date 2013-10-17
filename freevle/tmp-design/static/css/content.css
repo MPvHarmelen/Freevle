@@ -345,7 +345,8 @@ nav#subjectoverview {
       padding: 1em 30px;
       color: white; }
       nav#subjectoverview > ul section > li h3 {
-        margin: 0.5em 0; }
+        margin: 0.5em 0;
+        word-wrap: break-word; }
       nav#subjectoverview > ul section > li ul {
         padding: 0 0 0 1.6em;
         list-style: disc; }
