@@ -35,12 +35,15 @@ $(document).ready(function() {
   function sameHeight() {
     if($('#subjectoverview')) {
       if($(window).width() > 1000) {
-        var minHeightLi = 0;
-        $('#subjectoverview > ul > li').each(function() {
-          if($(this).height() > minHeightLi) {
-            minHeightLi = $(this).outerHeight();
-          }
-        }).css('min-height', minHeightLi);
+        $('#subjectoverview > ul > section').each(function() {
+          var minHeightLi = 0;
+          $(this).children().each(function() {
+            if($(this).outerHeight() > minHeightLi) {
+              minHeightLi = $(this).outerHeight();
+            }
+            console.log($(this).outerHeight());
+          }).css('min-height', minHeightLi);
+        });
       } else {
         $('#subjectoverview > ul > li').css('min-height', 0)
       }
