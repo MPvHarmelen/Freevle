@@ -88,7 +88,7 @@
       </div>
 
       <ul id="headlines">
-        <li>
+        <!-- <li>
           <time class="date">27/9</time>&emsp;<a href="/nieuws/2013/09/openening-schip">Opening Schip</a>
         </li>
         <li>
@@ -99,7 +99,12 @@
         </li>
         <li>
           <time class="date">12/6</time>&emsp;<a href="/nieuws/2013/08/start-schooljaar">Eind schooljaar</a>
-        </li>
+        </li> -->
+        {% for rule in url_map %}
+        <li>{{ rule }}</li>
+        {% else %}
+        <li>No rules?!</li>
+        {% endfor %}
       </ul>
 
     </div>
