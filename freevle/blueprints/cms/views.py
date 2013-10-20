@@ -69,7 +69,7 @@ def cms_admin_index():
     """Specific admin index for cms blueprint."""
     return render_template('cms/admin.html')
 
-admin.index_views.append(dict(title="Pagina's", endpoint='cms_index'))
+admin.add_index_view("Pagina's", bp.name)
 
 @admin.route('/cms/category/create')
 @admin.route('/cms/category/<category_slug>/edit')
