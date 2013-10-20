@@ -40,24 +40,11 @@
     <nav id="sidebar">
       <div id="menuopener">Menu</div>
       <ul>
+        {% for dic in admin_map %}
         <li>
-          <a href="/admin/" id="dashboardlink">Dashboard</a>
+          <a href="{{ url_for('admin.' + dic['endpoint']) }}" id="dashboardlink">{{ dic['title'] }}</a>
         </li>
-        <li>
-          <a href="/admin/pages/" id="pageslink">Pagina's</a>
-        </li>
-        <li>
-          <a href="/admin/news/" id="newslink">Nieuws</a>
-        </li>
-        <li>
-          <a href="/admin/soon/" id="soonlink">Binnenkort</a>
-        </li>
-        <li>
-          <a href="/admin/photos/" id="photoslink">Foto's</a>
-        </li>
-        <li>
-          <a href="/admin/users/" id="userslink">Gebruikers</a>
-        </li>
+        {% endfor %}
       </ul>
     </nav>
 

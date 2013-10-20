@@ -30,14 +30,14 @@ from flask import url_for, render_template
 @bp.route('/')
 def index():
     """Site wide admin homepage."""
-    blueprints = ((name, url_for(name + '.admin')) for name, views in sorted(bp.index_views.items()))
-    return render_template('admin/index.html', blueprints=blueprints)
+    return render_template('admin/index.html')
 
-bp.index_views = {'Home': index}
+bp.index_views = [dict(title='Dashboard', endpoint='index')]
 
 @bp.context_processor
 def inject_admin_map():
-    for x in dir(bp.index_views['Home']):
-        print(x)
-    return dict(admin_map=bp.index_views.items())
+    for dic in bp.index_views:
+        if not dic.get('img_filename', False):
+            dic.update({'img_filename': 'img/index_icon.png'})
+    return dict(admin_map=bp.index_views)
 
