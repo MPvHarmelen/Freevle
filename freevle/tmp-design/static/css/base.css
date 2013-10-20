@@ -122,10 +122,10 @@ input, select {
     background-color: rgba(20, 202, 157, 0.7); }
     .relevant.activities:hover {
       background-color: #14ca9d; }
-  .relevant.recent {
-    background-color: rgba(67, 184, 61, 0.7); }
-    .relevant.recent:hover {
-      background-color: #43b83d; }
+  .relevant.more {
+    background-color: rgba(51, 51, 51, 0.7); }
+    .relevant.more:hover {
+      background-color: rgba(51, 51, 51, 0.9); }
 
 .coverbg {
   position: absolute;

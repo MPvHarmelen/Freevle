@@ -200,6 +200,12 @@ ul#quicknav {
   ul#quicknav h3 {
     margin: 0;
     color: white; }
+  ul#quicknav li.more {
+    background-image: none;
+    padding: 0; }
+    ul#quicknav li.more a {
+      padding: 0.9em 1em 0.9em 1em;
+      display: block; }
   ul#quicknav ul {
     padding: 0 0 0 1.1em;
     color: white;
@@ -574,6 +580,15 @@ ul.sitemap {
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box; }
+
+  ul#quicknav li.more {
+    display: table;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.5em; }
+    ul#quicknav li.more h3 {
+      vertical-align: middle;
+      display: table-cell; }
 
   div#recent {
     width: 50%;

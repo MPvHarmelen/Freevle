@@ -303,6 +303,16 @@ ul#quicknav {
     color: white;
   }
 
+  li.more {
+    background-image: none;
+    padding: 0;
+
+    a {
+      padding: 0.9em 1em 0.9em 1em;
+      display: block;
+    }
+  }
+
   ul {
     padding: 0 0 0 1.1em;
     color: white;
@@ -808,6 +818,18 @@ ul.sitemap {
     float: left;
     width: 25%;
     @include prefixify(box-sizing, border-box);
+  }
+
+  ul#quicknav li.more {
+    display: table;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.5em;
+
+    h3 {
+      vertical-align: middle;
+      display: table-cell;
+    }
   }
 
 
