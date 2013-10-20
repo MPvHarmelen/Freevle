@@ -67,28 +67,34 @@ def page_view(category_slug, subcategory_slug, page_slug):
 # Admin
 # This should change a lot because Floris and Pim want an admin site
 @admin.route('/cms/', endpoint='cms_index')
-def cms_admin_index():
+def admin_index():
     """Specific admin index for cms blueprint."""
     return render_template('cms/admin.html')
 
 admin.add_index_view("Pagina's", bp.name)
 
 @admin.route('/cms/category/create')
-@admin.route('/cms/category/<category_slug>/edit')
-def category_edit(category_slug=None):
-    """Create or edit a page."""
+@admin.route('/cms/category/edit/<category_slug>')
+def cms_category_edit(category_slug=None):
+    """Create or edit a category."""
     if category_slug is None:
         # First routing, create a category.
         ...
     else:
-
         ...
 
-# admin.add_url_rule('/cms/category/create', 'category_edit', category_edit)
-# admin.add_url_rule('/cms/category/<category_slug>/edit', 'category_edit', category_edit)
+@admin.route('/cms/page/create/<category_slug>/<subcategory_slug>/')
+@admin.route('/cms/page/edit/<category_slug>/<subcategory_slug>/<page_slug>')
+def cms_page_edit(category_slug, subcategory_slug, page_slug=None):
+    """Create or edit a page."""
+    if page_slug is None:
+        # First routing, create a page
+        ...
+    else:
+        ...
 
 # @bp.route('/<page_slug>/delete')
 # @bp.route('/<parent_slug>/<page_slug>/delete')
-def page_delete(page_slug, parent_slug=None):
+def cms_page_delete(page_slug, parent_slug=None):
     """Delete a page."""
     ...
