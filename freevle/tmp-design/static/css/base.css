@@ -97,10 +97,7 @@ input, select {
 .relevant {
   display: block;
   list-style: none;
-  padding: 0.9em 1em 0.9em 2.8em;
-  background-image: url(/static/img/sprite.png);
-  background-position: -116px -61px;
-  background-repeat: no-repeat;
+  padding: 0.9em 1.2em;
   font-size: 1.2em;
   font-weight: bold;
   transition: background 200ms ease-in-out;
@@ -108,24 +105,21 @@ input, select {
   -ms-transition: background 200ms ease-in-out;
   -moz-transition: background 200ms ease-in-out;
   -webkit-transition: background 200ms ease-in-out; }
-  .relevant a:link, .relevant a:visited {
+  .relevant.linkicon {
+    background-image: url(/static/img/sprite.png);
+    background-position: -116px -61px;
+    background-repeat: no-repeat;
+    padding: 0.9em 1em 0.9em 2.8em; }
+  .relevant a:link, .relevant a:visited, .relevant:link, .relevant:visited {
     color: white; }
   .relevant.education {
     background-color: rgba(209, 22, 5, 0.7); }
-    .relevant.education:hover {
-      background-color: #d11605; }
   .relevant.school {
     background-color: rgba(1, 61, 125, 0.8); }
-    .relevant.school:hover {
-      background-color: #013d7d; }
   .relevant.activities {
     background-color: rgba(20, 202, 157, 0.7); }
-    .relevant.activities:hover {
-      background-color: #14ca9d; }
   .relevant.more {
     background-color: rgba(51, 51, 51, 0.7); }
-    .relevant.more:hover {
-      background-color: rgba(51, 51, 51, 0.9); }
 
 .coverbg {
   position: absolute;

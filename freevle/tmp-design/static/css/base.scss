@@ -158,41 +158,33 @@ input, select {
 .relevant {
   display: block;
   list-style: none;
-  padding: 0.9em 1em 0.9em 2.8em;
-  background-image: url(/static/img/sprite.png);
-  background-position: -116px -61px;
-  background-repeat: no-repeat;
+  padding: 0.9em 1.2em;
   font-size: 1.2em;
   font-weight: bold;
   @include transition(background);
 
-  a:link, a:visited {
+  &.linkicon {
+    background-image: url(/static/img/sprite.png);
+    background-position: -116px -61px;
+    background-repeat: no-repeat;
+    padding: 0.9em 1em 0.9em 2.8em;
+  }
+
+  a:link, a:visited, &:link, &:visited {
     color: white;
   }
 
   &.education {
     background-color: transparentize($educationcolor, 0.3);
-    &:hover {
-      background-color: $educationcolor;
-    }
   }
   &.school {
     background-color: transparentize($schoolcolor, 0.2);
-    &:hover {
-      background-color: $schoolcolor;
-    }
   }
   &.activities {
     background-color: transparentize($activitiescolor, 0.3);
-    &:hover {
-      background-color: $activitiescolor;
-    }
   }
   &.more {
     background-color: transparentize($morecolor, 0.3);
-    &:hover {
-      background-color: transparentize($morecolor, 0.1);
-    }
   }
 }
 

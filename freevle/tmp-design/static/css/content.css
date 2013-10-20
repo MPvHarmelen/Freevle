@@ -661,7 +661,4 @@ ul.sitemap {
       margin-bottom: 0.2em; } }
 @media (min-width: 1440px) {
   div#content {
-    width: 1000px; }
-
-  ul#quicknav > li {
-    height: 136px; } }
+    width: 1000px; } }

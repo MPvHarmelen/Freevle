@@ -17,10 +17,10 @@ $(document).ready(function() {
     });
     if($('body').innerWidth() > 999) {
       $('#indexcover').css('margin-bottom', -liHeight-24);
-      $('ul#quicknav > li').css('height', liHeight);
+      $('ul#quicknav > li').css('min-height', liHeight);
     } else {
       $('#indexcover').css('margin-bottom', 0);
-      $('ul#quicknav > li').css('height', 'auto');
+      $('ul#quicknav > li').css('min-height', 0);
     }
   }
 
