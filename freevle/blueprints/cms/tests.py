@@ -167,6 +167,10 @@ class CMSTests(TestBase):
                 p_got.get_url(),
                 'http://' + self.app.config['SERVER_NAME'] + '/test/test/test'
             )
+            self.assertEqual(
+                p_got.get_edit_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/admin/cms/page/edit/test/test/test'
+            )
         self.assertEqual(self.client.get('/test/test/test').status, '200 OK')
         # Test if the 'last_edited' actually updates.
         last_edited = p_got.last_edited
