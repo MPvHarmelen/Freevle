@@ -76,7 +76,7 @@ div#pagecover {
 
 /*NEWS*/
 article.newsmessage {
-  padding: 2em 0 2em; }
+  padding: 0.5em 0 0.5em; }
   article.newsmessage:first-of-type {
     padding-top: 0.1em; }
   article.newsmessage h3 {
@@ -86,6 +86,8 @@ article.newsmessage {
   article.newsmessage p.meta {
     color: #666; }
 
+.news h2 {
+  margin-bottom: 0.1em; }
 .news article.newsmessage {
   border-bottom: 1px solid #dddddd; }
 

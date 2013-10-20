@@ -142,7 +142,7 @@ div#pagecover {
 
 /*NEWS*/
 article.newsmessage {
-  padding: 2em 0 2em;
+  padding: 0.5em 0 0.5em;
 
   &:first-of-type {
     padding-top: 0.1em;
@@ -161,9 +161,14 @@ article.newsmessage {
   }
 }
 
-.news article.newsmessage {
-  border-bottom: 1px solid #ddd;
+.news {
+  h2 {
+    margin-bottom: 0.1em;
+  }
 
+  article.newsmessage {
+    border-bottom: 1px solid #ddd;
+  }
 }
 
 div.newscover {
