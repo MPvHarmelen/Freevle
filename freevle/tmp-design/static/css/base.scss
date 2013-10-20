@@ -725,11 +725,12 @@ footer {
     }
 
     div.button {
-      margin: 0.6em;
+      margin: 0.6em 0.6em 0.6em 0;
       float: right;
       border-color: rgba(0,0,0,0);
       opacity: 0.5;
       color: #000;
+      font-weight: normal;
 
       &:hover, &:active {
         border-color: $logincolor;
@@ -747,11 +748,24 @@ footer {
         background-image: url(/static/img/sprite.png);
         background-repeat: no-repeat;
         background-position: -11px -13px;
-        width: 0;
+        width: 6.5em;
         padding-right: 0;
-        margin: 0.6em 0;
+        margin: 0.65em 0 0;
         @include transition(width);
         border-color: rgba(0,0,0,0);
+
+        &::-webkit-input-placeholder {
+          color: transparentize(black, 0.5);
+          text-transform: uppercase;
+        }
+        &::-moz-placeholder {
+          color: transparentize(black, 0.5);
+          text-transform: uppercase;
+        }
+        &:-ms-input-placeholder {
+          color: transparentize(black, 0.5);
+          text-transform: uppercase;
+        }
 
         &:hover, &:focus {
           border-color: $maincolor;
@@ -761,6 +775,18 @@ footer {
         &.opened {
           width: 16em;
           padding-right: 0.8em;
+          border-color: $maincolor;
+          background-color: white;
+
+          &::-webkit-input-placeholder {
+            color: transparentize(black, 0.6);
+          }
+          &::-moz-placeholder {
+            color: transparentize(black, 0.6);
+          }
+          &:-ms-input-placeholder {
+            color: transparentize(black, 0.6);
+          }
         }
       }
     }

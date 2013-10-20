@@ -24,7 +24,7 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: "Aldus", serif;
+  font-family: 'Aldus', serif;
   font-weight: 400;
   text-align: center;
   color: white;
@@ -518,11 +518,12 @@ footer {
         header#main ul li:hover ul.dropdown {
           height: 7.6em; }
     header#main div.button {
-      margin: 0.6em;
+      margin: 0.6em 0.6em 0.6em 0;
       float: right;
       border-color: rgba(0, 0, 0, 0);
       opacity: 0.5;
-      color: #000; }
+      color: #000;
+      font-weight: normal; }
       header#main div.button:hover, header#main div.button:active {
         border-color: #6e0080;
         background: rgba(110, 0, 128, 0.9);
@@ -535,21 +536,38 @@ footer {
         background-image: url(/static/img/sprite.png);
         background-repeat: no-repeat;
         background-position: -11px -13px;
-        width: 0;
+        width: 6.5em;
         padding-right: 0;
-        margin: 0.6em 0;
+        margin: 0.65em 0 0;
         transition: width 200ms ease-in-out;
         -o-transition: width 200ms ease-in-out;
         -ms-transition: width 200ms ease-in-out;
         -moz-transition: width 200ms ease-in-out;
         -webkit-transition: width 200ms ease-in-out;
         border-color: rgba(0, 0, 0, 0); }
+        header#main form input[type=search]::-webkit-input-placeholder {
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: uppercase; }
+        header#main form input[type=search]::-moz-placeholder {
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: uppercase; }
+        header#main form input[type=search]:-ms-input-placeholder {
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: uppercase; }
         header#main form input[type=search]:hover, header#main form input[type=search]:focus {
           border-color: #013d7d;
           background-position: -69px -135px; }
         header#main form input[type=search].opened {
           width: 16em;
-          padding-right: 0.8em; }
+          padding-right: 0.8em;
+          border-color: #013d7d;
+          background-color: white; }
+          header#main form input[type=search].opened::-webkit-input-placeholder {
+            color: rgba(0, 0, 0, 0.4); }
+          header#main form input[type=search].opened::-moz-placeholder {
+            color: rgba(0, 0, 0, 0.4); }
+          header#main form input[type=search].opened:-ms-input-placeholder {
+            color: rgba(0, 0, 0, 0.4); }
 
   .home header#main {
     background: rgba(250, 250, 250, 0.6);
