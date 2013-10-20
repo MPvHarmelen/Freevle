@@ -336,20 +336,27 @@ div#comingup {
 /*SUBJECT-OVERVIEW*/
 nav#subjectoverview {
   font-size: 1.1em; }
+  nav#subjectoverview h2 {
+    font-size: 2.05em;
+    margin-left: 30px; }
   nav#subjectoverview > ul {
     padding: 0;
     margin: 0;
     list-style: none; }
-    nav#subjectoverview > ul h3 {
-      margin: 1.2em 30px 0.8em;
-      word-wrap: break-word; }
     nav#subjectoverview > ul section {
       overflow: hidden; }
+      nav#subjectoverview > ul section > h3 {
+        margin: 0;
+        word-wrap: break-word;
+        font-weight: 300;
+        padding: 1em 30px; }
+      nav#subjectoverview > ul section:nth-of-type(1) > h3 {
+        margin-top: 0; }
     nav#subjectoverview > ul section > li {
       display: block;
       padding: 1em 30px;
       color: white; }
-      nav#subjectoverview > ul section > li h4 {
+      nav#subjectoverview > ul section > li h4, nav#subjectoverview > ul section > li h3 {
         margin: 0.5em 0;
         word-wrap: break-word; }
       nav#subjectoverview > ul section > li ul {
@@ -541,7 +548,7 @@ ul.sitemap {
   nav#subjectoverview > ul {
     height: 100%;
     overflow: hidden; }
-    nav#subjectoverview > ul section > li {
+    nav#subjectoverview > ul section > li, nav#subjectoverview > ul section > h3 {
       width: 25%;
       box-sizing: border-box;
       -o-box-sizing: border-box;
@@ -549,6 +556,8 @@ ul.sitemap {
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
       float: left; }
+    nav#subjectoverview > ul section.hasHeader > li:nth-of-type(3n + 4) {
+      margin-left: 25%; }
 
   /*INDEX*/
   div#indexcover {
