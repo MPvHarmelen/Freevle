@@ -51,6 +51,18 @@ function sameHeight(first) {
   }
 }
 
+function jumptoFeedback(places) {
+  if($(window).width() > 999) {
+    for(var i = 0; i < places.length; i++) {
+      if(places[i-1] < $(window).scrollTop() && places[i] > $(window).scrollTop()) {
+        $('.youarehere').removeClass('youarehere');
+        n = i + 1;
+        $('#jumpto li:nth-of-type('+n+') a').addClass('youarehere');
+      }
+    }
+  }
+}
+
 
 $(document).ready(function() {
 
@@ -107,6 +119,23 @@ $(document).ready(function() {
     var offsetHeading = $(window.location.hash).offset().top - 70;
     scrollTo(offsetHeading);
   }
+
+  var places = [];
+  $('#jumpto li a').each(function() {
+    var headerId = $(this).attr('href');
+    if(headerId === '#top') {
+      offsetHeading = 0;
+    } else {
+      var offsetHeading = $(headerId).offset().top - 70;
+    }
+    places.push(offsetHeading);
+  });
+
+  $('#jumpto a:first').addClass('youarehere');
+
+  $(window).scroll(function() {
+    jumptoFeedback(places);
+  });
 
 
   /*FOCUSSTATUS*/

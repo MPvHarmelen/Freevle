@@ -747,7 +747,7 @@ ul.sitemap {
     display: block;
     position: fixed;
     margin-left: -105px;
-    margin-top: 2em;
+    bottom: 2em;
     font-size: 0.8em;
     z-index: 2;
 
@@ -773,6 +773,10 @@ ul.sitemap {
           padding: 0.7em 0.9em;
           display: block;
           color: white;
+
+          &.youarehere {
+            background: transparentize(white, 0.7);
+          }
         }
       }
     }
