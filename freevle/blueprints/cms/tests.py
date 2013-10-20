@@ -155,7 +155,7 @@ class CMSTests(TestBase):
         image_section2 = self.create_image_section(order=3, page=p_in)
         all_sections = [text_section1, image_section1, text_section2, image_section2]
         p_got = Page.query.get(2)
-        self.assertAlmostEqual(p_got.created, now, delta=ONUPDATE_DETLA)
+        self.assertAlmostEqual(p_got.datetime_createdted, now, delta=ONUPDATE_DETLA)
         self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DETLA)
         self.assertEqual(p_got.title, 'TeSt')
         self.assertEqual(p_got.slug, 'test')
@@ -175,13 +175,13 @@ class CMSTests(TestBase):
         db.session.add(p_got)
         db.session.commit()
         self.assertNotAlmostEqual(p_got.last_edited, last_edited, delta=timedelta(seconds=SLEEP_TIME))
-        # Test if the created hasn't changed
-        self.assertAlmostEqual(p_got.created, last_edited, delta=ONUPDATE_DETLA)
+        # Test if the datetime_createdted hasn't changed
+        self.assertAlmostEqual(p_got.datetime_createdted, last_edited, delta=ONUPDATE_DETLA)
 
         # self.create_page('TeSt2', 'test2', 'This is more content.', parent=p_got)
         # now = datetime.now()
         # child_got = Page.query.filter(Page.parent == p_got).first()
-        # self.assertAlmostEqual(child_got.created, now, delta=ONUPDATE_DETLA)
+        # self.assertAlmostEqual(child_got.datetime_createdted, now, delta=ONUPDATE_DETLA)
         # self.assertAlmostEqual(child_got.last_edited, now, delta=ONUPDATE_DETLA)
         # self.assertEqual(child_got.title, 'TeSt2')
         # self.assertEqual(child_got.slug, 'test2')
