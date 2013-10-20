@@ -582,13 +582,20 @@ ul.sitemap {
     -webkit-box-sizing: border-box; }
 
   ul#quicknav li.more {
-    display: table;
-    padding: 0.1em 1em;
     text-align: center;
     font-size: 1.3em; }
     ul#quicknav li.more h3 {
-      vertical-align: middle;
-      display: table-cell; }
+      width: 100%;
+      min-height: inherit; }
+      ul#quicknav li.more h3 a {
+        width: 60%;
+        padding: 0 20%;
+        height: 100%;
+        display: table;
+        min-height: inherit; }
+        ul#quicknav li.more h3 a span {
+          vertical-align: middle;
+          display: table-cell; }
 
   div#recent {
     width: 50%;

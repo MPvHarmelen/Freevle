@@ -821,14 +821,25 @@ ul.sitemap {
   }
 
   ul#quicknav li.more {
-    display: table;
-    padding: 0.1em 1em;
     text-align: center;
     font-size: 1.3em;
 
     h3 {
-      vertical-align: middle;
-      display: table-cell;
+      width: 100%;
+      min-height: inherit;
+
+      a {
+        width: 60%;
+        padding: 0 20%;
+        height: 100%;
+        display: table;
+        min-height: inherit;
+
+        span {
+          vertical-align: middle;
+          display: table-cell;
+        }
+      }
     }
   }
 
