@@ -871,7 +871,11 @@ ul.sitemap {
 
 @media (min-width: 1000px) and (max-height: 800px) {
   div#indexcover #darken {
-    padding: 4em 2em 12em;
+    padding: 4em 2em 14em;
+
+    h1 {
+      margin-bottom: 0.2em;
+    }
   }
 }
 
