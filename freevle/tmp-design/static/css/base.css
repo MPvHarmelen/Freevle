@@ -405,7 +405,8 @@ footer {
       header#main nav > ul li div {
         color: rgba(255, 255, 255, 0.7); }
     header#main nav > ul ul.dropdown {
-      position: relative; }
+      position: relative;
+      width: 100%; }
   header#main #menuopener.opened {
     right: 0;
     z-index: 5;
@@ -443,7 +444,7 @@ footer {
     background-position: 0 -120px;
     border-right: 1px solid #013164;
     border-left: 0; }
-  header#main div.button {
+  header#main div#intern a {
     display: none; } }
 @media (min-width: 1000px) {
   h1 {
@@ -501,34 +502,40 @@ footer {
             background: rgba(255, 255, 255, 0.5); }
         header#main ul li div {
           cursor: default; }
-        header#main ul li ul.dropdown {
-          margin-top: 1px;
-          overflow: hidden;
-          height: 0;
-          transition: height 200ms ease-in-out;
-          -o-transition: height 200ms ease-in-out;
-          -ms-transition: height 200ms ease-in-out;
-          -moz-transition: height 200ms ease-in-out;
-          -webkit-transition: height 200ms ease-in-out; }
-          header#main ul li ul.dropdown li {
-            float: none;
-            background: rgba(255, 255, 255, 0.8); }
-            header#main ul li ul.dropdown li:nth-child(1) {
-              border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-        header#main ul li:hover ul.dropdown {
-          height: 7.6em; }
-    header#main div.button {
-      margin: 0.6em 0.6em 0.6em 0;
+    header#main ul.dropdown {
+      margin-top: 1px;
+      overflow: hidden;
+      height: 0;
+      transition: height 200ms ease-in-out;
+      -o-transition: height 200ms ease-in-out;
+      -ms-transition: height 200ms ease-in-out;
+      -moz-transition: height 200ms ease-in-out;
+      -webkit-transition: height 200ms ease-in-out; }
+      header#main ul.dropdown li {
+        float: none;
+        background: rgba(255, 255, 255, 0.8); }
+        header#main ul.dropdown li:nth-child(1) {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    header#main :hover ul.dropdown {
+      height: 7.6em; }
+    header#main div#intern {
       float: right;
-      border-color: rgba(0, 0, 0, 0);
-      opacity: 0.5;
-      color: #000;
-      font-weight: normal; }
-      header#main div.button:hover, header#main div.button:active {
-        border-color: #6e0080;
-        background: rgba(110, 0, 128, 0.9);
-        opacity: 1;
-        color: white; }
+      width: 92px; }
+      header#main div#intern > a {
+        float: right;
+        text-decoration: none;
+        display: block;
+        opacity: 0.5;
+        padding: 1.3em; }
+        header#main div#intern > a:link, header#main div#intern > a:visited {
+          color: #000; }
+        header#main div#intern > a:hover {
+          color: #333;
+          opacity: 1;
+          background: rgba(255, 255, 255, 0.5); }
+      header#main div#intern ul {
+        clear: both;
+        float: right; }
     header#main form {
       float: right; }
       header#main form input[type=search] {

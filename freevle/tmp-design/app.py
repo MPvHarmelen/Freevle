@@ -20,7 +20,7 @@ def page(name):
 def intern():
     title = 'Interne Informatie | Cygnus Gymnasium'
     page = 'intern.html'
-    return render_template(page, title=title)
+    return render_template(page, title=title, loggedin=True)
 
 
 @app.route('/info/<a>/<b>/')

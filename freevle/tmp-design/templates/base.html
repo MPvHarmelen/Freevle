@@ -31,17 +31,6 @@
       </div>
     <![endif]-->
 
-    <div id="login">
-      <form method="POST" action="/login/">
-        <div class="close">&times;</div>
-        <h2>Login</h2>
-        <input type="text" placeholder="Gebruikersnaam">
-        <input type="password" placeholder="Wachtwoord">
-        <input type="submit" class="button" value="Login">
-        <a href="/verlorengegevens">Gegevens vergeten?</a>
-      </form>
-    </div>
-
     <header id="main">
       <a href="#menu" id="menuopener">&emsp;</a>
       <h1>
@@ -74,11 +63,33 @@
           </li>
           <li class="mobileonly">
             <a href="/login/">Intern</a>
+            {% if loggedin %}
+              <ul class="dropdown">
+                <li>
+                  <a href="/instellingen/"><span class="mobileonly">&#8618;&ensp;</span>Instellingen</a>
+                </li>
+                <li>
+                  <a href="/loguit/"><span class="mobileonly">&#8618;&ensp;</span>Loguit</a>
+                </li>
+              </ul>
+            {% endif %}
           </li>
         </ul>
       </nav>
       <a href="#search" id="searchopener">&emsp;</a>
-      <div class="button">Intern</div>
+      <div id="intern">
+        <a href="/login/">Intern</a>
+        {% if loggedin %}
+          <ul class="dropdown">
+            <li>
+              <a href="/instellingen/"><span class="mobileonly">&#8618;&ensp;</span>Instellingen</a>
+            </li>
+            <li>
+              <a href="/loguit/"><span class="mobileonly">&#8618;&ensp;</span>Loguit</a>
+            </li>
+          </ul>
+        {% endif %}
+      </div>
       <form method="POST" action="/zoek/">
         <h2 id="searchtitle">Zoeken</h2>
         <input type="search" name="search" list="search" placeholder="Zoek">

@@ -573,6 +573,7 @@ footer {
 
       ul.dropdown {
         position: relative;
+        width: 100%;
       }
     }
 
@@ -626,7 +627,7 @@ footer {
       border-left: 0;
     }
 
-    div.button {
+    div#intern a {
       display: none;
     }
   }
@@ -704,42 +705,55 @@ footer {
         div {
           cursor: default;
         }
-
-        ul.dropdown {
-          margin-top: 1px;
-          overflow: hidden;
-          height: 0;
-          @include transition(height);
-
-          li {
-            float: none;
-            background: transparentize(white, 0.2);
-            &:nth-child(1) {
-              border-bottom: 1px solid transparentize(black, 0.95);
-            }
-          }
-        }
-        &:hover ul.dropdown {
-          height: 7.6em;
-        }
       }
     }
 
-    div.button {
-      margin: 0.6em 0.6em 0.6em 0;
+
+    ul.dropdown {
+      margin-top: 1px;
+      overflow: hidden;
+      height: 0;
+      @include transition(height);
+
+      li {
+        float: none;
+        background: transparentize(white, 0.2);
+        &:nth-child(1) {
+          border-bottom: 1px solid transparentize(black, 0.95);
+        }
+      }
+    }
+    :hover ul.dropdown {
+      height: 7.6em;
+    }
+
+    div#intern {
       float: right;
-      border-color: rgba(0,0,0,0);
-      opacity: 0.5;
-      color: #000;
-      font-weight: normal;
+      width: 92px;
 
-      &:hover, &:active {
-        border-color: $logincolor;
-        background: transparentize($logincolor, 0.1);
-        opacity: 1;
-        color: white;
+      > a {
+        float: right;
+        text-decoration: none;
+        display: block;
+        opacity: 0.5;
+        padding: 1.3em;
+
+        &:link, &:visited {
+          color: #000;
+        }
+        &:hover {
+          color: #333;
+          opacity: 1;
+          background: transparentize(white, 0.5);
+        }
+      }
+
+      ul {
+        clear: both;
+        float: right;
       }
     }
+
 
     form {
       float: right;
