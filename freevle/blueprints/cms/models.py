@@ -1,21 +1,21 @@
 import re
 from datetime import datetime
 
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm.properties import RelationshipProperty
+from flask import Markup
+
 from freevle import db
 from freevle.utils.database import validate_slug
 from freevle.utils.decorators import permalink
 from freevle.utils.functions import camel_to_underscore
 
-from flask import Markup
-from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm.properties import RelationshipProperty
+from .constants import *
 
 from ..user.constants import POLYMORPHIC_IDENTITIES, USER_TYPE_LENGTH
 from ..user.models import Admin
 
 from ..news.models import NewsItem
-
-from .constants import *
 
 page_group_view = db.Table('page_group_view',
     db.Column('page_id', db.Integer, db.ForeignKey('page.id')),
@@ -108,8 +108,8 @@ class Page(db.Model):
     title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
     subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
-    created = db.Column(db.DateTime, default=datetime.now)
-    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+    datetime_createdted = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
     __table_args__ = (
         db.UniqueConstraint('subcategory_id', 'slug'),
