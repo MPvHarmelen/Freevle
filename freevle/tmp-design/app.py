@@ -16,14 +16,14 @@ def page(name):
     return render_template(page, title=title)
 
 
-@app.route('/dashboard/')
-def dashboard():
-    title = 'Dashboard | Cygnus Gymnasium'
-    page = 'dashboard.html'
+@app.route('/intern/')
+def intern():
+    title = 'Interne Informatie | Cygnus Gymnasium'
+    page = 'intern.html'
     return render_template(page, title=title)
 
 
-@app.route('/over/<a>/<b>/')
+@app.route('/info/<a>/<b>/')
 def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
     return render_template('schoolklimaat.html', title=title)
@@ -50,7 +50,7 @@ def photosarchive():
 @app.route('/login/', methods=['POST'])
 def login():
     title = 'Login | Cygnus Gymnasium'
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('intern'))
 
 
 @app.route('/login/', methods=['GET'])
