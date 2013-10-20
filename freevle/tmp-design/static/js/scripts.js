@@ -121,20 +121,24 @@ $(document).ready(function() {
   }
 
   var places = [];
-  $('#jumpto li a').each(function() {
-    var headerId = $(this).attr('href');
-    if(headerId === '#top') {
-      offsetHeading = 0;
-    } else {
-      var offsetHeading = $(headerId).offset().top - 70;
-    }
-    places.push(offsetHeading);
-  });
+  $(window).load(function() {
 
-  $('#jumpto a:first').addClass('youarehere');
+    $('#jumpto li a').each(function() {
+      var headerId = $(this).attr('href');
+      if(headerId === '#top') {
+        offsetHeading = 0;
+      } else {
+        var offsetHeading = $(headerId).offset().top - 71;
+      }
+      places.push(offsetHeading);
+      console.log(offsetHeading+headerId);
+    });
 
-  $(window).scroll(function() {
-    jumptoFeedback(places);
+    $('#jumpto a:first').addClass('youarehere');
+
+    $(window).scroll(function() {
+      jumptoFeedback(places);
+    });
   });
 
 
