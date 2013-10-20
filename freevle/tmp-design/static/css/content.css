@@ -36,7 +36,7 @@ div#content {
       background: rgba(20, 202, 157, 0.7); }
   div#content.recent {
     border-color: rgba(67, 184, 61, 0.7); }
-  div#content.protected {
+  div#content.intern {
     border-color: rgba(110, 0, 128, 0.7); }
   div#content.protected.teachers {
     border-color: #6e0080; }

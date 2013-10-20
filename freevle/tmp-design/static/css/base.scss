@@ -13,7 +13,7 @@ $recentcolor: #43B83D;
 $educationcolor: #D11605;
 $schoolcolor: #013D7D;
 $activitiescolor: #14CA9D;
-$logincolor: #6E0080;
+$interncolor: #6E0080;
 
 
 /*MIXINS*/
@@ -249,7 +249,7 @@ div#login, div#lost {
   width: 100%;
   height: 100%;
   z-index: 6;
-  background: $logincolor;
+  background: $interncolor;
   text-align: center;
   display: table;
   overflow-y: auto;
@@ -308,7 +308,7 @@ div#login, div#lost {
 
 
       &:focus {
-        color: $logincolor;
+        color: $interncolor;
 
         &::-webkit-input-placeholder {
           color: transparentize(black, 0.6);
@@ -326,7 +326,7 @@ div#login, div#lost {
         margin-bottom: 1.5em;
 
         &:hover {
-          background: $logincolor;
+          background: $interncolor;
           color: white;
         }
 
