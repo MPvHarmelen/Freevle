@@ -49,7 +49,7 @@ div#content {
     margin: auto;
     display: block; }
   div#content section:not(:nth-of-type(1)) {
-    border-top: 1px solid #eeeeee; }
+    border-top: 1px solid #eee; }
   div#content section.containsimg {
     padding-bottom: 1em;
     border: none; }
@@ -89,7 +89,7 @@ article.newsmessage {
     color: #666; }
 
 .news article.newsmessage {
-  border-bottom: 1px solid #dddddd; }
+  border-bottom: 1px solid #ddd; }
 
 div.newscover {
   position: relative;
@@ -185,7 +185,7 @@ a.fancybox {
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #eee;
   margin-bottom: -1px; }
   nav#readfurther h2 {
     font-size: 1.5em;
@@ -278,7 +278,7 @@ ul#headlines {
 
 div#comingup {
   overflow: hidden;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #eee;
   background: #f5f5f5; }
   div#comingup ul {
     list-style: none;
@@ -548,15 +548,13 @@ ul.sitemap {
   /*INDEX*/
   div#indexcover {
     background-image: url(/static/img/cover.png);
-    margin-top: -3.8em;
-    margin-bottom: -11em; }
+    margin-top: -3.8em; }
     div#indexcover #darken {
-      padding: 8em 2em 18em; }
+      padding: 8em 2em 17em; }
 
   ul#quicknav > li {
     float: left;
     width: 25%;
-    height: 152px;
     box-sizing: border-box;
     -o-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -566,7 +564,7 @@ ul.sitemap {
   div#recent {
     width: 50%;
     float: left;
-    border-right: 1px solid #eeeeee; }
+    border-right: 1px solid #eee; }
     div#recent h2 {
       margin: 0;
       padding: 0.5em 20px; }
@@ -599,7 +597,7 @@ ul.sitemap {
     border-top: none; }
     div#comingup li {
       font-size: 1.2em;
-      border-bottom: 1px solid #eeeeee; }
+      border-bottom: 1px solid #eee; }
       div#comingup li:not(:nth-child(1)) {
         border-top: none; }
 
@@ -627,14 +625,12 @@ ul.sitemap {
       -webkit-transition: max-width 200ms ease-in-out; }
     nav#jumpto:hover a:link, nav#jumpto:hover a:visited {
       max-width: 114px !important; } }
+@media (min-width: 1000px) and (max-height: 800px) {
+  div#indexcover #darken {
+    padding: 4em 2em 12em; } }
 @media (min-width: 1440px) {
   div#content {
     width: 1000px; }
-
-  div#indexcover {
-    margin-bottom: -10em; }
-    div#indexcover #darken {
-      padding: 8em 2em 17em; }
 
   ul#quicknav > li {
     height: 136px; } }

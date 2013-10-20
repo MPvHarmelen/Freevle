@@ -775,17 +775,15 @@ ul.sitemap {
   div#indexcover {
     background-image: url(/static/img/cover.png);
     margin-top: -3.8em;
-    margin-bottom: -11em;
 
     #darken {
-      padding: 8em 2em 18em;
+      padding: 8em 2em 17em;
     }
   }
 
   ul#quicknav > li {
     float: left;
     width: 25%;
-    height: 152px;
     @include prefixify(box-sizing, border-box);
   }
 
@@ -871,17 +869,15 @@ ul.sitemap {
   }
 }
 
+@media (min-width: 1000px) and (max-height: 800px) {
+  div#indexcover #darken {
+    padding: 4em 2em 12em;
+  }
+}
+
 @media (min-width: 1440px) {
   div#content {
     width: $pagewidth;
-  }
-
-  div#indexcover {
-    margin-bottom: -10em;
-
-    #darken {
-      padding: 8em 2em 17em;
-    }
   }
 
   ul#quicknav > li {
