@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from freevle import db
 
 class Album(db.Model):
