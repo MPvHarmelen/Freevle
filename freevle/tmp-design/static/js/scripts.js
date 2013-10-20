@@ -40,7 +40,7 @@ $(document).ready(function() {
           $(this).children('li').each(function() {
             if($(this).outerHeight() > minHeightLi) {
               if(first) {
-                minHeightLi = $(this).outerHeight() + 1;
+                minHeightLi = $(this).outerHeight() + 2;
               } else {
                 minHeightLi = $(this).outerHeight();
               }
