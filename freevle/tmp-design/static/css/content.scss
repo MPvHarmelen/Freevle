@@ -507,12 +507,21 @@ nav#subjectoverview {
     margin: 0;
     list-style: none;
 
+    h3 {
+      margin: 1.2em 30px 0.8em;
+      word-wrap:break-word;
+    }
+
+    section {
+      overflow: hidden;
+    }
+
     section > li {
       display: block;
       padding: 1em 30px;
       color: white;
 
-      h3 {
+      h4 {
         margin: 0.5em 0;
         word-wrap:break-word;
       }

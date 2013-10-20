@@ -340,11 +340,16 @@ nav#subjectoverview {
     padding: 0;
     margin: 0;
     list-style: none; }
+    nav#subjectoverview > ul h3 {
+      margin: 1.2em 30px 0.8em;
+      word-wrap: break-word; }
+    nav#subjectoverview > ul section {
+      overflow: hidden; }
     nav#subjectoverview > ul section > li {
       display: block;
       padding: 1em 30px;
       color: white; }
-      nav#subjectoverview > ul section > li h3 {
+      nav#subjectoverview > ul section > li h4 {
         margin: 0.5em 0;
         word-wrap: break-word; }
       nav#subjectoverview > ul section > li ul {
