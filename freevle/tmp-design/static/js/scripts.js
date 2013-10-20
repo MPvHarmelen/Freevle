@@ -37,7 +37,7 @@ $(document).ready(function() {
       if($(window).width() > 1000) {
         $('#subjectoverview > ul > section').each(function() {
           var minHeightLi = 0;
-          $(this).children().each(function() {
+          $(this).children('li').each(function() {
             if($(this).outerHeight() > minHeightLi) {
               minHeightLi = $(this).outerHeight();
             }
