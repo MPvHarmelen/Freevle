@@ -1,7 +1,9 @@
+from markdown import Markdown
+
+from flask import render_template, Markup, request
+
 from . import bp
 from .models import Category, Subcategory, Page, PageSection
-from flask import render_template, Markup, request
-from markdown import Markdown
 from ..admin import bp as admin
 
 from freevle import app
