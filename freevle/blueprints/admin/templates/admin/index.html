@@ -58,7 +58,7 @@
       {% for page in cms_dict['recent'] %}
         <li>
           <time>{{ page.last_edited.strftime('%m/%d') }}</time>
-          <a href="">{{ page.title }}</a>
+          <a href="{{ page.get_edit_url() }}">{{ page.title }}</a>
         </li>
       {% else %}
         <li>Er zijn nog geen pagina's</li>
