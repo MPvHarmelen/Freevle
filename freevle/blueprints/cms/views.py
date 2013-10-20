@@ -64,12 +64,12 @@ def page_view(category_slug, subcategory_slug, page_slug):
 
 # Admin
 # This should change a lot because Floris and Pim want an admin site
-@admin.route('/cms/')
+@admin.route('/cms/', endpoint='cms_index')
 def cms_admin_index():
     """Specific admin index for cms blueprint."""
     return render_template('cms/admin.html')
 
-admin.index_views['cms'] = cms_admin_index
+admin.index_views.append(dict(title="Pagina's", endpoint='cms_index'))
 
 @admin.route('/cms/category/create')
 @admin.route('/cms/category/<category_slug>/edit')
