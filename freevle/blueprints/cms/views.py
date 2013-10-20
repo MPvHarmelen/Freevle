@@ -69,7 +69,8 @@ def page_view(category_slug, subcategory_slug, page_slug):
 @admin.route('/cms/', endpoint='cms_index')
 def admin_index():
     """Specific admin index for cms blueprint."""
-    return render_template('cms/admin.html')
+    pages = Page.query.order_by(Page.title).all()
+    return render_template('admin/cms_index.html', pages=pages)
 
 admin.add_index_view("Pagina's", bp.name)
 
@@ -83,8 +84,8 @@ def cms_category_edit(category_slug=None):
     else:
         ...
 
-@admin.route('/cms/page/create/<category_slug>/<subcategory_slug>/')
-@admin.route('/cms/page/edit/<category_slug>/<subcategory_slug>/<page_slug>')
+@admin.route('/cms/page/<category_slug>/<subcategory_slug>/create')
+@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit')
 def cms_page_edit(category_slug, subcategory_slug, page_slug=None):
     """Create or edit a page."""
     if page_slug is None:
@@ -93,8 +94,7 @@ def cms_page_edit(category_slug, subcategory_slug, page_slug=None):
     else:
         ...
 
-# @bp.route('/<page_slug>/delete')
-# @bp.route('/<parent_slug>/<page_slug>/delete')
-def cms_page_delete(page_slug, parent_slug=None):
+@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/delete')
+def cms_page_delete(category_slug, subcategory_slug, parent_slug=None):
     """Delete a page."""
     ...

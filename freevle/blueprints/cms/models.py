@@ -147,6 +147,11 @@ class Page(db.Model):
         return 'admin.cms_page_edit', {'page_slug': self.slug,
                                        'subcategory_slug': self.subcategory.slug,
                                        'category_slug': self.subcategory.category.slug}
+    @permalink
+    def get_delete_url(self):
+        return 'admin.cms_page_delete', {'page_slug': self.slug,
+                                         'subcategory_slug': self.subcategory.slug,
+                                         'category_slug': self.subcategory.category.slug}
 
     def can_edit(self, user):
         if isinstance(user, Admin):
