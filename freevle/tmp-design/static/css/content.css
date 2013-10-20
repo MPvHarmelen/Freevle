@@ -48,8 +48,6 @@ div#content {
     max-width: 100%;
     margin: auto;
     display: block; }
-  div#content section:not(:nth-of-type(1)) {
-    border-top: 1px solid #eee; }
   div#content section.containsimg {
     padding-bottom: 1em;
     border: none; }
@@ -350,50 +348,61 @@ nav#subjectoverview {
     margin: 0;
     list-style: none; }
     nav#subjectoverview > ul section {
-      overflow: hidden; }
+      overflow: hidden;
+      padding-bottom: 1em; }
       nav#subjectoverview > ul section > h3 {
         margin: 0;
         word-wrap: break-word;
         font-weight: 300;
-        padding: 1em 30px; }
+        padding: 1.2em 30px; }
       nav#subjectoverview > ul section:nth-of-type(1) > h3 {
         margin-top: 0; }
+      nav#subjectoverview > ul section.promotion {
+        border-top: 6px solid rgba(251, 169, 41, 0.7); }
+        nav#subjectoverview > ul section.promotion a:link, nav#subjectoverview > ul section.promotion a:visited {
+          color: #fba929; }
+      nav#subjectoverview > ul section.education {
+        border-top: 6px solid rgba(209, 22, 5, 0.7); }
+        nav#subjectoverview > ul section.education a:link, nav#subjectoverview > ul section.education a:visited {
+          color: #d11605; }
+      nav#subjectoverview > ul section.school {
+        border-top: 6px solid rgba(1, 61, 125, 0.7); }
+        nav#subjectoverview > ul section.school a:link, nav#subjectoverview > ul section.school a:visited {
+          color: #013d7d; }
+      nav#subjectoverview > ul section.activities {
+        border-top: 6px solid rgba(20, 202, 157, 0.7); }
+        nav#subjectoverview > ul section.activities a:link, nav#subjectoverview > ul section.activities a:visited {
+          color: #14ca9d; }
+      nav#subjectoverview > ul section.protected {
+        border-top: 6px solid rgba(110, 0, 128, 0.7); }
+        nav#subjectoverview > ul section.protected a:link, nav#subjectoverview > ul section.protected a:visited {
+          color: #6e0080; }
     nav#subjectoverview > ul section > li {
       display: block;
-      padding: 1em 30px;
-      color: white; }
+      padding: 1em 30px; }
       nav#subjectoverview > ul section > li h4, nav#subjectoverview > ul section > li h3 {
         margin: 0.5em 0;
         word-wrap: break-word; }
       nav#subjectoverview > ul section > li ul {
         padding: 0 0 0 1.6em;
         list-style: disc; }
-      nav#subjectoverview > ul section > li a:link, nav#subjectoverview > ul section > li a:visited {
-        color: white; }
-      nav#subjectoverview > ul section > li.promotion {
-        background-color: rgba(251, 169, 41, 0.7); }
-        nav#subjectoverview > ul section > li.promotion:hover {
-          background-color: #fba929; }
-      nav#subjectoverview > ul section > li.education {
-        background-color: rgba(209, 22, 5, 0.7); }
-        nav#subjectoverview > ul section > li.education:hover {
-          background-color: #d11605; }
-      nav#subjectoverview > ul section > li.school {
-        background-color: rgba(1, 61, 125, 0.8); }
-        nav#subjectoverview > ul section > li.school:hover {
-          background-color: #013d7d; }
-      nav#subjectoverview > ul section > li.activities {
-        background-color: rgba(20, 202, 157, 0.7); }
-        nav#subjectoverview > ul section > li.activities:hover {
-          background-color: #14ca9d; }
-      nav#subjectoverview > ul section > li.protected {
-        background-color: rgba(110, 0, 128, 0.7); }
-        nav#subjectoverview > ul section > li.protected:hover {
-          background-color: #6e0080; }
-      nav#subjectoverview > ul section > li.protected.teachers {
-        background-color: rgba(88, 0, 103, 0.7); }
-        nav#subjectoverview > ul section > li.protected.teachers:hover {
-          background-color: #580067; }
+
+.info section {
+  padding-bottom: 0 !important; }
+.info li {
+  color: white; }
+.info a:link, .info a:visited {
+  color: white; }
+.info .promotion {
+  background-color: rgba(251, 169, 41, 0.7); }
+.info .education {
+  background-color: rgba(209, 22, 5, 0.7); }
+.info .school {
+  background-color: rgba(1, 61, 125, 0.8); }
+.info .activities {
+  background-color: rgba(20, 202, 157, 0.7); }
+.info .protected {
+  background-color: rgba(110, 0, 128, 0.7); }
 
 /*LOGIN-PAGE*/
 a#backtoindex {

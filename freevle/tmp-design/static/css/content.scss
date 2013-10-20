@@ -102,10 +102,6 @@ div#content {
     display: block;
   }
 
-  section:not(:nth-of-type(1)) {
-    border-top: 1px solid #eee;
-  }
-
   section.containsimg {
     padding-bottom: 1em;
     border: none;
@@ -524,23 +520,54 @@ nav#subjectoverview {
 
     section {
       overflow: hidden;
+      padding-bottom: 1em;
 
       > h3 {
         margin: 0;
         word-wrap:break-word;
         font-weight: 300;
-        padding: 1em 30px;
+        padding: 1.2em 30px;
       }
 
       &:nth-of-type(1) > h3 {
         margin-top: 0;
+      }
+
+      &.promotion {
+        border-top: 6px solid transparentize($promotecolor, 0.3);
+        a:link, a:visited {
+          color: $promotecolor;
+        }
+      }
+      &.education {
+        border-top: 6px solid transparentize($educationcolor, 0.3);
+        a:link, a:visited {
+          color: $educationcolor;
+        }
+      }
+      &.school {
+        border-top: 6px solid transparentize($schoolcolor, 0.3);
+        a:link, a:visited {
+          color: $schoolcolor;
+        }
+      }
+      &.activities {
+        border-top: 6px solid transparentize($activitiescolor, 0.3);
+        a:link, a:visited {
+          color: $activitiescolor;
+        }
+      }
+      &.protected {
+        border-top: 6px solid transparentize($interncolor, 0.3);
+        a:link, a:visited {
+          color: $interncolor;
+        }
       }
     }
 
     section > li {
       display: block;
       padding: 1em 30px;
-      color: white;
 
       h4, h3 {
         margin: 0.5em 0;
@@ -552,48 +579,38 @@ nav#subjectoverview {
         list-style: disc;
       }
 
-      a:link, a:visited {
-        color: white;
-      }
-
-      &.promotion {
-        background-color: transparentize($promotecolor, 0.3);
-        &:hover {
-          background-color: $promotecolor;
-        }
-      }
-      &.education {
-        background-color: transparentize($educationcolor, 0.3);
-        &:hover {
-          background-color: $educationcolor;
-        }
-      }
-      &.school {
-        background-color: transparentize($schoolcolor, 0.2);
-        &:hover {
-          background-color: $schoolcolor;
-        }
-      }
-      &.activities {
-        background-color: transparentize($activitiescolor, 0.3);
-        &:hover {
-          background-color: $activitiescolor;
-        }
-      }
-      &.protected {
-        background-color: transparentize($interncolor, 0.3);
-        &:hover {
-          background-color: $interncolor;
-        }
-      }
-
-      &.protected.teachers {
-        background-color: transparentize(darken($interncolor, 5%), 0.3);
-        &:hover {
-          background-color: darken($interncolor, 5%);
-        }
-      }
     }
+  }
+
+}
+
+.info {
+  section {
+    padding-bottom: 0 !important;
+  }
+
+  li {
+    color: white;
+  }
+
+  a:link, a:visited {
+    color: white;
+  }
+
+  .promotion {
+    background-color: transparentize($promotecolor, 0.3);
+  }
+  .education {
+    background-color: transparentize($educationcolor, 0.3);
+  }
+  .school {
+    background-color: transparentize($schoolcolor, 0.2);
+  }
+  .activities {
+    background-color: transparentize($activitiescolor, 0.3);
+  }
+  .protected {
+    background-color: transparentize($interncolor, 0.3);
   }
 }
 
