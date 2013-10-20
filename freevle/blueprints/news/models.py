@@ -29,4 +29,6 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(EVENT_NAME_LENGTH), nullable=False)
     date = db.Column(db.Date(), nullable=False)
+    datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     # link = Same as 'relevant' thing in cms.
