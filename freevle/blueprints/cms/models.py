@@ -4,6 +4,7 @@ from datetime import datetime
 from freevle import db
 from freevle.utils.database import validate_slug
 from freevle.utils.decorators import permalink
+from freevle.utils.functions import camel_to_underscore
 
 from flask import Markup
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -216,8 +217,9 @@ class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     linked_models = [Page, Subcategory, Category, NewsItem]
     for cls in linked_models:
+        low_name = camel_to_underscore(cls.__name__)
         foreignkey_code = "{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
-                          .format(name=cls.__name__.lower())
+                          .format(name=low_name)
         relationship_code = """
 {low_name} = db.relationship(
     {name},
@@ -227,7 +229,7 @@ class Link(db.Model):
         lazy='dynamic'
     )
 )
-        """.format(low_name=cls.__name__.lower(), name=cls.__name__)
+        """.format(low_name=low_name, name=cls.__name__)
         exec(foreignkey_code)
         exec(relationship_code)
 

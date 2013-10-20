@@ -1,0 +1,25 @@
+ol.edited {
+  list-style: none;
+  padding: 0 20px; }
+  ol.edited li {
+    margin: 0.5em 0; }
+    ol.edited li time {
+      display: inline-block;
+      margin-right: 0.5em;
+      min-width: 40px;
+      font-style: italic;
+      color: #999; }
+    ol.edited li a {
+      text-decoration: none; }
+      ol.edited li a:hover {
+        text-decoration: underline; }
+    ol.edited li:nth-child(1) a {
+      color: #000; }
+    ol.edited li:nth-child(2) a {
+      color: #222; }
+    ol.edited li:nth-child(3) a {
+      color: #444; }
+    ol.edited li:nth-child(4) a {
+      color: #555; }
+    ol.edited li:nth-child(5) a {
+      color: #666; }

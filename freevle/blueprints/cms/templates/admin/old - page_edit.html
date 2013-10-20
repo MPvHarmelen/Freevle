@@ -1,0 +1,15 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+      <div class="item">
+        <h2>{{ page.title }}</h2>
+        {% if page.children %}
+          <ul>
+          {% for child in page.children %}
+            <li><a href="{{ child.get_url() }}">{{ child.title }}</a></li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+        <p>{{ page.content }}</p>
+      </div>
+{% endblock %}

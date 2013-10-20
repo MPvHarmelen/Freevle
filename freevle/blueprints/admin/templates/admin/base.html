@@ -11,11 +11,10 @@
     <link rel="shortcut icon" href="/static/favicon.png">
 
     <link rel="stylesheet" href="/static/css/fonts.css">
-    <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/content.css">
+    <link rel="stylesheet" href="/admin/static/css/base.css">
 
     <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/scripts.js"></script>
+    <script src="/admin/static/js/admin.js"></script>
 
     {% block head %}
     {% endblock %}
@@ -31,87 +30,41 @@
       </div>
     <![endif]-->
 
-    <div id="login">
-      <form method="POST" action="/login/">
-        <div class="close">&times;</div>
-        <h2>Login</h2>
-        <input type="text" placeholder="Gebruikersnaam">
-        <input type="password" placeholder="Wachtwoord">
-        <input type="submit" class="button" value="Login">
-        <a href="/verlorengegevens">Gegevens vergeten?</a>
-      </form>
-    </div>
-
     <header id="main">
-      <a href="#menu" id="menuopener">&emsp;</a>
       <h1>
-        <a href="/">C<span>ygnus <span id="obsolete">gymnasium</span></span></a>
+        <a href="/admin/">Admin</a>&ensp;<a href="/">Cygnus <span class="obsolete">gymnasium</span></a>
       </h1>
-      <nav>
-        <ul>
-          <li id="menutitle" class="mobileonly">
-            Menu
-          </li>
-          <li>
-            <a href="/" id="currentpage" class="mobileonly">Home</a>
-          </li>
-          <li>
-            <a href="/over/">Over</a>
-          </li>
-          <li>
-            <div>Recent</div>
-            <ul class="dropdown">
-              <li>
-                <a href="/nieuws/"><span class="mobileonly">&#8618;&ensp;</span>Nieuws</a>
-              </li>
-              <li>
-                <a href="/fotos/"><span class="mobileonly">&#8618;&ensp;</span>Foto's</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="/contact/">Contact</a>
-          </li>
-          <li class="mobileonly">
-            <a href="/login/">Login</a>
-          </li>
-        </ul>
-      </nav>
-      <a href="#search" id="searchopener">&emsp;</a>
-      <div class="button">Login</div>
-      <form method="POST" action="/zoek/">
-        <h2 id="searchtitle">Zoeken</h2>
-        <input type="search" name="search" list="search" placeholder="Zoek...">
-        <datalist id="search">
-        </datalist>
-      </form>
+      <a href="/admin/logout/" id="logout" class="button">Log uit</a>
     </header>
 
-    <nav id="breadcrumbs">
-      <a href="/">Home</a>
-      &ensp;/&ensp;
-      <a href="/over/">Over</a>
-      &ensp;/&ensp;
-      Waarom gymnasium?
-    </nav>
-    <div id="page">
+    <nav id="sidebar">
+      <div id="menuopener">Menu</div>
       <ul>
-        {% for rule in admin_map %}
-        <li><b>{{ rule[0] }}</b> {{ rule[1] }}</li>
-        {% else %}
-        <li>No mapping?!</li>
-        {% endfor %}
+        <li>
+          <a href="/admin/" id="dashboardlink">Dashboard</a>
+        </li>
+        <li>
+          <a href="/admin/pages/" id="pageslink">Pagina's</a>
+        </li>
+        <li>
+          <a href="/admin/news/" id="newslink">Nieuws</a>
+        </li>
+        <li>
+          <a href="/admin/soon/" id="soonlink">Binnenkort</a>
+        </li>
+        <li>
+          <a href="/admin/photos/" id="photoslink">Foto's</a>
+        </li>
+        <li>
+          <a href="/admin/users/" id="userslink">Gebruikers</a>
+        </li>
       </ul>
-    </div>
+    </nav>
+
     <div id="page">
       {% block page %}
       {% endblock %}
     </div>
-
-    <footer>
-      <p>&copy; Cygnus Gymnasium</p>
-      <p><a href="/sitemap/">Sitemap</a></p>
-    </footer>
 
   </body>
 </html>

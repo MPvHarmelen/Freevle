@@ -1,0 +1,115 @@
+div#massactions {
+  overflow: hidden;
+  padding: 1em 1em 0.5em 0;
+  background: #f5f5f5;
+  border-bottom: 1px solid #eeeeee; }
+  div#massactions p {
+    float: left;
+    padding: 0.6em 0.4em 0 1.25em;
+    margin: 0;
+    color: #555;
+    font-weight: bold; }
+  div#massactions .button {
+    float: left;
+    padding-left: 2.5em; }
+    div#massactions .button.delete {
+      background-position: -8px -59px !important; }
+    div#massactions .button.move {
+      background-position: -8px -9px !important; }
+
+section.thirty li.selected {
+  font-weight: bold; }
+section.thirty p {
+  margin: 0.8em 20px; }
+
+ul.pages {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  ul.pages li {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden; }
+    ul.pages li:nth-child(1) {
+      border: none; }
+    ul.pages li.selected {
+      background: rgba(1, 61, 125, 0.1); }
+    ul.pages li div {
+      float: left;
+      border-left: 1px solid rgba(0, 0, 0, 0.05); }
+      ul.pages li div:nth-child(1) {
+        border: none; }
+      ul.pages li div.checkboxcont {
+        z-index: 2;
+        position: relative;
+        padding: 1em; }
+      ul.pages li div.pagename {
+        position: absolute;
+        left: 2.95em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em; }
+        ul.pages li div.pagename a {
+          padding: 0.9em;
+          display: block;
+          color: #555;
+          text-decoration: none;
+          width: 100%;
+          box-sizing: border-box;
+          -o-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box; }
+          ul.pages li div.pagename a:hover {
+            color: #111; }
+      ul.pages li div.actions {
+        float: right;
+        z-index: 2;
+        position: relative;
+        min-width: 6em; }
+        ul.pages li div.actions .buttoncont {
+          position: relative; }
+        ul.pages li div.actions a {
+          float: left;
+          display: block;
+          position: relative;
+          box-sizing: border-box;
+          -o-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          margin: 0.5em 0 0.45em 0.45em;
+          width: 2.3em;
+          height: 2.3em;
+          border: 2px solid #013d7d; }
+          ul.pages li div.actions a:hover + .tooltip {
+            display: block; }
+        ul.pages li div.actions .tooltip {
+          position: absolute;
+          color: white;
+          background: rgba(0, 0, 0, 0.7);
+          padding: 0.5em 0.7em 0.55em;
+          display: none;
+          top: 0.5em;
+          left: -6.7em; }
+          ul.pages li div.actions .tooltip:before {
+            display: block;
+            position: absolute;
+            right: -1.4em;
+            content: "";
+            width: 0;
+            height: 0;
+            border-width: 0.7em;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0, 0, 0, 0.7); }
+
+@media (min-width: 1000px) {
+  section.seventy {
+    float: left;
+    margin: 0 -1% 1em 3%;
+    width: 66%; }
+
+  section.thirty {
+    float: left;
+    margin: 0 -1% 1em 3%;
+    width: 26%; } }
