@@ -12,6 +12,7 @@
 
   <section class="card seventy">
     <form method="POST" action="#">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
       <div id="massactions">
         <p>Acties met geselecteerde items:</p>
         <button type="submit" class="button delete" name="delete">Verwijderen</button>
@@ -53,6 +54,7 @@
     </ul>
 
     <form method="POST" action="#/pages/">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
       <h3>Zichtbaar voor:</h3>
       <p>
         <input type="checkbox" name="visibility" value="everyone">

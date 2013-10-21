@@ -2,11 +2,10 @@ from markdown import Markdown
 
 from flask import render_template, Markup, request
 
+from freevle import db, app
 from . import bp
 from .models import Category, Subcategory, Page, PageSection
 from ..admin import bp as admin
-
-from freevle import app
 
 markdown = Markdown(output_format='html5', safe_mode='escape').convert
 
@@ -52,14 +51,8 @@ def category_view(category_slug):
 @bp.route('/<category_slug>/<subcategory_slug>/<page_slug>')
 def page_view(category_slug, subcategory_slug, page_slug):
     """Show a page from the database."""
-    # TODO: find out if this could be put into one query.
-    cat = Category.query.filter(Category.slug == category_slug).first_or_404()
-    sub = Subcategory.query.filter(Subcategory.category == cat)\
-          .filter(Subcategory.slug == subcategory_slug).first_or_404()
-    page = Page.query.filter(Page.subcategory == sub)\
-           .filter(Page.slug == page_slug).first_or_404()
-
-    for text_section in page.sections.filter(PageSection.section_type == 'text'):
+    page = Page.get_page(category_slug, subcategory_slug, page_slug)
+    for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
     return render_template('cms/page_view.html', page=page)
 
@@ -89,10 +82,25 @@ def cms_category_edit(category_slug=None):
 def cms_page_edit(category_slug, subcategory_slug, page_slug=None):
     """Create or edit a page."""
     if page_slug is None:
-        # First routing, create a page
-        ...
+        page = Page(title='', content='')
     else:
-        ...
+        page = Page.get_page(category_slug, subcategory_slug, page_slug)
+    return render_template('admin/cms_page_edit.html', page=page)
+
+@admin.route('/cms/page/<category_slug>/<subcategory_slug>/create', methods=['POST'])
+@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit', methods=['POST'])
+def cms_page_save(category_slug, subcategory_slug, page_slug=None):
+    if page_slug is None:
+        page = Page()
+    else:
+        page = Page.get_page(category_slug, subcategory_slug, page_slug)
+    page.title = Markup.escape(request.form['page_title'])
+    # page.slug = request.form['slug']
+    page.is_published = True if request.form['publish'] == 'on' else False
+    page.content = Markup.escape(request.form['page_content'])
+    db.session.add(page)
+    db.session.commit()
+    return render_template('admin/cms_page_edit.html', page=page)
 
 @admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/delete')
 def cms_page_delete(category_slug, subcategory_slug, parent_slug=None):
