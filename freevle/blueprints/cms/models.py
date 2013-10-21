@@ -251,9 +251,14 @@ class ImageSection(PageSection):
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    linked_models = [Page, Subcategory, Category, NewsItem]
-    for cls in linked_models:
-        low_name = camel_to_underscore(cls.__name__)
+    # The trick with 'link' is to save what model is linked here, so the model
+    # can be easily returned by the property link
+    _link = db.Column(db.String(LINK_LINK_LENGTH), nullable=False)
+
+    # Meta code to add a foreign key column and a relationship for every model
+    # a 'Link' object should be able link to.
+    for model_name in LINK_LINKED_MODELS:
+        low_name = camel_to_underscore(model_name)
         foreignkey_code = "{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
                           .format(name=low_name)
         relationship_code = """
@@ -265,14 +270,53 @@ class Link(db.Model):
         lazy='dynamic'
     )
 )
-        """.format(low_name=low_name, name=cls.__name__)
+        """.format(low_name=low_name, name=model_name)
         exec(foreignkey_code)
         exec(relationship_code)
 
-    def __init__(self, **kwargs):
-        if len(k.items()) > 1:
-            raise KeyError('Only one link allowed.')
-        for k,v in kwargs:
-            if isinstance(getattr(self, k), RelationshipProperty)\
-               or isinstance(getattr(self, k), db.Column):
-               setattr(self, k, v)
+    def __init__(self, link=None, **kwargs):
+        if link is not None:
+            kwargs[camel_to_underscore(type(link).__name__)] = link
+
+        # The length of kwargs without 'id' is needed, so temporarily take it out
+        id = kwargs.pop('id', False)
+        if len(kwargs) != 1:
+            raise TypeError('Exactly one link required, got {}'.format(len(kwargs)))
+
+        # Put 'id' back if it was there in the first place
+        if id is not False:
+            kwargs['id'] = id
+
+        # Use the original __init__ function to do most of the work
+        super(Link, self).__init__(**kwargs)
+
+        kwargs.pop('id', None)
+        # Now there should only be one value in the dict
+        # The key of this value is the attribute name
+        # Let's save it to easily get our attribute back
+        self._link = kwargs.keys().__iter__().__next__()
+        if kwargs[self._link] is None:
+            raise ValueError("Link may not be None.")
+        self._link = self._link[:-3] if self._link[-3:] == '_id' else self._link
+
+    @property
+    def link(self):
+        """Return the model this Link object links to."""
+        return getattr(self, self._link)
+
+    @link.setter
+    def link(self, model):
+        model_name = type(model).__name__
+        if model_name in LINK_LINKED_MODELS:
+            setattr(self, camel_to_underscore(model_name), model)
+        else:
+            raise ValueError("'Link' object can't link to {}".format(model_name))
+        self._link = model_name
+
+    @property
+    def html_class(self):
+        """Return the html class of the model this Link object links to."""
+        return getattr(self.link, 'html_class', '')
+
+    def get_url(self):
+        return self.link.get_url() if hasattr(self.link, 'get_url') else ''
