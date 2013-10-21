@@ -6,7 +6,7 @@ from freevle.testing import TestBase
 from sqlalchemy.exc import IntegrityError
 from .models import Category, Subcategory, Page, TextSection, ImageSection
 
-ONUPDATE_DETLA = timedelta(microseconds=30000)
+ONUPDATE_DELTA = timedelta(microseconds=30000)
 SLEEP_TIME = 1
 
 class CMSTests(TestBase):
@@ -68,10 +68,12 @@ class CMSTests(TestBase):
         # TODO: test creating illegal subcategories
 
     @staticmethod
-    def create_page(title, slug, subcategory=None, subcategory_id=None):
+    def create_page(title, slug, subcategory=None, subcategory_id=None, content='Content.', is_published=True):
         page = Page(
             title=title,
             slug=slug,
+            content=content,
+            is_published=is_published
         )
         if subcategory is not None:
             page.subcategory = subcategory
@@ -155,13 +157,17 @@ class CMSTests(TestBase):
         image_section2 = self.create_image_section(order=3, page=p_in)
         all_sections = [text_section1, image_section1, text_section2, image_section2]
         p_got = Page.query.get(2)
-        self.assertAlmostEqual(p_got.datetime_createdted, now, delta=ONUPDATE_DETLA)
-        self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DETLA)
+        self.assertAlmostEqual(p_got.datetime_created, now, delta=ONUPDATE_DELTA)
+        self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DELTA)
         self.assertEqual(p_got.title, 'TeSt')
         self.assertEqual(p_got.slug, 'test')
+        self.assertEqual(p_got.content, 'Content.')
         self.assertEqual(p_got.subcategory_id, sub_cat.id)
         self.assertEqual(p_got.subcategory, sub_cat)
+        self.assertEqual(p_got.is_published, True)
         self.assertEqual(p_got.sections.all(), all_sections)
+        self.assertEqual(p_got.text_sections.all(), [text_section1, text_section2])
+        self.assertEqual(p_got.image_sections.all(), [image_section1, image_section2])
         with self.app.app_context():
             self.assertEqual(
                 p_got.get_url(),
@@ -169,7 +175,7 @@ class CMSTests(TestBase):
             )
             self.assertEqual(
                 p_got.get_edit_url(),
-                'http://' + self.app.config['SERVER_NAME'] + '/admin/cms/page/edit/test/test/test'
+                'http://' + self.app.config['SERVER_NAME'] + '/admin/cms/page/test/test/test/edit'
             )
         self.assertEqual(self.client.get('/test/test/test').status, '200 OK')
         # Test if the 'last_edited' actually updates.
@@ -179,14 +185,16 @@ class CMSTests(TestBase):
         db.session.add(p_got)
         db.session.commit()
         self.assertNotAlmostEqual(p_got.last_edited, last_edited, delta=timedelta(seconds=SLEEP_TIME))
-        # Test if the datetime_createdted hasn't changed
-        self.assertAlmostEqual(p_got.datetime_createdted, last_edited, delta=ONUPDATE_DETLA)
+        # Test if the datetime_created hasn't changed
+        self.assertAlmostEqual(p_got.datetime_created, last_edited, delta=ONUPDATE_DELTA)
+        # Test if the datetime_created isn't the same as last_edited
+        self.assertNotAlmostEqual(p_got.datetime_created, p_got.last_edited, delta=ONUPDATE_DELTA)
 
         # self.create_page('TeSt2', 'test2', 'This is more content.', parent=p_got)
         # now = datetime.now()
         # child_got = Page.query.filter(Page.parent == p_got).first()
-        # self.assertAlmostEqual(child_got.datetime_createdted, now, delta=ONUPDATE_DETLA)
-        # self.assertAlmostEqual(child_got.last_edited, now, delta=ONUPDATE_DETLA)
+        # self.assertAlmostEqual(child_got.datetime_created, now, delta=ONUPDATE_DELTA)
+        # self.assertAlmostEqual(child_got.last_edited, now, delta=ONUPDATE_DELTA)
         # self.assertEqual(child_got.title, 'TeSt2')
         # self.assertEqual(child_got.slug, 'test2')
         # self.assertEqual(child_got.content, 'This is more content.')

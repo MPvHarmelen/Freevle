@@ -3,7 +3,6 @@ from datetime import datetime
 
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm.properties import RelationshipProperty
-from flask import Markup
 
 from freevle import db
 from freevle.utils.database import validate_slug
@@ -105,10 +104,12 @@ class Subcategory(db.Model):
 
 class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
     title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
-    subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
-    datetime_createdted = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    is_published = db.Column(db.Boolean, nullable=False)
+    datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
     last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
     __table_args__ = (
@@ -153,6 +154,15 @@ class Page(db.Model):
                                          'subcategory_slug': self.subcategory.slug,
                                          'category_slug': self.subcategory.category.slug}
 
+    @staticmethod
+    def get_page(category_slug, subcategory_slug, page_slug):
+        # TODO: find out if this could be put into one query.
+        cat = Category.query.filter(Category.slug == category_slug).first_or_404()
+        sub = Subcategory.query.filter(Subcategory.category == cat)\
+              .filter(Subcategory.slug == subcategory_slug).first_or_404()
+        return Page.query.filter(Page.subcategory == sub)\
+               .filter(Page.slug == page_slug).first_or_404()
+
     def can_edit(self, user):
         if isinstance(user, Admin):
             return True
@@ -170,7 +180,7 @@ class Page(db.Model):
 
 class PageSection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    section_type = db.Column('type', db.String(PAGE_SECTION_TYPE_LENGTH))
+    type = db.Column('type', db.String(PAGE_SECTION_TYPE_LENGTH))
     title = db.Column(db.String(PAGE_SECTION_TITLE_LENGTH), nullable=False)
     order = db.Column(db.Integer, nullable=False)
     page_id = db.Column(db.Integer, db.ForeignKey('page.id'), nullable=False)
@@ -180,7 +190,7 @@ class PageSection(db.Model):
     )
 
     __mapper_args__ = {
-        'polymorphic_on': section_type,
+        'polymorphic_on': type,
         'polymorphic_identity': 'base'
     }
 
@@ -202,15 +212,29 @@ class TextSection(PageSection):
     id = db.Column(db.Integer, db.ForeignKey('page_section.id'), primary_key=True)
     content = db.Column(db.Text, nullable=False)
 
-    @db.validates('content')
-    def validate_content(self, key, value):
-        return Markup.escape(value)
+    page = db.relationship(
+        Page,
+        backref=db.backref(
+            'text_sections',
+            order_by='TextSection.order',
+            lazy='dynamic'
+        )
+    )
 
 class ImageSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'image'}
     id = db.Column(db.Integer, db.ForeignKey('page_section.id'), primary_key=True)
     featured = db.Column(db.Boolean, nullable=False, default=False)
     image_path = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
+
+    page = db.relationship(
+        Page,
+        backref=db.backref(
+            'image_sections',
+            order_by='ImageSection.order',
+            lazy='dynamic'
+        )
+    )
 
     @db.validates('featured')
     def validate_featured(self, key, value):
