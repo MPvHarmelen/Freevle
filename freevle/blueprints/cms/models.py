@@ -30,6 +30,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(CATEGORY_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(CATEGORY_SLUG_LENGTH), nullable=False, unique=True)
+    html_class = db.Column(db.String(CATEGORY_HTML_CLASS_LENGTH), nullable=False)
 
     validate_slug = db.validates('slug')(validate_slug)
 
@@ -41,7 +42,7 @@ class Subcategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(SUBCATEGORY_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(SUBCATEGORY_SLUG_LENGTH), nullable=False)
-    color = db.Column(db.String(7), nullable=False)
+    html_class = db.Column(db.String(SUBCATEGORY_HTML_CLASS_LENGTH), nullable=False)
     featured = db.Column(db.Boolean, nullable=False, default=False)
     user_type_view = db.Column(db.String(USER_TYPE_LENGTH))
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)

@@ -15,31 +15,32 @@ class CMSTests(TestBase):
         self.assertEqual(rv.status, '200 OK')
 
     @staticmethod
-    def create_category(title, slug):
-        cat = Category(title=title, slug=slug)
+    def create_category(title, slug, html_class=''):
+        cat = Category(title=title, slug=slug, html_class=html_class)
         db.session.add(cat)
         db.session.commit()
         return cat
 
     def test_category(self):
         # Create legal categories
-        self.create_category('Te sT', 'test')
+        self.create_category('Te sT', 'test', 'classss')
         cat_got = Category.query.get(1)
         self.assertEqual(cat_got.title, 'Te sT')
         self.assertEqual(cat_got.slug, 'test')
+        self.assertEqual(cat_got.html_class, 'classss')
         with self.app.app_context():
             self.assertEqual(cat_got.get_url(), 'http://' + self.app.config['SERVER_NAME'] + '/test/')
         self.assertEqual(self.client.get('/test/').status, '200 OK')
         # TODO: Test creating illegal categories
 
     @staticmethod
-    def create_subcategory(title, slug, color, user_type_view=None,
+    def create_subcategory(title, slug, html_class='', user_type_view=None,
                            category=None, category_id=None):
         sub = Subcategory(
             title=title,
             slug=slug,
-            color=color,
-            user_type_view=user_type_view,
+            html_class=html_class,
+            user_type_view=user_type_view
         )
 
         if category is not None:
@@ -60,7 +61,7 @@ class CMSTests(TestBase):
         subcat_got = Subcategory.query.get(1)
         self.assertEqual(subcat_got.title, 'Te sT')
         self.assertEqual(subcat_got.slug, 'test')
-        self.assertEqual(subcat_got.color, '#123456')
+        self.assertEqual(subcat_got.html_class, '#123456')
         self.assertEqual(subcat_got.user_type_view, 'parent')
         self.assertEqual(subcat_got.category_id, cat.id)
         self.assertEqual(subcat_got.category, cat)
