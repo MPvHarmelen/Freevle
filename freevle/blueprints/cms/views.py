@@ -21,7 +21,8 @@ def inject_sitemap():
 @bp.app_context_processor
 def inject_breadcrumbs():
     """Inject breadcrumbs extracted from url into context."""
-    breadcrumbs = request.url.split('/')[1:]
+    breadcrumbs = request.url.split('/')[3:]
+    breadcrumbs = [(crumb, '/' + '/'.join(breadcrumbs[:i + 1])) for i, crumb in enumerate(breadcrumbs)]
     return dict(breadcrumbs=breadcrumbs)
 
 @bp.route(bp.static_url_path + '/')
