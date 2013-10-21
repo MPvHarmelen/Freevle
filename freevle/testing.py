@@ -25,6 +25,7 @@ class TestBase(unittest.TestCase):
 
     def tearDown(self):
         freevle.db.session.close_all()
+        freevle.db.session.remove()
         if freevle.app.config.get('UGLY_TEST_WORKAROUND', False):
             self.db_fd.close()
         else:
