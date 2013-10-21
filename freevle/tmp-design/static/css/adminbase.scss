@@ -354,10 +354,6 @@ section.card {
 @media (min-width: $pagewidth) {
   body {
     padding: 0 0 0 4em;
-
-    &.opened {
-      padding-left: 12.5em;
-    }
   }
 
   .mobileonly {
@@ -368,17 +364,9 @@ section.card {
     display: inline-block;
   }
 
-  header#main {
-    padding: 0;
-  }
-
   nav#sidebar {
     width: 4em;
     overflow: visible;
-
-    &.opened {
-      @include prefixify(box-shadow, none);
-    }
 
     ul {
       width: 4em;
@@ -424,15 +412,7 @@ section.card {
     position: fixed;
     width: 100%;
     top: 0;
-
-    a#logout {
-      @include transition(right, 200ms, ease-in-out);
-    }
-  }
-  body.opened header#main {
-    a#logout {
-      right: 9.25em;
-    }
+    left: 0;
   }
 
   nav#sidebar {
@@ -441,19 +421,6 @@ section.card {
 
   div#page {
     margin-top: 3.9em;
-  }
-}
-
-
-@media (min-height: 7 * 4em) and (min-width: $pagewidth) {
-  a#logout {
-    margin: 0.7em 4.8em 0 0;
-    @include transition(margin, 200ms, ease-in-out)
-  }
-  .opened {
-    a#logout {
-      margin: 0.7em 13.3em 0 0;
-    }
   }
 }
 

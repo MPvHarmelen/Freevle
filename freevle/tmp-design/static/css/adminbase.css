@@ -282,8 +282,6 @@ section.card {
 @media (min-width: 700px) {
   body {
     padding: 0 0 0 4em; }
-    body.opened {
-      padding-left: 12.5em; }
 
   .mobileonly {
     display: none; }
@@ -291,18 +289,9 @@ section.card {
   .obsolete {
     display: inline-block; }
 
-  header#main {
-    padding: 0; }
-
   nav#sidebar {
     width: 4em;
     overflow: visible; }
-    nav#sidebar.opened {
-      box-shadow: none;
-      -o-box-shadow: none;
-      -ms-box-shadow: none;
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none; }
     nav#sidebar ul {
       width: 4em;
       overflow: visible; }
@@ -338,33 +327,14 @@ section.card {
   header#main {
     position: fixed;
     width: 100%;
-    top: 0; }
-    header#main a#logout {
-      transition: right 200ms ease-in-out;
-      -o-transition: right 200ms ease-in-out;
-      -ms-transition: right 200ms ease-in-out;
-      -moz-transition: right 200ms ease-in-out;
-      -webkit-transition: right 200ms ease-in-out; }
-
-  body.opened header#main a#logout {
-    right: 9.25em; }
+    top: 0;
+    left: 0; }
 
   nav#sidebar {
     position: fixed; }
 
   div#page {
     margin-top: 3.9em; } }
-@media (min-height: 28em) and (min-width: 700px) {
-  a#logout {
-    margin: 0.7em 4.8em 0 0;
-    transition: margin 200ms ease-in-out;
-    -o-transition: margin 200ms ease-in-out;
-    -ms-transition: margin 200ms ease-in-out;
-    -moz-transition: margin 200ms ease-in-out;
-    -webkit-transition: margin 200ms ease-in-out; }
-
-  .opened a#logout {
-    margin: 0.7em 13.3em 0 0; } }
 @media (min-width: 1000px) {
   section.card.fifty {
     width: 46%;
