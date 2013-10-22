@@ -24,12 +24,14 @@
     <form method="POST" action="#" id="editor">
       <div id="editortop">
         <label for="category">Categorie:</label>
-        <select name="category" placeholder="Categorie">
-          <option></option>
-          <option value="school">De School</option>
-          <option value="education" selected>Onderwijs</option>
-          <option value="intern">Personeel</option>
-        </select>
+        <div id="catcont">
+          <select name="category" placeholder="Categorie">
+            <option></option>
+            <option value="school">De School</option>
+            <option value="education" selected>Onderwijs</option>
+            <option value="intern">Personeel</option>
+          </select>
+        </div>
 
         <label for="slug">Url:</label>
         <input type="hidden" name="slug" placeholder="..." value="gebouw">

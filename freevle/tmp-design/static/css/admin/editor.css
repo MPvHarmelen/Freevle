@@ -18,25 +18,29 @@ div#editortop {
     margin: 13px 13px 0;
     background: none;
     padding: 0.45em 0.8em 0.5em 0; }
-  div#editortop select {
+  div#editortop div#catcont {
     float: left;
-    padding: 0.5em 0.8em;
-    background: #fafafa;
-    margin: 12px 0 0 12px;
-    border: 2px solid #eeeeee;
-    border-left-width: 6px;
-    font-size: 1.05em;
-    font-family: "Montserrat", sans-serif; }
-    div#editortop select.education {
-      border-color: rgba(209, 22, 5, 0.7); }
-    div#editortop select.school {
-      border-color: rgba(1, 61, 125, 0.7); }
-    div#editortop select.intern {
-      border-color: rgba(110, 0, 128, 0.7); }
-    div#editortop select.activities {
-      border-color: rgba(20, 202, 157, 0.7); }
-    div#editortop select.more {
-      border-color: rgba(51, 51, 51, 0.7); }
+    display: table; }
+    div#editortop div#catcont select {
+      padding: 0.5em 0.8em;
+      background: #fafafa;
+      margin: 12px 0 0 12px;
+      border: 2px solid #eeeeee;
+      border-left-width: 6px;
+      font-size: 1.05em;
+      font-family: "Montserrat", sans-serif;
+      vertical-align: middle;
+      display: table-cell; }
+      div#editortop div#catcont select.education {
+        border-color: rgba(209, 22, 5, 0.7); }
+      div#editortop div#catcont select.school {
+        border-color: rgba(1, 61, 125, 0.7); }
+      div#editortop div#catcont select.intern {
+        border-color: rgba(110, 0, 128, 0.7); }
+      div#editortop div#catcont select.activities {
+        border-color: rgba(20, 202, 157, 0.7); }
+      div#editortop div#catcont select.more {
+        border-color: rgba(51, 51, 51, 0.7); }
   div#editortop a.button {
     margin: 16px 18px 16px 0px;
     float: right;

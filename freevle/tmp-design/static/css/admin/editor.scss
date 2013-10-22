@@ -45,30 +45,36 @@ div#editortop {
     padding: 0.45em 0.8em 0.5em 0;
   }
 
-  select {
+  div#catcont {
     float: left;
-    padding: 0.5em 0.8em;
-    background: #fafafa;
-    margin: 12px 0 0 12px;
-    border: 2px solid #eee;
-    border-left-width: 6px;
-    font-size: 1.05em;
-    font-family: $buttonfont;
+    display: table;
 
-    &.education {
-      border-color: transparentize($educationcolor, 0.3);
-    }
-    &.school {
-      border-color: transparentize($schoolcolor, 0.3);
-    }
-    &.intern {
-      border-color: transparentize($interncolor, 0.3);
-    }
-    &.activities {
-      border-color: transparentize($activitiescolor, 0.3);
-    }
-    &.more {
-      border-color: transparentize($morecolor, 0.3);
+    select {
+      padding: 0.5em 0.8em;
+      background: #fafafa;
+      margin: 12px 0 0 12px;
+      border: 2px solid #eee;
+      border-left-width: 6px;
+      font-size: 1.05em;
+      font-family: $buttonfont;
+      vertical-align: middle;
+      display: table-cell;
+
+      &.education {
+        border-color: transparentize($educationcolor, 0.3);
+      }
+      &.school {
+        border-color: transparentize($schoolcolor, 0.3);
+      }
+      &.intern {
+        border-color: transparentize($interncolor, 0.3);
+      }
+      &.activities {
+        border-color: transparentize($activitiescolor, 0.3);
+      }
+      &.more {
+        border-color: transparentize($morecolor, 0.3);
+      }
     }
   }
 
