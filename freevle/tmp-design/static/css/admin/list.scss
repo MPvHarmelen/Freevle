@@ -122,6 +122,8 @@ ul.pages {
       }
 
       &.new {
+        width: 100%;
+
         a {
           padding: 1em;
           display: block;
@@ -209,6 +211,33 @@ ul.pages {
           text-decoration: none;
           width: 100%;
           @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.soonname {
+        position: absolute;
+        left: 9.15em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+
+        a {
+          padding: 0.9em;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          width: 100%;
+          @include prefixify(box-sizing, border-box);
+
+          &.old {
+            color: #555;
+            font-style: italic;
+          }
 
           &:hover {
             color: #111;

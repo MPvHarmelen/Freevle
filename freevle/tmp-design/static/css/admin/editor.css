@@ -132,6 +132,34 @@ div.filemask {
     border: 2px solid #dddddd;
     margin-bottom: 1em; }
 
+form.soon {
+  overflow: hidden; }
+  form.soon label {
+    font-size: 1.7em;
+    float: left;
+    padding: 0.5em 20px;
+    color: #555;
+    border-right: 1px solid #eeeeee;
+    width: 85px; }
+  form.soon input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #eeeeee;
+    background: none;
+    font-size: 1.7em;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 0;
+    padding: 0.5em 20px 0.5em 146px;
+    margin-left: -126px;
+    float: left;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; }
+    form.soon input[type=date] {
+      padding: 0.39em 20px 0.36em 146px; }
+
 /*NEW SECTION ADDER*/
 #newsection {
   overflow: hidden; }

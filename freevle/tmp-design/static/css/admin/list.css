@@ -56,21 +56,23 @@ ul.pages {
       border-left: 1px solid rgba(0, 0, 0, 0.05); }
       ul.pages li div:nth-child(1) {
         border: none; }
-      ul.pages li div.new a {
-        padding: 1em;
-        display: block;
-        color: #333;
-        text-decoration: none;
-        width: 100%;
-        font-style: italic;
-        box-sizing: border-box;
-        -o-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box; }
-        ul.pages li div.new a:hover {
-          color: #111;
-          text-decoration: underline; }
+      ul.pages li div.new {
+        width: 100%; }
+        ul.pages li div.new a {
+          padding: 1em;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          width: 100%;
+          font-style: italic;
+          box-sizing: border-box;
+          -o-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box; }
+          ul.pages li div.new a:hover {
+            color: #111;
+            text-decoration: underline; }
       ul.pages li div.checkboxcont {
         z-index: 2;
         position: relative;
@@ -138,6 +140,29 @@ ul.pages {
           -moz-box-sizing: border-box;
           -webkit-box-sizing: border-box; }
           ul.pages li div.newsname a:hover {
+            color: #111;
+            text-decoration: underline; }
+      ul.pages li div.soonname {
+        position: absolute;
+        left: 9.15em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em; }
+        ul.pages li div.soonname a {
+          padding: 0.9em;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          width: 100%;
+          box-sizing: border-box;
+          -o-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box; }
+          ul.pages li div.soonname a.old {
+            color: #555;
+            font-style: italic; }
+          ul.pages li div.soonname a:hover {
             color: #111;
             text-decoration: underline; }
       ul.pages li div.actions {

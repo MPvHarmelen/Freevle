@@ -101,6 +101,16 @@ def adminnewseditor():
     title = 'Opening Schip | Nieuws | Admin | Cygnus Gymnasium'
     return render_template('admin/news-editor.html', title=title)
 
+@app.route('/admin/soon/')
+def adminsoon():
+    title = 'Binnenkort | Admin | Cygnus Gymnasium'
+    return render_template('admin/soon.html', title=title)
+
+@app.route('/admin/soon/editor/')
+def adminsooneditor():
+    title = 'Open dag | Binnenkort | Admin | Cygnus Gymnasium'
+    return render_template('admin/soon-editor.html', title=title)
+
 
 if __name__ == '__main__':
     app.debug = True

@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      /*SLUG FIELD*/
+      slugger($('#pagetitle'));
+
+      $('#pagetitle').keyup(function() {
+        slugger($(this));
+      });
+    });
+  </script>
+  <link rel="stylesheet" href="/static/css/admin/editor.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Evenement-editor</h2>
+
+  <section class="card">
+    <form method="POST" action="#" id="editor" class="soon">
+      <div id="editortop">
+        <button name="publish" type="submit" class="button publish">Publiceren</button>
+      </div>
+
+      <label for="name">Naam:</label>
+      <input type="text" name="name" class="soon" placeholder="..." value="">
+
+      <label for="url">Url:</label>
+      <input type="text" name="url" class="soon" placeholder="..." value="">
+
+      <label for="date">Datum:</label>
+      <input type="date" name="date" class="soon" placeholder="..." value="">
+    </form>
+  </section>
+{% endblock %}
