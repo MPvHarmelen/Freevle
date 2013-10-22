@@ -2,6 +2,7 @@
 
 {% block head %}
   <script src="/static/js/index.js"></script>
+  <link rel="stylesheet" href="/static/css/index.css">
 {% endblock %}
 
 {% block bodyclass %}
@@ -78,19 +79,38 @@
     </nav>
 
     <div id="recent">
-      <h2>Foto's & Nieuws</h2>
+      <h2>
+        <a href="/fotos/">Foto's</a>
+      </h2>
 
       <div id="largeactivity">
         <div class="coverbg">
-          <img src="/static/img/newsfront.png" alt="Jihlava">
+          <img src="/static/img/page2.jpg" alt="Jihlava">
         </div>
-        <a class="overlay" href="/fotos/2013/jihlava">
+        <a class="overlay" href="/fotos/2013/jihlava/">
+          <div>
+            <h3>Jihlava</h3>
+            <p>De derde klas ging weer naar Jihlava voor de utiwisseling met onze zusterschool.</p>
+          </div>
+        </a>
+      </div>
+
+      <div id="largeactivity">
+        <div class="coverbg">
+          <img src="/static/img/newsfront.png" alt="Parijs">
+        </div>
+        <a class="overlay" href="/fotos/2013/parijs/">
           <div>
             <h3>Parijs</h3>
             <p>De zesde klas ging begin dit schooljaar al direct naar Parijs en hier zijn de foto's!</p>
           </div>
         </a>
       </div>
+
+
+      <h2>
+        <a href="/nieuws/">Nieuws</a>
+      </h2>
 
       <ul id="headlines">
         <li>
@@ -109,36 +129,30 @@
 
     </div>
 
+
     <div id="comingup">
       <h2>Binnenkort</h2>
       <ul>
         <li>
           <time>
             <span class="day">12</span>
-            12/2013
+            Dec 2013
           </time>
           <p>Kerstgala</p>
         </li>
         <li>
           <time>
             <span class="day">31</span>
-            1/2014
+            Jan 2014
           </time>
           <p>Open dag</p>
         </li>
         <li>
           <time>
             <span class="day">18</span>
-            2/2014
+            Feb 2014
           </time>
           <p>Open dag</p>
-        </li>
-        <li>
-          <time>
-            <span class="day">10</span>
-            3/2014
-          </time>
-          <p>Aristeia</p>
         </li>
       </ul>
     </div>

@@ -1,0 +1,374 @@
+$pagewidth: 1000px;
+$smallpagewidth: 900px;
+
+$maincolor: #013D7D;
+$recentcolor: #43B83D;
+$educationcolor: #D11605;
+$schoolcolor: #013D7D;
+$activitiescolor: #14CA9D;
+$promotecolor: #FBA929;
+$interncolor: #6E0080;
+
+@mixin transition($property, $duration: 200ms) {
+          transition: $property $duration ease-in-out;
+       -o-transition: $property $duration ease-in-out;
+      -ms-transition: $property $duration ease-in-out;
+     -moz-transition: $property $duration ease-in-out;
+  -webkit-transition: $property $duration ease-in-out;
+}
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+/*INDEX: COVER*/
+div#indexcover {
+  text-align: center;
+  width: 100%;
+  background: url(/static/img/coversmall.png) center;
+  background-size: cover;
+
+  #darken {
+    padding: 2em 2em 2em;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  h1 {
+    text-shadow: 0 2px 2px transparentize(black, 0.7);
+  }
+
+  .button {
+    background: $promotecolor;
+    color: white;
+    border-color: darken($promotecolor, 5%);
+  }
+}
+
+
+.home div#content {
+  overflow: hidden;
+  border-top: none;
+  padding-bottom: 0;
+}
+
+
+/*INDEX: RELEVANT*/
+ul#quicknav {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  h3 {
+    margin: 0;
+    color: white;
+  }
+
+  li.more {
+    background-image: none;
+    padding: 0;
+
+    a {
+      padding: 0.9em 1em 0.9em 1em;
+      display: block;
+    }
+  }
+
+  ul {
+    padding: 0 0 0 1.1em;
+    color: white;
+    font-weight: normal;
+    font-size: 0.9em;
+    margin: 0.4em 0 0;
+  }
+}
+
+
+/*INDEX: RECENT*/
+.home h2 {
+  margin: 0.5em 20px;
+}
+
+div#largeactivity {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+
+  a.overlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparentize(black, 0.8);
+    display: table;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    color: white;
+
+    div {
+      vertical-align: middle;
+      display: table-cell;
+    }
+
+    h3 {
+      font-size: 2em;
+      margin: 0.5em 50px;
+    }
+
+    p {
+      overflow: hidden;
+      height: 0;
+      margin: -0.8em 50px 0.5em;
+      text-align: center;
+    }
+
+    &:hover {
+      text-decoration: none;
+      background: transparentize($recentcolor, 0.1);
+
+      p {
+        height: 3em;
+      }
+    }
+  }
+}
+
+ul#headlines {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    display: block;
+    font-size: 1.1em;
+    padding: 16px 1em 15px;
+
+    &:nth-child(1) {
+      a {
+        color: #000;
+      }
+      time {
+        color: #444;
+      }
+    }
+    &:nth-child(2) {
+      a {
+        color: #444;
+      }
+      time {
+        color: #666;
+      }
+    }
+    &:nth-child(3) {
+      a {
+        color: #666;
+      }
+      time {
+        color: #777;
+      }
+    }
+    &:nth-child(4) {
+      a {
+        color: #888;
+      }
+      time {
+        color: #999;
+      }
+    }
+
+    time {
+      font-style: italic;
+      color: #555;
+      width: 44px;
+      display: inline-block;
+    }
+  }
+}
+
+div#comingup {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+  background: #f5f5f5;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5em 0 0;
+  }
+
+  li {
+    overflow: hidden;
+    clear: both;
+    border-top: 1px solid #f0f0f0;
+    color: #999;
+
+    &:nth-child(1) {
+      background: transparentize(black, 0.94);
+      border-color: #e0e0e0;
+      time {
+        border-color: #e0e0e0;
+      }
+      span.day {
+        color: #777;
+      }
+      color: #555;
+    }
+    &:nth-child(2) {
+      background: transparentize(black, 0.96);
+      border-color: #e5e5e5;
+      time {
+        border-color: #e5e5e5;
+      }
+      span.day {
+        color: #888;
+      }
+      color: #777;
+    }
+    &:nth-child(3) {
+      background: transparentize(black, 0.98);
+      border-color: #e9e9e9;
+      time {
+        border-color: #e9e9e9;
+      }
+      span.day {
+        color: #9c9c9c;
+      }
+      color: #8c8c8c;
+    }
+
+    p {
+      float: left;
+      display: block;
+      padding: 1.60em 1.1em 0;
+      font-weight: 300;
+      font-size: 1.3em;
+      margin: 0;
+    }
+  }
+
+  time {
+    padding: 25px 23px 25px;
+    width: 60px;
+    float: left;
+    border-right: 1px solid #f0f0f0;
+    font-size: 0.9em;
+    text-align: center;
+
+    span.day {
+      color: #aaa;
+      font-size: 1.8em;
+      display: block;
+      font-weight: bold;
+    }
+  }
+}
+
+
+@media (min-width: $pagewidth) {
+
+  /*INDEX*/
+  div#indexcover {
+    background-image: url(/static/img/cover.png);
+    margin-top: -3.8em;
+
+    #darken {
+      padding: 8em 2em 17em;
+    }
+  }
+
+  ul#quicknav > li {
+    float: left;
+    width: 25%;
+    @include prefixify(box-sizing, border-box);
+  }
+
+  ul#quicknav li.more {
+    text-align: center;
+    font-size: 1.3em;
+
+    h3 {
+      width: 100%;
+      min-height: inherit;
+
+      a {
+        width: 60%;
+        padding: 0 20%;
+        height: 100%;
+        display: table;
+        min-height: inherit;
+
+        span {
+          vertical-align: middle;
+          display: table-cell;
+        }
+      }
+    }
+  }
+
+
+  div#recent {
+    width: 50%;
+    float: left;
+    border-right: 1px solid #eee;
+
+    h2 {
+      margin: 0;
+      padding: 0.5em 20px;
+    }
+  }
+
+  div#largeactivity {
+    height: 161px;
+
+    a {
+      @include transition(background);
+
+      p {
+        @include transition(height);
+      }
+    }
+  }
+
+  ul#headlines {
+    li {
+      overflow: hidden;
+      font-size: 1.2em;
+    }
+    a {
+      max-width: 87%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  div#comingup {
+    border-top: none;
+
+    li {
+      font-size: 1.1em;
+      border-bottom: 1px solid #eee;
+      &:not(:nth-child(1)) {
+        border-top: none;
+      }
+    }
+  }
+
+}
+
+
+@media (min-width: 1000px) and (max-height: 800px) {
+  div#indexcover #darken {
+    padding: 4em 2em 14em;
+
+    h1 {
+      margin-bottom: 0.2em;
+    }
+  }
+}
