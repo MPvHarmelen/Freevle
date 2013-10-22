@@ -118,19 +118,47 @@
   </section>
 
   <section class="card thirty">
-    <h3>Categorie</h3>
-
-    <ul>
-      <li>Alles</li>
-      <li>Onderwijs</li>
-      <li class="selected">De School</li>
-      <li>Activiteiten</li>
-    </ul>
-
     <form method="POST" action="#/pages/">
-      <h3>Zichtbaar voor:</h3>
+      <h3>Filter</h3>
+
+      <button type="submit" name="updatefilter" class="button">Update filter</button>
+
+      <h4>Categorie:</h4>
+
       <p>
-        <input type="checkbox" name="visibility" value="everyone">
+        <input type="radio" name="category" value="all" checked>
+        <label for="all">Alles</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="education">
+        <label for="education">Onderwijs</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="school">
+        <label for="school">De School</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="activities">
+        <label for="activities">Activiteiten</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="intern">
+        <label for="intern">Personeel</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="other">
+        <label for="other">Overig</label>
+      </p>
+
+
+      <h4>Zichtbaar voor:</h4>
+      <p>
+        <input type="checkbox" name="visibility" value="everyone" checked>
         <label for="everyone">Iedereen</label>
       </p>
 

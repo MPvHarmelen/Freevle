@@ -31,4 +31,8 @@ $(document).ready(function() {
     }
   });
 
+  $('input + label').click(function() {
+    $(this).prev().click();
+  });
+
 });

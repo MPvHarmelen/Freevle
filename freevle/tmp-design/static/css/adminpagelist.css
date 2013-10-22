@@ -17,10 +17,27 @@ div#massactions {
     div#massactions .button.move {
       background-position: -8px -9px !important; }
 
-section.thirty li.selected {
+section.thirty h3 {
+  float: left; }
+section.thirty button {
+  margin: 1.1em;
+  float: right; }
+section.thirty h4 {
+  clear: both; }
+section.thirty input:checked + label {
   font-weight: bold; }
 section.thirty p {
   margin: 0.8em 20px; }
+section.thirty label[for=education] {
+  color: #d11605; }
+section.thirty label[for=school] {
+  color: #013d7d; }
+section.thirty label[for=activities] {
+  color: #14ca9d; }
+section.thirty label[for=intern] {
+  color: #6e0080; }
+section.thirty label[for=other] {
+  color: #333333; }
 
 ul.pages {
   list-style: none;

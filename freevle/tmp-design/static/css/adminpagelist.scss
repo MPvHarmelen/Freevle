@@ -1,4 +1,10 @@
 $maincolor: #013D7D;
+$morecolor: #333333;
+$recentcolor: #43B83D;
+$educationcolor: #D11605;
+$schoolcolor: #013D7D;
+$activitiescolor: #14CA9D;
+$interncolor: #6E0080;
 
 @mixin prefixify($style, $content...) {
           #{$style}: $content;
@@ -47,11 +53,45 @@ div#massactions {
 
 
 section.thirty {
-  li.selected {
+  h3 {
+    float: left;
+  }
+
+  button {
+    margin: 1.1em;
+    float: right;
+  }
+
+  h4 {
+    clear: both;
+  }
+
+  input:checked + label {
     font-weight: bold;
   }
+
   p {
     margin: 0.8em 20px;
+  }
+
+  label[for=education] {
+    color: $educationcolor;
+  }
+
+  label[for=school] {
+    color: $maincolor;
+  }
+
+  label[for=activities] {
+    color: $activitiescolor;
+  }
+
+  label[for=intern] {
+    color: $interncolor;
+  }
+
+  label[for=other] {
+    color: $morecolor;
   }
 }
 
