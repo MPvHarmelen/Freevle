@@ -653,9 +653,9 @@ footer {
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
 
     h1 {
-      width: 249px;
+      width: 119px;
       margin: 0;
-      padding: 0.6em 0;
+      padding: 0.7em 0 0;
       overflow: hidden;
       float: left;
       border-right: 1px solid transparentize(#eee, 0.8);
@@ -664,8 +664,12 @@ footer {
         font-size: 0.8em;
       }
 
+      span#obsolete {
+        display: none;
+      }
+
       a:link, a:visited {
-        padding: 0.6em 0.9em;
+        padding: 0.7em 0.9em 0.55em;
         color: $maincolor;
       }
     }
@@ -829,6 +833,14 @@ footer {
   header#main {
     width: $pagewidth;
     margin-left: -$pagewidth/2;
+
+    h1 {
+      width: 249px;
+
+      span#obsolete {
+        display: inline-block;
+      }
+    }
   }
 
   nav#breadcrumbs {
