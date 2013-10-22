@@ -44,15 +44,16 @@ div#editortop {
   div#editortop .button.save, div#editortop .button.publish {
     padding-left: 2.5em;
     margin: 16px 18px 16px 0px;
+    font-size: 0.85em;
     float: right; }
   div#editortop .save {
-    background-position: -8px -159px !important; }
+    background-position: -8px -158px !important; }
     div#editortop .save:hover {
-      background-position: -8px -109px !important; }
+      background-position: -8px -108px !important; }
     div#editortop .save:active {
       background-position: -8px -107px !important; }
   div#editortop .publish {
-    background-position: -8px -9px !important; }
+    background-position: -8px -8px !important; }
     div#editortop .publish:active {
       background-position: -8px -7px !important; }
 

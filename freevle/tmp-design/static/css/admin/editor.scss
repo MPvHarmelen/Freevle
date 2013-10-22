@@ -81,14 +81,15 @@ div#editortop {
   .button.save, .button.publish {
     padding-left: 2.5em;
     margin: 16px 18px 16px 0px;
+    font-size: 0.85em;
     float: right;
   }
 
   .save {
-    background-position: -8px -159px !important;
+    background-position: -8px -158px !important;
 
     &:hover {
-      background-position: -8px -109px !important;
+      background-position: -8px -108px !important;
     }
     &:active {
       background-position: -8px -107px !important;
@@ -96,7 +97,7 @@ div#editortop {
   }
 
   .publish {
-    background-position: -8px -9px !important;
+    background-position: -8px -8px !important;
 
     &:active {
       background-position: -8px -7px !important;
