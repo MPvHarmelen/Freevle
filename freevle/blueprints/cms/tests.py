@@ -124,12 +124,12 @@ class CMSTests(TestBase):
         # TODO: create illegal text_sections
 
     @staticmethod
-    def create_image_section(title='TiTle', slug='slug', order=0, image_path='path', page=None,
+    def create_image_section(title='TiTle', slug='slug', order=0, image_url='path', page=None,
                              page_id=None):
         ims = ImageSection(
             title=title,
             slug=slug,
-            image_path=image_path,
+            image_url=image_url,
             order=order
         )
 

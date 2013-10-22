@@ -108,7 +108,7 @@ class Page(db.Model):
     subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
     title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
-    cover_image = db.Column(db.String(PAGE_COVER_LINK_LENGTH))
+    cover_image_url = db.Column(db.String(PAGE_COVER_LINK_LENGTH))
     content = db.Column(db.Text, nullable=False)
     is_published = db.Column(db.Boolean, nullable=False)
     datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
@@ -231,7 +231,7 @@ class ImageSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'image'}
     id = db.Column(db.Integer, db.ForeignKey('page_section.id'), primary_key=True)
     featured = db.Column(db.Boolean, nullable=False, default=False)
-    image_path = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
+    image_url = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
 
     page = db.relationship(
         Page,
