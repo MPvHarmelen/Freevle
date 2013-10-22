@@ -808,15 +808,7 @@ footer {
     }
 
     h1 {
-      width: 0;
       white-space: nowrap;
-      border-width: 0;
-      @include transition(width);
-
-      &.yepshow {
-        width: 242px;
-        border-width: 1px;
-      }
     }
   }
 
