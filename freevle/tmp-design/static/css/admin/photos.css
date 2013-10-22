@@ -1,0 +1,71 @@
+/*PHOTOS*/
+.coverbg {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 1; }
+  .coverbg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%; }
+
+div#massactions {
+  overflow: hidden;
+  padding: 0.5em 1em 0.5em 0;
+  background: #f5f5f5;
+  border-bottom: 1px solid #eeeeee; }
+  div#massactions p {
+    float: left;
+    padding: 0.6em 0.4em 0 20px;
+    margin: 0;
+    color: #555;
+    font-weight: bold; }
+  div#massactions .button {
+    float: left;
+    padding-left: 2.5em; }
+    div#massactions .button.delete {
+      background-position: -8px -59px !important; }
+
+section#gallery {
+  overflow: hidden;
+  padding: 10px; }
+  section#gallery #addphotos {
+    background: rgba(50, 205, 50, 0.8);
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 25px;
+    height: 175px;
+    font-size: 1.4em; }
+    section#gallery #addphotos span {
+      font-size: 5em;
+      display: block;
+      margin: -0.2em 0 -0.2em; }
+    section#gallery #addphotos:hover {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+  section#gallery > div {
+    overflow: hidden;
+    position: relative;
+    float: left;
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.8; }
+    section#gallery > div:hover {
+      opacity: 1; }
+    section#gallery > div .overlay {
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      top: 0;
+      z-index: 2; }
+    section#gallery > div input:checked + .overlay {
+      background: url(/static/img/admin/selected.png); }

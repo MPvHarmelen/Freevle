@@ -76,14 +76,14 @@ input.title, input.subtitle {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
-  input.title#pagetitle, input.title#newstitle, input.subtitle#pagetitle, input.subtitle#newstitle {
+  input.title#pagetitle, input.title#newstitle, input.title#photostitle, input.subtitle#pagetitle, input.subtitle#newstitle, input.subtitle#photostitle {
     font-size: 2em;
     width: 100%;
     padding-left: 130px;
     margin-left: -110px;
     float: left; }
 
-label[for="pagetitle"], label[for="newstitle"], label[for="subtitle"] {
+label[for="pagetitle"], label[for="newstitle"], label[for="photostitle"], label[for="subtitle"] {
   font-size: 2em;
   float: left;
   padding: 0.5em 20px;
@@ -112,6 +112,8 @@ textarea {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
+  textarea#photosdescr {
+    min-height: 100px; }
 
 section.card section {
   border-bottom: 1px solid #e5e5e5; }

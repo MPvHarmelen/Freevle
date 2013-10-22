@@ -111,6 +111,16 @@ def adminsooneditor():
     title = 'Open dag | Binnenkort | Admin | Cygnus Gymnasium'
     return render_template('admin/soon-editor.html', title=title)
 
+@app.route('/admin/photos/')
+def adminphotos():
+    title = 'Foto\'s | Admin | Cygnus Gymnasium'
+    return render_template('admin/photos.html', title=title)
+
+@app.route('/admin/photos/editor/')
+def adminphotoseditor():
+    title = 'Jihlava | Foto\'s | Admin | Cygnus Gymnasium'
+    return render_template('admin/photos-editor.html', title=title)
+
 @app.route('/admin/frontpage/')
 def adminfrontpage():
     title = 'Voorpagina | Admin | Cygnus Gymnasium'

@@ -107,4 +107,22 @@ $(document).ready(function() {
     }
   });
 
+
+/*PHOTO SELECT*/
+  $('#gallery > div').click(function() {
+    $(this).children('input').click();
+  });
+
+  $('#gallery > div').click(function() {
+    $(this).prev('input').click();
+  });
+
+  $(document).on('change', '#gallery input[type=file]', function() {
+    if($(this).prop('files').length == 1) {
+      $(this).next().html('Voeg<span>' + $(this).prop('files').length + '</span>foto toe');
+    } else {
+      $(this).next().html('Voeg<span>' + $(this).prop('files').length + '</span>foto\'s toe');
+    }
+  });
+
 });

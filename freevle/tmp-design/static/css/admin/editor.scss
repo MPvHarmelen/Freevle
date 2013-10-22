@@ -124,7 +124,7 @@ input.title, input.subtitle {
   margin: 0;
   @include prefixify(box-sizing, border-box);
 
-  &#pagetitle, &#newstitle {
+  &#pagetitle, &#newstitle, &#photostitle {
     font-size: 2em;
     width: 100%;
     padding-left: 130px;
@@ -133,7 +133,7 @@ input.title, input.subtitle {
   }
 }
 
-label[for="pagetitle"], label[for="newstitle"], label[for="subtitle"] {
+label[for="pagetitle"], label[for="newstitle"], label[for="photostitle"], label[for="subtitle"] {
   font-size: 2em;
   float: left;
   padding: 0.5em 20px;
@@ -163,6 +163,10 @@ textarea {
   border: none;
   min-height: 200px;
   @include prefixify(box-sizing, border-box);
+
+  &#photosdescr {
+    min-height: 100px;
+  }
 }
 
 section.card section {
@@ -221,6 +225,7 @@ form.soon {
     }
   }
 }
+
 
 /*NEW SECTION ADDER*/
 #newsection {
