@@ -343,6 +343,13 @@ section.card {
     display: inline-block;
   }
 
+  header#main {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
   nav#sidebar {
     width: 4em;
     overflow: visible;
@@ -386,12 +393,9 @@ section.card {
 }
 
 
-@media (min-height: 7 * 4em) {
+@media (min-height: 8 * 4em) {
   header#main {
     position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
   }
 
   nav#sidebar {

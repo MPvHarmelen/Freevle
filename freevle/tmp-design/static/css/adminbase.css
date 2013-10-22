@@ -278,6 +278,12 @@ section.card {
   .obsolete {
     display: inline-block; }
 
+  header#main {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0; }
+
   nav#sidebar {
     width: 4em;
     overflow: visible; }
@@ -312,12 +318,9 @@ section.card {
 
   section.card {
     margin: 0 3% 1em; } }
-@media (min-height: 28em) {
+@media (min-height: 32em) {
   header#main {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0; }
+    position: fixed; }
 
   nav#sidebar {
     position: fixed; }
