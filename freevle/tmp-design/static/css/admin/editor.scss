@@ -82,6 +82,16 @@ div#editortop {
     margin: 16px 18px 16px 0px;
     float: right;
     font-size: 0.85em;
+
+    &.delete {
+      background: none;
+      color: darken(lightcoral, 5%);
+
+      &:hover {
+        background-color: darken(lightcoral, 5%);
+        color: white;
+      }
+    }
   }
 
   .button.save, .button.publish {

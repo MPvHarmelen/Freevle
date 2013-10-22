@@ -45,6 +45,12 @@ div#editortop {
     margin: 16px 18px 16px 0px;
     float: right;
     font-size: 0.85em; }
+    div#editortop a.button.delete {
+      background: none;
+      color: #ed6969; }
+      div#editortop a.button.delete:hover {
+        background-color: #ed6969;
+        color: white; }
   div#editortop .button.save, div#editortop .button.publish {
     padding-left: 2.5em;
     margin: 16px 18px 16px 0px;

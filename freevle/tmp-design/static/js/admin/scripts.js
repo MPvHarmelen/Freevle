@@ -125,4 +125,12 @@ $(document).ready(function() {
     }
   });
 
+  $('.delete').click(function(e) {
+    var really = confirm('Weet je zeker dat je dit wil verwijderen?');
+    if(really == false) {
+      e.preventDefault();
+      console.log('a');
+    }
+  });
+
 });
