@@ -206,6 +206,32 @@ ul.pages {
             border-style: solid;
             border-color: transparent transparent transparent rgba(0, 0, 0, 0.7); }
 
+nav#pagination {
+  padding: 1em;
+  border-top: 1px solid #eeeeee;
+  text-align: center; }
+  nav#pagination a {
+    color: white;
+    display: inline-block;
+    padding: 0.7em 0.9em;
+    margin: 0.1em;
+    text-decoration: none;
+    background: rgba(1, 61, 125, 0.7); }
+    nav#pagination a:hover {
+      text-decoration: none;
+      background: #013d7d; }
+    nav#pagination a.current, nav#pagination a.dots {
+      background: rgba(1, 61, 125, 0.7); }
+    nav#pagination a.current, nav#pagination a.current:hover {
+      text-decoration: underline; }
+  nav#pagination.recent a {
+    background: rgba(67, 184, 61, 0.7); }
+  nav#pagination.recent:hover {
+    text-decoration: none;
+    background: #43b83d; }
+  nav#pagination.recent.current, nav#pagination.recent.dots {
+    background: rgba(67, 184, 61, 0.7); }
+
 @media (min-width: 1000px) {
   section.seventy {
     float: left;

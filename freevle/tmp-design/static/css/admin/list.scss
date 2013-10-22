@@ -297,6 +297,49 @@ ul.pages {
   }
 }
 
+nav#pagination {
+  padding: 1em;
+  border-top: 1px solid #eee;
+  text-align: center;
+
+  a {
+    color: white;
+    display: inline-block;
+    padding: 0.7em 0.9em;
+    margin: 0.1em;
+    text-decoration: none;
+    background: transparentize($maincolor, 0.3);
+
+    &:hover {
+      text-decoration: none;
+      background: $maincolor;
+    }
+
+    &.current, &.dots {
+      background: transparentize($maincolor, 0.3);
+    }
+
+    &.current, &.current:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.recent {
+    a {
+      background: transparentize($recentcolor, 0.3);
+    }
+
+    &:hover {
+      text-decoration: none;
+      background: $recentcolor;
+    }
+
+    &.current, &.dots {
+      background: transparentize($recentcolor, 0.3);
+    }
+  }
+}
+
 @media (min-width: 1000px) {
   section.seventy {
     float: left;
