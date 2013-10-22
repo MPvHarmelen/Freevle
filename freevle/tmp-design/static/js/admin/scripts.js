@@ -78,6 +78,7 @@ $(document).ready(function() {
 
 
 /*CATEGORY COLOR*/
+  $('select[name=category]').addClass($('select[name=category]').children('option:selected').val());
   $('select[name=category]').change(function() {
     $(this).removeClass();
     $(this).addClass($(this).children('option:selected').val());
