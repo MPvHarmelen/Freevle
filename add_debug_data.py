@@ -12,4 +12,4 @@ sub_cat = cms_tests.create_subcategory('test', 'test', '#123456', category=cat)
 for x in range(10):
     p = cms_tests.create_page('TeSt{}'.format(x), 'test{}'.format(x), sub_cat)
     for y in range(3):
-        cms_tests.create_text_section(order=y, page=p)
+        cms_tests.create_text_section(order=y, slug='section-{}'.format(y), page=p)
