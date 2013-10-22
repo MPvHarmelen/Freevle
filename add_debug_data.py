@@ -17,28 +17,37 @@ Vestibulum sodales molestie ligula a consectetur. Praesent eleifend, sem non auc
 
 
 image_urls = ['/static/img/sections/' + name for name in ['page.jpg', 'newsfront.png', 'page2.jpg']]
+html_classes = ['school', 'education', 'activities', 'recent', 'intern', 'more']
 
 cms_tests = CMSTests()
 cat = cms_tests.create_category('test', 'test')
-sub_cat = cms_tests.create_subcategory('test', 'test', '#123456', category=cat)
-for x in range(10):
-    p = cms_tests.create_page('TeSt{}'.format(x), 'test{}'.format(x), sub_cat,
-                              content=page_content.format(x),
-                              cover_image_url=image_urls[x % 3])
-    print('Made page: ', p)
-    for y in range(2):
-        s = cms_tests.create_text_section(order=y, slug='section-{}'.format(y),
-                                      page=p, content=lorum)
+for z in range(4):
+    sub_cat = cms_tests.create_subcategory(
+       'test-{}'.format(z),
+       'test-{}'.format(z),
+       html_classes[z % len(html_classes)],
+       category=cat
+    )
+    for x in range(3):
+        p = cms_tests.create_page('TeSt{}'.format(x), 'test{}'.format(x), sub_cat,
+                                  content=page_content.format(x),
+                                  cover_image_url=image_urls[x % len(image_urls)])
+        print('Made page: ', p)
+        for y in range(2):
+            s = cms_tests.create_text_section(order=y, slug='section-{}'.format(y),
+                                          page=p, content=lorum)
+            print('Made section:\t', s)
+        s = cms_tests.create_image_section(order=2, slug='image1', page=p,
+                                       image_url=image_urls[1])
         print('Made section:\t', s)
-    s = cms_tests.create_image_section(order=2, slug='image1', page=p,
-                                   image_url=image_urls[1])
-    print('Made section:\t', s)
-    s = cms_tests.create_text_section(order=3, slug='section-2'.format(y),
-                                      page=p, content=lorum)
-    print('Made section:\t', s)
-    s = cms_tests.create_image_section(order=4, slug='image2', page=p,
-                                   image_url=image_urls[2])
-    print('Made section:\t', s)
-    s = cms_tests.create_text_section(order=5, slug='section-3'.format(y),
-                                      page=p, content=lorum)
-    print('Made section:\t', s)
+        s = cms_tests.create_text_section(order=3, slug='section-2'.format(y),
+                                          page=p, content=lorum)
+        print('Made section:\t', s)
+        s = cms_tests.create_image_section(order=4, slug='image2', page=p,
+                                       image_url=image_urls[2])
+        print('Made section:\t', s)
+        s = cms_tests.create_text_section(order=5, slug='section-3'.format(y),
+                                          page=p, content=lorum)
+        print('Made section:\t', s)
+
+print('Done.')

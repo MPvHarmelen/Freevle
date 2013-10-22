@@ -139,6 +139,10 @@ class Page(db.Model):
 
     validate_slug = db.validates('slug')(validate_slug)
 
+    @property
+    def html_class(self):
+        return self.subcategory.html_class
+
     @permalink
     def get_url(self):
         return 'cms.page_view', {'page_slug': self.slug,
