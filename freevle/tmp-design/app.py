@@ -111,6 +111,11 @@ def adminsooneditor():
     title = 'Open dag | Binnenkort | Admin | Cygnus Gymnasium'
     return render_template('admin/soon-editor.html', title=title)
 
+@app.route('/admin/frontpage/')
+def adminfrontpage():
+    title = 'Voorpagina | Admin | Cygnus Gymnasium'
+    return render_template('admin/frontpage.html', title=title)
+
 
 if __name__ == '__main__':
     app.debug = True

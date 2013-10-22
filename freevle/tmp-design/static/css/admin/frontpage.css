@@ -1,0 +1,28 @@
+section.coverimage h3 {
+  float: left; }
+section.coverimage button.save {
+  padding-left: 2.5em !important;
+  margin: 16px 18px 16px 0px;
+  font-size: 0.85em;
+  float: right;
+  background-position: -8px -158px !important; }
+  section.coverimage button.save:hover {
+    background-position: -8px -108px !important; }
+  section.coverimage button.save:active {
+    background-position: -8px -107px !important; }
+section.coverimage input[type=file] {
+  display: none; }
+section.coverimage div.filemask {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+  overflow: hidden;
+  border-top: 1px solid #eeeeee; }
+  section.coverimage div.filemask img {
+    max-height: 300px;
+    max-width: 90%;
+    border: 2px solid #dddddd;
+    margin-bottom: 1em; }
