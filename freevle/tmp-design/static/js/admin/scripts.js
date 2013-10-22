@@ -94,16 +94,17 @@ $(document).ready(function() {
 
 
 /*FILE-UPLOAD HIDER*/
-  $('div.filemask').click(function() {
+  $(document).on('click', '.filemask', function() {
     $(this).prev().click();
   });
 
-  $('input[type=file]').change(function() {
+  $(document).on('change', 'input[type=file]', function() {
     $(this).next().children('p').text($(this).val().replace("C:\\fakepath\\", ""));
     readURL($(this));
   });
 
 
+/*NEW SECTION*/
   $('#newsection div').click(function() {
     if($(this).attr('id') == 'newtext') {
       $('form#editor').append(textSection);

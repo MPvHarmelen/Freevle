@@ -120,7 +120,8 @@ div.filemask {
   font-size: 1.5em;
   font-weight: bold;
   color: #444;
-  cursor: pointer; }
+  cursor: pointer;
+  overflow: hidden; }
   div.filemask img {
     max-height: 300px;
     border: 2px solid #dddddd;
