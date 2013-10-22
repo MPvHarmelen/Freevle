@@ -90,14 +90,18 @@ h2 {
     background-color: #99cfe0; }
 
 .save, .publish {
-  background-color: limegreen;
   border-color: #2db92d !important;
   background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-repeat: no-repeat;
+  color: #2db92d; }
+  .save:hover, .save:active, .publish:hover, .publish:active {
+    background-color: #30c530;
+    color: white; }
+
+.publish {
+  background-color: limegreen;
   color: white; }
-  .save:hover, .publish:hover {
-    background-color: #2db92d; }
 
 /*IE-WARNING*/
 div#iewarning {

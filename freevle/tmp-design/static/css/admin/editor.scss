@@ -23,6 +23,11 @@ div#editortop {
   border-bottom: 1px solid #eee;
   overflow: hidden;
   background: #f5f5f5;
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+  }
 
   label {
     float: left;
@@ -48,24 +53,29 @@ div#editortop {
     border: 2px solid #eee;
     border-left-width: 6px;
     font-size: 1.05em;
-    font-weight: bold;
     font-family: $buttonfont;
 
     &.education {
-      border-color: transparentize($educationcolor, 0.5);
+      border-color: transparentize($educationcolor, 0.3);
     }
     &.school {
-      border-color: transparentize($schoolcolor, 0.5);
+      border-color: transparentize($schoolcolor, 0.3);
     }
     &.intern {
-      border-color: transparentize($interncolor, 0.5);
+      border-color: transparentize($interncolor, 0.3);
     }
     &.activities {
-      border-color: transparentize($activitiescolor, 0.5);
+      border-color: transparentize($activitiescolor, 0.3);
     }
     &.more {
-      border-color: transparentize($morecolor, 0.5);
+      border-color: transparentize($morecolor, 0.3);
     }
+  }
+
+  a.button {
+    margin: 16px 18px 16px 0px;
+    float: right;
+    font-size: 0.85em;
   }
 
   .button.save, .button.publish {
@@ -73,11 +83,24 @@ div#editortop {
     margin: 16px 18px 16px 0px;
     float: right;
   }
+
   .save {
-    background-position: -8px -109px !important;
+    background-position: -8px -159px !important;
+
+    &:hover {
+      background-position: -8px -109px !important;
+    }
+    &:active {
+      background-position: -8px -107px !important;
+    }
   }
+
   .publish {
     background-position: -8px -9px !important;
+
+    &:active {
+      background-position: -8px -7px !important;
+    }
   }
 }
 
