@@ -8,6 +8,7 @@ $schoolcolor: #013D7D;
 $activitiescolor: #14CA9D;
 $promotecolor: #FBA929;
 $interncolor: #6E0080;
+$morecolor: #333333;
 
 @mixin transition($property, $duration: 200ms) {
           transition: $property $duration ease-in-out;
@@ -319,6 +320,12 @@ nav#subjectoverview {
         border-top: 6px solid transparentize($interncolor, 0.3);
         a:link, a:visited {
           color: $interncolor;
+        }
+      }
+      &.more {
+        border-top: 6px solid transparentize($morecolor, 0.3);
+        a:link, a:visited {
+          color: $morecolor;
         }
       }
     }

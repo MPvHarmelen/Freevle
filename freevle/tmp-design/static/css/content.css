@@ -211,6 +211,10 @@ nav#subjectoverview {
         border-top: 6px solid rgba(110, 0, 128, 0.7); }
         nav#subjectoverview > ul section.protected a:link, nav#subjectoverview > ul section.protected a:visited {
           color: #6e0080; }
+      nav#subjectoverview > ul section.more {
+        border-top: 6px solid rgba(51, 51, 51, 0.7); }
+        nav#subjectoverview > ul section.more a:link, nav#subjectoverview > ul section.more a:visited {
+          color: #333333; }
     nav#subjectoverview > ul section > li {
       display: block;
       padding: 1em 30px; }
