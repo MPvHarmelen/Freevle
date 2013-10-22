@@ -327,15 +327,15 @@ nav#pagination {
   &.recent {
     a {
       background: transparentize($recentcolor, 0.3);
-    }
 
-    &:hover {
-      text-decoration: none;
-      background: $recentcolor;
-    }
+      &:hover {
+        text-decoration: none;
+        background: $recentcolor;
+      }
 
-    &.current, &.dots {
-      background: transparentize($recentcolor, 0.3);
+      &.current, &.dots {
+        background: transparentize($recentcolor, 0.3);
+      }
     }
   }
 }
