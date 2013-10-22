@@ -85,14 +85,6 @@ $(document).ready(function() {
   });
 
 
-/*SLUG FIELD*/
-  slugger($('#pagetitle'));
-
-  $('#pagetitle').keyup(function() {
-    slugger($(this));
-  });
-
-
 /*FILE-UPLOAD HIDER*/
   $(document).on('click', '.filemask', function() {
     $(this).prev().click();

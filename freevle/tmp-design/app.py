@@ -91,6 +91,16 @@ def admineditor():
     title = 'Gebouw | Pagina\'s | Admin | Cygnus Gymnasium'
     return render_template('admin/pages-editor.html', title=title)
 
+@app.route('/admin/news/')
+def adminnews():
+    title = 'Nieuws | Admin | Cygnus Gymnasium'
+    return render_template('admin/news.html', title=title)
+
+@app.route('/admin/news/editor/')
+def adminnewseditor():
+    title = 'Opening Schip | Nieuws | Admin | Cygnus Gymnasium'
+    return render_template('admin/news-editor.html', title=title)
+
 
 if __name__ == '__main__':
     app.debug = True

@@ -127,6 +127,13 @@ ul.pages {
         padding: 1em;
       }
 
+      &.date {
+        font-style: italic;
+        color: #777;
+        padding: 1em;
+        min-width: 4.7em;
+      }
+
       &.pagename {
         position: absolute;
         left: 2.95em;
@@ -144,6 +151,51 @@ ul.pages {
 
           &:hover {
             color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.pagename {
+        position: absolute;
+        left: 2.95em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+
+        a {
+          padding: 0.9em;
+          display: block;
+          color: #555;
+          text-decoration: none;
+          width: 100%;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.newsname {
+        position: absolute;
+        left: 9.15em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+
+        a {
+          padding: 0.9em;
+          display: block;
+          color: #555;
+          text-decoration: none;
+          width: 100%;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
           }
         }
       }
