@@ -108,6 +108,7 @@ class Page(db.Model):
     subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
     title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
+    cover_image = db.Column(db.String(PAGE_COVER_LINK_LENGTH))
     content = db.Column(db.Text, nullable=False)
     is_published = db.Column(db.Boolean, nullable=False)
     datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
