@@ -183,11 +183,13 @@ class PageSection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column('type', db.String(PAGE_SECTION_TYPE_LENGTH))
     title = db.Column(db.String(PAGE_SECTION_TITLE_LENGTH), nullable=False)
+    slug = db.Column(db.String(PAGE_SECTION_SLUG_LENGTH), nullable=False)
     order = db.Column(db.Integer, nullable=False)
     page_id = db.Column(db.Integer, db.ForeignKey('page.id'), nullable=False)
 
     __table_args__ = (
         db.UniqueConstraint('page_id', 'order'),
+        db.UniqueConstraint('page_id', 'slug'),
     )
 
     __mapper_args__ = {
@@ -203,6 +205,8 @@ class PageSection(db.Model):
             lazy='dynamic'
         )
     )
+
+    validate_slug = db.validates('slug')(validate_slug)
 
     def __repr__(self):
         return '({}) {}Section'.format(self.id, self.section_type.capitalize())

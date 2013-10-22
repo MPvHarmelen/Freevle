@@ -89,10 +89,11 @@ class CMSTests(TestBase):
 
 
     @staticmethod
-    def create_text_section(title='TiTle', order=0, content='content.',
-                            page=None, page_id=None):
+    def create_text_section(title='TiTle', slug='title', order=0,
+                            content='content.', page=None, page_id=None):
         ts = TextSection(
             title=title,
+            slug=slug,
             order=order,
             content=content
         )
@@ -122,10 +123,11 @@ class CMSTests(TestBase):
         # TODO: create illegal text_sections
 
     @staticmethod
-    def create_image_section(title='TiTle', order=0, image_path='path', page=None,
+    def create_image_section(title='TiTle', slug='slug', order=0, image_path='path', page=None,
                              page_id=None):
         ims = ImageSection(
             title=title,
+            slug=slug,
             image_path=image_path,
             order=order
         )
@@ -153,9 +155,9 @@ class CMSTests(TestBase):
         p_in = self.create_page('TeSt', 'test', sub_cat)
         now = datetime.now()
         text_section1 = self.create_text_section(page=p_in)
-        image_section1 = self.create_image_section(order=1, page=p_in)
-        text_section2 = self.create_text_section(order=2, page=p_in)
-        image_section2 = self.create_image_section(order=3, page=p_in)
+        image_section1 = self.create_image_section(order=1, slug='title1', page=p_in)
+        text_section2 = self.create_text_section(order=2, slug='title2', page=p_in)
+        image_section2 = self.create_image_section(order=3, slug='title3', page=p_in)
         all_sections = [text_section1, image_section1, text_section2, image_section2]
         p_got = Page.query.get(2)
         self.assertAlmostEqual(p_got.datetime_created, now, delta=ONUPDATE_DELTA)
