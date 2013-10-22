@@ -467,7 +467,7 @@ footer {
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
     header#main h1 {
-      width: 245px;
+      width: 249px;
       margin: 0;
       padding: 0.6em 0;
       overflow: hidden;
@@ -476,7 +476,7 @@ footer {
       header#main h1 a > span {
         font-size: 0.8em; }
       header#main h1 a:link, header#main h1 a:visited {
-        padding: 0.6em 0.8em;
+        padding: 0.6em 0.9em;
         color: #013d7d; }
     header#main #menuopener, header#main #searchopener {
       display: none !important; }

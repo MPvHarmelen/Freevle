@@ -653,7 +653,7 @@ footer {
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
 
     h1 {
-      width: 245px;
+      width: 249px;
       margin: 0;
       padding: 0.6em 0;
       overflow: hidden;
@@ -665,7 +665,7 @@ footer {
       }
 
       a:link, a:visited {
-        padding: 0.6em 0.8em;
+        padding: 0.6em 0.9em;
         color: $maincolor;
       }
     }
