@@ -1,15 +1,63 @@
-{% extends 'cms/base.html' %}
+{% extends "cms/base.html" %}
 
-{% block content %}
-      <div class="item">
-        <h2>{{ page.title }}</h2>
-        {% if page.children %}
-          <ul>
-          {% for child in page.children %}
-            <li><a href="{{ child.get_url() }}">{{ child.title }}</a></li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-        <p>{{ page.content }}</p>
+{% block head %}
+{% endblock %}
+
+{% block bodyclass %}
+  id="top"
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="school">
+
+    <nav id="jumpto">
+      <ul>
+        <li id="title">
+          Ga naar:
+        </li>
+        <li>
+          <a href="#top">Top</a>
+        </li>
+        {% for section in page.sections %}
+        <li>
+          <a href="#{{ section.slug }}">{{ section.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {% if page.cover_image_url %}
+    <div id="pagecover">
+      <div class="coverbg">
+        <img src="{{ page.cover_image_url }}">
       </div>
+    </div>
+    {% endif %}
+
+    <h2>{{ page.title }}</h2>
+
+    <section>
+      {{ page.content }}
+    </section>
+
+    {% for section in page.sections %}
+      {% if section.type == 'text' %}
+        <section>
+          <h3 id="{{ section.slug }}">{{ section.title }}</h3>
+          {{ section.content }}
+        </section>
+      {% elif section.type == 'image' %}
+        <section class="containsimg">
+          <img src="{{ section.image_url }}" alt="{{ section.title }}">
+          <p class="caption">{{ section.title }}</p>
+        </section>
+      {% endif %}
+    {% endfor %}
+
+    <nav id="readfurther">
+      <h2>Relevante informatie</h2>
+      <a class="relevant linkicon education" href="/info/onderwijs/lesprogramma/">Lesprogramma</a>
+    </nav>
+
+  </div>
 {% endblock %}
