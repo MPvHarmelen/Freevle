@@ -56,6 +56,21 @@ ul.pages {
       border-left: 1px solid rgba(0, 0, 0, 0.05); }
       ul.pages li div:nth-child(1) {
         border: none; }
+      ul.pages li div.new a {
+        padding: 1em;
+        display: block;
+        color: #333;
+        text-decoration: none;
+        width: 100%;
+        font-style: italic;
+        box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box; }
+        ul.pages li div.new a:hover {
+          color: #111;
+          text-decoration: underline; }
       ul.pages li div.checkboxcont {
         z-index: 2;
         position: relative;

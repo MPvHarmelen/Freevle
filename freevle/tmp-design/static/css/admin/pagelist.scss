@@ -121,6 +121,23 @@ ul.pages {
         border: none;
       }
 
+      &.new {
+        a {
+          padding: 1em;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          width: 100%;
+          font-style: italic;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
       &.checkboxcont {
         z-index: 2;
         position: relative;
