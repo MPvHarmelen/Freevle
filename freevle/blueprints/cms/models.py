@@ -210,7 +210,7 @@ class PageSection(db.Model):
     validate_slug = db.validates('slug')(validate_slug)
 
     def __repr__(self):
-        return '({}) {}Section'.format(self.id, self.section_type.capitalize())
+        return '({}) {}Section'.format(self.id, self.type.capitalize())
 
 class TextSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'text'}

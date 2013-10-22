@@ -70,12 +70,14 @@ class CMSTests(TestBase):
         # TODO: test creating illegal subcategories
 
     @staticmethod
-    def create_page(title, slug, subcategory=None, subcategory_id=None, content='Content.', is_published=True):
+    def create_page(title, slug, subcategory=None, subcategory_id=None,
+                    content='Content.', is_published=True, cover_image_url=None):
         page = Page(
             title=title,
             slug=slug,
             content=content,
-            is_published=is_published
+            is_published=is_published,
+            cover_image_url=cover_image_url
         )
         if subcategory is not None:
             page.subcategory = subcategory
