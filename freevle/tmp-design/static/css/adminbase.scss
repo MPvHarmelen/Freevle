@@ -298,29 +298,8 @@ nav#sidebar {
         min-width: 12.5em;
         border-bottom: 1px solid transparentize(black, 0.9);
         background-color: $bgcolor;
-        background-image: url(/static/img/adminsprite.png);
         background-repeat: no-repeat;
         @include prefixify(box-sizing, border-box);
-
-        &#pageslink {
-          background-position: 0 -64px;
-        }
-
-        &#newslink {
-          background-position: 0 -128px;
-        }
-
-        &#soonlink {
-          background-position: 0 -192px;
-        }
-
-        &#photoslink {
-          background-position: 0 -256px;
-        }
-
-        &#userslink {
-          background-position: 0 -320px;
-        }
       }
     }
   }
@@ -430,12 +409,5 @@ section.card {
     width: 46%;
     display: inline-block;
     margin: 0 -1% 1em 3%;
-  }
-}
-
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  nav#sidebar ul li a {
-    background-image: url(/static/img/adminsprite@2x.png);
   }
 }

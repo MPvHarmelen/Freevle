@@ -241,23 +241,12 @@ nav#sidebar {
         min-width: 12.5em;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         background-color: #25578c;
-        background-image: url(/static/img/adminsprite.png);
         background-repeat: no-repeat;
         box-sizing: border-box;
         -o-box-sizing: border-box;
         -ms-box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box; }
-        nav#sidebar ul li a#pageslink {
-          background-position: 0 -64px; }
-        nav#sidebar ul li a#newslink {
-          background-position: 0 -128px; }
-        nav#sidebar ul li a#soonlink {
-          background-position: 0 -192px; }
-        nav#sidebar ul li a#photoslink {
-          background-position: 0 -256px; }
-        nav#sidebar ul li a#userslink {
-          background-position: 0 -320px; }
 
 /*PAGE*/
 div#page {
@@ -340,6 +329,3 @@ section.card {
     width: 46%;
     display: inline-block;
     margin: 0 -1% 1em 3%; } }
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  nav#sidebar ul li a {
-    background-image: url(/static/img/adminsprite@2x.png); } }
