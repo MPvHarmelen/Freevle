@@ -87,7 +87,7 @@ def adminpages():
     return render_template('admin/pages.html', title=title)
 
 @app.route('/admin/pages/editor/')
-def admineditor():
+def adminpageseditor():
     title = 'Gebouw | Pagina\'s | Admin | Cygnus Gymnasium'
     return render_template('admin/pages-editor.html', title=title)
 
