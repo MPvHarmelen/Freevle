@@ -3,6 +3,7 @@ import unittest
 from datetime import datetime, timedelta
 from freevle import db
 from freevle.testing import TestBase
+from freevle.utils.functions import headles_markdown
 from sqlalchemy.exc import IntegrityError
 from .models import Category, Subcategory, Page, TextSection, ImageSection, Link
 
@@ -152,7 +153,7 @@ class CMSTests(TestBase):
         sub_cat = self.create_subcategory('test', 'test', '#123456', category=cat)
         sub_cat2 = self.create_subcategory('test', 'tesst', '#123456', category=cat)
         _ = self.create_page('TeSt', 'test', sub_cat2)
-        p_in = self.create_page('TeSt', 'test', sub_cat)
+        p_in = self.create_page('TeSt', 'test', sub_cat, content='# Content.')
         now = datetime.now()
         text_section1 = self.create_text_section(page=p_in)
         image_section1 = self.create_image_section(order=1, slug='title1', page=p_in)
@@ -164,7 +165,8 @@ class CMSTests(TestBase):
         self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DELTA)
         self.assertEqual(p_got.title, 'TeSt')
         self.assertEqual(p_got.slug, 'test')
-        self.assertEqual(p_got.content, 'Content.')
+        self.assertEqual(p_got.content, '# Content.')
+        self.assertEqual(headles_markdown(p_got.content), '<p>Content.</p>')
         self.assertEqual(p_got.subcategory_id, sub_cat.id)
         self.assertEqual(p_got.subcategory, sub_cat)
         self.assertEqual(p_got.is_published, True)

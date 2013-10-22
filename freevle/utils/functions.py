@@ -2,6 +2,14 @@
 
 import re
 from unicodedata import normalize
+from markdown import Markdown
+
+markdown = Markdown(output_format='html5', safe_mode='escape', lazy_ol=False).convert
+
+heading_tag = re.compile(r'<h(\d+).*>(.*)</h\1>')
+def headles_markdown(text):
+    text = markdown(text)
+    return heading_tag.sub(r'<p>\2</p>', text)
 
 first_cap_re = re.compile('(.)([A-Z][a-z]+)')
 all_cap_re = re.compile('([a-z0-9])([A-Z])')
