@@ -1,5 +1,14 @@
 $headfont: 'Source Sans Pro', sans-serif;
 $bodyfont: 'Source Sans Pro', sans-serif;
+$buttonfont: 'Montserrat', sans-serif;
+
+$maincolor: #013D7D;
+$morecolor: #333333;
+$recentcolor: #43B83D;
+$educationcolor: #D11605;
+$schoolcolor: #013D7D;
+$activitiescolor: #14CA9D;
+$interncolor: #6E0080;
 
 @mixin prefixify($style, $content...) {
           #{$style}: $content;
@@ -9,7 +18,72 @@ $bodyfont: 'Source Sans Pro', sans-serif;
   -webkit-#{$style}: $content;
 }
 
-input {
+/*ABOVE TITLE*/
+div#editortop {
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  background: #f5f5f5;
+
+  label {
+    float: left;
+    padding: 22px 0 22px 24px;
+    font-size: 1.2em;
+    color: #444;
+  }
+
+  p {
+    font-size: 1.2em;
+    border: none;
+    float: left;
+    margin: 13px 13px 0;
+    background: none;
+    padding: 0.45em 0.8em 0.5em 0;
+  }
+
+  select {
+    float: left;
+    padding: 0.5em 0.8em;
+    background: #fafafa;
+    margin: 12px 0 0 12px;
+    border: 2px solid #eee;
+    border-left-width: 6px;
+    font-size: 1.05em;
+    font-weight: bold;
+    font-family: $buttonfont;
+
+    &.education {
+      border-color: transparentize($educationcolor, 0.5);
+    }
+    &.school {
+      border-color: transparentize($schoolcolor, 0.5);
+    }
+    &.intern {
+      border-color: transparentize($interncolor, 0.5);
+    }
+    &.activities {
+      border-color: transparentize($activitiescolor, 0.5);
+    }
+    &.more {
+      border-color: transparentize($morecolor, 0.5);
+    }
+  }
+
+  .button.save, .button.publish {
+    padding-left: 2.5em;
+    margin: 16px 18px 16px 0px;
+    float: right;
+  }
+  .save {
+    background-position: -8px -109px !important;
+  }
+  .publish {
+    background-position: -8px -9px !important;
+  }
+}
+
+
+/*TITLE*/
+input.title, input.subtitle {
   width: 100%;
   border: none;
   border-bottom: 1px solid #eee;
@@ -17,23 +91,40 @@ input {
   font-size: 1.7em;
   padding: 0.5em 20px;
   font-family: $headfont;
+  margin: 0;
   @include prefixify(box-sizing, border-box);
 
   &#pagetitle {
     font-size: 2em;
-    padding: 0.5em 168px 0.5em 20px;
-    margin-right: -168px;
+    width: 100%;
+    padding-left: 130px;
+    margin-left: -110px;
     float: left;
   }
 }
 
-.button.save {
-  padding-left: 2.5em;
-  background-position: -8px -109px !important;
-  margin: 19px 19px 19px 11px;
+label[for="pagetitle"], label[for="subtitle"] {
+  font-size: 2em;
+  float: left;
+  padding: 0.5em 20px;
+  color: #555;
+  border-right: 1px solid #eee;
 }
 
+label[for="subtitle"] {
+  font-size: 1.7em;
+
+  + input {
+    padding-left: 129px;
+    margin-left: -115px;
+    float: left;
+  }
+}
+
+
+/*CONTENT*/
 textarea {
+  margin: 0;
   width: 100%;
   background: none;
   font-size: 1em;
@@ -48,6 +139,27 @@ section.card section {
   border-bottom: 1px solid #e5e5e5;
 }
 
+input[type=file] {
+  display: none;
+}
+
+div.filemask {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+
+  img {
+    max-height: 300px;
+    border: 2px solid #ddd;
+    margin-bottom: 1em;
+  }
+}
+
+
+/*NEW SECTION ADDER*/
 #newsection {
   overflow: hidden;
 
@@ -71,4 +183,8 @@ section.card section {
       background: #f5f5f5;
     }
   }
+}
+
+section.added {
+  display: none;
 }

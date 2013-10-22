@@ -129,12 +129,11 @@ h2 {
   }
 }
 
-.save {
+.save, .publish {
   background-color: limegreen;
   border-color: darken(limegreen, 5%) !important;
   background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
-  background-position: -8px -8px;
   background-repeat: no-repeat;
   color: white;
 

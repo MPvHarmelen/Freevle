@@ -11,24 +11,35 @@
   <h2>Pagina-editor</h2>
 
   <section class="card">
-    <form method="POST" action="#">
-      <input type="text" id="pagetitle" name="pagetitle" placeholder="Titel" value="Gebouw">
-      <button name="publish" type="submit" class="button save">Publiceren</button>
+    <form method="POST" action="#" id="editor">
+      <div id="editortop">
+        <label for="category">Categorie:</label>
+        <select name="category" placeholder="Categorie">
+          <option></option>
+          <option value="school">De School</option>
+          <option value="education">Onderwijs</option>
+        </select>
+
+        <label for="slug">Slug:</label>
+        <input type="hidden" name="slug" placeholder="..." value="gebouw">
+        <p id="slug"></p>
+
+        <button name="publish" type="submit" class="button publish">Publiceren</button>
+        <button name="save" type="submit" class="button save">Opslaan</button>
+      </div>
+
+      <label for="pagetitle">Titel:</label>
+      <input type="text" id="pagetitle" name="pagetitle" class="title" placeholder="..." value="Gebouw">
 
       <section>
         <textarea placeholder="Inhoud..." name="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac viverra neque. Nulla quis erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.</textarea>
       </section>
-
-      <section>
-        <input type="text" id="subtitle" name="#" placeholder="Kopje">
-        <textarea placeholder="Inhoud..." name="#"></textarea>
-      </section>
+    </form>
 
       <section id="newsection">
-        <div id="newtext">+ Nieuw tekst-deel</div>
-        <div id="newimage">+ Nieuwe afbeelding</div>
+        <div id="newtext">+ Tekst-deel</div>
+        <div id="newimage">+ Afbeelding</div>
       </section>
 
-    </form>
   </section>
 {% endblock %}
