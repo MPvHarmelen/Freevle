@@ -152,21 +152,20 @@ ul.pages {
         float: right;
         z-index: 2;
         position: relative;
-        min-width: 6em;
 
         .buttoncont {
           position: relative;
         }
 
         a {
-          float: left;
           display: block;
           position: relative;
-          @include prefixify(box-sizing, border-box);
-          margin: 0.5em 0 0.45em 0.45em;
+          margin: 0.5em 0.5em 0.45em;
           width: 2.3em;
           height: 2.3em;
           border: 2px solid $maincolor;
+          z-index: 2;
+          @include prefixify(box-sizing, border-box);
 
           &:hover + .tooltip {
             display: block;
@@ -181,6 +180,7 @@ ul.pages {
           display: none;
           top: 0.5em;
           left: -6.7em;
+          z-index: 1;
 
           &:before {
             display: block;

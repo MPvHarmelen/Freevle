@@ -70,7 +70,7 @@ h2 {
 .delete {
   background-color: lightcoral;
   border-color: #ed6969 !important;
-  background-image: url(/static/img/adminsprite-actions.png);
+  background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-position: -8px -58px;
   color: white;
@@ -81,7 +81,7 @@ h2 {
 .move {
   background-color: lightblue;
   border-color: #99cfe0 !important;
-  background-image: url(/static/img/adminsprite-actions.png);
+  background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-position: -8px -8px;
   background-repeat: no-repeat;
@@ -92,7 +92,7 @@ h2 {
 .save {
   background-color: limegreen;
   border-color: #2db92d !important;
-  background-image: url(/static/img/adminsprite-actions.png);
+  background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-position: -8px -8px;
   background-repeat: no-repeat;
@@ -129,7 +129,7 @@ header#main {
   background: #25578c;
   color: rgba(255, 255, 255, 0.7);
   position: relative;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
   padding-left: 4em;
   max-width: 100%;
@@ -162,7 +162,7 @@ a#logout {
 
 /*NAVIGATION*/
 nav#sidebar {
-  z-index: 3;
+  z-index: 4;
   min-height: 27.9em;
   height: 100%;
   position: absolute;

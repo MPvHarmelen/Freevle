@@ -104,7 +104,7 @@ h2 {
 .delete {
   background-color: lightcoral;
   border-color: darken(lightcoral, 5%) !important;
-  background-image: url(/static/img/adminsprite-actions.png);
+  background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-position: -8px -58px;
   color: white;
@@ -118,7 +118,7 @@ h2 {
 .move {
   background-color: lightblue;
   border-color: darken(lightblue, 5%) !important;
-  background-image: url(/static/img/adminsprite-actions.png);
+  background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-position: -8px -8px;
   background-repeat: no-repeat;
@@ -132,7 +132,7 @@ h2 {
 .save {
   background-color: limegreen;
   border-color: darken(limegreen, 5%) !important;
-  background-image: url(/static/img/adminsprite-actions.png);
+  background-image: url(/static/img/admin/adminsprite-actions.png);
   background-size: 50px;
   background-position: -8px -8px;
   background-repeat: no-repeat;
@@ -183,7 +183,7 @@ header#main {
   background: $bgcolor;
   color: transparentize(white, 0.3);
   position: relative;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
   padding-left: 4em;
   max-width: 100%;
@@ -224,7 +224,7 @@ a#logout {
 
 /*NAVIGATION*/
 nav#sidebar {
-  z-index: 3;
+  z-index: 4;
   min-height: 6 * 4.65em;
   height: 100%;
   position: absolute;

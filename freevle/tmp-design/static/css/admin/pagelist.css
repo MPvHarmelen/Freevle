@@ -82,23 +82,22 @@ ul.pages {
       ul.pages li div.actions {
         float: right;
         z-index: 2;
-        position: relative;
-        min-width: 6em; }
+        position: relative; }
         ul.pages li div.actions .buttoncont {
           position: relative; }
         ul.pages li div.actions a {
-          float: left;
           display: block;
           position: relative;
+          margin: 0.5em 0.5em 0.45em;
+          width: 2.3em;
+          height: 2.3em;
+          border: 2px solid #013d7d;
+          z-index: 2;
           box-sizing: border-box;
           -o-box-sizing: border-box;
           -ms-box-sizing: border-box;
           -moz-box-sizing: border-box;
-          -webkit-box-sizing: border-box;
-          margin: 0.5em 0 0.45em 0.45em;
-          width: 2.3em;
-          height: 2.3em;
-          border: 2px solid #013d7d; }
+          -webkit-box-sizing: border-box; }
           ul.pages li div.actions a:hover + .tooltip {
             display: block; }
         ul.pages li div.actions .tooltip {
@@ -108,7 +107,8 @@ ul.pages {
           padding: 0.5em 0.7em 0.55em;
           display: none;
           top: 0.5em;
-          left: -6.7em; }
+          left: -6.7em;
+          z-index: 1; }
           ul.pages li div.actions .tooltip:before {
             display: block;
             position: absolute;
