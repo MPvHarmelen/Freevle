@@ -1,13 +1,10 @@
-from markdown import Markdown
-
 from flask import render_template, Markup, request
 
 from freevle import db, app
+from freevle.utils.functions import headles_markdown as markdown
 from . import bp
 from .models import Category, Subcategory, Page, PageSection
 from ..admin import bp as admin
-
-markdown = Markdown(output_format='html5', safe_mode='escape').convert
 
 @bp.app_context_processor
 def inject_sitemap():
@@ -53,6 +50,7 @@ def category_view(category_slug):
 def page_view(category_slug, subcategory_slug, page_slug):
     """Show a page from the database."""
     page = Page.get_page(category_slug, subcategory_slug, page_slug)
+    page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
     return render_template('cms/page_view.html', page=page)

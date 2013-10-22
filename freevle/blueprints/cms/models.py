@@ -108,6 +108,7 @@ class Page(db.Model):
     subcategory_id = db.Column(db.Integer, db.ForeignKey('subcategory.id'), nullable=False)
     title = db.Column(db.String(PAGE_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(PAGE_SLUG_LENGTH), nullable=False)
+    cover_image_url = db.Column(db.String(PAGE_COVER_LINK_LENGTH))
     content = db.Column(db.Text, nullable=False)
     is_published = db.Column(db.Boolean, nullable=False)
     datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
@@ -137,6 +138,10 @@ class Page(db.Model):
     # )
 
     validate_slug = db.validates('slug')(validate_slug)
+
+    @property
+    def html_class(self):
+        return self.subcategory.html_class
 
     @permalink
     def get_url(self):
@@ -183,11 +188,13 @@ class PageSection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column('type', db.String(PAGE_SECTION_TYPE_LENGTH))
     title = db.Column(db.String(PAGE_SECTION_TITLE_LENGTH), nullable=False)
+    slug = db.Column(db.String(PAGE_SECTION_SLUG_LENGTH), nullable=False)
     order = db.Column(db.Integer, nullable=False)
     page_id = db.Column(db.Integer, db.ForeignKey('page.id'), nullable=False)
 
     __table_args__ = (
         db.UniqueConstraint('page_id', 'order'),
+        db.UniqueConstraint('page_id', 'slug'),
     )
 
     __mapper_args__ = {
@@ -204,8 +211,10 @@ class PageSection(db.Model):
         )
     )
 
+    validate_slug = db.validates('slug')(validate_slug)
+
     def __repr__(self):
-        return '({}) {}Section'.format(self.id, self.section_type.capitalize())
+        return '({}) {}Section'.format(self.id, self.type.capitalize())
 
 class TextSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'text'}
@@ -226,7 +235,7 @@ class ImageSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'image'}
     id = db.Column(db.Integer, db.ForeignKey('page_section.id'), primary_key=True)
     featured = db.Column(db.Boolean, nullable=False, default=False)
-    image_path = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
+    image_url = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
 
     page = db.relationship(
         Page,

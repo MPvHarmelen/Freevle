@@ -3,6 +3,7 @@ import unittest
 from datetime import datetime, timedelta
 from freevle import db
 from freevle.testing import TestBase
+from freevle.utils.functions import headles_markdown
 from sqlalchemy.exc import IntegrityError
 from .models import Category, Subcategory, Page, TextSection, ImageSection, Link
 
@@ -69,12 +70,14 @@ class CMSTests(TestBase):
         # TODO: test creating illegal subcategories
 
     @staticmethod
-    def create_page(title, slug, subcategory=None, subcategory_id=None, content='Content.', is_published=True):
+    def create_page(title, slug, subcategory=None, subcategory_id=None,
+                    content='Content.', is_published=True, cover_image_url=None):
         page = Page(
             title=title,
             slug=slug,
             content=content,
-            is_published=is_published
+            is_published=is_published,
+            cover_image_url=cover_image_url
         )
         if subcategory is not None:
             page.subcategory = subcategory
@@ -89,10 +92,11 @@ class CMSTests(TestBase):
 
 
     @staticmethod
-    def create_text_section(title='TiTle', order=0, content='content.',
-                            page=None, page_id=None):
+    def create_text_section(title='TiTle', slug='title', order=0,
+                            content='content.', page=None, page_id=None):
         ts = TextSection(
             title=title,
+            slug=slug,
             order=order,
             content=content
         )
@@ -122,11 +126,12 @@ class CMSTests(TestBase):
         # TODO: create illegal text_sections
 
     @staticmethod
-    def create_image_section(title='TiTle', order=0, image_path='path', page=None,
+    def create_image_section(title='TiTle', slug='slug', order=0, image_url='path', page=None,
                              page_id=None):
         ims = ImageSection(
             title=title,
-            image_path=image_path,
+            slug=slug,
+            image_url=image_url,
             order=order
         )
 
@@ -150,19 +155,20 @@ class CMSTests(TestBase):
         sub_cat = self.create_subcategory('test', 'test', '#123456', category=cat)
         sub_cat2 = self.create_subcategory('test', 'tesst', '#123456', category=cat)
         _ = self.create_page('TeSt', 'test', sub_cat2)
-        p_in = self.create_page('TeSt', 'test', sub_cat)
+        p_in = self.create_page('TeSt', 'test', sub_cat, content='# Content.')
         now = datetime.now()
         text_section1 = self.create_text_section(page=p_in)
-        image_section1 = self.create_image_section(order=1, page=p_in)
-        text_section2 = self.create_text_section(order=2, page=p_in)
-        image_section2 = self.create_image_section(order=3, page=p_in)
+        image_section1 = self.create_image_section(order=1, slug='title1', page=p_in)
+        text_section2 = self.create_text_section(order=2, slug='title2', page=p_in)
+        image_section2 = self.create_image_section(order=3, slug='title3', page=p_in)
         all_sections = [text_section1, image_section1, text_section2, image_section2]
         p_got = Page.query.get(2)
         self.assertAlmostEqual(p_got.datetime_created, now, delta=ONUPDATE_DELTA)
         self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DELTA)
         self.assertEqual(p_got.title, 'TeSt')
         self.assertEqual(p_got.slug, 'test')
-        self.assertEqual(p_got.content, 'Content.')
+        self.assertEqual(p_got.content, '# Content.')
+        self.assertEqual(headles_markdown(p_got.content), '<p>Content.</p>')
         self.assertEqual(p_got.subcategory_id, sub_cat.id)
         self.assertEqual(p_got.subcategory, sub_cat)
         self.assertEqual(p_got.is_published, True)
