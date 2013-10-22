@@ -8,22 +8,24 @@ div#content {
     background: rgba(1, 61, 125, 0.7); }
   div#content.education {
     border-color: rgba(209, 22, 5, 0.7); }
-    div#content.education nav ul {
+    div#content.education nav#jumpto ul {
       background: rgba(209, 22, 5, 0.7); }
   div#content.school {
     border-color: rgba(1, 61, 125, 0.8); }
-    div#content.school nav ul {
+    div#content.school nav#jumpto ul {
       background: rgba(1, 61, 125, 0.7); }
   div#content.activities {
     border-color: rgba(20, 202, 157, 0.7); }
-    div#content.activities nav ul {
+    div#content.activities nav#jumpto ul {
       background: rgba(20, 202, 157, 0.7); }
   div#content.recent {
     border-color: rgba(67, 184, 61, 0.7); }
+    div#content.recent nav#jumpto ul {
+      background: rgba(67, 184, 61, 0.7); }
   div#content.intern {
     border-color: rgba(110, 0, 128, 0.7); }
-  div#content.protected.teachers {
-    border-color: #6e0080; }
+    div#content.intern nav#jumpto ul {
+      background: rgba(110, 0, 128, 0.7); }
   div#content p {
     margin: 0.5em 30px 1.5em;
     text-align: justify;
@@ -207,9 +209,9 @@ nav#subjectoverview {
         border-top: 6px solid rgba(20, 202, 157, 0.7); }
         nav#subjectoverview > ul section.activities a:link, nav#subjectoverview > ul section.activities a:visited {
           color: #14ca9d; }
-      nav#subjectoverview > ul section.protected {
+      nav#subjectoverview > ul section.intern {
         border-top: 6px solid rgba(110, 0, 128, 0.7); }
-        nav#subjectoverview > ul section.protected a:link, nav#subjectoverview > ul section.protected a:visited {
+        nav#subjectoverview > ul section.intern a:link, nav#subjectoverview > ul section.intern a:visited {
           color: #6e0080; }
       nav#subjectoverview > ul section.more {
         border-top: 6px solid rgba(51, 51, 51, 0.7); }
@@ -239,8 +241,6 @@ nav#subjectoverview {
   background-color: rgba(1, 61, 125, 0.8); }
 .info .activities {
   background-color: rgba(20, 202, 157, 0.7); }
-.info .protected {
-  background-color: rgba(110, 0, 128, 0.7); }
 
 /*LOGIN-PAGE*/
 a#backtoindex {

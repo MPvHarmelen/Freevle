@@ -38,33 +38,35 @@ div#content {
 
   &.education {
     border-color: transparentize($educationcolor, 0.3);
-    nav ul {
+    nav#jumpto ul {
       background: transparentize($educationcolor, 0.3);
     }
   }
   &.school {
     border-color: transparentize($schoolcolor, 0.2);
-    nav ul {
+    nav#jumpto ul {
       background: transparentize($schoolcolor, 0.3);
     }
   }
   &.activities {
     border-color: transparentize($activitiescolor, 0.3);
-    nav ul {
+    nav#jumpto ul {
       background: transparentize($activitiescolor, 0.3);
     }
   }
 
   &.recent {
     border-color: transparentize($recentcolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($recentcolor, 0.3);
+    }
   }
 
   &.intern {
     border-color: transparentize($interncolor, 0.3);
-  }
-
-  &.protected.teachers {
-    border-color: $interncolor;
+    nav#jumpto ul {
+      background: transparentize($interncolor, 0.3);
+    }
   }
 
   p {
@@ -316,7 +318,7 @@ nav#subjectoverview {
           color: $activitiescolor;
         }
       }
-      &.protected {
+      &.intern {
         border-top: 6px solid transparentize($interncolor, 0.3);
         a:link, a:visited {
           color: $interncolor;
@@ -373,9 +375,6 @@ nav#subjectoverview {
   }
   .activities {
     background-color: transparentize($activitiescolor, 0.3);
-  }
-  .protected {
-    background-color: transparentize($interncolor, 0.3);
   }
 }
 

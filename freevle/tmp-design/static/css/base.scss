@@ -180,6 +180,12 @@ input, select {
   &.school {
     background-color: transparentize($schoolcolor, 0.2);
   }
+  &.intern {
+    background-color: transparentize($interncolor, 0.2);
+  }
+  &.recent {
+    background-color: transparentize($recentcolor, 0.2);
+  }
   &.activities {
     background-color: transparentize($activitiescolor, 0.3);
   }
