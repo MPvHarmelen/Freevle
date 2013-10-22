@@ -129,6 +129,7 @@ div.filemask {
   overflow: hidden; }
   div.filemask img {
     max-height: 300px;
+    max-width: 90%;
     border: 2px solid #dddddd;
     margin-bottom: 1em; }
 
