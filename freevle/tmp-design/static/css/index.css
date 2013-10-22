@@ -88,7 +88,7 @@ ul#headlines {
     list-style: none;
     display: block;
     font-size: 1.1em;
-    padding: 20px 1em 19px; }
+    padding: 19px 1em 20px; }
     ul#headlines li:nth-child(1) a {
       color: #000; }
     ul#headlines li:nth-child(1) time {
@@ -168,7 +168,7 @@ div#comingup {
       font-size: 1.3em;
       margin: 0; }
   div#comingup time {
-    padding: 25px 23px 25px;
+    padding: 26px 23px 27px;
     width: 60px;
     float: left;
     border-right: 1px solid #f0f0f0;
@@ -215,17 +215,17 @@ div#comingup {
 
   div#recent, div#frontpagenews {
     float: left;
-    width: 49.8%; }
+    width: 50%; }
     div#recent h2, div#frontpagenews h2 {
       margin: 0;
-      padding: 0.5em 20px; }
+      padding: 0.5em 20px;
+      border-left: 1px solid #eeeeee; }
 
-  div#recent {
-    width: 50%;
-    border-right: 1px solid #eeeeee; }
+  div#recent h2 {
+    border: none; }
 
   div#largeactivity {
-    height: 160px; }
+    height: 165px; }
     div#largeactivity a {
       transition: background 200ms ease-in-out;
       -o-transition: background 200ms ease-in-out;
@@ -241,7 +241,8 @@ div#comingup {
 
   ul#headlines {
     width: 100%;
-    border-top: 1px solid #eeeeee; }
+    border-top: 1px solid #eeeeee;
+    margin-bottom: -1px; }
     ul#headlines li {
       overflow: hidden;
       font-size: 1.2em;
@@ -262,14 +263,15 @@ div#comingup {
       text-overflow: ellipsis;
       overflow: hidden; }
 
-  div#comingup li {
-    font-size: 1.1em;
-    border-bottom: 1px solid #eeeeee;
-    width: 34%;
+  div#comingup {
     float: left;
-    clear: none; }
-    div#comingup li:not(:nth-child(1)) {
-      width: 33%; } }
+    clear: none;
+    width: 50%; }
+    div#comingup li {
+      font-size: 1.1em;
+      border-bottom: 1px solid #eeeeee; }
+      div#comingup li:not(:nth-child(1)) {
+        border-bottom: none; } }
 @media (min-width: 1000px) and (max-height: 800px) {
   div#indexcover #darken {
     padding: 4em 2em 14em; }

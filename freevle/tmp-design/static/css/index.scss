@@ -151,7 +151,7 @@ ul#headlines {
     list-style: none;
     display: block;
     font-size: 1.1em;
-    padding: 20px 1em 19px;
+    padding: 19px 1em 20px;
 
     &:nth-child(1) {
       a {
@@ -286,7 +286,7 @@ div#comingup {
   }
 
   time {
-    padding: 25px 23px 25px;
+    padding: 26px 23px 27px;
     width: 60px;
     float: left;
     border-right: 1px solid #f0f0f0;
@@ -347,21 +347,21 @@ div#comingup {
 
   div#recent, div#frontpagenews {
     float: left;
-    width: 49.8%;
+    width: 50%;
 
     h2 {
       margin: 0;
       padding: 0.5em 20px;
+      border-left: 1px solid #eee;
     }
   }
 
-  div#recent {
-    width: 50%;
-    border-right: 1px solid #eee;
+  div#recent h2 {
+    border: none;
   }
 
   div#largeactivity {
-    height: 160px;
+    height: 165px;
 
     a {
       @include transition(background);
@@ -375,6 +375,7 @@ div#comingup {
   ul#headlines {
     width: 100%;
     border-top: 1px solid #eee;
+    margin-bottom: -1px;
 
     li {
       overflow: hidden;
@@ -399,16 +400,16 @@ div#comingup {
   }
 
   div#comingup {
+    float: left;
+    clear: none;
+    width: 50%;
 
     li {
       font-size: 1.1em;
       border-bottom: 1px solid #eee;
-      width: 34%;
-      float: left;
-      clear: none;
 
       &:not(:nth-child(1)) {
-        width: 33%;
+        border-bottom: none;
       }
     }
   }
