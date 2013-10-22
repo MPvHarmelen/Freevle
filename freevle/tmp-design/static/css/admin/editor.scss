@@ -195,7 +195,7 @@ div.filemask {
 }
 
 
-form.soon {
+form.soon, form.user {
   overflow: hidden;
 
   label {
@@ -207,7 +207,7 @@ form.soon {
     width: 85px;
   }
 
-  input {
+  input, select {
     width: 100%;
     border: none;
     border-bottom: 1px solid #eee;
@@ -223,6 +223,9 @@ form.soon {
     &[type=date] {
       padding: 0.39em 20px 0.36em 146px;
     }
+  }
+  select {
+    border: none;
   }
 }
 

@@ -1,3 +1,5 @@
+$buttonfont: 'Montserrat', sans-serif;
+
 $maincolor: #013D7D;
 $morecolor: #333333;
 $recentcolor: #43B83D;
@@ -37,17 +39,17 @@ div#massactions {
     font-weight: bold;
   }
 
-  .button {
+  .button.delete {
     float: left;
-    padding-left: 2.5em;
 
     &.delete {
       background-position: -8px -59px !important;
+      padding-left: 2.5em;
     }
+  }
 
-    &.move {
-      background-position: -8px -9px !important;
-    }
+  select {
+    margin-left: 1.5em;
   }
 }
 
@@ -58,12 +60,35 @@ section.thirty {
   }
 
   button {
-    margin: 1.1em;
+    margin: 1.3em 1.5em;
     float: right;
   }
 
   h4 {
     clear: both;
+  }
+
+  input[type=search] {
+    display: inline-block;
+    border: solid 2px #ddd;
+    background: none;
+    color: $maincolor;
+    padding: 0.6em 0.8em;
+    font-weight: bold;
+    font-family: $buttonfont;
+    text-decoration: none;
+    width: 100%;
+    @include prefixify(box-sizing, border-box);
+
+    &:hover {
+      border-color: #aaa;
+      outline: none;
+    }
+
+    &:focus {
+      border-color: $maincolor;
+      outline: none;
+    }
   }
 
   input:checked + label {
@@ -146,33 +171,11 @@ ul.pages {
         padding: 1em;
       }
 
-      &.date {
+      &.date, &.usertype {
         font-style: italic;
         color: #777;
         padding: 1em;
-        min-width: 4.7em;
-      }
-
-      &.pagename {
-        position: absolute;
-        left: 2.95em;
-        right: 0;
-        z-index: 1;
-        font-size: 1.1em;
-
-        a {
-          padding: 0.9em;
-          display: block;
-          color: #555;
-          text-decoration: none;
-          width: 100%;
-          @include prefixify(box-sizing, border-box);
-
-          &:hover {
-            color: #111;
-            text-decoration: underline;
-          }
-        }
+        min-width: 3.7em;
       }
 
       &.pagename {
@@ -292,6 +295,31 @@ ul.pages {
             border-color: transparent transparent transparent transparentize(black, 0.3);
           }
         }
+      }
+    }
+
+    > a {
+
+      &:hover div {
+        text-decoration: underline;
+        color: #111;
+      }
+
+      .userid {
+        border-left: 1px solid rgba(0,0,0,0.05);
+        color: #777;
+        min-width: 3.2em;
+        padding: 1em;
+      }
+
+      .username {
+        color: #555;
+        position: absolute;
+        left: 12.9em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+        padding: 0.9em;
       }
     }
   }

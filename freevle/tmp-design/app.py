@@ -126,6 +126,16 @@ def adminfrontpage():
     title = 'Voorpagina | Admin | Cygnus Gymnasium'
     return render_template('admin/frontpage.html', title=title)
 
+@app.route('/admin/users/')
+def adminusers():
+    title = 'Gebruikers | Admin | Cygnus Gymnasium'
+    return render_template('admin/users.html', title=title)
+
+@app.route('/admin/users/editor/')
+def adminuserseditor():
+    title = 'Jan Modaal | Gebruikers | Admin | Cygnus Gymnasium'
+    return render_template('admin/users-editor.html', title=title)
+
 
 if __name__ == '__main__':
     app.debug = True

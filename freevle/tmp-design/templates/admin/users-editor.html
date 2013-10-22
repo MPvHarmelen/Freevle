@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/admin/editor.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Gebruiker-editor</h2>
+
+  <section class="card">
+    <form method="POST" action="#" id="editor" class="user">
+      <div id="editortop">
+        <button name="save" type="submit" class="button save">Opslaan</button>
+      </div>
+
+      <label for="name">Naam:</label>
+      <input type="text" name="name" placeholder="..." value="">
+
+      <label for="userid">ID:</label>
+      <input type="text" name="userid" placeholder="..." value="">
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" placeholder="..." value="">
+
+      <label for="rights">Type:</label>
+      <select name="rights">
+        <option value="parent">Ouder</option>
+        <option value="student">Leerling</option>
+        <option value="teacher">Leraar</option>
+        <option value="admin">Admin</option>
+      </select>
+    </form>
+  </section>
+{% endblock %}

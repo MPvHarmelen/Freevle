@@ -9,21 +9,42 @@ div#massactions {
     margin: 0;
     color: #555;
     font-weight: bold; }
-  div#massactions .button {
-    float: left;
-    padding-left: 2.5em; }
-    div#massactions .button.delete {
-      background-position: -8px -59px !important; }
-    div#massactions .button.move {
-      background-position: -8px -9px !important; }
+  div#massactions .button.delete {
+    float: left; }
+    div#massactions .button.delete.delete {
+      background-position: -8px -59px !important;
+      padding-left: 2.5em; }
+  div#massactions select {
+    margin-left: 1.5em; }
 
 section.thirty h3 {
   float: left; }
 section.thirty button {
-  margin: 1.1em;
+  margin: 1.3em 1.5em;
   float: right; }
 section.thirty h4 {
   clear: both; }
+section.thirty input[type=search] {
+  display: inline-block;
+  border: solid 2px #dddddd;
+  background: none;
+  color: #013d7d;
+  padding: 0.6em 0.8em;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+  section.thirty input[type=search]:hover {
+    border-color: #aaa;
+    outline: none; }
+  section.thirty input[type=search]:focus {
+    border-color: #013d7d;
+    outline: none; }
 section.thirty input:checked + label {
   font-weight: bold; }
 section.thirty p {
@@ -77,31 +98,11 @@ ul.pages {
         z-index: 2;
         position: relative;
         padding: 1em; }
-      ul.pages li div.date {
+      ul.pages li div.date, ul.pages li div.usertype {
         font-style: italic;
         color: #777;
         padding: 1em;
-        min-width: 4.7em; }
-      ul.pages li div.pagename {
-        position: absolute;
-        left: 2.95em;
-        right: 0;
-        z-index: 1;
-        font-size: 1.1em; }
-        ul.pages li div.pagename a {
-          padding: 0.9em;
-          display: block;
-          color: #555;
-          text-decoration: none;
-          width: 100%;
-          box-sizing: border-box;
-          -o-box-sizing: border-box;
-          -ms-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          -webkit-box-sizing: border-box; }
-          ul.pages li div.pagename a:hover {
-            color: #111;
-            text-decoration: underline; }
+        min-width: 3.7em; }
       ul.pages li div.pagename {
         position: absolute;
         left: 2.95em;
@@ -205,6 +206,22 @@ ul.pages {
             border-width: 0.7em;
             border-style: solid;
             border-color: transparent transparent transparent rgba(0, 0, 0, 0.7); }
+    ul.pages li > a:hover div {
+      text-decoration: underline;
+      color: #111; }
+    ul.pages li > a .userid {
+      border-left: 1px solid rgba(0, 0, 0, 0.05);
+      color: #777;
+      min-width: 3.2em;
+      padding: 1em; }
+    ul.pages li > a .username {
+      color: #555;
+      position: absolute;
+      left: 12.9em;
+      right: 0;
+      z-index: 1;
+      font-size: 1.1em;
+      padding: 0.9em; }
 
 nav#pagination {
   padding: 1em;
