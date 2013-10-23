@@ -7,21 +7,6 @@ from .models import Category, Subcategory, Page, PageSection
 from ..admin import bp as admin
 # from ..user.decorators import login_required
 
-@bp.app_context_processor
-def inject_sitemap():
-    """Inject categories into context."""
-    categories = Category.query.all()
-    # TODO: where does 'contact' get in?
-    key = lambda a: repr(a)
-    rules = sorted(app.url_map.iter_rules(), key=key)
-    return dict(categories=categories, url_map=rules)
-
-@bp.app_context_processor
-def inject_breadcrumbs():
-    """Inject breadcrumbs extracted from url into context."""
-    breadcrumbs = request.url.split('/')[3:]
-    breadcrumbs = [(crumb, '/' + '/'.join(breadcrumbs[:i + 1])) for i, crumb in enumerate(breadcrumbs)]
-    return dict(breadcrumbs=breadcrumbs)
 
 @bp.route(bp.static_url_path + '/')
 @bp.route(bp.static_url_path + '/<path:path>/')
@@ -36,18 +21,34 @@ def serve_static(path='', filename='', extension=''):
     return bp.send_static_file(file_path)
 
 
+@bp.app_context_processor
+def inject_menu():
+    """Inject categories into context."""
+    categories = Category.query.filter(Category.security_level == None).all()
+    return dict(menu_items=categories)
+
+
+@bp.app_context_processor
+def inject_breadcrumbs():
+    """Inject breadcrumbs extracted from url into context."""
+    url_sections = request.url.split('/')[3:]
+    breadcrumbs = [
+        (
+            crumb,
+            '/' + '/'.join(url_sections[:i + 1]) if app.bound_map.test('/' + '/'.join(url_sections[:i + 1])) else ''
+        )
+        for i, crumb in enumerate(
+            url_sections[:-1]
+        )
+    ]
+    breadcrumbs.append((url_sections[-1], ''))
+    return dict(breadcrumbs=breadcrumbs)
+
+
 @bp.route('/')
 def home():
     """Show the homepage of the entire website."""
     return render_template('cms/index.html')
-
-@bp.route('/<category_slug>/')
-def category_view(category_slug):
-    """Show an overview of a category, with squares for subcategories."""
-    category = Category.query.filter(Category.slug == category_slug).\
-               filter(Category.security_level == None).\
-               first_or_404()
-    return render_template('cms/category_view.html', category=category)
 
 
 @bp.route('/intern/')
@@ -61,6 +62,15 @@ def protected_categories():
     return render_template('cms/category_list.html', categories=categories)
 
 
+@bp.route('/<category_slug>/')
+def category_view(category_slug):
+    """Show an overview of a category, with squares for subcategories."""
+    category = Category.query.filter(Category.slug == category_slug).\
+               filter(Category.security_level == None).\
+               first_or_404()
+    return render_template('cms/category_view.html', category=category)
+
+
 @bp.route('/<category_slug>/<subcategory_slug>/<page_slug>')
 def page_view(category_slug, subcategory_slug, page_slug):
     """Show a page from the database."""
@@ -69,6 +79,7 @@ def page_view(category_slug, subcategory_slug, page_slug):
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
     return render_template('cms/page_view.html', page=page)
+
 
 @bp.route('/intern/<category_slug>/<subcategory_slug>/<page_slug>')
 # @login_required
