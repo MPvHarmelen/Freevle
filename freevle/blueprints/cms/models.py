@@ -29,11 +29,27 @@ page_group_edit = db.Table('page_group_edit',
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(CATEGORY_TITLE_LENGTH), nullable=False)
+    _short_title = db.Column(db.String(CATEGORY_SHORT_TITLE_LENGTH))
     slug = db.Column(db.String(CATEGORY_SLUG_LENGTH), nullable=False, unique=True)
     html_class = db.Column(db.String(CATEGORY_HTML_CLASS_LENGTH), nullable=False)
     security_level = db.Column(db.String(CATEGORY_SECURITY_LEVEL_LENGTH))
 
     validate_slug = db.validates('slug')(validate_slug)
+
+    @hybrid_property
+    def short_title(self):
+        return self._short_title if self._short_title is not None else self.title
+
+    @short_title.expression
+    def short_title(self):
+        return db.case(
+            (Category._short_title == None, Category.title),
+            else_=Category.title
+        )
+
+    @short_title.setter
+    def short_title(self, short_title):
+        self._short_title = short_title
 
     @permalink
     def get_url(self):
