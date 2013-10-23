@@ -33,7 +33,7 @@
 
 
         {% for category in categories %}
-        <section class="hasHeader {{ category.html_class }}">
+        <section class="hasHeader {{ category.html_class or '' }}">
           <h3>{{ category.title }}</h3>
           {% for subcategory in category.subcategories %}
           <li>

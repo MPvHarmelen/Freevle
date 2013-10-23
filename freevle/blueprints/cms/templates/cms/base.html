@@ -46,7 +46,7 @@
           </li>
           {% for category in menu_items %}
           <li>
-            <a href="{{ category.get_url() }}">{{ category.title }}</a>
+            <a href="{{ category.get_url() }}">{{ category.short_title }}</a>
           </li>
           {% endfor %}
           <li>
