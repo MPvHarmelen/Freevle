@@ -45,7 +45,8 @@ for cat_num in range(NUMBER_OF_CATEGORIES):
         subcat = cms_tests.create_subcategory(
             subcat_name,
             subcat_name,
-            category=cat
+            category=cat,
+            html_class=html_classes[(cat_num + subcat_num) % len(html_classes)] if not security_level else None
         )
         print('Made subcategory:\t', subcat)
         for page_num in range(NUMBER_OF_PAGES_PER_SUBCATEGORIE):
