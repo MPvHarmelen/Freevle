@@ -1,0 +1,47 @@
+$pagewidth: 1000px;
+
+article.newsmessage {
+  padding: 0.5em 0 0.5em;
+
+  &:first-of-type {
+    padding-top: 0.1em;
+  }
+
+  h3 {
+    font-size: 1.7em;
+
+    a {
+      color: #333;
+    }
+  }
+
+  p.meta {
+    color: #666;
+  }
+}
+
+.news {
+  h2 {
+    margin-bottom: 0.1em;
+  }
+
+  article.newsmessage {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+div.newscover {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  margin-top: -2em;
+}
+
+
+@media (min-width: $pagewidth) {
+
+  div.newscover {
+    height: 200px;
+  }
+
+}

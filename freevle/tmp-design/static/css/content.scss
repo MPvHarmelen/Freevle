@@ -112,44 +112,7 @@ div#pagecover {
 }
 
 
-/*NEWS*/
-article.newsmessage {
-  padding: 0.5em 0 0.5em;
-
-  &:first-of-type {
-    padding-top: 0.1em;
-  }
-
-  h3 {
-    font-size: 1.7em;
-
-    a {
-      color: #333;
-    }
-  }
-
-  p.meta {
-    color: #666;
-  }
-}
-
-.news {
-  h2 {
-    margin-bottom: 0.1em;
-  }
-
-  article.newsmessage {
-    border-bottom: 1px solid #ddd;
-  }
-}
-
-div.newscover {
-  position: relative;
-  overflow: hidden;
-  height: 150px;
-  margin-top: -2em;
-}
-
+/*NEWS/PHOTOS*/
 form#archivepicker {
   margin: 0.5em 30px;
 
@@ -181,72 +144,6 @@ nav#pagination {
     &.current, &.current:hover {
       text-decoration: underline;
     }
-  }
-}
-
-
-/*PHOTOS*/
-article.photoalbum {
-  position: relative;
-  width: 100%;
-  height: 160px;
-  overflow: hidden;
-
-  a.overlay {
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $recentcolor;
-    display: table;
-    height: 100%;
-    width: 40%;
-    padding: 0 3em;
-    overflow: hidden;
-    @include prefixify(box-sizing, border-box);
-    @include transition(all);
-    opacity: 0.7;
-
-    h3 {
-      color: white;
-      vertical-align: middle;
-      display: table-cell;
-      font-size: 2em;
-
-      time {
-        font-weight: 300;
-      }
-    }
-  }
-
-  &:hover a {
-    text-decoration: none;
-    width: 100%;
-    opacity: 0.9;
-  }
-}
-
-
-/*PHOTOALBUM*/
-div#gallery {
-  overflow: hidden;
-  padding: 0 20px 20px;
-}
-
-a.fancybox {
-  overflow: hidden;
-  position: relative;
-  float: left;
-  width: 48%;
-  height: 120px;
-  margin: 1%;
-  opacity: 0.8;
-  @include transition(opacity);
-
-  &:hover {
-    opacity: 1;
   }
 }
 
@@ -547,27 +444,9 @@ ul.sitemap {
   }
 
 
-  /*NEWS*/
-  div.newscover {
-    height: 200px;
-  }
-
+  /*NEWS/PHOTOS*/
   form#archivepicker {
     margin: 0.5em 50px;
-  }
-
-
-  /*PHOTOALBUM*/
-  div#gallery {
-    padding: 0 40px 40px;
-  }
-
-  a.fancybox {
-    overflow: hidden;
-    float: left;
-    width: 23%;
-    height: 200px;
-    margin: 1%;
   }
 
 
