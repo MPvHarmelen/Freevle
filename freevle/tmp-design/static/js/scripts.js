@@ -15,24 +15,9 @@ function disablrLogin() {
   }
 }
 
-function isLoginForm() {
-  if($('div#login').css('-webkit-transform') == 'matrix(0, 0, 0, 0, 0, 0)') {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function toggleLoginForm() {
-  $('div#login').toggleClass('dialog');
-  if(!isLoginForm()) {
-    $('div#login input:first').focus();
-  }
-}
-
 function sameHeight(first) {
   if($('#subjectoverview')) {
-    if($(window).width() > 1000) {
+    if(window.innerWidth > 999) {
       $('#subjectoverview > ul > section').each(function() {
         var minHeightLi = 0;
         $(this).children('li').each(function() {
@@ -52,7 +37,7 @@ function sameHeight(first) {
 }
 
 function jumptoFeedback(places) {
-  if($(window).width() > 999) {
+  if(window.innerWidth > 999) {
     for(var i = 0; i < places.length; i++) {
       if(places[i-1] < $(window).scrollTop() && places[i] > $(window).scrollTop()) {
         $('.youarehere').removeClass('youarehere');
@@ -93,15 +78,6 @@ $(document).ready(function() {
   });
 
 
-  /*LOGINFORM SHOWING*/
-  $('header .button, div#login .close').click(function(e) {
-    if($(window).width() > 1000) {
-      e.preventDefault();
-      toggleLoginForm();
-    }
-  });
-
-
   /*LOGIN-FORM CHECK EXECUTION*/
   $('#login input').keyup(function() {
     disablrLogin();
@@ -131,7 +107,6 @@ $(document).ready(function() {
         var offsetHeading = $(headerId).offset().top - 71;
       }
       places.push(offsetHeading);
-      console.log(offsetHeading+headerId);
     });
 
     $('#jumpto a:first').addClass('youarehere');
@@ -182,15 +157,6 @@ $(document).ready(function() {
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 27) {//Esc
       $('input').blur();
-      if(isLoginForm()) {
-        toggleLoginForm();
-      }
-    }
-
-    if(e.keyCode == 76 && !focusstatus) {//L
-      if(!isLoginForm()) {
-        toggleLoginForm();
-      }
     }
 
     if(e.keyCode == 83 && !focusstatus || e.keyCode == 191 && !focusstatus) {//S and /

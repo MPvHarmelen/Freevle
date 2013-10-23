@@ -4,9 +4,8 @@ function coverBottom() {
     if($(this).outerHeight() > liHeight) {
       liHeight = Math.round($(this).outerHeight());
     }
-    console.log(liHeight);
   });
-  if($('body').innerWidth() > 999) {
+  if(window.innerWidth > 999) {
     $('#indexcover').css('margin-bottom', -1 * (liHeight + 24));
     $('ul#quicknav li.more a').css('height', liHeight);
     $('ul#quicknav > li').css('min-height', liHeight);
