@@ -473,17 +473,23 @@ footer {
     header#main h1 {
       width: 119px;
       margin: 0;
-      padding: 0.7em 0 0;
+      padding: 0 0 0;
       overflow: hidden;
       float: left;
-      border-right: 1px solid rgba(238, 238, 238, 0.2); }
+      border-right: 1px solid rgba(238, 238, 238, 0.2);
+      position: relative;
+      white-space: nowrap;
+      height: 100%; }
       header#main h1 a > span {
         font-size: 0.8em; }
       header#main h1 span#obsolete {
         display: none; }
       header#main h1 a:link, header#main h1 a:visited {
         padding: 0.7em 0.9em 0.55em;
-        color: #013d7d; }
+        color: #013d7d;
+        position: absolute;
+        top: 0;
+        left: 0; }
     header#main #menuopener, header#main #searchopener {
       display: none !important; }
     header#main ul {
@@ -585,8 +591,6 @@ footer {
     -webkit-transition: background 200ms ease-in-out; }
     .home header#main:hover {
       background: rgba(250, 250, 250, 0.8); }
-    .home header#main h1 {
-      white-space: nowrap; }
 
   /*BREADCRUMBS*/
   nav#breadcrumbs {

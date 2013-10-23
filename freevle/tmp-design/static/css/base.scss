@@ -661,10 +661,13 @@ footer {
     h1 {
       width: 119px;
       margin: 0;
-      padding: 0.7em 0 0;
+      padding: 0 0 0;
       overflow: hidden;
       float: left;
       border-right: 1px solid transparentize(#eee, 0.8);
+      position: relative;
+      white-space: nowrap;
+      height: 100%;
 
       a > span {
         font-size: 0.8em;
@@ -677,6 +680,9 @@ footer {
       a:link, a:visited {
         padding: 0.7em 0.9em 0.55em;
         color: $maincolor;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
 
@@ -815,10 +821,6 @@ footer {
 
     &:hover {
       background: transparentize(#fafafa, 0.2);
-    }
-
-    h1 {
-      white-space: nowrap;
     }
   }
 
