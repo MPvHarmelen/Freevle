@@ -1,15 +1,23 @@
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
-  font-weight: 400;
-  src: local('Montserrat-Regular'), url(/static/fonts/zhcz-_WihjSQC0oHJ9TCYBsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+  font-weight: normal;
+    src: url('/static/fonts/montserratregular-webfont.eot');
+    src: url('/static/fonts/montserratregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/montserratregular-webfont.woff') format('woff'),
+         url('/static/fonts/montserratregular-webfont.ttf') format('truetype'),
+         url('/static/fonts/montserratregular-webfont.svg#montserratregular') format('svg');
 }
 
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
-  font-weight: 700;
-  src: local('Montserrat-Bold'), url(/static/fonts/IQHow_FEYlDC4Gzy_m8fcgFhaRv2pGgT5Kf0An0s4MM.woff) format('woff');
+  font-weight: bold;
+    src: url('/static/fonts/montserratbold-webfont.eot');
+    src: url('/static/fonts/montserratbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/montserratbold-webfont.woff') format('woff'),
+         url('/static/fonts/montserratbold-webfont.ttf') format('truetype'),
+         url('/static/fonts/montserratbold-webfont.svg#montserratbold') format('svg');
 }
 
 
@@ -18,42 +26,66 @@
   font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 300;
-  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(/static/fonts/toadOcfmlt9b38dHJxOBGNbE_oMaV8t2eFeISPpzbdE.woff) format('woff');
-}
-
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(/static/fonts/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
-}
-
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(/static/fonts/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+    src: url('/static/fonts/sourcesansprolight-webfont.eot');
+    src: url('/static/fonts/sourcesansprolight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/sourcesansprolight-webfont.woff') format('woff'),
+         url('/static/fonts/sourcesansprolight-webfont.ttf') format('truetype'),
+         url('/static/fonts/sourcesansprolight-webfont.svg#source_sans_prolight') format('svg');
 }
 
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: italic;
   font-weight: 300;
-  src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightIt'), url(/static/fonts/fpTVHK8qsXbIeTHTrnQH6GGomRtBD2u8FwSY4jjlmeA.woff) format('woff');
+    src: url('/static/fonts/sourcesansprolightitalic-webfont.eot');
+    src: url('/static/fonts/sourcesansprolightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/sourcesansprolightitalic-webfont.woff') format('woff'),
+         url('/static/fonts/sourcesansprolightitalic-webfont.ttf') format('truetype'),
+         url('/static/fonts/sourcesansprolightitalic-webfont.svg#source_sans_prolight_italic') format('svg');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: normal;
+    src: url('/static/fonts/sourcesansproregular-webfont.eot');
+    src: url('/static/fonts/sourcesansproregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/sourcesansproregular-webfont.woff') format('woff'),
+         url('/static/fonts/sourcesansproregular-webfont.ttf') format('truetype'),
+         url('/static/fonts/sourcesansproregular-webfont.svg#source_sans_proregular') format('svg');
 }
 
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: italic;
-  font-weight: 400;
-  src: local('Source Sans Pro Italic'), local('SourceSansPro-It'), url(/static/fonts/M2Jd71oPJhLKp0zdtTvoMzNrcjQuD0pTu1za2FULaMs.woff) format('woff');
+  font-weight: normal;
+    src: url('/static/fonts/sourcesansproitalic-webfont.eot');
+    src: url('/static/fonts/sourcesansproitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/sourcesansproitalic-webfont.woff') format('woff'),
+         url('/static/fonts/sourcesansproitalic-webfont.ttf') format('truetype'),
+         url('/static/fonts/sourcesansproitalic-webfont.svg#source_sans_proitalic') format('svg');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: bold;
+    src: url('/static/fonts/sourcesansprobold-webfont.eot');
+    src: url('/static/fonts/sourcesansprobold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/sourcesansprobold-webfont.woff') format('woff'),
+         url('/static/fonts/sourcesansprobold-webfont.ttf') format('truetype'),
+         url('/static/fonts/sourcesansprobold-webfont.svg#source_sans_probold') format('svg');
 }
 
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: italic;
-  font-weight: 700;
-  src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldIt'), url(/static/fonts/fpTVHK8qsXbIeTHTrnQH6Nog-We9VNve39Jr4Vs_aDc.woff) format('woff');
+  font-weight: bold;
+    src: url('/static/fonts/sourcesansprobolditalic-webfont.eot');
+    src: url('/static/fonts/sourcesansprobolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/sourcesansprobolditalic-webfont.woff') format('woff'),
+         url('/static/fonts/sourcesansprobolditalic-webfont.ttf') format('truetype'),
+         url('/static/fonts/sourcesansprobolditalic-webfont.svg#source_sans_probold_italic') format('svg');
 }
 
 
@@ -61,7 +93,12 @@
 @font-face {
   font-family: 'Aldus';
   font-style: normal;
-  font-weight: 400;
-  src: local('Aldus'), url(/static/fonts/aldus.woff) format('woff'),
-       local('Aldus'), url(/static/fonts/aldus.ttf) format('ttf');
+  font-weight: normal;
+    src: url('/static/fonts/aldus-webfont.eot');
+    src: url('/static/fonts/aldus-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aldus-webfont.woff') format('woff'),
+         url('/static/fonts/aldus-webfont.ttf') format('truetype'),
+         url('/static/fonts/aldus-webfont.svg#aldusromanscbook') format('svg');
 }
+
+
