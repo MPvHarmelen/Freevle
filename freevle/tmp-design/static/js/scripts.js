@@ -189,4 +189,18 @@ $(document).ready(function() {
       }
     }
   });
+
+
+  /*FLASHED MESSAGES*/
+  setTimeout(function() {
+    $('.messagecont').fadeOut(1000);
+  }, 2000);
+
+  $(window).blur(function() {
+    $('.messagecont').stop().css('opacity', '1');
+  }).focus(function() {
+    setTimeout(function() {
+      $('.messagecont').fadeOut(2000);
+    }, 2000);
+  });
 });

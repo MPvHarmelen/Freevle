@@ -146,6 +146,22 @@ input, select {
     min-width: 50%;
     min-height: 50%; }
 
+/*FLASHED MESSAGES*/
+div.messagecont {
+  position: absolute;
+  z-index: 7;
+  display: block;
+  margin: auto;
+  top: 0;
+  background: #333;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 100%; }
+  div.messagecont div {
+    padding: 1em;
+    font-size: 1.1em; }
+
 /*IE-WARNING*/
 div#iewarning {
   position: absolute;
