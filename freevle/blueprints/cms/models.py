@@ -45,7 +45,6 @@ class Subcategory(db.Model):
     slug = db.Column(db.String(SUBCATEGORY_SLUG_LENGTH), nullable=False)
     html_class = db.Column(db.String(SUBCATEGORY_HTML_CLASS_LENGTH))
     featured = db.Column(db.Boolean, nullable=False, default=False)
-    user_type_view = db.Column(db.String(USER_TYPE_LENGTH))
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
     __table_args__ = (
@@ -142,13 +141,14 @@ class Page(db.Model):
 
     @property
     def html_class(self):
-        return self.subcategory.html_class if self.subcategory.html_class else self.subcategories.category.html_class
+        return self.subcategory.html_class if self.subcategory.html_class else self.subcategory.category.html_class
 
     @permalink
     def get_url(self):
-        return 'cms.page_view', {'page_slug': self.slug,
-                                 'subcategory_slug': self.subcategory.slug,
-                                 'category_slug': self.subcategory.category.slug}
+        endpoint = 'cms.page_view' if self.subcategory.category.security_level is None else 'cms.protected_page_view'
+        return endpoint, {'page_slug': self.slug,
+                          'subcategory_slug': self.subcategory.slug,
+                          'category_slug': self.subcategory.category.slug}
 
     @permalink
     def get_edit_url(self):
@@ -162,11 +162,14 @@ class Page(db.Model):
                                          'category_slug': self.subcategory.category.slug}
 
     @staticmethod
-    def get_page(is_protected, category_slug, subcategory_slug, page_slug):
+    def get_page(security_level, category_slug, subcategory_slug, page_slug):
         # TODO: find out if this could be put into one query.
-        cat = Category.query.filter(Category.slug == category_slug).\
-              first_or_404()
-              # filter(Category.is_protected == is_protected).
+        cat = Category.query.filter(Category.slug == category_slug)
+        if security_level is None:
+            cat = cat.filter(Category.security_level == None)
+        else:
+            cat = cat.filter(db.not_(Category.security_level == None))
+        cat = cat.first_or_404()
         sub = Subcategory.query.filter(Subcategory.category == cat)\
               .filter(Subcategory.slug == subcategory_slug).first_or_404()
         return Page.query.filter(Page.subcategory == sub)\

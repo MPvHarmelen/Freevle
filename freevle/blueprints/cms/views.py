@@ -45,8 +45,8 @@ def home():
 def category_view(category_slug):
     """Show an overview of a category, with squares for subcategories."""
     category = Category.query.filter(Category.slug == category_slug).\
+               filter(Category.security_level == None).\
                first_or_404()
-               # filter(Category.is_protected == False).
     return render_template('cms/category_view.html', category=category)
 
 
@@ -54,7 +54,8 @@ def category_view(category_slug):
 # @login_required
 def protected_categories():
     """View all protected categories."""
-    categories = [c for c in Category.query.all()
+    categories = Category.query.filter(db.not_(Category.security_level == None)).all()
+    categories = [c for c in categories
                   # if isinstance(eval(c.security_level.capitalize()), session.get('user'))
                   ]
     return render_template('cms/category_list.html', categories=categories)
@@ -73,7 +74,7 @@ def page_view(category_slug, subcategory_slug, page_slug):
 # @login_required
 def protected_page_view(category_slug, subcategory_slug, page_slug):
     """Show a page from the database."""
-    security_level = session.get('user', None)
+    security_level = session.get('user', 'student')
     page = Page.get_page(security_level, category_slug, subcategory_slug, page_slug)
     page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:

@@ -16,8 +16,13 @@ class CMSTests(TestBase):
         self.assertEqual(rv.status, '200 OK')
 
     @staticmethod
-    def create_category(title, slug, html_class=''):
-        cat = Category(title=title, slug=slug, html_class=html_class)
+    def create_category(title, slug, html_class='', security_level=None):
+        cat = Category(
+            title=title,
+            slug=slug,
+            html_class=html_class,
+            security_level=security_level
+        )
         db.session.add(cat)
         db.session.commit()
         return cat
@@ -35,13 +40,12 @@ class CMSTests(TestBase):
         # TODO: Test creating illegal categories
 
     @staticmethod
-    def create_subcategory(title, slug, html_class=None, user_type_view=None,
+    def create_subcategory(title, slug, html_class=None,
                            category=None, category_id=None):
         sub = Subcategory(
             title=title,
             slug=slug,
             html_class=html_class,
-            user_type_view=user_type_view
         )
 
         if category is not None:

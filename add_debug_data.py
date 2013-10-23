@@ -3,9 +3,11 @@ from freevle.blueprints.cms.tests import CMSTests
 # from freevle.blueprints.news.models import NewsItem, Event
 # from freevle.blueprints.galleries.models import Album
 
-NUMBER_OF_CATEGORIES = 6
+NUMBER_OF_CATEGORIES = 7
 NUMBER_OF_SUBCATEGORIES_PER_CATEGORIE = 3
 NUMBER_OF_PAGES_PER_SUBCATEGORIE = 4
+NUMBER_OF_UNPROTECTED_CATEGORIES = 1
+NUMBER_OF_TEACHER_PROTECTED_CATEGORIES = 2
 
 db.create_all()
 
@@ -25,7 +27,18 @@ html_classes = ['school', 'education', 'activities', 'intern', 'more', 'promotio
 cms_tests = CMSTests()
 for cat_num in range(NUMBER_OF_CATEGORIES):
     cat_name = 'test-{}'.format(cat_num)
-    cat = cms_tests.create_category(cat_name, cat_name, html_classes[cat_num % len(html_classes)])
+    if cat_num < NUMBER_OF_UNPROTECTED_CATEGORIES:
+        security_level = None
+    elif NUMBER_OF_CATEGORIES - cat_num <= NUMBER_OF_TEACHER_PROTECTED_CATEGORIES:
+        security_level = 'teacher'
+    else:
+        security_level = 'student'
+    cat = cms_tests.create_category(
+        cat_name,
+        cat_name,
+        html_classes[cat_num % len(html_classes)],
+        security_level
+    )
     print('Made category:\t', cat)
     for subcat_num in range(NUMBER_OF_SUBCATEGORIES_PER_CATEGORIE):
         subcat_name = 'test-{}'.format(subcat_num)
