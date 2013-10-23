@@ -8,79 +8,24 @@
 
 {% block page %}
   <div id="content" class="info">
-
     <nav id="subjectoverview">
-
-      <h2>Algemene Informatie</h2>
-
+      <h2>{{ category.title }}</h2>
       <ul>
-
         <section>
-
-          <li class="promotion">
-            <h3>8ste Groepers</h3>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Voor 8ste Groepers</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="education">
-            <h3>Onderwijs</h3>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Waarom Gymnasium?</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Waarom het Cygnus?</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Wereldburgers & wetenschappers</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Lesprogramma</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Resultaten</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="school">
-            <h3>De School</h3>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Geschiedenis</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Gebouw</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Schoolklimaat</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">In de pers</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="activities">
-            <h3>Activiteiten</h3>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Schoolreizen</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Aristeia</a>
-              </li>
-            </ul>
-          </li>
-
+          {% for subcategory in category.subcategories %}
+            <li class="{{ subcategory.html_class or '' }}">
+              <h3>{{ subcategory.title }}</h3>
+              <ul>
+                {% for page in subcategory.pages %}
+                  <li>
+                    <a href="{{ page.get_url() }}">{{ page.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
         </section>
-
       </ul>
     </nav>
-
   </div>
 {% endblock %}
