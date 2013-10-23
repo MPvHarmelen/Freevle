@@ -31,6 +31,7 @@ class Category(db.Model):
     title = db.Column(db.String(CATEGORY_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(CATEGORY_SLUG_LENGTH), nullable=False, unique=True)
     html_class = db.Column(db.String(CATEGORY_HTML_CLASS_LENGTH), nullable=False)
+    security_level = db.Column(db.String(CATEGORY_SECURITY_LEVEL_LENGTH))
 
     validate_slug = db.validates('slug')(validate_slug)
 
@@ -42,7 +43,7 @@ class Subcategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(SUBCATEGORY_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(SUBCATEGORY_SLUG_LENGTH), nullable=False)
-    html_class = db.Column(db.String(SUBCATEGORY_HTML_CLASS_LENGTH), nullable=False)
+    html_class = db.Column(db.String(SUBCATEGORY_HTML_CLASS_LENGTH))
     featured = db.Column(db.Boolean, nullable=False, default=False)
     user_type_view = db.Column(db.String(USER_TYPE_LENGTH))
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
@@ -141,7 +142,7 @@ class Page(db.Model):
 
     @property
     def html_class(self):
-        return self.subcategory.html_class
+        return self.subcategory.html_class if self.subcategory.html_class else self.subcategories.category.html_class
 
     @permalink
     def get_url(self):
@@ -161,9 +162,11 @@ class Page(db.Model):
                                          'category_slug': self.subcategory.category.slug}
 
     @staticmethod
-    def get_page(category_slug, subcategory_slug, page_slug):
+    def get_page(is_protected, category_slug, subcategory_slug, page_slug):
         # TODO: find out if this could be put into one query.
-        cat = Category.query.filter(Category.slug == category_slug).first_or_404()
+        cat = Category.query.filter(Category.slug == category_slug).\
+              first_or_404()
+              # filter(Category.is_protected == is_protected).
         sub = Subcategory.query.filter(Subcategory.category == cat)\
               .filter(Subcategory.slug == subcategory_slug).first_or_404()
         return Page.query.filter(Page.subcategory == sub)\
