@@ -91,13 +91,13 @@ $(document).ready(function() {
     scrollTo(offsetHeading);
   });
 
-  if(window.location.hash) {
-    var offsetHeading = $(window.location.hash).offset().top - 70;
-    scrollTo(offsetHeading);
-  }
-
   var places = [];
   $(window).load(function() {
+
+    if(window.location.hash) {
+      var offsetHeading = $(window.location.hash).offset().top - 70;
+      scrollTo(offsetHeading);
+    }
 
     $('#jumpto li a').each(function() {
       var headerId = $(this).attr('href');
