@@ -81,12 +81,12 @@ def page_view(category_slug, subcategory_slug, page_slug):
     return render_template('cms/page_view.html', page=page)
 
 
-@bp.route('/intern/<category_slug>/<subcategory_slug>/<page_slug>')
+@bp.route('/intern/<category_slug>/<page_slug>')
 # @login_required
-def protected_page_view(category_slug, subcategory_slug, page_slug):
+def protected_page_view(category_slug, page_slug):
     """Show a page from the database."""
     security_level = session.get('user', 'student')
-    page = Page.get_page(security_level, category_slug, subcategory_slug, page_slug)
+    page = Page.get_page(security_level, category_slug, None, page_slug)
     page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))

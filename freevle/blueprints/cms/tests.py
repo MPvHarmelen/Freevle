@@ -37,10 +37,16 @@ class CMSTests(TestBase):
         with self.app.app_context():
             self.assertEqual(cat_got.get_url(), 'http://' + self.app.config['SERVER_NAME'] + '/test/')
         self.assertEqual(self.client.get('/test/').status, '200 OK')
+
+        self.create_category('Te sT', 'tesst', 'classss', 'student')
+        cat_got = Category.query.get(2)
+        with self.app.app_context():
+            self.assertEqual(cat_got.get_url(), 'http://' + self.app.config['SERVER_NAME'] + '/intern/')
+
         # TODO: Test creating illegal categories
 
     @staticmethod
-    def create_subcategory(title, slug, html_class=None,
+    def create_subcategory(title, slug=None, html_class=None,
                            category=None, category_id=None):
         sub = Subcategory(
             title=title,
@@ -62,34 +68,32 @@ class CMSTests(TestBase):
     def test_subcategory(self):
         # Create legal subcategories
         cat = self.create_category('test', 'test')
-        self.create_subcategory('Te sT', 'test', '#123456', 'parent', cat)
+        self.create_subcategory('Te sT', 'test', '#123456', cat)
         subcat_got = Subcategory.query.get(1)
         self.assertEqual(subcat_got.title, 'Te sT')
         self.assertEqual(subcat_got.slug, 'test')
         self.assertEqual(subcat_got.html_class, '#123456')
-        self.assertEqual(subcat_got.user_type_view, 'parent')
         self.assertEqual(subcat_got.category_id, cat.id)
         self.assertEqual(subcat_got.category, cat)
 
         # TODO: test creating illegal subcategories
 
     @staticmethod
-    def create_page(title, slug, subcategory=None, subcategory_id=None,
+    def create_page(title, slug, subcategory=None, subcategory_id=0,
                     content='Content.', is_published=True, cover_image_url=None):
-        page = Page(
-            title=title,
-            slug=slug,
-            content=content,
-            is_published=is_published,
-            cover_image_url=cover_image_url
-        )
         if subcategory is not None:
-            page.subcategory = subcategory
+            page = Page(subcategory=subcategory)
         elif subcategory_id is not None:
-            page.subcategory_id = subcategory_id
+            page = Page(subcategory_id=subcategory_id)
         else:
             raise TypeError("create_page() missing one of either required "
                             "arguments: 'subcategory', 'subcategory_id'")
+        page.title = title
+        page.slug = slug
+        page.content = content
+        page.is_published = is_published
+        page.cover_image_url = cover_image_url
+
         db.session.add(page)
         db.session.commit()
         return page
@@ -179,16 +183,6 @@ class CMSTests(TestBase):
         self.assertEqual(p_got.sections.all(), all_sections)
         self.assertEqual(p_got.text_sections.all(), [text_section1, text_section2])
         self.assertEqual(p_got.image_sections.all(), [image_section1, image_section2])
-        with self.app.app_context():
-            self.assertEqual(
-                p_got.get_url(),
-                'http://' + self.app.config['SERVER_NAME'] + '/test/test/test'
-            )
-            self.assertEqual(
-                p_got.get_edit_url(),
-                'http://' + self.app.config['SERVER_NAME'] + '/admin/cms/page/test/test/test/edit'
-            )
-        self.assertEqual(self.client.get('/test/test/test').status, '200 OK')
         # Test if the 'last_edited' actually updates.
         last_edited = p_got.last_edited
         sleep(SLEEP_TIME)
@@ -201,10 +195,43 @@ class CMSTests(TestBase):
         # Test if the datetime_created isn't the same as last_edited
         self.assertNotAlmostEqual(p_got.datetime_created, p_got.last_edited, delta=ONUPDATE_DELTA)
 
+        # Url related stuff
+        # unprotected page
+        with self.app.app_context():
+            self.assertEqual(
+                p_got.get_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/test/test/test'
+            )
+            self.assertEqual(
+                p_got.get_edit_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/admin/cms/page/test/test/test/edit'
+            )
+            self.assertEqual(self.client.get(p_got.get_url()).status, '200 OK')
+
+        # protected page
+        cat = self.create_category('test', 'test1', security_level='student')
+        p_sub_cat = self.create_subcategory('test', 'test2', '#123456', category=cat)
+        p_in = self.create_page('TeSt', 'test', p_sub_cat)
+        p_got = Page.query.get(p_in.id)
+        with self.app.app_context():
+            self.assertEqual(
+                p_got.get_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/intern/test1/test'
+            )
+            self.assertEqual(self.client.get(p_got.get_url()).status, '200 OK')
+
         # Create illegal pages
         # Incorrect slug
         self.assertRaises(ValueError, self.create_page, 'title',
                           "This isn't a slug", sub_cat)
+        # Duplicate slug not protected
+        self.assertRaises(IntegrityError, self.create_page, 'TeSt', 'test',
+                          sub_cat)
+        db.session.rollback()
+        p_sub_cat = self.create_subcategory('test', 'test3', '#123456', category=cat)
+        self.assertRaises(IntegrityError, self.create_page, 'TeSt', 'test',
+                          p_sub_cat)
+
 
     @staticmethod
     def create_link(link=None, **kwargs):
