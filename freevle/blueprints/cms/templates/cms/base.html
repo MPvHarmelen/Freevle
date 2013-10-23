@@ -44,9 +44,11 @@
           <li>
             <a href="/" id="currentpage" class="mobileonly">Home</a>
           </li>
+          {% for category in menu_items %}
           <li>
-            <a href="/info/">Info</a>
+            <a href="{{ category.get_url() }}">{{ category.title }}</a>
           </li>
+          {% endfor %}
           <li>
             <a href="/nieuws/">Nieuws</a>
           </li>
@@ -97,7 +99,11 @@
       <a href="/">Home</a>
       {% for crumb, url in breadcrumbs %}
         &ensp;/&ensp;
-        <a href="{{ url }}">{{ crumb }}</a>
+        {% if url %}
+          <a href="{{ url }}">{{ crumb }}</a>
+        {% else %}
+          {{ crumb }}
+        {% endif %}
       {% endfor %}
     </nav>
 

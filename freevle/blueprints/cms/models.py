@@ -37,7 +37,10 @@ class Category(db.Model):
 
     @permalink
     def get_url(self):
-        return 'cms.category_view', {'category_slug': self.slug}
+        if self.security_level is None:
+            return 'cms.category_view', {'category_slug': self.slug}
+        else:
+            return 'cms.protected_categories', {}
 
 class Subcategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
