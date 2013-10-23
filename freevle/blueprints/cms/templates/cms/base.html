@@ -95,10 +95,10 @@
 
     <nav id="breadcrumbs">
       <a href="/">Home</a>
-      &ensp;/&ensp;
-      <a href="/info/">Info</a>
-      &ensp;/&ensp;
-      Waarom gymnasium?
+      {% for crumb, url in breadcrumbs %}
+        &ensp;/&ensp;
+        <a href="{{ url }}">{{ crumb }}</a>
+      {% endfor %}
     </nav>
 
     <div id="page">
