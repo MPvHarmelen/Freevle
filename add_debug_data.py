@@ -1,8 +1,11 @@
 from freevle import db
-from freevle.blueprints.cms.models import Page
 from freevle.blueprints.cms.tests import CMSTests
-from freevle.blueprints.news.models import NewsItem, Event
-from freevle.blueprints.galleries.models import Album
+# from freevle.blueprints.news.models import NewsItem, Event
+# from freevle.blueprints.galleries.models import Album
+
+NUMBER_OF_CATEGORIES = 6
+NUMBER_OF_SUBCATEGORIES_PER_CATEGORIE = 3
+NUMBER_OF_PAGES_PER_SUBCATEGORIE = 4
 
 db.create_all()
 
@@ -17,37 +20,45 @@ Vestibulum sodales molestie ligula a consectetur. Praesent eleifend, sem non auc
 
 
 image_urls = ['/static/img/sections/' + name for name in ['page.jpg', 'newsfront.png', 'page2.jpg']]
-html_classes = ['school', 'education', 'activities', 'recent', 'intern', 'more']
+html_classes = ['school', 'education', 'activities', 'intern', 'more', 'promotion']
 
 cms_tests = CMSTests()
-cat = cms_tests.create_category('test', 'test')
-for z in range(4):
-    sub_cat = cms_tests.create_subcategory(
-       'test-{}'.format(z),
-       'test-{}'.format(z),
-       html_classes[z % len(html_classes)],
-       category=cat
-    )
-    for x in range(3):
-        p = cms_tests.create_page('TeSt{}'.format(x), 'test{}'.format(x), sub_cat,
-                                  content=page_content.format(x),
-                                  cover_image_url=image_urls[x % len(image_urls)])
-        print('Made page: ', p)
-        for y in range(2):
-            s = cms_tests.create_text_section(order=y, slug='section-{}'.format(y),
-                                          page=p, content=lorum)
+for cat_num in range(NUMBER_OF_CATEGORIES):
+    cat_name = 'test-{}'.format(cat_num)
+    cat = cms_tests.create_category(cat_name, cat_name, html_classes[cat_num % len(html_classes)])
+    print('Made category:\t', cat)
+    for subcat_num in range(NUMBER_OF_SUBCATEGORIES_PER_CATEGORIE):
+        subcat_name = 'test-{}'.format(subcat_num)
+        subcat = cms_tests.create_subcategory(
+            subcat_name,
+            subcat_name,
+            category=cat
+        )
+        print('Made subcategory:\t', subcat)
+        for page_num in range(NUMBER_OF_PAGES_PER_SUBCATEGORIE):
+            p = cms_tests.create_page(
+                'TeSt{}'.format(page_num),
+                'test{}'.format(page_num),
+                subcat,
+                content=page_content.format(page_num),
+                cover_image_url=image_urls[(page_num + subcat_num + cat_num) % len(image_urls)]
+            )
+            print('Made page:\t', p)
+            for y in range(2):
+                s = cms_tests.create_text_section(order=y, slug='section-{}'.format(y),
+                                              page=p, content=lorum)
+                print('Made section:\t', s)
+            s = cms_tests.create_image_section(order=2, slug='image1', page=p,
+                                           image_url=image_urls[1])
             print('Made section:\t', s)
-        s = cms_tests.create_image_section(order=2, slug='image1', page=p,
-                                       image_url=image_urls[1])
-        print('Made section:\t', s)
-        s = cms_tests.create_text_section(order=3, slug='section-2'.format(y),
-                                          page=p, content=lorum)
-        print('Made section:\t', s)
-        s = cms_tests.create_image_section(order=4, slug='image2', page=p,
-                                       image_url=image_urls[2])
-        print('Made section:\t', s)
-        s = cms_tests.create_text_section(order=5, slug='section-3'.format(y),
-                                          page=p, content=lorum)
-        print('Made section:\t', s)
+            s = cms_tests.create_text_section(order=3, slug='section-2'.format(y),
+                                              page=p, content=lorum)
+            print('Made section:\t', s)
+            s = cms_tests.create_image_section(order=4, slug='image2', page=p,
+                                           image_url=image_urls[2])
+            print('Made section:\t', s)
+            s = cms_tests.create_text_section(order=5, slug='section-3'.format(y),
+                                              page=p, content=lorum)
+            print('Made section:\t', s)
 
 print('Done.')
