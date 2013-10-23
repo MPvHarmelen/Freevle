@@ -35,7 +35,7 @@ class CMSTests(TestBase):
         # TODO: Test creating illegal categories
 
     @staticmethod
-    def create_subcategory(title, slug, html_class='', user_type_view=None,
+    def create_subcategory(title, slug, html_class=None, user_type_view=None,
                            category=None, category_id=None):
         sub = Subcategory(
             title=title,

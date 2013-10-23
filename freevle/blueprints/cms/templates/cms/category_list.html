@@ -8,13 +8,9 @@
 
 {% block page %}
   <div id="content" class="intern">
-
     <nav id="subjectoverview">
-
       <h2>Interne Informatie</h2>
-
       <ul>
-
         <section class="hasHeader promotion">
 
           <h3>Handige linkjes</h3>
@@ -36,237 +32,23 @@
         </section>
 
 
-
-        <section class="hasHeader education">
-
-          <h3>Onderwijs</h3>
-
+        {% for category in categories %}
+        <section class="hasHeader {{ category.html_class }}">
+          <h3>{{ category.title }}</h3>
+          {% for subcategory in category.subcategories %}
           <li>
-            <h4>Rooster</h4>
+            <h4>{{ subcategory.title }}</h4>
             <ul>
+              {% for page in subcategory.pages %}
               <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Weekrooster</a>
+                <a href="{{ page.get_url() }}">{{ page.title }}</a>
               </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Toetsweekrooster</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Jaarrooster</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Lestijden</a>
-              </li>
+              {%  endfor %}
             </ul>
           </li>
-
-          <li>
-            <h4>Toetsen & cijfers</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">PTA</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Magister</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Protocol toetsen & cijfers; toetsweken & examens</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Protocol toetsweken</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Protocol examens</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>Decanaat</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Profielkeuze</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Studiekeuze</a>
-              </li>
-            </ul>
-          </li>
-
+          {% endfor %}
         </section>
-
-        <section class="hasHeader school">
-
-          <h3>De School</h3>
-
-          <li>
-            <h4>Communicatie</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Jaargids</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Brieven</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Cygnalement</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Cygyn</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>ICT</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Systeembeheer</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Protocol laptopgebruik</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Moodle</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Schoolmail</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>Medezeggenschapsorganen</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Leerlingenraad</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Ouderraad</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Medezeggenschaps raad</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>Gesprekken</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Ouderavonden</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Oudergesprekken</a>
-              </li>
-            </ul>
-          </li>
-
-        </section>
-
-
-        <section class="hasHeader activities">
-
-          <h3>Activiteiten</h3>
-
-          <li>
-            <h4>Activiteiten</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Aristeia</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Sportdagen</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Klas 1 & 2</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Klas 3 & 4</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Klas 5 & 6</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>Schoolfeesten</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">De Commissie</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Protocol schoolfeesten</a>
-              </li>
-            </ul>
-          </li>
-
-        </section>
-
-        <section class="hasHeader more">
-
-          <h3>Overig</h3>
-
-          <li>
-            <h4>Overig</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Mentoraat</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Boekenfonds</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>Verzuim</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Te laat</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Absentie</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Inhaalmiddagen</a>
-              </li>
-            </ul>
-          </li>
-
-        </section>
-
-        <section class="hasHeader intern">
-
-          <h3>Personeel</h3>
-
-          <li>
-            <h4>Lijsten</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Lijst rugzakleerlingen</a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h4>Communicatie</h4>
-            <ul>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Nieuwsbrief Personeel</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Personeels<br>vergadering</a>
-              </li>
-              <li>
-                <a href="/info/onderwijs/waaromgymnasium/">Dummy dummy</a>
-              </li>
-            </ul>
-          </li>
-
-        </section>
-
-
+        {% endfor %}
       </ul>
     </nav>
 

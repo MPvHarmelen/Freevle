@@ -1,10 +1,11 @@
-from flask import render_template, Markup, request
+from flask import render_template, Markup, request, session
 
 from freevle import db, app
 from freevle.utils.functions import headles_markdown as markdown
 from . import bp
 from .models import Category, Subcategory, Page, PageSection
 from ..admin import bp as admin
+# from ..user.decorators import login_required
 
 @bp.app_context_processor
 def inject_sitemap():
@@ -43,17 +44,42 @@ def home():
 @bp.route('/<category_slug>/')
 def category_view(category_slug):
     """Show an overview of a category, with squares for subcategories."""
-    category = Category.query.filter(Category.slug == category_slug).first_or_404()
+    category = Category.query.filter(Category.slug == category_slug).\
+               first_or_404()
+               # filter(Category.is_protected == False).
     return render_template('cms/category_view.html', category=category)
+
+
+@bp.route('/intern/')
+# @login_required
+def protected_categories():
+    """View all protected categories."""
+    categories = [c for c in Category.query.all()
+                  # if isinstance(eval(c.security_level.capitalize()), session.get('user'))
+                  ]
+    return render_template('cms/category_list.html', categories=categories)
+
 
 @bp.route('/<category_slug>/<subcategory_slug>/<page_slug>')
 def page_view(category_slug, subcategory_slug, page_slug):
     """Show a page from the database."""
-    page = Page.get_page(category_slug, subcategory_slug, page_slug)
+    page = Page.get_page(None, category_slug, subcategory_slug, page_slug)
     page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
     return render_template('cms/page_view.html', page=page)
+
+@bp.route('/intern/<category_slug>/<subcategory_slug>/<page_slug>')
+# @login_required
+def protected_page_view(category_slug, subcategory_slug, page_slug):
+    """Show a page from the database."""
+    security_level = session.get('user', None)
+    page = Page.get_page(security_level, category_slug, subcategory_slug, page_slug)
+    page.content = Markup(markdown(page.content))
+    for text_section in page.text_sections:
+        text_section.content = Markup(markdown(text_section.content))
+    return render_template('cms/page_view.html', page=page)
+
 
 
 # Admin
