@@ -1,0 +1,628 @@
+$pagewidth: 1000px;
+$smallpagewidth: 900px;
+
+$maincolor: #013D7D;
+$recentcolor: #43B83D;
+$educationcolor: #D11605;
+$schoolcolor: #013D7D;
+$activitiescolor: #14CA9D;
+$promotecolor: #FBA929;
+$interncolor: #6E0080;
+$morecolor: #333333;
+
+@mixin transition($property, $duration: 200ms) {
+          transition: $property $duration ease-in-out;
+       -o-transition: $property $duration ease-in-out;
+      -ms-transition: $property $duration ease-in-out;
+     -moz-transition: $property $duration ease-in-out;
+  -webkit-transition: $property $duration ease-in-out;
+}
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+/*MAIN CONTENT*/
+div#content {
+  margin: 0 auto;
+  background: #fafafa;
+  padding-bottom: 1px;
+  border-top: solid 8px $maincolor;
+
+  nav#jumpto ul {
+    background: transparentize($schoolcolor, 0.3);
+  }
+
+  &.education {
+    border-color: transparentize($educationcolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($educationcolor, 0.3);
+    }
+  }
+  &.school {
+    border-color: transparentize($schoolcolor, 0.2);
+    nav#jumpto ul {
+      background: transparentize($schoolcolor, 0.3);
+    }
+  }
+  &.activities {
+    border-color: transparentize($activitiescolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($activitiescolor, 0.3);
+    }
+  }
+
+  &.recent {
+    border-color: transparentize($recentcolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($recentcolor, 0.3);
+    }
+  }
+
+  &.intern {
+    border-color: transparentize($interncolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($interncolor, 0.3);
+    }
+  }
+
+  p {
+    margin: 0.5em 30px 1.5em;
+    text-align: justify;
+    line-height: 1.6em;
+  }
+
+  img {
+    max-width: 100%;
+    margin: auto;
+    display: block;
+  }
+
+  section.containsimg {
+    padding-bottom: 1em;
+    border: none;
+
+    &+ section {
+      border: none;
+    }
+  }
+
+  p.caption {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 0.5em;
+  }
+}
+
+/*INPAGE NAV*/
+nav#jumpto {
+  display: none;
+}
+
+
+/*PAGECOVER*/
+div#pagecover {
+  position: relative; 
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/*NEWS*/
+article.newsmessage {
+  padding: 0.5em 0 0.5em;
+
+  &:first-of-type {
+    padding-top: 0.1em;
+  }
+
+  h3 {
+    font-size: 1.7em;
+
+    a {
+      color: #333;
+    }
+  }
+
+  p.meta {
+    color: #666;
+  }
+}
+
+.news {
+  h2 {
+    margin-bottom: 0.1em;
+  }
+
+  article.newsmessage {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+div.newscover {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  margin-top: -2em;
+}
+
+form#archivepicker {
+  margin: 0.5em 30px;
+
+  .button {
+    padding: 0.65em 0.9em;
+  }
+}
+
+nav#pagination {
+  padding: 1em;
+  text-align: center;
+
+  a {
+    color: white;
+    display: inline-block;
+    padding: 0.7em 0.9em;
+    margin: 0.1em;
+    background: transparentize($recentcolor, 0.3);
+
+    &:hover {
+      text-decoration: none;
+      background: $recentcolor;
+    }
+
+    &.current, &.dots {
+      background: transparentize($recentcolor, 0.3);
+    }
+
+    &.current, &.current:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+/*PHOTOS*/
+article.photoalbum {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+
+  a.overlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $recentcolor;
+    display: table;
+    height: 100%;
+    width: 40%;
+    padding: 0 3em;
+    overflow: hidden;
+    @include prefixify(box-sizing, border-box);
+    @include transition(all);
+    opacity: 0.7;
+
+    h3 {
+      color: white;
+      vertical-align: middle;
+      display: table-cell;
+      font-size: 2em;
+
+      time {
+        font-weight: 300;
+      }
+    }
+  }
+
+  &:hover a {
+    text-decoration: none;
+    width: 100%;
+    opacity: 0.9;
+  }
+}
+
+
+/*PHOTOALBUM*/
+div#gallery {
+  overflow: hidden;
+  padding: 0 20px 20px;
+}
+
+a.fancybox {
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 48%;
+  height: 120px;
+  margin: 1%;
+  opacity: 0.8;
+  @include transition(opacity);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+
+/*RELEVANT*/
+nav#readfurther {
+  background: #f5f5f5;
+  border-top: 1px solid #eee;
+  margin-bottom: -1px;
+
+  h2 {
+    font-size: 1.5em;
+    font-style: italic;
+    margin: 0.7em 1em;
+  }
+}
+
+
+/*SUBJECT-OVERVIEW*/
+nav#subjectoverview {
+  font-size: 1.1em;
+
+  h2 {
+    font-size: 2.05em;
+    margin-left: 30px;
+  }
+
+  > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    section {
+      overflow: hidden;
+      padding-bottom: 1em;
+
+      > h3 {
+        margin: 0;
+        word-wrap:break-word;
+        font-weight: 300;
+        padding: 1.2em 30px;
+      }
+
+      &:nth-of-type(1) > h3 {
+        margin-top: 0;
+      }
+
+      &.promotion {
+        border-top: 6px solid transparentize($promotecolor, 0.3);
+        a:link, a:visited {
+          color: $promotecolor;
+        }
+      }
+      &.education {
+        border-top: 6px solid transparentize($educationcolor, 0.3);
+        a:link, a:visited {
+          color: $educationcolor;
+        }
+      }
+      &.school {
+        border-top: 6px solid transparentize($schoolcolor, 0.3);
+        a:link, a:visited {
+          color: $schoolcolor;
+        }
+      }
+      &.activities {
+        border-top: 6px solid transparentize($activitiescolor, 0.3);
+        a:link, a:visited {
+          color: $activitiescolor;
+        }
+      }
+      &.intern {
+        border-top: 6px solid transparentize($interncolor, 0.3);
+        a:link, a:visited {
+          color: $interncolor;
+        }
+      }
+      &.more {
+        border-top: 6px solid transparentize($morecolor, 0.3);
+        a:link, a:visited {
+          color: $morecolor;
+        }
+      }
+    }
+
+    section > li {
+      display: block;
+      padding: 1em 30px;
+
+      h4, h3 {
+        margin: 0.5em 0;
+        word-wrap:break-word;
+      }
+
+      ul {
+        padding: 0 0 0 1.6em;
+        list-style: disc;
+      }
+
+    }
+  }
+
+}
+
+.info {
+  section {
+    padding-bottom: 0 !important;
+  }
+
+  li {
+    color: white;
+  }
+
+  a:link, a:visited {
+    color: white;
+  }
+
+  .promotion {
+    background-color: transparentize($promotecolor, 0.3);
+  }
+  .education {
+    background-color: transparentize($educationcolor, 0.3);
+  }
+  .school {
+    background-color: transparentize($schoolcolor, 0.2);
+  }
+  .activities {
+    background-color: transparentize($activitiescolor, 0.3);
+  }
+}
+
+
+/*LOGIN-PAGE*/
+a#backtoindex {
+  display: block;
+  top: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 7;
+  color: transparentize(white, 0.3);
+  padding: 1em 0;
+  font-weight: bold;
+}
+
+
+/*SETTINGS-PAGE*/
+form#settings {
+  padding: 0 30px;
+
+  input {
+    display: block;
+    margin: 1em 0;
+    border-color: transparentize($interncolor, 0.5);
+    width: 18em;
+    max-width: 100%;
+    @include prefixify(box-sizing, border-box);
+
+    &:hover {
+      border-color: transparentize($interncolor, 0.3);
+    }
+    &:focus {
+      border-color: $interncolor;
+    }
+
+    &[name=secndpass] {
+      float: left;
+      margin-top: 0;
+    }
+
+    &[type=submit] {
+      color: white;
+      background: transparentize($interncolor, 0.3);
+      margin-bottom: 2em;
+      clear: both;
+
+      &:hover, &:focus {
+        background: transparentize($interncolor, 0.4);
+      }
+
+      &[disabled] {
+        background: transparentize($interncolor, 0.7);
+        border-color: transparent;
+
+        &:hover {
+          @include prefixify(box-shadow, none);
+          text-shadow: none;
+          cursor: default;
+        }
+        &:active {
+          @include prefixify(box-shadow, none);
+          padding: 0.6em 0.8em;
+        }
+      }
+    }
+  }
+
+  p#samechecker {
+    overflow: hidden;
+    float: left;
+    padding: 0.6em 0;
+    height: auto;
+    opacity: 1;
+    margin: 0 1em;
+    text-align: center;
+    @include transition(all);
+
+    &:empty {
+      padding: 0;
+      height: 0;
+      opacity: 0.2;
+    }
+
+    &.okay {
+      color: #aaa;
+    }
+  }
+}
+
+
+/*SITEMAP*/
+ul.sitemap {
+  margin: 0 30px 1em;
+  font-style: italic;
+
+  &.protected {
+    padding: 0 0 1.5em 3em;
+    border-left: 8px solid transparentize($interncolor, 0.4);
+  }
+
+  li {
+    padding: 0.2em 0;
+  }
+
+  h3 {
+    margin: 1em 0 0;
+  }
+
+  a {
+    font-style: normal;
+  }
+}
+
+
+@media (min-width: $pagewidth) {
+
+  div#content {
+    width: $smallpagewidth;
+    margin: 1.5em auto;
+    position: relative;
+    z-index: 2;
+    @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
+
+    p {
+      margin: 0.5em 50px 1.5em;
+    }
+  }
+
+
+  /*INPAGE NAV*/
+  nav#jumpto {
+    display: block;
+    position: fixed;
+    margin-left: -105px;
+    bottom: 2em;
+    font-size: 0.8em;
+    z-index: 2;
+
+    ul {
+      position: relative;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
+
+      li {
+        &#title {
+          padding: 0.7em 0.9em;
+          font-style: italic;
+          color: #eee;
+        }
+
+        a:link, a:visited {
+          max-width: 114px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          padding: 0.7em 0.9em;
+          display: block;
+          color: white;
+
+          &.youarehere {
+            background: transparentize(white, 0.7);
+          }
+        }
+      }
+    }
+  }
+
+
+  /*NEWS*/
+  div.newscover {
+    height: 200px;
+  }
+
+  form#archivepicker {
+    margin: 0.5em 50px;
+  }
+
+
+  /*PHOTOALBUM*/
+  div#gallery {
+    padding: 0 40px 40px;
+  }
+
+  a.fancybox {
+    overflow: hidden;
+    float: left;
+    width: 23%;
+    height: 200px;
+    margin: 1%;
+  }
+
+
+  /*SUBJECT-OVERVIEW*/
+  nav#subjectoverview {
+    > ul {
+      height: 100%;
+      overflow: hidden;
+
+      section > li, section > h3 {
+        width: 25%;
+        @include prefixify(box-sizing, border-box);
+        float: left;
+      }
+      section.hasHeader > li:nth-of-type(3n + 4) {
+        margin-left: 25%;
+      }
+    }
+  }
+
+
+  div#recentlinks a {
+    width: 44%;
+    padding: 3%;
+    float: left;
+  }
+
+  form#settings {
+    padding: 0 50px;
+  }
+
+  ul.sitemap {
+    margin: 0 50px 2em;
+    padding: 0 0 0 1.2em;
+  }
+}
+
+@media (max-width: 1120px) {
+  /*INPAGE NAV*/
+  nav#jumpto {
+    margin-left: -40px;
+
+    a:link, a:visited {
+      max-width: 50px !important;
+      @include transition(max-width);
+    }
+
+    &:hover a:link, &:hover a:visited {
+      max-width: 114px !important;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  div#content {
+    width: $pagewidth;
+  }
+}
