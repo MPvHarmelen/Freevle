@@ -191,6 +191,7 @@ div#comingup {
   ul#quicknav > li {
     float: left;
     width: 25%;
+    padding: 17px 1.2em;
     box-sizing: border-box;
     -o-box-sizing: border-box;
     -ms-box-sizing: border-box;

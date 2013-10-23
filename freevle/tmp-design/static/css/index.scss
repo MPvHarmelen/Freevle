@@ -318,6 +318,7 @@ div#comingup {
   ul#quicknav > li {
     float: left;
     width: 25%;
+    padding: 17px 1.2em;
     @include prefixify(box-sizing, border-box);
   }
 
