@@ -243,6 +243,17 @@ div.messagecont {
 }
 
 
+/*ERRORS*/
+p.error {
+  background: darken(lightcoral, 10%);
+  display: inline-block;
+  padding: 0.8em 1em;
+  font-weight: bold;
+  color: white;
+  font-size: 1.1em;
+}
+
+
 /*IE-WARNING*/
 div#iewarning {
   position: absolute;
