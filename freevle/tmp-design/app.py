@@ -31,31 +31,35 @@ def aboutpage(a,b):
 
 @app.route('/nieuws/archief/')
 def newsarchive():
-    return render_template('nieuwsarchief.html')
+    title = 'Archief Nieuws | Cygnus Gymnasium'
+    return render_template('nieuwsarchief.html', title=title)
 
 @app.route('/nieuws/<a>/<b>/<c>/')
 def newsmessage(a,b,c):
-    return render_template('nieuwsbericht.html')
+    title = 'Opening Schip | Nieuws | Cygnus Gymnasium'
+    return render_template('nieuwsbericht.html', title=title)
 
 
 @app.route('/fotos/<a>/<b>/')
 def photoalbum(a,b):
-    return render_template('fotoalbum.html')
+    title = 'Jihlava | Foto\'s | Cygnus Gymnasium'
+    return render_template('fotoalbum.html', title=title)
 
 @app.route('/fotos/archief/')
 def photosarchive():
-    return render_template('fotosarchief.html')
+    title = 'Archief Foto\'s | Cygnus Gymnasium'
+    return render_template('fotosarchief.html', title=title)
 
 
 @app.route('/login/', methods=['POST'])
 def login():
-    title = 'Login | Cygnus Gymnasium'
     return redirect(url_for('intern'))
 
 
 @app.route('/login/', methods=['GET'])
 def showlogin():
-    return render_template('login.html')
+    title = 'Login | Cygnus Gymnasium'
+    return render_template('login.html', title=title)
 
 
 @app.route('/zoek/autocompletion/', methods=['POST'])
