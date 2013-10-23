@@ -9,10 +9,6 @@ div#indexcover {
     background: rgba(0, 0, 0, 0.2); }
   div#indexcover h1 {
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
-  div#indexcover .button {
-    background: #fba929;
-    color: white;
-    border-color: #fb9f10; }
 
 .home div#content {
   overflow: hidden;

@@ -1,5 +1,5 @@
 $pagewidth: 1000px;
-@mixin transition($property, $duration: 200ms) {
+@mixin transition($property, $duration: 150ms) {
           transition: $property $duration ease-in-out;
        -o-transition: $property $duration ease-in-out;
       -ms-transition: $property $duration ease-in-out;
@@ -17,51 +17,51 @@ $pagewidth: 1000px;
 
 @-webkit-keyframes wiggle {
   from {
-    top: 30px;
+    top: 15px;
   }
 
   to {
-    top: 40px;
+    top: 25px;
   }
 }
 
 @-moz-keyframes wiggle {
   from {
-    top: 30px;
+    top: 15px;
   }
 
   to {
-    top: 40px;
+    top: 25px;
   }
 }
 
 @-ms-keyframes wiggle {
   from {
-    top: 30px;
+    top: 15px;
   }
 
   to {
-    top: 40px;
+    top: 25px;
   }
 }
 
 @-o-keyframes wiggle {
   from {
-    top: 30px;
+    top: 15px;
   }
 
   to {
-    top: 40px;
+    top: 25px;
   }
 }
 
 @keyframes wiggle {
   from {
-    top: 30px;
+    top: 15px;
   }
 
   to {
-    top: 40px;
+    top: 25px;
   }
 }
 
@@ -131,6 +131,7 @@ $pagewidth: 1000px;
       width: 100%;
 
       div {
+        @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.8));
         margin: 0 auto;
         width: 400px;
         padding: 0 0 0.7em;
@@ -139,13 +140,16 @@ $pagewidth: 1000px;
 
     #pointdown {
       display: block;
-      background: white;
+      background: transparentize(white, 0.3);
       position: absolute;
-      height: 100px;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      color: #888;
+      height: 62px;
+      width: 150px;
+      bottom: 20px;
+      left: 50%;
+      margin-left: -75px;
+      color: #555;
+      @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.8));
+      @include transition(background);
 
       div {
         text-align: center;
@@ -162,9 +166,9 @@ $pagewidth: 1000px;
 
       p {
         text-align: center;
-        font-size: 1.3em;
+        font-size: 1.2em;
         position: absolute;
-        top: 40px;
+        top: 22px;
         width: 100%;
         margin: 0;
         @include transition(opacity);
@@ -172,6 +176,8 @@ $pagewidth: 1000px;
       }
 
       &:hover {
+        background: transparentize(white, 0.1);
+
         :nth-child(1) {
           opacity: 0;
         }
