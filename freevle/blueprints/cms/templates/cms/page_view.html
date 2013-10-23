@@ -49,7 +49,7 @@
       {% elif section.type == 'image' %}
         <section class="containsimg">
           <img src="{{ section.image_url }}" alt="{{ section.title }}">
-          <p class="caption">{{ section.title }}</p>
+          {% if section.title %}<p class="caption">{{ section.title }}</p>{% endif %}
         </section>
       {% endif %}
     {% endfor %}
