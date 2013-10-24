@@ -234,8 +234,8 @@ class CMSTests(TestBase):
 
 
     @staticmethod
-    def create_link(link=None, **kwargs):
-        l = Link(link, **kwargs)
+    def create_link(destination=None,  starting_points=[], **kwargs):
+        l = Link(destination, starting_points, **kwargs)
         db.session.add(l)
         db.session.commit()
         return l
@@ -246,33 +246,33 @@ class CMSTests(TestBase):
         with assertRaisesTypeError: Link()
         with assertRaisesTypeError: Link('category')
         with assertRaisesTypeError: Link(a=cat)
-        with assertRaisesTypeError: Link(category=cat, category_id=cat.id)
+        with assertRaisesTypeError: Link(destination_category=cat, destination_category_id=cat.id)
         with assertRaisesTypeError: Link(id=1)
         with assertRaisesTypeError: Link('category', id=1)
         with assertRaisesTypeError: Link(a=cat, id=1)
-        with assertRaisesTypeError: Link(category=cat, category_id=cat.id, id=1)
+        with assertRaisesTypeError: Link(destination_category=cat, destination_category_id=cat.id, id=1)
 
-        with self.assertRaises(ValueError): Link(category=None)
-        with self.assertRaises(ValueError): Link(id=1, category=None)
+        with self.assertRaises(ValueError): Link(destination_category=None)
+        with self.assertRaises(ValueError): Link(id=1, destination_category=None)
 
-        with self.assertRaises(AttributeError): Link(category='aaaa')
-        with self.assertRaises(AttributeError): Link(id=1, category='aaaa')
+        with self.assertRaises(AttributeError): Link(destination_category='aaaa')
+        with self.assertRaises(AttributeError): Link(id=1, destination_category='aaaa')
 
         get_db_link = lambda link: Link.query.get(link.id)
         def assertEqualCat(*args, **kwargs):
             return self.assertEqual(
                         get_db_link(
                             self.create_link(*args, **kwargs)
-                        ).link,
+                        ).destination,
                         cat
                    )
 
         assertEqualCat(cat, id=1)
-        assertEqualCat(category=cat, id=2)
-        assertEqualCat(category_id=cat.id, id=3)
+        assertEqualCat(destination_category=cat, id=2)
+        assertEqualCat(destination_category_id=cat.id, id=3)
         assertEqualCat(cat)
-        assertEqualCat(category=cat)
-        assertEqualCat(category_id=cat.id)
+        assertEqualCat(destination_category=cat)
+        assertEqualCat(destination_category_id=cat.id)
 
         sub = self.create_subcategory('title', 'slug', 'html_class', category=cat)
         link = self.create_link(sub)
@@ -281,5 +281,16 @@ class CMSTests(TestBase):
             self.assertEqual(Link.query.get(1).get_url(), cat.get_url())
             self.assertEqual(link.get_url(), '')
 
+        db.session.add(link)
+        link.starting_points = (cat,)
+        self.assertEqual(link.starting_points, [cat])
+        link.starting_points += [sub]
+        self.assertEqual(link.starting_points, [sub, cat])
+        db.session.add(link)
+        db.session.commit()
+        self.assertEqual(cat.links.first(), link)
+        self.assertNotEqual(cat.linked_by.first(), link)
+        self.assertEqual(sub.linked_by.first(), link)
+        self.assertEqual(sub.links.first(), link)
 
 suite = unittest.makeSuite(CMSTests)

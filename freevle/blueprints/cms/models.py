@@ -335,64 +335,99 @@ class Link(db.Model):
     # a 'Link' object should be able link to.
     for model_name in LINK_LINKED_MODELS:
         low_name = camel_to_underscore(model_name)
-        foreignkey_code = "{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
-                          .format(name=low_name)
-        relationship_code = """
-{low_name} = db.relationship(
+        destination_foreignkey_code = "destination_{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
+                                      .format(name=low_name)
+        destination_relationship_code = """
+destination_{low_name} = db.relationship(
     {name},
+    foreign_keys=[destination_{low_name}_id],
     backref=db.backref(
-        'links',
-        order_by={name}.id,
+        'linked_by',
+        order_by='Link.id',
         lazy='dynamic'
     )
 )
         """.format(low_name=low_name, name=model_name)
-        exec(foreignkey_code)
-        exec(relationship_code)
+        from_foreignkey_code = "from_{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
+                               .format(name=low_name)
+        from_relationship_code = """
+from_{low_name} = db.relationship(
+    {name},
+    foreign_keys=[from_{low_name}_id],
+    backref=db.backref(
+        'links',
+        order_by='Link.id',
+        lazy='dynamic'
+    )
+)
+        """.format(low_name=low_name, name=model_name)
+        exec(destination_foreignkey_code)
+        exec(destination_relationship_code)
+        exec(from_foreignkey_code)
+        exec(from_relationship_code)
 
-    def __init__(self, link=None, **kwargs):
-        if link is not None:
-            kwargs[camel_to_underscore(type(link).__name__)] = link
+    def __init__(self, destination=None, starting_points=[], **kwargs):
+        if destination is not None:
+            kwargs['destination_' + camel_to_underscore(type(destination).__name__)] = destination
+        for starting_point in starting_points:
+            kwargs['from_' + camel_to_underscore(type(starting_point).__name__)] = starting_point
 
         # The length of kwargs without 'id' is needed, so temporarily take it out
-        id = kwargs.pop('id', False)
-        if len(kwargs) != 1:
-            raise TypeError('Exactly one link required, got {}'.format(len(kwargs)))
-
-        # Put 'id' back if it was there in the first place
-        if id is not False:
-            kwargs['id'] = id
+        if len([k for k in kwargs.keys() if k[:12] == 'destination_']) != 1:
+            raise TypeError('Exactly one destination required, got {}'.format(
+                len([k for k in kwargs.keys() if k[:12] == 'destination_'])
+            ))
 
         # Use the original __init__ function to do most of the work
         super(Link, self).__init__(**kwargs)
 
-        kwargs.pop('id', None)
-        # Now there should only be one value in the dict
+        # Now there should only be one value in the dict for the destination
         # The key of this value is the attribute name
         # Let's save it to easily get our attribute back
-        self._link = kwargs.keys().__iter__().__next__()
-        if kwargs[self._link] is None:
-            raise ValueError("Link may not be None.")
+        self._link = [k[12:] for k in kwargs.keys() if k[:12] == 'destination_'][0]
+        if kwargs['destination_' + self._link] is None:
+            raise ValueError("Destination may not be None.")
         self._link = self._link[:-3] if self._link[-3:] == '_id' else self._link
 
     @property
-    def link(self):
+    def destination(self):
         """Return the model this Link object links to."""
-        return getattr(self, self._link)
+        return getattr(self, 'destination_' + self._link)
 
-    @link.setter
-    def link(self, model):
+    @destination.setter
+    def destination(self, model):
         model_name = type(model).__name__
         if model_name in LINK_LINKED_MODELS:
-            setattr(self, camel_to_underscore(model_name), model)
+            self._link = camel_to_underscore(model_name)
+            setattr(self, 'destination_' + self._link, model)
         else:
             raise ValueError("'Link' object can't link to {}".format(model_name))
-        self._link = model_name
+
+    @property
+    def starting_points(self):
+        return [
+            getattr(self, 'from_' + camel_to_underscore(name))
+            for name in LINK_LINKED_MODELS
+            if getattr(self, 'from_' + camel_to_underscore(name)) is not None
+        ]
+
+    @starting_points.setter
+    def starting_points(self, value):
+        for model in value:
+            model_name = type(model).__name__
+            if model_name in LINK_LINKED_MODELS:
+                self._link = camel_to_underscore(model_name)
+                setattr(self, 'from_' + self._link, model)
+            else:
+                raise ValueError("'{}' object can't link to 'Link' object".format(model_name))
 
     @property
     def html_class(self):
         """Return the html class of the model this Link object links to."""
-        return getattr(self.link, 'html_class', '')
+        return getattr(self.destination, 'html_class', '')
 
     def get_url(self):
-        return self.link.get_url() if hasattr(self.link, 'get_url') else ''
+        return self.destination.get_url() if hasattr(self.destination, 'get_url') else ''
+
+    def __repr__(self):
+        return '({}) Link to {} from {}'.format(self.id, self.destination, self.starting_points)
