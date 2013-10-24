@@ -31,7 +31,10 @@ def inject_menu():
 @bp.app_context_processor
 def inject_breadcrumbs():
     """Inject breadcrumbs extracted from url into context."""
-    url_sections = request.url.split('/')[3:-1] if request.url.split('/')[-1] == '' else request.url.split('/')[3:]
+    url_sections = request.url.split('/')[3:-1]\
+                   if request.url.split('/')[-1] == ''\
+                   else request.url.split('/')[3:]
+
     breadcrumbs = [
         (
             crumb,
@@ -41,7 +44,8 @@ def inject_breadcrumbs():
             url_sections[:-1]
         )
     ]
-    breadcrumbs.append((url_sections[-1], ''))
+    if len(url_sections) > 0:
+        breadcrumbs.append((url_sections[-1], ''))
     return dict(breadcrumbs=breadcrumbs)
 
 
