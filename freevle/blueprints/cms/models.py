@@ -18,16 +18,6 @@ from ..user.models import Admin
 
 from ..news.models import NewsItem
 
-class Event(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(EVENT_NAME_LENGTH), nullable=False)
-    date = db.Column(db.Date(), nullable=False)
-    datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
-    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
-
-    def __repr__(self):
-        return '({}) {} on {}'.format(self.id, self.title, self.date.strftime('%x'))
-
 page_group_view = db.Table('page_group_view',
     db.Column('page_id', db.Integer, db.ForeignKey('page.id')),
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'))
@@ -443,3 +433,26 @@ from_{low_name} = db.relationship(
 
     def __repr__(self):
         return '({}) Link to {} from {}'.format(self.id, self.destination, self.starting_points)
+
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(EVENT_NAME_LENGTH), nullable=False)
+    date = db.Column(db.Date(), nullable=False)
+    datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    link_id = db.Column(db.Integer, db.ForeignKey('link.id'))
+
+    link = db.relationship(
+        Link,
+        backref=db.backref(
+            'events',
+            order_by='Event.date',
+            lazy='dynamic'
+        )
+    )
+
+    def get_url(self):
+        return self.link.get_url() if self.link is not None else ''
+
+    def __repr__(self):
+        return '({}) {} on {}'.format(self.id, self.title, self.date.strftime('%x'))
