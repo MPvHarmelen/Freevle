@@ -3,10 +3,6 @@ from flask import url_for, render_template
 from . import bp
 from .constants import *
 
-from ..cms.models import Page
-from ..galleries.models import Album
-from ..news.models import NewsItem, Event
-
 @bp.context_processor
 def inject_admin_map():
     for dic in bp.index_views.values():
