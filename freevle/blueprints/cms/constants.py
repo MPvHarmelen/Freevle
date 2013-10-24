@@ -1,3 +1,6 @@
+# Homepage constants
+NUMBER_OF_EVENTS_ON_HOMEPAGE = 3
+
 # Event constants
 EVENT_NAME_LENGTH = 32
 

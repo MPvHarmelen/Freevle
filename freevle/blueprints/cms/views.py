@@ -1,9 +1,12 @@
+from datetime import date
+
 from flask import render_template, Markup, request, session
 
 from freevle import db, app
 from freevle.utils.functions import headles_markdown as markdown
 from . import bp
-from .models import Category, Subcategory, Page, PageSection
+from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE
+from .models import Event, Category, Page
 from ..admin import bp as admin
 # from ..user.decorators import login_required
 
@@ -52,7 +55,10 @@ def inject_breadcrumbs():
 @bp.route('/')
 def home():
     """Show the homepage of the entire website."""
-    return render_template('cms/index.html')
+    today = date.today()
+    upcomming = Event.query.filter(Event.date >= today).\
+                order_by(Event.date.asc()).limit(NUMBER_OF_EVENTS_ON_HOMEPAGE)
+    return render_template('cms/index.html', upcomming=upcomming)
 
 
 @bp.route('/intern/')
