@@ -1,5 +1,3 @@
 # NewsItem constants
 NEWS_ITEM_TITLE_LENGTH = 32
-
-# Event constants
-EVENT_NAME_LENGTH = 32
+NEWS_ITEM_COVER_IMAGE_URL_LENGTH = 255

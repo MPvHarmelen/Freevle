@@ -18,6 +18,16 @@ from ..user.models import Admin
 
 from ..news.models import NewsItem
 
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(EVENT_NAME_LENGTH), nullable=False)
+    date = db.Column(db.Date(), nullable=False)
+    datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+
+    def __repr__(self):
+        return '({}) {} on {}'.format(self.id, self.title, self.date.strftime('%x'))
+
 page_group_view = db.Table('page_group_view',
     db.Column('page_id', db.Integer, db.ForeignKey('page.id')),
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'))
@@ -94,6 +104,9 @@ class Category(db.Model):
         elif isinstance(user, eval(self.user_type_view.capitalize())):
             return True
         return False
+
+    def __repr__(self):
+        return '({}) {}'.format(self.id, self.get_url())
 
 class Subcategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -248,8 +261,7 @@ class Page(db.Model):
         return False
 
     def __repr__(self):
-        return '({}) {}/{}/{}'.format(self.id, self.subcategory.category.slug,
-                                      self.subcategory.slug, self.slug)
+        return '({}) {}'.format(self.id, self.get_url())
 
 class PageSection(db.Model):
     id = db.Column(db.Integer, primary_key=True)

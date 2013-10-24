@@ -1,3 +1,6 @@
+# Event constants
+EVENT_NAME_LENGTH = 32
+
 # Category constants
 CATEGORY_TITLE_LENGTH = 32
 CATEGORY_SHORT_TITLE_LENGTH = 10
