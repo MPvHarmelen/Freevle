@@ -7,6 +7,6 @@ bp = Blueprint(
     static_folder='static'
 )
 
-URL_PREFIX='/news'
+URL_PREFIX='/nieuws'
 
 from . import views

@@ -1,0 +1,16 @@
+{% extends "cms/base.html" %}
+
+{% block pagination %}
+<nav id="pagination">
+      <a href="?page={{ page - 1}}">&laquo; Vorige</a>
+      <a {% if page == 1 %}class="current"{% else %}href="?page=1"{% endif %}>1</a>
+      <a href="#2">2</a>
+      <a href="#3">3</a>
+      <a href="#4">4</a>
+      <a href="#5">5</a>
+      <a class="dots">...</a>
+      <a href="#16">16</a>
+      <a href="?page={{ page + 1 }}">Volgende &raquo;</a>
+      <a href="/nieuws/archief/">Archief</a>
+    </nav>
+{% endblock %}

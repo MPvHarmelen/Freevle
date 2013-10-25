@@ -1,3 +1,6 @@
+# View constants
+NEWS_ITEMS_PER_PAGE = 10
+
 # NewsItem constants
 NEWS_ITEM_TITLE_LENGTH = 32
 NEWS_ITEM_COVER_IMAGE_URL_LENGTH = 255
