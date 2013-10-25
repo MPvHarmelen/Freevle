@@ -172,7 +172,10 @@ class Page(db.Model):
     def validate_slug(self, key, value):
         value = self._validate_slug(key, value)
         # print((self.subcategory, self.subcategory_id))
-        subcategory = self.subcategory if self.subcategory is not None else Subcategory.query.get(self.subcategory_id)
+        try:
+            subcategory = self.subcategory if self.subcategory is not None else Subcategory.query.get(self.subcategory_id)
+        except TypeError:
+            return value
         # subcategory = self.subcategory
         if subcategory.category.security_level is None:
             # The link will look like /<cat>/<sub>/<page>
