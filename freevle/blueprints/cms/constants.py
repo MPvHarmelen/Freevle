@@ -1,5 +1,6 @@
 # Homepage constants
 NUMBER_OF_EVENTS_ON_HOMEPAGE = 3
+NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE = 4
 
 # Event constants
 EVENT_NAME_LENGTH = 32

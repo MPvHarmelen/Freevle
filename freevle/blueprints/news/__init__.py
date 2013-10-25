@@ -8,3 +8,5 @@ bp = Blueprint(
 )
 
 URL_PREFIX='/news'
+
+from . import views

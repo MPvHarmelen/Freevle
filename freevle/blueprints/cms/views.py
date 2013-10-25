@@ -5,8 +5,9 @@ from flask import render_template, Markup, request, session
 from freevle import db, app
 from freevle.utils.functions import headles_markdown as markdown
 from . import bp
-from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE
+from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE, NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE
 from .models import Event, Category, Page
+from ..news.models import NewsItem
 from ..admin import bp as admin
 # from ..user.decorators import login_required
 
@@ -58,7 +59,12 @@ def home():
     today = date.today()
     upcomming = Event.query.filter(Event.date >= today).\
                 order_by(Event.date.asc()).limit(NUMBER_OF_EVENTS_ON_HOMEPAGE)
-    return render_template('cms/index.html', upcomming=upcomming)
+    news_items = NewsItem.query.filter(NewsItem.date_published >= today).\
+                 order_by(NewsItem.date_published.asc()).\
+                 limit(NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE)
+    return render_template('cms/index.html',
+                           upcomming=upcomming,
+                           news_items=news_items)
 
 
 @bp.route('/intern/')
