@@ -140,22 +140,14 @@
       </h2>
 
       <ul id="headlines">
+        {% for item in news_items %}
         <li>
-          <time class="date">27/9</time>
-          <a href="/nieuws/2013/09/openening-schip">Opening Schip</a>
+          <time class="date">{{ item.date_published.strftime('%d/%m').lstrip('0').replace('/0', '/') }}</time>
+          <a href="{{ item.get_url() }}">{{ item.title }}</a>
         </li>
-        <li>
-          <time class="date">30/12</time>
-          <a href="/nieuws/2013/08/start-schooljaar">Fietsen op het schoolplein</a>
-        </li>
-        <li>
-          <time class="date">10/8</time>
-          <a href="/nieuws/2013/08/start-schooljaar">Leraar van het jaar verkozen!</a>
-        </li>
-        <li>
-          <time class="date">12/6</time>
-          <a href="/nieuws/2013/08/start-schooljaar">Eind schooljaar</a>
-        </li>
+        {% else %}
+        <li>Geen nieuws</li>
+        {% endfor %}
       </ul>
 
     </div>
@@ -164,29 +156,23 @@
     <div id="comingup">
       <h2>Binnenkort</h2>
       <ul>
-        <li>
-          <time>
-            <span class="day">12</span>
-            Dec 2013
-          </time>
-          <p>Kerstgala</p>
-        </li>
-        <li>
-          <a href="/groep8/">
+        {% for event in upcomming %}
+          {% if event.get_url() %}
+           <a href="{{ event.get_url() }}">
+          {% endif %}
+          <li>
             <time>
-              <span class="day">31</span>
-              Jan 2014
+              <span class="day">{{ event.date.strftime('%d').lstrip('0') }}</span>
+              {{ event.date.strftime('%b %Y') }}
             </time>
-            <p>Open dag</p>
-          </a>
-        </li>
-        <li>
-          <time>
-            <span class="day">18</span>
-            Feb 2014
-          </time>
-          <p>Open dag</p>
-        </li>
+            <p>{{ event.title }}</p>
+          </li>
+          {% if event.get_url() %}
+           </a>
+          {% endif %}
+        {% else %}
+          <li>Er gebeurt binnenkort niets</li>
+        {% endfor %}
       </ul>
     </div>
   </div>

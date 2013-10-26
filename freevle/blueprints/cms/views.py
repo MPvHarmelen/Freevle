@@ -1,9 +1,13 @@
+from datetime import date
+
 from flask import render_template, Markup, request, session
 
 from freevle import db, app
 from freevle.utils.functions import headles_markdown as markdown
 from . import bp
-from .models import Category, Subcategory, Page, PageSection
+from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE, NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE
+from .models import Event, Category, Page
+from ..news.models import NewsItem
 from ..admin import bp as admin
 # from ..user.decorators import login_required
 
@@ -31,7 +35,11 @@ def inject_menu():
 @bp.app_context_processor
 def inject_breadcrumbs():
     """Inject breadcrumbs extracted from url into context."""
-    url_sections = request.url.split('/')[3:]
+    url_sections = request.url.split('/')[3:-1]\
+                   if request.url.split('/')[-1] == ''\
+                   or request.url.split('/')[-1][0] == '?'\
+                   else request.url.split('/')[3:]
+
     breadcrumbs = [
         (
             crumb,
@@ -41,14 +49,23 @@ def inject_breadcrumbs():
             url_sections[:-1]
         )
     ]
-    breadcrumbs.append((url_sections[-1], ''))
+    if len(url_sections) > 0:
+        breadcrumbs.append((url_sections[-1], ''))
     return dict(breadcrumbs=breadcrumbs)
 
 
 @bp.route('/')
 def home():
     """Show the homepage of the entire website."""
-    return render_template('cms/index.html')
+    today = date.today()
+    upcomming = Event.query.filter(Event.date >= today).\
+                order_by(Event.date.asc()).limit(NUMBER_OF_EVENTS_ON_HOMEPAGE)
+    news_items = NewsItem.query.filter(NewsItem.date_published >= today).\
+                 order_by(NewsItem.date_published.asc()).\
+                 limit(NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE)
+    return render_template('cms/index.html',
+                           upcomming=upcomming,
+                           news_items=news_items)
 
 
 @bp.route('/intern/')
@@ -81,12 +98,12 @@ def page_view(category_slug, subcategory_slug, page_slug):
     return render_template('cms/page_view.html', page=page)
 
 
-@bp.route('/intern/<category_slug>/<subcategory_slug>/<page_slug>')
+@bp.route('/intern/<category_slug>/<page_slug>')
 # @login_required
-def protected_page_view(category_slug, subcategory_slug, page_slug):
+def protected_page_view(category_slug, page_slug):
     """Show a page from the database."""
     security_level = session.get('user', 'student')
-    page = Page.get_page(security_level, category_slug, subcategory_slug, page_slug)
+    page = Page.get_page(security_level, category_slug, None, page_slug)
     page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
