@@ -19,17 +19,21 @@ $(document).ready(function() {
 
     $(window).scroll(function() {
       if(window.innerWidth > 999) {
+
         var yPos = -(($(window).scrollTop() - bgobj.offset().top) / bgobj.data('speed'));
         var coords = '50% '+ yPos + 'px';
         bgobj.css({ backgroundPosition: coords });
-      } else {
-        bgobj.css({ backgroundPosition: '50% 0%' });
-      }
 
-      if($(window).scrollTop() > ($(document).height() - $(window).height() - 10)) {
-        $('div#pointdown').fadeOut();
+        if($(window).scrollTop() > ($(document).height() - $(window).height() - 10)) {
+          $('div#pointdown').fadeOut();
+        } else {
+          $('div#pointdown').fadeIn();
+        }
+
       } else {
-        $('div#pointdown').fadeIn();
+
+        bgobj.css({ backgroundPosition: '50% 0%' });
+
       }
     });
   });
