@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 
 {% block head %}
+  <script>
+    function resizeMap() {
+      if(window.innerWidth > 1439) {
+        $('iframe#map').attr({ 'width': 1000, 'height': 350 });
+      } else if(window.innerWidth > 999) {
+        $('iframe#map').attr({ 'width': 900, 'height': 320 });
+      } else {
+        $('iframe#map').attr({ 'width': window.innerWidth, 'height': window.innerWidth / 2 });
+      }
+    }
+
+    $(document).ready(function() {
+      resizeMap();
+      $(window).resize(resizeMap);
+    });
+  </script>
 {% endblock %}
 
 {% block bodyclass %}
@@ -45,7 +61,7 @@
     </section>
 
     <section class="containsimg">
-      <img src="/static/img/map.png" alt="Kaart">
+      <iframe id="map" width="500" height="300" frameBorder="0" src="http://a.tiles.mapbox.com/v3/fmjansen.map-2z11gq2c.html#17/52.35494620912215/4.912111759185791"></iframe>
     </section>
 
     <section id="contactpersonen">
