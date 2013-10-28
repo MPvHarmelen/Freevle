@@ -119,9 +119,9 @@ $(document).ready(function() {
 
   $(document).on('change', '#gallery input[type=file]', function() {
     if($(this).prop('files').length == 1) {
-      $(this).next().html('Voeg<span>' + $(this).prop('files').length + '</span>foto toe');
+      $(this).next().html('Je hebt<span>' + $(this).prop('files').length + '</span>foto toegevoegd');
     } else {
-      $(this).next().html('Voeg<span>' + $(this).prop('files').length + '</span>foto\'s toe');
+      $(this).next().html('Je hebt<span>' + $(this).prop('files').length + '</span>foto\'s toegevoegd');
     }
   });
 
