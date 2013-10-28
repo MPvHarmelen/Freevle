@@ -103,6 +103,15 @@ function jumptoFeedback(places) {
   }
 }
 
+function jumpToBottom() {
+  var breakpoint = $('footer').offset().top - 164;
+  if($(window).scrollTop() + $(window).height() > breakpoint) {
+    $('nav#jumpto').css({ 'bottom': $('footer').height() + 66, 'position': 'absolute' });
+  } else {
+    $('nav#jumpto').css({ 'bottom': '2em', 'position': 'fixed' });
+  }
+}
+
 
 $(document).ready(function() {
 
@@ -165,10 +174,13 @@ $(document).ready(function() {
     });
 
     $('#jumpto a:first').addClass('youarehere');
+  });
 
-    $(window).scroll(function() {
-      jumptoFeedback(places);
-    });
+  $(window).scroll(function() {
+    jumptoFeedback(places);
+    if(window.innerWidth > 999) {
+      jumpToBottom();
+    }
   });
 
 
