@@ -10,7 +10,8 @@ $(document).ready(function() {
   }
 
   $('div#pointdown').click(function() {
-    scrollTo($(window).height());
+    var destinationNumber = Math.floor($(window).scrollTop() / $(window).height()) + 1;
+    scrollTo(destinationNumber * $(window).height());
   });
 
   $('[data-type="background"]').each(function(){
@@ -23,6 +24,12 @@ $(document).ready(function() {
         bgobj.css({ backgroundPosition: coords });
       } else {
         bgobj.css({ backgroundPosition: '50% 0%' });
+      }
+
+      if($(window).scrollTop() > ($(document).height() - $(window).height() - 10)) {
+        $('div#pointdown').fadeOut();
+      } else {
+        $('div#pointdown').fadeIn();
       }
     });
   });

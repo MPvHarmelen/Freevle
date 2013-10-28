@@ -142,7 +142,7 @@ $smallpagewidth: 900px;
     #pointdown {
       display: block;
       background: transparentize(white, 0.3);
-      position: absolute;
+      position: fixed;
       height: 62px;
       width: 150px;
       bottom: 20px;

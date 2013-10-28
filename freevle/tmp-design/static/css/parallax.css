@@ -92,7 +92,7 @@
     #parbegin #pointdown {
       display: block;
       background: rgba(255, 255, 255, 0.7);
-      position: absolute;
+      position: fixed;
       height: 62px;
       width: 150px;
       bottom: 20px;
