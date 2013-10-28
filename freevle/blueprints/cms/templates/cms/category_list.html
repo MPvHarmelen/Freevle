@@ -1,0 +1,56 @@
+{% extends "cms/base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="intern">
+    <nav id="subjectoverview">
+      <h2>Interne Informatie</h2>
+      <ul>
+        <section class="hasHeader promotion">
+
+          <h3>Handige linkjes</h3>
+
+          <li>
+            <ul>
+              <li>
+                <a href="#">Magister</a>
+              </li>
+              <li>
+                <a href="#">Moodle</a>
+              </li>
+              <li>
+                <a href="#">Infoweb</a>
+              </li>
+            </ul>
+          </li>
+
+        </section>
+
+
+        {% for category in categories %}
+        <section class="hasHeader {{ category.html_class or '' }}">
+          <h3>{{ category.title }}</h3>
+          {% for subcategory in category.subcategories %}
+          <li>
+            <h4>{{ subcategory.title }}</h4>
+            <ul>
+              {% for page in subcategory.pages %}
+              <li>
+                <a href="{{ page.get_url() }}">{{ page.title }}</a>
+              </li>
+              {%  endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        </section>
+        {% endfor %}
+      </ul>
+    </nav>
+
+  </div>
+{% endblock %}

@@ -3,10 +3,11 @@ import unittest
 from datetime import datetime, timedelta
 from freevle import db
 from freevle.testing import TestBase
+from freevle.utils.functions import headles_markdown
 from sqlalchemy.exc import IntegrityError
-from .models import Category, Subcategory, Page, TextSection, ImageSection
+from .models import Category, Subcategory, Page, TextSection, ImageSection, Link
 
-ONUPDATE_DETLA = timedelta(microseconds=30000)
+ONUPDATE_DELTA = timedelta(microseconds=30000)
 SLEEP_TIME = 1
 
 class CMSTests(TestBase):
@@ -15,31 +16,42 @@ class CMSTests(TestBase):
         self.assertEqual(rv.status, '200 OK')
 
     @staticmethod
-    def create_category(title, slug):
-        cat = Category(title=title, slug=slug)
+    def create_category(title, slug, html_class='', security_level=None):
+        cat = Category(
+            title=title,
+            slug=slug,
+            html_class=html_class,
+            security_level=security_level
+        )
         db.session.add(cat)
         db.session.commit()
         return cat
 
     def test_category(self):
         # Create legal categories
-        self.create_category('Te sT', 'test')
+        self.create_category('Te sT', 'test', 'classss')
         cat_got = Category.query.get(1)
         self.assertEqual(cat_got.title, 'Te sT')
         self.assertEqual(cat_got.slug, 'test')
+        self.assertEqual(cat_got.html_class, 'classss')
         with self.app.app_context():
             self.assertEqual(cat_got.get_url(), 'http://' + self.app.config['SERVER_NAME'] + '/test/')
         self.assertEqual(self.client.get('/test/').status, '200 OK')
+
+        self.create_category('Te sT', 'tesst', 'classss', 'student')
+        cat_got = Category.query.get(2)
+        with self.app.app_context():
+            self.assertEqual(cat_got.get_url(), 'http://' + self.app.config['SERVER_NAME'] + '/intern/')
+
         # TODO: Test creating illegal categories
 
     @staticmethod
-    def create_subcategory(title, slug, color, user_type_view=None,
+    def create_subcategory(title, slug=None, html_class=None,
                            category=None, category_id=None):
         sub = Subcategory(
             title=title,
             slug=slug,
-            color=color,
-            user_type_view=user_type_view,
+            html_class=html_class,
         )
 
         if category is not None:
@@ -56,40 +68,43 @@ class CMSTests(TestBase):
     def test_subcategory(self):
         # Create legal subcategories
         cat = self.create_category('test', 'test')
-        self.create_subcategory('Te sT', 'test', '#123456', 'parent', cat)
+        self.create_subcategory('Te sT', 'test', '#123456', cat)
         subcat_got = Subcategory.query.get(1)
         self.assertEqual(subcat_got.title, 'Te sT')
         self.assertEqual(subcat_got.slug, 'test')
-        self.assertEqual(subcat_got.color, '#123456')
-        self.assertEqual(subcat_got.user_type_view, 'parent')
+        self.assertEqual(subcat_got.html_class, '#123456')
         self.assertEqual(subcat_got.category_id, cat.id)
         self.assertEqual(subcat_got.category, cat)
 
         # TODO: test creating illegal subcategories
 
     @staticmethod
-    def create_page(title, slug, subcategory=None, subcategory_id=None):
-        page = Page(
-            title=title,
-            slug=slug,
-        )
+    def create_page(title, slug, subcategory=None, subcategory_id=0,
+                    content='Content.', is_published=True, cover_image_url=None):
         if subcategory is not None:
-            page.subcategory = subcategory
+            page = Page(subcategory=subcategory)
         elif subcategory_id is not None:
-            page.subcategory_id = subcategory_id
+            page = Page(subcategory_id=subcategory_id)
         else:
             raise TypeError("create_page() missing one of either required "
                             "arguments: 'subcategory', 'subcategory_id'")
+        page.title = title
+        page.slug = slug
+        page.content = content
+        page.is_published = is_published
+        page.cover_image_url = cover_image_url
+
         db.session.add(page)
         db.session.commit()
         return page
 
 
     @staticmethod
-    def create_text_section(title='TiTle', order=0, content='content.',
-                            page=None, page_id=None):
+    def create_text_section(title='TiTle', slug='title', order=0,
+                            content='content.', page=None, page_id=None):
         ts = TextSection(
             title=title,
+            slug=slug,
             order=order,
             content=content
         )
@@ -119,11 +134,12 @@ class CMSTests(TestBase):
         # TODO: create illegal text_sections
 
     @staticmethod
-    def create_image_section(title='TiTle', order=0, image_path='path', page=None,
+    def create_image_section(title='TiTle', slug='slug', order=0, image_url='path', page=None,
                              page_id=None):
         ims = ImageSection(
             title=title,
-            image_path=image_path,
+            slug=slug,
+            image_url=image_url,
             order=order
         )
 
@@ -147,27 +163,26 @@ class CMSTests(TestBase):
         sub_cat = self.create_subcategory('test', 'test', '#123456', category=cat)
         sub_cat2 = self.create_subcategory('test', 'tesst', '#123456', category=cat)
         _ = self.create_page('TeSt', 'test', sub_cat2)
-        p_in = self.create_page('TeSt', 'test', sub_cat)
+        p_in = self.create_page('TeSt', 'test', sub_cat, content='# Content.')
         now = datetime.now()
         text_section1 = self.create_text_section(page=p_in)
-        image_section1 = self.create_image_section(order=1, page=p_in)
-        text_section2 = self.create_text_section(order=2, page=p_in)
-        image_section2 = self.create_image_section(order=3, page=p_in)
+        image_section1 = self.create_image_section(order=1, slug='title1', page=p_in)
+        text_section2 = self.create_text_section(order=2, slug='title2', page=p_in)
+        image_section2 = self.create_image_section(order=3, slug='title3', page=p_in)
         all_sections = [text_section1, image_section1, text_section2, image_section2]
         p_got = Page.query.get(2)
-        self.assertAlmostEqual(p_got.created, now, delta=ONUPDATE_DETLA)
-        self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DETLA)
+        self.assertAlmostEqual(p_got.datetime_created, now, delta=ONUPDATE_DELTA)
+        self.assertAlmostEqual(p_got.last_edited, now, delta=ONUPDATE_DELTA)
         self.assertEqual(p_got.title, 'TeSt')
         self.assertEqual(p_got.slug, 'test')
+        self.assertEqual(p_got.content, '# Content.')
+        self.assertEqual(headles_markdown(p_got.content), '<p>Content.</p>')
         self.assertEqual(p_got.subcategory_id, sub_cat.id)
         self.assertEqual(p_got.subcategory, sub_cat)
+        self.assertEqual(p_got.is_published, True)
         self.assertEqual(p_got.sections.all(), all_sections)
-        with self.app.app_context():
-            self.assertEqual(
-                p_got.get_url(),
-                'http://' + self.app.config['SERVER_NAME'] + '/test/test/test'
-            )
-        self.assertEqual(self.client.get('/test/test/test').status, '200 OK')
+        self.assertEqual(p_got.text_sections.all(), [text_section1, text_section2])
+        self.assertEqual(p_got.image_sections.all(), [image_section1, image_section2])
         # Test if the 'last_edited' actually updates.
         last_edited = p_got.last_edited
         sleep(SLEEP_TIME)
@@ -175,49 +190,107 @@ class CMSTests(TestBase):
         db.session.add(p_got)
         db.session.commit()
         self.assertNotAlmostEqual(p_got.last_edited, last_edited, delta=timedelta(seconds=SLEEP_TIME))
-        # Test if the created hasn't changed
-        self.assertAlmostEqual(p_got.created, last_edited, delta=ONUPDATE_DETLA)
+        # Test if the datetime_created hasn't changed
+        self.assertAlmostEqual(p_got.datetime_created, last_edited, delta=ONUPDATE_DELTA)
+        # Test if the datetime_created isn't the same as last_edited
+        self.assertNotAlmostEqual(p_got.datetime_created, p_got.last_edited, delta=ONUPDATE_DELTA)
 
-        # self.create_page('TeSt2', 'test2', 'This is more content.', parent=p_got)
-        # now = datetime.now()
-        # child_got = Page.query.filter(Page.parent == p_got).first()
-        # self.assertAlmostEqual(child_got.created, now, delta=ONUPDATE_DETLA)
-        # self.assertAlmostEqual(child_got.last_edited, now, delta=ONUPDATE_DETLA)
-        # self.assertEqual(child_got.title, 'TeSt2')
-        # self.assertEqual(child_got.slug, 'test2')
-        # self.assertEqual(child_got.content, 'This is more content.')
-        # self.assertEqual(child_got.parent_id, 1)
-        # self.assertEqual(child_got.parent, p_got)
-        # with self.app.app_context():
-        #     self.assertEqual(child_got.get_url(), 'http://' + self.app.config['SERVER_NAME'] + '/test/test2/')
-        # self.assertEqual(self.client.get('/test/test2/').status, '200 OK')
+        # Url related stuff
+        # unprotected page
+        with self.app.app_context():
+            self.assertEqual(
+                p_got.get_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/test/test/test'
+            )
+            self.assertEqual(
+                p_got.get_edit_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/admin/cms/page/test/test/test/edit'
+            )
+            self.assertEqual(self.client.get(p_got.get_url()).status, '200 OK')
+
+        # protected page
+        cat = self.create_category('test', 'test1', security_level='student')
+        p_sub_cat = self.create_subcategory('test', 'test2', '#123456', category=cat)
+        p_in = self.create_page('TeSt', 'test', p_sub_cat)
+        p_got = Page.query.get(p_in.id)
+        with self.app.app_context():
+            self.assertEqual(
+                p_got.get_url(),
+                'http://' + self.app.config['SERVER_NAME'] + '/intern/test1/test'
+            )
+            self.assertEqual(self.client.get(p_got.get_url()).status, '200 OK')
 
         # Create illegal pages
         # Incorrect slug
         self.assertRaises(ValueError, self.create_page, 'title',
                           "This isn't a slug", sub_cat)
+        # Duplicate slug not protected
+        self.assertRaises(IntegrityError, self.create_page, 'TeSt', 'test',
+                          sub_cat)
+        db.session.rollback()
+        p_sub_cat = self.create_subcategory('test', 'test3', '#123456', category=cat)
+        self.assertRaises(IntegrityError, self.create_page, 'TeSt', 'test',
+                          p_sub_cat)
 
-    # def test_order(self):
-    #     parent = self.create_page('parent', 'parent', 'Content.')
-    #     pages = ['t' + str(i) for i in range(10)]
-    #     for i, page in enumerate(pages):
-    #         pages[i] = self.create_page(page, page, 'Content.', parent)
 
-    #     db.session.delete(Page.query.get(4))
-    #     db.session.commit()
-    #     # id=4 because parent has id 1 and python is zero based whereas
-    #     # SQLAlchemy is not
-    #     db.session.add(Page(
-    #         id=4,
-    #         title='t2',
-    #         slug='t2',
-    #         content='Content.',
-    #         parent=parent
-    #     ))
-    #     db.session.commit()
-    #     from_db = [page.id for page in parent.children.all()]
-    #     original = [page.id for page in pages]
-    #     self.assertEqual(from_db, original)
+    @staticmethod
+    def create_link(destination=None,  starting_points=[], **kwargs):
+        l = Link(destination, starting_points, **kwargs)
+        db.session.add(l)
+        db.session.commit()
+        return l
 
+    def test_link(self):
+        cat = self.create_category('test', 'test', html_class='classss')
+        assertRaisesTypeError = self.assertRaises(TypeError)
+        with assertRaisesTypeError: Link()
+        with assertRaisesTypeError: Link('category')
+        with assertRaisesTypeError: Link(a=cat)
+        with assertRaisesTypeError: Link(destination_category=cat, destination_category_id=cat.id)
+        with assertRaisesTypeError: Link(id=1)
+        with assertRaisesTypeError: Link('category', id=1)
+        with assertRaisesTypeError: Link(a=cat, id=1)
+        with assertRaisesTypeError: Link(destination_category=cat, destination_category_id=cat.id, id=1)
+
+        with self.assertRaises(ValueError): Link(destination_category=None)
+        with self.assertRaises(ValueError): Link(id=1, destination_category=None)
+
+        with self.assertRaises(AttributeError): Link(destination_category='aaaa')
+        with self.assertRaises(AttributeError): Link(id=1, destination_category='aaaa')
+
+        get_db_link = lambda link: Link.query.get(link.id)
+        def assertEqualCat(*args, **kwargs):
+            return self.assertEqual(
+                        get_db_link(
+                            self.create_link(*args, **kwargs)
+                        ).destination,
+                        cat
+                   )
+
+        assertEqualCat(cat, id=1)
+        assertEqualCat(destination_category=cat, id=2)
+        assertEqualCat(destination_category_id=cat.id, id=3)
+        assertEqualCat(cat)
+        assertEqualCat(destination_category=cat)
+        assertEqualCat(destination_category_id=cat.id)
+
+        sub = self.create_subcategory('title', 'slug', 'html_class', category=cat)
+        link = self.create_link(sub)
+        self.assertEquals(link.html_class, sub.html_class)
+        with self.app.app_context():
+            self.assertEqual(Link.query.get(1).get_url(), cat.get_url())
+            self.assertEqual(link.get_url(), '')
+
+        db.session.add(link)
+        link.starting_points = (cat,)
+        self.assertEqual(link.starting_points, [cat])
+        link.starting_points += [sub]
+        self.assertEqual(link.starting_points, [sub, cat])
+        db.session.add(link)
+        db.session.commit()
+        self.assertEqual(cat.links.first(), link)
+        self.assertNotEqual(cat.linked_by.first(), link)
+        self.assertEqual(sub.linked_by.first(), link)
+        self.assertEqual(sub.links.first(), link)
 
 suite = unittest.makeSuite(CMSTests)

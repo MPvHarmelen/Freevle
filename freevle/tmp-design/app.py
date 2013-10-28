@@ -16,14 +16,14 @@ def page(name):
     return render_template(page, title=title)
 
 
-@app.route('/dashboard/')
-def dashboard():
-    title = 'Dashboard | Cygnus Gymnasium'
-    page = 'dashboard.html'
-    return render_template(page, title=title)
+@app.route('/intern/')
+def intern():
+    title = 'Interne Informatie | Cygnus Gymnasium'
+    page = 'intern.html'
+    return render_template(page, title=title, loggedin=True)
 
 
-@app.route('/over/<a>/<b>/')
+@app.route('/info/<a>/<b>/')
 def aboutpage(a,b):
     title = 'Schoolklimaat | Cygnus Gymnasium'
     return render_template('schoolklimaat.html', title=title)
@@ -31,31 +31,35 @@ def aboutpage(a,b):
 
 @app.route('/nieuws/archief/')
 def newsarchive():
-    return render_template('nieuwsarchief.html')
+    title = 'Archief Nieuws | Cygnus Gymnasium'
+    return render_template('nieuwsarchief.html', title=title)
 
 @app.route('/nieuws/<a>/<b>/<c>/')
 def newsmessage(a,b,c):
-    return render_template('nieuwsbericht.html')
+    title = 'Opening Schip | Nieuws | Cygnus Gymnasium'
+    return render_template('nieuwsbericht.html', title=title)
 
 
 @app.route('/fotos/<a>/<b>/')
 def photoalbum(a,b):
-    return render_template('fotoalbum.html')
+    title = 'Jihlava | Foto\'s | Cygnus Gymnasium'
+    return render_template('fotoalbum.html', title=title)
 
 @app.route('/fotos/archief/')
 def photosarchive():
-    return render_template('fotosarchief.html')
+    title = 'Archief Foto\'s | Cygnus Gymnasium'
+    return render_template('fotosarchief.html', title=title)
 
 
 @app.route('/login/', methods=['POST'])
 def login():
-    title = 'Login | Cygnus Gymnasium'
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('intern'))
 
 
 @app.route('/login/', methods=['GET'])
 def showlogin():
-    return render_template('login.html')
+    title = 'Login | Cygnus Gymnasium'
+    return render_template('login.html', title=title)
 
 
 @app.route('/zoek/autocompletion/', methods=['POST'])
@@ -79,12 +83,62 @@ def rooster(ref,id_user):
 @app.route('/admin/')
 def admindashboard():
     title = 'Admin | Cygnus Gymnasium'
-    return render_template('admindashboard.html', title=title)
+    return render_template('admin/dashboard.html', title=title)
 
 @app.route('/admin/pages/')
 def adminpages():
     title = 'Pagina\'s | Admin | Cygnus Gymnasium'
-    return render_template('adminpages.html', title=title)
+    return render_template('admin/pages.html', title=title)
+
+@app.route('/admin/pages/editor/')
+def adminpageseditor():
+    title = 'Gebouw | Pagina\'s | Admin | Cygnus Gymnasium'
+    return render_template('admin/pages-editor.html', title=title)
+
+@app.route('/admin/news/')
+def adminnews():
+    title = 'Nieuws | Admin | Cygnus Gymnasium'
+    return render_template('admin/news.html', title=title)
+
+@app.route('/admin/news/editor/')
+def adminnewseditor():
+    title = 'Opening Schip | Nieuws | Admin | Cygnus Gymnasium'
+    return render_template('admin/news-editor.html', title=title)
+
+@app.route('/admin/soon/')
+def adminsoon():
+    title = 'Binnenkort | Admin | Cygnus Gymnasium'
+    return render_template('admin/soon.html', title=title)
+
+@app.route('/admin/soon/editor/')
+def adminsooneditor():
+    title = 'Open dag | Binnenkort | Admin | Cygnus Gymnasium'
+    return render_template('admin/soon-editor.html', title=title)
+
+@app.route('/admin/photos/')
+def adminphotos():
+    title = 'Foto\'s | Admin | Cygnus Gymnasium'
+    return render_template('admin/photos.html', title=title)
+
+@app.route('/admin/photos/editor/')
+def adminphotoseditor():
+    title = 'Jihlava | Foto\'s | Admin | Cygnus Gymnasium'
+    return render_template('admin/photos-editor.html', title=title)
+
+@app.route('/admin/frontpage/')
+def adminfrontpage():
+    title = 'Voorpagina | Admin | Cygnus Gymnasium'
+    return render_template('admin/frontpage.html', title=title)
+
+@app.route('/admin/users/')
+def adminusers():
+    title = 'Gebruikers | Admin | Cygnus Gymnasium'
+    return render_template('admin/users.html', title=title)
+
+@app.route('/admin/users/editor/')
+def adminuserseditor():
+    title = 'Jan Modaal | Gebruikers | Admin | Cygnus Gymnasium'
+    return render_template('admin/users-editor.html', title=title)
 
 
 if __name__ == '__main__':

@@ -11,6 +11,8 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   background: #f5f5f5;
   overflow-x: hidden; }
+  body.opened {
+    overflow-y: hidden; }
 
 ::selection {
   background: #013d7d;
@@ -95,11 +97,7 @@ input, select {
 .relevant {
   display: block;
   list-style: none;
-  padding: 0.9em 1em 0.9em 2.8em;
-  background-image: url(/static/img/sprite.png);
-  background-size: 174px;
-  background-position: -116px -61px;
-  background-repeat: no-repeat;
+  padding: 0.9em 1.2em;
   font-size: 1.2em;
   font-weight: bold;
   transition: background 200ms ease-in-out;
@@ -107,24 +105,25 @@ input, select {
   -ms-transition: background 200ms ease-in-out;
   -moz-transition: background 200ms ease-in-out;
   -webkit-transition: background 200ms ease-in-out; }
-  .relevant a:link, .relevant a:visited {
+  .relevant.linkicon {
+    background-image: url(/static/img/sprite.png);
+    background-position: -116px -61px;
+    background-repeat: no-repeat;
+    padding: 0.9em 1em 0.9em 2.8em; }
+  .relevant a:link, .relevant a:visited, .relevant:link, .relevant:visited {
     color: white; }
   .relevant.education {
     background-color: rgba(209, 22, 5, 0.7); }
-    .relevant.education:hover {
-      background-color: #d11605; }
   .relevant.school {
     background-color: rgba(1, 61, 125, 0.8); }
-    .relevant.school:hover {
-      background-color: #013d7d; }
+  .relevant.intern {
+    background-color: rgba(110, 0, 128, 0.8); }
+  .relevant.recent {
+    background-color: rgba(67, 184, 61, 0.8); }
   .relevant.activities {
     background-color: rgba(20, 202, 157, 0.7); }
-    .relevant.activities:hover {
-      background-color: #14ca9d; }
-  .relevant.recent {
-    background-color: rgba(67, 184, 61, 0.7); }
-    .relevant.recent:hover {
-      background-color: #43b83d; }
+  .relevant.more {
+    background-color: rgba(51, 51, 51, 0.7); }
 
 .coverbg {
   position: absolute;
@@ -308,11 +307,9 @@ header#main {
   header#main a#menuopener {
     border-right: 1px solid #013164;
     background-image: url(/static/img/sprite.png);
-    background-size: 300%;
     background-position: 0 -180px; }
   header#main a#searchopener {
     background-image: url(/static/img/sprite.png);
-    background-size: 300%;
     background-position: -58px -180px;
     border-left: 1px solid #013164;
     right: 0;
@@ -358,7 +355,7 @@ nav#breadcrumbs {
   nav#breadcrumbs a {
     color: #777; }
 
-.home nav#breadcrumbs {
+.home nav#breadcrumbs, .parallax nav#breadcrumbs {
   display: none; }
 
 /*FOOTER*/
@@ -379,33 +376,35 @@ footer {
   div#indexcover div#darken {
     padding: 5em 2em; }
 
-  header#main ul {
+  header#main nav > ul {
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     z-index: 4;
     background: #013d7d;
+    overflow-y: auto;
     transition: left 200ms ease-in-out;
     -o-transition: left 200ms ease-in-out;
     -ms-transition: left 200ms ease-in-out;
     -moz-transition: left 200ms ease-in-out;
     -webkit-transition: left 200ms ease-in-out; }
-    header#main ul.opened {
+    header#main nav > ul.opened {
       left: 0; }
-    header#main ul li {
+    header#main nav > ul li {
       overflow: hidden; }
-      header#main ul li a:link, header#main ul li a:visited, header#main ul li a#loginlink, header#main ul li div {
+      header#main nav > ul li a:link, header#main nav > ul li a:visited, header#main nav > ul li a#loginlink, header#main nav > ul li div {
         color: white;
         padding: 0.8em 0.6em;
         display: block;
         border: 0;
         font-weight: 400;
         border-bottom: 1px solid #013873; }
-      header#main ul li div {
+      header#main nav > ul li div {
         color: rgba(255, 255, 255, 0.7); }
-    header#main ul ul.dropdown {
-      position: relative; }
+    header#main nav > ul ul.dropdown {
+      position: relative;
+      width: 100%; }
   header#main #menuopener.opened {
     right: 0;
     z-index: 5;
@@ -443,7 +442,7 @@ footer {
     background-position: 0 -120px;
     border-right: 1px solid #013164;
     border-left: 0; }
-  header#main div.button {
+  header#main div#intern a {
     display: none; } }
 @media (min-width: 1000px) {
   h1 {
@@ -472,16 +471,18 @@ footer {
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
     header#main h1 {
-      width: 245px;
+      width: 119px;
       margin: 0;
-      padding: 0.6em 0;
+      padding: 0.7em 0 0;
       overflow: hidden;
       float: left;
       border-right: 1px solid rgba(238, 238, 238, 0.2); }
       header#main h1 a > span {
         font-size: 0.8em; }
+      header#main h1 span#obsolete {
+        display: none; }
       header#main h1 a:link, header#main h1 a:visited {
-        padding: 0.6em 0.8em;
+        padding: 0.7em 0.9em 0.55em;
         color: #013d7d; }
     header#main #menuopener, header#main #searchopener {
       display: none !important; }
@@ -501,56 +502,79 @@ footer {
             background: rgba(255, 255, 255, 0.5); }
         header#main ul li div {
           cursor: default; }
-        header#main ul li ul.dropdown {
-          margin-top: 1px;
-          overflow: hidden;
-          height: 0;
-          transition: height 200ms ease-in-out;
-          -o-transition: height 200ms ease-in-out;
-          -ms-transition: height 200ms ease-in-out;
-          -moz-transition: height 200ms ease-in-out;
-          -webkit-transition: height 200ms ease-in-out; }
-          header#main ul li ul.dropdown li {
-            float: none;
-            background: rgba(255, 255, 255, 0.8); }
-            header#main ul li ul.dropdown li:nth-child(1) {
-              border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-        header#main ul li:hover ul.dropdown {
-          height: 7.6em; }
-    header#main div.button {
-      margin: 0.6em;
+    header#main ul.dropdown {
+      margin-top: 1px;
+      overflow: hidden;
+      height: 0;
+      transition: height 200ms ease-in-out;
+      -o-transition: height 200ms ease-in-out;
+      -ms-transition: height 200ms ease-in-out;
+      -moz-transition: height 200ms ease-in-out;
+      -webkit-transition: height 200ms ease-in-out; }
+      header#main ul.dropdown li {
+        float: none;
+        background: rgba(255, 255, 255, 0.8); }
+        header#main ul.dropdown li:nth-child(1) {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    header#main :hover ul.dropdown {
+      height: 7.6em; }
+    header#main div#intern {
       float: right;
-      border-color: rgba(0, 0, 0, 0);
-      opacity: 0.5;
-      color: #000; }
-      header#main div.button:hover, header#main div.button:active {
-        border-color: #6e0080;
-        background: rgba(110, 0, 128, 0.9);
-        opacity: 1;
-        color: white; }
+      width: 92px; }
+      header#main div#intern > a {
+        float: right;
+        text-decoration: none;
+        display: block;
+        opacity: 0.5;
+        padding: 1.3em; }
+        header#main div#intern > a:link, header#main div#intern > a:visited {
+          color: #000; }
+        header#main div#intern > a:hover {
+          color: #333;
+          opacity: 1;
+          background: rgba(255, 255, 255, 0.5); }
+      header#main div#intern ul {
+        clear: both;
+        float: right; }
     header#main form {
       float: right; }
       header#main form input[type=search] {
         padding-left: 2.4em;
         background-image: url(/static/img/sprite.png);
-        background-size: 174px;
         background-repeat: no-repeat;
         background-position: -11px -13px;
-        width: 0;
+        width: 6.8em;
         padding-right: 0;
-        margin: 0.6em 0;
+        margin: 0.65em 0 0;
         transition: width 200ms ease-in-out;
         -o-transition: width 200ms ease-in-out;
         -ms-transition: width 200ms ease-in-out;
         -moz-transition: width 200ms ease-in-out;
         -webkit-transition: width 200ms ease-in-out;
         border-color: rgba(0, 0, 0, 0); }
+        header#main form input[type=search]::-webkit-input-placeholder {
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: uppercase; }
+        header#main form input[type=search]::-moz-placeholder {
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: uppercase; }
+        header#main form input[type=search]:-ms-input-placeholder {
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: uppercase; }
         header#main form input[type=search]:hover, header#main form input[type=search]:focus {
           border-color: #013d7d;
           background-position: -69px -135px; }
         header#main form input[type=search].opened {
           width: 16em;
-          padding-right: 0.8em; }
+          padding-right: 0.8em;
+          border-color: #013d7d;
+          background-color: white; }
+          header#main form input[type=search].opened::-webkit-input-placeholder {
+            color: rgba(0, 0, 0, 0.4); }
+          header#main form input[type=search].opened::-moz-placeholder {
+            color: rgba(0, 0, 0, 0.4); }
+          header#main form input[type=search].opened:-ms-input-placeholder {
+            color: rgba(0, 0, 0, 0.4); }
 
   .home header#main {
     background: rgba(250, 250, 250, 0.6);
@@ -562,17 +586,7 @@ footer {
     .home header#main:hover {
       background: rgba(250, 250, 250, 0.8); }
     .home header#main h1 {
-      width: 0;
-      white-space: nowrap;
-      border-width: 0;
-      transition: width 200ms ease-in-out;
-      -o-transition: width 200ms ease-in-out;
-      -ms-transition: width 200ms ease-in-out;
-      -moz-transition: width 200ms ease-in-out;
-      -webkit-transition: width 200ms ease-in-out; }
-      .home header#main h1.yepshow {
-        width: 242px;
-        border-width: 1px; }
+      white-space: nowrap; }
 
   /*BREADCRUMBS*/
   nav#breadcrumbs {
@@ -591,6 +605,10 @@ footer {
   header#main {
     width: 1000px;
     margin-left: -500px; }
+    header#main h1 {
+      width: 249px; }
+      header#main h1 span#obsolete {
+        display: inline-block; }
 
   nav#breadcrumbs {
     width: 964px;
@@ -598,3 +616,6 @@ footer {
 
   footer {
     width: 1000px; } }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .relevant, header#main a#menuopener, header#main a#searchopener, header#main form input[type=search] {
+    background-image: url(/static/img/sprite@2x.png); } }

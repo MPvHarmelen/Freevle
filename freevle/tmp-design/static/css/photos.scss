@@ -1,0 +1,99 @@
+$pagewidth: 1000px;
+$recentcolor: #43B83D;
+
+@mixin transition($property, $duration: 200ms) {
+          transition: $property $duration ease-in-out;
+       -o-transition: $property $duration ease-in-out;
+      -ms-transition: $property $duration ease-in-out;
+     -moz-transition: $property $duration ease-in-out;
+  -webkit-transition: $property $duration ease-in-out;
+}
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+article.photoalbum {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+
+  a.overlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $recentcolor;
+    display: table;
+    height: 100%;
+    width: 40%;
+    padding: 0 3em;
+    overflow: hidden;
+    @include prefixify(box-sizing, border-box);
+    @include transition(all);
+    opacity: 0.7;
+
+    h3 {
+      color: white;
+      vertical-align: middle;
+      display: table-cell;
+      font-size: 2em;
+
+      time {
+        font-weight: 300;
+      }
+    }
+  }
+
+  &:hover a {
+    text-decoration: none;
+    width: 100%;
+    opacity: 0.9;
+  }
+}
+
+
+/*PHOTOALBUM*/
+div#gallery {
+  overflow: hidden;
+  padding: 0 20px 20px;
+}
+
+a.fancybox {
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 48%;
+  height: 120px;
+  margin: 1%;
+  opacity: 0.8;
+  @include transition(opacity);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+
+@media (min-width: $pagewidth) {
+
+  /*PHOTOALBUM*/
+  div#gallery {
+    padding: 0 40px 40px;
+  }
+
+  a.fancybox {
+    overflow: hidden;
+    float: left;
+    width: 23%;
+    height: 200px;
+    margin: 1%;
+  }
+
+}

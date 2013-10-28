@@ -8,7 +8,7 @@
     <meta name="author" content="Martin van Harmelen, Pim ten Thije, Floris Jansen">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-    <link rel="shortcut icon" href="/static/favicon.png">
+    <link rel="shortcut icon" href="/static/img/favicon.png">
 
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/base.css">
@@ -31,17 +31,6 @@
       </div>
     <![endif]-->
 
-    <div id="login">
-      <form method="POST" action="/login/">
-        <div class="close">&times;</div>
-        <h2>Login</h2>
-        <input type="text" placeholder="Gebruikersnaam">
-        <input type="password" placeholder="Wachtwoord">
-        <input type="submit" class="button" value="Login">
-        <a href="/verlorengegevens">Gegevens vergeten?</a>
-      </form>
-    </div>
-
     <header id="main">
       <a href="#menu" id="menuopener">&emsp;</a>
       <h1>
@@ -55,33 +44,52 @@
           <li>
             <a href="/" id="currentpage" class="mobileonly">Home</a>
           </li>
+          {% for category in menu_items %}
           <li>
-            <a href="/over/">Over</a>
+            <a href="{{ category.get_url() }}">{{ category.short_title }}</a>
+          </li>
+          {% endfor %}
+          <li>
+            <a href="/nieuws/">Nieuws</a>
           </li>
           <li>
-            <div>Recent</div>
-            <ul class="dropdown">
-              <li>
-                <a href="/nieuws/"><span class="mobileonly">&#8618;&ensp;</span>Nieuws</a>
-              </li>
-              <li>
-                <a href="/fotos/"><span class="mobileonly">&#8618;&ensp;</span>Foto's</a>
-              </li>
-            </ul>
+            <a href="/fotos/">Foto's</a>
           </li>
           <li>
             <a href="/contact/">Contact</a>
           </li>
           <li class="mobileonly">
-            <a href="/login/">Login</a>
+            <a href="/login/">Intern</a>
+            {% if loggedin %}
+              <ul class="dropdown">
+                <li>
+                  <a href="/instellingen/"><span class="mobileonly">&#8618;&ensp;</span>Instellingen</a>
+                </li>
+                <li>
+                  <a href="/loguit/"><span class="mobileonly">&#8618;&ensp;</span>Loguit</a>
+                </li>
+              </ul>
+            {% endif %}
           </li>
         </ul>
       </nav>
       <a href="#search" id="searchopener">&emsp;</a>
-      <div class="button">Login</div>
+      <div id="intern">
+        <a href="/login/">Intern</a>
+        {% if loggedin %}
+          <ul class="dropdown">
+            <li>
+              <a href="/instellingen/"><span class="mobileonly">&#8618;&ensp;</span>Instellingen</a>
+            </li>
+            <li>
+              <a href="/loguit/"><span class="mobileonly">&#8618;&ensp;</span>Loguit</a>
+            </li>
+          </ul>
+        {% endif %}
+      </div>
       <form method="POST" action="/zoek/">
         <h2 id="searchtitle">Zoeken</h2>
-        <input type="search" name="search" list="search" placeholder="Zoek...">
+        <input type="search" name="search" list="search" placeholder="Zoek">
         <datalist id="search">
         </datalist>
       </form>
@@ -89,10 +97,14 @@
 
     <nav id="breadcrumbs">
       <a href="/">Home</a>
-      &ensp;/&ensp;
-      <a href="/over/">Over</a>
-      &ensp;/&ensp;
-      Waarom gymnasium?
+      {% for crumb, url in breadcrumbs %}
+        &ensp;/&ensp;
+        {% if url %}
+          <a href="{{ url }}">{{ crumb }}</a>
+        {% else %}
+          {{ crumb }}
+        {% endif %}
+      {% endfor %}
     </nav>
 
     <div id="page">

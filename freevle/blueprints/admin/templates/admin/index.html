@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/admin/static/css/index.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Dashboard</h2>
+
+  <section class="card fifty">
+    <h3>Laatst bewerkte <a href="{{ news_dict['url'] }}">nieuwsberichten</a></h3>
+    <ol class="edited">
+      {% for news_item in news_dict['recent'] %}
+        <li>
+          <time>{{ news_item.last_edited.strftime('%m/%d') }}</time>
+          <a href="">{{ news_item.title }}</a>
+        </li>
+      {% else %}
+        <li>Er zijn nog geen nieuwsberichten</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="card fifty">
+    <h3>Laatst bewerkte <a href="{{ galleries_dict['url'] }}">fotoalbums</a></h3>
+    <ol class="edited">
+      {% for album in galleries_dict['recent'] %}
+        <li>
+          <time>{{ album.last_edited.strftime('%m/%d') }}</time>
+          <a href="">{{ album.title }}</a>
+        </li>
+      {% else %}
+        <li>Er zijn nog geen fotoalbums</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="card fifty">
+    <h3>Laatst bewerkte <a href="{{ events_dict['url'] }}">binnenkort</a></h3>
+    <ol class="edited">
+      {% for event in events_dict['recent'] %}
+        <li>
+          <time>{{ event.last_edited.strftime('%m/%d') }}</time>
+          <a href="">{{ event.title }}</a>
+        </li>
+      {% else %}
+        <li>Er zijn nog geen binnenkort</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="card fifty">
+    <h3>Laatst bewerkte <a href="{{ cms_dict['url'] }}">pagina's</a></h3>
+    <ol class="edited">
+      {% for page in cms_dict['recent'] %}
+        <li>
+          <time>{{ page.last_edited.strftime('%m/%d') }}</time>
+          <a href="{{ page.get_edit_url() }}">{{ page.title }}</a>
+        </li>
+      {% else %}
+        <li>Er zijn nog geen pagina's</li>
+      {% endfor %}
+    </ol>
+  </section>
+{% endblock %}

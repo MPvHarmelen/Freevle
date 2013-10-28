@@ -1,43 +1,36 @@
-from importlib import import_module
-from os import listdir
-from freevle import app
-from . import bp, URL_PREFIX
-from flask import url_for
+from flask import url_for, render_template
 
-# admin_views = {}
-# for bp_name in listdir(app.config['BLUEPRINTS_DIRECTORY']):
-#     # Try importing admin views from the blueprint. If we can't, that's okay. :(
-#     try:
-#         views = import_module('freevle.blueprints.{}.views'.format(bp_name))
-#     except ImportError as e:
-#         if len(e.args) and \
-#            e.args[0] == "No module named 'freevle.blueprints.{}.views'"\
-#                         .format(bp_name):
-#             print("NOTICE: {} blueprint has no views.".format(bp_name))
-#         else:
-#             raise e
-#     else:
-#         if 'admin' not in dir(views):
-#             print("NOTICE: {} blueprint has no admin.".format(bp_name))
-#             continue
-#         admin_views[bp_name] = {'admin': bp.route(bp_name + '/')(views.admin)}
-#         for attr in (attr[5:] for attr in dir(views) if attr[:6] == 'admin_'):
-#             if len(attr) > 1:
-#                 url = bp_name + attr.replace('_', '/')
-#                 view = getattr(views, 'admin' + attr)
-#                 admin_views[bp_name]['admin' + attr] = bp.route(url)(view)
+from . import bp
+from .constants import *
+
+@bp.context_processor
+def inject_admin_map():
+    for dic in bp.index_views.values():
+        if not dic.get('img_url', False):
+            dic['img_url'] = url_for(dic['bp_name'] + '.static', filename=dic['img_filename'])
+    return dict(admin_map=bp.index_views.values())
 
 @bp.route('/')
 def index():
     """Site wide admin homepage."""
-    blueprints = ((name, url_for(name + '.admin')) for name, views in sorted(admin_views.items()))
-    return render_template('admin/index.html', blueprints=blueprints)
+    cms_dict = {}
+    galleries_dict = {}
+    news_dict = {}
+    events_dict = {}
 
-bp.index_views = {'Home': index}
+    cms_dict['recent'] = Page.query.order_by(Page.last_edited.desc()).limit(NUMBER_RECENT_ITEMS)
+    galleries_dict['recent'] = Album.query.order_by(Album.last_edited.desc()).limit(NUMBER_RECENT_ITEMS)
+    news_dict['recent'] = NewsItem.query.order_by(NewsItem.last_edited.desc()).limit(NUMBER_RECENT_ITEMS)
+    events_dict['recent'] = Event.query.order_by(Event.last_edited.desc()).limit(NUMBER_RECENT_ITEMS)
 
-@bp.context_processor
-def inject_admin_map():
-    for x in dir(bp.index_views['Home']):
-        print(x)
-    return dict(admin_map=bp.index_views.items())
+    cms_dict['url'] = url_for(bp.index_views['cms']['endpoint'])
+    # galleries_dict['url'] = url_for(bp.index_views['galleries']['endpoint'])
+    # news_items_dict['url'] = url_for(bp.index_views['news']['endpoint'])
+    # events_dict['url'] = url_for(bp.index_views['events']['endpoint'])
 
+    return render_template('admin/index.html',
+                           cms_dict=cms_dict,
+                           galleries_dict=galleries_dict,
+                           news_dict=news_dict,
+                           events_dict=events_dict
+                           )

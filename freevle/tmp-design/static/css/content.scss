@@ -7,7 +7,8 @@ $educationcolor: #D11605;
 $schoolcolor: #013D7D;
 $activitiescolor: #14CA9D;
 $promotecolor: #FBA929;
-$logincolor: #6E0080;
+$interncolor: #6E0080;
+$morecolor: #333333;
 
 @mixin transition($property, $duration: 200ms) {
           transition: $property $duration ease-in-out;
@@ -24,30 +25,6 @@ $logincolor: #6E0080;
   -webkit-#{$style}: $content;
 }
 
-/*INDEX: COVER*/
-div#indexcover {
-  text-align: center;
-  width: 100%;
-  background: url(/static/img/coversmall.png) center;
-  background-size: cover;
-
-  #darken {
-    padding: 2em 2em 2em;
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  h1 {
-    text-shadow: 0 2px 2px transparentize(black, 0.7);
-  }
-
-  .button {
-    background: $promotecolor;
-    color: white;
-    border-color: darken($promotecolor, 5%);
-  }
-}
-
-
 /*MAIN CONTENT*/
 div#content {
   margin: 0 auto;
@@ -61,33 +38,35 @@ div#content {
 
   &.education {
     border-color: transparentize($educationcolor, 0.3);
-    nav ul {
+    nav#jumpto ul {
       background: transparentize($educationcolor, 0.3);
     }
   }
   &.school {
     border-color: transparentize($schoolcolor, 0.2);
-    nav ul {
+    nav#jumpto ul {
       background: transparentize($schoolcolor, 0.3);
     }
   }
   &.activities {
     border-color: transparentize($activitiescolor, 0.3);
-    nav ul {
+    nav#jumpto ul {
       background: transparentize($activitiescolor, 0.3);
     }
   }
 
   &.recent {
     border-color: transparentize($recentcolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($recentcolor, 0.3);
+    }
   }
 
-  &.protected {
-    border-color: transparentize($logincolor, 0.3);
-  }
-
-  &.protected.teachers {
-    border-color: $logincolor;
+  &.intern {
+    border-color: transparentize($interncolor, 0.3);
+    nav#jumpto ul {
+      background: transparentize($interncolor, 0.3);
+    }
   }
 
   p {
@@ -100,10 +79,6 @@ div#content {
     max-width: 100%;
     margin: auto;
     display: block;
-  }
-
-  section:not(:nth-of-type(1)) {
-    border-top: 1px solid #eee;
   }
 
   section.containsimg {
@@ -122,13 +97,6 @@ div#content {
   }
 }
 
-.home div#content {
-  overflow: hidden;
-  border-top: none;
-  padding-bottom: 0;
-}
-
-
 /*INPAGE NAV*/
 nav#jumpto {
   display: none;
@@ -144,39 +112,7 @@ div#pagecover {
 }
 
 
-/*NEWS*/
-article.newsmessage {
-  padding: 2em 0 2em;
-
-  &:first-of-type {
-    padding-top: 0.1em;
-  }
-
-  h3 {
-    font-size: 1.7em;
-
-    a {
-      color: #333;
-    }
-  }
-
-  p.meta {
-    color: #666;
-  }
-}
-
-.news article.newsmessage {
-  border-bottom: 1px solid #ddd;
-
-}
-
-div.newscover {
-  position: relative;
-  overflow: hidden;
-  height: 150px;
-  margin-top: -2em;
-}
-
+/*NEWS/PHOTOS*/
 form#archivepicker {
   margin: 0.5em 30px;
 
@@ -212,72 +148,6 @@ nav#pagination {
 }
 
 
-/*PHOTOS*/
-article.photoalbum {
-  position: relative;
-  width: 100%;
-  height: 160px;
-  overflow: hidden;
-
-  a.overlay {
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $recentcolor;
-    display: table;
-    height: 100%;
-    width: 40%;
-    padding: 0 3em;
-    overflow: hidden;
-    @include prefixify(box-sizing, border-box);
-    @include transition(all);
-    opacity: 0.7;
-
-    h3 {
-      color: white;
-      vertical-align: middle;
-      display: table-cell;
-      font-size: 2em;
-
-      time {
-        font-weight: 300;
-      }
-    }
-  }
-
-  &:hover a {
-    text-decoration: none;
-    width: 100%;
-    opacity: 0.9;
-  }
-}
-
-
-/*PHOTOALBUM*/
-div#gallery {
-  overflow: hidden;
-  padding: 0 20px 20px;
-}
-
-a.fancybox {
-  overflow: hidden;
-  position: relative;
-  float: left;
-  width: 48%;
-  height: 120px;
-  margin: 1%;
-  opacity: 0.8;
-  @include transition(opacity);
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
-
 /*RELEVANT*/
 nav#readfurther {
   background: #f5f5f5;
@@ -292,228 +162,80 @@ nav#readfurther {
 }
 
 
-/*INDEX: RELEVANT*/
-ul#quicknav {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-
-  h3 {
-    margin: 0;
-    color: white;
-  }
-
-  ul {
-    padding: 0 0 0 1.1em;
-    color: white;
-    font-weight: normal;
-    font-size: 0.9em;
-    margin: 0.4em 0 0;
-  }
-}
-
-
-/*INDEX: RECENT*/
-.home h2 {
-  margin: 0.5em 20px;
-}
-
-div#largeactivity {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  position: relative;
-
-  a.overlay {
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: transparentize(black, 0.8);
-    display: table;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    color: white;
-
-    div {
-      vertical-align: middle;
-      display: table-cell;
-    }
-
-    h3 {
-      font-size: 2em;
-      margin: 0.5em 50px;
-    }
-
-    p {
-      overflow: hidden;
-      height: 0;
-      margin: -0.8em 50px 0.5em;
-      text-align: center;
-    }
-
-    &:hover {
-      text-decoration: none;
-      background: transparentize($recentcolor, 0.1);
-
-      p {
-        height: 3em;
-      }
-    }
-  }
-}
-
-ul#headlines {
-  margin: 0;
-  padding: 0;
-
-  li {
-    list-style: none;
-    display: block;
-    font-size: 1.1em;
-    padding: 16px 1em 15px;
-
-    &:nth-child(1) {
-      a {
-        color: #000;
-      }
-      time {
-        color: #444;
-      }
-    }
-    &:nth-child(2) {
-      a {
-        color: #444;
-      }
-      time {
-        color: #666;
-      }
-    }
-    &:nth-child(3) {
-      a {
-        color: #666;
-      }
-      time {
-        color: #777;
-      }
-    }
-    &:nth-child(4) {
-      a {
-        color: #888;
-      }
-      time {
-        color: #999;
-      }
-    }
-
-    time {
-      font-style: italic;
-      color: #555;
-      width: 44px;
-      display: inline-block;
-    }
-  }
-}
-
-div#comingup {
-  overflow: hidden;
-  border-top: 1px solid #eee;
-  background: #f5f5f5;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.5em 0 0;
-  }
-
-  li {
-    overflow: hidden;
-    clear: both;
-    border-top: 1px solid #f0f0f0;
-    color: #999;
-
-    &:nth-child(1) {
-      background: transparentize(black, 0.94);
-      border-color: #e0e0e0;
-      time {
-        border-color: #e0e0e0;
-      }
-      span.day {
-        color: #777;
-      }
-      color: #555;
-    }
-    &:nth-child(2) {
-      background: transparentize(black, 0.96);
-      border-color: #e5e5e5;
-      time {
-        border-color: #e5e5e5;
-      }
-      span.day {
-        color: #888;
-      }
-      color: #777;
-    }
-    &:nth-child(3) {
-      background: transparentize(black, 0.98);
-      border-color: #e9e9e9;
-      time {
-        border-color: #e9e9e9;
-      }
-      span.day {
-        color: #9c9c9c;
-      }
-      color: #8c8c8c;
-    }
-
-    p {
-      float: left;
-      display: block;
-      padding: 1.08em 0.9em;
-      font-weight: 300;
-      font-size: 1.5em;
-      margin: 0;
-    }
-  }
-
-  time {
-    padding: 21px 23px 22px;
-    width: 60px;
-    float: left;
-    border-right: 1px solid #f0f0f0;
-    font-size: 0.9em;
-    text-align: center;
-
-    span.day {
-      color: #aaa;
-      font-size: 2em;
-      display: block;
-      font-weight: bold;
-    }
-  }
-}
-
-
-
 /*SUBJECT-OVERVIEW*/
 nav#subjectoverview {
   font-size: 1.1em;
 
-  >ul {
+  h2 {
+    font-size: 2.05em;
+    margin-left: 30px;
+  }
+
+  > ul {
     padding: 0;
     margin: 0;
     list-style: none;
 
-    >li {
+    section {
+      overflow: hidden;
+      padding-bottom: 1em;
+
+      > h3 {
+        margin: 0;
+        word-wrap:break-word;
+        font-weight: 300;
+        padding: 1.2em 30px;
+      }
+
+      &:nth-of-type(1) > h3 {
+        margin-top: 0;
+      }
+
+      &.promotion {
+        border-top: 6px solid transparentize($promotecolor, 0.3);
+        a:link, a:visited {
+          color: $promotecolor;
+        }
+      }
+      &.education {
+        border-top: 6px solid transparentize($educationcolor, 0.3);
+        a:link, a:visited {
+          color: $educationcolor;
+        }
+      }
+      &.school {
+        border-top: 6px solid transparentize($schoolcolor, 0.3);
+        a:link, a:visited {
+          color: $schoolcolor;
+        }
+      }
+      &.activities {
+        border-top: 6px solid transparentize($activitiescolor, 0.3);
+        a:link, a:visited {
+          color: $activitiescolor;
+        }
+      }
+      &.intern {
+        border-top: 6px solid transparentize($interncolor, 0.3);
+        a:link, a:visited {
+          color: $interncolor;
+        }
+      }
+      &.more {
+        border-top: 6px solid transparentize($morecolor, 0.3);
+        a:link, a:visited {
+          color: $morecolor;
+        }
+      }
+    }
+
+    section > li {
       display: block;
       padding: 1em 30px;
-      color: white;
 
-      h3 {
+      h4, h3 {
         margin: 0.5em 0;
+        word-wrap:break-word;
       }
 
       ul {
@@ -521,48 +243,35 @@ nav#subjectoverview {
         list-style: disc;
       }
 
-      a:link, a:visited {
-        color: white;
-      }
-
-      &.promotion {
-        background-color: transparentize($promotecolor, 0.3);
-        &:hover {
-          background-color: $promotecolor;
-        }
-      }
-      &.education {
-        background-color: transparentize($educationcolor, 0.3);
-        &:hover {
-          background-color: $educationcolor;
-        }
-      }
-      &.school {
-        background-color: transparentize($schoolcolor, 0.2);
-        &:hover {
-          background-color: $schoolcolor;
-        }
-      }
-      &.activities {
-        background-color: transparentize($activitiescolor, 0.3);
-        &:hover {
-          background-color: $activitiescolor;
-        }
-      }
-      &.protected {
-        background-color: transparentize($logincolor, 0.3);
-        &:hover {
-          background-color: $logincolor;
-        }
-      }
-
-      &.protected.teachers {
-        background-color: transparentize(darken($logincolor, 5%), 0.3);
-        &:hover {
-          background-color: darken($logincolor, 5%);
-        }
-      }
     }
+  }
+
+}
+
+.info {
+  section {
+    padding-bottom: 0 !important;
+  }
+
+  li {
+    color: white;
+  }
+
+  a:link, a:visited {
+    color: white;
+  }
+
+  .promotion {
+    background-color: transparentize($promotecolor, 0.3);
+  }
+  .education {
+    background-color: transparentize($educationcolor, 0.3);
+  }
+  .school {
+    background-color: transparentize($schoolcolor, 0.2);
+  }
+  .activities {
+    background-color: transparentize($activitiescolor, 0.3);
   }
 }
 
@@ -588,16 +297,16 @@ form#settings {
   input {
     display: block;
     margin: 1em 0;
-    border-color: transparentize($logincolor, 0.5);
+    border-color: transparentize($interncolor, 0.5);
     width: 18em;
     max-width: 100%;
     @include prefixify(box-sizing, border-box);
 
     &:hover {
-      border-color: transparentize($logincolor, 0.3);
+      border-color: transparentize($interncolor, 0.3);
     }
     &:focus {
-      border-color: $logincolor;
+      border-color: $interncolor;
     }
 
     &[name=secndpass] {
@@ -607,16 +316,16 @@ form#settings {
 
     &[type=submit] {
       color: white;
-      background: transparentize($logincolor, 0.3);
+      background: transparentize($interncolor, 0.3);
       margin-bottom: 2em;
       clear: both;
 
       &:hover, &:focus {
-        background: transparentize($logincolor, 0.4);
+        background: transparentize($interncolor, 0.4);
       }
 
       &[disabled] {
-        background: transparentize($logincolor, 0.7);
+        background: transparentize($interncolor, 0.7);
         border-color: transparent;
 
         &:hover {
@@ -662,7 +371,7 @@ ul.sitemap {
 
   &.protected {
     padding: 0 0 1.5em 3em;
-    border-left: 8px solid transparentize($logincolor, 0.4);
+    border-left: 8px solid transparentize($interncolor, 0.4);
   }
 
   li {
@@ -699,7 +408,7 @@ ul.sitemap {
     display: block;
     position: fixed;
     margin-left: -105px;
-    margin-top: 2em;
+    bottom: 2em;
     font-size: 0.8em;
     z-index: 2;
 
@@ -725,33 +434,19 @@ ul.sitemap {
           padding: 0.7em 0.9em;
           display: block;
           color: white;
+
+          &.youarehere {
+            background: transparentize(white, 0.7);
+          }
         }
       }
     }
   }
 
 
-  /*NEWS*/
-  div.newscover {
-    height: 200px;
-  }
-
+  /*NEWS/PHOTOS*/
   form#archivepicker {
     margin: 0.5em 50px;
-  }
-
-
-  /*PHOTOALBUM*/
-  div#gallery {
-    padding: 0 40px 40px;
-  }
-
-  a.fancybox {
-    overflow: hidden;
-    float: left;
-    width: 23%;
-    height: 200px;
-    margin: 1%;
   }
 
 
@@ -761,78 +456,13 @@ ul.sitemap {
       height: 100%;
       overflow: hidden;
 
-      > li {
+      section > li, section > h3 {
         width: 25%;
         @include prefixify(box-sizing, border-box);
         float: left;
       }
-    }
-  }
-
-
-  /*INDEX*/
-  div#indexcover {
-    background-image: url(/static/img/cover.png);
-    margin-top: -3.8em;
-    margin-bottom: -11em;
-
-    #darken {
-      padding: 8em 2em 18em;
-    }
-  }
-
-  ul#quicknav > li {
-    float: left;
-    width: 25%;
-    height: 152px;
-    @include prefixify(box-sizing, border-box);
-  }
-
-
-  div#recent {
-    width: 50%;
-    float: left;
-    border-right: 1px solid #eee;
-
-    h2 {
-      margin: 0;
-      padding: 0.5em 20px;
-    }
-  }
-
-  div#largeactivity {
-    height: 220px;
-
-    a {
-      @include transition(background);
-
-      p {
-        @include transition(height);
-      }
-    }
-  }
-
-  ul#headlines {
-    li {
-      overflow: hidden;
-      font-size: 1.2em;
-    }
-    a {
-      max-width: 87%;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
-
-  div#comingup {
-    border-top: none;
-
-    li {
-      font-size: 1.2em;
-      border-bottom: 1px solid #eee;
-      &:not(:nth-child(1)) {
-        border-top: none;
+      section.hasHeader > li:nth-of-type(3n + 4) {
+        margin-left: 25%;
       }
     }
   }
@@ -841,7 +471,7 @@ ul.sitemap {
   div#recentlinks a {
     width: 44%;
     padding: 3%;
-      float: left;
+    float: left;
   }
 
   form#settings {
@@ -873,17 +503,5 @@ ul.sitemap {
 @media (min-width: 1440px) {
   div#content {
     width: $pagewidth;
-  }
-
-  div#indexcover {
-    margin-bottom: -10em;
-
-    #darken {
-      padding: 8em 2em 17em;
-    }
-  }
-
-  ul#quicknav > li {
-    height: 136px;
   }
 }

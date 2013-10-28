@@ -1,37 +1,37 @@
 @-webkit-keyframes wiggle {
   from {
-    top: 30px; }
+    top: 15px; }
 
   to {
-    top: 40px; } }
+    top: 25px; } }
 
 @-moz-keyframes wiggle {
   from {
-    top: 30px; }
+    top: 15px; }
 
   to {
-    top: 40px; } }
+    top: 25px; } }
 
 @-ms-keyframes wiggle {
   from {
-    top: 30px; }
+    top: 15px; }
 
   to {
-    top: 40px; } }
+    top: 25px; } }
 
 @-o-keyframes wiggle {
   from {
-    top: 30px; }
+    top: 15px; }
 
   to {
-    top: 40px; } }
+    top: 25px; } }
 
 @keyframes wiggle {
   from {
-    top: 30px; }
+    top: 15px; }
 
   to {
-    top: 40px; } }
+    top: 25px; } }
 
 .partext, #parbegin .center div, #parend .center {
   background: #fafafa;
@@ -81,18 +81,34 @@
       text-align: center;
       width: 100%; }
       #parbegin .center div {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         margin: 0 auto;
         width: 400px;
         padding: 0 0 0.7em; }
     #parbegin #pointdown {
       display: block;
-      background: white;
+      background: rgba(255, 255, 255, 0.7);
       position: absolute;
-      height: 100px;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      color: #888; }
+      height: 62px;
+      width: 150px;
+      bottom: 20px;
+      left: 50%;
+      margin-left: -75px;
+      color: #555;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: background 150ms ease-in-out;
+      -o-transition: background 150ms ease-in-out;
+      -ms-transition: background 150ms ease-in-out;
+      -moz-transition: background 150ms ease-in-out;
+      -webkit-transition: background 150ms ease-in-out; }
       #parbegin #pointdown div {
         text-align: center;
         font-size: 1.5em;
@@ -123,28 +139,30 @@
         -ms-animation-timing-function: ease-in-out;
         -moz-animation-timing-function: ease-in-out;
         -webkit-animation-timing-function: ease-in-out;
-        transition: opacity 200ms ease-in-out;
-        -o-transition: opacity 200ms ease-in-out;
-        -ms-transition: opacity 200ms ease-in-out;
-        -moz-transition: opacity 200ms ease-in-out;
-        -webkit-transition: opacity 200ms ease-in-out; }
+        transition: opacity 150ms ease-in-out;
+        -o-transition: opacity 150ms ease-in-out;
+        -ms-transition: opacity 150ms ease-in-out;
+        -moz-transition: opacity 150ms ease-in-out;
+        -webkit-transition: opacity 150ms ease-in-out; }
       #parbegin #pointdown p {
         text-align: center;
-        font-size: 1.3em;
+        font-size: 1.2em;
         position: absolute;
-        top: 40px;
+        top: 22px;
         width: 100%;
         margin: 0;
-        transition: opacity 200ms ease-in-out;
-        -o-transition: opacity 200ms ease-in-out;
-        -ms-transition: opacity 200ms ease-in-out;
-        -moz-transition: opacity 200ms ease-in-out;
-        -webkit-transition: opacity 200ms ease-in-out;
+        transition: opacity 150ms ease-in-out;
+        -o-transition: opacity 150ms ease-in-out;
+        -ms-transition: opacity 150ms ease-in-out;
+        -moz-transition: opacity 150ms ease-in-out;
+        -webkit-transition: opacity 150ms ease-in-out;
         opacity: 0; }
-      #parbegin #pointdown:hover :nth-child(1) {
-        opacity: 0; }
-      #parbegin #pointdown:hover :nth-child(2) {
-        opacity: 1; }
+      #parbegin #pointdown:hover {
+        background: rgba(255, 255, 255, 0.9); }
+        #parbegin #pointdown:hover :nth-child(1) {
+          opacity: 0; }
+        #parbegin #pointdown:hover :nth-child(2) {
+          opacity: 1; }
 
   .parimage {
     height: 500px;

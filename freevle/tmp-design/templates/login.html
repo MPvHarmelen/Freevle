@@ -3,7 +3,8 @@
 {% block head %}
   <script>
     $(document).ready(function() {
-      $('input:first').focus();
+      $('input[type=text]').focus();
+      disablrLogin();
     });
   </script>
 {% endblock %}
@@ -16,4 +17,19 @@
   <a id="backtoindex" href="/">
     Terug naar home
   </a>
+  <div class="messagecont">
+    <div>Dit is een flashed message</div>
+    <div>Dit is een tweede flashed message</div>
+  </div>
+  <div id="login">
+    <form method="POST" action="/login/">
+      <div class="close">&times;</div>
+      <h2>Login</h2>
+      <p class="error">Het wachtwoord was incorrect.</p>
+      <input type="text" placeholder="Gebruikersnaam">
+      <input type="password" placeholder="Wachtwoord">
+      <input type="submit" class="button" value="Login">
+      <a href="/verlorengegevens">Gegevens vergeten?</a>
+    </form>
+  </div>
 {% endblock %}

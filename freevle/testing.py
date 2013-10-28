@@ -7,11 +7,7 @@ import freevle
 class TestBase(unittest.TestCase):
     def setUp(self):
         # Create a temporary database file (sqlite3).
-        if freevle.app.config.get('UGLY_TEST_WORKAROUND', False):
-            self.db_path = 'C:\\tempfileforsqlalchemy'
-            self.db_fd = open(self.db_path, 'w')
-        else:
-            self.db_fd, self.db_path = tempfile.mkstemp()
+        self.db_fd, self.db_path = tempfile.mkstemp()
         freevle.app.config['SQLALCHEMY_DATABASE_URI'] = \
                 'sqlite:///' + self.db_path
 
@@ -25,10 +21,8 @@ class TestBase(unittest.TestCase):
 
     def tearDown(self):
         freevle.db.session.close_all()
-        if freevle.app.config.get('UGLY_TEST_WORKAROUND', False):
-            self.db_fd.close()
-        else:
-            os.close(self.db_fd)
+        freevle.db.session.remove()
+        os.close(self.db_fd)
         os.unlink(self.db_path)
 
 class TestSetup(TestBase):

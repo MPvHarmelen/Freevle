@@ -1,19 +1,3 @@
-/*INDEX: COVER*/
-div#indexcover {
-  text-align: center;
-  width: 100%;
-  background: url(/static/img/coversmall.png) center;
-  background-size: cover; }
-  div#indexcover #darken {
-    padding: 2em 2em 2em;
-    background: rgba(0, 0, 0, 0.2); }
-  div#indexcover h1 {
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
-  div#indexcover .button {
-    background: #fba929;
-    color: white;
-    border-color: #fb9f10; }
-
 /*MAIN CONTENT*/
 div#content {
   margin: 0 auto;
@@ -24,22 +8,24 @@ div#content {
     background: rgba(1, 61, 125, 0.7); }
   div#content.education {
     border-color: rgba(209, 22, 5, 0.7); }
-    div#content.education nav ul {
+    div#content.education nav#jumpto ul {
       background: rgba(209, 22, 5, 0.7); }
   div#content.school {
     border-color: rgba(1, 61, 125, 0.8); }
-    div#content.school nav ul {
+    div#content.school nav#jumpto ul {
       background: rgba(1, 61, 125, 0.7); }
   div#content.activities {
     border-color: rgba(20, 202, 157, 0.7); }
-    div#content.activities nav ul {
+    div#content.activities nav#jumpto ul {
       background: rgba(20, 202, 157, 0.7); }
   div#content.recent {
     border-color: rgba(67, 184, 61, 0.7); }
-  div#content.protected {
+    div#content.recent nav#jumpto ul {
+      background: rgba(67, 184, 61, 0.7); }
+  div#content.intern {
     border-color: rgba(110, 0, 128, 0.7); }
-  div#content.protected.teachers {
-    border-color: #6e0080; }
+    div#content.intern nav#jumpto ul {
+      background: rgba(110, 0, 128, 0.7); }
   div#content p {
     margin: 0.5em 30px 1.5em;
     text-align: justify;
@@ -48,8 +34,6 @@ div#content {
     max-width: 100%;
     margin: auto;
     display: block; }
-  div#content section:not(:nth-of-type(1)) {
-    border-top: 1px solid #eeeeee; }
   div#content section.containsimg {
     padding-bottom: 1em;
     border: none; }
@@ -59,11 +43,6 @@ div#content {
     text-align: center;
     font-style: italic;
     margin-bottom: 0.5em; }
-
-.home div#content {
-  overflow: hidden;
-  border-top: none;
-  padding-bottom: 0; }
 
 /*INPAGE NAV*/
 nav#jumpto {
@@ -78,7 +57,7 @@ div#pagecover {
 
 /*NEWS*/
 article.newsmessage {
-  padding: 2em 0 2em; }
+  padding: 0.5em 0 0.5em; }
   article.newsmessage:first-of-type {
     padding-top: 0.1em; }
   article.newsmessage h3 {
@@ -88,6 +67,8 @@ article.newsmessage {
   article.newsmessage p.meta {
     color: #666; }
 
+.news h2 {
+  margin-bottom: 0.1em; }
 .news article.newsmessage {
   border-bottom: 1px solid #dddddd; }
 
@@ -192,189 +173,74 @@ nav#readfurther {
     font-style: italic;
     margin: 0.7em 1em; }
 
-/*INDEX: RELEVANT*/
-ul#quicknav {
-  padding: 0;
-  margin: 0;
-  overflow: hidden; }
-  ul#quicknav h3 {
-    margin: 0;
-    color: white; }
-  ul#quicknav ul {
-    padding: 0 0 0 1.1em;
-    color: white;
-    font-weight: normal;
-    font-size: 0.9em;
-    margin: 0.4em 0 0; }
-
-/*INDEX: RECENT*/
-.home h2 {
-  margin: 0.5em 20px; }
-
-div#largeactivity {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  position: relative; }
-  div#largeactivity a.overlay {
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.2);
-    display: table;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    color: white; }
-    div#largeactivity a.overlay div {
-      vertical-align: middle;
-      display: table-cell; }
-    div#largeactivity a.overlay h3 {
-      font-size: 2em;
-      margin: 0.5em 50px; }
-    div#largeactivity a.overlay p {
-      overflow: hidden;
-      height: 0;
-      margin: -0.8em 50px 0.5em;
-      text-align: center; }
-    div#largeactivity a.overlay:hover {
-      text-decoration: none;
-      background: rgba(67, 184, 61, 0.9); }
-      div#largeactivity a.overlay:hover p {
-        height: 3em; }
-
-ul#headlines {
-  margin: 0;
-  padding: 0; }
-  ul#headlines li {
-    list-style: none;
-    display: block;
-    font-size: 1.1em;
-    padding: 16px 1em 15px; }
-    ul#headlines li:nth-child(1) a {
-      color: #000; }
-    ul#headlines li:nth-child(1) time {
-      color: #444; }
-    ul#headlines li:nth-child(2) a {
-      color: #444; }
-    ul#headlines li:nth-child(2) time {
-      color: #666; }
-    ul#headlines li:nth-child(3) a {
-      color: #666; }
-    ul#headlines li:nth-child(3) time {
-      color: #777; }
-    ul#headlines li:nth-child(4) a {
-      color: #888; }
-    ul#headlines li:nth-child(4) time {
-      color: #999; }
-    ul#headlines li time {
-      font-style: italic;
-      color: #555;
-      width: 44px;
-      display: inline-block; }
-
-div#comingup {
-  overflow: hidden;
-  border-top: 1px solid #eeeeee;
-  background: #f5f5f5; }
-  div#comingup ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.5em 0 0; }
-  div#comingup li {
-    overflow: hidden;
-    clear: both;
-    border-top: 1px solid #f0f0f0;
-    color: #999; }
-    div#comingup li:nth-child(1) {
-      background: rgba(0, 0, 0, 0.06);
-      border-color: #e0e0e0;
-      color: #555; }
-      div#comingup li:nth-child(1) time {
-        border-color: #e0e0e0; }
-      div#comingup li:nth-child(1) span.day {
-        color: #777; }
-    div#comingup li:nth-child(2) {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: #e5e5e5;
-      color: #777; }
-      div#comingup li:nth-child(2) time {
-        border-color: #e5e5e5; }
-      div#comingup li:nth-child(2) span.day {
-        color: #888; }
-    div#comingup li:nth-child(3) {
-      background: rgba(0, 0, 0, 0.02);
-      border-color: #e9e9e9;
-      color: #8c8c8c; }
-      div#comingup li:nth-child(3) time {
-        border-color: #e9e9e9; }
-      div#comingup li:nth-child(3) span.day {
-        color: #9c9c9c; }
-    div#comingup li p {
-      float: left;
-      display: block;
-      padding: 1.08em 0.9em;
-      font-weight: 300;
-      font-size: 1.5em;
-      margin: 0; }
-  div#comingup time {
-    padding: 21px 23px 22px;
-    width: 60px;
-    float: left;
-    border-right: 1px solid #f0f0f0;
-    font-size: 0.9em;
-    text-align: center; }
-    div#comingup time span.day {
-      color: #aaa;
-      font-size: 2em;
-      display: block;
-      font-weight: bold; }
-
 /*SUBJECT-OVERVIEW*/
 nav#subjectoverview {
   font-size: 1.1em; }
+  nav#subjectoverview h2 {
+    font-size: 2.05em;
+    margin-left: 30px; }
   nav#subjectoverview > ul {
     padding: 0;
     margin: 0;
     list-style: none; }
-    nav#subjectoverview > ul > li {
+    nav#subjectoverview > ul section {
+      overflow: hidden;
+      padding-bottom: 1em; }
+      nav#subjectoverview > ul section > h3 {
+        margin: 0;
+        word-wrap: break-word;
+        font-weight: 300;
+        padding: 1.2em 30px; }
+      nav#subjectoverview > ul section:nth-of-type(1) > h3 {
+        margin-top: 0; }
+      nav#subjectoverview > ul section.promotion {
+        border-top: 6px solid rgba(251, 169, 41, 0.7); }
+        nav#subjectoverview > ul section.promotion a:link, nav#subjectoverview > ul section.promotion a:visited {
+          color: #fba929; }
+      nav#subjectoverview > ul section.education {
+        border-top: 6px solid rgba(209, 22, 5, 0.7); }
+        nav#subjectoverview > ul section.education a:link, nav#subjectoverview > ul section.education a:visited {
+          color: #d11605; }
+      nav#subjectoverview > ul section.school {
+        border-top: 6px solid rgba(1, 61, 125, 0.7); }
+        nav#subjectoverview > ul section.school a:link, nav#subjectoverview > ul section.school a:visited {
+          color: #013d7d; }
+      nav#subjectoverview > ul section.activities {
+        border-top: 6px solid rgba(20, 202, 157, 0.7); }
+        nav#subjectoverview > ul section.activities a:link, nav#subjectoverview > ul section.activities a:visited {
+          color: #14ca9d; }
+      nav#subjectoverview > ul section.intern {
+        border-top: 6px solid rgba(110, 0, 128, 0.7); }
+        nav#subjectoverview > ul section.intern a:link, nav#subjectoverview > ul section.intern a:visited {
+          color: #6e0080; }
+      nav#subjectoverview > ul section.more {
+        border-top: 6px solid rgba(51, 51, 51, 0.7); }
+        nav#subjectoverview > ul section.more a:link, nav#subjectoverview > ul section.more a:visited {
+          color: #333333; }
+    nav#subjectoverview > ul section > li {
       display: block;
-      padding: 1em 30px;
-      color: white; }
-      nav#subjectoverview > ul > li h3 {
-        margin: 0.5em 0; }
-      nav#subjectoverview > ul > li ul {
+      padding: 1em 30px; }
+      nav#subjectoverview > ul section > li h4, nav#subjectoverview > ul section > li h3 {
+        margin: 0.5em 0;
+        word-wrap: break-word; }
+      nav#subjectoverview > ul section > li ul {
         padding: 0 0 0 1.6em;
         list-style: disc; }
-      nav#subjectoverview > ul > li a:link, nav#subjectoverview > ul > li a:visited {
-        color: white; }
-      nav#subjectoverview > ul > li.promotion {
-        background-color: rgba(251, 169, 41, 0.7); }
-        nav#subjectoverview > ul > li.promotion:hover {
-          background-color: #fba929; }
-      nav#subjectoverview > ul > li.education {
-        background-color: rgba(209, 22, 5, 0.7); }
-        nav#subjectoverview > ul > li.education:hover {
-          background-color: #d11605; }
-      nav#subjectoverview > ul > li.school {
-        background-color: rgba(1, 61, 125, 0.8); }
-        nav#subjectoverview > ul > li.school:hover {
-          background-color: #013d7d; }
-      nav#subjectoverview > ul > li.activities {
-        background-color: rgba(20, 202, 157, 0.7); }
-        nav#subjectoverview > ul > li.activities:hover {
-          background-color: #14ca9d; }
-      nav#subjectoverview > ul > li.protected {
-        background-color: rgba(110, 0, 128, 0.7); }
-        nav#subjectoverview > ul > li.protected:hover {
-          background-color: #6e0080; }
-      nav#subjectoverview > ul > li.protected.teachers {
-        background-color: rgba(88, 0, 103, 0.7); }
-        nav#subjectoverview > ul > li.protected.teachers:hover {
-          background-color: #580067; }
+
+.info section {
+  padding-bottom: 0 !important; }
+.info li {
+  color: white; }
+.info a:link, .info a:visited {
+  color: white; }
+.info .promotion {
+  background-color: rgba(251, 169, 41, 0.7); }
+.info .education {
+  background-color: rgba(209, 22, 5, 0.7); }
+.info .school {
+  background-color: rgba(1, 61, 125, 0.8); }
+.info .activities {
+  background-color: rgba(20, 202, 157, 0.7); }
 
 /*LOGIN-PAGE*/
 a#backtoindex {
@@ -487,7 +353,7 @@ ul.sitemap {
     display: block;
     position: fixed;
     margin-left: -105px;
-    margin-top: 2em;
+    bottom: 2em;
     font-size: 0.8em;
     z-index: 2; }
     nav#jumpto ul {
@@ -512,6 +378,8 @@ ul.sitemap {
         padding: 0.7em 0.9em;
         display: block;
         color: white; }
+        nav#jumpto ul li a:link.youarehere, nav#jumpto ul li a:visited.youarehere {
+          background: rgba(255, 255, 255, 0.3); }
 
   /*NEWS*/
   div.newscover {
@@ -535,7 +403,7 @@ ul.sitemap {
   nav#subjectoverview > ul {
     height: 100%;
     overflow: hidden; }
-    nav#subjectoverview > ul > li {
+    nav#subjectoverview > ul section > li, nav#subjectoverview > ul section > h3 {
       width: 25%;
       box-sizing: border-box;
       -o-box-sizing: border-box;
@@ -543,64 +411,8 @@ ul.sitemap {
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
       float: left; }
-
-  /*INDEX*/
-  div#indexcover {
-    background-image: url(/static/img/cover.png);
-    margin-top: -3.8em;
-    margin-bottom: -11em; }
-    div#indexcover #darken {
-      padding: 8em 2em 18em; }
-
-  ul#quicknav > li {
-    float: left;
-    width: 25%;
-    height: 152px;
-    box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box; }
-
-  div#recent {
-    width: 50%;
-    float: left;
-    border-right: 1px solid #eeeeee; }
-    div#recent h2 {
-      margin: 0;
-      padding: 0.5em 20px; }
-
-  div#largeactivity {
-    height: 220px; }
-    div#largeactivity a {
-      transition: background 200ms ease-in-out;
-      -o-transition: background 200ms ease-in-out;
-      -ms-transition: background 200ms ease-in-out;
-      -moz-transition: background 200ms ease-in-out;
-      -webkit-transition: background 200ms ease-in-out; }
-      div#largeactivity a p {
-        transition: height 200ms ease-in-out;
-        -o-transition: height 200ms ease-in-out;
-        -ms-transition: height 200ms ease-in-out;
-        -moz-transition: height 200ms ease-in-out;
-        -webkit-transition: height 200ms ease-in-out; }
-
-  ul#headlines li {
-    overflow: hidden;
-    font-size: 1.2em; }
-  ul#headlines a {
-    max-width: 87%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden; }
-
-  div#comingup {
-    border-top: none; }
-    div#comingup li {
-      font-size: 1.2em;
-      border-bottom: 1px solid #eeeeee; }
-      div#comingup li:not(:nth-child(1)) {
-        border-top: none; }
+    nav#subjectoverview > ul section.hasHeader > li:nth-of-type(3n + 4) {
+      margin-left: 25%; }
 
   div#recentlinks a {
     width: 44%;
@@ -628,12 +440,4 @@ ul.sitemap {
       max-width: 114px !important; } }
 @media (min-width: 1440px) {
   div#content {
-    width: 1000px; }
-
-  div#indexcover {
-    margin-bottom: -10em; }
-    div#indexcover #darken {
-      padding: 8em 2em 17em; }
-
-  ul#quicknav > li {
-    height: 136px; } }
+    width: 1000px; } }

@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/cms_page_edit.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Pagina-editor</h2>
+
+  <section class="card">
+    <form method="POST" action="#">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <input type="text" id="page_itle" name="page_title" placeholder="Titel" value="{{ page.title }}">
+      <button name="publish" type="submit" class="button save" value="on">Publiceren</button>
+      <button name="publish" type="submit" class="button save" value="off">Opslaan als sjabloon</button>
+
+      <section>
+        <textarea placeholder="Inhoud..." name="page_content">{{ page.content }}</textarea>
+      </section>
+
+      {% for section in page.sections %}
+      <section>
+        {% if section.type == 'text' %}
+          <input type="hidden" name="section_type" value="text">
+          <input type="text" id="subtitle" name="section_title" placeholder="Kopje" value="{{ section.title }}">
+          <textarea placeholder="Inhoud..." name="text_section_content">{{ section.content }}</textarea>
+        {% elif section.type == 'image' %}
+          <input type="hidden" name="section_type" value="image">
+          <input type="text" id="subtitle" name="section_title" placeholder="Kopje" value="{{ section.title }}">
+          <p>This shit still needs to be made</p>
+        {% else %}
+          <p>Unrecognised section</p>
+        {% endif %}
+      </section>
+      {% endfor %}
+
+      <section id="newsection">
+        <div id="newtext">+ Nieuw tekst-deel</div>
+        <div id="newimage">+ Nieuwe afbeelding</div>
+      </section>
+
+    </form>
+  </section>
+{% endblock %}

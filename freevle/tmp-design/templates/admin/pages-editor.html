@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      /*SLUG FIELD*/
+      slugger($('#pagetitle'));
+
+      $('#pagetitle').keyup(function() {
+        slugger($(this));
+      });
+    });
+  </script>
+  <link rel="stylesheet" href="/static/css/admin/editor.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Pagina-editor</h2>
+
+  <section class="card">
+    <form method="POST" action="#" id="editor">
+      <div id="editortop">
+        <label for="category">Categorie:</label>
+        <div id="catcont">
+          <select name="category" placeholder="Categorie">
+            <option></option>
+            <option value="school">De School</option>
+            <option value="education" selected>Onderwijs</option>
+            <option value="intern">Personeel</option>
+          </select>
+        </div>
+
+        <label for="slug">Url:</label>
+        <input type="hidden" name="slug" placeholder="..." value="gebouw">
+        <p id="slug"></p>
+
+        <button name="publish" type="submit" class="button publish">Publiceren</button>
+        <button name="save" type="submit" class="button save">Opslaan</button>
+
+        <a href="#" class="button view">Bekijken</a>
+        <a href="#" class="button preview">Voorbeeld</a>
+
+        <a href="#" class="button delete">Verwijder</a>
+      </div>
+
+      <label for="pagetitle">Titel:</label>
+      <input type="text" id="pagetitle" name="pagetitle" class="title" placeholder="..." value="Gebouw">
+
+      <section>
+        <textarea placeholder="Inhoud..." name="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac viverra neque. Nulla quis erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.</textarea>
+      </section>
+    </form>
+
+      <section id="newsection">
+        <div id="newtext">+ Tekst-deel</div>
+        <div id="newimage">+ Afbeelding</div>
+      </section>
+
+  </section>
+{% endblock %}

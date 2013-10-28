@@ -8,11 +8,13 @@ $pagewidth: 1000px;
 $smallpagewidth: 900px;
 
 $maincolor: #013D7D;
+$morecolor: #333333;
 $recentcolor: #43B83D;
 $educationcolor: #D11605;
 $schoolcolor: #013D7D;
 $activitiescolor: #14CA9D;
-$logincolor: #6E0080;
+$promotecolor: #FBA929;
+$interncolor: #6E0080;
 
 
 /*MIXINS*/
@@ -112,7 +114,7 @@ a {
   display: inline-block;
   border: solid 2px $maincolor;
   color: $maincolor;
-  padding: 0.6em 0.8em;
+  padding: 0.6em 0.8em 0.6em;
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
@@ -129,6 +131,12 @@ a {
   &:active {
     padding: 0.7em 0.8em 0.5em;
     @include prefixify(box-shadow, inset 0 1px 1px transparentize(black, 0.8), 0 1px 1px transparentize(black, 0.7));
+  }
+
+  &.promote {
+    background: $promotecolor;
+    color: white;
+    border-color: darken($promotecolor, 5%);
   }
 }
 
@@ -157,41 +165,39 @@ input, select {
 .relevant {
   display: block;
   list-style: none;
-  padding: 0.9em 1em 0.9em 2.8em;
-  background-image: url(/static/img/sprite.png);
-  background-position: -116px -61px;
-  background-repeat: no-repeat;
+  padding: 0.9em 1.2em;
   font-size: 1.2em;
   font-weight: bold;
   @include transition(background);
 
-  a:link, a:visited {
+  &.linkicon {
+    background-image: url(/static/img/sprite.png);
+    background-position: -116px -61px;
+    background-repeat: no-repeat;
+    padding: 0.9em 1em 0.9em 2.8em;
+  }
+
+  a:link, a:visited, &:link, &:visited {
     color: white;
   }
 
   &.education {
     background-color: transparentize($educationcolor, 0.3);
-    &:hover {
-      background-color: $educationcolor;
-    }
   }
   &.school {
     background-color: transparentize($schoolcolor, 0.2);
-    &:hover {
-      background-color: $schoolcolor;
-    }
+  }
+  &.intern {
+    background-color: transparentize($interncolor, 0.2);
+  }
+  &.recent {
+    background-color: transparentize($recentcolor, 0.2);
   }
   &.activities {
     background-color: transparentize($activitiescolor, 0.3);
-    &:hover {
-      background-color: $activitiescolor;
-    }
   }
-  &.recent {
-    background-color: transparentize($recentcolor, 0.3);
-    &:hover {
-      background-color: $recentcolor;
-    }
+  &.more {
+    background-color: transparentize($morecolor, 0.3);
   }
 }
 
@@ -214,6 +220,37 @@ input, select {
     min-width: 50%;
     min-height: 50%;
   }
+}
+
+
+/*FLASHED MESSAGES*/
+div.messagecont {
+  position: absolute;
+  z-index: 7;
+  display: block;
+  margin: auto;
+  top: 0;
+  background: #333;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+
+  div {
+    padding: 1em;
+    font-size: 1.1em;
+  }
+}
+
+
+/*ERRORS*/
+p.error {
+  background: darken(lightcoral, 10%);
+  display: inline-block;
+  padding: 0.8em 1em;
+  font-weight: bold;
+  color: white;
+  font-size: 1.1em;
 }
 
 
@@ -256,7 +293,7 @@ div#login, div#lost {
   width: 100%;
   height: 100%;
   z-index: 6;
-  background: $logincolor;
+  background: $interncolor;
   text-align: center;
   display: table;
   overflow-y: auto;
@@ -315,7 +352,7 @@ div#login, div#lost {
 
 
       &:focus {
-        color: $logincolor;
+        color: $interncolor;
 
         &::-webkit-input-placeholder {
           color: transparentize(black, 0.6);
@@ -333,7 +370,7 @@ div#login, div#lost {
         margin-bottom: 1.5em;
 
         &:hover {
-          background: $logincolor;
+          background: $interncolor;
           color: white;
         }
 
@@ -572,6 +609,7 @@ footer {
 
       ul.dropdown {
         position: relative;
+        width: 100%;
       }
     }
 
@@ -625,7 +663,7 @@ footer {
       border-left: 0;
     }
 
-    div.button {
+    div#intern a {
       display: none;
     }
   }
@@ -659,20 +697,30 @@ footer {
     @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.9));
 
     h1 {
-      width: 245px;
+      width: 119px;
       margin: 0;
-      padding: 0.6em 0;
+      padding: 0 0 0;
       overflow: hidden;
       float: left;
       border-right: 1px solid transparentize(#eee, 0.8);
+      position: relative;
+      white-space: nowrap;
+      height: 100%;
 
       a > span {
         font-size: 0.8em;
       }
 
+      span#obsolete {
+        display: none;
+      }
+
       a:link, a:visited {
-        padding: 0.6em 0.8em;
+        padding: 0.7em 0.9em 0.55em;
         color: $maincolor;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
 
@@ -703,41 +751,55 @@ footer {
         div {
           cursor: default;
         }
-
-        ul.dropdown {
-          margin-top: 1px;
-          overflow: hidden;
-          height: 0;
-          @include transition(height);
-
-          li {
-            float: none;
-            background: transparentize(white, 0.2);
-            &:nth-child(1) {
-              border-bottom: 1px solid transparentize(black, 0.95);
-            }
-          }
-        }
-        &:hover ul.dropdown {
-          height: 7.6em;
-        }
       }
     }
 
-    div.button {
-      margin: 0.6em;
+
+    ul.dropdown {
+      margin-top: 1px;
+      overflow: hidden;
+      height: 0;
+      @include transition(height);
+
+      li {
+        float: none;
+        background: transparentize(white, 0.2);
+        &:nth-child(1) {
+          border-bottom: 1px solid transparentize(black, 0.95);
+        }
+      }
+    }
+    :hover ul.dropdown {
+      height: 7.6em;
+    }
+
+    div#intern {
       float: right;
-      border-color: rgba(0,0,0,0);
-      opacity: 0.5;
-      color: #000;
+      width: 92px;
 
-      &:hover, &:active {
-        border-color: $logincolor;
-        background: transparentize($logincolor, 0.1);
-        opacity: 1;
-        color: white;
+      > a {
+        float: right;
+        text-decoration: none;
+        display: block;
+        opacity: 0.5;
+        padding: 1.3em;
+
+        &:link, &:visited {
+          color: #000;
+        }
+        &:hover {
+          color: #333;
+          opacity: 1;
+          background: transparentize(white, 0.5);
+        }
+      }
+
+      ul {
+        clear: both;
+        float: right;
       }
     }
+
 
     form {
       float: right;
@@ -747,11 +809,24 @@ footer {
         background-image: url(/static/img/sprite.png);
         background-repeat: no-repeat;
         background-position: -11px -13px;
-        width: 0;
+        width: 6.8em;
         padding-right: 0;
-        margin: 0.6em 0;
+        margin: 0.65em 0 0;
         @include transition(width);
         border-color: rgba(0,0,0,0);
+
+        &::-webkit-input-placeholder {
+          color: transparentize(black, 0.5);
+          text-transform: uppercase;
+        }
+        &::-moz-placeholder {
+          color: transparentize(black, 0.5);
+          text-transform: uppercase;
+        }
+        &:-ms-input-placeholder {
+          color: transparentize(black, 0.5);
+          text-transform: uppercase;
+        }
 
         &:hover, &:focus {
           border-color: $maincolor;
@@ -761,6 +836,18 @@ footer {
         &.opened {
           width: 16em;
           padding-right: 0.8em;
+          border-color: $maincolor;
+          background-color: white;
+
+          &::-webkit-input-placeholder {
+            color: transparentize(black, 0.6);
+          }
+          &::-moz-placeholder {
+            color: transparentize(black, 0.6);
+          }
+          &:-ms-input-placeholder {
+            color: transparentize(black, 0.6);
+          }
         }
       }
     }
@@ -772,18 +859,6 @@ footer {
 
     &:hover {
       background: transparentize(#fafafa, 0.2);
-    }
-
-    h1 {
-      width: 0;
-      white-space: nowrap;
-      border-width: 0;
-      @include transition(width);
-
-      &.yepshow {
-        width: 242px;
-        border-width: 1px;
-      }
     }
   }
 
@@ -804,6 +879,14 @@ footer {
   header#main {
     width: $pagewidth;
     margin-left: -$pagewidth/2;
+
+    h1 {
+      width: 249px;
+
+      span#obsolete {
+        display: inline-block;
+      }
+    }
   }
 
   nav#breadcrumbs {

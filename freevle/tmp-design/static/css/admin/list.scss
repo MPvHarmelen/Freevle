@@ -1,0 +1,383 @@
+$buttonfont: 'Montserrat', sans-serif;
+
+$maincolor: #013D7D;
+$morecolor: #333333;
+$recentcolor: #43B83D;
+$educationcolor: #D11605;
+$schoolcolor: #013D7D;
+$activitiescolor: #14CA9D;
+$interncolor: #6E0080;
+
+@mixin prefixify($style, $content...) {
+          #{$style}: $content;
+       -o-#{$style}: $content;
+      -ms-#{$style}: $content;
+     -moz-#{$style}: $content;
+  -webkit-#{$style}: $content;
+}
+
+@mixin transition($property, $duration, $function...) {
+          transition: $property $duration $function;
+       -o-transition: $property $duration $function;
+      -ms-transition: $property $duration $function;
+     -moz-transition: $property $duration $function;
+  -webkit-transition: $property $duration $function;
+}
+
+
+div#massactions {
+  overflow: hidden;
+  padding: 1em 1em 0.5em 0;
+  background: #f5f5f5;
+  border-bottom: 1px solid #eee;
+
+  p {
+    float: left;
+    padding: 0.6em 0.4em 0 1.25em;
+    margin: 0;
+    color: #555;
+    font-weight: bold;
+  }
+
+  .button.delete {
+    float: left;
+
+    &.delete {
+      background-position: -8px -59px !important;
+      padding-left: 2.5em;
+    }
+  }
+
+  select {
+    margin-left: 1.5em;
+  }
+}
+
+
+section.thirty {
+  h3 {
+    float: left;
+  }
+
+  button {
+    margin: 1.3em 1.5em;
+    float: right;
+  }
+
+  h4 {
+    clear: both;
+  }
+
+  input[type=search] {
+    display: inline-block;
+    border: solid 2px #ddd;
+    background: none;
+    color: $maincolor;
+    padding: 0.6em 0.8em;
+    font-weight: bold;
+    font-family: $buttonfont;
+    text-decoration: none;
+    width: 100%;
+    @include prefixify(box-sizing, border-box);
+
+    &:hover {
+      border-color: #aaa;
+      outline: none;
+    }
+
+    &:focus {
+      border-color: $maincolor;
+      outline: none;
+    }
+  }
+
+  input:checked + label {
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0.8em 20px;
+  }
+
+  label[for=education] {
+    color: $educationcolor;
+  }
+
+  label[for=school] {
+    color: $maincolor;
+  }
+
+  label[for=activities] {
+    color: $activitiescolor;
+  }
+
+  label[for=intern] {
+    color: $interncolor;
+  }
+
+  label[for=other] {
+    color: $morecolor;
+  }
+}
+
+
+ul.pages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+
+    &:nth-child(1) {
+      border: none;
+    }
+
+    &.selected {
+      background: transparentize($maincolor, 0.9);
+    }
+
+    div {
+      float: left;
+      border-left: 1px solid rgba(0,0,0,0.05);
+      &:nth-child(1) {
+        border: none;
+      }
+
+      &.new {
+        width: 100%;
+
+        a {
+          padding: 1em;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          width: 100%;
+          font-style: italic;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.checkboxcont {
+        z-index: 2;
+        position: relative;
+        padding: 1em;
+      }
+
+      &.date, &.usertype {
+        font-style: italic;
+        color: #777;
+        padding: 1em;
+        min-width: 3.7em;
+      }
+
+      &.pagename {
+        position: absolute;
+        left: 2.95em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+
+        a {
+          padding: 0.9em;
+          display: block;
+          color: #555;
+          text-decoration: none;
+          width: 100%;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.newsname {
+        position: absolute;
+        left: 9.15em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+
+        a {
+          padding: 0.9em;
+          display: block;
+          color: #555;
+          text-decoration: none;
+          width: 100%;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.soonname {
+        position: absolute;
+        left: 9.15em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+
+        a {
+          padding: 0.9em;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          width: 100%;
+          @include prefixify(box-sizing, border-box);
+
+          &.old {
+            color: #555;
+            font-style: italic;
+          }
+
+          &:hover {
+            color: #111;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &.actions {
+        float: right;
+        z-index: 2;
+        position: relative;
+
+        .buttoncont {
+          position: relative;
+        }
+
+        a {
+          display: block;
+          position: relative;
+          margin: 0.5em 0.5em 0.45em;
+          width: 2.3em;
+          height: 2.3em;
+          border: 2px solid $maincolor;
+          z-index: 2;
+          @include prefixify(box-sizing, border-box);
+
+          &:hover + .tooltip {
+            display: block;
+          }
+        }
+
+        .tooltip {
+          position: absolute;
+          color: white;
+          background: transparentize(black, 0.3);
+          padding: 0.5em 0.7em 0.55em;
+          display: none;
+          top: 0.5em;
+          left: -6.7em;
+          z-index: 1;
+
+          &:before {
+            display: block;
+            position: absolute;
+            right: -1.4em;
+            content: "";
+            width: 0;
+            height: 0;
+            border-width: 0.7em;
+            border-style: solid;
+            border-color: transparent transparent transparent transparentize(black, 0.3);
+          }
+        }
+      }
+    }
+
+    > a {
+
+      &:hover div {
+        text-decoration: underline;
+        color: #111;
+      }
+
+      .userid {
+        border-left: 1px solid rgba(0,0,0,0.05);
+        color: #777;
+        min-width: 3.2em;
+        padding: 1em;
+      }
+
+      .username {
+        color: #555;
+        position: absolute;
+        left: 12.9em;
+        right: 0;
+        z-index: 1;
+        font-size: 1.1em;
+        padding: 0.9em;
+      }
+    }
+  }
+}
+
+nav#pagination {
+  padding: 1em;
+  border-top: 1px solid #eee;
+  text-align: center;
+
+  a {
+    color: white;
+    display: inline-block;
+    padding: 0.7em 0.9em;
+    margin: 0.1em;
+    text-decoration: none;
+    background: transparentize($maincolor, 0.3);
+
+    &:hover {
+      text-decoration: none;
+      background: $maincolor;
+    }
+
+    &.current, &.dots {
+      background: transparentize($maincolor, 0.3);
+    }
+
+    &.current, &.current:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.recent {
+    a {
+      background: transparentize($recentcolor, 0.3);
+
+      &:hover {
+        text-decoration: none;
+        background: $recentcolor;
+      }
+
+      &.current, &.dots {
+        background: transparentize($recentcolor, 0.3);
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  section.seventy {
+    float: left;
+    margin: 0 -1% 1em 3%;
+    width: 66%;
+  }
+
+  section.thirty {
+    float: left;
+    margin: 0 -1% 1em 3%;
+    width: 26%;
+  }
+}

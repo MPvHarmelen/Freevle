@@ -1,15 +1,31 @@
-{% extends 'cms/base.html' %}
+{% extends "cms/base.html" %}
 
-{% block content %}
-      <div class="item">
-        <h2>{{ category.title }}</h2>
-        {% if category.children %}
-          <ul>
-          {% for child in category.children %}
-            <li><a href="{{ child.get_url() }}">{{ child.title }}</a></li>
+{% block head %}
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="info">
+    <nav id="subjectoverview">
+      <h2>{{ category.title }}</h2>
+      <ul>
+        <section>
+          {% for subcategory in category.subcategories %}
+            <li class="{{ subcategory.html_class or '' }}">
+              <h3>{{ subcategory.title }}</h3>
+              <ul>
+                {% for page in subcategory.pages %}
+                  <li>
+                    <a href="{{ page.get_url() }}">{{ page.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
           {% endfor %}
-          </ul>
-        {% endif %}
-        <p>{{ category.content }}</p>
-      </div>
+        </section>
+      </ul>
+    </nav>
+  </div>
 {% endblock %}
