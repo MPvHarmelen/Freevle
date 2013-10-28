@@ -24,7 +24,7 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: "Aldus", serif;
+  font-family: 'Aldus', serif;
   font-weight: 400;
   text-align: center;
   color: white;
@@ -376,6 +376,16 @@ header#main {
     width: 100%;
     left: 0;
     display: none; }
+  header#main div#aclist {
+    background: #fafafa;
+    font-family: "Source Sans Pro", sans-serif; }
+    header#main div#aclist a {
+      display: block;
+      padding: 1em;
+      float: none;
+      text-transform: capitalize; }
+      header#main div#aclist a.selected {
+        background: rgba(1, 61, 125, 0.1); }
 
 /*BREADCRUMBS*/
 nav#breadcrumbs {

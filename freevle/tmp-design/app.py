@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, url_for, render_template, request, redirect
+from flask import Flask, url_for, render_template, request, redirect, jsonify
 
 app = Flask(__name__)
 
@@ -64,7 +64,14 @@ def showlogin():
 
 @app.route('/zoek/autocompletion/', methods=['POST'])
 def results():
-    return render_template('autocompletion.html')
+    response = {
+      'results': 'true',
+      1: {'name': 'Romeins leren', 'url': '/info/activiteiten/romeins-leren/'},
+      2: {'name': 'Romereis leerjaar 5', 'url': '/info/activiteiten/romereis-leerjaar-5/'},
+      3: {'name': 'Rome, Trier en andere', 'url': '/info/activiteiten/rome-trier-en-andere/'},
+      4: {'name': 'Rekentoets uitgesteld', 'url': '/info/activiteiten/rekentoets-uitgesteld/'}
+    }
+    return jsonify(response)
 
 
 @app.route('/getrooster/<ref>/<id_user>/')

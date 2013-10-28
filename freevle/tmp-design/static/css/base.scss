@@ -525,6 +525,22 @@ header#main {
       display: none;
     }
   }
+
+  div#aclist {
+    background: #fafafa;
+    font-family: $bodyfont;
+
+    a {
+      display: block;
+      padding: 1em;
+      float: none;
+      text-transform: capitalize;
+
+      &.selected {
+        background: transparentize($maincolor, 0.9);
+      }
+    }
+  }
 }
 
 

@@ -1,6 +1,61 @@
 var focusstatus = false;
 
 /*FUNCTIONS*/
+$.fn.setCursorPosition = function(pos) {
+  if ($(this).get(0).setSelectionRange) {
+    $(this).get(0).setSelectionRange(pos, pos);
+  } else if ($(this).get(0).createTextRange) {
+    var range = $(this).get(0).createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', pos);
+    range.moveStart('character', pos);
+    range.select();
+  }
+}
+
+function fetchSearch(searchInput, callback) {
+  var svalue = searchInput.val();
+
+  if(svalue.length > 2) {
+    $.ajax({
+      type: "POST",
+      url: "/zoek/autocompletion/",
+      data: {
+        value: svalue
+      }
+    }).done(function(back) {
+        response = back;
+        if(callback) {
+          callback(searchInput);
+        }
+    });
+  }
+}
+
+function processSearch(searchInput) {
+  if(response['results'] === 'true') {
+    var toReplace = searchInput.val();
+    var reg = new RegExp(toReplace,"gi");
+
+    $('div#aclist').html('');
+
+    for(var key in response) {
+      if(response.hasOwnProperty(key) && key !== 'results') {
+        var itemName = response[key]['name'].replace(reg, '<b>' + toReplace + '</b>');
+        var itemUrl = response[key]['url'];
+        var listItem = '<a href="' + itemUrl + '">' + itemName + '</a>';
+        console.log(itemName);
+        $('div#aclist').append(listItem);
+      }
+    }
+
+    $('div#aclist').children(':first').addClass('selected');
+  } else {
+    $('div#aclist').html('<li class="noresult"><i>Geen resultaten</i></li>');
+  }
+}
+
+
 function scrollTo(place) {
   $('html, body').animate({ scrollTop: place }, 200);
 }
@@ -126,17 +181,47 @@ $(document).ready(function() {
 
 
   /*AUTOCOMPLETION*/
-  $('input[name=search]').keyup(function() {
-    var svalue = $(this).val();
+  $('input[name=search]').keyup(function(e) {
+    if(e.keyCode === 38) { //uparrow
+      $(this).setCursorPosition($(this).val().length);
+      if($('div#aclist a:first').hasClass('selected')) {
+        $('div#aclist .selected').removeClass('selected')
+        $('div#aclist a:last').addClass('selected');
+      } else {
+        $('div#aclist .selected').removeClass('selected')
+                             .prev().addClass('selected');
+      }
 
-    $.ajax({
-      type: "POST",
-      url: "/zoek/autocompletion/",
-      data: { value: svalue }
-    })
-      .done(function(back) {
-        $('datalist#search').html(back);
-      });
+    } else if(e.keyCode === 40) { //downarrow
+      if($('div#aclist a:last').hasClass('selected')) {
+        $('div#aclist .selected').removeClass('selected')
+        $('div#aclist a:first').addClass('selected');
+      } else {
+        $('div#aclist .selected').removeClass('selected')
+                             .next().addClass('selected');
+      }
+
+    } else {
+      if($(this).val().length > 2) {
+        fetchSearch($(this), processSearch);
+      } else {
+        $('div#aclist').html('');
+      }
+    }
+  }).click(function() {
+    if($(this).val().length > 2) {
+      fetchSearch($(this), processSearch);
+    } else {
+      $('div#aclist').html('');
+    }
+  });
+
+  $('form#search').submit(function(e) {
+    e.preventDefault();
+    var selectedHref = $('div#aclist .selected').attr('href');
+    if(selectedHref != undefined && selectedHref != '') {
+      window.location = selectedHref;
+    }
   });
 
 

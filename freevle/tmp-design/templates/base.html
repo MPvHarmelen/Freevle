@@ -85,11 +85,10 @@
           </ul>
         {% endif %}
       </div>
-      <form method="POST" action="/zoek/">
+      <form method="POST" action="/zoek/" id="search">
         <h2 id="searchtitle">Zoeken</h2>
         <input type="search" name="search" list="search" placeholder="Zoek">
-        <datalist id="search">
-        </datalist>
+        <div id="aclist"></div>
       </form>
     </header>
 
