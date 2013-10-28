@@ -181,7 +181,7 @@
   .partext {
     padding: 2em 0; }
     .partext p {
-      width: 1000px;
+      width: 900px;
       margin: 2em auto; }
 
   #parend {
@@ -192,3 +192,9 @@
       margin: 0 auto;
       width: 400px;
       padding: 1em 0 2em; } }
+@media (min-width: 1440px) {
+  .partext {
+    padding: 2em 0; }
+    .partext p {
+      width: 1000px;
+      margin: 2em auto; } }
