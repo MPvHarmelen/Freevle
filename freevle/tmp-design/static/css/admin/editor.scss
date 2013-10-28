@@ -45,6 +45,11 @@ div#editortop {
     padding: 0.45em 0.8em 0.5em 0;
   }
 
+  input[type=checkbox] {
+    margin: 2.1em 0 0 1.5em;
+    float: left;
+  }
+
   div#catcont {
     float: left;
     display: table;
