@@ -1,10 +1,12 @@
 var textSection = '<section class="added">\
                     <label for="subtitle">Kopje:</label> \
                     <input type="text" class="subtitle" name="#" placeholder="Kopje">\
+                    <button class="deletesection button">Verwijder deel</button>\
                     <textarea placeholder="Inhoud..." name="#"></textarea>\
                   </section>'
 
 var imageSection = '<section class="added">\
+                      <button class="deletesection button">Verwijder deel</button>\
                       <input type="file" id="subtitle" name="#">\
                       <div class="filemask">\
                         <p>Kies een afbeelding</p>\
@@ -108,6 +110,21 @@ $(document).ready(function() {
   });
 
 
+/*SECTION DELETE*/
+  $(document).on('click', '.deletesection', function(e) {
+    var really = confirm('Weet je zeker dat je dit wil verwijderen?');
+    if(really == false) {
+      e.preventDefault();
+    } else {
+      e.preventDefault();
+      $(this).parent().slideUp(400);
+      setTimeout(function() {
+        $(this).parent().remove();
+      }, 400);
+    }
+  });
+
+
 /*PHOTO SELECT*/
   $('#gallery > div').click(function() {
     $(this).children('input').click();
@@ -125,11 +142,10 @@ $(document).ready(function() {
     }
   });
 
-  $('.delete').click(function(e) {
+  $(document).on('click', '.delete', function(e) {
     var really = confirm('Weet je zeker dat je dit wil verwijderen?');
     if(really == false) {
       e.preventDefault();
-      console.log('a');
     }
   });
 

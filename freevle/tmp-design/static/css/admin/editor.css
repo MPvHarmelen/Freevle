@@ -125,10 +125,23 @@ textarea {
     min-height: 100px; }
 
 section.card section {
-  border-bottom: 1px solid #e5e5e5; }
+  border-bottom: 1px solid #e5e5e5;
+  position: relative; }
 
 input[type=file] {
   display: none; }
+
+.deletesection {
+  background: none;
+  position: absolute;
+  top: 0.9em;
+  right: 1em;
+  z-index: 2;
+  color: #ed6969;
+  border-color: #ed6969; }
+  .deletesection:hover {
+    background-color: #ed6969;
+    color: white; }
 
 div.filemask {
   width: 100%;
@@ -137,7 +150,9 @@ div.filemask {
   font-weight: bold;
   color: #444;
   cursor: pointer;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative;
+  z-index: 1; }
   div.filemask img {
     max-height: 300px;
     max-width: 90%;

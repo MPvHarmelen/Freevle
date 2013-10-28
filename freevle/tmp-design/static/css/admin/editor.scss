@@ -186,10 +186,26 @@ textarea {
 
 section.card section {
   border-bottom: 1px solid #e5e5e5;
+  position: relative;
 }
 
 input[type=file] {
   display: none;
+}
+
+.deletesection {
+  background: none;
+  position: absolute;
+  top: 0.9em;
+  right: 1em;
+  z-index: 2;
+  color: darken(lightcoral, 5%);
+  border-color: darken(lightcoral, 5%);;
+
+  &:hover {
+    background-color: darken(lightcoral, 5%);
+    color: white;
+  }
 }
 
 div.filemask {
@@ -200,6 +216,8 @@ div.filemask {
   color: #444;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 
   img {
     max-height: 300px;
