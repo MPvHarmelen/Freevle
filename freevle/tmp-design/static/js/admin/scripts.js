@@ -37,7 +37,8 @@ function slugger(titleInput) {
   var slug = titleInput.val()
       .toLowerCase()
       .replace(/[^\w ]+/g,'')
-      .replace(/ +/g,'-');
+      .replace(/ +/g,'-')
+      .substring(0,255);
   $('#slug').text(slug);
   $('[name=slug]').val(slug);
 }
