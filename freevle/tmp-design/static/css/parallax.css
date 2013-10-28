@@ -1,34 +1,34 @@
 @-webkit-keyframes wiggle {
   from {
-    top: 15px; }
+    top: 10px; }
 
   to {
     top: 25px; } }
 
 @-moz-keyframes wiggle {
   from {
-    top: 15px; }
+    top: 10px; }
 
   to {
     top: 25px; } }
 
 @-ms-keyframes wiggle {
   from {
-    top: 15px; }
+    top: 10px; }
 
   to {
     top: 25px; } }
 
 @-o-keyframes wiggle {
   from {
-    top: 15px; }
+    top: 10px; }
 
   to {
     top: 25px; } }
 
 @keyframes wiggle {
   from {
-    top: 15px; }
+    top: 10px; }
 
   to {
     top: 25px; } }
@@ -99,6 +99,7 @@
       left: 50%;
       margin-left: -75px;
       color: #555;
+      cursor: pointer;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -148,7 +149,7 @@
         text-align: center;
         font-size: 1.2em;
         position: absolute;
-        top: 22px;
+        top: 20px;
         width: 100%;
         margin: 0;
         transition: opacity 150ms ease-in-out;

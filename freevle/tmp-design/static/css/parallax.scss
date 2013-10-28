@@ -17,7 +17,7 @@ $pagewidth: 1000px;
 
 @-webkit-keyframes wiggle {
   from {
-    top: 15px;
+    top: 10px;
   }
 
   to {
@@ -27,7 +27,7 @@ $pagewidth: 1000px;
 
 @-moz-keyframes wiggle {
   from {
-    top: 15px;
+    top: 10px;
   }
 
   to {
@@ -37,7 +37,7 @@ $pagewidth: 1000px;
 
 @-ms-keyframes wiggle {
   from {
-    top: 15px;
+    top: 10px;
   }
 
   to {
@@ -47,7 +47,7 @@ $pagewidth: 1000px;
 
 @-o-keyframes wiggle {
   from {
-    top: 15px;
+    top: 10px;
   }
 
   to {
@@ -57,7 +57,7 @@ $pagewidth: 1000px;
 
 @keyframes wiggle {
   from {
-    top: 15px;
+    top: 10px;
   }
 
   to {
@@ -148,6 +148,7 @@ $pagewidth: 1000px;
       left: 50%;
       margin-left: -75px;
       color: #555;
+      cursor: pointer;
       @include prefixify(box-shadow, 0 0 5px transparentize(black, 0.8));
       @include transition(background);
 
@@ -168,7 +169,7 @@ $pagewidth: 1000px;
         text-align: center;
         font-size: 1.2em;
         position: absolute;
-        top: 22px;
+        top: 20px;
         width: 100%;
         margin: 0;
         @include transition(opacity);

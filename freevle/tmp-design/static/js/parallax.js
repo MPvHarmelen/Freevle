@@ -9,6 +9,10 @@ $(document).ready(function() {
     }
   }
 
+  $('div#pointdown').click(function() {
+    scrollTo($(window).height());
+  });
+
   $('[data-type="background"]').each(function(){
     var bgobj = $(this);
 
