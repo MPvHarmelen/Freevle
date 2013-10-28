@@ -222,7 +222,7 @@ nav#sidebar {
     nav#sidebar.opened ul li {
       width: 12.5em; }
   nav#sidebar ul {
-    margin: 0;
+    margin: 3.7em 0 0;
     padding: 0;
     list-style: none;
     width: 0;
@@ -291,7 +291,8 @@ section.card {
 
   nav#sidebar {
     width: 4em;
-    overflow: visible; }
+    overflow: visible;
+    clear: both; }
     nav#sidebar ul {
       width: 4em;
       overflow: visible; }
@@ -325,7 +326,10 @@ section.card {
     margin: 0 3% 1em; } }
 @media (min-height: 32em) {
   header#main {
-    position: fixed; }
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0; }
 
   nav#sidebar {
     position: fixed; }
