@@ -273,6 +273,17 @@ nav#subjectoverview {
   .activities {
     background-color: transparentize($activitiescolor, 0.3);
   }
+  .intern {
+    background-color: transparentize($interncolor, 0.3);
+  }
+
+  #tointern {
+    font-weight: bold;
+    a {
+      padding: 1em;
+      display: block;
+    }
+  }
 }
 
 
