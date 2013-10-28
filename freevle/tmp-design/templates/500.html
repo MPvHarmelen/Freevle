@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block bodyclass %}
+  class="404"
+{% endblock %}
+
+{% block page %}
+  <div id="content">
+    <h2>500 - Serverfout</h2>
+    <p>Oh, oh! Het lijkt erop dat er iets mis is gegaan op de server! Ga terug <a href="#" onclick="javascript:window.history.back(-1);return false;">naar de vorige pagina</a>, herlaad deze pagina, gebruik de <a href="#" onclick="javascript:$('input[type=search]').focus();">zoekbalk</a> of het menu hierboven.</p>
+  </div>
+{% endblock %}

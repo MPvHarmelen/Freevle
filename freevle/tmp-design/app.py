@@ -141,6 +141,22 @@ def adminuserseditor():
     return render_template('admin/users-editor.html', title=title)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    title = '404 Pagina niet gevonden | Cygnus Gymnasium'
+    return render_template('404.html', title=title), 404
+
+@app.errorhandler(403)
+def page_not_found(e):
+    title = '403 Geen toegang | Cygnus Gymnasium'
+    return render_template('403.html', title=title), 403
+
+@app.errorhandler(500)
+def page_not_found(e):
+    title = '500 Serverfout | Cygnus Gymnasium'
+    return render_template('500.html', title=title), 500
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')

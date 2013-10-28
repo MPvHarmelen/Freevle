@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block bodyclass %}
+  class="404"
+{% endblock %}
+
+{% block page %}
+  <div id="content">
+    <h2>404 - Pagina niet gevonden</h2>
+    <p>Oh, oh! Het lijkt erop dat deze pagina niet is gevonden! Ga terug <a href="#" onclick="javascript:window.history.back(-1);return false;">naar de vorige pagina</a>, gebruik de <a href="#" onclick="javascript:$('input[type=search]').focus();">zoekbalk</a> of het menu hierboven.</p>
+  </div>
+{% endblock %}
