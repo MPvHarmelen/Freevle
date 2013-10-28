@@ -111,7 +111,9 @@ input, select {
   -webkit-transition: background 200ms ease-in-out; }
   .relevant.linkicon {
     background-image: url(/static/img/sprite.png);
-    background-position: -116px -61px;
+    background-position: top -61px right -116px;
+    background-position-x: -116px;
+    background-position-y: -61px;
     background-repeat: no-repeat;
     padding: 0.9em 1em 0.9em 2.8em; }
   .relevant a:link, .relevant a:visited, .relevant:link, .relevant:visited {
@@ -336,10 +338,14 @@ header#main {
   header#main a#menuopener {
     border-right: 1px solid #013164;
     background-image: url(/static/img/sprite.png);
-    background-position: 0 -180px; }
+    background-position: top 0 right -180px;
+    background-position-x: 0;
+    background-position-y: -180px; }
   header#main a#searchopener {
     background-image: url(/static/img/sprite.png);
-    background-position: -58px -180px;
+    background-position: top -180px right -58px;
+    background-position-x: -58px;
+    background-position-y: -180px;
     border-left: 1px solid #013164;
     right: 0;
     top: 0; }
@@ -447,7 +453,9 @@ footer {
   header#main #menuopener.opened {
     right: 0;
     z-index: 5;
-    background-position: 0 -120px;
+    background-position: top 0 right -120px;
+    background-position-x: -120px;
+    background-position-y: 0;
     border-left: 1px solid #013164;
     border-right: 0; }
   header#main form {
@@ -478,7 +486,9 @@ footer {
       color: rgba(255, 255, 255, 0.7); }
   header#main #searchopener.opened {
     z-index: 5;
-    background-position: 0 -120px;
+    background-position: top 0 right -120px;
+    background-position-x: -120px;
+    background-position-y: 0;
     border-right: 1px solid #013164;
     border-left: 0; }
   header#main div#intern a {
@@ -587,7 +597,9 @@ footer {
         padding-left: 2.4em;
         background-image: url(/static/img/sprite.png);
         background-repeat: no-repeat;
-        background-position: -11px -13px;
+        background-position: top -11px right -13px;
+        background-position-x: -11px;
+        background-position-y: -13px;
         width: 6.8em;
         padding-right: 0;
         margin: 0.65em 0 0;
@@ -608,7 +620,9 @@ footer {
           text-transform: uppercase; }
         header#main form input[type=search]:hover, header#main form input[type=search]:focus {
           border-color: #013d7d;
-          background-position: -69px -135px; }
+          background-position: top -135px right -69px;
+          background-position-x: -69px;
+          background-position-y: -135px; }
         header#main form input[type=search].opened {
           width: 16em;
           padding-right: 0.8em;
@@ -661,4 +675,5 @@ footer {
     width: 1000px; } }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .relevant, header#main a#menuopener, header#main a#searchopener, header#main form input[type=search] {
-    background-image: url(/static/img/sprite@2x.png); } }
+    background-image: url(/static/img/sprite@2x.png);
+    background-size: 174px; } }
