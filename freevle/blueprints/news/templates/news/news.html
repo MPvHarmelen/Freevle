@@ -26,6 +26,9 @@
     <article class="newsmessage"><h3>Geen nieuws</h3></article>
     {% endfor %}
 
+    <nav id="pagination">
     {%- block pagination %}{{ super() }}{% endblock %}
+      <a href="/nieuws/archief/">Archief</a>
+    </nav>
   </div>
 {% endblock %}

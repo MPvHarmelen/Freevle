@@ -1,16 +1,45 @@
 {% extends "cms/base.html" %}
 
 {% block pagination %}
-<nav id="pagination">
-      <a href="?page={{ page - 1}}">&laquo; Vorige</a>
-      <a {% if page == 1 %}class="current"{% else %}href="?page=1"{% endif %}>1</a>
-      <a href="#2">2</a>
-      <a href="#3">3</a>
-      <a href="#4">4</a>
-      <a href="#5">5</a>
-      <a class="dots">...</a>
-      <a href="#16">16</a>
-      <a href="?page={{ page + 1 }}">Volgende &raquo;</a>
-      <a href="/nieuws/archief/">Archief</a>
-    </nav>
+{%- if page != 1 %}
+<a href="?page={{ page - 1}}">&laquo; Vorige</a>
+{%- if page > 3 %}
+<a href="?page=1">1</a>
+{%- if page == 5 %}
+<a href="?page=2">2</a>
+{%- elif page > 4 %}
+<a class="dots">...</a>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+
+{%- if page > 2 %}
+<a href="?page={{ page - 2 }}">{{ page - 2 }}</a>
+{%- endif -%}
+
+{%- if page > 1 %}
+<a href="?page={{ page - 1 }}">{{ page - 1 }}</a>
+{% endif -%}
+
+<a class="current">{{ page }}</a>
+
+{%- if page < max_page %}
+<a href="?page={{ page + 1 }}">{{ page + 1 }}</a>
+{%- if page < max_page - 1 %}
+<a href="?page={{ page + 2 }}">{{ page + 2 }}</a>
+{%- if page == max_page - 4 %}
+<a href="?page={{ max_page - 1 }}">{{ max_page - 1}}</a>
+{%- elif page < max_page - 3 %}
+<a class="dots">...</a>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+
+{%- if page < max_page - 2 %}
+<a href="?page={{ max_page }}">{{ max_page }}</a>
+{%- endif -%}
+
+{%- if page != max_page %}
+<a href="?page={{ page + 1 }}">Volgende &raquo;</a>
+{%- endif %}
 {% endblock %}
