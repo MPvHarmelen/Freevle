@@ -96,7 +96,7 @@ class Category(db.Model):
         return False
 
     def __repr__(self):
-        return '({}) {}'.format(self.id, self.get_url())
+        return '<({}) {}>'.format(self.id, self.get_url())
 
 class Subcategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -254,7 +254,7 @@ class Page(db.Model):
         return False
 
     def __repr__(self):
-        return '({}) {}'.format(self.id, self.get_url())
+        return '<({}) {}>'.format(self.id, self.get_url())
 
 class PageSection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -286,7 +286,7 @@ class PageSection(db.Model):
     validate_slug = db.validates('slug')(validate_slug)
 
     def __repr__(self):
-        return '({}) {}Section'.format(self.id, self.type.capitalize())
+        return '<({}) {}Section>'.format(self.id, self.type.capitalize())
 
 class TextSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'text'}
@@ -435,7 +435,7 @@ from_{low_name} = db.relationship(
         return self.destination.get_url() if hasattr(self.destination, 'get_url') else ''
 
     def __repr__(self):
-        return '({}) Link to {} from {}'.format(self.id, self.destination, self.starting_points)
+        return '<({}) Link to {} from {}>'.format(self.id, self.destination, self.starting_points)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -458,4 +458,4 @@ class Event(db.Model):
         return self.link.get_url() if self.link is not None else ''
 
     def __repr__(self):
-        return '({}) {} on {}'.format(self.id, self.title, self.date.strftime('%x'))
+        return '<({}) {} on {}>'.format(self.id, self.title, self.date.strftime('%x'))

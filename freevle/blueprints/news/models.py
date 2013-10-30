@@ -36,4 +36,4 @@ class NewsItem(db.Model):
         }
 
     def __repr__(self):
-        return '({}) NewsItem {} on {}'.format(self.id, self.title, self.date_published.strftime('%x'))
+        return '<({}) NewsItem {} on {}>'.format(self.id, self.title, self.date_published.strftime('%x'))
