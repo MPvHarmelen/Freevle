@@ -17,6 +17,7 @@ NUMBER_OF_NEWS_ITEMS = 100
 
 image_urls = ['/static/img/sections/' + name for name in ['page.jpg', 'newsfront.png', 'page2.jpg']]
 html_classes = ['school', 'education', 'activities', 'intern', 'more', 'promotion']
+authors = ['Floris Jansen', 'Pim ten Thije', 'Martin van Harmelen', 'Jan Modaal']
 
 db.create_all()
 
@@ -25,9 +26,17 @@ page_content = "Aan het eind van elk {0} houden we enquêtes onder alle "\
 "het Cygnus Gymnasium geven voor {0} en veiligheid heel goed - en daar zijn "\
 "we trots op."
 
-lorum = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac viverra neque. Nulla quis erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.
+lorum = """Lorem _ipsum dolor_ sit amet, *consectetur* adipiscing elit. Donec ac __viverra__ neque. **Nulla quis** erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.
 
-Vestibulum sodales molestie ligula a consectetur. Praesent eleifend, sem non auctor ultricies, massa sem dictum nibh, vitae tempor elit dui eu augue. Suspendisse imperdiet risus et libero molestie pellentesque. Aliquam gravida nibh nunc, at ultricies elit tincidunt at. Morbi non sem tempor, semper leo a, pulvinar lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan a sapien eget hendrerit. Duis urna erat, tincidunt at tincidunt in, faucibus et felis. In hac habitasse platea dictumst. Curabitur eleifend ante sit amet neque luctus, sit amet dictum nulla vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."""
+# Vestibulum
+sodales molestie ligula a consectetur. Praesent eleifend, sem non auctor ultricies, massa sem dictum nibh, vitae tempor elit dui eu augue. Suspendisse imperdiet risus et libero molestie pellentesque. Aliquam gravida nibh nunc, at ultricies elit tincidunt at. Morbi non sem tempor, semper leo a, pulvinar lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan a sapien eget hendrerit. Duis urna erat, tincidunt at tincidunt in, faucibus et felis. In hac habitasse platea dictumst. Curabitur eleifend ante sit amet neque luctus, sit amet dictum nulla vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."""
+
+lorum_with_image = """Lorem _ipsum dolor_ sit amet, *consectetur* adipiscing elit. Donec ac __viverra__ neque. **Nulla quis** erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.
+
+![ImageIne]({} 'This is image')
+
+# Vestibulum
+sodales molestie ligula a consectetur. Praesent eleifend, sem non auctor ultricies, massa sem dictum nibh, vitae tempor elit dui eu augue. Suspendisse imperdiet risus et libero molestie pellentesque. Aliquam gravida nibh nunc, at ultricies elit tincidunt at. Morbi non sem tempor, semper leo a, pulvinar lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan a sapien eget hendrerit. Duis urna erat, tincidunt at tincidunt in, faucibus et felis. In hac habitasse platea dictumst. Curabitur eleifend ante sit amet neque luctus, sit amet dictum nulla vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."""
 
 
 # cms_tests = CMSTests()
@@ -92,7 +101,9 @@ def create_page_data(cat_amount, subcat_amount, page_amount):
                     title='section-2',
                     slug='section-2',
                     page=p,
-                    content=lorum
+                    content=lorum_with_image.format(image_urls[
+                        (page_num + subcat_num + cat_num) % len(image_urls)
+                    ])
                 )
                 db.session.add(s)
                 print('Added section:\t', s)
@@ -132,9 +143,10 @@ def create_news(amount):
         item = NewsItem(
             title='NewsItem {}'.format(num),
             slug='NewsItem-{}'.format(num),
-            content=lorum,
+            author=authors[num % len(authors)],
+            content=lorum_with_image.format(image_urls[(num + 1) % len(image_urls)]),
             cover_image_url=(image_urls[num % len(image_urls)], None)[num % 2],
-            date_published=today + timedelta(days=num)
+            date_published=today - timedelta(days=num)
         )
         db.session.add(item)
         print('Added {} to session.'.format(item))
