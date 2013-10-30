@@ -11,6 +11,11 @@ def headles_markdown(text):
     text = markdown(text)
     return heading_tag.sub(r'<p>\2</p>', text)
 
+image_tag = re.compile(r'<p><img alt=".*" src=".*"( title=".*")?></p>')
+def imageles_markdown(text):
+    text = headles_markdown(text)
+    return image_tag.sub('<p>No inline images allowed</p>', text)
+
 first_cap_re = re.compile('(.)([A-Z][a-z]+)')
 all_cap_re = re.compile('([a-z0-9])([A-Z])')
 def camel_to_underscore(name):

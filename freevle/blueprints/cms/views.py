@@ -3,7 +3,7 @@ from datetime import date
 from flask import render_template, Markup, request, session
 
 from freevle import db, app
-from freevle.utils.functions import headles_markdown as markdown
+from freevle.utils.functions import imageles_markdown as markdown
 from . import bp
 from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE, NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE
 from .models import Event, Category, Page
