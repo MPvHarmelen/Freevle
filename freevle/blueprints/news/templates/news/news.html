@@ -16,7 +16,7 @@
     <article class="newsmessage">
       <h3><a href="{{ item.get_url() }}">{{ item.title }}</a></h3>
       <p class="meta">
-        <time>{{ item.date_published.strftime('%x') }}</time>{% if item.author %} - Door: <strong>{{ item.author }}</strong>{% endif %}
+        <time>{{ item.date_published.strftime('%d/%m/%Y') }}</time>{% if item.author %} - Door: <strong>{{ item.author }}</strong>{% endif %}
       </p>
       <section>
         <p>{{ item.content }} &ensp;<a href="{{ item.get_url() }}">Lees meer...</a></p></p>

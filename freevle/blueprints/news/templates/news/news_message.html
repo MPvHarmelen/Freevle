@@ -9,25 +9,20 @@
 
 {% block page %}
   <div id="content" class="recent">
+    {% if item.cover_image_url %}
     <div id="pagecover">
       <div class="coverbg">
-        <img src="http://placekitten.com/1000/500" alt="Bescrhijving foto">
+        <img src="{{ item.cover_image_url }}">
       </div>
     </div>
+    {% endif %}
     <article class="newsmessage">
-      <h2>Opening Schip</h2>
+      <h2>{{ item.title }}</h2>
       <p class="meta">
-        <time>27/09/2013</time> - Door: <strong>Jan Modaal</strong>
+        <time>{{ item.date_published.strftime('%d/%m/%Y') }}</time>{% if item.author %} - Door: <strong>{{ item.author }}</strong>{% endif %}
       </p>
       <section>
-        <p>Catnipsum dolor sit amet meeow climbing fur purr purr purr. Tiger abyssinian where have u been catnip fur ball. Fish string chase catnipsum. Long thin tail i smell a rat bengal shorthair chartreux. What did you there? catnip curiosity killed the cat stuck in a tree. Burmilla felix catnip what did you there? smokey. Cat-eyes cat-eyes petite kurilian bobtail. Fluffy catnipsum ball biting dappled fur. Simba kittens hanging from the screens soft kitty javanese. Purr purr purr cat cat and mouse act clawing petite roll in the grass purrfection tigger sam. Squeaking mice chase alley cat soft kitty jump string. Oliver catnipsum tigger kurilian bobtail cat catnappers pouncing. Purring softly fluffy sleep on the sofa cat in a hat hellcat pussy.</p>
-        <p>Boots cat-eyes catnipsum arabian felix arabian cheshire. Soft kitty chase kittens hanging from the screens lucky precious soft kitty fat cat. Mreoaw pussy cat, pussy cat long thin tail rawwww hair ball catnip. A cat may look at a king hiss i frightened a little mouse soft kitty pussy cat, pussy cat alley cat fluffy claws. Kittens tumbling down the stairs kittens climbing up my jeans javanese catnipsum. Kittens chewing on my hair purr petite rolly tonkinese european shorthair mewmew purring softly catnappers. Catnip pussy oreo cheshire catnip sleepy kitty scratching post. Sleep on your keyboard fish cat got your tounge licking cat amongst the pigeons catnip coco.</p>
-      </section>
-      <section class="containsimg">
-        <img src="http://placekitten.com/400/250" alt="Naam foto">
-      </section>
-      <section>
-        <p>Catnip angora ack-ack treats there's a kitten on each shoulder little ball of fur cat and mouse act shiny coat rolling. Little ball of fur where have u been kitty-litter kittens chewing on my hair catnip catnipsum charlie leap fluffy. Bambino shadow catnip treats. Kurilian bobtail licking purrfection oliver clawing raining cats and dogs purr purr purr cuddle me. Where have u been hellcat rolling cheshire. To look at the queen puss arabian there's a kitten on my head meeow will they do this when they're older squeaking mice. Catnip bambino exotic kitty burmilla a cat has nine lives rolly catnip. Sleepy kitty ragdoll kittens kittens everywhere purr scratching puss feathers. Cat got your tounge dreamy bed curly warm kitty purr purr purr.</p>
+        {{ item.content }}
       </section>
     </article>
   </div>

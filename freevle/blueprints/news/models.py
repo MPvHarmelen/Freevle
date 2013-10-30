@@ -12,6 +12,7 @@ class NewsItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(NEWS_ITEM_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(NEWS_ITEM_TITLE_LENGTH), nullable=False)
+    author = db.Column(db.String(NEWS_ITEM_AUTHOR_LENGTH), nullable=False)
     content = db.Column(db.Text, nullable=False)
     cover_image_url = db.Column(db.String(NEWS_ITEM_COVER_IMAGE_URL_LENGTH))
 
@@ -27,7 +28,7 @@ class NewsItem(db.Model):
 
     @permalink
     def get_url(self):
-        return 'news.news_item_view', {
+        return 'news.item_view', {
             'slug': self.slug,
             'year': self.date_published.strftime('%Y'),
             'month': self.date_published.strftime('%m'),
