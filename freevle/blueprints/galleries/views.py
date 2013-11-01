@@ -47,7 +47,7 @@ def query_album_page(album_query, return_all_albums=False):
 @bp.route('/')
 def overview():
     query = Album.query.filter(Album.date_published <= date.today())
-    album, page = query_album_page(query)
+    albums, page = query_album_page(query)
     max_page = int(ceil(db.session.query(func.count(Album.id)).\
                    filter(Album.date_published <= date.today()).\
                    first()[0] / ALBUMS_PER_PAGE))
@@ -55,13 +55,13 @@ def overview():
         # Make negative lookup positive again
         page += max_page
     # Make 'page' one based again
-    return render_template('galleries/overview.html', album=album, page=page,
+    return render_template('galleries/overview.html', albums=albums, page=page,
                             max_page=max_page)
 
-# @bp.route('/archief/')
-# @bp.route('/archief/<int:year>/')
-# @bp.route('/archief/<int:year>/<int:month>/')
-# def archive(year=None, month=None):
+@bp.route('/archief/')
+@bp.route('/archief/<int:year>/')
+@bp.route('/archief/<int:year>/<int:month>/')
+def archive(year=None, month=None):
 #     url_kwargs = {}
 #     year_arg = request.args.get('year', False)
 #     if year_arg != False:
@@ -118,16 +118,18 @@ def overview():
 #             month_list.append(
 #                 (temp_date.strftime('%m').lstrip('0'), temp_date.strftime('%B'))
 #             )
-#     return render_template('news/news_archive.html',
+    return render_template('news/news_archive.html'
+#                            ,
 #                            news=news,
 #                            years=years,
 #                            month_list=month_list,
 #                            current_year=year,
 #                            current_month=str(month),
 #                            page=page,
-#                            max_page=max_page)
+#                            max_page=max_page
+    )
 
 @bp.route('/<int:year>/<album_slug>/')
 def detail(year, album_slug, image_slug=None):
-    ...
+    return render_template('galleries/detail.html')
 
