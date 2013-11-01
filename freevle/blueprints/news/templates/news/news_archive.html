@@ -45,9 +45,11 @@
     <article class="newsmessage"><h3>Geen nieuws</h3></article>
     {% endfor %}
 
-    <nav id="pagination">
-    {%- block pagination %}{{ super() }}{% endblock %}
-    </nav>
+    {%- block pagination %}
+      <nav id="pagination">
+      {{- super() -}}
+      </nav>
+    {%- endblock %}
 
   </div>
 {% endblock %}
