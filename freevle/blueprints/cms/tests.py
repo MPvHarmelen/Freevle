@@ -1,5 +1,5 @@
-from time import sleep
 import unittest
+from time import sleep
 from datetime import datetime, timedelta
 from freevle import db
 from freevle.testing import TestBase

@@ -75,7 +75,6 @@ def overview():
     if page < 0:
         # Make negative lookup positive again
         page += max_page
-    # Make 'page' one based again
     return render_template('news/news.html', news=news, page=page,
                            max_page=max_page)
 
