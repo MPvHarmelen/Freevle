@@ -1,9 +1,11 @@
 from datetime import date
 from math import ceil
 
-from flask import render_template, request
-from sqlalchemy import func
+from flask import render_template, request, Markup
+from sqlalchemy import func, extract
+
 from freevle import db
+from freevle.utils.functions import imageles_markdown as markdown
 
 from . import bp
 from .constants import ALBUMS_PER_PAGE
@@ -131,5 +133,9 @@ def archive(year=None, month=None):
 
 @bp.route('/<int:year>/<album_slug>/')
 def detail(year, album_slug, image_slug=None):
-    return render_template('galleries/detail.html')
+    album = Album.query.filter(extract('year', Album.date_published) == year).\
+            filter(Album.slug == album_slug).\
+            first_or_404()
+    album.description = Markup(markdown(album.description))
+    return render_template('galleries/detail.html', album=album)
 

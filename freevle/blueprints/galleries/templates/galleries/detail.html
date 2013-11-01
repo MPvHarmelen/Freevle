@@ -1,0 +1,34 @@
+{% extends "cms/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('galleries.static', filename="css/photos.css") }}">
+  <link rel="stylesheet" href="/static/css/jquery.fancybox.css?v=2.1.5">
+  <script type="text/javascript" src="/static/js/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="recent">
+    <h2>{{ album.title }}</h2>
+    <p class="meta">
+      <time>{{ album.date_published.strftime('%d/%m/%Y') }}</time>{% if album.author %} - Door: <strong>{{ album.author }}</strong>{% endif %}
+    </p>
+    {{ album.description }}
+    <div id="gallery">
+      {% for image in album.images %}
+        <a class="fancybox" rel="group" href="{{ image.image_url }}">
+          <div class="coverbg">
+            <img src="{{ image.image_url }}" alt="{{ image.title }}">
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
