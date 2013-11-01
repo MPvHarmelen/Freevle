@@ -11,10 +11,12 @@ TOWEL_DAY = date(2001, 5, 25)
 class GalleriesTest(TestBase):
 
     @staticmethod
-    def create_album(title='TeSt', slug='test', date_published=TOWEL_DAY):
+    def create_album(title='TeSt', slug='test', description='Description.',
+                     date_published=TOWEL_DAY):
         a = Album(
             title=title,
             slug=slug,
+            description=description,
             date_published=date_published
         )
         db.session.add(a)

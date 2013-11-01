@@ -25,9 +25,9 @@ def commit():
     print('Commit!')
     db.session.commit()
 
-image_urls = ['/static/img/sections/' + name for name in ['page.jpg', 'newsfront.png', 'page2.jpg', 'paralax3.jpg']]
+image_urls = ['/static/img/' + name for name in ['page.jpg', 'newsfront.png', 'page2.jpg', 'paralax3.jpg', 'cover.png']]
 html_classes = ['school', 'education', 'activities', 'intern', 'more', 'promotion']
-authors = ['Floris Jansen', 'Pim ten Thije', 'Martin van Harmelen', 'Jan Modaal']
+authors = ['Floris Jansen', 'Pim ten Thije', 'Martin van Harmelen', 'Jan Modaal', None]
 
 db.create_all()
 
@@ -145,6 +145,8 @@ def create_albums(album_amount, image_amount):
         album = Album(
             title=name,
             slug=name,
+            author=authors[album_num % len(authors)],
+            description=lorum,
             date_published=TODAY - timedelta(days=100 * album_num)
         )
         add(album)
