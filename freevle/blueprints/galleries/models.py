@@ -7,6 +7,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from freevle import db
 from freevle.utils.database import validate_slug
+from freevle.utils.decorators import permalink
 
 from .constants import *
 
@@ -37,7 +38,8 @@ class Album(db.Model):
 
     @hybrid_property
     def cover_image(self):
-        return self.images.filter(Image.is_cover == True).first()
+        image = self.images.filter(Image.is_cover == True).first()
+        return image if image else self.images.first()
 
     @cover_image.setter
     def cover_image(self, image):
@@ -62,20 +64,17 @@ class Album(db.Model):
     def cover_image(self):
         return self.images.filter(Image.is_cover == True).limit(1)
 
-    # @db.validates('cover_image_id')
-    # def validate_cover_image_id(self, key, value):
-    #     image = Image.query.get(value)
-    #     if image is not None:
-    #         if image.album_id != self.id:
-    #             raise ValueError("Cover image should be part of the Album")
-    #         else:
-    #             return value
-    #     # BUG ALLERT!
-    #     # This could be hacked to get an album with a cover that's isn't part of
-    #     return value
+    @property
+    def cover_image_url(self):
+        return self.cover_image.image_url
+
+    @permalink
+    def get_url(self):
+        return 'galleries.detail', {'year': self.date_published.year,
+                                    'album_slug': self.slug}
 
     def __repr__(self):
-        return '<({}) {} Album {}>'.format(self.id, self.year, self.slug)
+        return '<({}) {} Album {}>'.format(self.id, self.date_published.year, self.slug)
 
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
