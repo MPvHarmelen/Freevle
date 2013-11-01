@@ -1,19 +1,81 @@
 from datetime import datetime
+from warnings import warn
+
+from sqlalchemy import extract, update
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.hybrid import hybrid_property
 
 from freevle import db
 from freevle.utils.database import validate_slug
 
+from .constants import *
+
 class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(ABLUM_TITLE_LENGTH), nullable=False)
-    slug = db.Column(db.String(ABLUM_TITLE_LENGTH), nullable=False)
+    title = db.Column(db.String(ALBUM_TITLE_LENGTH), nullable=False)
+    slug = db.Column(db.String(ALBUM_TITLE_LENGTH), nullable=False)
+    # cover_image_id = db.Column(db.Integer, db.ForeignKey('image.id'), nullable=False)
+    date_published = db.Column(db.Date, nullable=False)
     datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
     last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
-    validate_slug = db.validates('slug')(validate_slug)
+    _validate_slug = validate_slug
+    @db.validates('slug')
+    def validate_slug(self, key, value):
+        value = self._validate_slug(key, value)
+        warn("There's an ugly workaround here.")
+        if self.date_published:
+            slugs_with_same_year = db.session.query(Album.slug).filter(
+                extract('year',  Album.date_published) == self.date_published.year
+            ).first()
+            if slugs_with_same_year and value in slugs_with_same_year:
+                raise IntegrityError(None, None, Exception(
+                    "The combination of 'date_published.year' and 'slug' must be "
+                    "unique."
+                ))
+        return value
+
+    @hybrid_property
+    def cover_image(self):
+        return self.images.filter(Image.is_cover == True).first()
+
+    @cover_image.setter
+    def cover_image(self, image):
+        if not isinstance(image, Image):
+            raise TypeError("Only an object op type Image can be a cover_image")
+        if not image in self.images:
+            raise ValueError("Only an image that's part of an Album can be a "
+                             "cover_image")
+        # Set other images to not cover image
+        db.session.execute(
+            update(Image.__table__).\
+            where(db.and_(Image.album_id == self.id, Image.is_cover == True)).\
+            values(is_cover=False)
+        )
+
+        # set this image to cover image
+        image.is_cover = True
+        db.session.add(image)
+        db.session.commit()
+
+    @cover_image.expression
+    def cover_image(self):
+        return self.images.filter(Image.is_cover == True).limit(1)
+
+    # @db.validates('cover_image_id')
+    # def validate_cover_image_id(self, key, value):
+    #     image = Image.query.get(value)
+    #     if image is not None:
+    #         if image.album_id != self.id:
+    #             raise ValueError("Cover image should be part of the Album")
+    #         else:
+    #             return value
+    #     # BUG ALLERT!
+    #     # This could be hacked to get an album with a cover that's isn't part of
+    #     return value
 
     def __repr__(self):
-        return '<({}) Album {}>'.format(self.id, self.slug)
+        return '<({}) {} Album {}>'.format(self.id, self.year, self.slug)
 
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,6 +83,7 @@ class Image(db.Model):
     slug = db.Column(db.String(IMAGE_TITLE_LENGTH), nullable=False)
     album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
     order = db.Column(db.Integer, nullable=False)
+    is_cover = db.Column(db.Boolean, default=False)
     image_url = db.Column(db.String(IMAGE_IMAGE_URL_LENGTH), nullable=False)
     datetime_created = db.Column(db.DateTime, default=datetime.now, nullable=False)
     last_edited = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)

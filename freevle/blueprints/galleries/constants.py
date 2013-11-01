@@ -1,3 +1,6 @@
+# view constants
+ALBUMS_PER_PAGE = 5
+
 # Album constants
 ALBUM_TITLE_LENGTH = 32
 
