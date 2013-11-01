@@ -7,4 +7,6 @@ bp = Blueprint(
     static_folder='static'
 )
 
-URL_PREFIX='/galleries'
+URL_PREFIX='/fotos'
+
+from . import views
