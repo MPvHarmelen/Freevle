@@ -1,7 +1,14 @@
 {% extends "cms/base.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('galleries.static', filename="css/photos.css") }}">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
 {% block pagination %}
-{%- if page != 1 %}
+{%- if page > 1 %}
 <a href="?page={{ page - 1}}">&laquo; Vorige</a>
 {%- if page > 3 %}
 <a href="?page=1">1</a>
@@ -39,7 +46,7 @@
 <a href="?page={{ max_page }}">{{ max_page }}</a>
 {%- endif -%}
 
-{%- if page != max_page %}
+{%- if page < max_page %}
 <a href="?page={{ page + 1 }}">Volgende &raquo;</a>
 {%- endif %}
 {% endblock %}

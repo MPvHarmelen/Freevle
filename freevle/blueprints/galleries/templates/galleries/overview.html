@@ -1,12 +1,5 @@
 {% extends "galleries/pagination.html" %}
 
-{% block head %}
-  <link rel="stylesheet" href="{{ url_for('galleries.static', filename="css/photos.css") }}">
-{% endblock %}
-
-{% block bodyclass %}
-{% endblock %}
-
 {% block page %}
   <div id="content" class="recent">
     <h2>Foto's</h2>
@@ -18,6 +11,12 @@
       </div>
       <a class="overlay" href="{{ album.get_url() }}">
         <h3><time>{{ album.date_published.year }}</time>&emsp;{{ album.title }}</h3>
+      </a>
+    </article>
+    {% else %}
+    <article class="photoalbum">
+      <a class="overlay" href="{{ album.get_url() }}">
+        <h3>Geen albums</h3>
       </a>
     </article>
     {% endfor %}
