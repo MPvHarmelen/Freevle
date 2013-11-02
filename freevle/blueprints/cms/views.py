@@ -6,8 +6,10 @@ from freevle import db, app
 from freevle.utils.functions import imageles_markdown as markdown
 from . import bp
 from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE, NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE
+from .constants import NUMBER_OF_ALBUMS_ON_HOMEPAGE, ALBUM_PREVIEW_LENGTH
 from .models import Event, Category, Page
 from ..news.models import NewsItem
+from ..galleries.models import Album
 from ..admin import bp as admin
 # from ..user.decorators import login_required
 
@@ -60,12 +62,21 @@ def home():
     today = date.today()
     upcomming = Event.query.filter(Event.date >= today).\
                 order_by(Event.date.asc()).limit(NUMBER_OF_EVENTS_ON_HOMEPAGE)
-    news_items = NewsItem.query.filter(NewsItem.date_published >= today).\
-                 order_by(NewsItem.date_published.asc()).\
+    news_items = NewsItem.query.filter(NewsItem.date_published <= today).\
+                 order_by(NewsItem.date_published.desc()).\
                  limit(NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE)
+    albums = Album.query.filter(Album.date_published <= today).\
+             order_by(Album.date_published.desc()).\
+             limit(NUMBER_OF_ALBUMS_ON_HOMEPAGE)
+    for album in albums:
+        # Content preview will be at most ALBUM_PREVIEW_LENGTH chars and will
+        # end at the end of the last sentence.
+        album.description = album.description[:ALBUM_PREVIEW_LENGTH].rsplit('.', 1)[0] + '.'
+        album.description = Markup(markdown(album.description))
     return render_template('cms/index.html',
                            upcomming=upcomming,
-                           news_items=news_items)
+                           news_items=news_items,
+                           albums=albums)
 
 
 @bp.route('/intern/')
