@@ -27,7 +27,7 @@ def commit():
 
 image_urls = ['/static/img/' + name for name in ['page.jpg', 'newsfront.png', 'page2.jpg', 'paralax3.jpg', 'cover.png']]
 html_classes = ['school', 'education', 'activities', 'intern', 'more', 'promotion']
-authors = ['Floris Jansen', 'Pim ten Thije', 'Martin van Harmelen', 'Jan Modaal', None]
+authors = ['Floris Jansen', 'Pim ten Thije', 'Martin van Harmelen', 'Jan Modaal']
 
 db.create_all()
 
