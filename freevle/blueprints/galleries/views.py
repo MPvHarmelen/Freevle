@@ -1,24 +1,25 @@
-from datetime import date
+from datetime import date, datetime
 from math import ceil
 
-from flask import render_template, request, Markup
+from flask import render_template, request, Markup, redirect, url_for
 from sqlalchemy import func, extract
+from werkzeug.exceptions import NotFound
 
-from freevle import db
+from freevle import db, app
 from freevle.utils.functions import imageles_markdown as markdown
 
 from . import bp
 from .constants import ALBUMS_PER_PAGE
 from .models import Album
 
-def query_album_page(album_query, return_all_albums=False):
+def query_albums_page(album_query):
     try:
         page = int(request.args.get('page', 1))
     except ValueError as e:
         if not app.config['DEBUG']:
             raise NotFound
         else:
-            raise e
+            raise NotFound(e)
     # if page < 0:
     #     raise NotFound
     if page > 0:
@@ -37,26 +38,24 @@ def query_album_page(album_query, return_all_albums=False):
     # Those last two results are what we're looking for.
     # That's why the if statement is in there.
     all_albums = album_query.order_by(Album.date_published.desc())
+    max_page = int(ceil(len(all_albums.all()) / ALBUMS_PER_PAGE))
     albums = all_albums[
         ALBUMS_PER_PAGE * page :
         ALBUMS_PER_PAGE * (page + 1) if page != -1 else None
     ]
-    # if len(albums) == 0:
-    #     raise NotFound
+    if page < 0:
+        # Make negative lookup positive again
+        page += max_page
+    if (max_page != 0 and abs(page) > max_page) or abs(page) > max_page + 1:
+        raise NotFound
+    # Make 'page' one based again
     page += 1
-    return (albums, page, all_albums) if return_all_albums else (albums, page)
+    return albums, page, max_page
 
 @bp.route('/')
 def overview():
     query = Album.query.filter(Album.date_published <= date.today())
-    albums, page = query_album_page(query)
-    max_page = int(ceil(db.session.query(func.count(Album.id)).\
-                   filter(Album.date_published <= date.today()).\
-                   first()[0] / ALBUMS_PER_PAGE))
-    if page < 0:
-        # Make negative lookup positive again
-        page += max_page
-    # Make 'page' one based again
+    albums, page, max_page = query_albums_page(query)
     return render_template('galleries/overview.html', albums=albums, page=page,
                             max_page=max_page)
 
@@ -64,71 +63,73 @@ def overview():
 @bp.route('/archief/<int:year>/')
 @bp.route('/archief/<int:year>/<int:month>/')
 def archive(year=None, month=None):
-#     url_kwargs = {}
-#     year_arg = request.args.get('year', False)
-#     if year_arg != False:
-#         url_kwargs['year'] = year_arg
-#         month_arg = request.args.get('month', False)
-#         if month_arg != False and year_arg:
-#             url_kwargs['month'] = month_arg
-#         try:
-#             for k,v in url_kwargs.items():
-#                 url_kwargs[k] = int(v) if v is not '' else None
-#         except ValueError as e:
-#             if not app.config['DEBUG']:
-#                 raise NotFound
-#             else:
-#                 raise e
-#         else:
-#             return redirect(url_for('news.archive', **url_kwargs))
+    # Redirect get request
+    url_kwargs = {}
+    year_arg = request.args.get('year', False)
+    if year_arg != False:
+        url_kwargs['year'] = year_arg
+        month_arg = request.args.get('month', False)
+        if month_arg != False and year_arg:
+            url_kwargs['month'] = month_arg
+        try:
+            for k,v in url_kwargs.items():
+                url_kwargs[k] = int(v) if v is not '' else None
+        except ValueError as e:
+            if not app.config['DEBUG']:
+                raise NotFound
+            else:
+                raise e
+        else:
+            return redirect(url_for('galleries.archive', **url_kwargs))
 
-#     queries = [NewsItem.query, db.session.query(func.count(NewsItem.id))]
-#     queries = [q.filter(NewsItem.date_published <= date.today()) for q in queries]
-#     if year is not None:
-#         queries = [query.filter(extract('year', NewsItem.date_published) == year) for query in queries]
-#     if month is not None:
-#         queries = [query.filter(extract('month', NewsItem.date_published) == month) for query in queries]
-#     news, page, all_news = query_news_page(queries[0], True)
-#     max_page = int(ceil(queries[1].first()[0] / NEWS_ITEMS_PER_PAGE))
-#     oldest_date = db.session.query(NewsItem.date_published).\
-#                  order_by(NewsItem.date_published.asc()).first()[0]
-#     min_year = oldest_date.year if oldest_date is not None else date.today().year
-#     years = range(min_year, date.today().year + 1)
+    # Return result
+    # Filter
+    query = Album.query.filter(Album.date_published <= date.today())
+    if year is not None:
+        query = query.filter(extract('year', Album.date_published) == year)
+        if month is not None:
+            query = query.filter(extract('month', Album.date_published) == month)
+    # Query for albums
+    albums, page, max_page = query_albums_page(query)
 
-#     # Make months list
-#     month_list = []
-#     if year:
-#         news_in_year = NewsItem.query.\
-#                        filter(extract('year', NewsItem.date_published) == year).\
-#                        order_by(NewsItem.date_published.desc())\
-#                        if month\
-#                        else all_news
-#         oldest_month = news_in_year[-1].date_published.month
-#         newest_month = news_in_year[0].date_published.month
-#         today = date.today()
-#         this_year = today.year
-#         this_day = today.day
-#         for month_delta in range(newest_month - oldest_month):
-#             temp_date = datetime.strptime(
-#                 '{}-{}-{}'.format(
-#                     this_year,
-#                     oldest_month + month_delta,
-#                     this_day
-#                 ),
-#                 '%Y-%m-%d'
-#             )
-#             month_list.append(
-#                 (temp_date.strftime('%m').lstrip('0'), temp_date.strftime('%B'))
-#             )
-    return render_template('news/news_archive.html'
-#                            ,
-#                            news=news,
-#                            years=years,
-#                            month_list=month_list,
-#                            current_year=year,
-#                            current_month=str(month),
-#                            page=page,
-#                            max_page=max_page
+    # Query for year_list
+    oldest_date = db.session.query(Album.date_published).\
+                  order_by(Album.date_published.asc()).first()[0]
+    min_year = oldest_date.year if oldest_date is not None else date.today().year
+    today = date.today()
+    this_year = today.year
+    years = range(min_year, this_year + 1)
+
+    # Make months list
+    month_list = []
+    if year:
+        albums_in_year = Album.query.\
+                         filter(extract('year', Album.date_published) == year).\
+                         order_by(Album.date_published.desc())
+        oldest_month = albums_in_year[-1].date_published.month
+        newest_month = albums_in_year[0].date_published.month
+        this_day = today.day
+        for month_delta in range(newest_month - oldest_month):
+            temp_date = datetime.strptime(
+                '{}-{}-{}'.format(
+                    this_year,
+                    oldest_month + month_delta,
+                    this_day
+                ),
+                '%Y-%m-%d'
+            )
+            month_list.append(
+                (temp_date.strftime('%m').lstrip('0'), temp_date.strftime('%B'))
+            )
+    return render_template('galleries/archive.html'
+                           ,
+                           albums=albums,
+                           years=years,
+                           month_list=month_list,
+                           current_year=year,
+                           current_month=str(month),
+                           page=page,
+                           max_page=max_page
     )
 
 @bp.route('/<int:year>/<album_slug>/')

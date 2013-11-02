@@ -1,0 +1,52 @@
+{% extends "galleries/pagination.html" %}
+
+{% block head %}
+  {{ super() }}
+  <script src="{{ url_for('galleries.static', filename='js/archive.js') }}"></script>
+{% endblock %}
+
+{% block page %}
+  <div id="content" class="recent">
+    <h2>Foto's - Archief</h2>
+
+     <form id="archivepicker" method="GET" action="{{ url_for('galleries.archive') }}">
+      <select name="year">
+        <option value="">Geen jaar</option>
+        {% for year in years %}
+        <option value="{{ year }}" {% if year == current_year %}selected{% endif %}>{{ year }}</option>
+        {% endfor %}
+      </select>
+      {% if current_year %}
+      <select name="month">
+        <option value="">Geen maand</option>
+        {% for value, month in month_list %}
+        <option value="{{ value }}" {% if current_month == value %}selected{% endif %}>{{ month }}</option>
+        {% endfor %}
+      </select>
+      {% endif %}
+      <input type="submit" value="Bekijk" class="button">
+    </form>
+
+    {% for album in albums %}
+    <article class="photoalbum">
+      <div class="coverbg">
+        <img src="{{ album.cover_image_url }}">
+      </div>
+      <a class="overlay" href="{{ album.get_url() }}">
+        <h3><time>{{ album.date_published.year }}</time>&emsp;{{ album.title }}</h3>
+      </a>
+    </article>
+    {% else %}
+    <article class="photoalbum">
+        <h3>Geen albums</h3>
+    </article>
+    {% endfor %}
+
+    {%- block pagination %}
+      <nav id="pagination">
+        {{- super() -}}
+      </nav>
+    {%- endblock %}
+
+  </div>
+{% endblock %}
