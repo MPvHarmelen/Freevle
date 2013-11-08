@@ -19,9 +19,19 @@ from ..admin import bp as admin
 @bp.route(bp.static_url_path + '/<path:path>/<filename>')
 @bp.route(bp.static_url_path + '/<path:path>/<filename>.<extension>')
 def serve_static(path='', filename='', extension=''):
+    """
+    Serve static files.
+
+    Because this blueprint doesn't have a url-prefix, something breaks in Flask,
+    and the serving of static files doesn't work. This function just mimics what
+    should already work.
+
+    """
     file_path = path
     if filename:
         file_path += '/' + filename
+    # The 'path' filter should accept '.', but somehow I couldn't get it to work
+    # so this is the hard coding of the extension.
     if extension:
         file_path += '.' + extension
     return bp.send_static_file(file_path)
@@ -29,7 +39,7 @@ def serve_static(path='', filename='', extension=''):
 
 @bp.app_context_processor
 def inject_menu():
-    """Inject categories into context."""
+    """Inject unprotected categories into context."""
     categories = Category.query.filter(Category.security_level == None).all()
     return dict(menu_items=categories)
 
@@ -37,15 +47,25 @@ def inject_menu():
 @bp.app_context_processor
 def inject_breadcrumbs():
     """Inject breadcrumbs extracted from url into context."""
-    url_sections = request.url.split('/')[3:-1]\
-                   if request.url.split('/')[-1] == ''\
-                   or request.url.split('/')[-1][0] == '?'\
-                   else request.url.split('/')[3:]
+    # Omit the first three parts of the url, these are 'http', an empty string
+    # (resulting from the double slash) and the host name.
+    # If the url ends with a slash, eg. the last part of the split is empty,
+    # or if the url ends with a get part, eg. the last part of the split starts
+    #       with a question mark,
+    # then omit the last part of the url
+    # else use the whole url
+    split = request.url.split('/')
+    url_sections = split[3:-1]\
+                   if split[-1] == ''\
+                   or split[-1][0] == '?'\
+                   else split[3:]
 
     breadcrumbs = [
         (
             crumb,
-            '/' + '/'.join(url_sections[:i + 1]) if app.bound_map.test('/' + '/'.join(url_sections[:i + 1])) else ''
+            '/' + '/'.join(url_sections[:i + 1])\
+            if app.bound_map.test('/' + '/'.join(url_sections[:i + 1]))\
+            else ''
         )
         for i, crumb in enumerate(
             url_sections[:-1]
