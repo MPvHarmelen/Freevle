@@ -50,22 +50,24 @@ sodales molestie ligula a consectetur. Praesent eleifend, sem non auctor ultrici
 
 def create_page_data(cat_amount, subcat_amount, page_amount):
     for cat_num in range(cat_amount):
-        cat_name = 'test-{}'.format(cat_num)
+        cat_short_name = cat_name = 'cat-{}'.format(cat_num)
         if cat_num < NUMBER_OF_UNPROTECTED_CATEGORIES:
             security_level = None
+            cat_name, cat_short_name = 'Category {}'.format(cat_num), cat_name
         elif cat_amount - cat_num <= NUMBER_OF_TEACHER_PROTECTED_CATEGORIES:
             security_level = 'teacher'
         else:
             security_level = 'student'
         cat = Category(
             title=cat_name,
-            slug=cat_name,
+            short_title=cat_short_name,
+            slug=cat_short_name,
             html_class=html_classes[cat_num % len(html_classes)],
             security_level=security_level
         )
         add(cat)
         for subcat_num in range(subcat_amount):
-            subcat_name = 'test-{}'.format(subcat_num)
+            subcat_name = 'sub-{}'.format(subcat_num)
             subcat = Subcategory(
                 title=subcat_name,
                 slug=subcat_name,
@@ -76,8 +78,8 @@ def create_page_data(cat_amount, subcat_amount, page_amount):
             for page_num in range(page_amount):
                 p = Page(
                     subcategory=subcat,
-                    title='TeSt{}'.format(page_num),
-                    slug='test{}-{}'.format(subcat_num, page_num),
+                    title='Page{}'.format(page_num),
+                    slug='page{}-{}'.format(subcat_num, page_num),
                     content=page_content.format(page_num),
                     cover_image_url=image_urls[(page_num + subcat_num + cat_num) % len(image_urls)],
                     is_published=True
