@@ -45,8 +45,8 @@ class Category(db.Model):
     @short_title.expression
     def short_title(self):
         return db.case(
-            (Category._short_title == None, Category.title),
-            else_=Category.title
+            [(Category._short_title == None, Category.title)],
+            else_=Category._short_title
         )
 
     @short_title.setter
@@ -55,14 +55,11 @@ class Category(db.Model):
 
     @hybrid_property
     def pages(self):
-        # all_pages = []
-        # for subcategory in self.subcategories:
-        #     all_pages.extend(subcategory.pages)
-        # return all_pages
         if self.subcategories.first() is not None:
             return self.subcategories.first().pages.order_by(None).union(*[
                 sub.pages.order_by(None) for sub in self.subcategories.all()[1:]
             ]).order_by(Page.id)
+        # If there is no subcategory, return an empty query
         return Page.query.filter(false())
 
     @db.validates('security_level')
@@ -103,7 +100,7 @@ class Subcategory(db.Model):
     title = db.Column(db.String(SUBCATEGORY_TITLE_LENGTH), nullable=False)
     slug = db.Column(db.String(SUBCATEGORY_SLUG_LENGTH))
     html_class = db.Column(db.String(SUBCATEGORY_HTML_CLASS_LENGTH))
-    featured = db.Column(db.Boolean, nullable=False, default=False)
+    featured = db.Column(db.Integer, nullable=False, default=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
     __table_args__ = (
@@ -306,7 +303,6 @@ class TextSection(PageSection):
 class ImageSection(PageSection):
     __mapper_args__ = {'polymorphic_identity': 'image'}
     id = db.Column(db.Integer, db.ForeignKey('page_section.id'), primary_key=True)
-    featured = db.Column(db.Boolean, nullable=False, default=False)
     image_url = db.Column(db.String(IMAGE_SECTION_PATH_LENGTH), nullable=False)
 
     page = db.relationship(
@@ -317,12 +313,6 @@ class ImageSection(PageSection):
             lazy='dynamic'
         )
     )
-
-    @db.validates('featured')
-    def validate_featured(self, key, value):
-        if value:
-            self.order = -1
-        return value
 
     @db.validates('image_path')
     def validate_image_path(self, key, value):
