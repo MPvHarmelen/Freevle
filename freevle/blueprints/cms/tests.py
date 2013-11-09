@@ -7,6 +7,8 @@ from freevle.utils.functions import headles_markdown
 from sqlalchemy.exc import IntegrityError
 from .models import Category, Subcategory, Page, TextSection, ImageSection, Link
 
+from ..galleries.tests import GalleriesTest
+
 ONUPDATE_DELTA = timedelta(microseconds=30000)
 SLEEP_TIME = 1
 
@@ -79,8 +81,9 @@ class CMSTests(TestBase):
         # TODO: test creating illegal subcategories
 
     @staticmethod
-    def create_page(title, slug, subcategory=None, subcategory_id=0,
-                    content='Content.', is_published=True, cover_image_url=None):
+    def create_page(title='title', slug='slug',
+                    subcategory=None, subcategory_id=0, content='Content.',
+                    is_published=True, cover_image_url=None):
         if subcategory is not None:
             page = Page(subcategory=subcategory)
         elif subcategory_id is not None:
@@ -241,22 +244,24 @@ class CMSTests(TestBase):
         return l
 
     def test_link(self):
-        cat = self.create_category('test', 'test', html_class='classss')
+        cat = self.create_category('test', 'test')
+        sub_cat = self.create_subcategory('test', 'test', '#123456', category=cat)
+        pag = self.create_page(subcategory=sub_cat)
         assertRaisesTypeError = self.assertRaises(TypeError)
         with assertRaisesTypeError: Link()
-        with assertRaisesTypeError: Link('category')
-        with assertRaisesTypeError: Link(a=cat)
-        with assertRaisesTypeError: Link(destination_category=cat, destination_category_id=cat.id)
+        with assertRaisesTypeError: Link('page')
+        with assertRaisesTypeError: Link(a=pag)
+        with assertRaisesTypeError: Link(destination_page=pag, destination_page_id=pag.id)
         with assertRaisesTypeError: Link(id=1)
-        with assertRaisesTypeError: Link('category', id=1)
-        with assertRaisesTypeError: Link(a=cat, id=1)
-        with assertRaisesTypeError: Link(destination_category=cat, destination_category_id=cat.id, id=1)
+        with assertRaisesTypeError: Link('page', id=1)
+        with assertRaisesTypeError: Link(a=pag, id=1)
+        with assertRaisesTypeError: Link(destination_page=pag, destination_page_id=pag.id, id=1)
 
-        with self.assertRaises(ValueError): Link(destination_category=None)
-        with self.assertRaises(ValueError): Link(id=1, destination_category=None)
+        with self.assertRaises(ValueError): Link(destination_page=None)
+        with self.assertRaises(ValueError): Link(id=1, destination_page=None)
 
-        with self.assertRaises(AttributeError): Link(destination_category='aaaa')
-        with self.assertRaises(AttributeError): Link(id=1, destination_category='aaaa')
+        with self.assertRaises(AttributeError): Link(destination_page='aaaa')
+        with self.assertRaises(AttributeError): Link(id=1, destination_page='aaaa')
 
         get_db_link = lambda link: Link.query.get(link.id)
         def assertEqualCat(*args, **kwargs):
@@ -264,33 +269,33 @@ class CMSTests(TestBase):
                         get_db_link(
                             self.create_link(*args, **kwargs)
                         ).destination,
-                        cat
+                        pag
                    )
 
-        assertEqualCat(cat, id=1)
-        assertEqualCat(destination_category=cat, id=2)
-        assertEqualCat(destination_category_id=cat.id, id=3)
-        assertEqualCat(cat)
-        assertEqualCat(destination_category=cat)
-        assertEqualCat(destination_category_id=cat.id)
+        assertEqualCat(pag, id=1)
+        assertEqualCat(destination_page=pag, id=2)
+        assertEqualCat(destination_page_id=pag.id, id=3)
+        assertEqualCat(pag)
+        assertEqualCat(destination_page=pag)
+        assertEqualCat(destination_page_id=pag.id)
 
-        sub = self.create_subcategory('title', 'slug', 'html_class', category=cat)
-        link = self.create_link(sub)
-        self.assertEquals(link.html_class, sub.html_class)
+        alb = GalleriesTest.create_album()
+        link = self.create_link(alb)
         with self.app.app_context():
-            self.assertEqual(Link.query.get(1).get_url(), cat.get_url())
-            self.assertEqual(link.get_url(), '')
+            self.assertEqual(Link.query.get(1).get_url(), pag.get_url())
+            self.assertEqual(link.get_url(), alb.get_url())
 
         db.session.add(link)
-        link.starting_points = (cat,)
-        self.assertEqual(link.starting_points, [cat])
-        link.starting_points += [sub]
-        self.assertEqual(link.starting_points, [sub, cat])
+        link.starting_points = (pag,)
+        self.assertEqual(link.starting_points, [pag])
+        link.starting_points += [alb]
+        with self.app.app_context():
+            self.assertEqual(link.starting_points, [pag, alb])
         db.session.add(link)
         db.session.commit()
-        self.assertEqual(cat.links.first(), link)
-        self.assertNotEqual(cat.linked_by.first(), link)
-        self.assertEqual(sub.linked_by.first(), link)
-        self.assertEqual(sub.links.first(), link)
+        self.assertEqual(pag.links.first(), link)
+        self.assertNotEqual(pag.linked_by.first(), link)
+        self.assertEqual(alb.linked_by.first(), link)
+        self.assertEqual(alb.links.first(), link)
 
 suite = unittest.makeSuite(CMSTests)

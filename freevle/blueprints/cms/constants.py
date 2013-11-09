@@ -33,4 +33,4 @@ IMAGE_SECTION_PATH_LENGTH = 255
 
 # Link constants
 LINK_LINK_LENGTH = 32
-LINK_LINKED_MODELS = ['Page', 'Subcategory', 'Category', 'NewsItem']
+LINK_LINKED_MODELS = ['Page', 'NewsItem', 'Album']

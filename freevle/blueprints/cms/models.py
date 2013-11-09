@@ -16,6 +16,7 @@ from .constants import *
 from ..user.constants import POLYMORPHIC_IDENTITIES, USER_TYPE_LENGTH
 from ..user.models import Admin
 
+from ..galleries.models import Album
 from ..news.models import NewsItem
 
 page_group_view = db.Table('page_group_view',
