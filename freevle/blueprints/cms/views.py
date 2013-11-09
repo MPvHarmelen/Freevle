@@ -31,7 +31,7 @@ def serve_static(path='', filename='', extension=''):
     if filename:
         file_path += '/' + filename
     # The 'path' filter should accept '.', but somehow I couldn't get it to work
-    # so this is the hard coding of the extension.
+    # so the extension is hard coded.
     if extension:
         file_path += '.' + extension
     return bp.send_static_file(file_path)
@@ -46,7 +46,12 @@ def inject_menu():
 
 @bp.app_context_processor
 def inject_breadcrumbs():
-    """Inject breadcrumbs extracted from url into context."""
+    """
+    Inject breadcrumbs extracted from url into context.
+
+    Returns a list of (name, url) tuples.
+
+    """
     # Omit the first three parts of the url, these are 'http', an empty string
     # (resulting from the double slash) and the host name.
     # If the url ends with a slash, eg. the last part of the split is empty,
@@ -60,6 +65,7 @@ def inject_breadcrumbs():
                    or split[-1][0] == '?'\
                    else split[3:]
 
+    # Add link if the url exists, otherwise ''
     breadcrumbs = [
         (
             crumb,
@@ -71,6 +77,7 @@ def inject_breadcrumbs():
             url_sections[:-1]
         )
     ]
+    # The last part of the breadcrumb should never be a url
     if len(url_sections) > 0:
         breadcrumbs.append((url_sections[-1], ''))
     return dict(breadcrumbs=breadcrumbs)
@@ -105,7 +112,7 @@ def protected_categories():
     """View all protected categories."""
     categories = Category.query.filter(db.not_(Category.security_level == None)).all()
     categories = [c for c in categories
-                  # if isinstance(eval(c.security_level.capitalize()), session.get('user'))
+                  # if c.can_view(session.get('user'))
                   ]
     return render_template('cms/category_list.html', categories=categories)
 
