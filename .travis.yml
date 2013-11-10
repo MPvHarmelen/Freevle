@@ -18,6 +18,7 @@ install:
   - pip install flask-seasurf
   - pip install markdown --use-mirrors
 
+  # Babel3 requires complex installation procedure - don't ask why... please.
   - hg clone https://bitbucket.org/babel3_developers/babel3
   - cd babel3
   - mkdir babel/localedata
@@ -28,6 +29,8 @@ install:
   - python setup.py install
   - cd ..
 
+  # Create settings.cfg file from settings.cfg.sample with correct path to
+  # blueprints directory with sed magic.
   - "sed \"s:^BLUEPRINTS_DIRECTORY.*$:BLUEPRINTS_DIRECTORY = '$(pwd)\\/freevle\\/blueprints\\/':\" <settings.cfg.sample >settings.cfg"
 script:
   - python test.py ../settings.cfg

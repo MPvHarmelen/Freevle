@@ -328,7 +328,7 @@ class Link(db.Model):
     _link = db.Column(db.String(LINK_LINK_LENGTH), nullable=False)
 
     # Meta code to add a foreign key column and a relationship for every model
-    # a 'Link' object should be able link to.
+    # a 'Link' object should be able link to and from.
     for model_name in LINK_LINKED_MODELS:
         low_name = camel_to_underscore(model_name)
         destination_foreignkey_code = "destination_{name}_id = db.Column(db.Integer, db.ForeignKey('{name}.id'))"\
