@@ -9,4 +9,4 @@ bp = Blueprint(
 
 URL_PREFIX=''
 
-from . import views
+from . import views, admin_views

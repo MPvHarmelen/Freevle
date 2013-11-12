@@ -10,7 +10,6 @@ from .constants import NUMBER_OF_ALBUMS_ON_HOMEPAGE, ALBUM_PREVIEW_LENGTH
 from .models import Event, Category, Page
 from ..news.models import NewsItem
 from ..galleries.models import Album
-from ..admin import bp as admin
 # from ..user.decorators import login_required
 
 
@@ -146,55 +145,3 @@ def protected_page_view(category_slug, page_slug):
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
     return render_template('cms/page_view.html', page=page)
-
-
-
-# Admin
-# This should change a lot because Floris and Pim want an admin site
-@admin.route('/cms/', endpoint='{}_index'.format(bp.name))
-def admin_index():
-    """Specific admin index for cms blueprint."""
-    pages = Page.query.order_by(Page.title).all()
-    return render_template('admin/cms_index.html', pages=pages)
-
-admin.add_index_view("Pagina's", bp.name)
-
-@admin.route('/cms/category/create')
-@admin.route('/cms/category/edit/<category_slug>')
-def cms_category_edit(category_slug=None):
-    """Create or edit a category."""
-    if category_slug is None:
-        # First routing, create a category.
-        ...
-    else:
-        ...
-
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/create')
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit')
-def cms_page_edit(category_slug, subcategory_slug, page_slug=None):
-    """Create or edit a page."""
-    if page_slug is None:
-        page = Page(title='', content='')
-    else:
-        page = Page.get_page(category_slug, subcategory_slug, page_slug)
-    return render_template('admin/cms_page_edit.html', page=page)
-
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/create', methods=['POST'])
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit', methods=['POST'])
-def cms_page_save(category_slug, subcategory_slug, page_slug=None):
-    if page_slug is None:
-        page = Page()
-    else:
-        page = Page.get_page(category_slug, subcategory_slug, page_slug)
-    page.title = Markup.escape(request.form['page_title'])
-    # page.slug = request.form['slug']
-    page.is_published = True if request.form['publish'] == 'on' else False
-    page.content = Markup.escape(request.form['page_content'])
-    db.session.add(page)
-    db.session.commit()
-    return render_template('admin/cms_page_edit.html', page=page)
-
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/delete')
-def cms_page_delete(category_slug, subcategory_slug, parent_slug=None):
-    """Delete a page."""
-    ...

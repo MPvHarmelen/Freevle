@@ -4,11 +4,14 @@ class AdminBlueprint(Blueprint):
     index_views = {}
 
     def add_index_view(self, title, bp_name, endpoint=None,
-                       img_filename='img/admin_icon.png'):
+                       img_filename='img/admin_icon.png',
+                       name=None):
         if endpoint is None:
             endpoint = 'admin.{}_index'.format(bp_name)
+        if name == None:
+            name = bp_name
 
-        self.index_views[bp_name] = {
+        self.index_views[name] = {
             'title': title,
             'bp_name': bp_name,
             'endpoint': endpoint,
