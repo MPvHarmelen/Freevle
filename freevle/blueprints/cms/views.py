@@ -151,7 +151,7 @@ def protected_page_view(category_slug, page_slug):
 
 # Admin
 # This should change a lot because Floris and Pim want an admin site
-@admin.route('/cms/', endpoint='cms_index')
+@admin.route('/cms/', endpoint='{}_index'.format(bp.name))
 def admin_index():
     """Specific admin index for cms blueprint."""
     pages = Page.query.order_by(Page.title).all()

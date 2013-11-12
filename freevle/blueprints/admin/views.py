@@ -3,12 +3,16 @@ from flask import url_for, render_template
 from . import bp
 from .constants import *
 
+from freevle.blueprints.cms.models import Page, Event
+from freevle.blueprints.galleries.models import Album
+from freevle.blueprints.news.models import NewsItem
+
 @bp.context_processor
 def inject_admin_map():
     for dic in bp.index_views.values():
         if not dic.get('img_url', False):
             dic['img_url'] = url_for(dic['bp_name'] + '.static', filename=dic['img_filename'])
-    return dict(admin_map=bp.index_views.values())
+    return {'admin_map': bp.index_views.values()}
 
 @bp.route('/')
 def index():

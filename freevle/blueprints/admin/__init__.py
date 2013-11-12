@@ -3,15 +3,17 @@ from flask import Blueprint
 class AdminBlueprint(Blueprint):
     index_views = {}
 
-    def add_index_view(self, title, bp_name, endpoint=None, img_filename='img/admin_icon.png'):
-        endpoint = 'admin.{}_index'.format(bp_name) if endpoint is None else endpoint
+    def add_index_view(self, title, bp_name, endpoint=None,
+                       img_filename='img/admin_icon.png'):
+        if endpoint is None:
+            endpoint = 'admin.{}_index'.format(bp_name)
 
-        self.index_views[bp_name] = dict(
-            title=title,
-            bp_name=bp_name,
-            endpoint=endpoint,
-            img_filename=img_filename
-        )
+        self.index_views[bp_name] = {
+            'title': title,
+            'bp_name': bp_name,
+            'endpoint': endpoint,
+            'img_filename': img_filename
+        }
 
 bp = AdminBlueprint(
     'admin',
