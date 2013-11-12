@@ -1,0 +1,132 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/admin/static/css/list.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Binnenkort</h2>
+
+  <section class="card">
+    <form method="POST" action="#">
+      <div id="massactions">
+        <p>Acties met geselecteerde items:</p>
+        <button type="submit" class="button delete" name="delete">Verwijderen</button>
+      </div>
+      <ul class="pages">
+
+        <li>
+          <div class="new">
+            <a href="/admin/soon/editor/">Nieuw evenement</a>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="date">
+            <time>12/2/2014</time>
+          </div>
+          <div class="soonname">
+            <a href="/admin/soon/editor/">Open dag II</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/soon/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="date">
+            <time>27/1/2014</time>
+          </div>
+          <div class="soonname">
+            <a href="/admin/soon/editor/">Open dag I</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/soon/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="date">
+            <time>26/12/2013</time>
+          </div>
+          <div class="soonname">
+            <a href="/admin/soon/editor/">Kerstgala</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/soon/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="date">
+            <time>30/5/2013</time>
+          </div>
+          <div class="soonname">
+            <a href="/admin/soon/editor/" class="old">Diploma-uitreiking</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/soon/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="date">
+            <time>20/3/2013</time>
+          </div>
+          <div class="soonname">
+            <a href="/admin/soon/editor/" class="old">Aristeia</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/soon/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </form>
+
+    <nav id="pagination">
+      <a href="#prev">« Vorige</a>
+      <a class="current">1</a>
+      <a href="#2">2</a>
+      <a href="#3">3</a>
+      <a href="#4">4</a>
+      <a href="#5">5</a>
+      <a class="dots">...</a>
+      <a href="#16">16</a>
+      <a href="#next">Volgende »</a>
+    </nav>
+  </section>
+
+{% endblock %}

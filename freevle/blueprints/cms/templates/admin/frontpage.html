@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/admin/frontpage.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Voorpagina</h2>
+
+  <section class="card coverimage">
+    <h3>Cover-afbeelding</h3>
+    <button class="button save">Opslaan</button>
+    <section>
+      <input type="file" id="subtitle" name="#">
+      <div class="filemask">
+        <p>Kies een afbeelding</p>
+        <div>
+          <img src="/static/img/cover.png">
+        </div>
+      </div>
+    </section>
+  </section>
+{% endblock %}

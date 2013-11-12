@@ -1,0 +1,160 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/admin/list.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Gebruikers</h2>
+
+  <section class="card seventy">
+    <form method="POST" action="#">
+      <div id="massactions">
+        <p>Acties met geselecteerde gebruikers:</p>
+        <button type="submit" class="button delete" name="delete">Verwijderen</button>
+
+        <select name="rights" class="button">
+          <option value="parent">Ouder</option>
+          <option value="student">Leerling</option>
+          <option value="teacher">Leraar</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit" class="button changerights" name="changerights">Verander rechten</button>
+      </div>
+      <ul class="pages">
+
+        <li>
+          <div class="new">
+            <a href="/admin/pages/editor/">Nieuwe gebruiker</a>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="usertype">
+            Leerling
+          </div>
+          <a href="/admin/users/editor/">
+            <div class="userid">
+              999999
+            </div>
+            <div class="username">
+              Jan Modaal
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="usertype">
+            Leerling
+          </div>
+          <a href="/admin/users/editor/">
+            <div class="userid">
+              999999
+            </div>
+            <div class="username">
+              Jan Modaal
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="usertype">
+            Leerling
+          </div>
+          <a href="/admin/users/editor/">
+            <div class="userid">
+              999999
+            </div>
+            <div class="username">
+              Jan Modaal
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="usertype">
+            Leerling
+          </div>
+          <a href="/admin/users/editor/">
+            <div class="userid">
+              999999
+            </div>
+            <div class="username">
+              Jan Modaal
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </form>
+
+    <nav id="pagination">
+      <a href="#prev">« Vorige</a>
+      <a class="current">1</a>
+      <a href="#2">2</a>
+      <a href="#3">3</a>
+      <a href="#4">4</a>
+      <a href="#5">5</a>
+      <a class="dots">...</a>
+      <a href="#16">16</a>
+      <a href="#next">Volgende »</a>
+    </nav>
+  </section>
+
+  <section class="card thirty">
+    <form method="GET" action="">
+      <h3>Filter</h3>
+
+      <button type="submit" class="button">Update filter</button>
+
+      <h4>Zoeken:</h4>
+
+      <p>
+        <input type="search" name="search" placeholder="Zoek">
+      </p>
+
+      <h4>Soort:</h4>
+
+      <p>
+        <input type="radio" name="category" value="all" checked>
+        <label for="all">Alle</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="education">
+        <label for="education">Ouders</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="school">
+        <label for="school">Leerlingen</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="intern">
+        <label for="intern">Ouders</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="other">
+        <label for="other">Admins</label>
+      </p>
+
+    </form>
+  </section>
+{% endblock %}

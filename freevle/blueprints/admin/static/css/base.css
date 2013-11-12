@@ -89,16 +89,19 @@ h2 {
   .move:hover {
     background-color: #99cfe0; }
 
-.save {
-  background-color: limegreen;
+.save, .publish {
   border-color: #2db92d !important;
   background-image: url(/admin/static/img/adminsprite-actions.png);
   background-size: 50px;
-  background-position: -8px -8px;
   background-repeat: no-repeat;
+  color: #2db92d; }
+  .save:hover, .save:active, .publish:hover, .publish:active {
+    background-color: #30c530;
+    color: white; }
+
+.publish {
+  background-color: limegreen;
   color: white; }
-  .save:hover {
-    background-color: #2db92d; }
 
 /*IE-WARNING*/
 div#iewarning {
@@ -129,7 +132,7 @@ header#main {
   background: #25578c;
   color: rgba(255, 255, 255, 0.7);
   position: relative;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
   padding-left: 4em;
   max-width: 100%;
@@ -162,7 +165,7 @@ a#logout {
 
 /*NAVIGATION*/
 nav#sidebar {
-  z-index: 3;
+  z-index: 4;
   min-height: 27.9em;
   height: 100%;
   position: absolute;
@@ -219,7 +222,7 @@ nav#sidebar {
     nav#sidebar.opened ul li {
       width: 12.5em; }
   nav#sidebar ul {
-    margin: 0;
+    margin: 3.7em 0 0;
     padding: 0;
     list-style: none;
     width: 0;
@@ -241,23 +244,12 @@ nav#sidebar {
         min-width: 12.5em;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         background-color: #25578c;
-        background-image: url(/admin/static/img/adminsprite.png);
         background-repeat: no-repeat;
         box-sizing: border-box;
         -o-box-sizing: border-box;
         -ms-box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box; }
-        nav#sidebar ul li a#pageslink {
-          background-position: 0 -64px; }
-        nav#sidebar ul li a#newslink {
-          background-position: 0 -128px; }
-        nav#sidebar ul li a#soonlink {
-          background-position: 0 -192px; }
-        nav#sidebar ul li a#photoslink {
-          background-position: 0 -256px; }
-        nav#sidebar ul li a#userslink {
-          background-position: 0 -320px; }
 
 /*PAGE*/
 div#page {
@@ -278,12 +270,12 @@ section.card {
   section.card h3 {
     font-size: 1.5em;
     margin: 0.8em 20px; }
+  section.card h4 {
+    margin: 1.2em 20px 0.8em; }
 
 @media (min-width: 700px) {
   body {
     padding: 0 0 0 4em; }
-    body.opened {
-      padding-left: 12.5em; }
 
   .mobileonly {
     display: none; }
@@ -292,17 +284,15 @@ section.card {
     display: inline-block; }
 
   header#main {
-    padding: 0; }
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0; }
 
   nav#sidebar {
     width: 4em;
-    overflow: visible; }
-    nav#sidebar.opened {
-      box-shadow: none;
-      -o-box-shadow: none;
-      -ms-box-shadow: none;
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none; }
+    overflow: visible;
+    clear: both; }
     nav#sidebar ul {
       width: 4em;
       overflow: visible; }
@@ -334,42 +324,20 @@ section.card {
 
   section.card {
     margin: 0 3% 1em; } }
-@media (min-height: 28em) {
+@media (min-height: 32em) {
   header#main {
     position: fixed;
-    width: 100%;
-    top: 0; }
-    header#main a#logout {
-      transition: right 200ms ease-in-out;
-      -o-transition: right 200ms ease-in-out;
-      -ms-transition: right 200ms ease-in-out;
-      -moz-transition: right 200ms ease-in-out;
-      -webkit-transition: right 200ms ease-in-out; }
-
-  body.opened header#main a#logout {
-    right: 9.25em; }
+    top: 0;
+    right: 0;
+    left: 0; }
 
   nav#sidebar {
     position: fixed; }
 
   div#page {
     margin-top: 3.9em; } }
-@media (min-height: 28em) and (min-width: 700px) {
-  a#logout {
-    margin: 0.7em 4.8em 0 0;
-    transition: margin 200ms ease-in-out;
-    -o-transition: margin 200ms ease-in-out;
-    -ms-transition: margin 200ms ease-in-out;
-    -moz-transition: margin 200ms ease-in-out;
-    -webkit-transition: margin 200ms ease-in-out; }
-
-  .opened a#logout {
-    margin: 0.7em 13.3em 0 0; } }
 @media (min-width: 1000px) {
   section.card.fifty {
     width: 46%;
     display: inline-block;
     margin: 0 -1% 1em 3%; } }
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  nav#sidebar ul li a {
-    background-image: url(/admin/static/img/adminsprite@2x.png); } }

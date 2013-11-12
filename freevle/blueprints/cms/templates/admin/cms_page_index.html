@@ -1,0 +1,173 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/admin/static/css/list.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Pagina's</h2>
+
+  <section class="card seventy">
+    <form method="POST" action="#">
+      <div id="massactions">
+        <p>Acties met geselecteerde items:</p>
+        <button type="submit" class="button delete" name="delete">Verwijderen</button>
+      </div>
+      <ul class="pages">
+
+        <li>
+          <div class="new">
+            <a href="/admin/pages/editor/">Nieuwe pagina</a>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="pagename">
+            <a href="/admin/pages/editor/">Waarom Gymnasium?</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/pages/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="pagename">
+            <a href="/admin/pages/editor/">Wereldburgers en Wetenschappers</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/pages/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="pagename">
+            <a href="/admin/pages/editor/">Geschiedenis</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/pages/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="pagename">
+            <a href="/admin/pages/editor/">Schoolklimaat</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/pages/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="checkboxcont">
+            <input type="checkbox" value="#openingschip">
+          </div>
+          <div class="pagename">
+            <a href="/admin/pages/editor/">Gebouw</a>
+          </div>
+          <div class="actions">
+            <div class="buttoncont">
+              <a href="#/admin/pages/editor/name/delete/" class="delete"></a>
+              <div class="tooltip">Verwijderen</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </form>
+
+    <nav id="pagination">
+      <a href="#prev">« Vorige</a>
+      <a class="current">1</a>
+      <a href="#2">2</a>
+      <a href="#3">3</a>
+      <a href="#4">4</a>
+      <a href="#5">5</a>
+      <a class="dots">...</a>
+      <a href="#16">16</a>
+      <a href="#next">Volgende »</a>
+    </nav>
+  </section>
+
+  <section class="card thirty">
+    <form method="GET" action="">
+      <h3>Filter</h3>
+
+      <button type="submit" class="button">Update filter</button>
+
+      <h4>Categorie:</h4>
+
+      <p>
+        <input type="radio" name="category" value="all" checked>
+        <label for="all">Alles</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="education">
+        <label for="education">Onderwijs</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="school">
+        <label for="school">De School</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="activities">
+        <label for="activities">Activiteiten</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="intern">
+        <label for="intern">Personeel</label>
+      </p>
+
+      <p>
+        <input type="radio" name="category" value="other">
+        <label for="other">Overig</label>
+      </p>
+
+
+      <h4>Zichtbaar voor:</h4>
+      <p>
+        <input type="checkbox" name="visibility" value="everyone" checked>
+        <label for="everyone">Iedereen</label>
+      </p>
+
+      <p>
+        <input type="checkbox" name="visibility" value="studentsparents">
+        <label for="studentsparents">Leerlingen en ouders</label>
+      </p>
+
+      <p>
+        <input type="checkbox" name="visibility" value="teachers">
+        <label for="teachers">Personeel</label>
+      </p>
+    </form>
+  </section>
+{% endblock %}

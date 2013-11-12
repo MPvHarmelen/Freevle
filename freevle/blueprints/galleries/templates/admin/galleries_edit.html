@@ -1,0 +1,118 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      /*SLUG FIELD*/
+      slugger($('#photostitle'));
+
+      $('#photostitle').keyup(function() {
+        slugger($(this));
+      });
+    });
+  </script>
+  <link rel="stylesheet" href="/static/css/admin/editor.css">
+  <link rel="stylesheet" href="/static/css/admin/photos.css">
+{% endblock %}
+
+{% block bodyclass %}
+{% endblock %}
+
+{% block page %}
+  <h2>Foto's-editor</h2>
+
+  <section class="card">
+    <form method="POST" action="#" id="editor">
+      <div id="editortop">
+        <label for="slug">Url:</label>
+        <input type="hidden" name="slug" placeholder="..." value="gebouw">
+        <p id="slug"></p>
+
+        <button name="publish" type="submit" class="button publish">Publiceren</button>
+        <button name="save" type="submit" class="button save">Opslaan</button>
+
+        <a href="#" class="button view">Bekijken</a>
+
+        <a href="#" class="button delete">Verwijder</a>
+      </div>
+
+      <label for="photostitle">Titel:</label>
+      <input type="text" id="photostitle" name="photostitle" class="title" placeholder="..." value="Jihlava">
+
+      <section>
+        <textarea placeholder="Beschrijving..." name="#" id="photosdescr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac viverra neque. Nulla quis erat tincidunt ipsum porttitor posuere fermentum a elit. Curabitur sit amet molestie dolor, a elementum lacus. Ut aliquam nec neque vel mollis. Integer at tortor imperdiet, dapibus eros ac, dictum orci. Integer sit amet orci ac tortor auctor vestibulum. Donec quis neque accumsan, scelerisque erat a, viverra lorem. Vivamus eleifend iaculis vehicula. Integer pellentesque tincidunt nulla vitae sollicitudin. Aliquam erat volutpat.</textarea>
+      </section>
+
+      <div id="massactions">
+        <p>Actie met geselecteerde items:</p>
+        <button type="submit" class="button delete" name="delete">Verwijderen</button>
+      </div>
+
+      <section id="gallery">
+        <input type="file" name="photos" multiple>
+        <div id="addphotos">
+          <span>+</span>
+          Voeg foto's toe
+        </div>
+
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/paralax2.jpg" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/paralax3.jpg" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/paralax2.jpg" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/cover.png" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/coversmall.png" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/page.jpg" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/paralax3.jpg" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+        <div>
+          <div class="coverbg">
+            <img src="/static/img/cover.png" alt="Naam foto">
+          </div>
+          <input type="checkbox">
+          <div class="overlay"></div>
+        </div>
+      </section>
+    </form>
+
+  </section>
+{% endblock %}
