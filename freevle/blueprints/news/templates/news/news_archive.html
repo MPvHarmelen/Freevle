@@ -1,8 +1,7 @@
 {% extends "news/pagination.html" %}
 
 {% block head %}
-  <link rel="stylesheet" href="/nieuws/static/css/news.css">
-  <script src="/nieuws/static/js/archive.js"></script>
+  <script src="{{ url_for('news.static', filename='js/archive.js') }}"></script>
 {% endblock %}
 
 {% block bodyclass %}

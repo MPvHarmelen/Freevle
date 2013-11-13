@@ -1,5 +1,9 @@
 {% extends "cms/base.html" %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('news.static', filename="css/news.css") }}">
+{% endblock %}
+
 {% block pagination %}
 {%- if page > 1 %}
 <a href="?page={{ page - 1}}">&laquo; Vorige</a>

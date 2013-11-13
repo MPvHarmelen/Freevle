@@ -75,7 +75,7 @@
       </nav>
       <a href="#search" id="searchopener">&emsp;</a>
       <div id="intern">
-        <a href="/login/">Intern</a>
+        <a href="/login/">Login</a>
         {% if loggedin %}
           <ul class="dropdown">
             <li>
@@ -87,11 +87,10 @@
           </ul>
         {% endif %}
       </div>
-      <form method="POST" action="/zoek/">
+      <form method="POST" action="/zoek/" id="search">
         <h2 id="searchtitle">Zoeken</h2>
         <input type="search" name="search" list="search" placeholder="Zoek">
-        <datalist id="search">
-        </datalist>
+        <div id="aclist"></div>
       </form>
     </header>
 

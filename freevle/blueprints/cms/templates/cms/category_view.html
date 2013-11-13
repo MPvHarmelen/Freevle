@@ -9,7 +9,9 @@
 {% block page %}
   <div id="content" class="info">
     <nav id="subjectoverview">
+
       <h2>{{ category.title }}</h2>
+
       <ul>
         <section>
           {% for subcategory in category.subcategories %}
@@ -26,6 +28,11 @@
           {% endfor %}
         </section>
       </ul>
+
+      <div id="tointern" class="intern">
+        <a href="/login/">Login voor informatie voor ouders, leerlingen en personeel.</a>
+      </div>
+
     </nav>
   </div>
 {% endblock %}

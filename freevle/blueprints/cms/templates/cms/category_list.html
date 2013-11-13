@@ -8,12 +8,31 @@
 
 {% block page %}
   <div id="content" class="intern">
+    <nav id="jumpto">
+      <ul>
+        <li id="title">
+          Ga naar:
+        </li>
+        <li>
+          <a href="#top">Top</a>
+        </li>
+        <li>
+          <a href="#handigelinkjes">Handige linkjes</a>
+        </li>
+        {% for category in categories %}
+        <li>
+          <a href="#{{ category.title }}">{{ category.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
     <nav id="subjectoverview">
       <h2>Interne Informatie</h2>
       <ul>
         <section class="hasHeader promotion">
 
-          <h3>Handige linkjes</h3>
+          <h3 id="handigelinkjes">Handige linkjes</h3>
 
           <li>
             <ul>

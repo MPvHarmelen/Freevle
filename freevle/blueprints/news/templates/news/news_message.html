@@ -1,10 +1,7 @@
 {% extends "cms/base.html" %}
 
 {% block head %}
-  <link rel="stylesheet" href="/nieuws/static/css/news.css">
-{% endblock %}
-
-{% block bodyclass %}
+  <link rel="stylesheet" href="{{ url_for('news.static', filename="css/news.css") }}">
 {% endblock %}
 
 {% block page %}
