@@ -19,58 +19,21 @@
   <div id="content">
     <nav>
       <ul id="quicknav">
-        <li class="relevant education">
-          <h3>Onderwijs</h3>
+        {% for subcategory in menu_items[0].subcategories %}
+        <li class="relevant {{ subcategory.html_class }}">
+          <h3>{{ subcategory.title }}</h3>
           <ul>
+            {% for page in subcategory.pages[:4] %}
             <li>
-              <a href="/info/onderwijs/waaromgymnasium/">Waarom gymnasium?</a>
+              <a href="{{ page.get_url() }}">{{ page.title }}</a>
             </li>
-            <li>
-              <a href="/info/onderwijs/lesprogramma/">Lesprogramma</a>
-            </li>
-            <li>
-              <a href="/info/onderwijs/resultaten/">Resultaten</a>
-            </li>
+            {% endfor %}
           </ul>
         </li>
-        <li class="relevant school">
-          <h3>De School</h3>
-          <ul>
-            <li>
-              <a href="/info/deschool/geschiedenis/">Geschiedenis</a>
-            </li>
-            <li>
-              <a href="/info/deschool/gebouw/">Gebouw</a>
-            </li>
-            <li>
-              <a href="/info/deschool/schoolklimaat/">Schoolklimaat</a>
-            </li>
-            <li>
-              <a href="/info/deschool/zorg/">Zorg</a>
-            </li>
-
-          </ul>
-        </li>
-        <li class="relevant activities">
-          <h3>Activiteiten</h3>
-          <ul>
-            <li>
-              <a href="/info/activiteiten/gebouw/">Schoolreizen</a>
-            </li>
-            <li>
-              <a href="/info/activiteiten/aristeia/">Aristeia</a>
-            </li>
-            <li>
-              <a href="/info/activiteiten/aristeia/">Schoolfeesten</a>
-            </li>
-            <li>
-              <a href="/info/activiteiten/aristeia/">Sportdagen</a>
-            </li>
-          </ul>
-        </li>
+        {% endfor %}
         <li class="relevant more">
           <h3>
-            <a href="/info/">
+            <a href="{{ menu_items[0].get_url() }}">
               <span>Meer informatie</span>
             </a>
           </h3>

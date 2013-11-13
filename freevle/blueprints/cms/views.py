@@ -12,6 +12,22 @@ from ..news.models import NewsItem
 from ..galleries.models import Album
 # from ..user.decorators import login_required
 
+# Temporary group-eight view
+@bp.route('/groep8/')
+def group_8():
+    return render_template('cms/groep8.html')
+
+@bp.app_errorhandler(403)
+def page_not_fount(e):
+    return render_template('cms/403.html'), 403
+
+@bp.app_errorhandler(404)
+def page_not_fount(e):
+    return render_template('cms/404.html'), 404
+
+@bp.app_errorhandler(500)
+def page_not_fount(e):
+    return render_template('cms/500.html'), 500
 
 @bp.route(bp.static_url_path + '/')
 @bp.route(bp.static_url_path + '/<path:path>/')
