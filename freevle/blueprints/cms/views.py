@@ -12,11 +12,16 @@ from ..news.models import NewsItem
 from ..galleries.models import Album
 # from ..user.decorators import login_required
 
-# Temporary group-eight view
+# Temporary views for demo
 @bp.route('/groep8/')
 def group_8():
     return render_template('cms/groep8.html')
 
+@bp.route('/contact/')
+def contact():
+    return render_template('cms/contact.html')
+
+# Error handlers
 @bp.app_errorhandler(403)
 def page_not_fount(e):
     return render_template('cms/403.html'), 403
@@ -29,6 +34,7 @@ def page_not_fount(e):
 def page_not_fount(e):
     return render_template('cms/500.html'), 500
 
+# Static file serving
 @bp.route(bp.static_url_path + '/')
 @bp.route(bp.static_url_path + '/<path:path>/')
 @bp.route(bp.static_url_path + '/<path:path>/<filename>')
@@ -51,7 +57,7 @@ def serve_static(path='', filename='', extension=''):
         file_path += '.' + extension
     return bp.send_static_file(file_path)
 
-
+# Context processors
 @bp.app_context_processor
 def inject_menu():
     """Inject unprotected categories into context."""
@@ -97,7 +103,7 @@ def inject_breadcrumbs():
         breadcrumbs.append((url_sections[-1], ''))
     return dict(breadcrumbs=breadcrumbs)
 
-
+# Views
 @bp.route('/')
 def home():
     """Show the homepage of the entire website."""
