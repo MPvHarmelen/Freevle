@@ -4,9 +4,6 @@
 <link rel="stylesheet" href="{{ url_for('galleries.static', filename="css/photos.css") }}">
 {% endblock %}
 
-{% block bodyclass %}
-{% endblock %}
-
 {% block pagination %}
 {%- if page > 1 %}
 <a href="?page={{ page - 1}}">&laquo; Vorige</a>
