@@ -638,9 +638,9 @@ footer {
     #menuopener.opened {
       right: 0;
       z-index: 5;
-      background-position: top 0 right -120px;
-      background-position-x: -120px;
-      background-position-y: 0;
+      background-position: top -120px right 0;
+      background-position-x: 0;
+      background-position-y: -120px;
       border-left: 1px solid darken($maincolor, 5%);
       border-right: 0;
     }
@@ -682,9 +682,9 @@ footer {
 
     #searchopener.opened {
       z-index: 5;
-      background-position: top 0 right -120px;
-      background-position-x: -120px;
-      background-position-y: 0;
+      background-position: top -120px right 0;
+      background-position-x: 0;
+      background-position-y: -120px;
       border-right: 1px solid darken($maincolor, 5%);
       border-left: 0;
     }

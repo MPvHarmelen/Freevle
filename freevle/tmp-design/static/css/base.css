@@ -24,7 +24,7 @@ body {
 
 /*BASIC ELEMENTS*/
 h1 {
-  font-family: 'Aldus', serif;
+  font-family: "Aldus", serif;
   font-weight: 400;
   text-align: center;
   color: white;
@@ -453,9 +453,9 @@ footer {
   header#main #menuopener.opened {
     right: 0;
     z-index: 5;
-    background-position: top 0 right -120px;
-    background-position-x: -120px;
-    background-position-y: 0;
+    background-position: top -120px right 0;
+    background-position-x: 0;
+    background-position-y: -120px;
     border-left: 1px solid #013164;
     border-right: 0; }
   header#main form {
@@ -486,9 +486,9 @@ footer {
       color: rgba(255, 255, 255, 0.7); }
   header#main #searchopener.opened {
     z-index: 5;
-    background-position: top 0 right -120px;
-    background-position-x: -120px;
-    background-position-y: 0;
+    background-position: top -120px right 0;
+    background-position-x: 0;
+    background-position-y: -120px;
     border-right: 1px solid #013164;
     border-left: 0; }
   header#main div#intern a {
