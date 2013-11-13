@@ -11,16 +11,18 @@
   <h2>Voorpagina</h2>
 
   <section class="card coverimage">
-    <h3>Cover-afbeelding</h3>
-    <button class="button save">Opslaan</button>
-    <section>
-      <input type="file" id="subtitle" name="#">
-      <div class="filemask">
-        <p>Kies een afbeelding</p>
-        <div>
-          <img src="/static/img/cover.png">
+    <form action="#" method="POST" enctype=multipart/form-data>
+      <h3>Cover-afbeelding</h3>
+      <button class="button save">Opslaan</button>
+      <section>
+        <input type="file" id="subtitle" name="#">
+        <div class="filemask">
+          <p>Kies een afbeelding</p>
+          <div>
+            <img src="/static/img/cover.png">
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </form>
   </section>
 {% endblock %}

@@ -12,6 +12,10 @@ from ..news.models import NewsItem
 from ..galleries.models import Album
 # from ..user.decorators import login_required
 
+# Temporary group-eight view
+@bp.route('/groep8/')
+def group_8():
+    return render_template('cms/groep8.html')
 
 @bp.route(bp.static_url_path + '/')
 @bp.route(bp.static_url_path + '/<path:path>/')
