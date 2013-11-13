@@ -50,7 +50,7 @@
           <div class="coverbg">
             <img src="{{ album.cover_image_url }}" alt="{{ album.cover_image.title }}">
           </div>
-          <a class="overlay" href="{{ album.cover_image_url }}">
+          <a class="overlay" href="{{ album.get_url() }}">
             <div>
               <h3>{{ album.title }}</h3>
               {{ album.description }}
