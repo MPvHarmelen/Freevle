@@ -1,25 +1,44 @@
 from flask import render_template, Markup, request
 from freevle import db
+from freevle.utils.decorators import paginated_view_2 as paginated_view
 
 from . import bp
-from .models import Event, Page
+from .constants import PAGES_PER_ADMIN_PAGE
+from .models import Event, Page, Category, Subcategory
 from ..admin import bp as admin
 
 @admin.route('/cms/page/')
+@paginated_view(PAGES_PER_ADMIN_PAGE)
 def cms_page_index():
     """Specific admin index for Page."""
-    pages = Page.query.order_by(Page.title).all()
-    return render_template('admin/cms_page_index.html', pages=pages)
-
-@admin.route('/cms/category/create')
-@admin.route('/cms/category/edit/<category_slug>')
-def cms_category_edit(category_slug=None):
-    """Create or edit a category."""
-    if category_slug is None:
-        # First routing, create a category.
-        ...
-    else:
-        ...
+    pages = Page.query.order_by(Page.title)
+    cat_slug =  request.args.get('category', False)
+    if cat_slug:
+        pages = pages.filter(
+            Page.subcategory.has(
+                Subcategory.category.has(
+                    Category.slug == cat_slug
+                )
+            )
+        )
+    visibility = request.args.getlist('visibility')
+    if len(visibility):
+        if 'everyone' in visibility:
+            i = visibility.index('everyone')
+            visibility[i] = None
+        if 'studentsparents' in visibility:
+            i = visibility.index('studentparent')
+            visibility[i:i + 1] = ['student', 'parent']
+        filters = [
+            Page.subcategory.has(
+                Subcategory.category.has(
+                    Category.safety_level == level
+                )
+            )
+            for level in visibility
+        ]
+        pages = pages.filter(db.or_(*filters))
+    return 'admin/cms_page_index.html', pages
 
 @admin.route('/cms/page/<category_slug>/<subcategory_slug>/create')
 @admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit')
@@ -50,6 +69,16 @@ def cms_page_save(category_slug, subcategory_slug, page_slug=None):
 def cms_page_delete(category_slug, subcategory_slug, parent_slug=None):
     """Delete a page."""
     ...
+
+@admin.route('/cms/category/create')
+@admin.route('/cms/category/edit/<category_slug>')
+def cms_category_edit(category_slug=None):
+    """Create or edit a category."""
+    if category_slug is None:
+        # First routing, create a category.
+        ...
+    else:
+        ...
 
 @admin.route('/binnenkort/')
 def cms_event_index():
