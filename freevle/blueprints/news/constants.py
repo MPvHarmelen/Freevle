@@ -1,6 +1,7 @@
 # View constants
 NEWS_ITEMS_PER_PAGE = 5
 NEWS_PREVIEW_LENGTH = 300
+ARCHIVE_URL = 'archief'
 
 # NewsItem constants
 NEWS_ITEM_TITLE_LENGTH = 32

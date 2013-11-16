@@ -8,7 +8,7 @@ from freevle.utils.functions import paginate as _paginate
 from freevle.utils.decorators import archived_view
 
 from . import bp
-from .constants import NEWS_ITEMS_PER_PAGE, NEWS_PREVIEW_LENGTH
+from .constants import NEWS_ITEMS_PER_PAGE, NEWS_PREVIEW_LENGTH, ARCHIVE_URL
 from .models import NewsItem
 
 def process_news(news):
@@ -31,10 +31,16 @@ def inject_breadcrumbs():
                    or request.url.split('/')[-1][0] == '?'\
                    else request.url.split('/')[3:]
 
-    breadcrumbs = [(url_sections[0], '/' + url_sections[0])] + [
-        (crumb, '')
-        for i, crumb in enumerate(url_sections[1:-1])
-    ]
+    if len(url_sections) > 1 and url_sections[1] == ARCHIVE_URL:
+        breadcrumbs = [
+            (crumb, '/' + '/'.join(url_sections[:i + 1]),)
+            for i, crumb in enumerate(url_sections[:-1])
+        ]
+    else:
+        breadcrumbs = [(url_sections[0], '/' + url_sections[0])] + [
+            (crumb, '')
+            for i, crumb in enumerate(url_sections[1:-1])
+        ]
     if len(url_sections) > 1:
         breadcrumbs.append((url_sections[-1], ''))
     return dict(breadcrumbs=breadcrumbs)
@@ -48,9 +54,9 @@ def overview():
     return render_template('news/news.html', news=news, page=page,
                            max_page=max_page)
 
-@bp.route('/archief/')
-@bp.route('/archief/<int:year>/')
-@bp.route('/archief/<int:year>/<int:month>/')
+@bp.route('/{}/'.format(ARCHIVE_URL))
+@bp.route('/{}/<int:year>/'.format(ARCHIVE_URL))
+@bp.route('/{}/<int:year>/<int:month>/'.format(ARCHIVE_URL))
 @archived_view('news.archive', 'news/news_archive.html')
 def archive(year=None, month=None):
     query = NewsItem.query.filter(NewsItem.date_published <= date.today())
