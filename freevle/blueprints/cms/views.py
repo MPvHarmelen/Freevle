@@ -100,7 +100,7 @@ def inject_breadcrumbs():
     ]
     # The last part of the breadcrumb should never be a url
     if len(url_sections) > 0:
-        breadcrumbs.append((url_sections[-1], ''))
+        breadcrumbs.append((url_sections[-1].split('?')[0], ''))
     return dict(breadcrumbs=breadcrumbs)
 
 # Views
