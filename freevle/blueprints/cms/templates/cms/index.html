@@ -17,6 +17,7 @@
     </div>
   </div>
   <div id="content">
+    {% if menu_items|length %}
     <nav>
       <ul id="quicknav">
         {% for subcategory in menu_items[0].subcategories %}
@@ -40,6 +41,7 @@
         </li>
       </ul>
     </nav>
+    {% endif %}
 
     <div id="recent">
       <h2>
