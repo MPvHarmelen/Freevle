@@ -1,6 +1,6 @@
 from flask import render_template, Markup, request
 from freevle import db
-from freevle.utils.decorators import paginated_view_2 as paginated_view
+from freevle.utils.functions import paginate
 
 from . import bp
 from .constants import PAGES_PER_ADMIN_PAGE
@@ -8,10 +8,9 @@ from .models import Event, Page, Category, Subcategory
 from ..admin import bp as admin
 
 @admin.route('/cms/page/')
-@paginated_view(PAGES_PER_ADMIN_PAGE)
 def cms_page_index():
     """Specific admin index for Page."""
-    pages = Page.query.order_by(Page.title)
+    pages = Page.query
     cat_slug =  request.args.get('category', False)
     if cat_slug:
         pages = pages.filter(
@@ -38,7 +37,12 @@ def cms_page_index():
             for level in visibility
         ]
         pages = pages.filter(db.or_(*filters))
-    return 'admin/cms_page_index.html', pages
+    pages = pages.order_by(Page.title.asc()).all()
+    pages, page_nr, max_page_nr = paginate(pages)
+    return render_template('admin/cms_page_index.html',
+                           pages=pages,
+                           page=page_nr,
+                           max_page=max_page_nr)
 
 @admin.route('/cms/page/<category_slug>/<subcategory_slug>/create')
 @admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit')
