@@ -5,7 +5,7 @@ PERMISSION_NAME_LENGTH = 32
 # Group constants
 GROUP_NAME_LENGTH = 32
 GROUP_SLUG_LENGTH = 32
-POLYMORPHIC_IDENTITIES = ['parent' ,'teacher', 'student']
+POLYMORPHIC_IDENTITIES = ['Parent' ,'Teacher', 'Student', 'Admin', 'User']
 
 # Base user constants
 USER_TYPE_LENGTH = 10

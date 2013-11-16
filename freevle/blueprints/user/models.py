@@ -61,7 +61,7 @@ class User(db.Model):
 
     __mapper_args__ = {
         'polymorphic_on': user_type,
-        'polymorphic_identity': __name__.lower()
+        'polymorphic_identity': __qualname__
     }
 
     @hybrid_property
@@ -101,12 +101,18 @@ class User(db.Model):
     def __repr__(self):
         return '({}) {} {}'.format(self.id, self.user_type.capitalize(), self.full_name)
 
+    def is_polymorphic_of(self, identity):
+        if identity in POLYMORPHIC_IDENTITIES:
+            return isinstance(self, eval(identity))
+        else:
+            raise ValueError("'identity' should be in POLYMORPHIC_IDENTITIES")
+
 class Parent(User):
-    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
+    __mapper_args__ = {'polymorphic_identity': __qualname__}
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
 class Teacher(Parent):
-    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
+    __mapper_args__ = {'polymorphic_identity': __qualname__}
 
     id = db.Column(db.Integer, db.ForeignKey('parent.id'), primary_key=True)
     designation = db.Column(db.String(DESIGNATION_LENGTH), unique=True,
@@ -115,7 +121,7 @@ class Teacher(Parent):
 
 class Admin(User):
     '''Has all permissions.'''
-    __mapper_args__ = {'polymorphic_identity': __name__.lower()}
+    __mapper_args__ = {'polymorphic_identity': __qualname__}
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
 parent_student = db.Table('parent_student',
@@ -127,7 +133,7 @@ class Student(User):
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
     __mapper_args__ = {
-        'polymorphic_identity': __name__.lower(),
+        'polymorphic_identity': __qualname__,
         'inherit_condition': User.id == id
     }
 

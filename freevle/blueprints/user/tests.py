@@ -119,6 +119,15 @@ class UserTests(TestBase):
         self.assertEquals(t.secondary_email, t_in.secondary_email)
         self.assertEquals(t.phone_number, t_in.phone_number)
         self.assertEquals(t.designation, t_in.designation)
+        self.assertIsInstance(t, Parent)
+        self.assertIsInstance(t, User)
+        self.assertEquals(t.is_polymorphic_of('Teacher'), True)
+        self.assertEquals(t.is_polymorphic_of('Parent'), True)
+        self.assertEquals(t.is_polymorphic_of('User'), True)
+        self.assertEquals(t.is_polymorphic_of('Student'), False)
+        self.assertEquals(t.is_polymorphic_of('Admin'), False)
+        self.assertRaises(ValueError, t.is_polymorphic_of, 'admin')
+        self.assertRaises(ValueError, t.is_polymorphic_of, 'not an identity')
 
         # Evil teachers who should be stopped
         self.assertRaises(IntegrityError, self.create_teacher, username=None)
