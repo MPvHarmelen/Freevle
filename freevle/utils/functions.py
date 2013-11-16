@@ -4,7 +4,11 @@ import re
 from math import ceil
 from unicodedata import normalize
 from markdown import Markdown
+
 from flask import request
+from werkzeug.exceptions import NotFound
+
+from freevle import app
 
 markdown = Markdown(output_format='html5', safe_mode='escape', lazy_ol=False).convert
 

@@ -9,4 +9,4 @@ bp = Blueprint(
 
 URL_PREFIX='/fotos'
 
-# from . import views
+from . import views
