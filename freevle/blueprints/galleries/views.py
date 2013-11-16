@@ -9,7 +9,7 @@ from freevle.utils.functions import imageles_markdown as markdown
 from freevle.utils.functions import paginate as _paginate
 
 from . import bp
-from .constants import ALBUMS_PER_PAGE
+from .constants import ALBUMS_PER_PAGE, ARCHIVE_URL
 from .models import Album
 
 paginate = lambda items: _paginate(items, ALBUMS_PER_PAGE)
@@ -23,10 +23,10 @@ def overview():
     return render_template('galleries/overview.html', albums=albums, page=page,
                             max_page=max_page)
 
-@bp.route('/archief/')
-@bp.route('/archief/<int:year>/')
-@bp.route('/archief/<int:year>/<int:month>/')
-@archived_view('galleries.archive', 'galleries/archive.html')
+@bp.route('/{}/'.format(ARCHIVE_URL))
+@bp.route('/{}/<int:year>/'.format(ARCHIVE_URL))
+@bp.route('/{}/<int:year>/<int:month>/'.format(ARCHIVE_URL))
+@archived_view('galleries.archive', 'galleries/archive.html'.format(ARCHIVE_URL))
 def archive(year=None, month=None):
     # Return result
     # Filter
