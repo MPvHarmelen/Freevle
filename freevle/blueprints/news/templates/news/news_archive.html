@@ -1,6 +1,7 @@
 {% extends "news/pagination.html" %}
 
 {% block head %}
+  {{ super() }}
   <script src="{{ url_for('news.static', filename='js/archive.js') }}"></script>
 {% endblock %}
 
