@@ -1,4 +1,6 @@
 from flask import render_template, Markup, request
+from werkzeug.exceptions import NotFound
+
 from freevle import db
 from freevle.utils.functions import paginate
 
@@ -44,23 +46,26 @@ def cms_page_index():
                            page=page_nr,
                            max_page=max_page_nr)
 
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/create')
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit')
-def cms_page_edit(category_slug, subcategory_slug, page_slug=None):
+@admin.route('/cms/page/create')
+@admin.route('/cms/page/<page_id>/edit')
+def cms_page_edit(page_id=None):
     """Create or edit a page."""
-    if page_slug is None:
+    if page_id is None:
         page = Page(title='', content='')
     else:
-        page = Page.get_page(category_slug, subcategory_slug, page_slug)
-    return render_template('admin/cms_page_edit.html', page=page)
-
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/create', methods=['POST'])
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/edit', methods=['POST'])
-def cms_page_save(category_slug, subcategory_slug, page_slug=None):
-    if page_slug is None:
-        page = Page()
+        page = Page.query.get(page_id)
+    if page is not None:
+        return render_template('admin/cms_page_edit.html', page=page)
     else:
-        page = Page.get_page(category_slug, subcategory_slug, page_slug)
+        raise NotFound
+
+@admin.route('/cms/page/create', methods=['POST'])
+@admin.route('/cms/page/<page_id>/edit', methods=['POST'])
+def cms_page_save(page_id=None):
+    if page_id is None:
+        page = Page(title='', content='')
+    else:
+        page = Page.query.get(page_id)
     page.title = Markup.escape(request.form['page_title'])
     # page.slug = request.form['slug']
     page.is_published = True if request.form['publish'] == 'on' else False
@@ -69,8 +74,8 @@ def cms_page_save(category_slug, subcategory_slug, page_slug=None):
     db.session.commit()
     return render_template('admin/cms_page_edit.html', page=page)
 
-@admin.route('/cms/page/<category_slug>/<subcategory_slug>/<page_slug>/delete')
-def cms_page_delete(category_slug, subcategory_slug, parent_slug=None):
+@admin.route('/cms/page/<page_id>/delete')
+def cms_page_delete(page_id):
     """Delete a page."""
     ...
 

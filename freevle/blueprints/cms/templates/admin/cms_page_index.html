@@ -17,28 +17,28 @@
         <button type="submit" class="button delete" name="delete">Verwijderen</button>
       </div>
       <ul class="pages">
-
         <li>
           <div class="new">
-            <a href="/admin/pages/editor/">Nieuwe pagina</a>
+            <a href="{{ url_for('admin.cms_page_edit') }}">Nieuwe pagina</a>
           </div>
         </li>
 
-        <li>
-          <div class="checkboxcont">
-            <input type="checkbox" value="#openingschip">
-          </div>
-          <div class="pagename">
-            <a href="/admin/pages/editor/">Waarom Gymnasium?</a>
-          </div>
-          <div class="actions">
-            <div class="buttoncont">
-              <a href="#/admin/pages/editor/name/delete/" class="delete"></a>
-              <div class="tooltip">Verwijderen</div>
+        {% for page in pages %}
+          <li>
+            <div class="checkboxcont">
+              <input type="checkbox" value="{{ page.id }}">
             </div>
-          </div>
-        </li>
-
+            <div class="pagename">
+              <a href="{{ url_for('admin.cms_page_edit', page_id=page.id) }}">{{ page.title }}</a>
+            </div>
+            <div class="actions">
+              <div class="buttoncont">
+                <a href="{{ url_for('admin.cms_page_delete', page_id=page.id) }}" class="delete"></a>
+                <div class="tooltip">Verwijderen</div>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
         <li>
           <div class="checkboxcont">
             <input type="checkbox" value="#openingschip">

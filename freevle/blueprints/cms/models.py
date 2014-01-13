@@ -14,7 +14,7 @@ from freevle.utils.functions import camel_to_underscore
 from .constants import *
 
 from ..user.constants import POLYMORPHIC_IDENTITIES, USER_TYPE_LENGTH
-from ..user.models import Admin
+from ..user.models import Admin, Student, Teacher, Parent
 
 from ..galleries.models import Album
 from ..news.models import NewsItem
@@ -81,7 +81,7 @@ class Category(db.Model):
             return 'cms.protected_categories', {}
 
     def can_view(self, user):
-        if isinstance(user, Admin):
+        if isinstance(user, Admin) or self.security_level is None:
             return True
         # elif db.join(user.groups, self.groups_view).all():
         #     return True
@@ -89,9 +89,8 @@ class Category(db.Model):
         #     if group in self.groups_view.all() and \
         #        isinstance(user, eval(group.capitalize()):
         #         return True
-        elif isinstance(user, eval(self.user_type_view.capitalize())):
-            return True
-        return False
+        # if self.security_level == 'Student' and user.user_type == 'Parent'
+        return user.is_polymorphic_of(security_level)
 
     def __repr__(self):
         return '<({}) {}>'.format(self.id, self.get_url())
@@ -212,33 +211,20 @@ class Page(db.Model):
                 'category_slug': self.subcategory.category.slug
             }
 
-    @permalink
-    def get_edit_url(self):
-        return 'admin.cms_page_edit', {'page_slug': self.slug,
-                                       'subcategory_slug': self.subcategory.slug,
-                                       'category_slug': self.subcategory.category.slug}
-    @permalink
-    def get_delete_url(self):
-        return 'admin.cms_page_delete', {'page_slug': self.slug,
-                                         'subcategory_slug': self.subcategory.slug,
-                                         'category_slug': self.subcategory.category.slug}
-
     @staticmethod
-    def get_page(security_level, category_slug, subcategory_slug, page_slug):
+    def get_page(user, category_slug, subcategory_slug, page_slug):
         # TODO: find out if this could be put into one query.
-        cat = Category.query.filter(Category.slug == category_slug)
-        if security_level is None:
-            cat = cat.filter(Category.security_level == None)
+        cat = Category.query.filter(Category.slug == category_slug).first_or_404()
+        if subcategory_slug is None:
+            # Protected view
+            pages = cat.pages
         else:
-            cat = cat.filter(db.not_(Category.security_level == None))
-        cat = cat.first_or_404()
-
-        pages = cat.pages if subcategory_slug is None\
-                else cat.subcategories.filter(
-                    Subcategory.slug == subcategory_slug
-                ).first_or_404().pages
-
-        return pages.filter(Page.slug == page_slug).first_or_404()
+            # Unprotected view
+            cat.subcategories.filter(
+                Subcategory.slug == subcategory_slug
+            ).first_or_404().pages
+        page = pages.filter(Page.slug == page_slug).first_or_404()
+        return page
 
     def can_edit(self, user):
         if isinstance(user, Admin):
