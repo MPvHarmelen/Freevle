@@ -1,1 +1,1 @@
-web: python tiny_app.py
+web: gunicorn tiny_app:app
