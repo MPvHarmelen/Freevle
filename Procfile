@@ -1,1 +1,1 @@
-web: python run.py ../settings.cfg
+web: python run.py ../heroku_settings.cfg
