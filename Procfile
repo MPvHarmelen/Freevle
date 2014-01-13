@@ -1,1 +1,1 @@
-web: python run.py ../heroku_settings.cfg
+web: python tiny_app.py
