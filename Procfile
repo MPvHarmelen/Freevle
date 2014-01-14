@@ -1,1 +1,1 @@
-web: gunicorn tiny_app:app
+web: gunicorn freevle:app
