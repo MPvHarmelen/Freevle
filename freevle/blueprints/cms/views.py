@@ -85,13 +85,15 @@ def inject_breadcrumbs():
                    if split[-1] == ''\
                    or split[-1][0] == '?'\
                    else split[3:]
-
+    # split[2] contains the server name
+    bound_map = app.url_map.bind(split[2])
+    
     # Add link if the url exists, otherwise ''
     breadcrumbs = [
         (
             crumb,
             '/' + '/'.join(url_sections[:i + 1])\
-            if app.bound_map.test('/' + '/'.join(url_sections[:i + 1]))\
+            if bound_map.test('/' + '/'.join(url_sections[:i + 1]))\
             else ''
         )
         for i, crumb in enumerate(
