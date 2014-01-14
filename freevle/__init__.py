@@ -45,5 +45,3 @@ for bp_name in blueprints:
 # admin urls.
 admin = import_module('freevle.blueprints.admin')
 app.register_blueprint(admin.bp, url_prefix=admin.URL_PREFIX)
-
-app.bound_map = app.url_map.bind(app.config['SERVER_NAME'])
