@@ -5,8 +5,7 @@ from flask import render_template, Markup, request, session
 from freevle import db, app
 from freevle.utils.functions import imageles_markdown as markdown
 from . import bp
-from .constants import NUMBER_OF_EVENTS_ON_HOMEPAGE, NUMBER_OF_NEWS_ITEMS_ON_HOMEPAGE
-from .constants import NUMBER_OF_ALBUMS_ON_HOMEPAGE, ALBUM_PREVIEW_LENGTH
+from .constants import *
 from .models import Event, Category, Page
 from ..news.models import NewsItem
 from ..galleries.models import Album
@@ -15,24 +14,24 @@ from ..galleries.models import Album
 # Temporary views for demo
 @bp.route('/groep8/')
 def group_8():
-    return render_template('cms/groep8.html')
+    return render_template('cms/groep8.html', title='Groep acht')
 
 @bp.route('/contact/')
 def contact():
-    return render_template('cms/contact.html')
+    return render_template('cms/contact.html', title='Contact')
 
 # Error handlers
 @bp.app_errorhandler(403)
 def page_not_fount(e):
-    return render_template('cms/403.html'), 403
+    return render_template('cms/403.html', title='403'), 403
 
 @bp.app_errorhandler(404)
 def page_not_fount(e):
-    return render_template('cms/404.html'), 404
+    return render_template('cms/404.html', title='404'), 404
 
 @bp.app_errorhandler(500)
 def page_not_fount(e):
-    return render_template('cms/500.html'), 500
+    return render_template('cms/500.html', title='500'), 500
 
 # Static file serving
 @bp.route(bp.static_url_path + '/')
@@ -87,7 +86,7 @@ def inject_breadcrumbs():
                    else split[3:]
     # split[2] contains the server name
     bound_map = app.url_map.bind(split[2])
-    
+
     # Add link if the url exists, otherwise ''
     breadcrumbs = [
         (
@@ -126,10 +125,11 @@ def home():
     return render_template('cms/index.html',
                            upcomming=upcomming,
                            news_items=news_items,
-                           albums=albums)
+                           albums=albums,
+                           title='Home')
 
 
-@bp.route('/intern/')
+@bp.route('/{}/'.format(PROTECTED_SECTION_TITLE.lower()))
 # @login_required
 def protected_categories():
     """View all protected categories."""
@@ -137,7 +137,8 @@ def protected_categories():
     categories = [c for c in categories
                   # if c.can_view(session.get('user'))
                   ]
-    return render_template('cms/category_list.html', categories=categories)
+    return render_template('cms/category_list.html', categories=categories,
+                           title=PROTECTED_SECTION_TITLE)
 
 
 @bp.route('/<category_slug>/')
@@ -146,7 +147,8 @@ def category_view(category_slug):
     category = Category.query.filter(Category.slug == category_slug).\
                filter(Category.security_level == None).\
                first_or_404()
-    return render_template('cms/category_view.html', category=category)
+    return render_template('cms/category_view.html', category=category,
+                           title=category.title)
 
 
 @bp.route('/<category_slug>/<subcategory_slug>/<page_slug>')
@@ -156,10 +158,12 @@ def page_view(category_slug, subcategory_slug, page_slug):
     page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
-    return render_template('cms/page_view.html', page=page)
+    title = '{} | {}'.format(page.title, page.subcategory.category.title)
+    return render_template('cms/page_view.html', page=page, title=title)
 
 
-@bp.route('/intern/<category_slug>/<page_slug>')
+@bp.route('/{}/<category_slug>/<page_slug>'.format(
+          PROTECTED_SECTION_TITLE.lower()))
 # @login_required
 def protected_page_view(category_slug, page_slug):
     """Show a page from the database."""
@@ -168,4 +172,5 @@ def protected_page_view(category_slug, page_slug):
     page.content = Markup(markdown(page.content))
     for text_section in page.text_sections:
         text_section.content = Markup(markdown(text_section.content))
-    return render_template('cms/page_view.html', page=page)
+    title = page.title + ' | ' + PROTECTED_SECTION_TITLE
+    return render_template('cms/page_view.html', page=page, title=title)

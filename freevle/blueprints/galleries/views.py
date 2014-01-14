@@ -9,7 +9,7 @@ from freevle.utils.functions import imageles_markdown as markdown
 from freevle.utils.functions import paginate as _paginate
 
 from . import bp
-from .constants import ALBUMS_PER_PAGE, ARCHIVE_URL
+from .constants import ALBUMS_PER_PAGE, ARCHIVE_URL, BLUEPRINT_TITLE
 from .models import Album
 
 paginate = lambda items: _paginate(items, ALBUMS_PER_PAGE)
@@ -21,7 +21,7 @@ def overview():
              all()
     albums, page, max_page = paginate(albums)
     return render_template('galleries/overview.html', albums=albums, page=page,
-                            max_page=max_page)
+                            max_page=max_page, title=BLUEPRINT_TITLE)
 
 @bp.route('/{}/'.format(ARCHIVE_URL))
 @bp.route('/{}/<int:year>/'.format(ARCHIVE_URL))
@@ -47,10 +47,12 @@ def archive(year=None, month=None):
                      filter(extract('year', Album.date_published) == year).\
                      order_by(Album.date_published.desc())
 
+    title = 'Archief | ' + BLUEPRINT_TITLE
     return oldest_date, albums_in_year, dict(
         albums=albums,
         page=page,
-        max_page=max_page
+        max_page=max_page,
+        title=title
     )
 
 @bp.route('/<int:year>/<album_slug>/')
@@ -59,5 +61,6 @@ def detail(year, album_slug, image_slug=None):
             filter(Album.slug == album_slug).\
             first_or_404()
     album.description = Markup(markdown(album.description))
-    return render_template('galleries/detail.html', album=album)
+    title = album.title + ' | ' + BLUEPRINT_TITLE
+    return render_template('galleries/detail.html', album=album, title=title)
 

@@ -8,7 +8,7 @@ from freevle.utils.functions import paginate as _paginate
 from freevle.utils.decorators import archived_view
 
 from . import bp
-from .constants import NEWS_ITEMS_PER_PAGE, NEWS_PREVIEW_LENGTH, ARCHIVE_URL
+from .constants import *
 from .models import NewsItem
 
 def process_news(news):
@@ -52,7 +52,7 @@ def overview():
            all()
     news, page, max_page = paginate(news)
     return render_template('news/news.html', news=news, page=page,
-                           max_page=max_page)
+                           max_page=max_page, title=BLUEPRINT_TITLE)
 
 @bp.route('/{}/'.format(ARCHIVE_URL))
 @bp.route('/{}/<int:year>/'.format(ARCHIVE_URL))
@@ -73,10 +73,12 @@ def archive(year=None, month=None):
     news_in_year = NewsItem.query.\
                    filter(extract('year', NewsItem.date_published) == year).\
                    order_by(NewsItem.date_published.desc())
+    title = 'Archief | ' + BLUEPRINT_TITLE
     return oldest_date, news_in_year, dict(
         news=news,
         page=page,
-        max_page=max_page
+        max_page=max_page,
+        title=title
     )
 
 
@@ -90,4 +92,5 @@ def item_view(year, month, day, slug):
         NewsItem.date_published == requested_date
     ).first_or_404()
     item.content = Markup(markdown(item.content))
-    return render_template('news/news_message.html', item=item)
+    title = item.title + ' | ' + BLUEPRINT_TITLE
+    return render_template('news/news_message.html', item=item, title=title)
